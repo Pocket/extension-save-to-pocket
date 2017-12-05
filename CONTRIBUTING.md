@@ -8,7 +8,7 @@ Thank you for checking out our Pocket Extensions work. We welcome contributions 
 
 * Mailing List: [pocket-extensions-dev](https://groups.google.com/a/getpocket.com/forum/#!forum/pocket-extensions-dev)
 
-* File issues/questions on Github: [https://github.com/Pocket/extension-save-to-pocket-audit/issues](https://github.com/Pocket/extension-save-to-pocket-audit/issues). We typically triage new issues every Monday.
+* File issues/questions on Github: [https://github.com/Pocket/extension-save-to-pocket/issues](https://github.com/Pocket/extension-save-to-pocket/issues). We typically triage new issues every Monday.
 
 ### Finding Bugs & Filing Tickets
 
@@ -34,7 +34,7 @@ When you have some code written, you can open up a Pull Request, get your code r
 
 ### Setting up your development environment
 
-Please review the [README](https://github.com/Pocket/extension-save-to-pocket-audit/blob/master/README.md) for instructions on setting up your development environment, installing dependencies and building the extensions.
+Please review the [README](https://github.com/Pocket/extension-save-to-pocket/blob/master/README.md) for instructions on setting up your development environment, installing dependencies and building the extensions.
 
 ### Creating Pull Requests
 
