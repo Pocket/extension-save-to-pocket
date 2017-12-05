@@ -1,0 +1,59 @@
+{
+    "status": {
+        "archived": "",
+        "archiving": "",
+        "error": "Fout!",
+        "link_saved": "",
+        "page_saved": "Pagina opgeslagen!",
+        "removed": "",
+        "removing": "",
+        "saving": ""
+    },
+    "actions": {
+        "archive_page": "Pagina archiveren",
+        "close": "Afsluiten",
+        "open_pocket": "Pocket openen",
+        "remove_page": "Verwijder pagina",
+        "save": "Opslaan",
+        "settings": "Instellingen"
+    },
+    "tagging": {
+        "add_tags": "Tags toevoegen",
+        "getting_tags": "Tags ontvangen...",
+        "invalid_tags": "Tags zijn beperkt tot 25 tekens",
+        "saving_tags": "Tags opslaan..."
+    },
+    "recommendations": {
+        "explore_recommendations": "Ontdek wat de aanbevelingen zijn van Pocket",
+        "loading_recommendations": "Aanbevelingen laden",
+        "more_on": "Meer over",
+        "more_stories_detail": "Wil je nog meer geweldige verhalen ontdekken?",
+        "rec_saved": "",
+        "save_to_pocket": "Opslaan naar Pocket",
+        "saving": ""
+    },
+    "options_page": {
+        "get_in_touch_on_twitter_link": "",
+        "header": "",
+        "keyboard_shortcut_enabled": "",
+        "keyboard_shortcut_title": "",
+        "learn_more_link": "",
+        "login_link": "",
+        "login_title": "",
+        "logout_link": "",
+        "more_ways_to_save_title": "",
+        "questions_pocket_title": "",
+        "quick_save_services_title": "",
+        "recommendations_detail": "",
+        "recommendations_title": "",
+        "record_shortcut": "",
+        "reset_to_default": "",
+        "search_support_link": "",
+        "send_us_an_email_link": "",
+        "services_info": ""
+    },
+    "error":{
+        "page_not_saved": "Pagina niet opgeslagen",
+        "page_not_saved_detail": "Pocket heeft problemen bij het opslaan van deze pagina. Probeer het opnieuw."
+    }
+}

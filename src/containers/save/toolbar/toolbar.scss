@@ -1,0 +1,32 @@
+@import '../../../common/_styles/colors';
+@import '../../../common/_styles/variables';
+@import '../../../common/_styles/components';
+
+.toolbar {
+    @include pocketPanel;
+
+    box-shadow: $panel-shadow;
+}
+
+.toolbar {
+    color: $pitch;
+    font-family: $fontstack-default;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 1.05;
+    line-height: 1.25;
+    padding: 5px 10px;
+    position: relative;
+    text-align: left;
+    z-index: 100;
+}
+
+.error {
+    background-color: $snow;
+    border-radius: 4px;
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.5);
+    color: $black;
+    font-size: 14px;
+    margin-top: 10px;
+    padding: 10px;
+}

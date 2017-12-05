@@ -1,0 +1,154 @@
+{
+  "extDescriptionGoogleChrome" : {
+    "message" : "Chrome용 Pocket 확장 - 아티클, 동영상 등을 저장할 최상의 방법",
+    "description" : "Chrome에 대한 확장 설명"
+  },
+  "extDescriptionOpera" : {
+    "message" : "Opera용 Pocket 확장 - 아티클, 동영상 등을 저장할 최상의 방법",
+    "description" : "Opera에 대한 확장 설명"
+  },
+  "extDescriptionYandex" : {
+    "message" : "Yandex.Browser용 Pocket 확장 - 아티클, 동영상 등을 저장할 최상의 방법",
+    "description" : "Extension Description for Yandex.Browser"
+  },
+  "contextMenuEntryTitle" : {
+    "message" : "Pocket에 저장",
+    "description" : ""
+  },
+  "contextMenuEntryVisit": {
+    "message": "Pocket 열기",
+    "description": ""
+  },
+  "toolbarButtonTitle" : {
+    "message" : "Pocket에 저장",
+    "description" : ""
+  },
+  "yandexBrowser" : {
+    "message" : "Yandex.Browser",
+    "description" : "Yandex.Browser"
+  },
+  "background_invalid_url_error" : {
+    "message" : "유효한 웹 페이지만 Pocket에 저장할 수 있습니다.",
+    "description" : ""
+  },
+  "background_save_url_error_no_message" : {
+    "message" : "Pocket이 페이지를 저장하지 못했습니다. 온라인 상태인지 확인하고 다시 시도하십시오.",
+    "description" : ""
+  },
+  "background_save_url_error_message" : {
+    "message" : "„{$0}“ 때문에 Pocket이 저장할 수 없습니다",
+    "description" : ""
+  },
+  "background_after_install_error" : {
+    "message" : "Pocket을 설치하기 전에 이 탭이 열려 있습니다. 저장하기 위해 Safari를 다시 시작하거나 이 페이지 (⌘R)를 새로 고치십시오.",
+    "description" : ""
+  },
+  "login_logging_in_text" : {
+    "message" : "로그인 중...",
+    "description" : ""
+  },
+  "login_username_placeholder" : {
+    "message" : "이메일 또는 사용자 이름",
+    "description" : ""
+  },
+  "login_password_placeholder" : {
+    "message" : "암호",
+    "description" : ""
+  },
+  "login_username_password_wrong" : {
+    "message" : "입력한 사용자 이름 및/또는 암호가 잘못되었습니다.",
+    "description" : ""
+  },
+  "login_create_account_link" : {
+    "message" : "계정 만들기",
+    "description" : ""
+  },
+  "login_login_title" : {
+    "message" : "로그인",
+    "description" : ""
+  },
+  "login_login_subtitle" : {
+    "message" : "안녕하세요. 다시 뵙게 되어 반갑습니다!",
+    "description" : ""
+  },
+  "login_login_button_link" : {
+    "message" : "로그인",
+    "description" : ""
+  },
+  "login_login_attempt" : {
+    "message" : "로그인 상태인지 확인 중...",
+    "description" : ""
+  },
+  "login_login_forgot_password_link" : {
+    "message" : "사용자 이름 또는 암호를 잊어버렸습니다.",
+    "description" : ""
+  },
+  "options_title" : {
+    "message" : "{$0}용 Pocket 설정",
+    "description" : ""
+  },
+  "options_options_title" : {
+    "message" : "설정",
+    "description" : ""
+  },
+  "options_login_title" : {
+    "message" : "다음으로 로그인: ",
+    "description" : ""
+  },
+  "options_logout_link" : {
+    "message" : "로그아웃",
+    "description" : ""
+  },
+  "options_login_link" : {
+    "message" : "로그인하려면 여기를 클릭하십시오",
+    "description" : ""
+  },
+  "options_keyboard_shortcut_title" : {
+    "message" : "키보드 바로 가기:",
+    "description" : ""
+  },
+  "options_keyboard_shortcut_enabled" : {
+    "message" : "활성화됨",
+    "description" : ""
+  },
+  "options_record_shortcut" : {
+    "message" : "새 바로 가기 기록",
+    "description" : ""
+  },
+  "options_quick_save_services_title" : {
+    "message" : "빠른 저장 서비스:",
+    "description" : ""
+  },
+  "options_services_info" : {
+    "message" : "활성화되면 이 서비스에서 항목을 Pocket에 직접 추가할 수 있습니다.",
+    "description" : ""
+  },
+  "options_learn_more_link" : {
+    "message" : "(더 보기)",
+    "description" : ""
+  },
+  "options_more_ways_to_save_title" : {
+    "message" : "다른 Pocket 사용 방법:",
+    "description" : ""
+  },
+  "options_questions_pocket_title" : {
+    "message" : "Pocket에 대한 질문이 있으십니까?",
+    "description" : ""
+  },
+  "options_search_support_link" : {
+    "message" : "지원 검색",
+    "description" : ""
+  },
+  "options_send_us_an_email_link" : {
+    "message" : "이메일 보내기",
+    "description" : ""
+  },
+  "options_get_in_touch_on_twitter_link" : {
+    "message" : "Twitter의 연락처",
+    "description" : ""
+  },
+  "options_reset_to_default" : {
+    "message" : "기본값으로 재설정",
+    "description" : ""
+  }
+}

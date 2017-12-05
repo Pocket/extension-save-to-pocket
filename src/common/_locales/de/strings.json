@@ -1,0 +1,59 @@
+{
+    "status": {
+        "archived": "",
+        "archiving": "",
+        "error": "Fehler!",
+        "link_saved": "",
+        "page_saved": "Seite gespeichert!",
+        "removed": "",
+        "removing": "",
+        "saving": ""
+    },
+    "actions": {
+        "archive_page": "Seite archivieren",
+        "close": "Schließen",
+        "open_pocket": "Pocket öffnen",
+        "remove_page": "Seite entfernen",
+        "save": "Speichern",
+        "settings": "Einstellungen"
+    },
+    "tagging": {
+        "add_tags": "Tags hinzufügen",
+        "getting_tags": "Tags werden geladen ...",
+        "invalid_tags": "Tags sind auf 25 Zeichen begrenzt.",
+        "saving_tags": "Tags werden gespeichert ..."
+    },
+    "recommendations": {
+        "explore_recommendations": "Entdecke Empfehlungen von Pocket",
+        "loading_recommendations": "Empfehlungen werden geladen",
+        "more_on": "Mehr auf",
+        "more_stories_detail": "Möchtest du noch mehr spannende Geschichten finden?",
+        "rec_saved": "",
+        "save_to_pocket": "In Pocket speichern",
+        "saving": ""
+    },
+    "options_page": {
+        "get_in_touch_on_twitter_link": "kontaktiere uns über Twitter",
+        "header": "OPTIONEN",
+        "keyboard_shortcut_enabled": "Aktiviert",
+        "keyboard_shortcut_title": "Tastenkombination:",
+        "learn_more_link": "(mehr Infos)",
+        "login_link": "Zum Einloggen hier klicken",
+        "login_title": "Eingeloggt als: ",
+        "logout_link": "ausloggen",
+        "more_ways_to_save_title": "Mehr Möglichkeiten zum Speichern von Inhalten bei Pocket:",
+        "questions_pocket_title": "Fragen zu Pocket?",
+        "quick_save_services_title": "Dienste schneller speichern:",
+        "recommendations_detail": "",
+        "recommendations_title": "",
+        "record_shortcut": "Neue Tastenkombination festlegen",
+        "reset_to_default": "Auf Standard zurücksetzen",
+        "search_support_link": "Support bei der Suche",
+        "send_us_an_email_link": "schicke uns eine E-Mail",
+        "services_info": "Falls aktiviert, kannst du alle Elemente von diesen Diensten direkt zu Pocket hinzufügen"
+    },
+    "error":{
+        "page_not_saved": "Seite nicht gespeichert",
+        "page_not_saved_detail": "Pocket konnte diese Seite nicht speichern. Bitte versuche es erneut."
+    }
+}

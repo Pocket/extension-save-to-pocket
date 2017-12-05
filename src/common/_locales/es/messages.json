@@ -1,0 +1,154 @@
+{
+  "extDescriptionGoogleChrome" : {
+    "message" : "Extensión de Pocket para Chrome - la mejor forma de guardar artículos, vídeos y mucho más",
+    "description" : "Descripción de la extensión para Chrome"
+  },
+  "extDescriptionOpera" : {
+    "message" : "Extensión de Pocket para Opera - la mejor forma de guardar artículos, vídeos y mucho más",
+    "description" : "Descripción de la extensión para Opera"
+  },
+  "extDescriptionYandex" : {
+    "message" : "Extensión de Pocket para Yandex.Browser - la mejor forma de guardar artículos, vídeos y mucho más",
+    "description" : "Extension Description for Yandex.Browser"
+  },
+  "contextMenuEntryTitle" : {
+    "message" : "Guardar en Pocket",
+    "description" : ""
+  },
+  "contextMenuEntryVisit": {
+    "message": "Abre Pocket",
+    "description": ""
+  },
+  "toolbarButtonTitle" : {
+    "message" : "Guardar en Pocket",
+    "description" : ""
+  },
+  "yandexBrowser" : {
+    "message" : "Yandex.Browser",
+    "description" : "Yandex.Browser"
+  },
+  "background_invalid_url_error" : {
+    "message" : "Lo sentimos, solo puedes guardar páginas web válidas en Pocket.",
+    "description" : ""
+  },
+  "background_save_url_error_no_message" : {
+    "message" : "Pocket no ha podido guardar la página. Comprueba que tienes conexión y vuelve a intentarlo.",
+    "description" : ""
+  },
+  "background_save_url_error_message" : {
+    "message" : "Pocket no ha podido guardar porque «{$0}»",
+    "description" : ""
+  },
+  "background_after_install_error" : {
+    "message" : "Vaya, esta pestaña estaba abierta antes de que instalaras Pocket. Reinicia Safari o vuelve a cargar esta página (⌘R) para guardarla.",
+    "description" : ""
+  },
+  "login_logging_in_text" : {
+    "message" : "Iniciando sesión…",
+    "description" : ""
+  },
+  "login_username_placeholder" : {
+    "message" : "Correo o nombre de usuario",
+    "description" : ""
+  },
+  "login_password_placeholder" : {
+    "message" : "Contraseña",
+    "description" : ""
+  },
+  "login_username_password_wrong" : {
+    "message" : "El nombre de usuario o la contraseña no son correctos.",
+    "description" : ""
+  },
+  "login_create_account_link" : {
+    "message" : "Crear una cuenta",
+    "description" : ""
+  },
+  "login_login_title" : {
+    "message" : "INICIAR SESIÓN",
+    "description" : ""
+  },
+  "login_login_subtitle" : {
+    "message" : "¿Qué tal? ¡Nos alegramos de volver a verte!",
+    "description" : ""
+  },
+  "login_login_button_link" : {
+    "message" : "Iniciar sesión",
+    "description" : ""
+  },
+  "login_login_attempt" : {
+    "message" : "Comprobando si has iniciado sesión…",
+    "description" : ""
+  },
+  "login_login_forgot_password_link" : {
+    "message" : "He olvidado mi nombre de usuario o contraseña.",
+    "description" : ""
+  },
+  "options_title" : {
+    "message" : "Opciones de Pocket para {$0}",
+    "description" : ""
+  },
+  "options_options_title" : {
+    "message" : "OPCIONES",
+    "description" : ""
+  },
+  "options_login_title" : {
+    "message" : "Conectado como: ",
+    "description" : ""
+  },
+  "options_logout_link" : {
+    "message" : "cerrar sesión",
+    "description" : ""
+  },
+  "options_login_link" : {
+    "message" : "Pulsa aquí para iniciar sesión.",
+    "description" : ""
+  },
+  "options_keyboard_shortcut_title" : {
+    "message" : "Atajo de teclado:",
+    "description" : ""
+  },
+  "options_keyboard_shortcut_enabled" : {
+    "message" : "Activado",
+    "description" : ""
+  },
+  "options_record_shortcut" : {
+    "message" : "Grabar un nuevo atajo",
+    "description" : ""
+  },
+  "options_quick_save_services_title" : {
+    "message" : "Servicios de guardado rápido:",
+    "description" : ""
+  },
+  "options_services_info" : {
+    "message" : "Si está activado, puedes añadir directamente a Pocket cualquier artículo desde estos servicios",
+    "description" : ""
+  },
+  "options_learn_more_link" : {
+    "message" : "(más información)",
+    "description" : ""
+  },
+  "options_more_ways_to_save_title" : {
+    "message" : "Otras formas de usar Pocket:",
+    "description" : ""
+  },
+  "options_questions_pocket_title" : {
+    "message" : "¿Tienes preguntas sobre Pocket?",
+    "description" : ""
+  },
+  "options_search_support_link" : {
+    "message" : "Buscar en la ayuda",
+    "description" : ""
+  },
+  "options_send_us_an_email_link" : {
+    "message" : "envíanos un correo",
+    "description" : ""
+  },
+  "options_get_in_touch_on_twitter_link" : {
+    "message" : "contacta con nosotros en Twitter",
+    "description" : ""
+  },
+  "options_reset_to_default" : {
+    "message" : "Restablecer predeterminados",
+    "description" : ""
+  }
+}

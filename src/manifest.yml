@@ -1,0 +1,85 @@
+name: 'Save to Pocket'
+version: 3.0.0.0
+options_page: options.html
+description: __MSG_extDescriptionGoogleChrome__
+default_locale: "en"
+background:
+  scripts:
+    - js/background.bundle.js
+permissions:
+  - tabs
+  - contextMenus
+  - cookies
+  - notifications
+  - 'http://*/*'
+  - 'https://*/*'
+
+browser_action:
+  default_icon:
+    19: images/browser-action-icon-19.png
+    38: images/browser-action-icon-38.png
+  default_title: __MSG_toolbarButtonTitle__
+
+content_scripts:
+  -
+    matches:
+      - "*://*/*"
+    css:
+      - fonts/fonts.css
+    js:
+      - js/frame.bundle.js
+  -
+    matches:
+      - '*://getpocket.com/extension_login_success'
+    js:
+      - js/login.bundle.js
+  -
+    matches:
+      - '*://getpocket.com/login?e=4'
+    js:
+      - js/logout.bundle.js
+  -
+    matches:
+      - '*://twitter.com/*'
+    js:
+      - js/twitter.bundle.js
+  -
+    matches:
+      - 'http://*.ycombinator.org/*'
+      - 'https://*.ycombinator.org/*'
+      - 'http://*.ycombinator.com/*'
+      - 'https://*.ycombinator.com/*'
+    js:
+      - js/hackerNews.bundle.js
+  -
+    matches:
+      - '*://*.reddit.com/*'
+    js:
+      - js/reddit.bundle.js
+icons:
+  128: images/icon-128.png
+  48: images/icon-48.png
+  16: images/icon-16.png
+
+commands:
+  _execute_browser_action:
+    suggested_key:
+      windows: Ctrl+Shift+P
+      mac: Command+Shift+P
+      chromeos: Ctrl+Shift+P
+      linux: Ctrl+Shift+P
+    description: Save Page to Pocket
+
+manifest_version: 2
+web_accessible_resources:
+  - save.html
+  - fonts/ProximaNova-Reg-webfont.eot
+  - fonts/ProximaNova-Reg-webfont.woff
+  - fonts/ProximaNova-Reg-webfont.ttf
+  - fonts/ProximaNova-Sbold-webfont.eot
+  - fonts/ProximaNova-Sbold-webfont.woff
+  - fonts/ProximaNova-Sbold-webfont.ttf
+  - fonts/ProximaNova-Bold-webfont.eot
+  - fonts/ProximaNova-Bold-webfont.woff
+  - fonts/ProximaNova-Bold-webfont.ttf
+  - images/pocket-logo.png

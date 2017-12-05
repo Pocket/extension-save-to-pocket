@@ -1,0 +1,37 @@
+@import '../../../../common/_styles/colors';
+@import '../../../../common/_styles/variables';
+
+.tagging {
+    font-family: $fontstack-default;
+    padding: 5px 0 0;
+}
+
+.well {
+    background: $white;
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="#999999"><path d="M83.38 54.6L43.8 17.02H17.41V43.4l39.58 39.58L83.38 54.6zM30.95 36.81c-3.45 0-6.25-2.67-6.25-5.96s2.8-5.97 6.25-5.97 6.25 2.67 6.25 5.97c0 3.29-2.8 5.96-6.25 5.96z"/></svg>');
+    background-position: 4px 4px;
+    background-repeat: no-repeat;
+    background-size: 22px;
+    border: 1px solid $smoke;
+    border-radius: 3px;
+    box-sizing: border-box;
+    font-size: 13px;
+    line-height: 17px;
+    margin: 0 0 2px;
+    padding: 4px 10px 2px;
+    position: relative;
+    text-align: left;
+
+    &.active {
+    }
+}
+
+.placeholder {
+    color: $overcast;
+    font-style: italic;
+    left: 28px;
+    // pointer-events: none;
+    position: absolute;
+    top: 6px;
+}
+

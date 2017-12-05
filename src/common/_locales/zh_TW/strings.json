@@ -1,0 +1,59 @@
+{
+    "status": {
+        "archived": "",
+        "archiving": "",
+        "error" : "錯誤！",
+        "link_saved": "",
+        "page_saved" : "頁面已儲存！",
+        "removed": "",
+        "removing": "",
+        "saving": ""
+    },
+    "actions": {
+        "archive_page" : "封存頁面",
+        "close" : "關閉",
+        "open_pocket" : "開啟 Pocket",
+        "remove_page" : "移除頁面",
+        "save" : "儲存",
+        "settings" : "設定"
+    },
+    "tagging": {
+        "add_tags" : "新增標籤",
+        "getting_tags" : "正在取得標籤…",
+        "invalid_tags" : "標籤長度限於 25 個字元",
+        "saving_tags" : "正在儲存標籤…"
+    },
+    "recommendations": {
+        "explore_recommendations" : "探索 Pocket 的推薦清單",
+        "loading_recommendations" : "正在載入推薦清單",
+        "more_on" : "更多就在",
+        "more_stories_detail" : "想找更多好故事嗎？",
+        "rec_saved": "",
+        "save_to_pocket": "儲存到 Pocket",
+        "saving": ""
+    },
+    "options_page": {
+        "get_in_touch_on_twitter_link": "",
+        "header": "",
+        "keyboard_shortcut_enabled": "",
+        "keyboard_shortcut_title": "",
+        "learn_more_link": "",
+        "login_link": "",
+        "login_title": "",
+        "logout_link": "",
+        "more_ways_to_save_title": "",
+        "questions_pocket_title": "",
+        "quick_save_services_title": "",
+        "recommendations_detail": "",
+        "recommendations_title": "",
+        "record_shortcut": "",
+        "reset_to_default": "",
+        "search_support_link": "",
+        "send_us_an_email_link": "",
+        "services_info": ""
+    },
+    "error":{
+        "page_not_saved" : "頁面未儲存",
+        "page_not_saved_detail" : "Pocket 嘗試儲存此頁面時遇到錯誤。請重試。"
+    }
+}

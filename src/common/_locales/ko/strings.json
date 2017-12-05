@@ -1,0 +1,59 @@
+{
+    "status": {
+        "archived": "",
+        "archiving": "",
+        "error": "오류!",
+        "link_saved": "",
+        "page_saved": "페이지가 저장되었습니다!",
+        "removed": "",
+        "removing": "",
+        "saving": ""
+    },
+    "actions": {
+        "archive_page": "페이지 보관",
+        "close": "닫기",
+        "open_pocket": "Pocket 열기",
+        "remove_page": "페이지 제거",
+        "save": "저장",
+        "settings": "설정"
+    },
+    "tagging": {
+        "add_tags": "태그 추가",
+        "getting_tags": "태그 가져오는 중…",
+        "invalid_tags": "태그는 25자로 제한됩니다.",
+        "saving_tags": "태그 저장 중…"
+    },
+    "recommendations": {
+        "explore_recommendations": "Pocket 권장 사항 살펴보기",
+        "loading_recommendations": "권장 사항 로드 중",
+        "more_on": "다음의 세부 내용",
+        "more_stories_detail": "더욱 멋진 이야기를 찾고 싶으세요?",
+        "rec_saved": "",
+        "save_to_pocket": "Pocket에 저장",
+        "saving": ""
+    },
+    "options_page": {
+        "get_in_touch_on_twitter_link": "",
+        "header": "",
+        "keyboard_shortcut_enabled": "",
+        "keyboard_shortcut_title": "",
+        "learn_more_link": "",
+        "login_link": "",
+        "login_title": "",
+        "logout_link": "",
+        "more_ways_to_save_title": "",
+        "questions_pocket_title": "",
+        "quick_save_services_title": "",
+        "recommendations_detail": "",
+        "recommendations_title": "",
+        "record_shortcut": "",
+        "reset_to_default": "",
+        "search_support_link": "",
+        "send_us_an_email_link": "",
+        "services_info": ""
+    },
+    "error":{
+        "page_not_saved": "페이지가 저장되지 않음",
+        "page_not_saved_detail": "이 페이지를 저장하는 중에 Pocket에 오류가 발생했습니다. 다시 시도하십시오. "
+    }
+}

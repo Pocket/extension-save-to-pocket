@@ -1,0 +1,59 @@
+{
+    "status": {
+        "archived": "",
+        "archiving": "",
+        "error": "Błąd!",
+        "link_saved": "",
+        "page_saved": "Zapisano stronę!",
+        "removed": "",
+        "removing": "",
+        "saving": ""
+    },
+    "actions": {
+        "archive_page": "Archiwizuj stronę",
+        "close": "Zamknij",
+        "open_pocket": "Otwórz aplikację Pocket",
+        "remove_page": "Usuń stronę",
+        "save": "Zapisz",
+        "settings": "Ustawienia"
+    },
+    "tagging": {
+        "add_tags": "Dodaj tagi",
+        "getting_tags": "Pobieranie tagów…",
+        "invalid_tags": "Tagi mogą mieć maksymalnie 25 znaków",
+        "saving_tags": "Zapisywanie tagów…"
+    },
+    "recommendations": {
+        "explore_recommendations": "Odkryj rekomendacje Pocket",
+        "loading_recommendations": "Wgrywanie rekomendacji",
+        "more_on": "Więcej w",
+        "more_stories_detail": "Chcesz znaleźć więcej świetnych historii?",
+        "rec_saved": "",
+        "save_to_pocket": "Zapisz w aplikacji Pocket",
+        "saving": ""
+    },
+    "options_page": {
+        "get_in_touch_on_twitter_link": "",
+        "header": "",
+        "keyboard_shortcut_enabled": "",
+        "keyboard_shortcut_title": "",
+        "learn_more_link": "",
+        "login_link": "",
+        "login_title": "",
+        "logout_link": "",
+        "more_ways_to_save_title": "",
+        "questions_pocket_title": "",
+        "quick_save_services_title": "",
+        "recommendations_detail": "",
+        "recommendations_title": "",
+        "record_shortcut": "",
+        "reset_to_default": "",
+        "search_support_link": "",
+        "send_us_an_email_link": "",
+        "services_info": ""
+    },
+    "error":{
+        "page_not_saved": "Strony nie zapisano",
+        "page_not_saved_detail": "Podczas zapisywania strony w Pocket wystąpił błąd. Spróbuj ponownie. "
+    }
+}

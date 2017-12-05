@@ -1,0 +1,154 @@
+{
+  "extDescriptionGoogleChrome" : {
+    "message" : "Chrome 版 Pocket 扩展件－－保存文章、视频等的最佳方式",
+    "description" : "Chrome 版扩展件说明"
+  },
+  "extDescriptionOpera" : {
+    "message" : "Opera 版 Pocket 扩展件－－保存文章、视频等的最佳方式",
+    "description" : "Opera 版扩展件说明"
+  },
+  "extDescriptionYandex" : {
+    "message" : "Yandex.Browser 版 Pocket 扩展件－－保存文章、视频等的最佳方式",
+    "description" : "Extension Description for Yandex.Browser"
+  },
+  "contextMenuEntryTitle" : {
+    "message" : "保存到 Pocket",
+    "description" : ""
+  },
+  "contextMenuEntryVisit": {
+    "message": "打开 Pocket",
+    "description": ""
+  },
+  "toolbarButtonTitle" : {
+    "message" : "保存到 Pocket",
+    "description" : ""
+  },
+  "yandexBrowser" : {
+    "message" : "Yandex.Browser",
+    "description" : "Yandex.Browser"
+  },
+  "background_invalid_url_error" : {
+    "message" : "抱歉，只能保存有效的网页到 Pocket.",
+    "description" : ""
+  },
+  "background_save_url_error_no_message" : {
+    "message" : "Pocket 无法保存该页面。请确保您在线，然后重试。",
+    "description" : ""
+  },
+  "background_save_url_error_message" : {
+    "message" : "Pocket 无法保存，原因是 „{$0}“",
+    "description" : ""
+  },
+  "background_after_install_error" : {
+    "message" : "噢，此选项卡是在您安装 Pocket 之前打开的。 请重新启动 Safari 或刷新此页面 (⌘R) 以保存它。",
+    "description" : ""
+  },
+  "login_logging_in_text" : {
+    "message" : "正在登录...",
+    "description" : ""
+  },
+  "login_username_placeholder" : {
+    "message" : "电子邮件地址或用户名",
+    "description" : ""
+  },
+  "login_password_placeholder" : {
+    "message" : "密码",
+    "description" : ""
+  },
+  "login_username_password_wrong" : {
+    "message" : "您输入的用户名和/或密码不正确。",
+    "description" : ""
+  },
+  "login_create_account_link" : {
+    "message" : "创建帐号",
+    "description" : ""
+  },
+  "login_login_title" : {
+    "message" : "登录",
+    "description" : ""
+  },
+  "login_login_subtitle" : {
+    "message" : "您好，很高兴再见到您！",
+    "description" : ""
+  },
+  "login_login_button_link" : {
+    "message" : "登录",
+    "description" : ""
+  },
+  "login_login_attempt" : {
+    "message" : "正在检查您是否已登录...",
+    "description" : ""
+  },
+  "login_login_forgot_password_link" : {
+    "message" : "我忘记了用户名或密码",
+    "description" : ""
+  },
+  "options_title" : {
+    "message" : "{$0} 版 Pocket 选项",
+    "description" : ""
+  },
+  "options_options_title" : {
+    "message" : "选项",
+    "description" : ""
+  },
+  "options_login_title" : {
+    "message" : "已登录为： ",
+    "description" : ""
+  },
+  "options_logout_link" : {
+    "message" : "注销",
+    "description" : ""
+  },
+  "options_login_link" : {
+    "message" : "单击此处登录",
+    "description" : ""
+  },
+  "options_keyboard_shortcut_title" : {
+    "message" : "键盘快捷键：",
+    "description" : ""
+  },
+  "options_keyboard_shortcut_enabled" : {
+    "message" : "已启用",
+    "description" : ""
+  },
+  "options_record_shortcut" : {
+    "message" : "记录新的快捷键",
+    "description" : ""
+  },
+  "options_quick_save_services_title" : {
+    "message" : "快速保存服务：",
+    "description" : ""
+  },
+  "options_services_info" : {
+    "message" : "启用后，您可以直接从这些服务添加任何项目到 Pocket",
+    "description" : ""
+  },
+  "options_learn_more_link" : {
+    "message" : "（了解更多）",
+    "description" : ""
+  },
+  "options_more_ways_to_save_title" : {
+    "message" : "更多使用 Pocket 的方式：",
+    "description" : ""
+  },
+  "options_questions_pocket_title" : {
+    "message" : "有关于 Pocket 的问题？",
+    "description" : ""
+  },
+  "options_search_support_link" : {
+    "message" : "搜索支持",
+    "description" : ""
+  },
+  "options_send_us_an_email_link" : {
+    "message" : "向我们发送电子邮件",
+    "description" : ""
+  },
+  "options_get_in_touch_on_twitter_link" : {
+    "message" : "在 Twitter 上联系",
+    "description" : ""
+  },
+  "options_reset_to_default" : {
+    "message" : "重设为默认值",
+    "description" : ""
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "extDescriptionGoogleChrome" : {
+    "message" : "Расширение Pocket для Chrome - это самый удобный способ сохранять статьи, видео и многое другое",
+    "description" : "Описание расширения для Chrome"
+  },
+  "extDescriptionOpera" : {
+    "message" : "Расширение Pocket для Opera - это самый удобный способ сохранять статьи, видео и многое другое",
+    "description" : "Описание расширения для Opera"
+  },
+  "extDescriptionYandex" : {
+    "message" : "Расширение Pocket для Яндекс.Браузера - Лучший способ сохранять статьи, видео и многое другое",
+    "description" : "Extension Description for Yandex.Browser"
+  },
+  "contextMenuEntryTitle" : {
+    "message" : "Сохранить в Pocket",
+    "description" : ""
+  },
+  "contextMenuEntryVisit": {
+    "message": "Открыть Pocket",
+    "description": ""
+  },
+  "toolbarButtonTitle" : {
+    "message" : "Сохранить в Pocket",
+    "description" : ""
+  },
+  "yandexBrowser" : {
+    "message" : "Яндекс.Браузера",
+    "description" : "Яндекс.Браузера"
+  },
+  "background_invalid_url_error" : {
+    "message" : "Извините, но в Pocket можно сохранять только корректные веб-страницы.",
+    "description" : ""
+  },
+  "background_save_url_error_no_message" : {
+    "message" : "Pocket не смог сохранить страницу. Убедитесь, что вы подключены к Интернет, и попробуйте еще раз.",
+    "description" : ""
+  },
+  "background_save_url_error_message" : {
+    "message" : "Pocket не смог сохранить страницу, потому что „{$0}“",
+    "description" : ""
+  },
+  "background_after_install_error" : {
+    "message" : "Ой, эта вкладка была открыта до того, как был установлен Pocket. Перезапустите Safari или обновите эту страницу (⌘R), чтобы сохранить её.",
+    "description" : ""
+  },
+  "login_logging_in_text" : {
+    "message" : "Вход...",
+    "description" : ""
+  },
+  "login_username_placeholder" : {
+    "message" : "email или имя пользователя",
+    "description" : ""
+  },
+  "login_password_placeholder" : {
+    "message" : "Пароль",
+    "description" : ""
+  },
+  "login_username_password_wrong" : {
+    "message" : "Неверное имя пользователя и/или пароль.",
+    "description" : ""
+  },
+  "login_create_account_link" : {
+    "message" : "Создать аккаунт",
+    "description" : ""
+  },
+  "login_login_title" : {
+    "message" : "ВОЙТИ",
+    "description" : ""
+  },
+  "login_login_subtitle" : {
+    "message" : "Привет. Рады снова вас видеть!",
+    "description" : ""
+  },
+  "login_login_button_link" : {
+    "message" : "Вход",
+    "description" : ""
+  },
+  "login_login_attempt" : {
+    "message" : "Проверяем, вошли ли вы в Pocket...",
+    "description" : ""
+  },
+  "login_login_forgot_password_link" : {
+    "message" : "Я забыл имя пользователя или пароль.",
+    "description" : ""
+  },
+  "options_title" : {
+    "message" : "Настройки Pocket для {$0}",
+    "description" : ""
+  },
+  "options_options_title" : {
+    "message" : "НАСТРОЙКИ",
+    "description" : ""
+  },
+  "options_login_title" : {
+    "message" : "Вы вошли как: ",
+    "description" : ""
+  },
+  "options_logout_link" : {
+    "message" : "выйти",
+    "description" : ""
+  },
+  "options_login_link" : {
+    "message" : "Нажмите, чтобы войти",
+    "description" : ""
+  },
+  "options_keyboard_shortcut_title" : {
+    "message" : "Сочетание клавиш:",
+    "description" : ""
+  },
+  "options_keyboard_shortcut_enabled" : {
+    "message" : "Включено",
+    "description" : ""
+  },
+  "options_record_shortcut" : {
+    "message" : "Задать новое сочетание клавиш",
+    "description" : ""
+  },
+  "options_quick_save_services_title" : {
+    "message" : "Приложения с быстрым сохранением:",
+    "description" : ""
+  },
+  "options_services_info" : {
+    "message" : "В этом режиме вы можете сразу добавлять в Pocket материалы из выбранных приложений",
+    "description" : ""
+  },
+  "options_learn_more_link" : {
+    "message" : "(узнать больше)",
+    "description" : ""
+  },
+  "options_more_ways_to_save_title" : {
+    "message" : "Больше способов использовать Pocket:",
+    "description" : ""
+  },
+  "options_questions_pocket_title" : {
+    "message" : "Возникли вопросы?",
+    "description" : ""
+  },
+  "options_search_support_link" : {
+    "message" : "Поиск в базе знаний",
+    "description" : ""
+  },
+  "options_send_us_an_email_link" : {
+    "message" : "написать нам письмо",
+    "description" : ""
+  },
+  "options_get_in_touch_on_twitter_link" : {
+    "message" : "или написать нам в Twitter",
+    "description" : ""
+  },
+  "options_reset_to_default" : {
+    "message" : "Сбросить настройки",
+    "description" : ""
+  }
+}

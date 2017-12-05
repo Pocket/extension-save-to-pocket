@@ -1,0 +1,59 @@
+{
+    "status": {
+        "archived": "",
+        "archiving": "",
+        "error": "エラー！",
+        "link_saved": "",
+        "page_saved": "ページが保存されました！",
+        "removed": "",
+        "removing": "",
+        "saving": ""
+    },
+    "actions": {
+        "archive_page": "ページをアーカイブ",
+        "close": "閉じる",
+        "open_pocket": "Pocket を開く",
+        "remove_page": "ページを削除",
+        "save": "保存",
+        "settings": "設定"
+    },
+    "tagging": {
+        "add_tags": "タグを追加",
+        "getting_tags": "タグを取得中…",
+        "invalid_tags": "タグは最大25文字となっています",
+        "saving_tags": "タグを保存中…"
+    },
+    "recommendations": {
+        "explore_recommendations": "Pocket のおすすめを探索",
+        "loading_recommendations": "おすすめを読み込み中",
+        "more_on": "もっと見る: ",
+        "more_stories_detail": "他のおもしろいストーリーを探しますか？",
+        "rec_saved": "",
+        "save_to_pocket": "Pocket に保存",
+        "saving": ""
+    },
+    "options_page": {
+        "get_in_touch_on_twitter_link": "",
+        "header": "",
+        "keyboard_shortcut_enabled": "",
+        "keyboard_shortcut_title": "",
+        "learn_more_link": "",
+        "login_link": "",
+        "login_title": "",
+        "logout_link": "",
+        "more_ways_to_save_title": "",
+        "questions_pocket_title": "",
+        "quick_save_services_title": "",
+        "recommendations_detail": "",
+        "recommendations_title": "",
+        "record_shortcut": "",
+        "reset_to_default": "",
+        "search_support_link": "",
+        "send_us_an_email_link": "",
+        "services_info": ""
+    },
+    "error":{
+        "page_not_saved": "ページを保存できませんでした",
+        "page_not_saved_detail": "Pocket でこのページの保存中にエラーが発生しました。もう一度お試しください。"
+    }
+}

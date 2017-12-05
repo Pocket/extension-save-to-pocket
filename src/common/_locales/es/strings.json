@@ -1,0 +1,59 @@
+{
+    "status": {
+        "archived": "",
+        "archiving": "",
+        "error": "¡Error!",
+        "link_saved": "",
+        "page_saved": "Página guardada",
+        "removed": "",
+        "removing": "",
+        "saving": ""
+    },
+    "actions": {
+        "archive_page": "Archivar página",
+        "close": "Cerrar",
+        "open_pocket": "Abre Pocket",
+        "remove_page": "Eliminar página",
+        "save": "Guardar",
+        "settings": "Opciones"
+    },
+    "tagging": {
+        "add_tags": "Añadir etiquetas",
+        "getting_tags": "Cargando etiquetas…",
+        "invalid_tags": "La longitud máxima de una etiqueta es 25 caracteres.",
+        "saving_tags": "Guardando etiquetas…"
+    },
+    "recommendations": {
+        "explore_recommendations": "Explora las recomendaciones de Pocket",
+        "loading_recommendations": "Cargando recomendaciones",
+        "more_on": "Más sobre",
+        "more_stories_detail": "¿Quieres encontrar más historias geniales?",
+        "rec_saved": "",
+        "save_to_pocket": "Guardar en Pocket",
+        "saving": ""
+    },
+    "options_page": {
+        "get_in_touch_on_twitter_link": "",
+        "header": "",
+        "keyboard_shortcut_enabled": "",
+        "keyboard_shortcut_title": "",
+        "learn_more_link": "",
+        "login_link": "",
+        "login_title": "",
+        "logout_link": "",
+        "more_ways_to_save_title": "",
+        "questions_pocket_title": "",
+        "quick_save_services_title": "",
+        "recommendations_detail": "",
+        "recommendations_title": "",
+        "record_shortcut": "",
+        "reset_to_default": "",
+        "search_support_link": "",
+        "send_us_an_email_link": "",
+        "services_info": ""
+    },
+    "error":{
+        "page_not_saved": "La página no se ha guardado",
+        "page_not_saved_detail": "Pocket ha tenido un problema al guardar esta página. Vuelve a intentarlo. "
+    }
+}

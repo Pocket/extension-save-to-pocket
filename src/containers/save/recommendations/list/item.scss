@@ -1,0 +1,112 @@
+@import '../../../../common/_styles/colors';
+@import '../../../../common/_styles/variables';
+@import '../../../../common/_styles/components';
+
+.list {
+    all: unset;
+    display: block;
+    font-family: $fontstack-default;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+.item {
+    background-color: $powder;
+    border-top: 1px solid $smoke;
+    box-sizing: border-box;
+    display: block;
+    height: 110px;
+    margin: 0;
+    overflow: hidden;
+    padding: 10px 10px;
+    position: relative;
+
+    &:hover {
+        background-color: $white;
+
+        .image {
+            border-color: $white;
+        }
+    }
+
+    &.hasImage {
+        padding-right: 98px;
+    }
+}
+
+.title {
+    box-sizing: border-box;
+    color: $pitch;
+    display: block;
+    font-size: 13px;
+    font-weight: 300;
+    height: 3.75em;
+    line-height: 1.25em;
+    max-width: 296px;
+    overflow: hidden;
+    padding: 0 0 10px;
+    text-align: left;
+}
+
+.link {
+    cursor: pointer;
+    display: block;
+    overflow: hidden;
+    text-decoration: none;
+    text-overflow: ellipsis;
+
+    &:link,
+    &:visited,
+    &:active {
+        color: $black;
+    }
+
+    &:hover {
+        color: $teal;
+    }
+}
+
+.image {
+    background-color: $smoke;
+    border: 5px solid $powder;
+    border-radius: 8px;
+    box-sizing: border-box;
+    height: 108px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 90px;
+}
+
+.source {
+    color: $silver;
+    font-size: 10px;
+    line-height: 1em;
+    margin: 3px 0 9px;
+}
+
+.actions {
+    display: block;
+}
+
+.save {
+    @include pocketButton;
+
+    background-color: transparent;
+    border: 0;
+    color: $overcast;
+    cursor: pointer;
+    display: block;
+    font-size: 12px;
+    font-weight: 100;
+    line-height: 16px;
+    text-decoration: none;
+
+    &:hover {
+        border: 0;
+        color: $hot-coral;
+    }
+}
+

@@ -1,0 +1,59 @@
+{
+    "status": {
+        "archived": "",
+        "archiving": "",
+        "error": "Erreur !",
+        "link_saved": "",
+        "page_saved": "Page sauvegardée !",
+        "removed": "",
+        "removing": "",
+        "saving": ""
+    },
+    "actions": {
+        "archive_page": "Archiver la page",
+        "close": "Fermer",
+        "open_pocket": "Ouvrir Pocket",
+        "remove_page": "Supprimer la page",
+        "save": "Sauvegarder",
+        "settings": "Paramètres"
+    },
+    "tagging": {
+        "add_tags": "Ajouter des labels",
+        "getting_tags": "Récupération des labels…",
+        "invalid_tags": "Les labels sont limités à 25 caractères",
+        "saving_tags": "Sauvegarde des labels…"
+    },
+    "recommendations": {
+        "explore_recommendations": "Parcourir les recommandations de Pocket",
+        "loading_recommendations": "Chargement des recommandations",
+        "more_on": "Plus sur",
+        "more_stories_detail": "Vous voulez découvrir d'autres histoires intéressantes ?",
+        "rec_saved": "",
+        "save_to_pocket": "Sauvegarder dans Pocket",
+        "saving": ""
+    },
+    "options_page": {
+        "get_in_touch_on_twitter_link": "",
+        "header": "",
+        "keyboard_shortcut_enabled": "",
+        "keyboard_shortcut_title": "",
+        "learn_more_link": "",
+        "login_link": "",
+        "login_title": "",
+        "logout_link": "",
+        "more_ways_to_save_title": "",
+        "questions_pocket_title": "",
+        "quick_save_services_title": "",
+        "recommendations_detail": "",
+        "recommendations_title": "",
+        "record_shortcut": "",
+        "reset_to_default": "",
+        "search_support_link": "",
+        "send_us_an_email_link": "",
+        "services_info": ""
+    },
+    "error":{
+        "page_not_saved": "Page non sauvegardée",
+        "page_not_saved_detail": "Pocket a rencontré une erreur lors de la sauvegarde de cette page. Veuillez réessayer."
+    }
+}

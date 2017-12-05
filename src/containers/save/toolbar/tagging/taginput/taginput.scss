@@ -1,0 +1,30 @@
+@import '../../../../../common/_styles/colors';
+
+input.tagInput {
+    all: unset;
+    color: $pitch;
+    display: inline-block;
+    margin-bottom: 2px;
+    margin-left: 16px;
+    margin-right: 3px;
+    min-width: 0.3em;
+    padding: 2px 4px;
+
+    &.active {
+        margin-left: 0;
+    }
+}
+
+.tagError {
+    background-color: $powder;
+    border: 1px solid $hot-coral;
+    border-radius: 3px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+    color: $hot-coral;
+    left: 50%;
+    padding: 6px 12px;
+    position: absolute;
+    top: 100%;
+    transform: translate(-50%, -2px);
+    width: 80%;
+}

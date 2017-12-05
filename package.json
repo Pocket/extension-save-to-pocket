@@ -1,0 +1,102 @@
+{
+  "name": "save-to-pocket",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "pocket-build-tools": "git+ssh://git@github.com/Pocket/front-end-build-tools-audit.git",
+    "remote-redux-devtools": "^0.5.12"
+  },
+  "dependencies": {
+    "autosize-input": "^0.4.0",
+    "blueimp-md5": "^2.10.0",
+    "classnames": "^2.2.5",
+    "prop-types": "^15.5.10",
+    "react": "^16.0.0",
+    "react-chrome-redux": "1.4.0",
+    "react-dom": "^16.0.0",
+    "react-motion": "^0.5.2",
+    "react-onclickoutside": "^6.6.0",
+    "react-redux": "^5.0.5",
+    "redux": "^3.7.2",
+    "redux-saga": "^0.15.6",
+    "semver": "^5.4.1"
+  },
+  "eslintConfig": {
+    "extends": "react-app",
+    "rules": {
+      "no-unneeded-ternary": "warn",
+      "indent": [
+        "error",
+        4,
+        {
+          "SwitchCase": 1
+        }
+      ],
+      "linebreak-style": [
+        "error",
+        "unix"
+      ],
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "semi": [
+        "error",
+        "never"
+      ],
+      "no-unused-vars": [
+        "warn",
+        {
+          "vars": "all",
+          "args": "after-used"
+        }
+      ]
+    }
+  },
+  "stylelint": {
+    "extends": "stylelint-config-standard",
+    "plugins": [
+      "stylelint-order"
+    ],
+    "rules": {
+      "color-named": "never",
+      "indentation": [
+        4,
+        {
+          "ignore": [
+            "value"
+          ]
+        }
+      ],
+      "max-nesting-depth": 3,
+      "number-max-precision": 4,
+      "property-no-vendor-prefix": true,
+      "at-rule-no-vendor-prefix": true,
+      "at-rule-no-unknown": null,
+      "media-feature-name-no-vendor-prefix": true,
+      "selector-no-vendor-prefix": true,
+      "value-no-vendor-prefix": true,
+      "order/properties-alphabetical-order": true
+    }
+  },
+  "prettier": {
+    "bracketSpacing": true,
+    "jsxBracketSameLine": true,
+    "parser": "babylon",
+    "printWidth": 80,
+    "semi": false,
+    "singleQuote": true,
+    "tabs": false,
+    "tabWidth": 4,
+    "trailingComma": "none"
+  },
+  "scripts": {
+    "start": "build-save-to-pocket start",
+    "build": "build-save-to-pocket build",
+    "test": "build-save-to-pocket test --env=jsdom"
+  }
+}

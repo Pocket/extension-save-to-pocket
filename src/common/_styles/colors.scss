@@ -1,0 +1,41 @@
+/* stylelint-disable */
+
+/* Colors
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+$hot-coral              : #ef4056;
+$amber                  : #FCB643;
+$mint-green             : #83EDB8;
+$teal                   : #50BCB6;
+$tealHover              : darken($teal, 10%);
+$emerald                : #00a69d;
+
+$black                  : #000000;
+$night                  : #1f1f1f;
+$pitch                  : #222222;
+$tar                    : #333333;
+$coal                   : #444444;
+$darksmoke              : #666666;
+$overcast               : #999999;
+$silver                 : #bbbbbb;
+$gray                   : #cccccc;
+$smoke                  : #dddddd;
+$alabaster              : #e6e6e6;
+$snow                   : #eeeeee;
+$powder                 : #f9f9f9;
+$white                  : #ffffff;
+
+/* Color Utilization
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+$rainbow                : linear-gradient(90deg, #AFECC3  0%, #84C3C0  34%, #D45A68  67%, #ECBF63  100%);
+
+$shadow-button          : 2px 2px 8px rgba(0, 0, 0, 0.4);
+$shadow-button-down     : 1px 1px 4px rgba(0, 0, 0, 0.5);
+$panel-shadow           : 0 2px 5px rgba(0, 0, 0, 0.5);
+$shadow                 : 0 0 25px rgba(0,0,0,0.2);
+$shadow-edge            : 0 0 2px rgba(0,0,0,0.15);
+$shadow-down            : 0 0 5px 1px rgba(0,0,0,0.25);
+$shadow-low             : 0 0 5px rgba(0,0,0,0.15);
+$shadow-high            : 0 0 30px 2px rgba(0,0,0,0.25);
+$shadow-light           : 0 0 25px rgba(0,0,0,0.1);
+$shadow-upper           : 0 0 40px rgba(200,200,200,0.2);
+/* stylelint-enable */

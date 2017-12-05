@@ -1,0 +1,59 @@
+{
+    "status": {
+        "archived": "",
+        "archiving": "",
+        "error": "错误！",
+        "link_saved": "",
+        "page_saved": "页面已保存！",
+        "removed": "",
+        "removing": "",
+        "saving": ""
+    },
+    "actions": {
+        "archive_page": "存档页面",
+        "close" : "关闭",
+        "open_pocket" : "打开 Pocket",
+        "remove_page" : "删除页面",
+        "save" : "保存",
+        "settings" : "设置"
+    },
+    "tagging": {
+        "add_tags" : "添加标记",
+        "getting_tags" : "正在获取标记…",
+        "invalid_tags" : "标记限于 25 个字符",
+        "saving_tags" : "正在保存标记…"
+    },
+    "recommendations": {
+        "explore_recommendations" : "查看 Pocket 的推荐",
+        "loading_recommendations" : "正在加载推荐",
+        "more_on" : "更多就在",
+        "more_stories_detail" : "想要查找更多好故事？",
+        "rec_saved": "",
+        "save_to_pocket": "保存到 Pocket",
+        "saving": ""
+    },
+    "options_page": {
+        "get_in_touch_on_twitter_link": "",
+        "header": "",
+        "keyboard_shortcut_enabled": "",
+        "keyboard_shortcut_title": "",
+        "learn_more_link": "",
+        "login_link": "",
+        "login_title": "",
+        "logout_link": "",
+        "more_ways_to_save_title": "",
+        "questions_pocket_title": "",
+        "quick_save_services_title": "",
+        "recommendations_detail": "",
+        "recommendations_title": "",
+        "record_shortcut": "",
+        "reset_to_default": "",
+        "search_support_link": "",
+        "send_us_an_email_link": "",
+        "services_info": ""
+    },
+    "error":{
+        "page_not_saved" : "页面未保存",
+        "page_not_saved_detail" : "Pocket 尝试保存此页面时遇到错误。请重试。"
+    }
+}
