@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
-    "pocket-build-tools": "git+ssh://git@github.com/Pocket/front-end-build-tools-audit.git",
+    "pocket-build-tools": "git+https://git@github.com/Pocket/front-end-build-tools.git",
     "remote-redux-devtools": "^0.5.12"
   },
   "dependencies": {
