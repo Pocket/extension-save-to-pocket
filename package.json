@@ -95,8 +95,8 @@
     "trailingComma": "none"
   },
   "scripts": {
-    "start": "build-save-to-pocket start",
-    "build": "build-save-to-pocket build",
-    "test": "build-save-to-pocket test --env=jsdom"
+    "start": "build-pocket save-to-pocket start",
+    "build": "build-pocket save-to-pocket build",
+    "test": "build-pocket save-to-pocket test --env=jsdom"
   }
 }
