@@ -4,7 +4,7 @@
 
 ## Introduction
 
-Save to Pocket is a browser extension that is used to save pages to a connected Pocket account when clicking a toolbar button, selecting a context menu item, or pressing keyboard shortcut. When a page is saved, a “Page Saved!” notification appears and offers additional actions, including: 
+Save to Pocket is a browser extension that is used to save pages to a connected Pocket account when clicking a toolbar button, selecting a context menu item, or pressing keyboard shortcut. When a page is saved, a “Page Saved!” notification appears and offers additional actions, including:
 
 * Add Tags (with support for Suggested Tags for Pocket Premium subscribers)
 * Archive Page
@@ -12,7 +12,7 @@ Save to Pocket is a browser extension that is used to save pages to a connected 
 * View List
 * Settings
 
-Save to Pocket also includes article Recommendations. These recommendations are displayed below the “Page Saved!” notification and are related to the item that was just saved. 
+Save to Pocket also includes article Recommendations. These recommendations are displayed below the “Page Saved!” notification and are related to the item that was just saved.
 
 In addition, when the extension is installed, Save buttons will be injected on Twitter, Hacker News, and Reddit so links posted to these sites can be saved in one click.
 
@@ -44,7 +44,7 @@ As functionality is added the readme should be updated with the module added. Te
 [React](https://facebook.github.io/react/) is a view library developed by Facebook to create declarative, component based UI.  It will automatically update the UI based on the state of the application using a virtual dom.
 
 #### Redux
-[Redux](http://redux.js.org/) is a library used to create a predictable state container.  It uses
+[Redux](http://redux.js.org/) is a library used to create a predictable state container.
 
 #### React-Chrome-Redux
 [React Chrome Redux](https://github.com/tshaddix/react-chrome-redux) allows us to build react/redux seamlessly with the background messaging convention in extensions.  The background page holds the Redux store, while Popovers and Content-Scripts act as UI Components, passing actions and state updates between themselves and the background store.
