@@ -1,7 +1,6 @@
 /* Utilities
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 import { isFunction } from './utilities'
-export { getKey } from './keys'
 
 const chrome = window.chrome
 

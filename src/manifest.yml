@@ -5,7 +5,9 @@ description: __MSG_extDescriptionGoogleChrome__
 default_locale: "en"
 background:
   scripts:
+    - js/key.js
     - js/background.bundle.js
+
 permissions:
   - tabs
   - contextMenus
