@@ -34,10 +34,6 @@ At this time it is set up to use the following:
 - CSS modules
 - Webpack for compiling
 
-## Updating
-As functionality is added the readme should be updated with the module added. Testing coverage thresholds will also be added.
-
-
 ## Conventions
 
 #### React
@@ -51,32 +47,56 @@ As functionality is added the readme should be updated with the module added. Te
 
 ## Getting Started
 
+### High level steps
+1. [Prepare your project](#setupanchor)
+1. [Install dependencies](#installanchor)
+1. [Create a development/production build](#buildanchor)
+1. [Load the extension into your browser](#loadinganchor)
+
+---
+<a name="setupanchor"></a>
 ### Setup
 Before you get started you will need to do the following:
 
 1. Register an API key from [https://getpocket.com/developer/](https://getpocket.com/developer/)
-2. Create a keys.js file with the folowing format:
+2. Create a keys.json file with the folowing format:
 
-```javascript
-export function getKey(){
-    return 'YOUR_API_KEY_HERE'
+```json
+{
+    "browserName":   "key"
 }
 ```
 
-3. Add the file you created to the `src/common/` directory
+3. You are able to add multiple browsers and keys.  During the build process
+it will create a seperate folder for each browser defined.
 
+<a name="installanchor"></a>
 ### Installation
-The app is bundled with webpack via node.  You may use Yarn or NPM to run the build/start/test scripts.
+The app is bundled with webpack via node.  You may use Yarn or NPM to run the
+build/start/test scripts.
 
 `yarn install` OR `npm install`
 
+<a name="buildanchor"></a>
 ### Creating a build
 
+##### *Development*
 Run `yarn start` OR `npm run start`
 
-The build will be placed in `_build` at the root directory.
+This will create a generic build using the first key in your `keys.json` and
+place it in `_build/_` at the root directory.  This will watch for changes and
+automatically reload the extension.  It is important to note that you will need
+to refresh the individual pages the extension is active in after a change is made.
 
+##### *Production*
 
+Run `yarn build` OR `npm run build`
+
+This will create an optimized build and place it inside `_build` at the root
+directory. There will be a folder for each browser defined in
+your keys.json.
+
+<a name="loadinganchor"></a>
 ### Loading The Extension
 
 To load the extension:
@@ -84,10 +104,11 @@ To load the extension:
 1. Open chrome and navigate to [chrome://extensions](chrome://extensions)
 2. Check the `Developer mode` in the upper right
 3. Select `Load unpacked extension...`
-4. Select the `_build` folder when prompted
+4. Select the browser folder inside the `_build` folder when prompted.
+(*Note: During the development process a single folder (`_`) be generated.*)
+---
 
-
-### Third Party Tools Licenses
+## Third Party Tools Licenses
 -  [autosize-input](https://github.com/JedWatson/react-input-autosize) - MIT License - Copyright (c) 2017 Jed Watson.
 -  [blueimp-md5](https://github.com/blueimp/JavaScript-MD5) - MIT License - Copyright (c) 2011 Sebastian Tschan
 -  [classnames](https://github.com/JedWatson/classnames) - MIT License - Copyright (c) 2016 Jed Watson.
