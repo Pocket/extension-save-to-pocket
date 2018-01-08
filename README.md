@@ -84,7 +84,7 @@ build/start/test scripts.
 Run `yarn start` OR `npm run start`
 
 This will create a generic build using the first key in your `keys.json` and
-place it in `_build/_` at the root directory.  This will watch for changes and
+place it in `_build/_dev` at the root directory.  This will watch for changes and
 automatically reload the extension.  It is important to note that you will need
 to refresh the individual pages the extension is active in after a change is made.
 
@@ -105,7 +105,7 @@ To load the extension:
 2. Check the `Developer mode` in the upper right
 3. Select `Load unpacked extension...`
 4. Select the browser folder inside the `_build` folder when prompted.
-(*Note: During the development process a single folder (`_`) be generated.*)
+(*Note: During the development process a single folder (`_dev`) be generated.*)
 ---
 
 ## Third Party Tools Licenses
