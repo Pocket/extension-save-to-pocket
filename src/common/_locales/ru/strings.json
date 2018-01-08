@@ -1,59 +1,61 @@
 {
-    "status": {
-        "archived": "",
-        "archiving": "",
-        "error": "Ошибка!",
-        "link_saved": "",
-        "page_saved": "Страница сохранена!",
-        "removed": "",
-        "removing": "",
-        "saving": ""
-    },
-    "actions": {
-        "archive_page": "Архивировать страницу",
-        "close": "Закрыть",
-        "open_pocket": "Открыть Pocket",
-        "remove_page": "Удалить страницу",
-        "save": "Сохранить",
-        "settings": "Настройки"
-    },
-    "tagging": {
-        "add_tags": "Добавить теги",
-        "getting_tags": "Получение тегов...",
-        "invalid_tags": "Длина тега ограничена 25 символами",
-        "saving_tags": "Сохранение тегов..."
-    },
-    "recommendations": {
-        "explore_recommendations": "Познакомьтесь с рекомендациями Pocket",
-        "loading_recommendations": "Загрузка рекомендаций",
-        "more_on": "Еще на",
-        "more_stories_detail": "Хотите узнать еще больше интересных историй?",
-        "rec_saved": "",
-        "save_to_pocket": "Сохранить в Pocket",
-        "saving": ""
-    },
-    "options_page": {
-        "get_in_touch_on_twitter_link": "",
-        "header": "",
-        "keyboard_shortcut_enabled": "",
-        "keyboard_shortcut_title": "",
-        "learn_more_link": "",
-        "login_link": "",
-        "login_title": "",
-        "logout_link": "",
-        "more_ways_to_save_title": "",
-        "questions_pocket_title": "",
-        "quick_save_services_title": "",
-        "recommendations_detail": "",
-        "recommendations_title": "",
-        "record_shortcut": "",
-        "reset_to_default": "",
-        "search_support_link": "",
-        "send_us_an_email_link": "",
-        "services_info": ""
-    },
-    "error":{
-        "page_not_saved": "Страница не сохранена",
-        "page_not_saved_detail": "Произошла ошибка, и Pocket не удалось сохранить эту страницу. Попробуйте еще раз."
-    }
+  "status" : {
+    "archived" : "В архиве.",
+    "archiving" : "Архивирование...",
+    "error" : "Ошибка!",
+    "link_saved" : "Ссылка сохранена!",
+    "page_saved" : "Страница сохранена!",
+    "removed" : "Удалено.",
+    "removing" : "Удаление...",
+    "saving" : "Сохранение..."
+  },
+  "actions" : {
+    "archive_page" : "Архивировать страницу",
+    "close" : "Закрыть",
+    "open_pocket" : "Открыть Pocket",
+    "remove_page" : "Удалить страницу",
+    "save" : "Сохранить",
+    "settings" : "Настройки"
+  },
+  "tagging" : {
+    "add_tags" : "Добавить теги",
+    "invalid_tags" : "Длина тега ограничена 25 символами",
+    "getting_tags" : "Получение тегов",
+    "saving_tags" : "Сохранение тегов"
+  },
+  "recommendations" : {
+    "explore" : "Познакомьтесь с рекомендациями Pocket",
+    "loading" : "Загрузка рекомендаций",
+    "more_on" : "Еще на",
+    "more_stories_detail" : "Хотите узнать еще больше интересных историй?",
+    "rec_saved" : "Рекомендации сохранены",
+    "save_to_pocket" : "Сохранить в Pocket",
+    "saved" : "Сохранено",
+    "saving" : "Сохранение"
+  },
+  "options_page" : {
+    "get_in_touch_on_twitter_link" : "или написать нам в Twitter",
+    "header" : "НАСТРОЙКИ",
+    "keyboard_shortcut_enabled" : "Включено",
+    "keyboard_shortcut_title" : "Сочетание клавиш:",
+    "learn_more_link" : "(узнать больше)",
+    "login_link" : "Нажмите, чтобы войти",
+    "login_title" : "Вы вошли как: ",
+    "logout_link" : "выйти",
+    "more_ways_to_save_title" : "Больше способов использовать Pocket:",
+    "questions_pocket_title" : "Возникли вопросы?",
+    "quick_save_services_title" : "Приложения с быстрым сохранением:",
+    "recommendations_detail" : "При сохранении страницы посмотрите рекомендованные истории Pocket с похожими темами.",
+    "recommendations_title" : "Рекомендации в Сохраненном",
+    "record_shortcut" : "Задать новое сочетание клавиш",
+    "reset_to_default" : "Сбросить настройки",
+    "save_to_pocket" : "Сохранить в Pocket",
+    "search_support_link" : "Поиск в базе знаний",
+    "send_us_an_email_link" : "написать нам письмо",
+    "services_info" : "В этом режиме вы можете сразу добавлять в Pocket материалы из выбранных приложений"
+  },
+  "error" : {
+    "page_not_saved" : "Страница не сохранена",
+    "page_not_saved_detail" : "Произошла ошибка, и Pocket не удалось сохранить эту страницу. Попробуйте еще раз."
+  }
 }
