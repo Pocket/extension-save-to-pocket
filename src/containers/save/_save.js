@@ -64,7 +64,6 @@ const getCurrentItem = state => {
 
     return {
         item: state.saves[activeHash],
-        itemId: state.saves[activeHash].item_id,
         tabId: activeTabId,
         save_type: activeTab.type
     }
@@ -121,7 +120,7 @@ function* archiveItemRequest() {
 
     const authToken = yield call(requireAuthorization)
     try {
-        const data = yield call(archiveItem, authToken, current.itemId)
+        const data = yield call(archiveItem, authToken, current.item.id)
         yield archiveSuccess(data, current)
     } catch (error) {
         yield put({ type: 'ITEM_ARCHIVE_ERROR', error, current })
@@ -140,7 +139,7 @@ function* removeItemRequest() {
 
     const authToken = yield call(requireAuthorization)
     try {
-        const data = yield call(removeItem, authToken, current.itemId)
+        const data = yield call(removeItem, authToken, current.item.id)
         yield removeSuccess(data, current)
     } catch (error) {
         yield put({ type: 'ITEM_REMOVE_ERROR', error, current })
