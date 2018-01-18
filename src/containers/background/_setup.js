@@ -67,6 +67,13 @@ export const setup = (state = initialState, action) => {
             }
         }
 
+        case 'UPDATE_STORED_TAGS': {
+            return {
+                ...state,
+                tags_stored: [...action.tags]
+            }
+        }
+
         default: {
             return state
         }
@@ -115,7 +122,8 @@ function* hydrateState() {
         sites_facebook: getBool(getSetting('sites_facebook')),
         sites_hackernews: getBool(getSetting('sites_hackernews')),
         sites_reddit: getBool(getSetting('sites_reddit')),
-        sites_twitter: getBool(getSetting('sites_twitter'))
+        sites_twitter: getBool(getSetting('sites_twitter')),
+        tags_stored: JSON.parse(getSetting('tags_stored')) || []
     }
 
     yield put({ type: 'HYDRATED_STATE', hydrated })
