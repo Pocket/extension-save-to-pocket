@@ -188,7 +188,6 @@ export default class Tagging extends Component {
                             value={this.state.inputvalue}
                             tags={this.props.tags.used}
                             suggestions={this.props.tags.suggested}
-                            typeAhead={this.typeAhead}
                             addTag={this.addTag}
                             activate={this.activateTag}
                             activateSuggestion={this.activateSuggestion}

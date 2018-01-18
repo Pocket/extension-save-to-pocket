@@ -50,22 +50,3 @@
     }
 }
 
-.typeaheadList {
-    display: block;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-.typeahead {
-    border-radius: 3px;
-    cursor: pointer;
-    display: block;
-    padding: 2px 8px;
-
-    &:hover,
-    &.active {
-        background-color: $teal;
-        color: $white;
-    }
-}
