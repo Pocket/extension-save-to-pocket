@@ -116,7 +116,7 @@ function* hydrateState() {
         account_name_first: getSetting('account_name_first'),
         account_name_last: getSetting('account_name_last'),
         account_avatar: getSetting('account_avatar'),
-        account_premium: getBool(getSetting('base_key_shortcut_active')),
+        account_premium: getBool(getSetting('account_premium')),
         key_shortcuts: keyShortcutArray,
         on_save_recommendations: getBool(getSetting('on_save_recommendations')),
         sites_facebook: getBool(getSetting('sites_facebook')),
