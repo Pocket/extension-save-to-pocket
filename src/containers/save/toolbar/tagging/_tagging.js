@@ -179,6 +179,9 @@ export function* wTagChanges() {
 const getUsedTags = state => {
     const activeTabId = state.active
     const activeTab = state.tabs[activeTabId]
+
+    if (!activeTab) return false
+
     const activeHash = activeTab.hash
 
     return {
@@ -188,7 +191,7 @@ const getUsedTags = state => {
 }
 
 const getStoredTags = state => {
-    return state.setup.tags_stored
+    return state.setup.tags_stored || []
 }
 
 function* tagSuggestions(action) {
@@ -210,6 +213,8 @@ function* tagSuggestions(action) {
 function* tagChanges() {
     yield delay(2000)
     const tagInfo = yield select(getUsedTags)
+
+    if (!tagInfo) return yield put({ type: 'TAG_SYNC_FAILED' })
 
     const tags = [...tagInfo.tags]
     const storedTags = yield select(getStoredTags)

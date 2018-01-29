@@ -2,7 +2,8 @@ import styles from './taginput.scss'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { localize } from '../../../../../common/_locales/locales'
-
+import AutosizeInput from 'react-input-autosize'
+// import Downshift from 'downshift'
 import classNames from 'classnames/bind'
 const cx = classNames.bind(styles)
 
@@ -56,11 +57,8 @@ export default class Taginput extends Component {
                 return this.props.handleRemoveAction()
             case ESCAPE:
                 this.clearError()
+                this.props.setValue('')
                 return this.props.makeTagsInactive(true)
-            case DOWN:
-            case UP:
-                this.clearError()
-                return this.props.handleDirection(event.keyCode)
             default:
                 this.props.makeTagsInactive()
         }
@@ -73,6 +71,7 @@ export default class Taginput extends Component {
         }
 
         if (event.keyCode === ENTER) {
+            if (this.props.typeaheadOpen) return
             event.preventDefault()
             if (this.props.value) this.props.addTag(this.props.value)
             else this.props.closePanel()
@@ -85,7 +84,8 @@ export default class Taginput extends Component {
             event.keyCode !== LEFT &&
             event.keyCode !== UP &&
             event.keyCode !== RIGHT &&
-            event.keyCode !== DOWN
+            event.keyCode !== DOWN &&
+            event.keyCode !== ENTER
         ) {
             this.setError()
             event.preventDefault()
@@ -100,25 +100,26 @@ export default class Taginput extends Component {
         })
 
         return (
-            <div>
-                <input
-                    className={inputClass}
-                    type="text"
-                    ref={this.props.inputRef}
-                    value={this.props.value}
-                    onChange={this.onChange}
-                    onFocus={this.props.setFocus}
-                    onBlur={this.props.setBlur}
-                    onKeyUp={this.onKeyUp}
-                    onKeyDown={this.onInput}
-                    onKeyPress={this.onInput}
+            <React.Fragment>
+                <AutosizeInput
+                    {...this.props.getInputProps({
+                        inputClassName: inputClass,
+                        ref: this.props.inputRef,
+                        value: this.props.value,
+                        onChange: this.onChange,
+                        onFocus: this.props.setFocus,
+                        onBlur: this.props.setBlur,
+                        onKeyUp: this.onKeyUp,
+                        onKeyDown: this.onInput,
+                        onKeyPress: this.onInput
+                    })}
                 />
                 {this.state.error && (
                     <div className={styles.tagError}>
                         {localize('tagging', 'invalid_tags')}
                     </div>
                 )}
-            </div>
+            </React.Fragment>
         )
     }
 }

@@ -100,6 +100,7 @@ class App extends Component {
                         closePanel={this.closePanel}
                         removeTag={this.props.removeTag}
                         removeTags={this.props.removeTags}
+                        storedTags={this.props.setup.tags_stored}
                     />
                 )}
                 {this.showRecs && (
