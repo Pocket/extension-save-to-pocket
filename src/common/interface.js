@@ -60,8 +60,9 @@ export function sendMessage(extensionId = null, message, cb) {
     return chrome.runtime.sendMessage(extensionId, message, callback)
 }
 
-export function sendMessageToTab(tabId, message) {
-    return chrome.tabs.sendMessage(tabId, message)
+export function sendMessageToTab(tabId, message, cb) {
+    let callback = isFunction(cb) ? cb : () => {}
+    return chrome.tabs.sendMessage(tabId, message, callback)
 }
 
 export function sendMessageToAllTabs(msg) {
@@ -196,6 +197,10 @@ export function updateToolbarIcon(tabId, activateIcon) {
         : setToolbarIcon(tabId, 'browser-action-icon')
 }
 
+export function executeScript(tabId, scriptObject, cb) {
+    let callback = isFunction(cb) ? cb : () => {}
+    return chrome.tabs.executeScript(tabId, scriptObject, callback)
+}
 /* References
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
