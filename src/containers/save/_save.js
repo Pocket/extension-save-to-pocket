@@ -1,5 +1,5 @@
 import md5 from 'blueimp-md5'
-import { put, call, takeLatest, select } from 'redux-saga/effects'
+import { put, call, takeLatest, takeEvery, select } from 'redux-saga/effects'
 import { updateToolbarIcon } from '../../common/interface'
 import { saveToPocket, archiveItem, removeItem } from '../../common/api'
 import { requireAuthorization } from '../auth/_auth'
@@ -45,7 +45,7 @@ export const saves = (state = initialState, action) => {
 
 // SAGAS
 export function* wSavePage() {
-    yield takeLatest('SAVE_PAGE_TO_POCKET', saveRequest)
+    yield takeEvery('SAVE_PAGE_TO_POCKET', saveRequest)
 }
 export function* wSaveUrl() {
     yield takeLatest('SAVE_URL_TO_POCKET', saveRequest)

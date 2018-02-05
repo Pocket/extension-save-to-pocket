@@ -1,5 +1,5 @@
 import { delay } from 'redux-saga'
-import { put, call, takeLatest, race, select } from 'redux-saga/effects'
+import { put, call, takeEvery, race, select } from 'redux-saga/effects'
 import * as API from '../../../common/api'
 import { getBestImage } from '../../../common/helpers'
 import { requireAuthorization } from '../../auth/_auth'
@@ -96,10 +96,10 @@ export const recommendations = (state = {}, action) => {
 
 // SAGAS
 export function* wRecommendations() {
-    yield takeLatest('RECOMMENDATIONS_REQUEST', getRecommendations)
+    yield takeEvery('RECOMMENDATIONS_REQUEST', getRecommendations)
 }
 export function* wSaveRecommendation() {
-    yield takeLatest('REQUEST_SAVE_REC_TO_POCKET', saveRecommendation)
+    yield takeEvery('REQUEST_SAVE_REC_TO_POCKET', saveRecommendation)
 }
 
 const getCurrentRecs = state => {
