@@ -17,17 +17,48 @@ const activeState = [
 ]
 
 class App extends Component {
+    constructor(props) {
+        super(props)
+        this.state = { hasShown: false } // Raise this up
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        const isActive = nextProps.tab_id === nextProps.active
+        const currentTab = nextProps.tabs
+            ? nextProps.tabs[nextProps.active]
+            : false
+        const isValid = currentTab
+            ? activeState.indexOf(currentTab.status) >= 0
+            : false
+        const isLoaded = currentTab ? currentTab.frame === 'loaded' : false
+        if (
+            isActive &&
+            currentTab &&
+            isValid &&
+            isLoaded &&
+            !currentTab.shown
+        ) {
+            this.props.setTabStatus(nextProps.tab_id, currentTab.status, true)
+            this.offHover(null, 8000)
+        }
+    }
+
     onHover = () => clearTimeout(this.hoverTimer)
 
-    offHover = () => {
-        this.hoverTimer = setTimeout(() => {
-            this.props.setTabStatus(this.props.tab_id, 'idle')
-        }, 1500)
+    offHover = (event, delayTime) => {
+        const delay = delayTime || 1500
+        this.hoverTimer = setTimeout(this.closePanel, delay)
     }
 
     closePanel = () => {
         clearTimeout(this.hoverTimer)
-        this.props.setTabStatus(this.props.tab_id, 'idle')
+        this.props.setTabStatus(this.props.tab_id, 'idle', false)
+    }
+
+    isSaveActive() {
+        const isActive = this.tabIsActive && this.statusIsValid
+        if (!isActive) clearTimeout(this.hoverTimer)
+        return isActive
     }
 
     get tabIsActive() {
@@ -35,7 +66,7 @@ class App extends Component {
     }
 
     get statusIsValid() {
-        return this.currentTab
+        return this.props.tabs && this.currentTab
             ? activeState.indexOf(this.currentTab.status) >= 0
             : false
     }
@@ -48,8 +79,8 @@ class App extends Component {
         )
     }
 
-    get isSaveActive() {
-        return this.tabIsActive && this.statusIsValid
+    get frameLoaded() {
+        return this.currentTab && this.currentTab.frame === 'loaded'
     }
 
     get currentTab() {
@@ -71,7 +102,7 @@ class App extends Component {
     render() {
         const panelClass = cx({
             hanger: true,
-            active: this.isSaveActive
+            active: this.isSaveActive()
         })
 
         return (
@@ -79,7 +110,7 @@ class App extends Component {
                 className={panelClass}
                 onMouseEnter={this.onHover}
                 onMouseLeave={this.offHover}>
-                {this.isSaveActive && (
+                {this.isSaveActive() && (
                     <Toolbar
                         tabId={this.props.tab_id}
                         dropDownActive={this.currentTab.dropDownActive}

@@ -6,7 +6,7 @@ import { recommendationActions } from '../containers/save/recommendations/_recom
 
 const { setupExtension, toggleRecommendations, toggleSite } = setupActions
 
-const { setTabStatus, setDropDownStatus } = tabsActions
+const { frameLoaded, setTabStatus, setDropDownStatus } = tabsActions
 
 const {
     savePageToPocket,
@@ -31,6 +31,7 @@ export {
     setupExtension,
     toggleRecommendations,
     toggleSite,
+    frameLoaded,
     setTabStatus,
     setDropDownStatus,
     savePageToPocket,
