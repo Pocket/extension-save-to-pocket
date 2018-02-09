@@ -54,6 +54,10 @@ import {
 
     function render() {
         initFrame().then(() => {
+            document.addEventListener('click', function() {
+                sendMessage(null, { action: 'frameFocus', status: false })
+            })
+
             sendMessage(null, { action: 'frameLoaded' })
             addMessageListener(handleAction)
         })

@@ -2,6 +2,8 @@ import { Framer } from '../save/frame/framer'
 import * as Interface from '../../common/interface'
 import { isNewTab, getBaseUrl } from '../../common/helpers'
 import { initializeStore } from '../../store/store'
+import { closeSavePanel } from '../../store/combineActions'
+import { cancelCloseSavePanel } from '../../store/combineActions'
 import { frameLoaded } from '../../store/combineActions'
 import { setupExtension } from '../../store/combineActions'
 import { hydrateState } from '../../store/combineActions'
@@ -33,6 +35,19 @@ Interface.addMessageListener((request, sender, sendResponse) => {
 
     if (request.action === 'frameLoaded') {
         store.dispatch(frameLoaded(sender.tab.id))
+    }
+
+    if (request.action === 'frameFocus') {
+        const state = store.getState()
+        const isClosed =
+            state.tabs &&
+            state.tabs[sender.tab.id] &&
+            state.tabs[sender.tab.id].status === 'idle'
+        if (isClosed) return
+
+        request.status
+            ? store.dispatch(cancelCloseSavePanel({ tabId: sender.tab.id }))
+            : store.dispatch(closeSavePanel({ tabId: sender.tab.id }))
     }
 })
 
