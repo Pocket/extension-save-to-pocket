@@ -6,7 +6,7 @@ import { PORT_NAME } from '../common/constants'
 import rootSaga from './combineSagas'
 import rootReducer from './combineReducers'
 
-const composeEnhancers = composeWithDevTools({ realtime: true, port: 8000 })
+const composeEnhancers = composeWithDevTools({ port: 8000 })
 
 export const initializeStore = () => {
     const sagaMiddleware = createSagaMiddleware()
