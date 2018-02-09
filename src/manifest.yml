@@ -28,8 +28,6 @@ content_scripts:
       - "*://*/*"
     css:
       - fonts/fonts.css
-    js:
-      - js/frame.bundle.js
   -
     matches:
       - '*://getpocket.com/extension_login_success'
