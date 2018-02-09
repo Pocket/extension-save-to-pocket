@@ -1,10 +1,11 @@
 import styles from './tagging.scss'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import matchSorter from 'match-sorter'
 import Chips from './chips/chips'
+import Downshift from 'downshift'
 import Suggestions from './suggestions/suggestions'
 import Taginput from './taginput/taginput'
-import autosizeInput from 'autosize-input'
 import { localize } from '../../../../common/_locales/locales'
 import classNames from 'classnames/bind'
 
@@ -17,12 +18,9 @@ export default class Tagging extends Component {
             placeholder: !this.hasTags(),
             focused: false,
             inputvalue: '',
-            activeSuggestion: -1
+            activeSuggestion: -1,
+            typeaheadOpen: false
         }
-    }
-
-    componentDidMount() {
-        autosizeInput(this.input)
     }
 
     /* Utilities
@@ -41,11 +39,6 @@ export default class Tagging extends Component {
         this.setState({ placeholder: !status, focused: false })
     }
 
-    resetInput = () => {
-        this.input.focus()
-        this.input.style.width = '0.3em'
-    }
-
     /* Tag Management
     –––––––––––––––––––––––––––––––––––––––––––––––––– */
     addTag = value => {
@@ -53,7 +46,7 @@ export default class Tagging extends Component {
         if (this.props.tags.used.indexOf(value) >= 0) return
         this.props.addTag({ value, saveHash: this.props.saveHash })
         this.setState({ placeholder: false, inputvalue: '' })
-        this.resetInput()
+        this.input.focus()
     }
 
     /* Active/Inactive Tagging
@@ -87,57 +80,29 @@ export default class Tagging extends Component {
         this.input.focus()
     }
 
-    // onMouseDown = e => {
-    //     // MouseDown when input is active causes an
-    //     // Unnecessary reset of the placeholder
-    //     // Stopping propagation here is not an option
-    //     // due to the possibility of not having iFrame focus
-    // }
-
     onMouseUp = e => {
-        e.preventDefault()
         this.input.focus()
+        e.stopPropagation()
+        e.preventDefault()
     }
 
-    // Suggestions
-    get typeAheadSuggestions() {
-        const inputValue = this.state.inputvalue
-        if (!this.props.tags.suggested) return []
-        return this.props.tags.suggested
-            .filter(item => {
-                return inputValue.length ? item.indexOf(inputValue) > -1 : true
-            })
-            .slice(0, 3)
+    onStateChange = changes => {
+        if (typeof changes.isOpen !== 'undefined')
+            this.setState({ typeaheadOpen: changes.isOpen })
     }
 
-    typeAhead = () => {
-        return this.typeAheadSuggestions.map((item, index) => {
-            return {
-                suggestion: item,
-                active: index === this.state.activeSuggestion
-            }
-        })
-    }
+    onSelect = this.addTag
 
-    handleDirection = keycode => {
-        const typeAheadLength = this.typeAheadSuggestions.length
-        const activeSuggestion = this.state.activeSuggestion
-
-        if (activeSuggestion < 0) return this.setState({ activeSuggestion: 0 })
-
-        // DOWN
-        if (keycode === 40) {
-            return activeSuggestion === typeAheadLength - 1
-                ? this.setState({ activeSuggestion: 0 })
-                : this.setState({ activeSuggestion: activeSuggestion + 1 })
-        }
-
-        // UP
-        if (keycode === 38) {
-            return activeSuggestion === 0
-                ? this.setState({ activeSuggestion: typeAheadLength - 1 })
-                : this.setState({ activeSuggestion: activeSuggestion - 1 })
-        }
+    get storedTags() {
+        const value = this.state.inputvalue
+        const usedTags = this.hasTags() ? this.props.tags.used : []
+        const storedTags = this.props.storedTags || []
+        const filteredStoredTags = storedTags.filter(
+            item => usedTags.indexOf(item) < 0
+        )
+        return value
+            ? matchSorter(filteredStoredTags, value)
+            : filteredStoredTags
     }
 
     /* Render Component
@@ -150,37 +115,80 @@ export default class Tagging extends Component {
 
         return (
             <div className={styles.tagging}>
-                <div className={taggingClass} onMouseUp={this.onMouseUp}>
-                    {this.state.placeholder &&
-                        !this.hasTags() && (
-                            <div className={styles.placeholder}>
-                                {localize('tagging', 'add_tags')}
-                            </div>
-                        )}
-                    {!!this.hasTags() && (
-                        <Chips
-                            tags={this.props.tags.used}
-                            marked={this.props.tags.marked}
-                            toggleActive={this.toggleActive}
-                            removeTag={this.removeTag}
-                        />
-                    )}
+                <Downshift
+                    onStateChange={this.onStateChange}
+                    onSelect={this.onSelect}
+                    render={({
+                        getInputProps,
+                        getItemProps,
+                        isOpen,
+                        highlightedIndex
+                    }) => (
+                        <div>
+                            <div
+                                className={taggingClass}
+                                onMouseUp={this.onMouseUp}>
+                                {this.state.placeholder &&
+                                    !this.hasTags() && (
+                                        <div className={styles.placeholder}>
+                                            {localize('tagging', 'add_tags')}
+                                        </div>
+                                    )}
 
-                    <Taginput
-                        hasTags={!!this.hasTags()}
-                        inputRef={input => (this.input = input)}
-                        value={this.state.inputvalue}
-                        focused={this.state.focused}
-                        setValue={this.setInputValue}
-                        setFocus={this.setFocus}
-                        setBlur={this.setBlur}
-                        closePanel={this.props.closePanel}
-                        addTag={this.addTag}
-                        handleRemoveAction={this.handleRemoveAction}
-                        handleDirection={this.handleDirection}
-                        makeTagsInactive={this.makeTagsInactive}
-                    />
-                </div>
+                                {!!this.hasTags() && (
+                                    <Chips
+                                        tags={this.props.tags.used}
+                                        marked={this.props.tags.marked}
+                                        toggleActive={this.toggleActive}
+                                        removeTag={this.removeTag}
+                                    />
+                                )}
+
+                                <Taginput
+                                    typeaheadOpen={this.state.typeaheadOpen}
+                                    getInputProps={getInputProps}
+                                    hasTags={!!this.hasTags()}
+                                    inputRef={input => (this.input = input)}
+                                    value={this.state.inputvalue}
+                                    focused={this.state.focused}
+                                    setValue={this.setInputValue}
+                                    setFocus={this.setFocus}
+                                    setBlur={this.setBlur}
+                                    closePanel={this.props.closePanel}
+                                    addTag={this.addTag}
+                                    handleRemoveAction={this.handleRemoveAction}
+                                    makeTagsInactive={this.makeTagsInactive}
+                                    storedTags={this.storedTags}
+                                />
+                            </div>
+
+                            {isOpen ? (
+                                <div className={styles.typeaheadWrapper}>
+                                    <div className={styles.typeaheadList}>
+                                        {this.storedTags.map((item, index) => {
+                                            const itemStyle = cx({
+                                                typeahead: true,
+                                                active:
+                                                    highlightedIndex === index
+                                            })
+                                            return (
+                                                <div
+                                                    className={itemStyle}
+                                                    key={`item-${index}`}
+                                                    {...getItemProps({
+                                                        item,
+                                                        index
+                                                    })}>
+                                                    {item}
+                                                </div>
+                                            )
+                                        })}
+                                    </div>
+                                </div>
+                            ) : null}
+                        </div>
+                    )}
+                />
 
                 {this.props.tags &&
                     this.props.tags.suggested && (
@@ -188,7 +196,6 @@ export default class Tagging extends Component {
                             value={this.state.inputvalue}
                             tags={this.props.tags.used}
                             suggestions={this.props.tags.suggested}
-                            typeAhead={this.typeAhead}
                             addTag={this.addTag}
                             activate={this.activateTag}
                             activateSuggestion={this.activateSuggestion}

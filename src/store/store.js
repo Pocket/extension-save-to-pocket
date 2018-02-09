@@ -1,4 +1,4 @@
-import { composeWithDevTools } from 'remote-redux-devtools'
+import { composeWithDevTools } from 'redux-devtools-extension/developmentOnly'
 import { wrapStore } from 'react-chrome-redux'
 import { createStore, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'

@@ -4,6 +4,7 @@
 .tagging {
     font-family: $fontstack-default;
     padding: 5px 0 0;
+    position: relative;
 }
 
 .well {
@@ -17,7 +18,7 @@
     box-sizing: border-box;
     font-size: 13px;
     line-height: 17px;
-    margin: 0 0 2px;
+    margin: 0;
     padding: 4px 10px 2px;
     position: relative;
     text-align: left;
@@ -35,3 +36,38 @@
     top: 6px;
 }
 
+.typeaheadWrapper {
+    position: relative;
+}
+
+.typeaheadList {
+    background: $white;
+    border: 1px solid $smoke;
+    border-radius: 0 0 3px 3px;
+    border-top: none;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    display: block;
+    left: 0;
+    list-style-type: none;
+    margin: 0;
+    max-height: 8.8em;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 2px 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.typeahead {
+    cursor: pointer;
+    display: block;
+    padding: 2px 8px;
+
+    &:hover,
+    &.active {
+        background-color: $teal;
+        color: $white;
+    }
+}
