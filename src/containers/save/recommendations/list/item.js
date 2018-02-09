@@ -8,7 +8,7 @@ import { localize } from '../../../../common/_locales/locales'
 
 const cx = classNames.bind(styles)
 const copy = {
-    idle: localize('recommendations', 'save_to_pocket'),
+    idle: localize('actions', 'save'),
     saving: localize('recommendations', 'saving'),
     saved: localize('recommendations', 'saved')
 }
