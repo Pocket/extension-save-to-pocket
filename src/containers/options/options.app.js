@@ -45,8 +45,6 @@ export default class Options extends Component {
     }
 
     toggleTwitter = () => this.props.toggleSite('sites_twitter')
-    toggleHackernews = () => this.props.toggleSite('sites_hackernews')
-    toggleReddit = () => this.props.toggleSite('sites_reddit')
 
     setShortcuts = () => openTabWithUrl(SET_SHORTCUTS)
 
@@ -110,22 +108,6 @@ export default class Options extends Component {
                                         action={this.toggleTwitter}
                                     />
                                     Twitter
-                                </li>
-                                <li>
-                                    <Toggle
-                                        active={
-                                            this.props.setup.sites_hackernews
-                                        }
-                                        action={this.toggleHackernews}
-                                    />
-                                    Hacker News
-                                </li>
-                                <li>
-                                    <Toggle
-                                        active={this.props.setup.sites_reddit}
-                                        action={this.toggleReddit}
-                                    />
-                                    Reddit
                                 </li>
                             </ul>
                             <div className={styles.info}>

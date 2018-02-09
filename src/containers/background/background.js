@@ -49,6 +49,15 @@ Interface.addMessageListener((request, sender, sendResponse) => {
             ? store.dispatch(cancelCloseSavePanel({ tabId: sender.tab.id }))
             : store.dispatch(closeSavePanel({ tabId: sender.tab.id }))
     }
+
+    if (request.action === 'twitterSave') {
+        store.dispatch({
+            type: 'SAVE_TWEET_TO_POCKET',
+            request,
+            sendResponse
+        })
+        return true
+    }
 })
 
 Interface.contextMenus().removeAll(createContextMenus)

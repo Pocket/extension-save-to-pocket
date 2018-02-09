@@ -1,5 +1,5 @@
 name: 'Save to Pocket'
-version: 3.0.0.8
+version: 3.0.0.9
 options_page: options.html
 description: __MSG_extDescriptionGoogleChrome__
 default_locale: "en"
@@ -45,19 +45,7 @@ content_scripts:
       - '*://twitter.com/*'
     js:
       - js/twitter.bundle.js
-  -
-    matches:
-      - 'http://*.ycombinator.org/*'
-      - 'https://*.ycombinator.org/*'
-      - 'http://*.ycombinator.com/*'
-      - 'https://*.ycombinator.com/*'
-    js:
-      - js/hackerNews.bundle.js
-  -
-    matches:
-      - '*://*.reddit.com/*'
-    js:
-      - js/reddit.bundle.js
+
 icons:
   128: images/icon-128.png
   48: images/icon-48.png
