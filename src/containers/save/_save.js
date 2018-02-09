@@ -1,5 +1,14 @@
 import md5 from 'blueimp-md5'
-import { put, call, takeLatest, takeEvery, select } from 'redux-saga/effects'
+import { delay } from 'redux-saga'
+import {
+    put,
+    call,
+    take,
+    takeLatest,
+    takeEvery,
+    select,
+    race
+} from 'redux-saga/effects'
 import { updateToolbarIcon } from '../../common/interface'
 import { saveToPocket, archiveItem, removeItem } from '../../common/api'
 import { requireAuthorization } from '../auth/_auth'
@@ -12,7 +21,9 @@ export const saveActions = {
     savePageToPocket: data => ({ type: 'SAVE_PAGE_TO_POCKET', data }),
     saveUrlToPocket: data => ({ type: 'SAVE_URL_TO_POCKET', data }),
     removeItem: data => ({ type: 'REMOVE_ITEM_FROM_POCKET', data }),
-    archiveItem: data => ({ type: 'ARCHIVE_ITEM_ON_POCKET', data })
+    archiveItem: data => ({ type: 'ARCHIVE_ITEM_ON_POCKET', data }),
+    closeSavePanel: data => ({ type: 'CLOSE_SAVE_PANEL', data }),
+    cancelCloseSavePanel: () => ({ type: 'CANCEL_CLOSE_SAVE_PANEL' })
 }
 
 // REDUCER
@@ -44,6 +55,9 @@ export const saves = (state = initialState, action) => {
 }
 
 // SAGAS
+export function* wCloseSavePanel() {
+    yield takeLatest('CLOSE_SAVE_PANEL', closePanelRequest)
+}
 export function* wSavePage() {
     yield takeEvery('SAVE_PAGE_TO_POCKET', saveRequest)
 }
@@ -73,6 +87,20 @@ const getCurrentSetup = state => {
     return state.setup
 }
 
+function* closePanelRequest(action) {
+    const { tabId, timeout = 1500 } = action.data
+
+    yield race({
+        task: call(closePanel, tabId, timeout),
+        cancel: take('CANCEL_CLOSE_SAVE_PANEL')
+    })
+}
+
+function* closePanel(tabId, timeout) {
+    yield call(delay, timeout)
+    yield put({ type: 'SET_TAB_STATUS', tabId, status: 'idle', shown: false })
+}
+
 function* saveRequest(action) {
     const saveType =
         action.data.info && action.data.info.linkUrl ? 'link' : 'page'
@@ -91,6 +119,9 @@ function* saveRequest(action) {
     } else {
         yield put({ type: 'SAVE_TO_POCKET_FAILURE', tabId, saveHash })
     }
+
+    // Start the closeout timer after panel resolution
+    yield put({ type: 'CLOSE_SAVE_PANEL', data: { tabId, timeout: 8000 } })
 }
 
 function* saveSuccess(saveObject, resolvedId) {
@@ -125,6 +156,12 @@ function* archiveItemRequest() {
     } catch (error) {
         yield put({ type: 'ITEM_ARCHIVE_ERROR', error, current })
     }
+
+    // Start the closeout timer after panel resolution
+    yield put({
+        type: 'CLOSE_SAVE_PANEL',
+        data: { tabId: current.tabId, timeout: 4000 }
+    })
 }
 
 function* archiveSuccess(data, current) {
@@ -144,6 +181,12 @@ function* removeItemRequest() {
     } catch (error) {
         yield put({ type: 'ITEM_REMOVE_ERROR', error, current })
     }
+
+    // Start the closeout timer after panel resolution
+    yield put({
+        type: 'CLOSE_SAVE_PANEL',
+        data: { tabId: current.tabId, timeout: 4000 }
+    })
 }
 
 function* removeSuccess(data, current) {

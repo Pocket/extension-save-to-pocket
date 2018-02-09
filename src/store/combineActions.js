@@ -12,7 +12,9 @@ const {
     savePageToPocket,
     saveUrlToPocket,
     removeItem,
-    archiveItem
+    archiveItem,
+    closeSavePanel,
+    cancelCloseSavePanel
 } = saveActions
 
 const {
@@ -38,6 +40,8 @@ export {
     saveUrlToPocket,
     removeItem,
     archiveItem,
+    closeSavePanel,
+    cancelCloseSavePanel,
     getTags,
     activateTag,
     deactivateTag,

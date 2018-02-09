@@ -19,7 +19,9 @@ const activeState = [
 class App extends Component {
     constructor(props) {
         super(props)
-        this.state = { hasShown: false } // Raise this up
+        this.state = {
+            inputFocused: false
+        }
     }
 
     componentWillUpdate(nextProps, nextState) {
@@ -39,26 +41,32 @@ class App extends Component {
             !currentTab.shown
         ) {
             this.props.setTabStatus(nextProps.tab_id, currentTab.status, true)
-            this.offHover(null, 8000)
         }
     }
 
-    onHover = () => clearTimeout(this.hoverTimer)
+    onHover = () => this.cancelClose()
 
-    offHover = (event, delayTime) => {
-        const delay = delayTime || 1500
-        this.hoverTimer = setTimeout(this.closePanel, delay)
+    offHover = () => {
+        if (this.state.inputFocused) return
+        this.closePanel()
     }
 
     closePanel = () => {
-        clearTimeout(this.hoverTimer)
-        this.props.setTabStatus(this.props.tab_id, 'idle', false)
+        this.props.closeSavePanel({ tabId: this.props.tab_id })
+    }
+
+    cancelClose = () => {
+        if (this.state.inputFocused) return
+        this.props.cancelCloseSavePanel()
     }
 
     isSaveActive() {
         const isActive = this.tabIsActive && this.statusIsValid
-        if (!isActive) clearTimeout(this.hoverTimer)
         return isActive
+    }
+
+    setInputFocusState = bool => {
+        this.setState({ inputFocused: bool })
     }
 
     get tabIsActive() {
@@ -132,6 +140,8 @@ class App extends Component {
                         removeTag={this.props.removeTag}
                         removeTags={this.props.removeTags}
                         storedTags={this.props.setup.tags_stored}
+                        inputFocused={this.state.inputFocused}
+                        setInputFocusState={this.setInputFocusState}
                     />
                 )}
                 {this.showRecs && (

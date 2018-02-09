@@ -10,6 +10,7 @@ import { wToggleSite } from '../containers/background/_setup'
 import { wAuthCodeRecieved } from '../containers/auth/_auth'
 import { wLogout } from '../containers/auth/_auth'
 
+import { wCloseSavePanel } from '../containers/save/_save'
 import { wSavePage } from '../containers/save/_save'
 import { wSaveUrl } from '../containers/save/_save'
 import { wRemoveItem } from '../containers/save/_save'
@@ -41,6 +42,7 @@ export default function* rootSaga() {
         wAuthCodeRecieved(),
         wLogout(),
 
+        wCloseSavePanel(),
         wSavePage(),
         wSaveUrl(),
         wRemoveItem(),
