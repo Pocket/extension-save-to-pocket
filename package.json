@@ -9,7 +9,8 @@
   "devDependencies": {
     "pocket-build-tools": "git+https://git@github.com/Pocket/front-end-build-tools.git",
     "redux-devtools-extension": "^2.13.2",
-    "remote-redux-devtools": "^0.5.12"
+    "remote-redux-devtools": "^0.5.12",
+    "remotedev-server": "^0.2.4"
   },
   "dependencies": {
     "autosize-input": "^0.4.0",
@@ -99,6 +100,7 @@
     "trailingComma": "none"
   },
   "scripts": {
+    "remotedev": "remotedev --hostname=localhost --port=8000",
     "start": "build-pocket save-to-pocket start",
     "build": "build-pocket save-to-pocket build",
     "test": "build-pocket save-to-pocket test --env=jsdom"

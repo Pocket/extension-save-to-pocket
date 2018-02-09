@@ -1,9 +1,14 @@
 // ACTIONS
 export const tabsActions = {
-    setTabStatus: (tabId, status) => ({
+    frameLoaded: tabId => ({
+        type: 'FRAME_LOADED',
+        tabId
+    }),
+    setTabStatus: (tabId, status, shown) => ({
         type: 'SET_TAB_STATUS',
         tabId,
-        status
+        status,
+        shown
     }),
     setDropDownStatus: (tabId, status) => ({
         type: 'SET_DROPDOWN_STATUS',
@@ -29,12 +34,33 @@ export const active = (state = 0, action) => {
     }
 }
 
-export const tabs = (state = 0, action) => {
+export const tabs = (state = {}, action) => {
     switch (action.type) {
         case 'ACTIVE_TAB_CHANGED':
-        case 'ACTIVE_TAB_UPDATED':
         case 'ACTIVE_WINDOW_CHANGED': {
             return { ...state, ...setTabsIdle(state) }
+        }
+
+        case 'ACTIVE_TAB_UPDATED': {
+            return {
+                ...state,
+                [action.tabId]: {
+                    frame: action.frame,
+                    status: 'idle',
+                    shown: false,
+                    dropDownActive: false
+                }
+            }
+        }
+
+        case 'FRAME_LOADED': {
+            return {
+                ...state,
+                [action.tabId]: {
+                    ...state[action.tabId],
+                    frame: 'loaded'
+                }
+            }
         }
 
         case 'SET_TAB_STATUS': {
@@ -42,7 +68,8 @@ export const tabs = (state = 0, action) => {
                 ...state,
                 [action.tabId]: {
                     ...state[action.tabId],
-                    status: action.status
+                    status: action.status,
+                    shown: action.shown
                 }
             }
         }
@@ -151,6 +178,7 @@ function setTabsIdle(tabs) {
         idleTabs[key] = Object.assign({}, tabs[key], {
             ...tabs[key],
             status: 'idle',
+            shown: false,
             dropDownActive: false
         })
         return null

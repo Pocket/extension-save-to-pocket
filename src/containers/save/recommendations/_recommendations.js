@@ -1,5 +1,5 @@
 import { delay } from 'redux-saga'
-import { put, call, takeLatest, race, select } from 'redux-saga/effects'
+import { put, call, takeEvery, race, select } from 'redux-saga/effects'
 import * as API from '../../../common/api'
 import { getBestImage } from '../../../common/helpers'
 import { requireAuthorization } from '../../auth/_auth'
@@ -96,28 +96,39 @@ export const recommendations = (state = {}, action) => {
 
 // SAGAS
 export function* wRecommendations() {
-    yield takeLatest('RECOMMENDATIONS_REQUEST', getRecommendations)
+    yield takeEvery('RECOMMENDATIONS_REQUEST', getRecommendations)
 }
 export function* wSaveRecommendation() {
-    yield takeLatest('REQUEST_SAVE_REC_TO_POCKET', saveRecommendation)
+    yield takeEvery('REQUEST_SAVE_REC_TO_POCKET', saveRecommendation)
 }
 
 const getCurrentRecs = state => {
+    const activeTab = state.tabs[state.active]
+    if (!activeTab) return false
+
     const hash = state.tabs[state.active].hash
     return state.recommendations[hash]
 }
 
 function* getRecommendations(action) {
-    const current = yield select(getCurrentRecs)
-    if (current) return //yield put({type: 'RECOMMENDATIONS_SUCCESS_CACHED'})
-
     try {
-        const data = yield call(API.getRecommendations, action.resolvedId)
-        yield put({
-            type: 'RECOMMENDATIONS_SUCCESS',
-            data,
-            saveHash: action.saveObject.saveHash
+        const current = yield select(getCurrentRecs)
+        if (current) return put({ type: 'RECOMMENDATIONS_SUCCESS_CACHED' })
+
+        const { data } = yield race({
+            data: call(API.getRecommendations, action.resolvedId),
+            timeout: delay(5000)
         })
+
+        if (data) {
+            yield put({
+                type: 'RECOMMENDATIONS_SUCCESS',
+                data,
+                saveHash: action.saveObject.saveHash
+            })
+        } else {
+            yield put({ type: 'RECOMMENDATIONS_FAILURE', error: 'timeout' })
+        }
     } catch (error) {
         yield put({ type: 'RECOMMENDATIONS_FAILURE', error })
     }

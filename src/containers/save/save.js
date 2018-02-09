@@ -18,6 +18,10 @@ function getTabId() {
 }
 
 proxyStore.ready(getTabId).then(tabId => {
+    document.addEventListener('click', function() {
+        sendMessage(null, { action: 'frameFocus', status: true })
+    })
+
     const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App)
 
     ReactDOM.render(

@@ -16,7 +16,6 @@ export default class Tagging extends Component {
         super(props)
         this.state = {
             placeholder: !this.hasTags(),
-            focused: false,
             inputvalue: '',
             activeSuggestion: -1,
             typeaheadOpen: false
@@ -32,11 +31,13 @@ export default class Tagging extends Component {
 
     setInputValue = inputvalue => this.setState({ inputvalue })
     setFocus = () => {
-        this.setState({ placeholder: false, focused: true })
+        this.props.setInputFocusState(true)
+        this.setState({ placeholder: false })
     }
     setBlur = () => {
         const status = this.state.inputvalue.length || this.hasTags()
-        this.setState({ placeholder: !status, focused: false })
+        this.props.setInputFocusState(false)
+        this.setState({ placeholder: !status })
     }
 
     /* Tag Management
@@ -110,7 +111,7 @@ export default class Tagging extends Component {
     render() {
         let taggingClass = cx({
             well: true,
-            active: this.state.focused
+            active: this.props.inputFocused
         })
 
         return (
@@ -150,7 +151,7 @@ export default class Tagging extends Component {
                                     hasTags={!!this.hasTags()}
                                     inputRef={input => (this.input = input)}
                                     value={this.state.inputvalue}
-                                    focused={this.state.focused}
+                                    focused={this.props.inputFocused}
                                     setValue={this.setInputValue}
                                     setFocus={this.setFocus}
                                     setBlur={this.setBlur}
