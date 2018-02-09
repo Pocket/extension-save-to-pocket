@@ -1,5 +1,5 @@
 import styles from './twitter.scss' // Import Styles
-import { sendMessage } from '../../../common/interface'
+import { addMessageListener, sendMessage } from '../../../common/interface'
 
 const mutationConfig = {
     childList: true,
@@ -8,9 +8,8 @@ const mutationConfig = {
     subtree: true
 }
 
-var appObserver = new MutationObserver(appMutationHandler)
-appObserver.observe(document, mutationConfig)
-
+// Set up Observer
+const appObserver = new MutationObserver(appMutationHandler)
 function appMutationHandler(mutationList) {
     for (var mutation of mutationList) {
         if (
@@ -24,6 +23,7 @@ function appMutationHandler(mutationList) {
     }
 }
 
+// Define Markup
 const saveToPocketMarkup = `
 <button class="ProfileTweet-actionButton u-textUserColorHover js-actionButton"
     type="button" data-nav="share_tweet_to_pocket">
@@ -45,9 +45,24 @@ saveToPocketButton.classList.add(
 )
 saveToPocketButton.innerHTML = saveToPocketMarkup
 
-// Initial Run
-handleNewItems()
+// Start and Stop integration
+function resolveCheck(integrate) {
+    if (integrate) return startIntegration()
+    stopIntegration()
+}
 
+function startIntegration() {
+    appObserver.observe(document, mutationConfig)
+    handleNewItems()
+}
+
+function stopIntegration() {
+    appObserver.disconnect()
+    const nodeList = document.querySelectorAll('div.ProfileTweet-action--stp')
+    nodeList.forEach(e => e.parentNode.removeChild(e))
+}
+
+// Set Injections
 function handleNewItems() {
     const tweetActionLists = document.querySelectorAll(
         '.tweet:not(.PocketAdded)'
@@ -78,6 +93,7 @@ function addPocketFunctionality(element) {
     }
 }
 
+// Handle saving
 function handleSave(elementId, permaLink) {
     sendMessage(
         null,
@@ -91,3 +107,18 @@ function resolveSave(data) {
     const tweet = document.getElementById(`pocketButton-${elementId}`)
     tweet.classList.add(styles.saved)
 }
+
+function handleAction(action, sender, sendResponse) {
+    if (action.type === 'twitterStop') {
+        stopIntegration()
+    }
+
+    if (action.type === 'twitterStart') {
+        startIntegration()
+    }
+}
+
+addMessageListener(handleAction)
+
+// Do we want twitter integration?
+sendMessage(null, { action: 'twitterCheck' }, resolveCheck)

@@ -50,6 +50,11 @@ Interface.addMessageListener((request, sender, sendResponse) => {
             : store.dispatch(closeSavePanel({ tabId: sender.tab.id }))
     }
 
+    if (request.action === 'twitterCheck') {
+        const twitterState = store.getState()
+        sendResponse(twitterState.setup && twitterState.setup.sites_twitter)
+    }
+
     if (request.action === 'twitterSave') {
         store.dispatch({
             type: 'SAVE_TWEET_TO_POCKET',
