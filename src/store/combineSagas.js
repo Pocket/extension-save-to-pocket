@@ -6,6 +6,7 @@ import { wSetup } from '../containers/background/_setup'
 import { wHydrate } from '../containers/background/_setup'
 import { wToggleRecs } from '../containers/background/_setup'
 import { wToggleSite } from '../containers/background/_setup'
+import { wSaveTweet } from '../containers/background/_sites'
 
 import { wAuthCodeRecieved } from '../containers/auth/_auth'
 import { wLogout } from '../containers/auth/_auth'
@@ -35,6 +36,7 @@ export default function* rootSaga() {
         wHydrate(),
         wToggleRecs(),
         wToggleSite(),
+        wSaveTweet(),
 
         wOpenPocket(),
         wOpenOptions(),

@@ -1,0 +1,12 @@
+.pocketIcon {
+    display: inline-block;
+    fill: currentColor;
+    height: 16px;
+    vertical-align: bottom;
+    width: 16px;
+
+    &:hover,
+    .saved & {
+        fill: #ef4056;
+    }
+}
