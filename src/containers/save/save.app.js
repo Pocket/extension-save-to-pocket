@@ -17,17 +17,56 @@ const activeState = [
 ]
 
 class App extends Component {
-    onHover = () => clearTimeout(this.hoverTimer)
+    constructor(props) {
+        super(props)
+        this.state = {
+            inputFocused: false
+        }
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+        const isActive = nextProps.tab_id === nextProps.active
+        const currentTab = nextProps.tabs
+            ? nextProps.tabs[nextProps.active]
+            : false
+        const isValid = currentTab
+            ? activeState.indexOf(currentTab.status) >= 0
+            : false
+        const isLoaded = currentTab ? currentTab.frame === 'loaded' : false
+        if (
+            isActive &&
+            currentTab &&
+            isValid &&
+            isLoaded &&
+            !currentTab.shown
+        ) {
+            this.props.setTabStatus(nextProps.tab_id, currentTab.status, true)
+        }
+    }
+
+    onHover = () => this.cancelClose()
 
     offHover = () => {
-        this.hoverTimer = setTimeout(() => {
-            this.props.setTabStatus(this.props.tab_id, 'idle')
-        }, 1500)
+        if (this.state.inputFocused) return
+        this.closePanel()
     }
 
     closePanel = () => {
-        clearTimeout(this.hoverTimer)
-        this.props.setTabStatus(this.props.tab_id, 'idle')
+        this.props.closeSavePanel({ tabId: this.props.tab_id })
+    }
+
+    cancelClose = () => {
+        if (this.state.inputFocused) return
+        this.props.cancelCloseSavePanel()
+    }
+
+    isSaveActive() {
+        const isActive = this.tabIsActive && this.statusIsValid
+        return isActive
+    }
+
+    setInputFocusState = bool => {
+        this.setState({ inputFocused: bool })
     }
 
     get tabIsActive() {
@@ -35,7 +74,7 @@ class App extends Component {
     }
 
     get statusIsValid() {
-        return this.currentTab
+        return this.props.tabs && this.currentTab
             ? activeState.indexOf(this.currentTab.status) >= 0
             : false
     }
@@ -48,8 +87,8 @@ class App extends Component {
         )
     }
 
-    get isSaveActive() {
-        return this.tabIsActive && this.statusIsValid
+    get frameLoaded() {
+        return this.currentTab && this.currentTab.frame === 'loaded'
     }
 
     get currentTab() {
@@ -71,7 +110,7 @@ class App extends Component {
     render() {
         const panelClass = cx({
             hanger: true,
-            active: this.isSaveActive
+            active: this.isSaveActive()
         })
 
         return (
@@ -79,7 +118,7 @@ class App extends Component {
                 className={panelClass}
                 onMouseEnter={this.onHover}
                 onMouseLeave={this.offHover}>
-                {this.isSaveActive && (
+                {this.isSaveActive() && (
                     <Toolbar
                         tabId={this.props.tab_id}
                         dropDownActive={this.currentTab.dropDownActive}
@@ -101,6 +140,8 @@ class App extends Component {
                         removeTag={this.props.removeTag}
                         removeTags={this.props.removeTags}
                         storedTags={this.props.setup.tags_stored}
+                        inputFocused={this.state.inputFocused}
+                        setInputFocusState={this.setInputFocusState}
                     />
                 )}
                 {this.showRecs && (

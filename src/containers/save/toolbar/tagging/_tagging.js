@@ -184,6 +184,8 @@ const getUsedTags = state => {
 
     const activeHash = activeTab.hash
 
+    if (!state.saves[activeHash] || !state.tags[activeHash]) return false
+
     return {
         url: state.saves[activeHash].url,
         tags: state.tags[activeHash].used

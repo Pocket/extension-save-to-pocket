@@ -12,28 +12,6 @@ function getStatus(type, status) {
 }
 
 class Toolbar extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            hovered: false
-        }
-    }
-
-    onHover = () => {
-        if (!this.state.hovered) {
-            this.hoverTimer = setTimeout(() => {
-                this.setState({ hovered: true })
-            }, 500)
-        }
-    }
-
-    offHover = () => {
-        clearTimeout(this.hoverTimer)
-        if (this.state.hovered) {
-            this.setState({ hovered: false })
-        }
-    }
-
     remove = () => this.props.remove()
     archive = () => this.props.archive()
 
@@ -72,10 +50,7 @@ class Toolbar extends Component {
         const saveHash = this.props.activeTab.hash
 
         return (
-            <div
-                className={styles.toolbar}
-                onMouseEnter={this.onHover}
-                onMouseLeave={this.offHover}>
+            <div className={styles.toolbar}>
                 {Icon.PocketLogo({ width: '18px', height: '18px' })}
                 {this.statusText}
 
@@ -93,7 +68,6 @@ class Toolbar extends Component {
 
                 {(status === 'saved' || status === 'saving') && (
                     <Tagging
-                        hovered={this.state.hovered}
                         tags={this.props.tags}
                         activateTag={this.props.activateTag}
                         deactivateTag={this.props.deactivateTag}
@@ -104,6 +78,8 @@ class Toolbar extends Component {
                         removeTags={this.props.removeTags}
                         saveHash={saveHash}
                         storedTags={this.props.storedTags}
+                        inputFocused={this.props.inputFocused}
+                        setInputFocusState={this.props.setInputFocusState}
                     />
                 )}
             </div>
