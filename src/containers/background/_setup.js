@@ -67,6 +67,13 @@ export const setup = (state = initialState, action) => {
             }
         }
 
+        case 'UPDATE_STORED_TAGS': {
+            return {
+                ...state,
+                tags_stored: [...action.tags]
+            }
+        }
+
         default: {
             return state
         }
@@ -109,13 +116,14 @@ function* hydrateState() {
         account_name_first: getSetting('account_name_first'),
         account_name_last: getSetting('account_name_last'),
         account_avatar: getSetting('account_avatar'),
-        account_premium: getBool(getSetting('base_key_shortcut_active')),
+        account_premium: getBool(getSetting('account_premium')),
         key_shortcuts: keyShortcutArray,
         on_save_recommendations: getBool(getSetting('on_save_recommendations')),
         sites_facebook: getBool(getSetting('sites_facebook')),
         sites_hackernews: getBool(getSetting('sites_hackernews')),
         sites_reddit: getBool(getSetting('sites_reddit')),
-        sites_twitter: getBool(getSetting('sites_twitter'))
+        sites_twitter: getBool(getSetting('sites_twitter')),
+        tags_stored: JSON.parse(getSetting('tags_stored')) || []
     }
 
     yield put({ type: 'HYDRATED_STATE', hydrated })

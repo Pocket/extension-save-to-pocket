@@ -8,16 +8,20 @@
   "private": true,
   "devDependencies": {
     "pocket-build-tools": "git+https://git@github.com/Pocket/front-end-build-tools.git",
+    "redux-devtools-extension": "^2.13.2",
     "remote-redux-devtools": "^0.5.12"
   },
   "dependencies": {
     "autosize-input": "^0.4.0",
     "blueimp-md5": "^2.10.0",
     "classnames": "^2.2.5",
+    "downshift": "^1.25.0",
+    "match-sorter": "^2.2.0",
     "prop-types": "^15.5.10",
     "react": "^16.0.0",
     "react-chrome-redux": "1.4.0",
     "react-dom": "^16.0.0",
+    "react-input-autosize": "^2.2.1",
     "react-motion": "^0.5.2",
     "react-onclickoutside": "^6.6.0",
     "react-redux": "^5.0.5",
