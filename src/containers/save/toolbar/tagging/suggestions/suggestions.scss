@@ -6,7 +6,7 @@
     display: block;
     font-size: 13px;
     line-height: 17px;
-    margin-top: 2px;
+    margin-top: 6px;
     text-align: left;
     width: 100%;
 }
@@ -33,14 +33,14 @@
     color: $tar;
     cursor: pointer;
     display: inline-block;
-    flex-grow: 1;
+    // flex-grow: 1;
     font-weight: 300;
     letter-spacing: 0.05em;
     line-height: 16px;
-    margin-bottom: 5px;
-    margin-right: 3px;
+    margin-bottom: 10px;
+    margin-right: 6px;
     min-width: 15%;
-    padding: 1px 8px;
+    padding: 2px 8px;
     text-align: center;
     text-transform: lowercase;
     transform: translateZ(0.1);

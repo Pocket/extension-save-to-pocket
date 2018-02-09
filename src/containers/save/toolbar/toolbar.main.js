@@ -51,8 +51,12 @@ class Toolbar extends Component {
 
         return (
             <div className={styles.toolbar}>
-                {Icon.PocketLogo({ width: '18px', height: '18px' })}
-                {this.statusText}
+                {Icon.PocketLogo({
+                    width: '22px',
+                    height: '22px',
+                    marginRight: '8px'
+                })}
+                <span className={styles.statusText}>{this.statusText}</span>
 
                 {status === 'error' && <ToolbarError />}
 
