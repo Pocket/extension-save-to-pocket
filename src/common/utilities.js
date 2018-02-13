@@ -85,3 +85,7 @@ export function throttle(callback, wait, context = this) {
 export function getBool(value) {
     return value === 'true' || value === 1 || parseInt(value, 10) === 1
 }
+
+export function mergeDedupe(arrayOfArrays) {
+    return [...new Set([].concat(...arrayOfArrays))]
+}
