@@ -187,7 +187,8 @@ const getUsedTags = state => {
     if (!state.saves[activeHash] || !state.tags[activeHash]) return false
 
     return {
-        url: state.saves[activeHash].url,
+        url: state.saves[activeHash].given_url,
+        id: state.saves[activeHash].id,
         tags: state.tags[activeHash].used
     }
 }
@@ -213,8 +214,8 @@ function* tagSuggestions(action) {
 }
 
 function* tagChanges() {
-    yield delay(2000)
     const tagInfo = yield select(getUsedTags)
+    yield delay(2000)
 
     if (!tagInfo) return yield put({ type: 'TAG_SYNC_FAILED' })
 
@@ -226,5 +227,5 @@ function* tagChanges() {
     setSettings({ tags_stored: JSON.stringify(tagsToStore) })
     yield put({ type: 'UPDATE_STORED_TAGS', tags: tagsToStore })
 
-    yield call(API.syncItemTags, tagInfo.url, tagInfo.tags)
+    yield call(API.syncItemTags, tagInfo.id, tagInfo.tags)
 }

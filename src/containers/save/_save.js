@@ -28,10 +28,10 @@ export const saveActions = {
 
 // REDUCER
 function buildSaveData(item) {
-    const itemId = item.resolved_id !== '0' ? item.resolved_id : item.item_id
     return {
-        id: itemId,
+        id: item.item_id,
         url: item.resolved_url || item.normal_url,
+        given_url: item.given_url,
         title: item.title
     }
 }
