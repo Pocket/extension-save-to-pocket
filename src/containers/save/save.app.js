@@ -51,8 +51,8 @@ class App extends Component {
         this.closePanel()
     }
 
-    closePanel = () => {
-        this.props.closeSavePanel({ tabId: this.props.tab_id })
+    closePanel = timeout => {
+        this.props.closeSavePanel({ tabId: this.props.tab_id, timeout })
     }
 
     cancelClose = () => {
