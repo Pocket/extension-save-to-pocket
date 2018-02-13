@@ -23,11 +23,9 @@ export const active = (state = 0, action) => {
         case 'REQUEST_SAVE_TO_POCKET': {
             return action.tabId
         }
+        case 'ACTIVE_WINDOW_CHANGED':
         case 'ACTIVE_TAB_CHANGED': {
             return action.tabInfo.tabId
-        }
-        case 'ACTIVE_WINDOW_CHANGED': {
-            return action.tabId
         }
         default:
             return state
@@ -42,15 +40,7 @@ export const tabs = (state = {}, action) => {
         }
 
         case 'ACTIVE_TAB_UPDATED': {
-            return {
-                ...state,
-                [action.tabId]: {
-                    frame: action.frame,
-                    status: 'idle',
-                    shown: false,
-                    dropDownActive: false
-                }
-            }
+            return setTabsUpdate(state, action)
         }
 
         case 'FRAME_LOADED': {
@@ -184,4 +174,17 @@ function setTabsIdle(tabs) {
         return null
     })
     return idleTabs || {}
+}
+
+function setTabsUpdate(state, action) {
+    if (!state[action.tabId]) return state
+    return {
+        ...state,
+        [action.tabId]: {
+            frame: action.frame,
+            status: 'idle',
+            shown: false,
+            dropDownActive: false
+        }
+    }
 }
