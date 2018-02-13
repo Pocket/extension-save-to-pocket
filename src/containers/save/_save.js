@@ -29,8 +29,9 @@ export const saveActions = {
 // REDUCER
 function buildSaveData(item) {
     return {
-        id: item.resolved_id,
-        url: item.resolved_url,
+        id: item.item_id,
+        url: item.resolved_url || item.normal_url,
+        given_url: item.given_url,
         title: item.title
     }
 }
