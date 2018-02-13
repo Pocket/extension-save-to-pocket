@@ -45,7 +45,6 @@ export default class Taginput extends Component {
     /* Input Events
     –––––––––––––––––––––––––––––––––––––––––––––––––– */
     onChange = event => {
-        event.preventDefault()
         this.props.setValue(event.target.value)
     }
 
