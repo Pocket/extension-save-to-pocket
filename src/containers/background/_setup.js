@@ -1,6 +1,11 @@
 import { put, takeLatest, select, call } from 'redux-saga/effects'
-import { getSetting, setSettings, getCommands } from '../../common/interface'
-import { getBool } from '../../common/utilities'
+import {
+    getSetting,
+    setSettings,
+    getCommands,
+    removeSettings
+} from '../../common/interface'
+import { getBool, mergeDedupe } from '../../common/utilities'
 import { getGuid } from '../../common/api'
 
 // INITIAL STATE
@@ -108,6 +113,17 @@ function* initSetup() {
 
 function* hydrateState() {
     const keyShortcutArray = yield call(getCommands)
+
+    // Consolidate tags: Remove this in 3.0.1.0
+    const tags = JSON.parse(getSetting('tags')) || []
+    const stored_tags = JSON.parse(getSetting('tags_stored')) || []
+    const tags_stored = mergeDedupe([...tags, ...stored_tags])
+
+    if (tags.length) {
+        setSettings({ tags_stored: JSON.stringify(tags_stored) })
+        removeSettings(['tags'])
+    }
+
     const hydrated = {
         oauth_token: getSetting('oauth_token'),
         account_username: getSetting('account_username'),
@@ -123,7 +139,7 @@ function* hydrateState() {
         sites_hackernews: getBool(getSetting('sites_hackernews')),
         sites_reddit: getBool(getSetting('sites_reddit')),
         sites_twitter: getBool(getSetting('sites_twitter')),
-        tags_stored: JSON.parse(getSetting('tags_stored')) || []
+        tags_stored
     }
 
     yield put({ type: 'HYDRATED_STATE', hydrated })

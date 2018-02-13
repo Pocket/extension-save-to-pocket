@@ -45,7 +45,6 @@ export default class Taginput extends Component {
     /* Input Events
     –––––––––––––––––––––––––––––––––––––––––––––––––– */
     onChange = event => {
-        event.preventDefault()
         this.props.setValue(event.target.value)
     }
 
@@ -71,10 +70,10 @@ export default class Taginput extends Component {
         }
 
         if (event.keyCode === ENTER) {
-            if (this.props.typeaheadOpen) return
+            if (this.props.highlightedIndex != null) return
             event.preventDefault()
             if (this.props.value) this.props.addTag(this.props.value)
-            else this.props.closePanel()
+            else this.props.closePanel(0)
         }
 
         if (
