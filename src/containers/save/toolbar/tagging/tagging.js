@@ -17,8 +17,7 @@ export default class Tagging extends Component {
         this.state = {
             placeholder: !this.hasTags(),
             inputvalue: '',
-            activeSuggestion: -1,
-            typeaheadOpen: false
+            activeSuggestion: -1
         }
     }
 
@@ -87,11 +86,6 @@ export default class Tagging extends Component {
         e.preventDefault()
     }
 
-    onStateChange = changes => {
-        if (typeof changes.isOpen !== 'undefined')
-            this.setState({ typeaheadOpen: changes.isOpen })
-    }
-
     onSelect = this.addTag
 
     get storedTags() {
@@ -117,7 +111,6 @@ export default class Tagging extends Component {
         return (
             <div className={styles.tagging}>
                 <Downshift
-                    onStateChange={this.onStateChange}
                     onSelect={this.onSelect}
                     render={({
                         getInputProps,
@@ -146,7 +139,7 @@ export default class Tagging extends Component {
                                 )}
 
                                 <Taginput
-                                    typeaheadOpen={this.state.typeaheadOpen}
+                                    highlightedIndex={highlightedIndex}
                                     getInputProps={getInputProps}
                                     hasTags={!!this.hasTags()}
                                     inputRef={input => (this.input = input)}
@@ -163,7 +156,7 @@ export default class Tagging extends Component {
                                 />
                             </div>
 
-                            {isOpen ? (
+                            {!isOpen ? null : (
                                 <div className={styles.typeaheadWrapper}>
                                     <div className={styles.typeaheadList}>
                                         {this.storedTags.map((item, index) => {
@@ -186,7 +179,7 @@ export default class Tagging extends Component {
                                         })}
                                     </div>
                                 </div>
-                            ) : null}
+                            )}
                         </div>
                     )}
                 />

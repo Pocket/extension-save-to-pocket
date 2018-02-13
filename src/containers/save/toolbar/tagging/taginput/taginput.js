@@ -71,7 +71,7 @@ export default class Taginput extends Component {
         }
 
         if (event.keyCode === ENTER) {
-            if (this.props.typeaheadOpen) return
+            if (this.props.highlightedIndex != null) return
             event.preventDefault()
             if (this.props.value) this.props.addTag(this.props.value)
             else this.props.closePanel()
