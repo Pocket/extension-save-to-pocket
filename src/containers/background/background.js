@@ -157,7 +157,9 @@ function setTabListeners() {
             if (tab[0])
                 store.dispatch({
                     type: 'ACTIVE_WINDOW_CHANGED',
-                    tabId: tab[0].id
+                    tabInfo: {
+                        tabId: tab[0].id
+                    }
                 })
         })
     })
