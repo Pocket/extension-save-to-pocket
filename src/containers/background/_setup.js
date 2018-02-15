@@ -6,7 +6,7 @@ import {
     removeSettings
 } from '../../common/interface'
 import { getBool, mergeDedupe } from '../../common/utilities'
-import { getGuid } from '../../common/api'
+import { getGuid, fetchStoredTags } from '../../common/api'
 
 // INITIAL STATE
 const initialState = {
@@ -42,6 +42,9 @@ export const setup = (state = initialState, action) => {
 
         case 'HYDRATED_STATE': {
             return { ...state, ...action.hydrated }
+        }
+        case 'HYDRATED_TAGS': {
+            return { ...state, tags_stored: action.tags_stored }
         }
 
         case 'USER_LOGGED_OUT': {
@@ -98,6 +101,9 @@ export function* wToggleRecs() {
 export function* wToggleSite() {
     yield takeLatest('TOGGLE_SITE', toggleSite)
 }
+export function* wUserLoggedIn() {
+    yield takeLatest('USER_LOGGED_IN', hydrateTags)
+}
 
 const getSetup = state => {
     return state.setup
@@ -116,8 +122,8 @@ function* hydrateState() {
 
     // Consolidate tags: Remove this in 3.0.1.0
     const tags = JSON.parse(getSetting('tags')) || []
-    const stored_tags = JSON.parse(getSetting('tags_stored')) || []
-    const tags_stored = mergeDedupe([...tags, ...stored_tags])
+    const storedTags = JSON.parse(getSetting('tags_stored')) || []
+    const tags_stored = mergeDedupe([...tags, ...storedTags])
 
     if (tags.length) {
         setSettings({ tags_stored: JSON.stringify(tags_stored) })
@@ -161,4 +167,20 @@ function* toggleSite(action) {
 
     setSettings(settingsObject)
     yield put({ type: 'SET_SITES', sites: { [sitename]: !active } })
+}
+
+function* hydrateTags() {
+    // Check for server tags
+    const fetchedSince = getSetting('tags_fetched_timestamp') || 0
+    const fetchTags = yield call(fetchStoredTags, fetchedSince)
+    const fetchedTags = fetchTags.tags || []
+    const storedTags = JSON.parse(getSetting('tags_stored')) || []
+    const tags_stored = mergeDedupe([...storedTags, ...fetchedTags])
+
+    setSettings({
+        tags_stored: JSON.stringify(tags_stored),
+        tags_fetched_timestamp: Date.now()
+    })
+
+    yield put({ type: 'HYDRATED_TAGS', tags_stored })
 }
