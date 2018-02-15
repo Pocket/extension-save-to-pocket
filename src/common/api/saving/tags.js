@@ -19,3 +19,15 @@ export function syncItemTags(id, tags) {
         }
     }).then(response => response)
 }
+
+export function fetchStoredTags(since) {
+    return request({
+        path: 'get/',
+        data: {
+            tags: 1,
+            taglist: 1,
+            account: 1,
+            since: since ? since : 0
+        }
+    }).then(response => response)
+}
