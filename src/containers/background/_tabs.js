@@ -42,6 +42,9 @@ export const tabs = (state = {}, action) => {
         case 'ACTIVE_TAB_UPDATED': {
             return setTabsUpdate(state, action)
         }
+        case 'TAB_REPLACED': {
+            return setTabSwap(state, action)
+        }
 
         case 'FRAME_LOADED': {
             return {
@@ -174,6 +177,17 @@ function setTabsIdle(tabs) {
         return null
     })
     return idleTabs || {}
+// Reducer Utilities
+function setTabSwap(state, action) {
+    const newState = {
+        ...state,
+        [action.addedTab]: {
+            ...[action.removedTab]
+        }
+    }
+
+    delete newState[action.removedTab]
+    return newState
 }
 
 function setTabsUpdate(state, action) {

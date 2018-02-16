@@ -50,6 +50,10 @@ export function onTabRemoved(callback) {
     return chrome.tabs.onRemoved.addListener(callback)
 }
 
+export function onTabReplaced(callback) {
+    return chrome.tabs.onReplaced.addListener(callback)
+}
+
 export function onFocusChanged(callback) {
     return chrome.windows.onFocusChanged.addListener(callback)
 }
