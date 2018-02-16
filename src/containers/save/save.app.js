@@ -96,15 +96,15 @@ class App extends Component {
     }
 
     get currentSave() {
-        return this.props.saves[this.currentTab.hash]
+        return this.props.saves[this.props.active]
     }
 
     get currentRecs() {
-        return this.props.recommendations[this.currentTab.hash]
+        return this.props.recommendations[this.props.active]
     }
 
     get currentTags() {
-        return this.props.tags[this.currentTab.hash]
+        return this.props.tags[this.props.active]
     }
 
     render() {

@@ -1,4 +1,3 @@
-import md5 from 'blueimp-md5'
 import { delay } from 'redux-saga'
 import {
     put,
@@ -41,12 +40,18 @@ export const saves = (state = initialState, action) => {
         case 'SAVE_TO_POCKET_SUCCESS': {
             return {
                 ...state,
-                [action.saveHash]: buildSaveData(action.data.response)
+                [action.tabId]: buildSaveData(action.data.response)
             }
         }
 
-        case 'ARCHIVE_ITEM_SUCCESS': {
-            return state
+        case 'TAB_CLOSED': {
+            const filteredState = Object.keys(state)
+                .filter(key => parseInt(key, 10) !== action.tabId)
+                .reduce((accumulator, key) => {
+                    accumulator[key] = state[key]
+                    return accumulator
+                }, {})
+            return filteredState
         }
 
         default: {
@@ -75,10 +80,9 @@ export function* wRemoveItem() {
 const getCurrentItem = state => {
     const activeTabId = state.active
     const activeTab = state.tabs[activeTabId]
-    const activeHash = activeTab.hash
 
     return {
-        item: state.saves[activeHash],
+        item: state.saves[activeTabId],
         tabId: activeTabId,
         save_type: activeTab.type
     }
@@ -144,8 +148,10 @@ function* saveSuccess(saveObject, resolvedId) {
     const shouldRequestTags = setup.account_premium
 
     // Do we need on save recommendations?
-    if (shouldRequestRecs && resolvedId)
+    if (shouldRequestRecs && resolvedId) {
+        yield call(delay, 650)
         yield put({ type: 'RECOMMENDATIONS_REQUEST', saveObject, resolvedId })
+    }
 
     // Should we get tags?
     if (shouldRequestTags)
@@ -214,7 +220,7 @@ function buildSaveObject(action) {
             const saveType = 'page'
             const actionInfo = { cxt_ui: 'toolbar' }
             const showSavedIcon = true
-            const saveHash = md5(tab.url)
+            // const saveHash = md5(tab.url)
 
             return {
                 tabId,
@@ -222,8 +228,8 @@ function buildSaveObject(action) {
                 title,
                 saveType,
                 actionInfo,
-                showSavedIcon,
-                saveHash
+                showSavedIcon
+                // saveHash
             }
         }
         case 'context': {
@@ -240,7 +246,7 @@ function buildSaveObject(action) {
             const saveType = savedLink ? 'link' : 'page'
             const actionInfo = { cxt_ui, cxt_url: tab.url }
             const showSavedIcon = savedLink ? 0 : 1
-            const saveHash = md5(tab.url)
+            // const saveHash = md5(tab.url)
 
             return {
                 tabId,
@@ -248,8 +254,8 @@ function buildSaveObject(action) {
                 title,
                 saveType,
                 actionInfo,
-                showSavedIcon,
-                saveHash
+                showSavedIcon
+                // saveHash
             }
         }
         default:

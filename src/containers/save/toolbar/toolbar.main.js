@@ -47,7 +47,6 @@ class Toolbar extends Component {
 
     render() {
         const status = this.props.status
-        const saveHash = this.props.activeTab.hash
 
         return (
             <div className={styles.toolbar}>
@@ -80,7 +79,7 @@ class Toolbar extends Component {
                         closePanel={this.props.closePanel}
                         removeTag={this.props.removeTag}
                         removeTags={this.props.removeTags}
-                        saveHash={saveHash}
+                        tabId={this.props.tabId}
                         storedTags={this.props.storedTags}
                         inputFocused={this.props.inputFocused}
                         setInputFocusState={this.props.setInputFocusState}

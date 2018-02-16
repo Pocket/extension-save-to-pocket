@@ -5,10 +5,8 @@ function frameObserver(store, onChange) {
 
     function handleChange() {
         let nextState = selectPanelHeight(store.getState())
-        // if (nextState !== currentState) {
         currentState = nextState
         onChange(currentState)
-        // }
     }
 
     let unsubscribe = store.subscribe(handleChange)
@@ -22,12 +20,11 @@ function selectPanelHeight(state) {
 
     const frameLoad = activeTab.frame === 'loaded' ? 0 : -1
 
-    const hash = activeTab.hash
     const status = activeTab.status
-    const recs = state.recommendations[hash]
+    const recs = state.recommendations[state.active]
     const recCount = recs ? recs.feed.length : 0
 
-    const tags = state.tags[hash]
+    const tags = state.tags[state.active]
     const tagsSize = tags ? tags.used.join(',').split('').length : 0
     const tagHeight = Math.max(tagsSize / 27, 0) * 32
 

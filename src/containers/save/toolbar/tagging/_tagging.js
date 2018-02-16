@@ -29,76 +29,81 @@ export const taggingActions = {
 }
 
 function checkDuplicate(list, tagValue) {
-    return list.used.filter(tag => tag.name === tagValue).length
+    return list.filter(tag => tag.name === tagValue).length
 }
 
 // REDUCERS
 export const tags = (state = {}, action) => {
     switch (action.type) {
         case 'SAVE_TO_POCKET_SUCCESS': {
-            const usedTags = state[action.saveHash]
-                ? [...state[action.saveHash].used]
-                : []
-
             return {
                 ...state,
-                [action.saveHash]: {
-                    ...state[action.saveHash],
-                    used: usedTags,
+                [action.tabId]: {
+                    ...state[action.tabId],
+                    used: [],
                     marked: []
                 }
             }
         }
 
+        case 'TAB_CLOSED': {
+            const filteredState = Object.keys(state)
+                .filter(key => parseInt(key, 10) !== action.tabId)
+                .reduce((accumulator, key) => {
+                    accumulator[key] = state[key]
+                    return accumulator
+                }, {})
+            return filteredState
+        }
+
         case 'SUGGESTED_TAGS_SUCCESS': {
             const suggestedTags = action.tags
-            const saveHash = action.saveHash
-            const tags = state[saveHash]
             return {
                 ...state,
-                [saveHash]: {
-                    ...tags,
+                [action.tabId]: {
+                    ...state[action.tabId],
                     suggested: suggestedTags
                 }
             }
         }
 
         case 'TAG_ADD': {
-            const saveHash = action.tag.saveHash
             const tagValue = action.tag.value
-            const tags = state[saveHash]
+            const tabId = action.tag.tabId
+            const usedTags = state[tabId].used
 
             // Don't add duplicate entries
-            if (checkDuplicate(tags, tagValue)) return state
+            if (checkDuplicate(usedTags, tagValue)) return state
 
             return {
                 ...state,
-                [saveHash]: {
-                    ...tags,
-                    used: [...tags.used, tagValue]
+                [tabId]: {
+                    ...state[tabId],
+                    used: [...usedTags, tagValue]
                 }
             }
         }
 
         case 'TAG_REMOVE': {
-            const saveHash = action.data.saveHash
             const tag = action.data.tag
-            const usedTags = state[saveHash].used.filter(item => item !== tag)
+            const usedTags = state[action.tabId].used.filter(
+                item => item !== tag
+            )
 
             return {
                 ...state,
-                [saveHash]: {
-                    ...state[saveHash],
+                [action.tabId]: {
+                    ...state[action.tabId],
                     used: usedTags
                 }
             }
         }
 
         case 'TAG_ACTIVATE': {
-            const saveHash = action.data.saveHash
-            const currentTags = state[saveHash].used
+            const tabId = action.data.tabId
+            const currentTags = state[tabId].used
             const tagIndex = currentTags.indexOf(action.data.tag)
-            const markedTags = state[saveHash].marked
+            const markedTags = state[tabId].marked
 
             const tagPosition = tagIndex < 0 ? currentTags.length - 1 : tagIndex
 
@@ -107,44 +112,42 @@ export const tags = (state = {}, action) => {
 
             return {
                 ...state,
-                [saveHash]: {
-                    ...state[saveHash],
+                [tabId]: {
+                    ...state[tabId],
                     marked: [...markedTags, markedTag]
                 }
             }
         }
 
         case 'TAG_DEACTIVATE': {
-            const saveHash = action.data.saveHash
+            const tabId = action.data.tabId
             const tag = action.data.tag
-            const markedTags = state[saveHash].marked.filter(
-                item => item !== tag
-            )
+            const markedTags = state[tabId].marked.filter(item => item !== tag)
 
             return {
                 ...state,
-                [saveHash]: {
-                    ...state[saveHash],
+                [tabId]: {
+                    ...state[tabId],
                     marked: markedTags
                 }
             }
         }
 
         case 'TAGS_DEACTIVATE': {
-            const saveHash = action.data.saveHash
+            const tabId = action.data.tabId
             return {
                 ...state,
-                [saveHash]: {
-                    ...state[saveHash],
+                [tabId]: {
+                    ...state[tabId],
                     marked: []
                 }
             }
         }
 
         case 'TAGS_REMOVE': {
-            const saveHash = action.data.saveHash
-            const currentTags = state[saveHash].used
-            const markedTags = state[saveHash].marked
+            const tabId = action.data.tabId
+            const currentTags = state[tabId].used
+            const markedTags = state[tabId].marked
 
             if (!markedTags.length) return state
 
@@ -154,8 +157,8 @@ export const tags = (state = {}, action) => {
 
             return {
                 ...state,
-                [saveHash]: {
-                    ...state[saveHash],
+                [tabId]: {
+                    ...state[tabId],
                     used: filteredTags,
                     marked: []
                 }
@@ -181,15 +184,13 @@ const getUsedTags = state => {
     const activeTab = state.tabs[activeTabId]
 
     if (!activeTab) return false
-
-    const activeHash = activeTab.hash
-
-    if (!state.saves[activeHash] || !state.tags[activeHash]) return false
+    if (!state.saves[activeTabId] || !state.tags[activeTabId]) return false
 
     return {
-        url: state.saves[activeHash].given_url,
-        id: state.saves[activeHash].id,
-        tags: state.tags[activeHash].used
+        url: state.saves[activeTabId].given_url,
+        id: state.saves[activeTabId].id,
+        tags: state.tags[activeTabId].used,
+        tabId: activeTabId
     }
 }
 
@@ -205,9 +206,12 @@ function* tagSuggestions(action) {
             action.resolved_id
         )
         const tags = tagData[0].response.suggested_tags.map(item => item.tag)
-        const saveHash = tagData[0].saveObject.saveHash
-
-        yield put({ type: 'SUGGESTED_TAGS_SUCCESS', tags, saveHash })
+        const tabId = tagData[0].saveObject.tabId
+        yield put({
+            type: 'SUGGESTED_TAGS_SUCCESS',
+            tags,
+            tabId: tabId
+        })
     } catch (error) {
         yield put({ type: 'SUGGESTED_TAGS_FAILURE', error })
     }
@@ -225,7 +229,11 @@ function* tagChanges() {
         (elem, pos, arr) => arr.indexOf(elem) === pos
     )
     setSettings({ tags_stored: JSON.stringify(tagsToStore) })
-    yield put({ type: 'UPDATE_STORED_TAGS', tags: tagsToStore })
+    yield put({
+        type: 'UPDATE_STORED_TAGS',
+        tags: tagsToStore,
+        tabId: tagInfo.tabId
+    })
 
     yield call(API.syncItemTags, tagInfo.id, tagInfo.tags)
 }
