@@ -152,7 +152,7 @@ function setTabListeners() {
         })
     })
 
-    Interface.onFocusChanged(object => {
+    Interface.onFocusChanged(() => {
         Interface.getCurrentTab(tab => {
             if (tab[0])
                 store.dispatch({
@@ -166,6 +166,10 @@ function setTabListeners() {
 
     Interface.onTabRemoved((tabId, removeInfo) => {
         store.dispatch({ type: 'TAB_CLOSED', tabId, removeInfo: removeInfo })
+    })
+
+    Interface.onTabReplaced((addedTabId, removedTabId) => {
+        store.dispatch({ type: 'TAB_REPLACED', addedTabId, removedTabId })
     })
 }
 

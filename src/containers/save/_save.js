@@ -115,7 +115,13 @@ function* saveRequest(action) {
     const data = yield call(saveToPocket, saveObject, authToken)
 
     if (data) {
-        yield put({ type: 'SAVE_TO_POCKET_SUCCESS', tabId, saveHash, data })
+        yield put({
+            type: 'SAVE_TO_POCKET_SUCCESS',
+            tabId,
+            saveHash,
+            data,
+            inception: Date.now()
+        })
         yield saveSuccess(saveObject, data.response.resolved_id)
     } else {
         yield put({ type: 'SAVE_TO_POCKET_FAILURE', tabId, saveHash })
