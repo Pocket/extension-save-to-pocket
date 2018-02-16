@@ -17,6 +17,7 @@ import {
     frame.style.float = 'none'
     frame.style.width = '335px'
     frame.style.zIndex = 2147483647
+    frame.style.background = 'transparent'
 
     // frame.style.transition     = 'height 250ms'
     // frame.style.backgroundColor= 'rgba(0,0,255, 0.5)' //DEV ONLY

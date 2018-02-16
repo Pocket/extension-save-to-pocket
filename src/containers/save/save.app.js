@@ -1,11 +1,6 @@
-import styles from './save.scss' // Import Styles
 import React, { Component } from 'react'
+import SaveContainer from './save.container'
 
-import Toolbar from './toolbar/toolbar.main'
-import Recommendations from './recommendations/recommendations.main'
-import classNames from 'classnames/bind'
-
-const cx = classNames.bind(styles)
 const activeState = [
     'saved',
     'saving',
@@ -108,49 +103,35 @@ class App extends Component {
     }
 
     render() {
-        const panelClass = cx({
-            hanger: true,
-            active: this.isSaveActive()
-        })
-
         return (
-            <div
-                className={panelClass}
-                onMouseEnter={this.onHover}
-                onMouseLeave={this.offHover}>
-                {this.isSaveActive() && (
-                    <Toolbar
-                        tabId={this.props.tab_id}
-                        dropDownActive={this.currentTab.dropDownActive}
-                        setDropDownStatus={this.props.setDropDownStatus}
-                        openPocket={this.props.openPocket}
-                        openOptions={this.props.openOptions}
-                        archive={this.props.archiveItem}
-                        remove={this.props.removeItem}
-                        activeTab={this.currentTab}
-                        type={this.currentTab.type}
-                        status={this.currentTab.status}
-                        active={this.props.active}
-                        tags={this.currentTags}
-                        activateTag={this.props.activateTag}
-                        deactivateTag={this.props.deactivateTag}
-                        deactivateTags={this.props.deactivateTags}
-                        addTag={this.props.addTag}
-                        closePanel={this.closePanel}
-                        removeTag={this.props.removeTag}
-                        removeTags={this.props.removeTags}
-                        storedTags={this.props.setup.tags_stored}
-                        inputFocused={this.state.inputFocused}
-                        setInputFocusState={this.setInputFocusState}
-                    />
-                )}
-                {this.showRecs && (
-                    <Recommendations
-                        hash={this.currentTab.hash}
-                        recs={this.currentRecs}
-                        saveRecommendation={this.props.saveRecommendation}
-                    />
-                )}
+            <div>
+                <SaveContainer
+                    isSaveActive={this.isSaveActive()}
+                    showRecs={this.showRecs}
+                    onHover={this.onHover}
+                    offHover={this.offHover}
+                    tab_id={this.props.tab_id}
+                    currentTab={this.currentTab}
+                    setDropDownStatus={this.props.setDropDownStatus}
+                    openPocket={this.props.openPocket}
+                    openOptions={this.props.openOptions}
+                    archiveItem={this.props.archiveItem}
+                    removeItem={this.props.removeItem}
+                    active={this.props.active}
+                    currentTags={this.currentTags}
+                    activateTag={this.props.activateTag}
+                    deactivateTag={this.props.deactivateTag}
+                    deactivateTags={this.props.deactivateTags}
+                    addTag={this.props.addTag}
+                    closePanel={this.closePanel}
+                    removeTag={this.props.removeTag}
+                    removeTags={this.props.removeTags}
+                    setup={this.props.setup.tags_stored}
+                    inputFocused={this.state.inputFocused}
+                    setInputFocusState={this.setInputFocusState}
+                    currentRecs={this.currentRecs}
+                    saveRecommendation={this.props.saveRecommendation}
+                />
             </div>
         )
     }
