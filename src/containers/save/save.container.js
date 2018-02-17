@@ -63,10 +63,6 @@ class SaveContainer extends Component {
                                         }}>
                                         <Toolbar
                                             tabId={this.props.tab_id}
-                                            dropDownActive={
-                                                this.props.currentTab
-                                                    .dropDownActive
-                                            }
                                             setDropDownStatus={
                                                 this.props.setDropDownStatus
                                             }
@@ -74,11 +70,7 @@ class SaveContainer extends Component {
                                             openOptions={this.props.openOptions}
                                             archive={this.props.archiveItem}
                                             remove={this.props.removeItem}
-                                            activeTab={this.props.currentTab}
-                                            type={this.props.currentTab.type}
-                                            status={
-                                                this.props.currentTab.status
-                                            }
+                                            currentTab={this.props.currentTab}
                                             active={this.props.active}
                                             tags={this.props.currentTags}
                                             activateTag={this.props.activateTag}
@@ -104,9 +96,6 @@ class SaveContainer extends Component {
                                         />
                                         {this.props.showRecs && (
                                             <Recommendations
-                                                hash={
-                                                    this.props.currentTab.hash
-                                                }
                                                 recs={this.props.currentRecs}
                                                 saveRecommendation={
                                                     this.props

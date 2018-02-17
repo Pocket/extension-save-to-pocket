@@ -16,7 +16,10 @@ class Toolbar extends Component {
     archive = () => this.props.archive()
 
     get statusText() {
-        return getStatus(this.props.type, this.props.status)
+        const currentTab = this.props.currentTab
+        const type = currentTab ? currentTab.type : 'page'
+        const status = currentTab ? currentTab.status : 'idle'
+        return getStatus(type, status)
     }
 
     get listItems() {
@@ -46,7 +49,11 @@ class Toolbar extends Component {
     }
 
     render() {
-        const status = this.props.status
+        const currentTab = this.props.currentTab
+        const status = currentTab ? currentTab.status : 'idle'
+        const dropDownActive = this.props.currentTab
+            ? currentTab.dropDownActive
+            : false
 
         return (
             <div className={styles.toolbar}>
@@ -63,7 +70,7 @@ class Toolbar extends Component {
                     status !== 'error' && (
                         <Dropdown
                             tabId={this.props.tabId}
-                            active={this.props.dropDownActive}
+                            active={dropDownActive}
                             setStatus={this.props.setDropDownStatus}
                             list={this.listItems}
                         />
