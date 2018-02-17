@@ -14,7 +14,11 @@ export function isNewTab(tab, url) {
 }
 
 export function isSystemPage(tab, url) {
-    return tab.active && tab.url.startsWith('chrome://')
+    return (
+        tab.active &&
+        (tab.url.startsWith('chrome://') ||
+            tab.url.startsWith('chrome-extension://'))
+    )
 }
 
 export function getBaseUrl() {
