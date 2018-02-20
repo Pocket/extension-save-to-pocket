@@ -11,7 +11,7 @@ export function addMessageListener(handler) {
 }
 
 export function removeMessageListener(handler) {
-    return chrome.runtime.onMessage.removeListner(handler)
+    return chrome.runtime.onMessage.removeListener(handler)
 }
 
 export function onUpdateAvailable(handler) {
