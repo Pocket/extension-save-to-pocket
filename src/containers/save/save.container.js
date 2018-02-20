@@ -53,6 +53,8 @@ class SaveContainer extends Component {
                             {items.map(item => {
                                 return (
                                     <div
+                                        onMouseEnter={this.props.onHover}
+                                        onMouseLeave={this.props.offHover}
                                         className={styles.hanger}
                                         key={item.key}
                                         style={{
