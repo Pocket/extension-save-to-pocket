@@ -78,12 +78,8 @@ export const tabs = (state = {}, action) => {
         }
 
         case 'TAB_CLOSED': {
-            const filteredState = Object.keys(state)
-                .filter(key => parseInt(key, 10) !== action.tabId)
-                .reduce((accumulator, key) => {
-                    accumulator[key] = state[key]
-                    return accumulator
-                }, {})
+            const filteredState = state
+            delete filteredState[action.tabId]
             return filteredState
         }
 
