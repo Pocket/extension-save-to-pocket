@@ -26,7 +26,7 @@ class SaveContainer extends Component {
                       data: {},
                       key: 'toolbar',
                       style: {
-                          transform: spring(0, { stiffness: 250, damping: 25 }),
+                          transform: spring(0, { stiffness: 350, damping: 25 }),
                           opacity: spring(1, presets.stiff)
                       }
                   }
@@ -61,6 +61,7 @@ class SaveContainer extends Component {
                                             transform: `translateY(${
                                                 item.style.transform
                                             }%) translateZ(0)`,
+                                            transformStyle: 'preserve-3d',
                                             opacity: item.style.opacity
                                         }}>
                                         <Toolbar
