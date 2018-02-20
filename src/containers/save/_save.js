@@ -103,6 +103,8 @@ function* closePanel(tabId, timeout) {
 }
 
 function* saveRequest(action) {
+    yield put({ type: 'CANCEL_CLOSE_SAVE_PANEL' })
+
     const saveType =
         action.data.info && action.data.info.linkUrl ? 'link' : 'page'
     const tabId = action.data.tab.id

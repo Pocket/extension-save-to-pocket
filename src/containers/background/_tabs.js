@@ -1,4 +1,5 @@
 import { put, takeEvery, select } from 'redux-saga/effects'
+import { sendMessageToTab } from '../../common/interface'
 
 // ACTIONS
 export const tabsActions = {
@@ -207,17 +208,15 @@ export function* wTabChanges() {
 }
 
 const getActive = state => {
-    return {
-        active: state.active,
-        tabs: state.tabs
-    }
+    return state.active
 }
 
 function* tabChanges(action) {
-    const { active, tabs } = yield select(getActive)
-    const activeTab = tabs[active]
-    if (active && activeTab && activeTab.status !== 'idle') {
-        yield put({ type: 'SET_TAB_IDLE', active })
-    }
+    const active = yield select(getActive)
+
+    yield put({ type: 'CANCEL_CLOSE_SAVE_PANEL' })
+    sendMessageToTab(active, { type: 'frameUnload' })
+    yield put({ type: 'TAB_CLOSED', tabId: active })
+
     yield put({ type: 'SET_TAB_ACTIVE', tabId: action.tabInfo.tabId })
 }
