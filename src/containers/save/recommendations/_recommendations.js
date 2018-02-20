@@ -39,6 +39,13 @@ export const recommendations = (state = {}, action) => {
             return state
         }
 
+        case 'REQUEST_SAVE_TO_POCKET': {
+            return {
+                ...state,
+                [action.tabId]: undefined
+            }
+        }
+
         case 'RECOMMENDATIONS_SUCCESS': {
             return {
                 ...state,
@@ -50,12 +57,13 @@ export const recommendations = (state = {}, action) => {
         }
 
         case 'REQUEST_SAVE_REC_TO_POCKET': {
-            const feed = state[action.tabId].feed
+            const tabId = action.data.tabId
+            const feed = state[tabId].feed
             const id = action.data.id
             return {
                 ...state,
-                [action.tabId]: {
-                    ...state[action.tabId],
+                [tabId]: {
+                    ...state[tabId],
                     feed: setFeedItemStatus(feed, id, 'saving')
                 }
             }
@@ -116,7 +124,6 @@ function* getRecommendations(action) {
             yield put({
                 type: 'RECOMMENDATIONS_SUCCESS',
                 data,
-                saveHash: action.saveObject.saveHash,
                 tabId: action.saveObject.tabId
             })
         } else {
@@ -147,20 +154,20 @@ function* saveRecommendation(action) {
             ? yield put({
                   type: 'SAVE_RECOMMENDATION_SUCCESS',
                   data,
-                  hash: action.data.hash,
+                  tabId: action.data.tabId,
                   id: action.data.id
               })
             : yield put({
                   type: 'SAVE_RECOMMENDATION_FAILURE',
                   status: 'not ok',
-                  hash: action.data.hash,
+                  tabId: action.data.tabId,
                   id: action.data.id
               })
     } else {
         yield put({
             type: 'SAVE_RECOMMENDATION_FAILURE',
             status: 'timeout',
-            hash: action.data.hash,
+            tabId: action.data.tabId,
             id: action.data.id
         })
     }

@@ -62,7 +62,7 @@ export default class RecommendationItem extends Component {
                         className={saveButtonClass}
                         onClick={() =>
                             this.props.saveRecommendation({
-                                hash: this.props.hash,
+                                tabId: this.props.tabId,
                                 id: item.id,
                                 title: item.title,
                                 url: item.url

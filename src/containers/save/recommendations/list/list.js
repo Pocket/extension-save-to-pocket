@@ -48,9 +48,12 @@ export default class RecommendationList extends Component {
                                 motionStyle={config.style}
                                 key={config.key}
                                 item={config.data}
-                                saveRecommendation={this.props.saveRecommendation}
-                                hash={this.props.hash}/>
-                        )}
+                                saveRecommendation={
+                                    this.props.saveRecommendation
+                                }
+                                tabId={this.props.tabId}
+                            />
+                        ))}
                     </ul>
                 }
             </TransitionMotion>

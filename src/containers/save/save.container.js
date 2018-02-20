@@ -99,6 +99,7 @@ class SaveContainer extends Component {
                                         />
                                         {this.props.showRecs && (
                                             <Recommendations
+                                                tabId={this.props.tab_id}
                                                 recs={this.props.currentRecs}
                                                 saveRecommendation={
                                                     this.props
