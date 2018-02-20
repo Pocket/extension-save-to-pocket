@@ -23,7 +23,8 @@ export default class Tagging extends Component {
 
     /* Utilities
     –––––––––––––––––––––––––––––––––––––––––––––––––– */
-    hasTags = () => this.props.tags && this.props.tags.used.length
+    hasTags = () =>
+        this.props.tags && this.props.tags.used && this.props.tags.used.length
 
     /* Input Management
     –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -187,7 +188,7 @@ export default class Tagging extends Component {
                     this.props.tags.suggested && (
                         <Suggestions
                             value={this.state.inputvalue}
-                            tags={this.props.tags.used}
+                            tags={this.props.tags}
                             suggestions={this.props.tags.suggested}
                             addTag={this.addTag}
                             activate={this.activateTag}

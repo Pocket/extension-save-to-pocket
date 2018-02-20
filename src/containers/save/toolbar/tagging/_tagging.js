@@ -81,16 +81,16 @@ export const tags = (state = {}, action) => {
         }
 
         case 'TAG_REMOVE': {
+            const tabId = action.data.tabId
             const tag = action.data.tag
-            const usedTags = state[action.tabId].used.filter(
-                item => item !== tag
-            )
+            const activeTab = state[tabId]
+            const usedTags = activeTab ? activeTab.used : []
 
             return {
                 ...state,
-                [action.tabId]: {
-                    ...state[action.tabId],
-                    used: usedTags
+                [tabId]: {
+                    ...state[tabId],
+                    used: usedTags.filter(item => item !== tag)
                 }
             }
         }
