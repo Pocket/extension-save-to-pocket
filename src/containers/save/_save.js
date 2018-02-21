@@ -218,7 +218,6 @@ function buildSaveObject(action) {
             const saveType = 'page'
             const actionInfo = { cxt_ui: 'toolbar' }
             const showSavedIcon = true
-            // const saveHash = md5(tab.url)
 
             return {
                 tabId,
@@ -227,7 +226,6 @@ function buildSaveObject(action) {
                 saveType,
                 actionInfo,
                 showSavedIcon
-                // saveHash
             }
         }
         case 'context': {
@@ -244,7 +242,6 @@ function buildSaveObject(action) {
             const saveType = savedLink ? 'link' : 'page'
             const actionInfo = { cxt_ui, cxt_url: tab.url }
             const showSavedIcon = savedLink ? 0 : 1
-            // const saveHash = md5(tab.url)
 
             return {
                 tabId,
@@ -253,7 +250,6 @@ function buildSaveObject(action) {
                 saveType,
                 actionInfo,
                 showSavedIcon
-                // saveHash
             }
         }
         default:
