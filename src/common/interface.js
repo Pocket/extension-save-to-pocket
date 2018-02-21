@@ -11,7 +11,7 @@ export function addMessageListener(handler) {
 }
 
 export function removeMessageListener(handler) {
-    return chrome.runtime.onMessage.removeListner(handler)
+    return chrome.runtime.onMessage.removeListener(handler)
 }
 
 export function onUpdateAvailable(handler) {
@@ -48,6 +48,10 @@ export function onTabCreated(callback) {
 
 export function onTabRemoved(callback) {
     return chrome.tabs.onRemoved.addListener(callback)
+}
+
+export function onTabReplaced(callback) {
+    return chrome.tabs.onReplaced.addListener(callback)
 }
 
 export function onFocusChanged(callback) {

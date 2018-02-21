@@ -1,6 +1,6 @@
 import { Framer } from '../save/frame/framer'
 import * as Interface from '../../common/interface'
-import { isNewTab, getBaseUrl } from '../../common/helpers'
+import { isNewTab, getBaseUrl, isSystemPage } from '../../common/helpers'
 import { initializeStore } from '../../store/store'
 import { closeSavePanel } from '../../store/combineActions'
 import { cancelCloseSavePanel } from '../../store/combineActions'
@@ -112,7 +112,7 @@ function takeContextAction(info, tab) {
 
 function setBrowserAction() {
     Interface.browserAction().onClicked.addListener((tab, url) => {
-        if (isNewTab(tab, url))
+        if (isNewTab(tab, url) || isSystemPage(tab, url))
             return Interface.openUrl(getBaseUrl() + 'a/?s=ext_rc_open')
 
         checkTabInjection(tab).then(response => {
@@ -152,7 +152,7 @@ function setTabListeners() {
         })
     })
 
-    Interface.onFocusChanged(object => {
+    Interface.onFocusChanged(() => {
         Interface.getCurrentTab(tab => {
             if (tab[0])
                 store.dispatch({
@@ -166,6 +166,10 @@ function setTabListeners() {
 
     Interface.onTabRemoved((tabId, removeInfo) => {
         store.dispatch({ type: 'TAB_CLOSED', tabId, removeInfo: removeInfo })
+    })
+
+    Interface.onTabReplaced((addedTabId, removedTabId) => {
+        store.dispatch({ type: 'TAB_REPLACED', addedTabId, removedTabId })
     })
 }
 

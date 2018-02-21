@@ -2,7 +2,6 @@ import { put, takeLatest, select, call } from 'redux-saga/effects'
 import {
     getSetting,
     setSettings,
-    getCommands,
     removeSettings
 } from '../../common/interface'
 import { getBool, mergeDedupe } from '../../common/utilities'
@@ -13,8 +12,6 @@ const initialState = {
     base_api_version: 'v3/',
     base_loglevel: 'DEFAULT',
     base_URL: 'https://getpocket.com/',
-
-    key_shortcuts: undefined,
 
     base_installed: 1,
 
@@ -118,7 +115,6 @@ function* initSetup() {
 }
 
 function* hydrateState() {
-    const keyShortcutArray = yield call(getCommands)
 
     // Consolidate tags: Remove this in 3.0.1.0
     const tags = JSON.parse(getSetting('tags')) || []
@@ -139,7 +135,6 @@ function* hydrateState() {
         account_name_last: getSetting('account_name_last'),
         account_avatar: getSetting('account_avatar'),
         account_premium: getBool(getSetting('account_premium')),
-        key_shortcuts: keyShortcutArray,
         on_save_recommendations: getBool(getSetting('on_save_recommendations')),
         sites_facebook: getBool(getSetting('sites_facebook')),
         sites_hackernews: getBool(getSetting('sites_hackernews')),

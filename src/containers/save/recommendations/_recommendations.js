@@ -1,5 +1,5 @@
 import { delay } from 'redux-saga'
-import { put, call, takeEvery, race, select } from 'redux-saga/effects'
+import { put, call, takeEvery, race } from 'redux-saga/effects'
 import * as API from '../../../common/api'
 import { getBestImage } from '../../../common/helpers'
 import { requireAuthorization } from '../../auth/_auth'
@@ -39,10 +39,17 @@ export const recommendations = (state = {}, action) => {
             return state
         }
 
+        case 'REQUEST_SAVE_TO_POCKET': {
+            return {
+                ...state,
+                [action.tabId]: undefined
+            }
+        }
+
         case 'RECOMMENDATIONS_SUCCESS': {
             return {
                 ...state,
-                [action.saveHash]: {
+                [action.tabId]: {
                     feed: buildFeed(action.data.feed),
                     reason: action.data.reason
                 }
@@ -50,39 +57,43 @@ export const recommendations = (state = {}, action) => {
         }
 
         case 'REQUEST_SAVE_REC_TO_POCKET': {
-            const saveHash = action.data.hash
-            const feed = state[saveHash].feed
+            const tabId = action.data.tabId
+            const feed = state[tabId].feed
             const id = action.data.id
             return {
                 ...state,
-                [saveHash]: {
-                    ...state[saveHash],
+                [tabId]: {
+                    ...state[tabId],
                     feed: setFeedItemStatus(feed, id, 'saving')
                 }
             }
         }
 
+        case 'TAB_CLOSED': {
+            const filteredState = state
+            delete filteredState[action.tabId]
+            return filteredState
+        }
+
         case 'SAVE_RECOMMENDATION_SUCCESS': {
-            const saveHash = action.hash
-            const feed = state[saveHash].feed
+            const feed = state[action.tabId].feed
             const id = action.id
             return {
                 ...state,
-                [saveHash]: {
-                    ...state[saveHash],
+                [action.tabId]: {
+                    ...state[action.tabId],
                     feed: setFeedItemStatus(feed, id, 'saved')
                 }
             }
         }
 
         case 'SAVE_RECOMMENDATION_FAILURE': {
-            const saveHash = action.hash
-            const feed = state[saveHash].feed
+            const feed = state[action.tabId].feed
             const id = action.id
             return {
                 ...state,
-                [saveHash]: {
-                    ...state[saveHash],
+                [action.tabId]: {
+                    ...state[action.tabId],
                     feed: setFeedItemStatus(feed, id, 'error')
                 }
             }
@@ -102,19 +113,8 @@ export function* wSaveRecommendation() {
     yield takeEvery('REQUEST_SAVE_REC_TO_POCKET', saveRecommendation)
 }
 
-const getCurrentRecs = state => {
-    const activeTab = state.tabs[state.active]
-    if (!activeTab) return false
-
-    const hash = state.tabs[state.active].hash
-    return state.recommendations[hash]
-}
-
 function* getRecommendations(action) {
     try {
-        const current = yield select(getCurrentRecs)
-        if (current) return put({ type: 'RECOMMENDATIONS_SUCCESS_CACHED' })
-
         const { data } = yield race({
             data: call(API.getRecommendations, action.resolvedId),
             timeout: delay(5000)
@@ -124,7 +124,7 @@ function* getRecommendations(action) {
             yield put({
                 type: 'RECOMMENDATIONS_SUCCESS',
                 data,
-                saveHash: action.saveObject.saveHash
+                tabId: action.saveObject.tabId
             })
         } else {
             yield put({ type: 'RECOMMENDATIONS_FAILURE', error: 'timeout' })
@@ -154,20 +154,20 @@ function* saveRecommendation(action) {
             ? yield put({
                   type: 'SAVE_RECOMMENDATION_SUCCESS',
                   data,
-                  hash: action.data.hash,
+                  tabId: action.data.tabId,
                   id: action.data.id
               })
             : yield put({
                   type: 'SAVE_RECOMMENDATION_FAILURE',
                   status: 'not ok',
-                  hash: action.data.hash,
+                  tabId: action.data.tabId,
                   id: action.data.id
               })
     } else {
         yield put({
             type: 'SAVE_RECOMMENDATION_FAILURE',
             status: 'timeout',
-            hash: action.data.hash,
+            tabId: action.data.tabId,
             id: action.data.id
         })
     }

@@ -1,10 +1,12 @@
 import {
     getURL,
     addMessageListener,
+    removeMessageListener,
     sendMessage
 } from '../../../common/interface'
-;(function(getURL, addMessageListener, sendMessage) {
+;(function(getURL, addMessageListener, removeMessageListener, sendMessage) {
     let frame = document.createElement('iframe')
+    let element
 
     frame.style.border = 'none'
     frame.style.display = 'block'
@@ -17,6 +19,7 @@ import {
     frame.style.float = 'none'
     frame.style.width = '335px'
     frame.style.zIndex = 2147483647
+    frame.style.background = 'transparent'
 
     // frame.style.transition     = 'height 250ms'
     // frame.style.backgroundColor= 'rgba(0,0,255, 0.5)' //DEV ONLY
@@ -35,7 +38,7 @@ import {
         frame.setAttribute('allowtransparency', true)
         frame.src = getURL('save.html')
 
-        document.body.appendChild(frame)
+        element = document.body.appendChild(frame)
     }
 
     function handleAction(action, sender, sendResponse) {
@@ -50,6 +53,10 @@ import {
         if (action.type === 'frameShift') {
             frame.style.height = `${action.value}px`
         }
+
+        if (action.type === 'frameUnload') {
+            unloadFrame()
+        }
     }
 
     function render() {
@@ -63,5 +70,10 @@ import {
         })
     }
 
+    function unloadFrame() {
+        removeMessageListener(handleAction)
+        element.remove()
+    }
+
     render()
-})(getURL, addMessageListener, sendMessage)
+})(getURL, addMessageListener, removeMessageListener, sendMessage)

@@ -1,3 +1,6 @@
+import { put, takeEvery, select } from 'redux-saga/effects'
+import { sendMessageToTab } from '../../common/interface'
+
 // ACTIONS
 export const tabsActions = {
     frameLoaded: tabId => ({
@@ -23,9 +26,8 @@ export const active = (state = 0, action) => {
         case 'REQUEST_SAVE_TO_POCKET': {
             return action.tabId
         }
-        case 'ACTIVE_WINDOW_CHANGED':
-        case 'ACTIVE_TAB_CHANGED': {
-            return action.tabInfo.tabId
+        case 'SET_TAB_ACTIVE': {
+            return action.tabId
         }
         default:
             return state
@@ -34,13 +36,15 @@ export const active = (state = 0, action) => {
 
 export const tabs = (state = {}, action) => {
     switch (action.type) {
-        case 'ACTIVE_TAB_CHANGED':
-        case 'ACTIVE_WINDOW_CHANGED': {
-            return { ...state, ...setTabsIdle(state) }
+        case 'SET_TAB_IDLE': {
+            return setTabsIdle(state, action)
         }
 
         case 'ACTIVE_TAB_UPDATED': {
             return setTabsUpdate(state, action)
+        }
+        case 'TAB_REPLACED': {
+            return setTabSwap(state, action)
         }
 
         case 'FRAME_LOADED': {
@@ -75,12 +79,8 @@ export const tabs = (state = {}, action) => {
         }
 
         case 'TAB_CLOSED': {
-            const filteredState = Object.keys(state)
-                .filter(key => parseInt(key, 10) !== action.tabId)
-                .reduce((accumulator, key) => {
-                    accumulator[key] = state[key]
-                    return accumulator
-                }, {})
+            const filteredState = state
+            delete filteredState[action.tabId]
             return filteredState
         }
 
@@ -102,7 +102,8 @@ export const tabs = (state = {}, action) => {
                 [action.tabId]: {
                     ...state[action.tabId],
                     status: 'saved',
-                    hash: action.saveHash
+                    hash: action.saveHash,
+                    inception: action.inception
                 }
             }
         }
@@ -162,18 +163,17 @@ export const tabs = (state = {}, action) => {
     }
 }
 
-function setTabsIdle(tabs) {
-    let idleTabs = {}
-    Object.keys(tabs).map(key => {
-        idleTabs[key] = Object.assign({}, tabs[key], {
-            ...tabs[key],
-            status: 'idle',
-            shown: false,
-            dropDownActive: false
-        })
-        return null
-    })
-    return idleTabs || {}
+// Reducer Utilities
+function setTabSwap(state, action) {
+    const newState = {
+        ...state,
+        [action.addedTab]: {
+            ...[action.removedTab]
+        }
+    }
+
+    delete newState[action.removedTab]
+    return newState
 }
 
 function setTabsUpdate(state, action) {
@@ -187,4 +187,36 @@ function setTabsUpdate(state, action) {
             dropDownActive: false
         }
     }
+}
+
+function setTabsIdle(state, action) {
+    if (!state[action.active]) return state
+    return {
+        ...state,
+        [action.active]: {
+            ...state[action.active],
+            status: 'idle',
+            shown: false,
+            dropDownActive: false
+        }
+    }
+}
+
+// SAGAS
+export function* wTabChanges() {
+    yield takeEvery(['ACTIVE_TAB_CHANGED', 'ACTIVE_WINDOW_CHANGED'], tabChanges)
+}
+
+const getActive = state => {
+    return state.active
+}
+
+function* tabChanges(action) {
+    const active = yield select(getActive)
+
+    yield put({ type: 'CANCEL_CLOSE_SAVE_PANEL' })
+    sendMessageToTab(active, { type: 'frameUnload' })
+    yield put({ type: 'TAB_CLOSED', tabId: active })
+
+    yield put({ type: 'SET_TAB_ACTIVE', tabId: action.tabInfo.tabId })
 }

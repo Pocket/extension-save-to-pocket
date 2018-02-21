@@ -1,4 +1,3 @@
-import md5 from 'blueimp-md5'
 import { delay } from 'redux-saga'
 import {
     put,
@@ -41,12 +40,14 @@ export const saves = (state = initialState, action) => {
         case 'SAVE_TO_POCKET_SUCCESS': {
             return {
                 ...state,
-                [action.saveHash]: buildSaveData(action.data.response)
+                [action.tabId]: buildSaveData(action.data.response)
             }
         }
 
-        case 'ARCHIVE_ITEM_SUCCESS': {
-            return state
+        case 'TAB_CLOSED': {
+            const filteredState = state
+            delete filteredState[action.tabId]
+            return filteredState
         }
 
         default: {
@@ -75,10 +76,9 @@ export function* wRemoveItem() {
 const getCurrentItem = state => {
     const activeTabId = state.active
     const activeTab = state.tabs[activeTabId]
-    const activeHash = activeTab.hash
 
     return {
-        item: state.saves[activeHash],
+        item: state.saves[activeTabId],
         tabId: activeTabId,
         save_type: activeTab.type
     }
@@ -103,6 +103,8 @@ function* closePanel(tabId, timeout) {
 }
 
 function* saveRequest(action) {
+    yield put({ type: 'CANCEL_CLOSE_SAVE_PANEL' })
+
     const saveType =
         action.data.info && action.data.info.linkUrl ? 'link' : 'page'
     const tabId = action.data.tab.id
@@ -115,7 +117,13 @@ function* saveRequest(action) {
     const data = yield call(saveToPocket, saveObject, authToken)
 
     if (data) {
-        yield put({ type: 'SAVE_TO_POCKET_SUCCESS', tabId, saveHash, data })
+        yield put({
+            type: 'SAVE_TO_POCKET_SUCCESS',
+            tabId,
+            saveHash,
+            data,
+            inception: Date.now()
+        })
         yield saveSuccess(saveObject, data.response.resolved_id)
     } else {
         yield put({ type: 'SAVE_TO_POCKET_FAILURE', tabId, saveHash })
@@ -138,8 +146,10 @@ function* saveSuccess(saveObject, resolvedId) {
     const shouldRequestTags = setup.account_premium
 
     // Do we need on save recommendations?
-    if (shouldRequestRecs && resolvedId)
+    if (shouldRequestRecs && resolvedId) {
+        yield call(delay, 650)
         yield put({ type: 'RECOMMENDATIONS_REQUEST', saveObject, resolvedId })
+    }
 
     // Should we get tags?
     if (shouldRequestTags)
@@ -208,7 +218,6 @@ function buildSaveObject(action) {
             const saveType = 'page'
             const actionInfo = { cxt_ui: 'toolbar' }
             const showSavedIcon = true
-            const saveHash = md5(tab.url)
 
             return {
                 tabId,
@@ -216,8 +225,7 @@ function buildSaveObject(action) {
                 title,
                 saveType,
                 actionInfo,
-                showSavedIcon,
-                saveHash
+                showSavedIcon
             }
         }
         case 'context': {
@@ -234,7 +242,6 @@ function buildSaveObject(action) {
             const saveType = savedLink ? 'link' : 'page'
             const actionInfo = { cxt_ui, cxt_url: tab.url }
             const showSavedIcon = savedLink ? 0 : 1
-            const saveHash = md5(tab.url)
 
             return {
                 tabId,
@@ -242,8 +249,7 @@ function buildSaveObject(action) {
                 title,
                 saveType,
                 actionInfo,
-                showSavedIcon,
-                saveHash
+                showSavedIcon
             }
         }
         default:

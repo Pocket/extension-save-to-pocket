@@ -8,6 +8,8 @@ import { wToggleRecs } from '../containers/background/_setup'
 import { wToggleSite } from '../containers/background/_setup'
 import { wUserLoggedIn } from '../containers/background/_setup'
 
+import { wTabChanges } from '../containers/background/_tabs'
+
 import { wSaveTweet } from '../containers/background/_sites'
 
 import { wAuthCodeRecieved } from '../containers/auth/_auth'
@@ -40,6 +42,8 @@ export default function* rootSaga() {
         wToggleSite(),
         wSaveTweet(),
         wUserLoggedIn(),
+
+        wTabChanges(),
 
         wOpenPocket(),
         wOpenOptions(),

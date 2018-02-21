@@ -13,6 +13,14 @@ export function isNewTab(tab, url) {
     )
 }
 
+export function isSystemPage(tab, url) {
+    return (
+        tab.active &&
+        (tab.url.startsWith('chrome://') ||
+            tab.url.startsWith('chrome-extension://'))
+    )
+}
+
 export function getBaseUrl() {
     const baseURLSetting = getSetting('base_URL')
     if (!baseURLSetting) setSettings({ base_URL: 'https://getpocket.com/' })
