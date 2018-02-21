@@ -126,7 +126,7 @@ class App extends Component {
                     closePanel={this.closePanel}
                     removeTag={this.props.removeTag}
                     removeTags={this.props.removeTags}
-                    setup={this.props.setup.tags_stored}
+                    setup={this.props.setup}
                     inputFocused={this.state.inputFocused}
                     setInputFocusState={this.setInputFocusState}
                     currentRecs={this.currentRecs}
