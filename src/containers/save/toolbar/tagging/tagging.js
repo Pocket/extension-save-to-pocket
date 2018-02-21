@@ -23,7 +23,8 @@ export default class Tagging extends Component {
 
     /* Utilities
     –––––––––––––––––––––––––––––––––––––––––––––––––– */
-    hasTags = () => this.props.tags && this.props.tags.used.length
+    hasTags = () =>
+        this.props.tags && this.props.tags.used && this.props.tags.used.length
 
     /* Input Management
     –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -44,7 +45,7 @@ export default class Tagging extends Component {
     addTag = value => {
         if (value === '') return
         if (this.props.tags.used.indexOf(value) >= 0) return
-        this.props.addTag({ value, saveHash: this.props.saveHash })
+        this.props.addTag({ value, tabId: this.props.tabId })
         this.setState({ placeholder: false, inputvalue: '' })
         this.input.focus()
     }
@@ -52,26 +53,27 @@ export default class Tagging extends Component {
     /* Active/Inactive Tagging
     –––––––––––––––––––––––––––––––––––––––––––––––––– */
     makeTagActive = tag => {
-        return this.props.activateTag({ tag, saveHash: this.props.saveHash })
+        return this.props.activateTag({ tag, tabId: this.props.tabId })
     }
+
     makeTagInactive = tag => {
-        return this.props.deactivateTag({ tag, saveHash: this.props.saveHash })
+        return this.props.deactivateTag({ tag, tabId: this.props.tabId })
     }
 
     makeTagsInactive = blur => {
         if (!this.props.tags.marked.length)
             return blur ? this.input.blur() : null
-        this.props.deactivateTags({ saveHash: this.props.saveHash })
+        this.props.deactivateTags({ tabId: this.props.tabId })
     }
 
     handleRemoveAction = () => {
         if (this.state.inputvalue.length || !this.hasTags()) return
         if (!this.props.tags.marked.length) return this.makeTagActive()
-        this.props.removeTags({ saveHash: this.props.saveHash })
+        this.props.removeTags({ tabId: this.props.tabId })
     }
 
     removeTag = tag => {
-        this.props.removeTag({ tag, saveHash: this.props.saveHash })
+        this.props.removeTag({ tag, tabId: this.props.tabId })
     }
 
     toggleActive = (tag, active) => {
@@ -186,7 +188,7 @@ export default class Tagging extends Component {
                     this.props.tags.suggested && (
                         <Suggestions
                             value={this.state.inputvalue}
-                            tags={this.props.tags.used}
+                            tags={this.props.tags}
                             suggestions={this.props.tags.suggested}
                             addTag={this.addTag}
                             activate={this.activateTag}
@@ -203,6 +205,5 @@ Tagging.propTypes = {
     activateTag: PropTypes.func,
     deactivateTags: PropTypes.func,
     addTag: PropTypes.func,
-    removeTags: PropTypes.func,
-    saveHash: PropTypes.string
+    removeTags: PropTypes.func
 }

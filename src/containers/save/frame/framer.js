@@ -1,14 +1,12 @@
-import { sendMessageToAllTabs } from '../../../common/interface'
+import { sendMessageToTab } from '../../../common/interface'
 
 function frameObserver(store, onChange) {
     let currentState
 
     function handleChange() {
         let nextState = selectPanelHeight(store.getState())
-        // if (nextState !== currentState) {
         currentState = nextState
         onChange(currentState)
-        // }
     }
 
     let unsubscribe = store.subscribe(handleChange)
@@ -22,13 +20,13 @@ function selectPanelHeight(state) {
 
     const frameLoad = activeTab.frame === 'loaded' ? 0 : -1
 
-    const hash = activeTab.hash
     const status = activeTab.status
-    const recs = state.recommendations[hash]
+    const recs = state.recommendations[state.active]
     const recCount = recs ? recs.feed.length : 0
 
-    const tags = state.tags[hash]
-    const tagsSize = tags ? tags.used.join(',').split('').length : 0
+    const tags = state.tags[state.active]
+    const tagsSize =
+        tags && tags.used ? tags.used.join(',').split('').length : 0
     const tagHeight = Math.max(tagsSize / 27, 0) * 32
 
     const suggestions = tags && tags.suggested ? tags.suggested.length : 0
@@ -79,11 +77,15 @@ export class Framer {
         this.store = store
     }
 
-    checkDimensions(frameHeight) {
-        sendMessageToAllTabs({
-            type: 'frameShift',
-            value: frameHeight
-        })
+    checkDimensions = frameHeight => {
+        const state = this.store.getState()
+        const tabId = state.active
+        if(tabId){
+            sendMessageToTab(tabId, {
+                type: 'frameShift',
+                value: frameHeight
+            })
+        }
     }
 
     watch() {

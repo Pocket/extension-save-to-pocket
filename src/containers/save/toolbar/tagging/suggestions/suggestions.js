@@ -7,9 +7,12 @@ export default class Suggestions extends Component {
         event.preventDefault()
     }
 
+    get usedTags() {
+        return this.props.tags.used || []
+    }
     get listItems() {
         return this.props.suggestions
-            .filter(item => !this.props.tags.includes(item))
+            .filter(item => !this.usedTags.includes(item))
             .map((suggestion, index) => {
                 return (
                     <li
@@ -39,5 +42,5 @@ Suggestions.propTypes = {
     suggestions: PropTypes.array,
     addTag: PropTypes.func,
     value: PropTypes.string,
-    tags: PropTypes.array
+    tags: PropTypes.object
 }
