@@ -7,6 +7,7 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
+    "eslint-config-prettier": "^2.9.0",
     "pocket-build-tools": "git+https://git@github.com/Pocket/front-end-build-tools.git",
     "redux-devtools-extension": "^2.13.2",
     "remote-redux-devtools": "^0.5.12",
@@ -31,16 +32,12 @@
     "semver": "^5.4.1"
   },
   "eslintConfig": {
-    "extends": "react-app",
+    "extends": [
+      "react-app",
+      "prettier"
+    ],
     "rules": {
       "no-unneeded-ternary": "warn",
-      "indent": [
-        "error",
-        4,
-        {
-          "SwitchCase": 1
-        }
-      ],
       "linebreak-style": [
         "error",
         "unix"
