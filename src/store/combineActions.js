@@ -27,7 +27,7 @@ const {
     removeTags
 } = taggingActions
 
-const { saveRecommendation } = recommendationActions
+const { saveRecommendation, openRecommendation } = recommendationActions
 
 export {
     setupExtension,
@@ -49,7 +49,8 @@ export {
     removeTag,
     deactivateTags,
     removeTags,
-    saveRecommendation
+    saveRecommendation,
+    openRecommendation
 }
 
 export function openPocket() {

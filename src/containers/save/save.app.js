@@ -131,6 +131,7 @@ class App extends Component {
                     setInputFocusState={this.setInputFocusState}
                     currentRecs={this.currentRecs}
                     saveRecommendation={this.props.saveRecommendation}
+                    openRecommendation={this.props.openRecommendation}
                 />
             </div>
         )

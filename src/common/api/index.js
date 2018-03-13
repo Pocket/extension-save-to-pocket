@@ -1,6 +1,10 @@
 import { request } from './_request/request'
 import { saveToPocket } from './saving/save'
-import { getRecommendations } from './saving/recommendations'
+import {
+    getRecommendations,
+    saveRecToPocket,
+    openRecommendation
+} from './saving/recommendations'
 import { getOnSaveTags, syncItemTags, fetchStoredTags } from './saving/tags'
 import { archiveItem } from './saving/archive'
 import { removeItem } from './saving/remove'
@@ -14,6 +18,8 @@ export {
     authorize,
     saveToPocket,
     getRecommendations,
+    saveRecToPocket,
+    openRecommendation,
     getOnSaveTags,
     request,
     archiveItem,

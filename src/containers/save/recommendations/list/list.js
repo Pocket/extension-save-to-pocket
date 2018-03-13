@@ -47,11 +47,15 @@ export default class RecommendationList extends Component {
                 willEnter={this.willEnter}>
                 {interpolatedStyles => (
                     <ul className={styleClass.list}>
-                        {interpolatedStyles.map(config => (
+                        {interpolatedStyles.map((config, index) => (
                             <RecommendationItem
                                 motionStyle={config.style}
                                 key={config.key}
                                 item={config.data}
+                                position={index}
+                                openRecommendation={
+                                    this.props.openRecommendation
+                                }
                                 saveRecommendation={
                                     this.props.saveRecommendation
                                 }

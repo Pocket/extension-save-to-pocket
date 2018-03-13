@@ -105,6 +105,10 @@ class SaveContainer extends Component {
                                                     this.props
                                                         .saveRecommendation
                                                 }
+                                                openRecommendation={
+                                                    this.props
+                                                        .openRecommendation
+                                                }
                                             />
                                         )}
                                     </div>

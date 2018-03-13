@@ -6,13 +6,16 @@ import { requireAuthorization } from '../../auth/_auth'
 
 // ACTIONS
 export const recommendationActions = {
-    saveRecommendation: data => ({ type: 'REQUEST_SAVE_REC_TO_POCKET', data })
+    saveRecommendation: data => ({ type: 'REQUEST_SAVE_REC_TO_POCKET', data }),
+    openRecommendation: data => ({ type: 'OPEN_RECOMMENDATION', data })
 }
 
-function buildFeed(feed) {
+function buildFeed(feed, source_id) {
     return feed.map(rec => {
         return {
             id: rec.item.item_id,
+            sort_id: rec.sort_id,
+            source_id: source_id,
             date: Date.now(),
             has_image: rec.item.has_image,
             title: rec.item.title,
@@ -50,7 +53,7 @@ export const recommendations = (state = {}, action) => {
             return {
                 ...state,
                 [action.tabId]: {
-                    feed: buildFeed(action.data.feed),
+                    feed: buildFeed(action.data.feed, action.source_id),
                     reason: action.data.reason
                 }
             }
@@ -113,6 +116,10 @@ export function* wSaveRecommendation() {
     yield takeEvery('REQUEST_SAVE_REC_TO_POCKET', saveRecommendation)
 }
 
+export function* wOpenRecommendation() {
+    yield takeEvery('OPEN_RECOMMENDATION', openRecommendation)
+}
+
 function* getRecommendations(action) {
     try {
         const { data } = yield race({
@@ -124,6 +131,7 @@ function* getRecommendations(action) {
             yield put({
                 type: 'RECOMMENDATIONS_SUCCESS',
                 data,
+                source_id: action.resolvedId,
                 tabId: action.saveObject.tabId
             })
         } else {
@@ -142,10 +150,13 @@ function* saveRecommendation(action) {
 
     if (authToken) {
         const data = yield call(
-            API.saveToPocket,
+            API.saveRecToPocket,
             {
+                title: action.data.title,
                 url: action.data.url,
-                title: action.data.title
+                item_id: action.data.item_id,
+                source_id: action.data.source_id,
+                position: action.data.position
             },
             authToken
         )
@@ -170,5 +181,26 @@ function* saveRecommendation(action) {
             tabId: action.data.tabId,
             id: action.data.id
         })
+    }
+}
+
+function* openRecommendation(action) {
+    const { authToken } = yield race({
+        authToken: call(requireAuthorization),
+        timeout: call(delay, 10000)
+    })
+
+    if (authToken) {
+        yield call(
+            API.openRecommendation,
+            {
+                title: action.data.title,
+                url: action.data.url,
+                item_id: action.data.item_id,
+                source_id: action.data.source_id,
+                position: action.data.position
+            },
+            authToken
+        )
     }
 }

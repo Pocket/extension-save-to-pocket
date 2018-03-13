@@ -17,6 +17,7 @@ export default class Recommendations extends Component {
                     <RecommendationList
                         tabId={this.props.tabId}
                         saveRecommendation={this.props.saveRecommendation}
+                        openRecommendation={this.props.openRecommendation}
                         list={this.props.recs.feed}
                     />
                 )}

@@ -47,6 +47,16 @@ export default class RecommendationItem extends Component {
 
                 <div className={styles.title}>
                     <a
+                        onClick={() => {
+                            return this.props.openRecommendation({
+                                tabId: this.props.tabId,
+                                item_id: item.id.toString(),
+                                title: item.title,
+                                url: item.url,
+                                position: this.props.position,
+                                source_id: item.source_id
+                            })
+                        }}
                         className={styles.link}
                         href={item.url}
                         rel="noopener noreferrer"
@@ -60,14 +70,17 @@ export default class RecommendationItem extends Component {
                 <div className={styles.actions}>
                     <button
                         className={saveButtonClass}
-                        onClick={() =>
-                            this.props.saveRecommendation({
+                        onClick={() => {
+                            console.log(item)
+                            return this.props.saveRecommendation({
                                 tabId: this.props.tabId,
-                                id: item.id,
+                                item_id: item.id.toString(),
                                 title: item.title,
-                                url: item.url
+                                url: item.url,
+                                position: this.props.position,
+                                source_id: item.source_id
                             })
-                        }>
+                        }}>
                         {Icon.Save()} {this.saveCopy}
                     </button>
                 </div>
