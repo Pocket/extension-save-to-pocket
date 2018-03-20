@@ -12,7 +12,7 @@ export const recommendationActions = {
 
 function buildFeed(feed, source_id) {
     return feed.map(rec => {
-        return {
+        const itemObject = {
             id: rec.item.item_id,
             sort_id: rec.sort_id,
             source_id: source_id,
@@ -24,6 +24,19 @@ function buildFeed(feed, source_id) {
             image: getBestImage(rec.item),
             status: 'idle'
         }
+
+        if (rec.impression_info) {
+            itemObject.isSpoc = true
+            itemObject.sponsorurl = rec.post.profile.username
+            itemObject.sponsor = rec.post.profile.name
+            itemObject.avatar = rec.post.profile.avatar_url
+            itemObject.has_image = true
+            itemObject.domain = rec.impression_info.display.domain
+            itemObject.image = rec.impression_info.display.image.src
+            itemObject.impression_id = rec.impression_info.impression_id
+        }
+
+        return itemObject
     })
 }
 
