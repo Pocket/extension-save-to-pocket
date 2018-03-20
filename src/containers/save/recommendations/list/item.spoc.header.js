@@ -9,16 +9,24 @@ class SpocHeader extends Component {
     }
     render() {
         return (
-            <div>
-                <a href={this.props.sponsorURL}>
+            <div className={styles.sponsorHeader}>
+                <a href={this.props.sponsorurl} className={styles.sponsorLink}>
                     <img
-                        src={this.props.sponsorAvatar}
-                        alt={this.props.sponsorName}
-                    />
+                        src={this.props.avatar}
+                        alt={this.props.sponsor}
+                        className={styles.sponsorAvatar}
+                    />{' '}
+                    {this.props.sponsor}
                 </a>
                 <div className={styles.sponsorMenu}>
-                    Sponsored {Icon.CarretDown()}
-                    <ul>
+                    <span className={styles.sponsorLabel}>
+                        Sponsored{Icon.CarretDown({
+                            display: 'inline-block',
+                            height: '8px',
+                            fill: 'currentColor'
+                        })}
+                    </span>
+                    <ul className={styles.sponsorDropdown}>
                         <li>{Icon.Hide()} Hide This</li>
                         <li>{Icon.About()} About Sponsored Posts</li>
                         <li>{Icon.HideAll()} Hide All Sponsored Posts</li>

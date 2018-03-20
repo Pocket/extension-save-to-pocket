@@ -123,4 +123,39 @@
         color: $hot-coral;
     }
 }
+.sponsorHeader{
+    display: flex;
+    justify-content: space-between;
+    line-height:16px;
+    font-size: 14px;
+    padding-bottom: 5px;
+ }
+.sponsorAvatar {
+    width:16px;
+    height:16px;
+    display:inline-block;
+    border-radius: 50%;
+    margin-right:5px;
+    vertical-align:top;
+}
+.sponsorLink {
+    text-decoration: none;
+    color: $pitch;
+    font-weight: 600;
+}
 
+.sponsorMenu{
+    float:right;
+}
+.sponsorLabel{
+    text-transform:uppercase;
+    line-height:16px;
+    font-size: 12px;
+    cursor:pointer;
+    font-weight:200;
+    color: $overcast;
+}
+.sponsorDropdown{
+    display: none;
+    position: absolute;
+}

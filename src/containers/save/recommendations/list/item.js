@@ -5,6 +5,7 @@ import classNames from 'classnames/bind'
 import * as Icon from '../../../../components/icons'
 import { domainForUrl } from '../../../../common/utilities'
 import { localize } from '../../../../common/_locales/locales'
+import SpocHeader from './item.spoc.header'
 
 const cx = classNames.bind(styles)
 const copy = {
@@ -27,6 +28,12 @@ export default class RecommendationItem extends Component {
 
     render() {
         let item = this.props.item
+
+        let itemContainerClass = cx({
+            itemContainer: true,
+            isSpoc: item.isSpoc
+        })
+
         let recommendationItemClass = cx({
             item: true,
             hasImage: item.has_image
@@ -41,48 +48,63 @@ export default class RecommendationItem extends Component {
             <li
                 style={this.props.motionStyle}
                 className={recommendationItemClass}>
-                {item.has_image && (
-                    <div className={styles.image} style={this.imageStyle} />
-                )}
+                <div className={itemContainerClass}>
 
-                <div className={styles.title}>
-                    <a
-                        onClick={() => {
-                            return this.props.openRecommendation({
-                                tabId: this.props.tabId,
-                                item_id: item.id.toString(),
-                                title: item.title,
-                                url: item.url,
-                                position: this.props.position,
-                                source_id: item.source_id
-                            })
-                        }}
-                        className={styles.link}
-                        href={item.url}
-                        rel="noopener noreferrer"
-                        target="_blank">
-                        {item.title}
-                    </a>
-                </div>
+                    {item.isSpoc && (
+                        <SpocHeader
+                            sponsorurl={item.sponsorurl}
+                            sponsor={item.sponsor}
+                            avatar={item.avatar}
+                            domain={item.domain}
+                            impression_id={item.impression_id}
+                        />
+                    )}
 
-                <div className={styles.source}>{domainForUrl(item.url)}</div>
+                    {item.has_image && (
+                        <div className={styles.image} style={this.imageStyle} />
+                    )}
 
-                <div className={styles.actions}>
-                    <button
-                        className={saveButtonClass}
-                        onClick={() => {
-                            console.log(item)
-                            return this.props.saveRecommendation({
-                                tabId: this.props.tabId,
-                                item_id: item.id.toString(),
-                                title: item.title,
-                                url: item.url,
-                                position: this.props.position,
-                                source_id: item.source_id
-                            })
-                        }}>
-                        {Icon.Save()} {this.saveCopy}
-                    </button>
+                    <div className={styles.title}>
+                        <a
+                            onClick={() => {
+                                return this.props.openRecommendation({
+                                    tabId: this.props.tabId,
+                                    item_id: item.id.toString(),
+                                    title: item.title,
+                                    url: item.url,
+                                    position: this.props.position,
+                                    source_id: item.source_id
+                                })
+                            }}
+                            className={styles.link}
+                            href={item.url}
+                            rel="noopener noreferrer"
+                            target="_blank">
+                            {item.title}
+                        </a>
+                    </div>
+
+                    <div className={styles.source}>
+                        {domainForUrl(item.url)}
+                    </div>
+
+                    <div className={styles.actions}>
+                        <button
+                            className={saveButtonClass}
+                            onClick={() => {
+                                console.log(item)
+                                return this.props.saveRecommendation({
+                                    tabId: this.props.tabId,
+                                    item_id: item.id.toString(),
+                                    title: item.title,
+                                    url: item.url,
+                                    position: this.props.position,
+                                    source_id: item.source_id
+                                })
+                            }}>
+                            {Icon.Save()} {this.saveCopy}
+                        </button>
+                    </div>
                 </div>
             </li>
         )
