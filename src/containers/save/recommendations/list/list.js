@@ -19,12 +19,13 @@ export default class RecommendationList extends Component {
 
     getStyles = () => {
         return this.props.list.map(rec => {
+            const recHeight = rec.isSpoc ? 131 : 110
             return {
                 ...rec,
                 data: rec,
                 key: 'id' + rec.id,
                 style: {
-                    height: spring(110, { stiffness: 150, damping: 14 }),
+                    height: spring(recHeight, { stiffness: 150, damping: 14 }),
                     opacity: spring(1, presets.stiff)
                 }
             }

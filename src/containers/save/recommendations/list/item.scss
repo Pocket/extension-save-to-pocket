@@ -15,13 +15,7 @@
 .item {
     background-color: $powder;
     border-top: 1px solid $smoke;
-    box-sizing: border-box;
-    display: block;
-    height: 110px;
-    margin: 0;
-    overflow: hidden;
-    padding: 10px 10px;
-    position: relative;
+
 
     &:hover {
         background-color: $white;
@@ -31,8 +25,25 @@
         }
     }
 
-    &.hasImage {
-        padding-right: 98px;
+}
+
+.itemContainer{
+    height: 110px;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    margin: 0;
+    overflow: hidden;
+    padding: 10px 10px;
+    position: relative;
+
+    &.isSpoc{
+        padding: 8px 10px 10px;
+        height: 131px;
+    }
+
+    .hasImage & {
+        padding-right: 92px;
     }
 }
 
@@ -78,6 +89,9 @@
     right: 0;
     top: 0;
     width: 90px;
+    .isSpoc & {
+        height: 129px;
+    }
 }
 
 .source {
