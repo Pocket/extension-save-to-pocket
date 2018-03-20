@@ -132,6 +132,9 @@ class App extends Component {
                     currentRecs={this.currentRecs}
                     saveRecommendation={this.props.saveRecommendation}
                     openRecommendation={this.props.openRecommendation}
+                    spocImpression={this.props.spocImpression}
+                    spocView={this.props.spocView}
+                    spocClick={this.props.spocClick}
                 />
             </div>
         )

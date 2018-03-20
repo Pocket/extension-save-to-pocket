@@ -26,6 +26,34 @@ export default class RecommendationItem extends Component {
         return copy[this.props.item.status]
     }
 
+    get spocContext() {
+        const item = this.props.item
+        return {
+            cxt_impression_id: item.impression_id,
+            cxt_view: 'extension_ad',
+            cxt_feed_item: item.feed_item_id,
+            cxt_index: item.sort_id,
+            cxt_post_id: item.post_id
+        }
+    }
+
+    onClick = () => {
+        const item = this.props.item
+
+        if (item.isSpoc) {
+            this.props.spocClick({ context: this.spocContext })
+        }
+
+        this.props.openRecommendation({
+            tabId: this.props.tabId,
+            item_id: item.id.toString(),
+            title: item.title,
+            url: item.url,
+            position: this.props.position,
+            source_id: item.source_id
+        })
+    }
+
     render() {
         let item = this.props.item
 
@@ -38,6 +66,7 @@ export default class RecommendationItem extends Component {
             item: true,
             hasImage: item.has_image
         })
+
         let saveButtonClass = cx({
             save: true,
             saved: item.status === 'saved',
@@ -49,14 +78,16 @@ export default class RecommendationItem extends Component {
                 style={this.props.motionStyle}
                 className={recommendationItemClass}>
                 <div className={itemContainerClass}>
-
                     {item.isSpoc && (
                         <SpocHeader
                             sponsorurl={item.sponsorurl}
                             sponsor={item.sponsor}
                             avatar={item.avatar}
                             domain={item.domain}
-                            impression_id={item.impression_id}
+                            spocContext={this.spocContext}
+                            spocImpression={this.props.spocImpression}
+                            spocView={this.props.spocView}
+                            spocClick={this.props.spocClick}
                         />
                     )}
 
@@ -66,16 +97,7 @@ export default class RecommendationItem extends Component {
 
                     <div className={styles.title}>
                         <a
-                            onClick={() => {
-                                return this.props.openRecommendation({
-                                    tabId: this.props.tabId,
-                                    item_id: item.id.toString(),
-                                    title: item.title,
-                                    url: item.url,
-                                    position: this.props.position,
-                                    source_id: item.source_id
-                                })
-                            }}
+                            onClick={this.onClick}
                             className={styles.link}
                             href={item.url}
                             rel="noopener noreferrer"
@@ -92,7 +114,6 @@ export default class RecommendationItem extends Component {
                         <button
                             className={saveButtonClass}
                             onClick={() => {
-                                console.log(item)
                                 return this.props.saveRecommendation({
                                     tabId: this.props.tabId,
                                     item_id: item.id.toString(),

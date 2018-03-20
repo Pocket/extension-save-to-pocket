@@ -60,6 +60,9 @@ export default class RecommendationList extends Component {
                                 saveRecommendation={
                                     this.props.saveRecommendation
                                 }
+                                spocImpression={this.props.spocImpression}
+                                spocView={this.props.spocView}
+                                spocClick={this.props.spocClick}
                                 tabId={this.props.tabId}
                             />
                         ))}

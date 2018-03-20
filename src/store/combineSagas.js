@@ -28,6 +28,10 @@ import { wRecommendations } from '../containers/save/recommendations/_recommenda
 import { wSaveRecommendation } from '../containers/save/recommendations/_recommendations'
 import { wOpenRecommendation } from '../containers/save/recommendations/_recommendations'
 
+import { wSpocImpression } from '../containers/save/recommendations/_recommendations'
+import { wSpocView } from '../containers/save/recommendations/_recommendations'
+import { wSpocClick } from '../containers/save/recommendations/_recommendations'
+
 export function* wOpenPocket() {
     yield takeLatest('OPEN_POCKET', openPocket)
 }
@@ -63,6 +67,9 @@ export default function* rootSaga() {
 
         wRecommendations(),
         wSaveRecommendation(),
-        wOpenRecommendation()
+        wOpenRecommendation(),
+        wSpocImpression(),
+        wSpocView(),
+        wSpocClick()
     ])
 }

@@ -7,7 +7,10 @@ import { requireAuthorization } from '../../auth/_auth'
 // ACTIONS
 export const recommendationActions = {
     saveRecommendation: data => ({ type: 'REQUEST_SAVE_REC_TO_POCKET', data }),
-    openRecommendation: data => ({ type: 'OPEN_RECOMMENDATION', data })
+    openRecommendation: data => ({ type: 'OPEN_RECOMMENDATION', data }),
+    spocImpression: data => ({ type: 'SPOC_IMPRESSION', data }),
+    spocView: data => ({ type: 'SPOC_VIEWED', data }),
+    spocClick: data => ({ type: 'SPOC_CLICKED', data })
 }
 
 function buildFeed(feed, source_id) {
@@ -34,6 +37,8 @@ function buildFeed(feed, source_id) {
             itemObject.domain = rec.impression_info.display.domain
             itemObject.image = rec.impression_info.display.image.src
             itemObject.impression_id = rec.impression_info.impression_id
+            itemObject.feed_item_id = rec.feed_item_id
+            itemObject.post_id = rec.post.post_id
         }
 
         return itemObject
@@ -215,5 +220,63 @@ function* openRecommendation(action) {
             },
             authToken
         )
+    }
+}
+
+// SPOC SAGAS
+export function* wSpocImpression() {
+    yield takeEvery('SPOC_IMPRESSION', spocImpression)
+}
+
+export function* wSpocView() {
+    yield takeEvery('SPOC_VIEWED', spocViewed)
+}
+
+export function* wSpocClick() {
+    yield takeEvery('SPOC_CLICKED', spocClicked)
+}
+
+function* spocImpression(action) {
+    const { authToken } = yield race({
+        authToken: call(requireAuthorization),
+        timeout: call(delay, 10000)
+    })
+
+    if (authToken) {
+        const context = {
+            ...action.data.context,
+            action: 'sp_impression_loaded'
+        }
+        yield call(API.sendSpocAnalytics, authToken, [context])
+    }
+}
+
+function* spocViewed(action) {
+    const { authToken } = yield race({
+        authToken: call(requireAuthorization),
+        timeout: call(delay, 10000)
+    })
+
+    if (authToken) {
+        const context = {
+            ...action.data.context,
+            action: 'sp_impression_viewed'
+        }
+        yield call(API.sendSpocAnalytics, authToken, [context])
+    }
+}
+
+function* spocClicked(action) {
+    const { authToken } = yield race({
+        authToken: call(requireAuthorization),
+        timeout: call(delay, 10000)
+    })
+
+    if (authToken) {
+        const context = {
+            ...action.data.context,
+            action: 'sp_impression_clicked'
+        }
+        yield call(API.sendSpocAnalytics, authToken, [context])
     }
 }

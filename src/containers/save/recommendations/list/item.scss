@@ -89,6 +89,7 @@
     right: 0;
     top: 0;
     width: 90px;
+    z-index: 2;
     .isSpoc & {
         height: 129px;
     }
@@ -156,6 +157,114 @@
     color: $overcast;
 }
 .sponsorDropdown{
-    display: none;
     position: absolute;
+    right: 30px;
+    top: 30px;
+    background: $white;
+    box-shadow: 0 3px 8px 1px rgba(0,0,0,0.5);
+    border-radius: 4px;
+    padding: 7px 0;
+    margin: 0;
+    list-style-type: none;
+    z-index: 3;
+    button{
+        @include pocketButton;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 4px 10px;
+        color: $pitch;
+        font-size: 16px;
+        &:hover{
+            color: $white;
+            background: $teal;
+        }
+    }
 }
+// .pkt_ext_spoc_avatar{
+
+//     }
+//     .pkt_ext_spoc_label{
+
+//     }
+//     .pkt_ext_spoc_dropdown{
+//         display:none;
+//         position:absolute;
+//         right:0;
+//         opacity:0;
+//         top:24px;
+//         background-color:$white-pure;
+//         border-radius: 2px;
+//         border: 1px solid #dcdce0;
+//         text-align: left;
+//         box-shadow: 0 1px 6px rgba(0,0,0,.1);
+//         z-index: 500;
+//         transition: all .4s cubic-bezier(.645, .045, .355, 1);
+//         &.pck_ext_drop_active{
+//             display:block;
+//         }
+//     }
+//     .pkt_ext_drop_active{
+//         display:block;
+//         opacity:1;
+//     }
+//     .pkt_ext_spoc_dropdown li{
+//         display:block;
+//         font-size: em(16);
+//         margin: 0;
+//         padding: 0;
+//         text-align: left;
+//         width: auto;
+//         white-space: nowrap;
+//         color: $black-dark;
+//         &:hover{
+//             background-color: $teal-strong;
+//             a{ color: $white-pure;}
+//         }
+//         a{
+//             box-sizing: border-box;
+//             display: block;
+//             text-decoration: none;
+//             position: relative;
+//             line-height: 36px;
+//             padding: 0 1.7em 0 1.1em;
+//         }
+//         .overflow_icon{
+//             display: inline-block;
+//             fill: currentColor;
+//             height: 24px;
+//             width: 24px;
+//             margin-right:8px;
+//             vertical-align:middle;
+//             .item_recommend & {
+//                 width:22px;
+//                 height:22px;
+//             }
+//             .item_content_savetext{
+//                 margin-left:-1px;
+//                 vertical-align: middle;
+//                 line-height: 16px;
+//             }
+//         }
+
+//         .icon_hide_this{
+//             width:23px;
+//             height:23px;
+//             margin-right:9px;
+//         }
+//         .icon_copy_url{
+//             width:24px;
+//             height:24px;
+//             margin-right:8px;
+//         }
+//         .icon_about_sponsor{
+//             width:20px;
+//             height:20px;
+//             margin-right:12px;
+//         }
+//         .icon_hide_all{
+//             width:22px;
+//             height:22px;
+//             margin-right:10px;
+//         }
+//     }
