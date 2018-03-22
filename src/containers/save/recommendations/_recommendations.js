@@ -6,13 +6,20 @@ import { requireAuthorization } from '../../auth/_auth'
 
 // ACTIONS
 export const recommendationActions = {
-    saveRecommendation: data => ({ type: 'REQUEST_SAVE_REC_TO_POCKET', data })
+    saveRecommendation: data => ({ type: 'REQUEST_SAVE_REC_TO_POCKET', data }),
+    openRecommendation: data => ({ type: 'OPEN_RECOMMENDATION', data }),
+    spocImpression: data => ({ type: 'SPOC_IMPRESSION', data }),
+    spocView: data => ({ type: 'SPOC_VIEWED', data }),
+    spocClick: data => ({ type: 'SPOC_CLICKED', data }),
+    spocRemove: (tabId, id) => ({ type: 'SPOC_REMOVE', tabId, id })
 }
 
-function buildFeed(feed) {
+function buildFeed(feed, source_id) {
     return feed.map(rec => {
-        return {
+        const itemObject = {
             id: rec.item.item_id,
+            sort_id: rec.sort_id,
+            source_id: source_id,
             date: Date.now(),
             has_image: rec.item.has_image,
             title: rec.item.title,
@@ -21,6 +28,21 @@ function buildFeed(feed) {
             image: getBestImage(rec.item),
             status: 'idle'
         }
+
+        if (rec.impression_info) {
+            itemObject.isSpoc = true
+            itemObject.sponsor = rec.post.profile.name
+            itemObject.avatar = rec.post.profile.avatar_url
+            itemObject.has_image = true
+            itemObject.domain = rec.impression_info.display.domain
+            itemObject.image = rec.impression_info.display.image.src
+            itemObject.impression_id = rec.impression_info.impression_id
+            itemObject.feed_item_id = rec.feed_item_id
+            itemObject.post_id = rec.post.post_id
+            itemObject.url = rec.item.given_url
+        }
+
+        return itemObject
     })
 }
 
@@ -29,6 +51,12 @@ function setFeedItemStatus(feed, id, status) {
         if (rec.id !== id) return rec
         rec.status = status
         return rec
+    })
+}
+
+function removeFeedItem(feed, id) {
+    return feed.filter(rec => {
+        return rec.id !== id
     })
 }
 
@@ -50,7 +78,7 @@ export const recommendations = (state = {}, action) => {
             return {
                 ...state,
                 [action.tabId]: {
-                    feed: buildFeed(action.data.feed),
+                    feed: buildFeed(action.data.feed, action.source_id),
                     reason: action.data.reason
                 }
             }
@@ -99,6 +127,18 @@ export const recommendations = (state = {}, action) => {
             }
         }
 
+        case 'SPOC_REMOVE': {
+            const feed = state[action.tabId].feed
+            const id = action.id
+            return {
+                ...state,
+                [action.tabId]: {
+                    ...state[action.tabId],
+                    feed: removeFeedItem(feed, id)
+                }
+            }
+        }
+
         default: {
             return state
         }
@@ -113,6 +153,10 @@ export function* wSaveRecommendation() {
     yield takeEvery('REQUEST_SAVE_REC_TO_POCKET', saveRecommendation)
 }
 
+export function* wOpenRecommendation() {
+    yield takeEvery('OPEN_RECOMMENDATION', openRecommendation)
+}
+
 function* getRecommendations(action) {
     try {
         const { data } = yield race({
@@ -124,6 +168,7 @@ function* getRecommendations(action) {
             yield put({
                 type: 'RECOMMENDATIONS_SUCCESS',
                 data,
+                source_id: action.resolvedId,
                 tabId: action.saveObject.tabId
             })
         } else {
@@ -142,10 +187,13 @@ function* saveRecommendation(action) {
 
     if (authToken) {
         const data = yield call(
-            API.saveToPocket,
+            API.saveRecToPocket,
             {
+                title: action.data.title,
                 url: action.data.url,
-                title: action.data.title
+                item_id: action.data.item_id,
+                source_id: action.data.source_id,
+                position: action.data.position
             },
             authToken
         )
@@ -155,20 +203,99 @@ function* saveRecommendation(action) {
                   type: 'SAVE_RECOMMENDATION_SUCCESS',
                   data,
                   tabId: action.data.tabId,
-                  id: action.data.id
+                  id: action.data.item_id
               })
             : yield put({
                   type: 'SAVE_RECOMMENDATION_FAILURE',
                   status: 'not ok',
                   tabId: action.data.tabId,
-                  id: action.data.id
+                  id: action.data.item_id
               })
     } else {
         yield put({
             type: 'SAVE_RECOMMENDATION_FAILURE',
             status: 'timeout',
             tabId: action.data.tabId,
-            id: action.data.id
+            id: action.data.item_id
         })
+    }
+}
+
+function* openRecommendation(action) {
+    const { authToken } = yield race({
+        authToken: call(requireAuthorization),
+        timeout: call(delay, 10000)
+    })
+
+    if (authToken) {
+        yield call(
+            API.openRecommendation,
+            {
+                title: action.data.title,
+                url: action.data.url,
+                item_id: action.data.item_id,
+                source_id: action.data.source_id,
+                position: action.data.position
+            },
+            authToken
+        )
+    }
+}
+
+// SPOC SAGAS
+export function* wSpocImpression() {
+    yield takeEvery('SPOC_IMPRESSION', spocImpression)
+}
+
+export function* wSpocView() {
+    yield takeEvery('SPOC_VIEWED', spocViewed)
+}
+
+export function* wSpocClick() {
+    yield takeEvery('SPOC_CLICKED', spocClicked)
+}
+
+function* spocImpression(action) {
+    const { authToken } = yield race({
+        authToken: call(requireAuthorization),
+        timeout: call(delay, 10000)
+    })
+
+    if (authToken) {
+        const context = {
+            ...action.data.context,
+            action: 'sp_impression_loaded'
+        }
+        yield call(API.sendSpocAnalytics, authToken, [context])
+    }
+}
+
+function* spocViewed(action) {
+    const { authToken } = yield race({
+        authToken: call(requireAuthorization),
+        timeout: call(delay, 10000)
+    })
+
+    if (authToken) {
+        const context = {
+            ...action.data.context,
+            action: 'sp_impression_viewed'
+        }
+        yield call(API.sendSpocAnalytics, authToken, [context])
+    }
+}
+
+function* spocClicked(action) {
+    const { authToken } = yield race({
+        authToken: call(requireAuthorization),
+        timeout: call(delay, 10000)
+    })
+
+    if (authToken) {
+        const context = {
+            ...action.data.context,
+            action: 'sp_impression_clicked'
+        }
+        yield call(API.sendSpocAnalytics, authToken, [context])
     }
 }
