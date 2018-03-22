@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import SaveContainer from './save.container'
+import { getCurrentLanguageCode } from '../../common/helpers'
 
 const activeState = [
     'saved',
@@ -78,7 +79,8 @@ class App extends Component {
         return (
             this.currentTab &&
             this.currentTab.status === 'saved' &&
-            this.props.setup.on_save_recommendations
+            this.props.setup.on_save_recommendations &&
+            getCurrentLanguageCode() === 'en'
         )
     }
 
