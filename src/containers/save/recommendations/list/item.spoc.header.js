@@ -32,12 +32,18 @@ class SpocHeader extends Component {
         }, 250)
     }
 
-    removeSpoc = () => {}
+    removeSpoc = () => {
+        this.props.spocRemove(this.props.tabId, this.props.itemId)
+    }
 
     render() {
         return (
             <div className={styles.sponsorHeader}>
-                <a href={this.props.sponsorurl} className={styles.sponsorLink}>
+                <a
+                    href={this.props.sponsorurl}
+                    className={styles.sponsorLink}
+                    rel="noopener noreferrer"
+                    target="_blank">
                     <img
                         src={this.props.avatar}
                         alt={this.props.sponsor}
@@ -62,7 +68,7 @@ class SpocHeader extends Component {
                             onMouseOver={this.onHover}
                             onMouseOut={this.offHover}>
                             <li>
-                                <button>
+                                <button onClick={this.removeSpoc}>
                                     {Icon.Hide({
                                         width: '18px',
                                         height: '18px'
@@ -71,22 +77,28 @@ class SpocHeader extends Component {
                                 </button>
                             </li>
                             <li>
-                                <button>
+                                <a
+                                    href="https://help.getpocket.com/customer/portal/articles/2061219"
+                                    rel="noreferrer noopener"
+                                    target="_blank">
                                     {Icon.About({
                                         width: '18px',
                                         height: '18px'
                                     })}{' '}
                                     About Sponsored Posts
-                                </button>
+                                </a>
                             </li>
                             <li>
-                                <button>
+                                <a
+                                    href="https://getpocket.com/premium/hide_sponsorship"
+                                    rel="noreferrer noopener"
+                                    target="_blank">
                                     {Icon.HideAll({
                                         width: '18px',
                                         height: '18px'
                                     })}{' '}
                                     Hide All Sponsored Posts
-                                </button>
+                                </a>
                             </li>
                         </ul>
                     )}
