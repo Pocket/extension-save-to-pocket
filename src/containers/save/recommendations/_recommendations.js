@@ -203,20 +203,20 @@ function* saveRecommendation(action) {
                   type: 'SAVE_RECOMMENDATION_SUCCESS',
                   data,
                   tabId: action.data.tabId,
-                  id: action.data.id
+                  id: action.data.item_id
               })
             : yield put({
                   type: 'SAVE_RECOMMENDATION_FAILURE',
                   status: 'not ok',
                   tabId: action.data.tabId,
-                  id: action.data.id
+                  id: action.data.item_id
               })
     } else {
         yield put({
             type: 'SAVE_RECOMMENDATION_FAILURE',
             status: 'timeout',
             tabId: action.data.tabId,
-            id: action.data.id
+            id: action.data.item_id
         })
     }
 }
