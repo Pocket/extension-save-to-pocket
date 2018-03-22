@@ -27,7 +27,14 @@ const {
     removeTags
 } = taggingActions
 
-const { saveRecommendation, openRecommendation, spocImpression, spocView, spocClick } = recommendationActions
+const {
+    saveRecommendation,
+    openRecommendation,
+    spocImpression,
+    spocView,
+    spocClick,
+    spocRemove
+} = recommendationActions
 
 export {
     setupExtension,
@@ -53,7 +60,8 @@ export {
     openRecommendation,
     spocImpression,
     spocView,
-    spocClick
+    spocClick,
+    spocRemove
 }
 
 export function openPocket() {

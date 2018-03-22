@@ -80,7 +80,9 @@ export default class RecommendationItem extends Component {
                 <div className={itemContainerClass}>
                     {item.isSpoc && (
                         <SpocHeader
-                            sponsorurl={item.sponsorurl}
+                            tabId={this.props.tabId}
+                            itemId={item.id.toString()}
+                            sponsorurl={item.url}
                             sponsor={item.sponsor}
                             avatar={item.avatar}
                             domain={item.domain}
@@ -88,6 +90,7 @@ export default class RecommendationItem extends Component {
                             spocImpression={this.props.spocImpression}
                             spocView={this.props.spocView}
                             spocClick={this.props.spocClick}
+                            spocRemove={this.props.spocRemove}
                         />
                     )}
 

@@ -21,6 +21,7 @@ export default class Recommendations extends Component {
                         spocImpression={this.props.spocImpression}
                         spocView={this.props.spocView}
                         spocClick={this.props.spocClick}
+                        spocRemove={this.props.spocRemove}
                         list={this.props.recs.feed}
                     />
                 )}

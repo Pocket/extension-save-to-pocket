@@ -114,6 +114,9 @@ class SaveContainer extends Component {
                                                 }
                                                 spocView={this.props.spocView}
                                                 spocClick={this.props.spocClick}
+                                                spocRemove={
+                                                    this.props.spocRemove
+                                                }
                                             />
                                         )}
                                     </div>

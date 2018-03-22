@@ -135,6 +135,7 @@ class App extends Component {
                     spocImpression={this.props.spocImpression}
                     spocView={this.props.spocView}
                     spocClick={this.props.spocClick}
+                    spocRemove={this.props.spocRemove}
                 />
             </div>
         )
