@@ -15,13 +15,6 @@
 .item {
     background-color: $powder;
     border-top: 1px solid $smoke;
-    box-sizing: border-box;
-    display: block;
-    height: 110px;
-    margin: 0;
-    overflow: hidden;
-    padding: 10px 10px;
-    position: relative;
 
     &:hover {
         background-color: $white;
@@ -30,9 +23,25 @@
             border-color: $white;
         }
     }
+}
 
-    &.hasImage {
-        padding-right: 98px;
+.itemContainer {
+    height: 110px;
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    margin: 0;
+    overflow: hidden;
+    padding: 10px 10px;
+    position: relative;
+
+    &.isSpoc {
+        padding: 8px 10px 10px;
+        height: 131px;
+    }
+
+    .hasImage & {
+        padding-right: 92px;
     }
 }
 
@@ -78,6 +87,10 @@
     right: 0;
     top: 0;
     width: 90px;
+    z-index: 2;
+    .isSpoc & {
+        height: 129px;
+    }
 }
 
 .source {
@@ -109,4 +122,61 @@
         color: $hot-coral;
     }
 }
+.sponsorHeader {
+    display: flex;
+    justify-content: space-between;
+    line-height: 16px;
+    font-size: 14px;
+    padding-bottom: 5px;
+}
+.sponsorAvatar {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 5px;
+    vertical-align: top;
+}
+.sponsorLink {
+    text-decoration: none;
+    color: $pitch;
+    font-weight: 600;
+}
 
+.sponsorMenu {
+    float: right;
+}
+.sponsorLabel {
+    text-transform: uppercase;
+    line-height: 16px;
+    font-size: 12px;
+    cursor: pointer;
+    font-weight: 200;
+    color: $overcast;
+}
+.sponsorDropdown {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    background: $white;
+    box-shadow: 0 3px 8px 1px rgba(0, 0, 0, 0.5);
+    border-radius: 4px;
+    padding: 7px 0;
+    margin: 0;
+    list-style-type: none;
+    z-index: 3;
+    button,
+    a {
+        @include pocketButton;
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 4px 10px;
+        color: $pitch;
+        font-size: 16px;
+        &:hover {
+            color: $white;
+            background: $teal;
+        }
+    }
+}

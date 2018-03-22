@@ -19,12 +19,13 @@ export default class RecommendationList extends Component {
 
     getStyles = () => {
         return this.props.list.map(rec => {
+            const recHeight = rec.isSpoc ? 131 : 110
             return {
                 ...rec,
                 data: rec,
                 key: 'id' + rec.id,
                 style: {
-                    height: spring(110, { stiffness: 150, damping: 14 }),
+                    height: spring(recHeight, { stiffness: 150, damping: 14 }),
                     opacity: spring(1, presets.stiff)
                 }
             }
@@ -47,14 +48,22 @@ export default class RecommendationList extends Component {
                 willEnter={this.willEnter}>
                 {interpolatedStyles => (
                     <ul className={styleClass.list}>
-                        {interpolatedStyles.map(config => (
+                        {interpolatedStyles.map((config, index) => (
                             <RecommendationItem
                                 motionStyle={config.style}
                                 key={config.key}
                                 item={config.data}
+                                position={index}
+                                openRecommendation={
+                                    this.props.openRecommendation
+                                }
                                 saveRecommendation={
                                     this.props.saveRecommendation
                                 }
+                                spocImpression={this.props.spocImpression}
+                                spocView={this.props.spocView}
+                                spocClick={this.props.spocClick}
+                                spocRemove={this.props.spocRemove}
                                 tabId={this.props.tabId}
                             />
                         ))}

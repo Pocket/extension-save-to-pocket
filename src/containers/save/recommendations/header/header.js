@@ -19,7 +19,10 @@ export default function Header(recs) {
                                 ? `${localize('recommendations', 'more_on')} ${
                                       recs.reason
                                   }`
-                                : localize('recommendations', 'explore')}
+                                : localize(
+                                      'recommendations',
+                                      'people_also_saved'
+                                  )}
                         </div>
                     )}
 

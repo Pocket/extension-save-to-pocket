@@ -2,13 +2,31 @@ import { request } from '../_request/request'
 
 /* API CALLS - Should return promises
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-export function sendAnalytics( context, guid ){
+export function sendAnalytics(context, guid) {
+    return request(
+        {
+            path: 'pv/',
+            data: {
+                guid: guid,
+                actions: JSON.stringify(context)
+            }
+        },
+        false
+    ).then(response => response)
+}
+
+/* API CALLS - Should return promises
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+export function sendSpocAnalytics(access_token, actions) {
     return request({
-        path: 'pv/',
+        path: 'send/',
         data: {
-            guid: guid,
-            actions: JSON.stringify(context)
+            access_token: access_token,
+            actions
         }
-    }, false)
-        .then( response => response)
+    }).then(response => {
+        return response
+            ? { status: 'ok', response: response.action_results[0] }
+            : undefined
+    })
 }

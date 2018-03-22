@@ -131,6 +131,11 @@ class App extends Component {
                     setInputFocusState={this.setInputFocusState}
                     currentRecs={this.currentRecs}
                     saveRecommendation={this.props.saveRecommendation}
+                    openRecommendation={this.props.openRecommendation}
+                    spocImpression={this.props.spocImpression}
+                    spocView={this.props.spocView}
+                    spocClick={this.props.spocClick}
+                    spocRemove={this.props.spocRemove}
                 />
             </div>
         )
