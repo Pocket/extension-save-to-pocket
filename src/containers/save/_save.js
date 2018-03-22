@@ -11,6 +11,7 @@ import {
 import { updateToolbarIcon } from '../../common/interface'
 import { saveToPocket, archiveItem, removeItem } from '../../common/api'
 import { requireAuthorization } from '../auth/_auth'
+import { getCurrentLanguageCode } from '../../common/helpers'
 
 // INITIAL STATE
 const initialState = {}
@@ -146,7 +147,7 @@ function* saveSuccess(saveObject, resolvedId) {
     const shouldRequestTags = setup.account_premium
 
     // Do we need on save recommendations?
-    if (shouldRequestRecs && resolvedId) {
+    if (shouldRequestRecs && resolvedId && getCurrentLanguageCode() === 'en') {
         yield call(delay, 650)
         yield put({ type: 'RECOMMENDATIONS_REQUEST', saveObject, resolvedId })
     }
