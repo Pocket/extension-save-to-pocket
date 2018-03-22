@@ -10,7 +10,8 @@ export const recommendationActions = {
     openRecommendation: data => ({ type: 'OPEN_RECOMMENDATION', data }),
     spocImpression: data => ({ type: 'SPOC_IMPRESSION', data }),
     spocView: data => ({ type: 'SPOC_VIEWED', data }),
-    spocClick: data => ({ type: 'SPOC_CLICKED', data })
+    spocClick: data => ({ type: 'SPOC_CLICKED', data }),
+    spocRemove: (tabId, id) => ({ type: 'SPOC_REMOVE', tabId, id })
 }
 
 function buildFeed(feed, source_id) {
@@ -50,6 +51,12 @@ function setFeedItemStatus(feed, id, status) {
         if (rec.id !== id) return rec
         rec.status = status
         return rec
+    })
+}
+
+function removeFeedItem(feed, id) {
+    return feed.filter(rec => {
+        return rec.id !== id
     })
 }
 
@@ -116,6 +123,18 @@ export const recommendations = (state = {}, action) => {
                 [action.tabId]: {
                     ...state[action.tabId],
                     feed: setFeedItemStatus(feed, id, 'error')
+                }
+            }
+        }
+
+        case 'SPOC_REMOVE': {
+            const feed = state[action.tabId].feed
+            const id = action.id
+            return {
+                ...state,
+                [action.tabId]: {
+                    ...state[action.tabId],
+                    feed: removeFeedItem(feed, id)
                 }
             }
         }
