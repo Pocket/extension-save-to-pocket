@@ -31,7 +31,6 @@ function buildFeed(feed, source_id) {
 
         if (rec.impression_info) {
             itemObject.isSpoc = true
-            itemObject.sponsorurl = rec.post.profile.username
             itemObject.sponsor = rec.post.profile.name
             itemObject.avatar = rec.post.profile.avatar_url
             itemObject.has_image = true
@@ -40,6 +39,7 @@ function buildFeed(feed, source_id) {
             itemObject.impression_id = rec.impression_info.impression_id
             itemObject.feed_item_id = rec.feed_item_id
             itemObject.post_id = rec.post.post_id
+            itemObject.url = rec.item.given_url
         }
 
         return itemObject
