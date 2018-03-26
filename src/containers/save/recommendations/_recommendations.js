@@ -25,7 +25,7 @@ function buildFeed(feed, source_id) {
             title: rec.item.title,
             resolved_url: rec.item.resolved_url,
             display_url: rec.item.resolved_url,
-            url: rec.item.given_url,
+            url: rec.item.given_url || rec.item.resolved_url,
             excerpt: rec.item.excerpt,
             image: getBestImage(rec.item),
             status: 'idle'
