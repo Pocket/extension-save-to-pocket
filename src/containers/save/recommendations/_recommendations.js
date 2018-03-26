@@ -23,7 +23,9 @@ function buildFeed(feed, source_id) {
             date: Date.now(),
             has_image: rec.item.has_image,
             title: rec.item.title,
-            url: rec.item.resolved_url,
+            resolved_url: rec.item.resolved_url,
+            display_url: rec.item.resolved_url,
+            url: rec.item.given_url,
             excerpt: rec.item.excerpt,
             image: getBestImage(rec.item),
             status: 'idle'
@@ -34,12 +36,11 @@ function buildFeed(feed, source_id) {
             itemObject.sponsor = rec.post.profile.name
             itemObject.avatar = rec.post.profile.avatar_url
             itemObject.has_image = true
-            itemObject.domain = rec.impression_info.display.domain
             itemObject.image = rec.impression_info.display.image.src
             itemObject.impression_id = rec.impression_info.impression_id
             itemObject.feed_item_id = rec.feed_item_id
             itemObject.post_id = rec.post.post_id
-            itemObject.url = rec.item.given_url
+            itemObject.display_url = rec.impression_info.display.domain
         }
 
         return itemObject

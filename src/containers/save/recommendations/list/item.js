@@ -85,7 +85,6 @@ export default class RecommendationItem extends Component {
                             sponsorurl={item.url}
                             sponsor={item.sponsor}
                             avatar={item.avatar}
-                            domain={item.domain}
                             spocContext={this.spocContext}
                             spocImpression={this.props.spocImpression}
                             spocView={this.props.spocView}
@@ -110,7 +109,7 @@ export default class RecommendationItem extends Component {
                     </div>
 
                     <div className={styles.source}>
-                        {domainForUrl(item.url)}
+                        {domainForUrl(item.display_url)}
                     </div>
 
                     <div className={styles.actions}>
