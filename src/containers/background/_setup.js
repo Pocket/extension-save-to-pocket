@@ -1,9 +1,5 @@
 import { put, takeLatest, select, call } from 'redux-saga/effects'
-import {
-    getSetting,
-    setSettings,
-    removeSettings
-} from '../../common/interface'
+import { getSetting, setSettings, removeSettings } from '../../common/interface'
 import { getBool, mergeDedupe } from '../../common/utilities'
 import { getGuid, fetchStoredTags } from '../../common/api'
 
@@ -115,7 +111,6 @@ function* initSetup() {
 }
 
 function* hydrateState() {
-
     // Consolidate tags: Remove this in 3.0.1.0
     const tags = JSON.parse(getSetting('tags')) || []
     const storedTags = JSON.parse(getSetting('tags_stored')) || []
@@ -168,7 +163,7 @@ function* hydrateTags() {
     // Check for server tags
     const fetchedSince = getSetting('tags_fetched_timestamp') || 0
     const fetchTags = yield call(fetchStoredTags, fetchedSince)
-    const fetchedTags = fetchTags.tags || []
+    const fetchedTags = fetchTags ? fetchTags.tags || [] : []
     const storedTags = JSON.parse(getSetting('tags_stored')) || []
     const tags_stored = mergeDedupe([...storedTags, ...fetchedTags])
 
