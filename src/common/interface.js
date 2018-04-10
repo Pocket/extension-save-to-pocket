@@ -61,7 +61,7 @@ export function onFocusChanged(callback) {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 export function sendMessage(extensionId = null, message, cb) {
     let callback = isFunction(cb) ? cb : () => {}
-    return chrome.runtime.sendMessage(extensionId, message, callback)
+    return chrome.runtime.sendMessage(message, callback)
 }
 
 export function sendMessageToTab(tabId, message, cb) {
@@ -207,6 +207,12 @@ export function executeScript(tabId, scriptObject, cb) {
 }
 /* References
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+export function getExtensionInfo() {
+    return new Promise(resolve => {
+        return chrome.management.getSelf(resolve)
+    })
+}
 
 export function getBackgroundPage() {
     return chrome.extension.getBackgroundPage()
