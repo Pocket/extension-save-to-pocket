@@ -28,6 +28,11 @@ pocketFrame.watch()
 /* MESSAGE
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 Interface.addMessageListener((request, sender, sendResponse) => {
+    if (request.action === 'getExtensionInfo') {
+        Interface.getExtensionInfo().then(sendResponse)
+        return true
+    }
+
     if (request.action === 'getTabId') {
         sendResponse(sender.tab.id)
         return true
