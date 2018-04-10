@@ -17,7 +17,7 @@ export const recommendationActions = {
 function buildFeed(feed, source_id) {
     return feed.map(rec => {
         const itemObject = {
-            id: rec.item.item_id,
+            id: parseInt(rec.item.item_id, 10),
             sort_id: rec.sort_id,
             source_id: source_id,
             date: Date.now(),
@@ -49,7 +49,7 @@ function buildFeed(feed, source_id) {
 
 function setFeedItemStatus(feed, id, status) {
     return feed.map(rec => {
-        if (rec.id !== id) return rec
+        if (parseInt(rec.id, 10) !== parseInt(id, 10)) return rec
         rec.status = status
         return rec
     })
@@ -88,7 +88,7 @@ export const recommendations = (state = {}, action) => {
         case 'REQUEST_SAVE_REC_TO_POCKET': {
             const tabId = action.data.tabId
             const feed = state[tabId].feed
-            const id = action.data.id
+            const id = action.data.item_id
             return {
                 ...state,
                 [tabId]: {
@@ -116,9 +116,11 @@ export const recommendations = (state = {}, action) => {
             }
         }
 
+        case 'SAVE_RECOMMENDATION_TIMEOUT':
         case 'SAVE_RECOMMENDATION_FAILURE': {
             const feed = state[action.tabId].feed
             const id = action.id
+            console.error('Recommendation Failed to Save', action.status)
             return {
                 ...state,
                 [action.tabId]: {
@@ -199,22 +201,24 @@ function* saveRecommendation(action) {
             authToken
         )
 
-        yield data && data.status === 'ok'
-            ? yield put({
+        if(data && data.status === 'ok'){
+            yield put({
                   type: 'SAVE_RECOMMENDATION_SUCCESS',
                   data,
                   tabId: action.data.tabId,
                   id: action.data.item_id
               })
-            : yield put({
+        } else {
+            yield put({
                   type: 'SAVE_RECOMMENDATION_FAILURE',
                   status: 'not ok',
                   tabId: action.data.tabId,
                   id: action.data.item_id
               })
+        }
     } else {
         yield put({
-            type: 'SAVE_RECOMMENDATION_FAILURE',
+            type: 'SAVE_RECOMMENDATION_TIMEOUT',
             status: 'timeout',
             tabId: action.data.tabId,
             id: action.data.item_id
