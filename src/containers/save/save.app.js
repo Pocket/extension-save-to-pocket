@@ -20,7 +20,7 @@ class App extends Component {
         }
     }
 
-    componentWillUpdate(nextProps, nextState) {
+    componentWillUpdate(nextProps) {
         const isActive = nextProps.tab_id === nextProps.active
         const currentTab = nextProps.tabs
             ? nextProps.tabs[nextProps.active]
@@ -110,6 +110,7 @@ class App extends Component {
                 <SaveContainer
                     isSaveActive={this.isSaveActive()}
                     showRecs={this.showRecs}
+                    shouldAutoFocus={this.props.setup.on_save_auto_focus}
                     onHover={this.onHover}
                     offHover={this.offHover}
                     tab_id={this.props.tab_id}

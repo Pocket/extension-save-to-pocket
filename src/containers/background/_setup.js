@@ -12,6 +12,7 @@ const initialState = {
     base_installed: 1,
 
     on_save_recommendations: 1,
+    on_save_auto_focus: 0,
 
     sites_facebook: 1,
     sites_hackernews: 1,
@@ -23,6 +24,7 @@ const initialState = {
 export const setupActions = {
     setupExtension: () => ({ type: 'SETUP' }),
     toggleRecommendations: () => ({ type: 'TOGGLE_RECOMMENDATIONS' }),
+    toggleAutoFocus: () => ({ type: 'TOGGLE_AUTO_FOCUS' }),
     toggleKeyboardShortcut: () => ({ type: 'TOGGLE_SHORTCUT' }),
     toggleSite: sitename => ({ type: 'TOGGLE_SITE', sitename })
 }
@@ -61,6 +63,13 @@ export const setup = (state = initialState, action) => {
             }
         }
 
+        case 'SET_AUTO_FOCUS': {
+            return {
+                ...state,
+                on_save_auto_focus: action.active
+            }
+        }
+
         case 'SET_SITES': {
             return {
                 ...state,
@@ -90,6 +99,9 @@ export function* wHydrate() {
 }
 export function* wToggleRecs() {
     yield takeLatest('TOGGLE_RECOMMENDATIONS', toggleRecommendations)
+}
+export function* wToggleAutoFocus() {
+    yield takeLatest('TOGGLE_AUTO_FOCUS', toggleAutoFocus)
 }
 export function* wToggleSite() {
     yield takeLatest('TOGGLE_SITE', toggleSite)
@@ -131,6 +143,7 @@ function* hydrateState() {
         account_avatar: getSetting('account_avatar'),
         account_premium: getBool(getSetting('account_premium')),
         on_save_recommendations: getBool(getSetting('on_save_recommendations')),
+        on_save_auto_focus: getBool(getSetting('on_save_auto_focus')),
         sites_facebook: getBool(getSetting('sites_facebook')),
         sites_hackernews: getBool(getSetting('sites_hackernews')),
         sites_reddit: getBool(getSetting('sites_reddit')),
@@ -147,6 +160,14 @@ function* toggleRecommendations() {
 
     setSettings({ on_save_recommendations: active ? 0 : 1 })
     yield put({ type: 'SET_RECOMMENDATIONS', active: !active })
+}
+
+function* toggleAutoFocus() {
+    const setup = yield select(getSetup)
+    const active = setup.on_save_auto_focus
+
+    setSettings({ on_save_auto_focus: active ? 0 : 1 })
+    yield put({ type: 'SET_AUTO_FOCUS', active: !active })
 }
 
 function* toggleSite(action) {

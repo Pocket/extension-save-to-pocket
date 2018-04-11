@@ -110,7 +110,8 @@ export default class Taginput extends Component {
                         onBlur: this.props.setBlur,
                         onKeyUp: this.onKeyUp,
                         onKeyDown: this.onInput,
-                        onKeyPress: this.onInput
+                        onKeyPress: this.onInput,
+                        autoFocus: this.props.shouldAutoFocus
                     })}
                 />
                 {this.state.error && (

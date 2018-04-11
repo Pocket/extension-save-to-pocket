@@ -48,6 +48,8 @@
         "quick_save_services_title" : "Quick save services:",
         "recommendations_detail": "When you save a page, see recommended stories from Pocket based on similar topics.",
         "recommendations_title": "Recommendations on Save",
+        "autofocus_detail": "When you save a page, auto-focus the tag entry field.",
+        "autofocus_title": "Auto-focus tagging",
         "record_shortcut" : "Record a new shortcut",
         "reset_to_default": "Reset to default",
         "save_to_pocket" : "Save To Pocket",

@@ -142,6 +142,28 @@ export default class Options extends Component {
                 <div className={styles.section}>
                     <div className={styles.sectionContent}>
                         <div className={styles.sectionTitle}>
+                            {localize('options_page', 'autofocus_title')}
+                        </div>
+                        <div className={styles.sectionMain}>
+                            <Toggle
+                                active={
+                                    this.props.setup.on_save_auto_focus
+                                }
+                                action={this.props.toggleAutoFocus}
+                            />
+                            <div className={styles.info}>
+                                {localize(
+                                    'options_page',
+                                    'autofocus_detail'
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className={styles.section}>
+                    <div className={styles.sectionContent}>
+                        <div className={styles.sectionTitle}>
                             {localize('options_page', 'questions_pocket_title')}
                         </div>
                         <div className={styles.sectionMain}>

@@ -4,7 +4,7 @@ import { saveActions } from '../containers/save/_save'
 import { taggingActions } from '../containers/save/toolbar/tagging/_tagging'
 import { recommendationActions } from '../containers/save/recommendations/_recommendations'
 
-const { setupExtension, toggleRecommendations, toggleSite } = setupActions
+const { setupExtension, toggleRecommendations, toggleAutoFocus, toggleSite } = setupActions
 
 const { frameLoaded, setTabStatus, setDropDownStatus } = tabsActions
 
@@ -39,6 +39,7 @@ const {
 export {
     setupExtension,
     toggleRecommendations,
+    toggleAutoFocus,
     toggleSite,
     frameLoaded,
     setTabStatus,

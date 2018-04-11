@@ -66,6 +66,7 @@ class SaveContainer extends Component {
                                         }}>
                                         <Toolbar
                                             tabId={this.props.tab_id}
+                                            shouldAutoFocus={this.props.shouldAutoFocus}
                                             setDropDownStatus={
                                                 this.props.setDropDownStatus
                                             }

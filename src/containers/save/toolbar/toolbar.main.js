@@ -78,6 +78,7 @@ class Toolbar extends Component {
 
                 {(status === 'saved' || status === 'saving') && (
                     <Tagging
+                        shouldAutoFocus={this.props.shouldAutoFocus}
                         tags={this.props.tags}
                         activateTag={this.props.activateTag}
                         deactivateTag={this.props.deactivateTag}

@@ -139,6 +139,7 @@ export default class Tagging extends Component {
                                 )}
 
                                 <Taginput
+                                    shouldAutoFocus={this.props.shouldAutoFocus}
                                     highlightedIndex={highlightedIndex}
                                     getInputProps={getInputProps}
                                     hasTags={!!this.hasTags()}
