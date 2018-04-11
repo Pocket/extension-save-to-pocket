@@ -120,7 +120,7 @@ export default class RecommendationItem extends Component {
                                     tabId: this.props.tabId,
                                     item_id: item.id.toString(),
                                     title: item.title,
-                                    url: item.url || item.resolved_url,
+                                    url: item.url,
                                     position: this.props.position,
                                     source_id: item.source_id
                                 })
