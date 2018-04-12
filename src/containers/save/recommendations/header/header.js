@@ -7,38 +7,33 @@ const hasRecs = recs => recs
 const hasFeed = recs => recs && recs.feed && recs.feed.length > 0
 
 export default function Header(recs) {
-    return (
+  return (
+    <div>
+      {!hasRecs(recs) && <Loading />}
+
+      {hasRecs(recs) && (
         <div>
-            {!hasRecs(recs) && <Loading />}
+          {hasFeed(recs) && (
+            <div className={styles.header}>
+              {recs.reason
+                ? `${localize('recommendations', 'more_on')} ${recs.reason}`
+                : localize('recommendations', 'people_also_saved')}
+            </div>
+          )}
 
-            {hasRecs(recs) && (
-                <div>
-                    {hasFeed(recs) && (
-                        <div className={styles.header}>
-                            {recs.reason
-                                ? `${localize('recommendations', 'more_on')} ${
-                                      recs.reason
-                                  }`
-                                : localize(
-                                      'recommendations',
-                                      'people_also_saved'
-                                  )}
-                        </div>
-                    )}
-
-                    {!hasFeed(recs) && (
-                        <div className={styles.header}>
-                            {localize('recommendations', 'more_stories_detail')}
-                            <a
-                                href="https://getpocket.com/a/recommended/?src=ext_recs"
-                                rel="noopener noreferrer"
-                                target="_blank">
-                                {localize('recommendations', 'explore')}
-                            </a>
-                        </div>
-                    )}
-                </div>
-            )}
+          {!hasFeed(recs) && (
+            <div className={styles.header}>
+              {localize('recommendations', 'more_stories_detail')}
+              <a
+                href="https://getpocket.com/a/recommended/?src=ext_recs"
+                rel="noopener noreferrer"
+                target="_blank">
+                {localize('recommendations', 'explore')}
+              </a>
+            </div>
+          )}
         </div>
-    )
+      )}
+    </div>
+  )
 }

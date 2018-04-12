@@ -2,25 +2,25 @@ import styles from './twitter.scss' // Import Styles
 import { addMessageListener, sendMessage } from '../../../common/interface'
 
 const mutationConfig = {
-    childList: true,
-    attributes: false,
-    characterData: false,
-    subtree: true
+  childList: true,
+  attributes: false,
+  characterData: false,
+  subtree: true
 }
 
 // Set up Observer
 const appObserver = new MutationObserver(appMutationHandler)
 function appMutationHandler(mutationList) {
-    for (var mutation of mutationList) {
-        if (
-            mutation.type === 'childList' &&
-            (mutation.target.id === 'page-container' ||
-                mutation.target.id === 'stream-items-id' ||
-                mutation.target.id === 'permalink-overlay-body')
-        ) {
-            handleNewItems()
-        }
+  for (var mutation of mutationList) {
+    if (
+      mutation.type === 'childList' &&
+      (mutation.target.id === 'page-container' ||
+        mutation.target.id === 'stream-items-id' ||
+        mutation.target.id === 'permalink-overlay-body')
+    ) {
+      handleNewItems()
     }
+  }
 }
 
 // Define Markup
@@ -40,82 +40,80 @@ const saveToPocketMarkup = `
 `
 const saveToPocketButton = document.createElement('div')
 saveToPocketButton.classList.add(
-    'ProfileTweet-action',
-    'ProfileTweet-action--stp'
+  'ProfileTweet-action',
+  'ProfileTweet-action--stp'
 )
 saveToPocketButton.innerHTML = saveToPocketMarkup
 
 // Start and Stop integration
 function resolveCheck(integrate) {
-    if (integrate) return startIntegration()
-    stopIntegration()
+  if (integrate) return startIntegration()
+  stopIntegration()
 }
 
 function startIntegration() {
-    appObserver.observe(document, mutationConfig)
-    handleNewItems()
+  appObserver.observe(document, mutationConfig)
+  handleNewItems()
 }
 
 function stopIntegration() {
-    appObserver.disconnect()
-    const nodeList = document.querySelectorAll('div.ProfileTweet-action--stp')
-    nodeList.forEach(e => e.parentNode.removeChild(e))
+  appObserver.disconnect()
+  const nodeList = document.querySelectorAll('div.ProfileTweet-action--stp')
+  nodeList.forEach(e => e.parentNode.removeChild(e))
 }
 
 // Set Injections
 function handleNewItems() {
-    const tweetActionLists = document.querySelectorAll(
-        '.tweet:not(.PocketAdded)'
-    )
-    if (!tweetActionLists.length) return
+  const tweetActionLists = document.querySelectorAll('.tweet:not(.PocketAdded)')
+  if (!tweetActionLists.length) return
 
-    Array.from(tweetActionLists, addPocketFunctionality)
+  Array.from(tweetActionLists, addPocketFunctionality)
 }
 
 function addPocketFunctionality(element) {
-    const permaLink = element.getAttribute('data-permalink-path')
-    const elementId = element.getAttribute('data-item-id')
+  const permaLink = element.getAttribute('data-permalink-path')
+  const elementId = element.getAttribute('data-item-id')
 
-    const buttonClone = saveToPocketButton.cloneNode(true)
-    buttonClone.id = `pocketButton-${elementId}`
-    buttonClone.addEventListener(
-        'click',
-        handleSave.bind(this, elementId, permaLink)
-    )
+  const buttonClone = saveToPocketButton.cloneNode(true)
+  buttonClone.id = `pocketButton-${elementId}`
+  buttonClone.addEventListener(
+    'click',
+    handleSave.bind(this, elementId, permaLink)
+  )
 
-    buttonClone.setAttribute('data-permalink-path', permaLink)
-    buttonClone.setAttribute('data-item-id', elementId)
+  buttonClone.setAttribute('data-permalink-path', permaLink)
+  buttonClone.setAttribute('data-item-id', elementId)
 
-    const actionList = element.querySelector('.ProfileTweet-actionList')
-    if (actionList) {
-        actionList.appendChild(buttonClone)
-        element.classList.add('PocketAdded')
-    }
+  const actionList = element.querySelector('.ProfileTweet-actionList')
+  if (actionList) {
+    actionList.appendChild(buttonClone)
+    element.classList.add('PocketAdded')
+  }
 }
 
 // Handle saving
 function handleSave(elementId, permaLink) {
-    sendMessage(
-        null,
-        { action: 'twitterSave', permaLink, elementId },
-        resolveSave
-    )
+  sendMessage(
+    null,
+    { action: 'twitterSave', permaLink, elementId },
+    resolveSave
+  )
 }
 
 function resolveSave(data) {
-    const elementId = data.saveObject.elementId
-    const tweet = document.getElementById(`pocketButton-${elementId}`)
-    tweet.classList.add(styles.saved)
+  const elementId = data.saveObject.elementId
+  const tweet = document.getElementById(`pocketButton-${elementId}`)
+  tweet.classList.add(styles.saved)
 }
 
 function handleAction(action, sender, sendResponse) {
-    if (action.type === 'twitterStop') {
-        stopIntegration()
-    }
+  if (action.type === 'twitterStop') {
+    stopIntegration()
+  }
 
-    if (action.type === 'twitterStart') {
-        startIntegration()
-    }
+  if (action.type === 'twitterStart') {
+    startIntegration()
+  }
 }
 
 addMessageListener(handleAction)

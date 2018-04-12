@@ -8,7 +8,8 @@
   "private": true,
   "devDependencies": {
     "eslint-config-prettier": "^2.9.0",
-    "pocket-build-tools": "git+https://git@github.com/Pocket/front-end-build-tools.git",
+    "pocket-build-tools":
+      "git+https://git@github.com/Pocket/front-end-build-tools.git",
     "redux-devtools-extension": "^2.13.2",
     "remote-redux-devtools": "^0.5.12",
     "remotedev-server": "^0.2.4"
@@ -33,24 +34,12 @@
     "semver": "^5.4.1"
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "prettier"
-    ],
+    "extends": ["react-app", "prettier"],
     "rules": {
       "no-unneeded-ternary": "warn",
-      "linebreak-style": [
-        "error",
-        "unix"
-      ],
-      "quotes": [
-        "error",
-        "single"
-      ],
-      "semi": [
-        "error",
-        "never"
-      ],
+      "linebreak-style": ["error", "unix"],
+      "quotes": ["error", "single"],
+      "semi": ["error", "never"],
       "no-unused-vars": [
         "warn",
         {
@@ -62,17 +51,13 @@
   },
   "stylelint": {
     "extends": "stylelint-config-standard",
-    "plugins": [
-      "stylelint-order"
-    ],
+    "plugins": ["stylelint-order"],
     "rules": {
       "color-named": "never",
       "indentation": [
-        4,
+        2,
         {
-          "ignore": [
-            "value"
-          ]
+          "ignore": ["value"]
         }
       ],
       "max-nesting-depth": 3,
@@ -93,8 +78,8 @@
     "printWidth": 80,
     "semi": false,
     "singleQuote": true,
-    "tabs": false,
-    "tabWidth": 4,
+    "useTabs": false,
+    "tabWidth": 2,
     "trailingComma": "none"
   },
   "scripts": {
