@@ -1,9 +1,9 @@
 import { request } from './_request/request'
 import { saveToPocket } from './saving/save'
 import {
-    getRecommendations,
-    saveRecToPocket,
-    openRecommendation
+  getRecommendations,
+  saveRecToPocket,
+  openRecommendation
 } from './saving/recommendations'
 import { getOnSaveTags, syncItemTags, fetchStoredTags } from './saving/tags'
 import { archiveItem } from './saving/archive'
@@ -15,20 +15,20 @@ import { getTrendingTopics } from './newtab/trendingTopics'
 import { sendAnalytics, sendSpocAnalytics } from './analytics/analytics'
 
 export {
-    authorize,
-    saveToPocket,
-    getRecommendations,
-    saveRecToPocket,
-    openRecommendation,
-    getOnSaveTags,
-    request,
-    archiveItem,
-    removeItem,
-    getGuid,
-    getTrendingArticles,
-    getTrendingTopics,
-    sendAnalytics,
-    sendSpocAnalytics,
-    syncItemTags,
-    fetchStoredTags
+  authorize,
+  saveToPocket,
+  getRecommendations,
+  saveRecToPocket,
+  openRecommendation,
+  getOnSaveTags,
+  request,
+  archiveItem,
+  removeItem,
+  getGuid,
+  getTrendingArticles,
+  getTrendingTopics,
+  sendAnalytics,
+  sendSpocAnalytics,
+  syncItemTags,
+  fetchStoredTags
 }

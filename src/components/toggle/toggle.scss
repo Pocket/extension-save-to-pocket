@@ -2,41 +2,41 @@
 @import '../../common/_styles/variables';
 
 .toggle {
-    all: unset;
-    background: $silver;
-    border: 1px solid $overcast;
-    border-radius: 2em;
-    cursor: pointer;
-    display: inline-block;
-    height: 10px;
-    margin-right: 5px;
-    outline: 0;
-    padding: 2px;
-    transition: all 0.4s ease;
-    width: 20px;
+  all: unset;
+  background: $silver;
+  border: 1px solid $overcast;
+  border-radius: 2em;
+  cursor: pointer;
+  display: inline-block;
+  height: 10px;
+  margin-right: 5px;
+  outline: 0;
+  padding: 2px;
+  transition: all 0.4s ease;
+  width: 20px;
+
+  &::after {
+    background: $white;
+    border-radius: 50%;
+    content: "";
+    display: block;
+    height: 100%;
+    left: 0;
+    position: relative;
+    transition: all 0.2s ease;
+    width: 50%;
+  }
+
+  &.darkMode,
+  &.darkModeSet {
+    border-color: $pitch;
+  }
+
+  &.active {
+    background-color: $teal;
 
     &::after {
-        background: $white;
-        border-radius: 50%;
-        content: "";
-        display: block;
-        height: 100%;
-        left: 0;
-        position: relative;
-        transition: all 0.2s ease;
-        width: 50%;
+      left: 50%;
     }
-
-    &.darkMode,
-    &.darkModeSet {
-        border-color: $pitch;
-    }
-
-    &.active {
-        background-color: $teal;
-
-        &::after {
-            left: 50%;
-        }
-    }
+  }
 }

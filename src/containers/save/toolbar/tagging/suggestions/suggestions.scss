@@ -1,54 +1,54 @@
 @import '../../../../../common/_styles/colors';
 
 .suggestions {
-    box-sizing: border-box;
-    color: $pitch;
-    display: block;
-    font-size: 13px;
-    line-height: 17px;
-    text-align: left;
-    width: 100%;
+  box-sizing: border-box;
+  color: $pitch;
+  display: block;
+  font-size: 13px;
+  line-height: 17px;
+  text-align: left;
+  width: 100%;
 }
 
 .header {
-    border-bottom: 1px solid $snow;
-    font-size: 1.1em;
-    font-weight: 400;
-    padding: 0.3em 0;
+  border-bottom: 1px solid $snow;
+  font-size: 1.1em;
+  font-weight: 400;
+  padding: 0.3em 0;
 }
 
 .suggestionsList {
-    display: flex;
-    flex-wrap: wrap;
-    list-style-type: none;
-    margin: 0;
-    padding: 10px 0 0;
-    text-align: left;
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  margin: 0;
+  padding: 10px 0 0;
+  text-align: left;
 }
 
 .suggestion {
-    background-color: $snow;
-    border: 1px solid $silver;
-    border-radius: 3px;
-    color: $tar;
-    cursor: pointer;
-    display: inline-block;
-    // flex-grow: 1;
-    font-weight: 300;
-    letter-spacing: 0.05em;
-    line-height: 16px;
-    margin-bottom: 4px;
-    margin-right: 6px;
-    min-width: 15%;
-    padding: 2px 8px;
-    text-align: center;
-    text-transform: lowercase;
-    transform: translateZ(0.1);
+  background-color: $snow;
+  border: 1px solid $silver;
+  border-radius: 3px;
+  color: $tar;
+  cursor: pointer;
+  display: inline-block;
+  // flex-grow: 1;
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  line-height: 16px;
+  margin-bottom: 4px;
+  margin-right: 6px;
+  min-width: 15%;
+  padding: 2px 8px;
+  text-align: center;
+  text-transform: lowercase;
+  transform: translateZ(0.1);
 
-    &:hover {
-        border-color: $overcast;
-        background-color: $darksmoke;
-        color: $white;
-    }
+  &:hover {
+    background-color: $darksmoke;
+    border-color: $overcast;
+    color: $white;
+  }
 }
 

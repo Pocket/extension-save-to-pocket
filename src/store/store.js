@@ -9,13 +9,13 @@ import rootReducer from './combineReducers'
 const composeEnhancers = composeWithDevTools({ port: 8000 })
 
 export const initializeStore = () => {
-    const sagaMiddleware = createSagaMiddleware()
-    const enhancers = composeEnhancers(applyMiddleware(sagaMiddleware))
-    const store = createStore(rootReducer, {}, enhancers)
+  const sagaMiddleware = createSagaMiddleware()
+  const enhancers = composeEnhancers(applyMiddleware(sagaMiddleware))
+  const store = createStore(rootReducer, {}, enhancers)
 
-    wrapStore(store, { portName: PORT_NAME })
+  wrapStore(store, { portName: PORT_NAME })
 
-    sagaMiddleware.run(rootSaga)
+  sagaMiddleware.run(rootSaga)
 
-    return store
+  return store
 }

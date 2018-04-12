@@ -9,67 +9,67 @@ const { setupExtension, toggleRecommendations, toggleSite } = setupActions
 const { frameLoaded, setTabStatus, setDropDownStatus } = tabsActions
 
 const {
-    savePageToPocket,
-    saveUrlToPocket,
-    removeItem,
-    archiveItem,
-    closeSavePanel,
-    cancelCloseSavePanel
+  savePageToPocket,
+  saveUrlToPocket,
+  removeItem,
+  archiveItem,
+  closeSavePanel,
+  cancelCloseSavePanel
 } = saveActions
 
 const {
-    getTags,
-    activateTag,
-    deactivateTag,
-    addTag,
-    removeTag,
-    deactivateTags,
-    removeTags
+  getTags,
+  activateTag,
+  deactivateTag,
+  addTag,
+  removeTag,
+  deactivateTags,
+  removeTags
 } = taggingActions
 
 const {
-    saveRecommendation,
-    openRecommendation,
-    spocImpression,
-    spocView,
-    spocClick,
-    spocRemove
+  saveRecommendation,
+  openRecommendation,
+  spocImpression,
+  spocView,
+  spocClick,
+  spocRemove
 } = recommendationActions
 
 export {
-    setupExtension,
-    toggleRecommendations,
-    toggleSite,
-    frameLoaded,
-    setTabStatus,
-    setDropDownStatus,
-    savePageToPocket,
-    saveUrlToPocket,
-    removeItem,
-    archiveItem,
-    closeSavePanel,
-    cancelCloseSavePanel,
-    getTags,
-    activateTag,
-    deactivateTag,
-    addTag,
-    removeTag,
-    deactivateTags,
-    removeTags,
-    saveRecommendation,
-    openRecommendation,
-    spocImpression,
-    spocView,
-    spocClick,
-    spocRemove
+  setupExtension,
+  toggleRecommendations,
+  toggleSite,
+  frameLoaded,
+  setTabStatus,
+  setDropDownStatus,
+  savePageToPocket,
+  saveUrlToPocket,
+  removeItem,
+  archiveItem,
+  closeSavePanel,
+  cancelCloseSavePanel,
+  getTags,
+  activateTag,
+  deactivateTag,
+  addTag,
+  removeTag,
+  deactivateTags,
+  removeTags,
+  saveRecommendation,
+  openRecommendation,
+  spocImpression,
+  spocView,
+  spocClick,
+  spocRemove
 }
 
 export function openPocket() {
-    return { type: 'OPEN_POCKET' }
+  return { type: 'OPEN_POCKET' }
 }
 export function openOptions() {
-    return { type: 'OPEN_OPTIONS' }
+  return { type: 'OPEN_OPTIONS' }
 }
 export function hydrateState() {
-    return { type: 'HYDRATE_STATE' }
+  return { type: 'HYDRATE_STATE' }
 }

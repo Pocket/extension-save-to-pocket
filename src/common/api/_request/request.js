@@ -7,37 +7,37 @@ import { getAccessToken, getAPIUrl } from '../../helpers'
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 function request(options, skipAuth) {
-    if (!CONSUMER_KEY) throw new Error('Invalid Auth Key')
-    if (!skipAuth) options.data.access_token = getAccessToken()
+  if (!CONSUMER_KEY) throw new Error('Invalid Auth Key')
+  if (!skipAuth) options.data.access_token = getAccessToken()
 
-    options.data.consumer_key = CONSUMER_KEY
+  options.data.consumer_key = CONSUMER_KEY
 
-    const headers = new Headers({
-        'X-Accept': 'application/json',
-        'Content-Type': 'application/json'
-    })
+  const headers = new Headers({
+    'X-Accept': 'application/json',
+    'Content-Type': 'application/json'
+  })
 
-    const serverAuth = getSetting('base_server_auth')
+  const serverAuth = getSetting('base_server_auth')
 
-    if (serverAuth) {
-        headers.append('Authorization', 'Basic ' + Base64.encode(serverAuth))
-    }
+  if (serverAuth) {
+    headers.append('Authorization', 'Basic ' + Base64.encode(serverAuth))
+  }
 
-    const fetchSettings = {
-        method: 'POST',
-        headers: headers,
-        body: JSON.stringify(options.data)
-    }
+  const fetchSettings = {
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify(options.data)
+  }
 
-    return fetch(getAPIUrl() + options.path, fetchSettings)
-        .then(handleErrors)
-        .then(response => response.json())
-        .catch(error => console.log(error))
+  return fetch(getAPIUrl() + options.path, fetchSettings)
+    .then(handleErrors)
+    .then(response => response.json())
+    .catch(error => console.log(error))
 }
 
 function handleErrors(response) {
-    if (!response.ok) throw Error(response.statusText)
-    return response
+  if (!response.ok) throw Error(response.statusText)
+  return response
 }
 
 export { request }

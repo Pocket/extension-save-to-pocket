@@ -33,43 +33,43 @@ import { wSpocView } from '../containers/save/recommendations/_recommendations'
 import { wSpocClick } from '../containers/save/recommendations/_recommendations'
 
 export function* wOpenPocket() {
-    yield takeLatest('OPEN_POCKET', openPocket)
+  yield takeLatest('OPEN_POCKET', openPocket)
 }
 export function* wOpenOptions() {
-    yield takeLatest('OPEN_OPTIONS', openOptions)
+  yield takeLatest('OPEN_OPTIONS', openOptions)
 }
 
 export default function* rootSaga() {
-    yield all([
-        wSetup(),
-        wHydrate(),
-        wToggleRecs(),
-        wToggleSite(),
-        wSaveTweet(),
-        wUserLoggedIn(),
+  yield all([
+    wSetup(),
+    wHydrate(),
+    wToggleRecs(),
+    wToggleSite(),
+    wSaveTweet(),
+    wUserLoggedIn(),
 
-        wTabChanges(),
+    wTabChanges(),
 
-        wOpenPocket(),
-        wOpenOptions(),
+    wOpenPocket(),
+    wOpenOptions(),
 
-        wAuthCodeRecieved(),
-        wLogout(),
+    wAuthCodeRecieved(),
+    wLogout(),
 
-        wCloseSavePanel(),
-        wSavePage(),
-        wSaveUrl(),
-        wRemoveItem(),
-        wArchiveItem(),
+    wCloseSavePanel(),
+    wSavePage(),
+    wSaveUrl(),
+    wRemoveItem(),
+    wArchiveItem(),
 
-        wTagChanges(),
-        wSuggestedTags(),
+    wTagChanges(),
+    wSuggestedTags(),
 
-        wRecommendations(),
-        wSaveRecommendation(),
-        wOpenRecommendation(),
-        wSpocImpression(),
-        wSpocView(),
-        wSpocClick()
-    ])
+    wRecommendations(),
+    wSaveRecommendation(),
+    wOpenRecommendation(),
+    wSpocImpression(),
+    wSpocView(),
+    wSpocClick()
+  ])
 }
