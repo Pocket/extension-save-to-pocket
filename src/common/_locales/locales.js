@@ -16,32 +16,31 @@ import ru from './ru/strings.json'
 import zh_CN from './zh_CN/strings.json'
 import zh_TW from './zh_TW/strings.json'
 
-
 function localizedStrings() {
-    const localizedCopy = {
-        de,
-        en,
-        es,
-        es_419,
-        fr,
-        it,
-        ja,
-        ko,
-        nl,
-        pl,
-        pt_BR,
-        pt_PT,
-        ru,
-        zh_CN,
-        zh_TW,
-    }
+  const localizedCopy = {
+    de,
+    en,
+    es,
+    es_419,
+    fr,
+    it,
+    ja,
+    ko,
+    nl,
+    pl,
+    pt_BR,
+    pt_PT,
+    ru,
+    zh_CN,
+    zh_TW
+  }
 
-    const currentLanguage = getCurrentLanguageCode()
-    return localizedCopy[currentLanguage] || localizedCopy['en']
+  const currentLanguage = getCurrentLanguageCode()
+  return localizedCopy[currentLanguage] || localizedCopy['en']
 }
 
 const currentStrings = localizedStrings()
 
-export function localize(section,string) {
-    return currentStrings[section][string]
+export function localize(section, string) {
+  return currentStrings[section][string]
 }

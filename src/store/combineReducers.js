@@ -6,10 +6,10 @@ import { tags } from '../containers/save/toolbar/tagging/_tagging'
 import { recommendations } from '../containers/save/recommendations/_recommendations'
 
 export default combineReducers({
-    setup,
-    active,
-    tabs,
-    saves,
-    tags,
-    recommendations
+  setup,
+  active,
+  tabs,
+  saves,
+  tags,
+  recommendations
 })

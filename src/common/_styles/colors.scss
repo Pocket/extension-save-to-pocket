@@ -3,30 +3,30 @@
 /* Colors
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 $hot-coral              : #ef4056;
-$amber                  : #FCB643;
-$mint-green             : #83EDB8;
-$teal                   : #50BCB6;
+$amber                  : #fcb643;
+$mint-green             : #83edb8;
+$teal                   : #50bcb6;
 $tealHover              : darken($teal, 10%);
 $emerald                : #00a69d;
 
-$black                  : #000000;
+$black                  : #000;
 $night                  : #1f1f1f;
-$pitch                  : #222222;
-$tar                    : #333333;
-$coal                   : #444444;
-$darksmoke              : #666666;
-$overcast               : #999999;
-$silver                 : #bbbbbb;
-$gray                   : #cccccc;
-$smoke                  : #dddddd;
+$pitch                  : #222;
+$tar                    : #333;
+$coal                   : #444;
+$darksmoke              : #666;
+$overcast               : #999;
+$silver                 : #bbb;
+$gray                   : #ccc;
+$smoke                  : #ddd;
 $alabaster              : #e6e6e6;
-$snow                   : #eeeeee;
+$snow                   : #eee;
 $powder                 : #f9f9f9;
-$white                  : #ffffff;
+$white                  : #fff;
 
 /* Color Utilization
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-$rainbow                : linear-gradient(90deg, #AFECC3  0%, #84C3C0  34%, #D45A68  67%, #ECBF63  100%);
+$rainbow                : linear-gradient(90deg, #afecc3  0%, #84c3c0  34%, #d45a68  67%, #ecbf63  100%);
 
 $shadow-button          : 2px 2px 8px rgba(0, 0, 0, 0.4);
 $shadow-button-down     : 1px 1px 4px rgba(0, 0, 0, 0.5);

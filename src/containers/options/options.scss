@@ -3,203 +3,203 @@
 @import '../../common/_styles/components';
 
 .container {
-    box-sizing: border-box;
-    display: inline-block;
-    font-family: $fontstack-default;
-    margin-bottom: 80px;
-    padding: 0 30px;
-    width: 700px;
+  box-sizing: border-box;
+  display: inline-block;
+  font-family: $fontstack-default;
+  margin-bottom: 80px;
+  padding: 0 30px;
+  width: 700px;
 
-    @include narrow {
-        width: 100%;
-    }
+  @include narrow {
+    width: 100%;
+  }
 }
 
 .title {
-    color: $pitch;
-    font-size: 28px;
-    font-weight: 300;
-    margin: 70px 0 0;
-    padding: 0 0 20px;
-    text-align: left;
+  color: $pitch;
+  font-size: 28px;
+  font-weight: 300;
+  margin: 70px 0 0;
+  padding: 0 0 20px;
+  text-align: left;
 
-    .darkMode & {
-        color: $gray;
-    }
+  .darkMode & {
+    color: $gray;
+  }
 }
 
 .copy {
-    color: $pitch;
-    font-size: 14px;
-    padding: 0 0 20px;
-    text-align: left;
+  color: $pitch;
+  font-size: 14px;
+  padding: 0 0 20px;
+  text-align: left;
 
-    .darkMode & {
-        color: $gray;
-    }
+  .darkMode & {
+    color: $gray;
+  }
 }
 
 .info {
-    font-size: 0.8em;
-    margin-top: 10px;
+  font-size: 0.8em;
+  margin-top: 10px;
 }
 
 .logo {
-    display: inline-block;
-    width: 90px;
+  display: inline-block;
+  width: 90px;
 }
 
 .section {
-    align-items: center;
-    border-top: 1px solid $snow;
-    display: flex;
-    font-size: 14px;
-    justify-content: flex-start;
-    padding: 20px 0;
-    text-align: left;
+  align-items: center;
+  border-top: 1px solid $snow;
+  display: flex;
+  font-size: 14px;
+  justify-content: flex-start;
+  padding: 20px 0;
+  text-align: left;
 
-    .darkMode & {
-        border-color: $tar;
-    }
+  .darkMode & {
+    border-color: $tar;
+  }
 
-    @include narrow {
-        flex-direction: column;
-    }
+  @include narrow {
+    flex-direction: column;
+  }
 }
 
 .sectionContent {
-    display: flex;
+  display: flex;
 }
 
 .sectionContentFull {
-    display: block;
-    width: 100%;
+  display: block;
+  width: 100%;
 }
 
 .sectionTitle {
-    color: $darksmoke;
-    display: block;
-    font-size: 14px;
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    margin-right: 35px;
-    padding-bottom: 5px;
-    text-transform: uppercase;
-    width: 230px;
+  color: $darksmoke;
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-right: 35px;
+  padding-bottom: 5px;
+  text-transform: uppercase;
+  width: 230px;
 
-    .darkMode & {
-        color: $gray;
-    }
+  .darkMode & {
+    color: $gray;
+  }
 
-    @include narrow {
-        margin-bottom: 20px;
-        width: 100%;
-    }
+  @include narrow {
+    margin-bottom: 20px;
+    width: 100%;
+  }
 }
 
 .sectionMain {
-    color: $darksmoke;
-    display: block;
-    font-size: 16px;
-    width: 370px;
+  color: $darksmoke;
+  display: block;
+  font-size: 16px;
+  width: 370px;
 
-    .sectionContentFull & {
-        display: flex;
-        justify-content: space-around;
-        width: 100%;
-    }
+  .sectionContentFull & {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
 
-    .darkMode & {
-        color: $gray;
-    }
+  .darkMode & {
+    color: $gray;
+  }
 
-    @include narrow {
-        width: 100%;
-    }
+  @include narrow {
+    width: 100%;
+  }
 }
 
 .contentFullBlock {
-    color: $darksmoke;
-    display: block;
-    margin: 20px 0 10px;
-    text-align: center;
+  color: $darksmoke;
+  display: block;
+  margin: 20px 0 10px;
+  text-align: center;
 
-    &:hover {
-        color: $teal;
-    }
+  &:hover {
+    color: $teal;
+  }
 }
 
 .blockCopy {
-    display: block;
-    font-weight: 600;
-    margin-top: 15px;
+  display: block;
+  font-weight: 600;
+  margin-top: 15px;
 }
 
 .keyboardShortcut {
-    padding-top: 5px;
+  padding-top: 5px;
 }
 
 .saveServices {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 
-    & > li {
-        margin-bottom: 10px;
+  & > li {
+    margin-bottom: 10px;
 
-        &:last-child {
-            margin-bottom: 0;
-        }
+    &:last-child {
+      margin-bottom: 0;
     }
+  }
 }
 
 .questions {
-    line-height: 1.5em;
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
+  line-height: 1.5em;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
 
-    a {
-        color: $darksmoke;
-        padding: 5px 0;
-        text-transform: lowercase;
+  a {
+    color: $darksmoke;
+    padding: 5px 0;
+    text-transform: lowercase;
 
-        &:hover {
-            color: $teal;
-        }
+    &:hover {
+      color: $teal;
     }
+  }
 }
 
 .button {
-    @include pocketButtonYes;
+  @include pocketButtonYes;
 }
 
 .buttonLink {
-    @include pocketButton;
+  @include pocketButton;
 
-    color: $coal;
-    text-decoration: underline;
+  color: $coal;
+  text-decoration: underline;
 
-    &:hover {
-        color: $emerald;
-    }
+  &:hover {
+    color: $emerald;
+  }
 }
 
 .footer {
-    color: $darksmoke;
-    display: block;
-    font-size: 14px;
-    font-weight: 300;
-    margin-top: 40px;
-    text-align: center;
+  color: $darksmoke;
+  display: block;
+  font-size: 14px;
+  font-weight: 300;
+  margin-top: 40px;
+  text-align: center;
 }
 
 .privacylegal {
-    color: $darksmoke;
-    display: block;
-    margin: 10px 0 0;
+  color: $darksmoke;
+  display: block;
+  margin: 10px 0 0;
 
-    &:hover {
-        color: $teal;
-    }
+  &:hover {
+    color: $teal;
+  }
 }
