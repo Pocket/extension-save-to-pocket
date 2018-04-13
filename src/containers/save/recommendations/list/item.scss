@@ -25,7 +25,8 @@
   }
 }
 
-.itemContainer {
+.itemContainer,
+.spocContainer {
   box-sizing: border-box;
   display: block;
   height: 110px;
@@ -35,14 +36,14 @@
   position: relative;
   width: 100%;
 
-  &.isSpoc {
-    height: 131px;
-    padding: 8px 10px 10px;
-  }
-
   .hasImage & {
     padding-right: 92px;
   }
+}
+
+.spocContainer {
+  height: 131px;
+  padding: 8px 10px 10px;
 }
 
 .title {
