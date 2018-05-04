@@ -130,7 +130,8 @@
   font-size: 14px;
   justify-content: space-between;
   line-height: 16px;
-  padding-bottom: 5px;
+  padding: 5px 0px 5px 10px;
+  position: relative;
 }
 
 .sponsorAvatar {
@@ -169,8 +170,8 @@
   margin: 0;
   padding: 7px 0;
   position: absolute;
-  right: 30px;
-  top: 30px;
+  right: 10px;
+  top: 25px;
   z-index: 3;
 
   button,

@@ -20,7 +20,7 @@ export default class RecommendationList extends Component {
 
   getStyles = () => {
     return this.props.list.map(rec => {
-      const recHeight = rec.isSpoc ? 131 : 110
+      const recHeight = rec.isSpoc ? 135 : 110
       return {
         ...rec,
         data: rec,
