@@ -3,6 +3,8 @@ import React, { Component } from 'react'
 //
 import Toolbar from './toolbar/toolbar.main'
 import Recommendations from './recommendations/recommendations.main'
+import Survey from './survey/survey.main'
+
 import { TransitionMotion, spring, presets } from 'react-motion' //
 
 class SaveContainer extends Component {
@@ -85,18 +87,20 @@ class SaveContainer extends Component {
                       inputFocused={this.props.inputFocused}
                       setInputFocusState={this.props.setInputFocusState}
                     />
-                    {this.props.showRecs && (
-                      <Recommendations
-                        tabId={this.props.tab_id}
-                        recs={this.props.currentRecs}
-                        saveRecommendation={this.props.saveRecommendation}
-                        openRecommendation={this.props.openRecommendation}
-                        spocImpression={this.props.spocImpression}
-                        spocView={this.props.spocView}
-                        spocClick={this.props.spocClick}
-                        spocRemove={this.props.spocRemove}
-                      />
-                    )}
+                    {this.props.showRecs &&
+                      !this.props.showSurvey && (
+                        <Recommendations
+                          tabId={this.props.tab_id}
+                          recs={this.props.currentRecs}
+                          saveRecommendation={this.props.saveRecommendation}
+                          openRecommendation={this.props.openRecommendation}
+                          spocImpression={this.props.spocImpression}
+                          spocView={this.props.spocView}
+                          spocClick={this.props.spocClick}
+                          spocRemove={this.props.spocRemove}
+                        />
+                      )}
+                    {this.props.showSurvey && <Survey />}
                   </div>
                 )
               })}

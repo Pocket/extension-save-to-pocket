@@ -99,8 +99,8 @@ function* closePanelRequest(action) {
 }
 
 function* closePanel(tabId, timeout) {
-  yield call(delay, timeout)
-  yield put({ type: 'SET_TAB_STATUS', tabId, status: 'idle', shown: false })
+  // yield call(delay, timeout)
+  // yield put({ type: 'SET_TAB_STATUS', tabId, status: 'idle', shown: false })
 }
 
 function* saveRequest(action) {
