@@ -13,6 +13,8 @@ import { getGuid } from './auth/guid'
 import { getTrendingArticles } from './newtab/trendingArticles'
 import { getTrendingTopics } from './newtab/trendingTopics'
 import { sendAnalytics, sendSpocAnalytics } from './analytics/analytics'
+import { getFeatures } from './features/features'
+import { sendSurvey } from './survey/survey'
 
 export {
   authorize,
@@ -30,5 +32,7 @@ export {
   sendAnalytics,
   sendSpocAnalytics,
   syncItemTags,
-  fetchStoredTags
+  fetchStoredTags,
+  getFeatures,
+  sendSurvey
 }
