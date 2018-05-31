@@ -12,7 +12,7 @@ export default function dropdownItem(entryObject, index) {
   return (
     <li key={index} className={entryClass}>
       <button className={styles.toolbarButton} onClick={entryObject.method}>
-        {entryObject.icon()} {entryObject.copy}
+        {entryObject.icon} {entryObject.copy}
       </button>
     </li>
   )

@@ -1,6 +1,6 @@
 import styles from './toolbar.scss'
 import React, { Component } from 'react'
-import Dropdown from '../../../components/dropdown/dropdown'
+import Dropdown from 'Elements/Dropdown/dropdown'
 import Tagging from './tagging/tagging'
 import ToolbarError from './toolbar.error'
 import { Icon } from 'Elements/Icons/icon'

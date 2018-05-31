@@ -2,7 +2,8 @@ import styles from './dropdown.scss'
 import React, { Component } from 'react'
 import classNames from 'classnames/bind'
 import dropdownItem from './dropdownItem'
-import * as Icon from '../icons'
+import { Icon } from '../Icons/icon'
+
 const cx = classNames.bind(styles)
 
 export default class Dropdown extends Component {
@@ -31,7 +32,7 @@ export default class Dropdown extends Component {
           className={styles.overflowButton}
           onMouseOver={this.onHover}
           onMouseOut={this.offHover}>
-          {Icon.Overflow()}
+          <Icon name="overflow" />
         </button>
         {this.props.active && (
           <ul
