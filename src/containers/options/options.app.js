@@ -1,5 +1,6 @@
 import styles from './options.scss'
 import { Icon } from 'Elements/Icons/icon'
+import Toggle from '../../Components/Elements/Toggle/toggle'
 import React, { Component } from 'react'
 import { openTabWithUrl } from '../../common/interface'
 import { localize } from '../../common/_locales/locales'
