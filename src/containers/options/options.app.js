@@ -1,12 +1,5 @@
 import styles from './options.scss'
-import {
-  PocketLogo,
-  PocketNewtab,
-  AndroidLogo,
-  IphoneIpad,
-  Mac
-} from '../../components/icons'
-import Toggle from '../../components/toggle/toggle'
+import { Icon } from 'Elements/Icons/icon'
 import React, { Component } from 'react'
 import { openTabWithUrl } from '../../common/interface'
 import { localize } from '../../common/_locales/locales'
@@ -52,13 +45,7 @@ export default class Options extends Component {
     return (
       <div className={styles.container}>
         <h1 className={styles.title}>
-          {PocketLogo({
-            width: '26px',
-            height: '26px',
-            marginRight: '10px',
-            marginTop: '3px',
-            verticalAlign: 'text-top'
-          })}
+          <Icon name="pocketlogo" />
           {localize('options_page', 'header')} -{' '}
           {localize('options_page', 'save_to_pocket')}
         </h1>
@@ -162,11 +149,7 @@ export default class Options extends Component {
                 href="https://chrome.google.com/webstore/detail/pocket-new-tab/mlnnopicjonfamklpcdfnbcomdlopmof?authuser=1"
                 rel="noopener noreferrer"
                 target="_blank">
-                {PocketNewtab({
-                  width: '48px',
-                  height: '48px',
-                  marginRight: 0
-                })}
+                <Icon name="pocketnewtab" />
                 <div className={styles.blockCopy}>Pocket New Tab</div>
               </a>
               <a
@@ -174,11 +157,7 @@ export default class Options extends Component {
                 href="http://getpocket.com/android/"
                 rel="noopener noreferrer"
                 target="_blank">
-                {AndroidLogo({
-                  width: '48px',
-                  height: '48px',
-                  marginRight: 0
-                })}
+                <Icon name="androidlogo" />
                 <div className={styles.blockCopy}>Android</div>
               </a>
               <a
@@ -186,11 +165,7 @@ export default class Options extends Component {
                 href="http://getpocket.com/iphone/"
                 rel="noopener noreferrer"
                 target="_blank">
-                {IphoneIpad({
-                  width: '48px',
-                  height: '48px',
-                  marginRight: 0
-                })}
+                <Icon name="iphoneipad" />
                 <div className={styles.blockCopy}>iPhone/Ipad</div>
               </a>
               <a
@@ -198,11 +173,7 @@ export default class Options extends Component {
                 href="http://getpocket.com/mac/"
                 rel="noopener noreferrer"
                 target="_blank">
-                {Mac({
-                  width: '48px',
-                  height: '48px',
-                  marginRight: 0
-                })}
+                <Icon name="mac" />
                 <div className={styles.blockCopy}>Mac</div>
               </a>
             </div>

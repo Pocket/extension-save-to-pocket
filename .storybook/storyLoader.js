@@ -3,7 +3,7 @@ import styled, { css } from 'react-emotion'
 import { storiesOf, addDecorator } from '@storybook/react'
 import { configure } from '@storybook/react'
 
-import { SVGSymbols } from '../src/components/Elements/Icons/icon.symbols'
+import { SVGSymbols } from 'Elements/Icons/icon.symbols'
 
 addDecorator(story => {
   const content = story()

@@ -2,7 +2,7 @@ import styles from './item.scss'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames/bind'
-import * as Icon from '../../../../components/icons'
+import { Icon } from 'Elements/Icons/icon'
 import { domainForUrl } from '../../../../common/utilities'
 import { localize } from '../../../../common/_locales/locales'
 
@@ -90,7 +90,7 @@ export default class RecommendationItem extends Component {
                   source_id: item.source_id
                 })
               }}>
-              {Icon.Save()} {this.saveCopy}
+              <Icon name="save" /> {this.saveCopy}
             </button>
           </div>
         </div>

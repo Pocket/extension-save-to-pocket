@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 import Dropdown from '../../../components/dropdown/dropdown'
 import Tagging from './tagging/tagging'
 import ToolbarError from './toolbar.error'
-import * as Icon from '../../../components/icons'
+import { Icon } from 'Elements/Icons/icon'
 import { localize } from '../../../common/_locales/locales'
 
 function getStatus(type, status) {
@@ -26,23 +26,23 @@ class Toolbar extends Component {
     return [
       {
         copy: localize('actions', 'archive_page'),
-        icon: Icon.Archive,
+        icon: <Icon name="archive" />,
         method: this.archive
       },
       {
         copy: localize('actions', 'remove_page'),
-        icon: Icon.Remove,
+        icon: <Icon name="remove" />,
         method: this.remove
       },
       {
         copy: localize('actions', 'open_pocket'),
-        icon: Icon.OpenPocket,
+        icon: <Icon name="openpocket" />,
         method: this.props.openPocket,
         divider: true
       },
       {
         copy: localize('actions', 'settings'),
-        icon: Icon.Settings,
+        icon: <Icon name="settings" />,
         method: this.props.openOptions
       }
     ]
@@ -57,11 +57,7 @@ class Toolbar extends Component {
 
     return (
       <div className={styles.toolbar}>
-        {Icon.PocketLogo({
-          width: '22px',
-          height: '22px',
-          marginRight: '8px'
-        })}
+        <Icon name="pocketlogo" />
         <span className={styles.statusText}>{this.statusText}</span>
 
         {status === 'error' && <ToolbarError />}

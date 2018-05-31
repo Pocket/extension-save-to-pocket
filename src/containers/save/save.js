@@ -9,6 +9,8 @@ import { sendMessage } from '../../common/interface'
 import { mapStateToProps, mapDispatchToProps } from '../../store/connect'
 import App from './save.app'
 
+import { SVGSymbols } from 'Elements/Icons/icon.symbols'
+
 getExtensionInfo().then(info => {
   const proxyStore = new Store({
     portName: PORT_NAME,
@@ -23,9 +25,12 @@ getExtensionInfo().then(info => {
     const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App)
 
     ReactDOM.render(
-      <Provider store={proxyStore}>
-        <ConnectedApp tab_id={tabId} />
-      </Provider>,
+      <React.Fragment>
+        <SVGSymbols />
+        <Provider store={proxyStore}>
+          <ConnectedApp tab_id={tabId} />
+        </Provider>
+      </React.Fragment>,
       document.getElementById('pocket-extension-root')
     )
   })
