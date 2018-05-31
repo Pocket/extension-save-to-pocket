@@ -1,19 +1,39 @@
-import style from './toggle.scss'
 import React, { Component } from 'react'
+import styled from 'react-emotion'
 import PropTypes from 'prop-types'
-import classNames from 'classnames/bind'
+import { Colors, Shades } from 'Elements/Colors/colors'
 
-const cx = classNames.bind(style)
+const ToggleWrapper = styled('button')`
+  all: unset;
+  background: ${props => (props.active ? Colors.teal : Shades.silver)};
+  border: 1px solid ${Shades.overcast};
+  border-radius: 2em;
+  cursor: pointer;
+  display: inline-block;
+  height: 10px;
+  margin-right: 5px;
+  outline: 0;
+  padding: 2px;
+  transition: all 0.4s ease;
+  width: 20px;
+
+  &:after {
+    background: ${Shades.white};
+    border-radius: 50%;
+    content: '';
+    display: block;
+    height: 100%;
+    left: ${props => (props.active ? '50%' : 0)};
+    position: relative;
+    transition: all 0.2s ease;
+    width: 50%;
+  }
+`
 
 export default class Toggle extends Component {
   render() {
-    const toggleClass = cx({
-      toggle: true,
-      active: this.props.active,
-      darkMode: this.props.darkMode
-    })
-
-    return <button className={toggleClass} onClick={this.props.action} />
+    const { active, action } = this.props
+    return <ToggleWrapper active={active} onClick={action} />
   }
 }
 
