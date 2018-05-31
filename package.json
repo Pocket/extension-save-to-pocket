@@ -11,23 +11,24 @@
     "@storybook/addon-links": "^3.4.6",
     "@storybook/addons": "^3.4.6",
     "@storybook/react": "^3.4.6",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
+    "babel-runtime": "^6.26.0",
     "eslint-config-prettier": "^2.9.0",
     "pocket-build-tools": "git+https://git@github.com/Pocket/front-end-build-tools.git",
-    "redux-devtools-extension": "^2.13.2",
-    "remote-redux-devtools": "^0.5.12",
-    "remotedev-server": "^0.2.4"
+    "redux-devtools-extension": "^2.13.2"
   },
   "dependencies": {
     "autosize-input": "^0.4.0",
     "blueimp-md5": "^2.10.0",
     "classnames": "^2.2.5",
-    "downshift": "^1.30.2",
-    "js-base64": "^2.4.3",
-    "match-sorter": "^2.2.1",
+    "downshift": "^1.31.15",
+    "js-base64": "^2.4.5",
+    "match-sorter": "^2.2.3",
     "prop-types": "^15.5.10",
-    "react": "^16.0.0",
+    "react": "^16.4.0",
     "react-chrome-redux": "1.4.0",
-    "react-dom": "^16.0.0",
+    "react-dom": "^16.4.0",
     "react-input-autosize": "^2.2.1",
     "react-motion": "^0.5.2",
     "react-onclickoutside": "^6.6.0",
@@ -105,6 +106,8 @@
     "remotedev": "remotedev --hostname=localhost --port=8000",
     "start": "build-pocket save-to-pocket start",
     "build": "build-pocket save-to-pocket build",
-    "test": "build-pocket save-to-pocket test --env=jsdom"
+    "test": "build-pocket save-to-pocket test --env=jsdom",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   }
 }
