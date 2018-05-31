@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'react-emotion'
 import dropdownItem from './dropdownItem'
-import { Icon } from '../Icons/icon'
+import { Icon } from 'Elements/Icons/icon'
 import { Shades } from 'Elements/Colors/colors'
 
 const DropdownWrapper = styled('div')`
