@@ -7,6 +7,10 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
+    "@storybook/addon-actions": "^3.4.6",
+    "@storybook/addon-links": "^3.4.6",
+    "@storybook/addons": "^3.4.6",
+    "@storybook/react": "^3.4.6",
     "eslint-config-prettier": "^2.9.0",
     "pocket-build-tools": "git+https://git@github.com/Pocket/front-end-build-tools.git",
     "redux-devtools-extension": "^2.13.2",
