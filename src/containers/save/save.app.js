@@ -76,6 +76,10 @@ class App extends Component {
     )
   }
 
+  get showSurvey() {
+    return false
+  }
+
   get frameLoaded() {
     return this.currentTab && this.currentTab.frame === 'loaded'
   }
@@ -102,7 +106,7 @@ class App extends Component {
         <SaveContainer
           isSaveActive={this.isSaveActive()}
           showRecs={this.showRecs}
-          showSurvey={true}
+          showSurvey={this.showSurvey}
           onHover={this.onHover}
           offHover={this.offHover}
           tab_id={this.props.tab_id}

@@ -8,8 +8,17 @@ import {
   select,
   race
 } from 'redux-saga/effects'
-import { updateToolbarIcon } from '../../common/interface'
-import { saveToPocket, archiveItem, removeItem } from '../../common/api'
+import {
+  updateToolbarIcon,
+  setSettings,
+  getSetting
+} from '../../common/interface'
+import {
+  saveToPocket,
+  archiveItem,
+  removeItem,
+  getFeatures
+} from '../../common/api'
 import { requireAuthorization } from '../auth/_auth'
 import { getCurrentLanguageCode } from '../../common/helpers'
 
@@ -103,6 +112,31 @@ function* closePanel(tabId, timeout) {
   // yield put({ type: 'SET_TAB_STATUS', tabId, status: 'idle', shown: false })
 }
 
+function* checkFeatures() {
+  const fetchedSince = getSetting('features_fetched_timestamp') || 0
+  const today = new Date().toLocaleDateString()
+  if (fetchedSince === today) return JSON.parse(getSetting('features_stored'))
+
+  const authToken = yield call(requireAuthorization)
+  const data = yield call(getFeatures, authToken)
+
+  if (data && data.response) {
+    const features = data.response.features
+    setSettings({
+      features_stored: JSON.stringify(features),
+      features_fetched_timestamp: today
+    })
+
+    return features
+  }
+  return {}
+}
+
+function* checkSurvey(features) {
+  const surveyAvailable = yield typeof features.show_survey !== 'undefined'
+  return surveyAvailable
+}
+
 function* saveRequest(action) {
   yield put({ type: 'CANCEL_CLOSE_SAVE_PANEL' })
 
@@ -141,13 +175,25 @@ function* saveSuccess(saveObject, resolvedId) {
 
   updateToolbarIcon(tabId, showSavedIcon)
 
+  // Check features
+  const features = yield checkFeatures()
+
+  // Show Survey?
+  const showSurvey = yield checkSurvey(features)
+
   // Trigger further actions to run after a succesful save
   const setup = yield select(getCurrentSetup)
   const shouldRequestRecs = setup.on_save_recommendations
   const shouldRequestTags = setup.account_premium
 
   // Do we need on save recommendations?
-  if (shouldRequestRecs && resolvedId && getCurrentLanguageCode() === 'en') {
+  if (
+    shouldRequestRecs &&
+    resolvedId &&
+    getCurrentLanguageCode() === 'en' &&
+    !showSurvey
+  ) {
+    console.log(showSurvey)
     yield call(delay, 650)
     yield put({ type: 'RECOMMENDATIONS_REQUEST', saveObject, resolvedId })
   }
