@@ -8,19 +8,10 @@ import {
   select,
   race
 } from 'redux-saga/effects'
-import {
-  updateToolbarIcon,
-  setSettings,
-  getSetting
-} from '../../common/interface'
-import {
-  saveToPocket,
-  archiveItem,
-  removeItem,
-  getFeatures
-} from '../../common/api'
+import { updateToolbarIcon } from '../../Common/interface'
+import { saveToPocket, archiveItem, removeItem } from '../../Common/api'
 import { requireAuthorization } from '../auth/_auth'
-import { getCurrentLanguageCode } from '../../common/helpers'
+import { getCurrentLanguageCode } from '../../Common/helpers'
 
 // INITIAL STATE
 const initialState = {}
@@ -112,33 +103,8 @@ function* closePanel(tabId, timeout) {
   yield put({ type: 'SET_TAB_STATUS', tabId, status: 'idle', shown: false })
 }
 
-function* checkFeatures() {
-  const fetchedSince = getSetting('features_fetched_timestamp') || 0
-  const today = new Date().toLocaleDateString()
-  if (fetchedSince === today) return JSON.parse(getSetting('features_stored'))
-
-  const authToken = yield call(requireAuthorization)
-  const data = yield call(getFeatures, authToken)
-
-  if (data && data.response) {
-    const features = data.response.features
-    setSettings({
-      features_stored: JSON.stringify(features),
-      features_fetched_timestamp: today
-    })
-
-    return features
-  }
-  return {}
-}
-
-function getSurvey(features) {
-  return features && features.show_survey ? features.show_survey : false
-}
-
 function* saveRequest(action) {
   yield put({ type: 'CANCEL_CLOSE_SAVE_PANEL' })
-  yield put({ type: 'SURVEY_RESET' })
 
   const saveType =
     action.data.info && action.data.info.linkUrl ? 'link' : 'page'
@@ -175,28 +141,13 @@ function* saveSuccess(saveObject, resolvedId) {
 
   updateToolbarIcon(tabId, showSavedIcon)
 
-  // Check features
-  const features = yield checkFeatures()
-
-  // Show Survey?
-  const survey = getSurvey(features)
-
   // Trigger further actions to run after a succesful save
   const setup = yield select(getCurrentSetup)
   const shouldRequestRecs = setup.on_save_recommendations
   const shouldRequestTags = setup.account_premium
 
-  if (survey && getCurrentLanguageCode() === 'en') {
-    yield put({ type: 'SURVEY_REQUEST', survey, resolvedId })
-  }
-
   // Do we need on save recommendations?
-  if (
-    !survey &&
-    shouldRequestRecs &&
-    resolvedId &&
-    getCurrentLanguageCode() === 'en'
-  ) {
+  if (shouldRequestRecs && resolvedId && getCurrentLanguageCode() === 'en') {
     yield call(delay, 650)
     yield put({ type: 'RECOMMENDATIONS_REQUEST', saveObject, resolvedId })
   }
@@ -234,7 +185,6 @@ function* archiveSuccess(data, current) {
 function* removeItemRequest() {
   const current = yield select(getCurrentItem)
   yield put({ type: 'ITEM_REMOVE_REQUEST', tabId: current.tabId })
-  yield put({ type: 'SURVEY_HIDE' })
 
   const authToken = yield call(requireAuthorization)
   try {

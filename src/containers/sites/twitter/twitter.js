@@ -1,5 +1,5 @@
 import styles from './twitter.scss' // Import Styles
-import { addMessageListener, sendMessage } from '../../../common/interface'
+import { addMessageListener, sendMessage } from '../../../Common/interface'
 
 const mutationConfig = {
   childList: true,

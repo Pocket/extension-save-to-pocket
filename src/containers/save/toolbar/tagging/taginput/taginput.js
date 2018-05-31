@@ -1,7 +1,7 @@
 import styles from './taginput.scss'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { localize } from '../../../../../common/_locales/locales'
+import { localize } from '../../../../../Common/_locales/locales'
 import AutosizeInput from 'react-input-autosize'
 // import Downshift from 'downshift'
 import classNames from 'classnames/bind'

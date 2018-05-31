@@ -3,8 +3,8 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider, connect } from 'react-redux'
 
-import { PORT_NAME } from '../../common/constants'
-import { sendMessage } from '../../common/interface'
+import { PORT_NAME } from '../../Common/constants'
+import { sendMessage } from '../../Common/interface'
 
 import { mapStateToProps, mapDispatchToProps } from '../../store/connect'
 import App from './save.app'

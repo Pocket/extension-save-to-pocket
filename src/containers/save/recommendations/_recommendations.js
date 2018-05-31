@@ -1,7 +1,7 @@
 import { delay } from 'redux-saga'
 import { put, call, takeEvery, race } from 'redux-saga/effects'
-import * as API from '../../../common/api'
-import { getBestImage } from '../../../common/helpers'
+import * as API from '../../../Common/api'
+import { getBestImage } from '../../../Common/helpers'
 import { requireAuthorization } from '../../auth/_auth'
 
 // ACTIONS

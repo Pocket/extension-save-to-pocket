@@ -1,6 +1,6 @@
 import styles from './loading.scss'
 import React from 'react'
-import { localize } from '../../../../common/_locales/locales'
+import { localize } from '../../../../Common/_locales/locales'
 
 export default function Loader() {
   return (

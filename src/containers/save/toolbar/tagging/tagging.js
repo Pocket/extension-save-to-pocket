@@ -6,7 +6,7 @@ import Chips from './chips/chips'
 import Downshift from 'downshift'
 import Suggestions from './suggestions/suggestions'
 import Taginput from './taginput/taginput'
-import { localize } from '../../../../common/_locales/locales'
+import { localize } from '../../../../Common/_locales/locales'
 import classNames from 'classnames/bind'
 
 const cx = classNames.bind(styles)

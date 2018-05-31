@@ -1,7 +1,7 @@
 import styles from './header.scss'
 import React from 'react'
 import Loading from './loading'
-import { localize } from '../../../../common/_locales/locales'
+import { localize } from '../../../../Common/_locales/locales'
 
 const hasRecs = recs => recs
 const hasFeed = recs => recs && recs.feed && recs.feed.length > 0

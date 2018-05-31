@@ -1,6 +1,6 @@
 import styles from './toolbar.scss'
 import React, { Component } from 'react'
-import { localize } from '../../../common/_locales/locales'
+import { localize } from '../../../Common/_locales/locales'
 
 class ToolbarError extends Component {
   render() {

@@ -1,7 +1,7 @@
 import { delay } from 'redux-saga'
 import { put, call, takeLatest, select } from 'redux-saga/effects'
-import * as API from '../../../../common/api/'
-import { setSettings } from '../../../../common/interface'
+import * as API from '../../../../Common/api/'
+import { setSettings } from '../../../../Common/interface'
 
 // ACTIONS
 export const taggingActions = {

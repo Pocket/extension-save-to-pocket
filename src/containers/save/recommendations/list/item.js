@@ -3,8 +3,9 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames/bind'
 import { Icon } from 'Elements/Icons/icon'
-import { domainForUrl } from '../../../../common/utilities'
-import { localize } from '../../../../common/_locales/locales'
+import { domainForUrl } from '../../../../Common/utilities'
+import { localize } from '../../../../Common/_locales/locales'
+import SpocHeader from './item.spoc.header'
 
 const cx = classNames.bind(styles)
 const copy = {
@@ -25,8 +26,23 @@ export default class RecommendationItem extends Component {
     return copy[this.props.item.status]
   }
 
+  get spocContext() {
+    const item = this.props.item
+    return {
+      cxt_impression_id: item.impression_id,
+      cxt_view: 'extension_ad',
+      cxt_feed_item: item.feed_item_id,
+      cxt_index: item.sort_id,
+      cxt_post_id: item.post_id
+    }
+  }
+
   onClick = () => {
     const item = this.props.item
+
+    if (item.isSpoc) {
+      this.props.spocClick({ context: this.spocContext })
+    }
 
     this.props.openRecommendation({
       tabId: this.props.tabId,
@@ -60,6 +76,21 @@ export default class RecommendationItem extends Component {
     return (
       <li style={this.props.motionStyle} className={recommendationItemClass}>
         <div className={itemContainerClass}>
+          {item.isSpoc && (
+            <SpocHeader
+              tabId={this.props.tabId}
+              itemId={item.id.toString()}
+              sponsorurl={item.url}
+              sponsor={item.sponsor}
+              avatar={item.avatar}
+              spocContext={this.spocContext}
+              spocImpression={this.props.spocImpression}
+              spocView={this.props.spocView}
+              spocClick={this.props.spocClick}
+              spocRemove={this.props.spocRemove}
+            />
+          )}
+
           {item.has_image && (
             <div className={styles.image} style={this.imageStyle} />
           )}

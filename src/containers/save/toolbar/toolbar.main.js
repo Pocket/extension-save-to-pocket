@@ -4,7 +4,7 @@ import Dropdown from 'Elements/Dropdown/dropdown'
 import Tagging from './tagging/tagging'
 import ToolbarError from './toolbar.error'
 import { Icon } from 'Elements/Icons/icon'
-import { localize } from '../../../common/_locales/locales'
+import { localize } from '../../../Common/_locales/locales'
 
 function getStatus(type, status) {
   if (status === 'saved') return localize('status', `${type}_${status}`)

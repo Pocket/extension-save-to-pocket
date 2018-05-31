@@ -2,9 +2,9 @@ import styles from './options.scss'
 import { Icon } from 'Elements/Icons/icon'
 import Toggle from '../../Components/Elements/Toggle/toggle'
 import React, { Component } from 'react'
-import { openTabWithUrl } from '../../common/interface'
-import { localize } from '../../common/_locales/locales'
-import { AUTH_URL, LOGOUT_URL, SET_SHORTCUTS } from '../../common/constants'
+import { openTabWithUrl } from '../../Common/interface'
+import { localize } from '../../Common/_locales/locales'
+import { AUTH_URL, LOGOUT_URL, SET_SHORTCUTS } from '../../Common/constants'
 
 export default class Options extends Component {
   userData = () => {

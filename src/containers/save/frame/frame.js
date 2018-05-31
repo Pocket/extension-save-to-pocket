@@ -3,7 +3,7 @@ import {
   addMessageListener,
   removeMessageListener,
   sendMessage
-} from '../../../common/interface'
+} from '../../../Common/interface'
 ;(function(getURL, addMessageListener, removeMessageListener, sendMessage) {
   let frame = document.createElement('iframe')
   let element
