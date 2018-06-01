@@ -2,10 +2,10 @@ import React from 'react'
 import styled from 'react-emotion'
 import { storiesOf } from '@storybook/react'
 
-import { DoorHangerBase } from './foundation'
+import { PanelBase } from './foundation'
 
 const Card = styled('div')`
-  ${DoorHangerBase};
+  ${PanelBase};
   position: relative;
   padding: 1em;
   display: inline-flex;

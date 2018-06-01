@@ -3,7 +3,7 @@ import styled, { css } from 'react-emotion'
 import { storiesOf } from '@storybook/react'
 import { Icon } from './icon'
 import { Colors, Shades } from '../Colors/colors'
-import { DoorHangerBase } from '../Foundations/foundation'
+import { PanelBase } from '../Foundations/foundation'
 
 const extensionIcons = [
   'about',
@@ -46,7 +46,7 @@ const IconOverlay = styled('div')`
 `
 
 const IconDisplaySheet = styled('div')`
-  ${DoorHangerBase};
+  ${PanelBase};
   padding: 0 1em 1.5em;
 `
 

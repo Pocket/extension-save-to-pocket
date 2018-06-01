@@ -2,10 +2,10 @@ import React from 'react'
 import styled, { css } from 'react-emotion'
 import { storiesOf } from '@storybook/react'
 import { Colors, Shades } from './colors'
-import { DoorHangerBase } from '../Foundations/foundation'
+import { PanelBase } from '../Foundations/foundation'
 
 const ColorDisplay = styled('div')`
-  ${DoorHangerBase};
+  ${PanelBase};
   display: inline-flex;
   flex-direction: column;
   width: 12em;
