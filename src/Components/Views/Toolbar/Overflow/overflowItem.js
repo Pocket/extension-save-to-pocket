@@ -1,21 +1,15 @@
 import React from 'react'
 import styled, { css } from 'react-emotion'
 import { Shades, Colors } from 'Elements/Colors/colors'
-
-const divider = css`
-  background-color: ${Shades.snow};
-  content: '';
-  display: block;
-  height: 1px;
-  margin: 5px auto;
-  width: 90 %;
-`
+import { Icon } from 'Elements/Icons/icon'
+import { localize } from 'Common/_locales/locales'
+import { MenuDivider } from 'Elements/Foundations/foundation'
 
 const ItemWrapper = styled('li')`
   display: block;
   text-align: left;
   &:before {
-    ${props => (props.divider ? divider : '')};
+    ${props => (props.divider ? MenuDivider : '')};
   }
 `
 
@@ -35,13 +29,11 @@ const ItemButton = styled('button')`
   }
 `
 
-export default function dropdownItem(entryObject, index) {
-  const { divider, method, copy, icon } = entryObject
-
+export function OverflowItem({ name, method, divider }) {
   return (
-    <ItemWrapper key={index} divider={divider}>
+    <ItemWrapper divider={divider}>
       <ItemButton onClick={method}>
-        {icon} {copy}
+        <Icon name={name} /> {localize('actions', name)}
       </ItemButton>
     </ItemWrapper>
   )
