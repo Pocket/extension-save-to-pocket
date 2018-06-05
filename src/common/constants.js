@@ -2,9 +2,23 @@ export const PORT_NAME = 'FN2187'
 
 export const CACHE_INTERVAL = 900000
 
-export const KEY_ENTER = 13
+export const KEYS = {
+  BACKSPACE: 8,
+  COMMA: 44,
+  TAB: 9,
+  ENTER: 13,
+  DELETE: 46,
+  ESCAPE: 27,
+  LEFT: 37,
+  UP: 38,
+  RIGHT: 39,
+  DOWN: 40
+}
 
-export const KEY_ESCAPE = 27
+export const LINK_OUT = {
+  rel: 'noopener noreferrer',
+  target: '_blank'
+}
 
 export const LINK_HELP_PAGE =
   'https://help.getpocket.com/article/1141-using-the-pocket-new-tab-extension-in-chrome'
@@ -17,3 +31,6 @@ export const AUTH_URL =
 export const LOGOUT_URL = 'https://getpocket.com/lo'
 
 export const SET_SHORTCUTS = 'chrome://extensions/configureCommands'
+
+export const RECOMMENDED_PAGE =
+  '"https://getpocket.com/a/recommended/?src=ext_recs"'
