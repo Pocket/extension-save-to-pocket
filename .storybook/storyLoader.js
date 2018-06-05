@@ -4,6 +4,7 @@ import { storiesOf, addDecorator } from '@storybook/react'
 import { configure } from '@storybook/react'
 
 import { SVGSymbols } from 'Elements/Icons/icon.symbols'
+import { SVGForStories } from './svg.guides'
 
 addDecorator(story => {
   const content = story()
@@ -18,6 +19,7 @@ addDecorator(story => {
 
   return (
     <React.Fragment>
+      <SVGForStories />
       <SVGSymbols />
       <WrapStories>{content}</WrapStories>
     </React.Fragment>

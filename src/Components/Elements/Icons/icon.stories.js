@@ -7,35 +7,20 @@ import { PanelBase } from '../Foundations/foundation'
 
 const extensionIcons = [
   'about',
-  'added',
   'androidlogo',
   'archive',
-  'arrowdown',
-  'arrowleft',
-  'arrowright',
-  'arrowup',
   'carretdown',
-  'close',
   'cog',
-  'defaultsite',
-  'disconnected',
   'hide',
   'hideall',
   'iphoneipad',
-  'lock',
   'mac',
   'openpocket',
-  'options',
   'overflow',
-  'pocketlogo',
-  'pocketlogotype',
+  'logopocket',
   'pocketnewtab',
   'question',
-  'refresh',
-  'save',
-  'search',
-  'settings',
-  'topsites'
+  'remove'
 ]
 
 const IconOverlay = styled('div')`
