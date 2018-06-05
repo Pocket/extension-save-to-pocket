@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react'
 
 import { PanelBase } from './foundation'
 
-const Card = styled('div')`
+const Panel = styled('div')`
   ${PanelBase};
   position: relative;
   padding: 1em;
@@ -15,8 +15,8 @@ const Card = styled('div')`
   text-align: center;
   font-size: 12px;
   font-weight: 600;
-  width: 12em;
-  height: 5em;
+  width: 310px;
+  height: 100px;
 `
 
-storiesOf('Elements|Foundations', module).add('Card', () => <Card />)
+storiesOf('Elements|Foundations', module).add('Panel', () => <Panel />)

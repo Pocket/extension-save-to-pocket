@@ -26,3 +26,19 @@ export const DropDownBase = css`
   background-color: ${Shades.white};
   box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.25);
 `
+
+export const MenuDivider = css`
+  background-color: ${Shades.snow};
+  content: '';
+  display: block;
+  height: 1px;
+  margin: 5px auto;
+  width: 90 %;
+`
+
+export const PopoverBase = css`
+  ${PanelBase};
+  display: inline-block;
+  border-radius: 5px;
+  width: auto;
+`
