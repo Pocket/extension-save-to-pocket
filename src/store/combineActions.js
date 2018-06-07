@@ -3,6 +3,7 @@ import { tabsActions } from '../containers/background/_tabs'
 import { saveActions } from '../containers/save/_save'
 import { taggingActions } from '../containers/save/toolbar/tagging/_tagging'
 import { recommendationActions } from '../containers/save/recommendations/_recommendations'
+import { surveyActions } from '../containers/save/survey/_survey'
 
 const { setupExtension, toggleRecommendations, toggleSite } = setupActions
 
@@ -36,6 +37,8 @@ const {
   spocRemove
 } = recommendationActions
 
+const { surveyRespond, surveyCancel } = surveyActions
+
 export {
   setupExtension,
   toggleRecommendations,
@@ -61,7 +64,9 @@ export {
   spocImpression,
   spocView,
   spocClick,
-  spocRemove
+  spocRemove,
+  surveyRespond,
+  surveyCancel
 }
 
 export function openPocket() {

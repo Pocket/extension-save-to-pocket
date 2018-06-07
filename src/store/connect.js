@@ -10,7 +10,8 @@ export function mapStateToProps(state) {
     saves: state.saves,
     setup: state.setup,
     tags: state.tags,
-    recommendations: state.recommendations
+    recommendations: state.recommendations,
+    survey: state.survey
   }
 }
 

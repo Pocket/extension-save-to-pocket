@@ -4,6 +4,7 @@ import { active, tabs } from '../containers/background/_tabs'
 import { saves } from '../containers/save/_save'
 import { tags } from '../containers/save/toolbar/tagging/_tagging'
 import { recommendations } from '../containers/save/recommendations/_recommendations'
+import { survey } from '../containers/save/survey/_survey'
 
 export default combineReducers({
   setup,
@@ -11,5 +12,6 @@ export default combineReducers({
   tabs,
   saves,
   tags,
-  recommendations
+  recommendations,
+  survey
 })
