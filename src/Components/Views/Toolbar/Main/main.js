@@ -19,10 +19,18 @@ const ToolbarWrapper = styled('div')`
   z-index: 100;
 `
 
+const ToolbarBody = styled('div')`
+  padding-top: 6px;
+`
+
 const validForTags = ['saving', 'saved']
 
 function Tags({ status }) {
-  return validForTags.includes(status) ? <Tagging /> : null
+  return validForTags.includes(status) ? (
+    <ToolbarBody>
+      <Tagging />
+    </ToolbarBody>
+  ) : null
 }
 
 export class ToolbarMain extends Component {

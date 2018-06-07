@@ -18,7 +18,7 @@ const HeaderWrapper = styled('div')`
   justify-content: space-between;
   align-items: center;
   font-weight: 600;
-  padding: 3px 0;
+  padding: 0;
   position: relative;
 `
 

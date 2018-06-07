@@ -10,6 +10,7 @@ const ErrorWrapper = styled('div')`
   color: $black;
   font-size: 14px;
   padding: 10px;
+  margin-top: 6px;
 `
 
 export class ToolbarError extends PureComponent {

@@ -9,7 +9,7 @@ import { OverflowMenu } from './overflow.menu'
 import { Popover, Trigger, Content } from 'Modules/Popover/popover'
 
 const OverflowWrapper = styled('div')`
-  padding: 3px 0;
+  padding: 0;
   text-align: right;
 `
 
