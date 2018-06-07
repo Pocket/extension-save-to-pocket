@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { TransitionMotion, spring, presets } from 'react-motion'
 import RecommendationItem from './item'
+import RecommendationSpoc from './spoc'
 
 export default class RecommendationList extends Component {
   // actual animation-related logic
@@ -19,7 +20,7 @@ export default class RecommendationList extends Component {
 
   getStyles = () => {
     return this.props.list.map(rec => {
-      const recHeight = rec.isSpoc ? 131 : 110
+      const recHeight = rec.isSpoc ? 140 : 110
       return {
         ...rec,
         data: rec,
@@ -48,21 +49,37 @@ export default class RecommendationList extends Component {
         willEnter={this.willEnter}>
         {interpolatedStyles => (
           <ul className={styleClass.list}>
-            {interpolatedStyles.map((config, index) => (
-              <RecommendationItem
-                motionStyle={config.style}
-                key={config.key}
-                item={config.data}
-                position={index}
-                openRecommendation={this.props.openRecommendation}
-                saveRecommendation={this.props.saveRecommendation}
-                spocImpression={this.props.spocImpression}
-                spocView={this.props.spocView}
-                spocClick={this.props.spocClick}
-                spocRemove={this.props.spocRemove}
-                tabId={this.props.tabId}
-              />
-            ))}
+            {interpolatedStyles.map((config, index) => {
+              return config.data.isSpoc ? (
+                <RecommendationSpoc
+                  motionStyle={config.style}
+                  key={config.key}
+                  item={config.data}
+                  position={index}
+                  openRecommendation={this.props.openRecommendation}
+                  saveRecommendation={this.props.saveRecommendation}
+                  spocImpression={this.props.spocImpression}
+                  spocView={this.props.spocView}
+                  spocClick={this.props.spocClick}
+                  spocRemove={this.props.spocRemove}
+                  tabId={this.props.tabId}
+                />
+              ) : (
+                <RecommendationItem
+                  motionStyle={config.style}
+                  key={config.key}
+                  item={config.data}
+                  position={index}
+                  openRecommendation={this.props.openRecommendation}
+                  saveRecommendation={this.props.saveRecommendation}
+                  spocImpression={this.props.spocImpression}
+                  spocView={this.props.spocView}
+                  spocClick={this.props.spocClick}
+                  spocRemove={this.props.spocRemove}
+                  tabId={this.props.tabId}
+                />
+              )
+            })}
           </ul>
         )}
       </TransitionMotion>

@@ -25,7 +25,8 @@
   }
 }
 
-.itemContainer {
+.itemContainer,
+.spocContainer {
   box-sizing: border-box;
   display: block;
   height: 110px;
@@ -35,14 +36,14 @@
   position: relative;
   width: 100%;
 
-  &.isSpoc {
-    height: 131px;
-    padding: 8px 10px 10px;
-  }
-
   .hasImage & {
     padding-right: 92px;
   }
+}
+
+.spocContainer {
+  height: 131px;
+  padding: 8px 10px 10px;
 }
 
 .title {
@@ -126,19 +127,21 @@
 
 .sponsorHeader {
   display: flex;
-  font-size: 14px;
+  font-size: 12px;
   justify-content: space-between;
-  line-height: 16px;
-  padding-bottom: 5px;
+  align-items: baseline;
+  line-height: 20px;
+  padding: 8px 0px 2px 8px;
+  position: relative;
 }
 
 .sponsorAvatar {
   border-radius: 50%;
   display: inline-block;
-  height: 16px;
+  height: 20px;
   margin-right: 5px;
   vertical-align: top;
-  width: 16px;
+  width: 20px;
 }
 
 .sponsorLink {
@@ -154,10 +157,11 @@
 .sponsorLabel {
   color: $overcast;
   cursor: pointer;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 200;
-  line-height: 16px;
+  line-height: inherit;
   text-transform: uppercase;
+  vertical-align: baseline;
 }
 
 .sponsorDropdown {
@@ -168,8 +172,8 @@
   margin: 0;
   padding: 7px 0;
   position: absolute;
-  right: 30px;
-  top: 30px;
+  right: 10px;
+  top: 25px;
   z-index: 3;
 
   button,
