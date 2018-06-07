@@ -10,7 +10,14 @@ const MissingIcon = styled('span')`
   background-color: #f00ba2;
 `
 
-export const Icon = ({ name, box = 24, size = '1.4em', padding = '0' }) => {
+export const Icon = ({
+  name,
+  size = '1.4em',
+  padding = '0',
+  margin = '0',
+  color = 'currentColor',
+  style = {}
+}) => {
   return name ? (
     <svg
       style={{
@@ -19,10 +26,11 @@ export const Icon = ({ name, box = 24, size = '1.4em', padding = '0' }) => {
         verticalAlign: 'middle',
         height: size,
         width: size,
-        fill: 'currentColor',
-        padding: padding
-      }}
-      viewBox={`0 0 ${box} ${box}`}>
+        fill: color,
+        padding: padding,
+        margin: margin,
+        ...style
+      }}>
       <use xlinkHref={`#${name}`} />
     </svg>
   ) : (

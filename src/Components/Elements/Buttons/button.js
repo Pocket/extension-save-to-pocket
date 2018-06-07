@@ -122,7 +122,7 @@ export const UnStyledButton = styled('button')`
 
 export const ButtonLink = styled('button')`
   ${buttonReset};
-  color: ${Colors.teal};
+  color: ${props => (props.color ? props.color : Colors.teal)};
   &:hover {
     color: ${Colors.emerald};
   }
