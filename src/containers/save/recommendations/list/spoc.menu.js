@@ -32,6 +32,7 @@ class SpocMenu extends Component {
           onMouseOut={this.offHover}>
           Sponsored{Icon.CarretDown({
             display: 'inline-block',
+            verticalAlign: 'inherit',
             height: '8px',
             fill: 'currentColor'
           })}
