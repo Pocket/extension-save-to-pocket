@@ -4,8 +4,8 @@ import { Shades } from 'Elements/Colors/colors'
 import { PanelBase } from 'Elements/Foundations/foundation'
 
 import Tagging from 'Modules/Tagging/tagging'
-import { ToolbarError } from './main.error'
-import { ToolbarHeader } from './main.header'
+import { ToolbarError } from './Main/main.error'
+import { ToolbarHeader } from './Main/main.header'
 
 const ToolbarWrapper = styled('div')`
   ${PanelBase};
@@ -34,9 +34,6 @@ function Tags({ status }) {
 }
 
 export class ToolbarMain extends Component {
-  remove = () => this.props.remove()
-  archive = () => this.props.archive()
-
   render() {
     const { status, type } = this.props
     return (
