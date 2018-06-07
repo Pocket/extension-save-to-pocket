@@ -11,13 +11,16 @@ const OverFlowContainer = styled('div')`
   height: 100px;
 `
 
-storiesOf('Views|Toolbar/Overflow/', module).add('Dropdown', () => (
-  <OverFlowContainer>
-    <Overflow />
-  </OverFlowContainer>
-))
+storiesOf('Views|Toolbar/Overflow/', module)
+  .addDecorator(story => <div style={{ width: '320px' }}>{story()}</div>)
+  .add('Dropdown', () => (
+    <OverFlowContainer>
+      <Overflow />
+    </OverFlowContainer>
+  ))
 
 storiesOf('Views|Toolbar/Overflow/Menu', module)
+  .addDecorator(story => <div style={{ width: '320px' }}>{story()}</div>)
   .add('Menu', () => (
     <OverFlowContainer>
       <OverflowMenu active={true} />

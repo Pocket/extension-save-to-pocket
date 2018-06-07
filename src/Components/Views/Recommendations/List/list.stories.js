@@ -5,6 +5,6 @@ import { RecommendationList } from './list'
 
 const recFeed = recommendationData.feed
 
-storiesOf('Views|Recommendations/List', module).add('Stacked', () => (
-  <RecommendationList items={recFeed} />
-))
+storiesOf('Views|Recommendations/List', module)
+  .addDecorator(story => <div style={{ width: '320px' }}>{story()}</div>)
+  .add('Stacked', () => <RecommendationList items={recFeed} />)

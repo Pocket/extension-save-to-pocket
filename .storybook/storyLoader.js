@@ -18,7 +18,6 @@ addDecorator(story => {
     font-family: 'Proxima Nova', 'proxima-nova', -apple-system,
       BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell,
       'Helvetica Neue', Helvetica, sans-serif;
-    width: 320px;
   `
 
   return (
