@@ -4,6 +4,12 @@ import { storiesOf } from '@storybook/react'
 import { Colors, Shades } from './colors'
 import { PanelBase } from '../Foundations/foundation'
 
+const ColorGrid = styled('div')`
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, 200px);
+`
+
 const ColorDisplay = styled('div')`
   ${PanelBase};
   display: inline-flex;
@@ -57,13 +63,15 @@ function displayColors(colorObject) {
           `}>
           {colorType}
         </h1>
-        {Object.keys(colors).map((color, index) => (
-          <ColorDisplay color={colors[color]} key={color + index}>
-            <ColorBlock color={colors[color]} />
-            <ColorName color={colors[color]}>{color}</ColorName>
-            <ColorDetail>Hex: {colors[color]}</ColorDetail>
-          </ColorDisplay>
-        ))}
+        <ColorGrid>
+          {Object.keys(colors).map((color, index) => (
+            <ColorDisplay color={colors[color]} key={color + index}>
+              <ColorBlock color={colors[color]} />
+              <ColorName color={colors[color]}>{color}</ColorName>
+              <ColorDetail>Hex: {colors[color]}</ColorDetail>
+            </ColorDisplay>
+          ))}
+        </ColorGrid>
       </div>
     )
   })
