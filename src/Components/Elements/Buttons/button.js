@@ -8,6 +8,7 @@ export const buttonReset = css`
     outline: 0;
   }
   border: none;
+  cursor: pointer;
   margin: 0;
   padding: 0;
   width: auto;
@@ -117,20 +118,18 @@ const buttonWidths = {
 
 export const UnStyledButton = styled('button')`
   ${buttonReset};
-  cursor: pointer;
 `
 
 export const ButtonLink = styled('button')`
   ${buttonReset};
-  cursor: pointer;
   color: ${Colors.teal};
   &:hover {
     color: ${Colors.emerald};
   }
 `
 
-export const StyledButton = styled('button')`
-  ${props => (props.type ? buttonTypes[props.type] : buttonTypes['default'])};
-  ${props => (props.size ? buttonSizes[props.size] : buttonSizes['default'])};
-  ${props => (props.full ? buttonWidths['full'] : buttonWidths['default'])};
+export const StyledButton = props => css`
+  ${props.type ? buttonTypes[props.type] : buttonTypes['default']};
+  ${props.size ? buttonSizes[props.size] : buttonSizes['default']};
+  ${props.full ? buttonWidths['full'] : buttonWidths['default']};
 `

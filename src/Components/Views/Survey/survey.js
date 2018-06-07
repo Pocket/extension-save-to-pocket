@@ -1,64 +1,71 @@
 import React, { Component } from 'react'
 import styled from 'react-emotion'
-
+import { Shades, Colors } from 'Elements/Colors/colors'
+import { StyledButton, buttonReset } from 'Elements/Buttons/button'
 import { PanelBase } from 'Elements/Foundations/foundation'
-export const PanelWrapper = styled('div')`
+
+const PanelWrapper = styled('div')`
   ${PanelBase};
+  padding: 0.8rem;
+  text-align: center;
+`
+const CancelSurvey = styled('button')`
+  ${buttonReset};
+  font-size: 0.6rem;
+  color: ${Shades.overcast};
+  padding-top: 0.6rem;
+  &:hover {
+    color: ${Colors.teal};
+  }
 `
 
-export class Survey extends Component {
-  render() {
-    const { fields, selectOption } = this.props
+const FieldSet = styled('fieldset')`
+  all: unset;
+`
+const FieldTitle = styled('legend')`
+  all: unset;
+  font-size: 1rem;
+  padding: 0.2rem 3.5rem 1rem;
+  font-weight: 600;
+`
+const FieldOption = styled('button')`
+  ${StyledButton};
+  width: 100%;
+  margin-bottom: 4px;
+  font-size: 0.875rem;
+`
+
+function FieldOptions({ options, name }) {
+  return options.map(option => {
+    const { text, value } = option
     return (
-      <PanelWrapper>
-        {fields.map(field => (
-          <div key={field.survey_id}>
-            {field.label}
-            <ul>
-              {field.options.map(option => (
-                <li onClick={() => selectOption(option.value)}>
-                  {option.text}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </PanelWrapper>
+      <FieldOption onClick={() => console.log(`${name}:${value}`)}>
+        {text}
+      </FieldOption>
     )
+  })
+}
+
+function Fields({ fields }) {
+  return fields.map(fieldset => {
+    const { label, options, name } = fieldset
+    return (
+      <FieldSet>
+        <FieldTitle>{label}</FieldTitle>
+        <FieldOptions options={options} name={name} />
+      </FieldSet>
+    )
+  })
+}
+
+export class SurveyPanel extends Component {
+  render() {
+    const { fields } = this.props
+    return fields ? (
+      <PanelWrapper>
+        <Fields fields={fields} />
+        <CancelSurvey>Don't show me this</CancelSurvey>
+      </PanelWrapper>
+    ) : null
   }
 }
-
-/*
-{
-    "parameters": {
-        "timestamp": 1526419671,
-        "hash": "4fba45db9ebf17ac91a3b21cde155671",
-        "survey_id": "4361321",
-        "target_id": "4361321",
-        "impression_limit": "5",
-    },
-    "fields": [
-        {
-            "name": "q_99",
-            "label": "Question #1",
-            "type": "radio",
-            "required": true,
-            "options": [
-                {
-                    "value": "0:10001",
-                    "text": "Option 1"
-                },
-                {
-                    "value": "1:10003",
-                    "text": "Option 3"
-                },
-                {
-                    "value": "2:10002",
-                    "text": "Option 2"
-                }
-            ]
-        }
-    ]
-}
-
-*/
