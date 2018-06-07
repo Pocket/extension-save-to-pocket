@@ -25,7 +25,7 @@ const Field = ({ name, label, options, surveyRespond }) => {
 const Option = ({ name, value, text, surveyRespond }) => {
   return (
     <li
-      onClick={() => surveyRespond({ [name]: value })}
+      onClick={() => surveyRespond({ key: name, value })}
       className={styles.optionButton}>
       {text}
     </li>
@@ -39,7 +39,6 @@ const Questionaire = ({
   completed,
   canceled
 }) => {
-  console.log(canceled, completed)
   return completed ? (
     <Thanks canceled={canceled} />
   ) : (

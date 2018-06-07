@@ -1,11 +1,14 @@
 import { delay } from 'redux-saga'
-import { put, takeEvery } from 'redux-saga/effects'
+import { put, call, takeEvery, race } from 'redux-saga/effects'
+import { requireAuthorization } from '../../auth/_auth'
+import { getGuid } from '../../../common/api/auth/guid'
+
 import {
   getSetting,
   setSettings,
   removeSettings
 } from '../../../common/interface'
-// import * as API from '../../../common/api'
+import * as API from '../../../common/api'
 
 // ACTIONS
 export const surveyActions = {
@@ -74,44 +77,135 @@ function* getSurvey(action) {
   const survey_count = parseInt(getSetting('survey_count') || 0, 10)
   setSettings({ survey_count: survey_count + 1 })
   yield put({ type: 'SURVEY_SHOW' })
+  yield sendAnalytics({})
 }
 
 function* submitSurvey(action) {
   // Build Payload
   const features = yield JSON.parse(getSetting('features_stored'))
   const { show_survey } = features
+  const { key, value } = action.data
   const payload = {
-    ...action.data,
+    [key]: value,
     ...show_survey.parameters,
     survey_impressions: parseInt(getSetting('survey_count'), 10),
     survey_status: 'complete'
   }
 
   // Send Payload
-  console.log(payload)
-  // Remove survey from features
-  removeSurvey({ ...features })
-  yield put({ type: 'SURVEY_COMPLETE' })
+  const { authToken } = yield race({
+    authToken: call(requireAuthorization),
+    timeout: call(delay, 10000)
+  })
+
+  if (authToken) {
+    yield sendAnalytics({
+      identifier: 'click',
+      cxt_index: key,
+      cxt_option_id: value
+    })
+    // try {
+    //   const data = yield call(API.sendSurvey, payload, authToken)
+    //   if (data) {
+    //     yield put({ type: 'SURVEY_COMPLETE' })
+    //     removeSurvey({ ...features })
+    //   } else {
+    //     yield put({ type: 'SURVEY_FAILURE', error: 'timeout' })
+    //   }
+    // } catch (error) {
+    //   yield put({ type: 'SURVEY_FAILURE', error })
+    // }
+  }
 }
 
 function* cancelSurvey() {
-  // Submit cancel
-  const features = JSON.parse(getSetting('features_stored'))
-  const survey = features.survey
-  console.log(survey)
-  // Remove survey from features
-  removeSurvey({ ...features })
-  yield put({ type: 'SURVEY_CANCELED' })
+  // Build Payload
+  const features = yield JSON.parse(getSetting('features_stored'))
+  const { show_survey } = features
+  const payload = {
+    ...show_survey.parameters,
+    survey_impressions: parseInt(getSetting('survey_count'), 10),
+    survey_status: 'decline'
+  }
+
+  // Send Payload
+  const { authToken } = yield race({
+    authToken: call(requireAuthorization),
+    timeout: call(delay, 10000)
+  })
+
+  if (authToken) {
+    yield sendAnalytics({
+      identifier: 'dismiss'
+    })
+    // try {
+    //   const data = yield call(API.sendSurvey, payload, authToken)
+    //   if (data) {
+    //     yield put({ type: 'SURVEY_CANCELED' })
+    //     removeSurvey({ ...features })
+    //   } else {
+    //     yield put({ type: 'SURVEY_FAILURE', error: 'timeout' })
+    //   }
+    // } catch (error) {
+    //   yield put({ type: 'SURVEY_FAILURE', error })
+    // }
+  }
 }
 
 function* ignoreSurvey() {
-  // Submit ignore
-  const features = JSON.parse(getSetting('features_stored'))
-  const survey = features.survey
-  console.log(survey)
-  // Remove survey from features
-  removeSurvey({ ...features })
-  return yield put({ type: 'SURVEY_IGNORED' })
+  // Build Payload
+  const features = yield JSON.parse(getSetting('features_stored'))
+  const { show_survey } = features
+  const payload = {
+    ...show_survey.parameters,
+    survey_impressions: parseInt(getSetting('survey_count'), 10),
+    survey_status: 'ignore'
+  }
+
+  // Send Payload
+  const { authToken } = yield race({
+    authToken: call(requireAuthorization),
+    timeout: call(delay, 10000)
+  })
+
+  if (authToken) {
+    yield sendAnalytics({
+      identifier: 'ignore'
+    })
+    // try {
+    //   const data = yield call(API.sendSurvey, payload, authToken)
+    //   if (data) {
+    //     yield put({ type: 'SURVEY_IGNORED' })
+    //     removeSurvey({ ...features })
+    //   } else {
+    //     yield put({ type: 'SURVEY_FAILURE', error: 'timeout' })
+    //   }
+    // } catch (error) {
+    //   yield put({ type: 'SURVEY_FAILURE', error })
+    // }
+  }
+}
+
+function* sendAnalytics(details) {
+  const { authToken } = yield race({
+    authToken: call(requireAuthorization),
+    timeout: call(delay, 10000)
+  })
+
+  const context = {
+    view: 'extension_survey',
+    section: 'intent_survey',
+    action: 'pv_wt',
+    ...details
+  }
+
+  console.log(context)
+
+  if (authToken) {
+    const guidResponse = yield getGuid()
+    const guid = guidResponse.guid
+    yield call(API.sendSurveyAnalytics, authToken, guid, [context])
+  }
 }
 
 function removeSurvey(features) {
