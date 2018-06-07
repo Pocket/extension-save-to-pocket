@@ -20,7 +20,7 @@ class App extends Component {
     }
   }
 
-  componentWillUpdate(nextProps, nextState) {
+  UNSAFE_componentWillUpdate(nextProps, nextState) {
     const isActive = nextProps.tab_id === nextProps.active
     const currentTab = nextProps.tabs ? nextProps.tabs[nextProps.active] : false
     const isValid = currentTab
@@ -72,12 +72,9 @@ class App extends Component {
       this.currentTab &&
       this.currentTab.status === 'saved' &&
       this.props.setup.on_save_recommendations &&
-      getCurrentLanguageCode() === 'en'
+      getCurrentLanguageCode() === 'en' &&
+      !this.props.survey.show
     )
-  }
-
-  get showSurvey() {
-    return false
   }
 
   get frameLoaded() {
@@ -106,7 +103,6 @@ class App extends Component {
         <SaveContainer
           isSaveActive={this.isSaveActive()}
           showRecs={this.showRecs}
-          showSurvey={this.showSurvey}
           onHover={this.onHover}
           offHover={this.offHover}
           tab_id={this.props.tab_id}
@@ -135,6 +131,9 @@ class App extends Component {
           spocView={this.props.spocView}
           spocClick={this.props.spocClick}
           spocRemove={this.props.spocRemove}
+          survey={this.props.survey}
+          surveyRespond={this.props.surveyRespond}
+          surveyCancel={this.props.surveyCancel}
         />
       </div>
     )

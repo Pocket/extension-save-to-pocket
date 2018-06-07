@@ -23,9 +23,9 @@
 
 .header {
   font-weight: 600;
-  font-size: 1.3em;
+  font-size: 1.2em;
   text-align: center;
-  padding: 0.5rem 2rem;
+  padding: 0 3.3rem 0.8rem;
   margin: 0;
 }
 
@@ -34,7 +34,7 @@
   padding: 0 0;
   margin: 0;
   li {
-    padding: 0.2em 0;
+    margin-bottom: 0.3em;
     display: block;
   }
 }
@@ -58,7 +58,7 @@
 
 .dismiss {
   @include pocketButton;
-  padding: 0.8em 1em;
+  padding: 1em 1em 0.2em;
   text-align: center;
   display: block;
   box-sizing: border-box;
@@ -66,4 +66,22 @@
   font-size: 0.875em;
   color: $silver;
   width: 100%;
+}
+
+.thanksHeader{
+  font-size: 1rem;
+  text-align: center;
+  margin:0;
+  padding: 0 0 0.4em;
+}
+.thanksP{
+  text-align: center;
+}
+.thanksButton{
+  all: unset;
+  color: $teal;
+  cursor: pointer;
+  &:hover{
+    color: $emerald;
+  }
 }

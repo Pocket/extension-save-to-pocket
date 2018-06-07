@@ -108,8 +108,8 @@ function* closePanelRequest(action) {
 }
 
 function* closePanel(tabId, timeout) {
-  // yield call(delay, timeout)
-  // yield put({ type: 'SET_TAB_STATUS', tabId, status: 'idle', shown: false })
+  yield call(delay, timeout)
+  yield put({ type: 'SET_TAB_STATUS', tabId, status: 'idle', shown: false })
 }
 
 function* checkFeatures() {
@@ -132,13 +132,13 @@ function* checkFeatures() {
   return {}
 }
 
-function* checkSurvey(features) {
-  const surveyAvailable = yield typeof features.show_survey !== 'undefined'
-  return surveyAvailable
+function getSurvey(features) {
+  return features && features.show_survey ? features.show_survey : false
 }
 
 function* saveRequest(action) {
   yield put({ type: 'CANCEL_CLOSE_SAVE_PANEL' })
+  yield put({ type: 'SURVEY_RESET' })
 
   const saveType =
     action.data.info && action.data.info.linkUrl ? 'link' : 'page'
@@ -179,21 +179,24 @@ function* saveSuccess(saveObject, resolvedId) {
   const features = yield checkFeatures()
 
   // Show Survey?
-  const showSurvey = yield checkSurvey(features)
+  const survey = getSurvey(features)
 
   // Trigger further actions to run after a succesful save
   const setup = yield select(getCurrentSetup)
   const shouldRequestRecs = setup.on_save_recommendations
   const shouldRequestTags = setup.account_premium
 
+  if (survey && getCurrentLanguageCode() === 'en') {
+    yield put({ type: 'SURVEY_REQUEST', survey, resolvedId })
+  }
+
   // Do we need on save recommendations?
   if (
+    !survey &&
     shouldRequestRecs &&
     resolvedId &&
-    getCurrentLanguageCode() === 'en' &&
-    !showSurvey
+    getCurrentLanguageCode() === 'en'
   ) {
-    console.log(showSurvey)
     yield call(delay, 650)
     yield put({ type: 'RECOMMENDATIONS_REQUEST', saveObject, resolvedId })
   }

@@ -42,6 +42,7 @@ class SaveContainer extends Component {
   willLeave() {
     return { transform: spring(-240), opacity: spring(0) }
   }
+
   render() {
     return (
       <TransitionMotion
@@ -88,7 +89,7 @@ class SaveContainer extends Component {
                       setInputFocusState={this.props.setInputFocusState}
                     />
                     {this.props.showRecs &&
-                      !this.props.showSurvey && (
+                      !this.props.survey.show && (
                         <Recommendations
                           tabId={this.props.tab_id}
                           recs={this.props.currentRecs}
@@ -100,7 +101,13 @@ class SaveContainer extends Component {
                           spocRemove={this.props.spocRemove}
                         />
                       )}
-                    {this.props.showSurvey && <Survey />}
+                    {this.props.survey.show && (
+                      <Survey
+                        survey={this.props.survey}
+                        surveyRespond={this.props.surveyRespond}
+                        surveyCancel={this.props.surveyCancel}
+                      />
+                    )}
                   </div>
                 )
               })}
