@@ -99,22 +99,22 @@ function* submitSurvey(action) {
   })
 
   if (authToken) {
-    yield sendAnalytics({
-      identifier: 'click',
-      cxt_index: key,
-      cxt_option_id: value
-    })
-    // try {
-    //   const data = yield call(API.sendSurvey, payload, authToken)
-    //   if (data) {
-    //     yield put({ type: 'SURVEY_COMPLETE' })
-    //     removeSurvey({ ...features })
-    //   } else {
-    //     yield put({ type: 'SURVEY_FAILURE', error: 'timeout' })
-    //   }
-    // } catch (error) {
-    //   yield put({ type: 'SURVEY_FAILURE', error })
-    // }
+    try {
+      const data = yield call(API.sendSurvey, payload, authToken)
+      if (data) {
+        yield put({ type: 'SURVEY_COMPLETE' })
+        yield sendAnalytics({
+          identifier: 'click',
+          cxt_index: key,
+          cxt_option_id: value
+        })
+        removeSurvey({ ...features })
+      } else {
+        yield put({ type: 'SURVEY_FAILURE', error: 'timeout' })
+      }
+    } catch (error) {
+      yield put({ type: 'SURVEY_FAILURE', error })
+    }
   }
 }
 
@@ -135,20 +135,18 @@ function* cancelSurvey() {
   })
 
   if (authToken) {
-    yield sendAnalytics({
-      identifier: 'dismiss'
-    })
-    // try {
-    //   const data = yield call(API.sendSurvey, payload, authToken)
-    //   if (data) {
-    //     yield put({ type: 'SURVEY_CANCELED' })
-    //     removeSurvey({ ...features })
-    //   } else {
-    //     yield put({ type: 'SURVEY_FAILURE', error: 'timeout' })
-    //   }
-    // } catch (error) {
-    //   yield put({ type: 'SURVEY_FAILURE', error })
-    // }
+    try {
+      const data = yield call(API.sendSurvey, payload, authToken)
+      if (data) {
+        yield put({ type: 'SURVEY_CANCELED' })
+        yield sendAnalytics({ identifier: 'dismiss' })
+        removeSurvey({ ...features })
+      } else {
+        yield put({ type: 'SURVEY_FAILURE', error: 'timeout' })
+      }
+    } catch (error) {
+      yield put({ type: 'SURVEY_FAILURE', error })
+    }
   }
 }
 
@@ -169,20 +167,18 @@ function* ignoreSurvey() {
   })
 
   if (authToken) {
-    yield sendAnalytics({
-      identifier: 'ignore'
-    })
-    // try {
-    //   const data = yield call(API.sendSurvey, payload, authToken)
-    //   if (data) {
-    //     yield put({ type: 'SURVEY_IGNORED' })
-    //     removeSurvey({ ...features })
-    //   } else {
-    //     yield put({ type: 'SURVEY_FAILURE', error: 'timeout' })
-    //   }
-    // } catch (error) {
-    //   yield put({ type: 'SURVEY_FAILURE', error })
-    // }
+    try {
+      const data = yield call(API.sendSurvey, payload, authToken)
+      if (data) {
+        yield put({ type: 'SURVEY_IGNORED' })
+        yield sendAnalytics({ identifier: 'ignore' })
+        removeSurvey({ ...features })
+      } else {
+        yield put({ type: 'SURVEY_FAILURE', error: 'timeout' })
+      }
+    } catch (error) {
+      yield put({ type: 'SURVEY_FAILURE', error })
+    }
   }
 }
 
@@ -198,8 +194,6 @@ function* sendAnalytics(details) {
     action: 'pv_wt',
     ...details
   }
-
-  console.log(context)
 
   if (authToken) {
     const guidResponse = yield getGuid()
