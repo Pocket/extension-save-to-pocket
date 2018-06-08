@@ -57,7 +57,7 @@ function setFeedItemStatus(feed, id, status) {
 
 function removeFeedItem(feed, id) {
   return feed.filter(rec => {
-    return rec.id !== id
+    return rec.id !== parseInt(id, 10)
   })
 }
 
