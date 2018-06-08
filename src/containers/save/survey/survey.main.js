@@ -2,6 +2,8 @@
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 import styles from './survey.scss'
 import React, { Component } from 'react'
+import { openTabWithUrl } from '../../../common/interface'
+
 // import PropTypes from 'prop-types'
 
 const Field = ({ name, label, options, surveyRespond }) => {
@@ -32,15 +34,34 @@ const Option = ({ name, value, text, surveyRespond }) => {
   )
 }
 
+const Thanks = ({ canceled, feedback_url }) => {
+  return canceled ? null : (
+    <div className={styles.survey}>
+      <h2 className={styles.thanksHeader}>Thanks for your response!</h2>
+      <p className={styles.thanksP}>
+        We're exploring ways to help you get back to your saves. More feedback?<br />
+        Share it with us{' '}
+        <button
+          onClick={() => openTabWithUrl(feedback_url)}
+          className={styles.thanksButton}>
+          here ›
+        </button>
+      </p>
+    </div>
+  )
+}
+
 const Questionaire = ({
   fields,
+  parameters,
   surveyRespond,
   surveyCancel,
   completed,
   canceled
 }) => {
+  const { feedback_url } = parameters
   return completed ? (
-    <Thanks canceled={canceled} />
+    <Thanks canceled={canceled} feedback_url={feedback_url} />
   ) : (
     <div className={styles.survey}>
       {fields.map(data => (
@@ -49,18 +70,6 @@ const Questionaire = ({
       <button className={styles.dismiss} onClick={surveyCancel}>
         Don't show me this
       </button>
-    </div>
-  )
-}
-
-const Thanks = ({ canceled }) => {
-  return canceled ? null : (
-    <div className={styles.survey}>
-      <h2 className={styles.thanksHeader}>Thanks for your response!</h2>
-      <p className={styles.thanksP}>
-        We're exploring ways to help you get back t your saves. More Feedback?<br />
-        Share it with us <button className={styles.thanksButton}>here</button>
-      </p>
     </div>
   )
 }
