@@ -112,7 +112,7 @@
     "start": "build-pocket save-to-pocket start",
     "build": "build-pocket save-to-pocket build",
     "test": "build-pocket save-to-pocket test --env=jsdom",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -s ./src/Components/Views/Frame -p 6006",
     "build-storybook": "build-storybook"
   }
 }
