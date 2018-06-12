@@ -11,6 +11,11 @@ const PopoverContent = styled('div')`
   padding: 7px 0;
 `
 
+const NullWrapper = styled('div')`
+  display: inline-block;
+  line-height: 0;
+`
+
 const PopoverContext = React.createContext()
 
 export class Trigger extends Component {
@@ -19,11 +24,11 @@ export class Trigger extends Component {
       <PopoverContext.Consumer>
         {({ toggle, activateOnClick, onHover, offHover }) =>
           activateOnClick ? (
-            <span onClick={toggle}>{this.props.children}</span>
+            <NullWrapper onClick={toggle}>{this.props.children}</NullWrapper>
           ) : (
-            <span onMouseOver={onHover} onMouseOut={offHover}>
+            <NullWrapper onMouseOver={onHover} onMouseOut={offHover}>
               {this.props.children}
-            </span>
+            </NullWrapper>
           )
         }
       </PopoverContext.Consumer>
@@ -81,7 +86,7 @@ export class Popover extends Component {
           offHover: this.offHover,
           activateOnClick: this.props.activateOnClick
         }}>
-        <span ref={this.containerRef}>{this.props.children}</span>
+        <NullWrapper ref={this.containerRef}>{this.props.children}</NullWrapper>
       </PopoverContext.Provider>
     )
   }

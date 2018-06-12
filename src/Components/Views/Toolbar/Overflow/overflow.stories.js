@@ -4,11 +4,13 @@ import styled from 'react-emotion'
 import { OverflowItem } from './overflowItem'
 import { OverflowMenu } from './overflow.menu'
 import { Overflow } from './overflow'
+import { PanelBase } from 'Elements/Foundations/foundation'
 
 const OverFlowContainer = styled('div')`
+  ${PanelBase};
   position: relative;
-  width: 320px;
-  height: 100px;
+  text-align: right;
+  padding: 0 10px;
 `
 
 storiesOf('Views|Toolbar/Overflow/', module)
@@ -21,11 +23,7 @@ storiesOf('Views|Toolbar/Overflow/', module)
 
 storiesOf('Views|Toolbar/Overflow/Menu', module)
   .addDecorator(story => <div style={{ width: '320px' }}>{story()}</div>)
-  .add('Menu', () => (
-    <OverFlowContainer>
-      <OverflowMenu active={true} />
-    </OverFlowContainer>
-  ))
+  .add('Menu', () => <OverflowMenu active={true} />)
   .add('Item: Archive', () => (
     <OverflowItem name="archive_page" method={() => {}} />
   ))

@@ -1,8 +1,24 @@
 import React from 'react'
 import { css } from 'emotion'
 import { storiesOf } from '@storybook/react'
+import styled from 'react-emotion'
 import { StyledButton } from './button'
+import { Icon } from 'Elements/Icons/icon'
 
+const ButtonStandard = styled('button')`
+  ${StyledButton};
+`
+const ButtonWarn = styled('button')`
+  ${StyledButton({ type: 'warn' })};
+`
+const ButtonCTA = styled('button')`
+  ${StyledButton({ type: 'cta' })};
+`
+const ButtonContainer = styled('div')`
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-gap: 1em;
+`
 storiesOf('Elements|Buttons', module)
   .addDecorator(story => (
     <div
@@ -15,46 +31,36 @@ storiesOf('Elements|Buttons', module)
     </div>
   ))
   .add('All Buttons', () => (
-    <div>
-      <StyledButton>Button Copy</StyledButton>
-      <StyledButton type="warn">Button Copy</StyledButton>
-      <StyledButton type="cta">Button Copy</StyledButton>
-      <div
-        className={css`
-          font-size: 14px;
-          margin: 15px;
-          max-width: 400px;
-        `}>
-        <h3>To Do:</h3>
-        <ol>
-          <li>
-            These should be reconciled with icons so we can have an IconButton
-            type where we could include custom iconography to the button with
-            consistent results.
-          </li>
-        </ol>
-      </div>
-    </div>
+    <ButtonContainer>
+      <ButtonStandard>Button Copy</ButtonStandard>
+      <ButtonStandard>
+        <Icon name="pocketmark" margin="0 8px 0 0" />Button Copy
+      </ButtonStandard>
+      <ButtonWarn>Button Copy</ButtonWarn>
+      <ButtonCTA>Button Copy</ButtonCTA>
+    </ButtonContainer>
   ))
   .add('Default', () => (
     <div>
-      <StyledButton>Button Copy</StyledButton>
-      <StyledButton size="small">Button Copy</StyledButton>
+      <ButtonStandard>Button Copy</ButtonStandard>
+      <ButtonStandard>
+        <Icon name="question" margin="0 8px 0 0" /> Button Copy
+      </ButtonStandard>
     </div>
   ))
   .add('Warn', () => (
     <div>
-      <StyledButton type="warn">Button Copy</StyledButton>
-      <StyledButton size="small" type="warn">
-        Button Copy
-      </StyledButton>
+      <ButtonWarn>Button Copy</ButtonWarn>
+      <ButtonWarn>
+        <Icon name="archive_page" margin="0 8px 0 0" /> Button Copy
+      </ButtonWarn>
     </div>
   ))
   .add('CTA', () => (
     <div>
-      <StyledButton type="cta">Button Copy</StyledButton>
-      <StyledButton size="small" type="cta">
-        Button Copy
-      </StyledButton>
+      <ButtonCTA>Button Copy</ButtonCTA>
+      <ButtonCTA>
+        <Icon name="premium" margin="0 8px 0 0" /> Button Copy
+      </ButtonCTA>
     </div>
   ))

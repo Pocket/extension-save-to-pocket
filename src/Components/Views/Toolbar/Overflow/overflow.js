@@ -8,16 +8,9 @@ import { buttonReset } from 'Elements/Buttons/button'
 import { OverflowMenu } from './overflow.menu'
 import { Popover, Trigger, Content } from 'Modules/Popover/popover'
 
-const OverflowWrapper = styled('div')`
-  padding: 0;
-  text-align: right;
-`
-
 const OverflowTrigger = styled('button')`
   ${buttonReset};
-  cursor: pointer;
   color: ${Shades.overcast};
-
   &:hover {
     color: ${Colors.teal};
   }
@@ -28,7 +21,7 @@ export class Overflow extends Component {
 
   render() {
     return (
-      <OverflowWrapper>
+      <React.Fragment>
         <Popover>
           <Trigger>
             <OverflowTrigger>
@@ -40,7 +33,7 @@ export class Overflow extends Component {
             <OverflowMenu active={this.state.active} />
           </Content>
         </Popover>
-      </OverflowWrapper>
+      </React.Fragment>
     )
   }
 }

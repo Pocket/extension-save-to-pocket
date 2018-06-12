@@ -109,7 +109,7 @@ export class RecommendationItem extends Component {
         </Content>
 
         <SaveAction onClick={this.handleSaveClick}>
-          <Icon name="logopocket" size="1.2em" /> {copy[status]}
+          <Icon name="pocketmark" size="1.2em" /> {copy[status]}
         </SaveAction>
 
         <Image imageUrl={item.top_image_url} />

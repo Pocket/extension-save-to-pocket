@@ -28,6 +28,8 @@ export const buttonReset = css`
   &:focus {
     outline: 0;
   }
+  display: inline-flex;
+  align-items: center;
 `
 export const buttonStyle = css`
   ${buttonReset};
@@ -35,12 +37,14 @@ export const buttonStyle = css`
   border-radius: 4px;
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4);
   color: #222;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-size: 16px;
   font-weight: 400;
   line-height: 1;
   margin: 0;
-  text-align: center;
+  text-align: inherit;
   text-decoration: none;
   transition: background-position 0.1s linear;
   cursor: pointer;
@@ -100,7 +104,7 @@ const buttonTypes = {
 
 const buttonSizes = {
   default: css`
-    padding: 11px 45px;
+    padding: 8px 25px;
   `,
   small: css`
     padding: 6px 20px;
@@ -115,10 +119,6 @@ const buttonWidths = {
     width: 100%;
   `
 }
-
-export const UnStyledButton = styled('button')`
-  ${buttonReset};
-`
 
 export const ButtonLink = styled('button')`
   ${buttonReset};

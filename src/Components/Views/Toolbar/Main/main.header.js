@@ -6,7 +6,8 @@ import { Overflow } from '../Overflow/overflow'
 import { Colors } from 'Elements/Colors/colors'
 
 const StatusText = styled('span')`
-  display: block;
+  display: flex;
+  align-items: center;
 `
 
 const StatusIcon = styled('span')`
@@ -34,8 +35,8 @@ export class ToolbarHeader extends Component {
       <HeaderWrapper>
         <StatusText>
           <StatusIcon>
-            <Icon name="logopocket" />
-          </StatusIcon>{' '}
+            <Icon name="pocketmark" margin="0 5px 0 0" />
+          </StatusIcon>
           {this.statusText}
         </StatusText>
         <Overflow />

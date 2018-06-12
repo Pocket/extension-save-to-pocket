@@ -50,6 +50,8 @@ const HeaderBlock = styled('h1')`
   font-weight: 300;
   margin: 70px 0 0;
   padding: 0 0 20px;
+  display: flex;
+  align-items: center;
 `
 
 /* Renders
@@ -59,7 +61,7 @@ export class OptionsView extends React.Component {
     return (
       <OptionsWrapper>
         <HeaderBlock>
-          <Icon name="logopocket" color={Colors.hotCoral} margin="0 8px 0 0" />
+          <Icon name="pocketmark" color={Colors.hotCoral} margin="0 8px 0 0" />
           {localize('options_page', 'header')} -{' '}
           {localize('options_page', 'save_to_pocket')}
         </HeaderBlock>

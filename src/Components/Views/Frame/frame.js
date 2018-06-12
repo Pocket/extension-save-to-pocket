@@ -1,13 +1,14 @@
+import { iframeResizer } from 'iframe-resizer/js'
 export function FrameInjector() {
   const frameID = 'save_to_pocket_extension_frame'
 
   let frame = document.createElement('iframe')
-  let element, observer
+  let element
 
   frame.id = frameID
   frame.style.border = 'none'
   frame.style.display = 'block'
-  frame.style.height = '400px'
+  frame.style.height = '0'
   frame.style.overflow = 'hidden'
   frame.style.position = 'fixed'
   frame.style.right = 0
@@ -17,52 +18,54 @@ export function FrameInjector() {
   frame.style.width = '335px'
   frame.style.zIndex = 2147483647
   frame.style.background = 'transparent'
-  frame.style.backgroundColor = 'rgba(0,0,255, 0.5)' //DEV ONLY
   frame.setAttribute('allowtransparency', true)
 
-  function initFrame() {
+  function initFrame(url) {
     return new Promise((resolve, reject) => {
       const existingFrame = window.document.getElementById(frameID)
-      if (existingFrame) return reject()
-
-      // eslint-disable-next-line
-      if (document.body) return resolve(appendIFrame())
+      if (existingFrame) existingFrame.remove()
+      if (document.body) return resolve(appendIFrame(url))
       window.requestAnimationFrame(initFrame)
     })
   }
 
-  function appendIFrame() {
-    frame.src = './testcontent.html'
+  function appendIFrame(url) {
+    frame.src = url
     element = window.document.body.appendChild(frame)
+    iframeResizer({}, element)
   }
 
-  function handleMutatons(mutations) {
-    mutations.forEach(mutation => {
-      console.log(mutation)
-    })
+  function inject({
+    url = required('url'),
+    showFrame = false,
+    onLoad = () => {}
+  }) {
+    // DEV ONLY
+    if (showFrame) {
+      frame.style.background = `repeating-linear-gradient(
+        45deg,
+        rgba(255, 0, 0, 0.2),
+        rgba(255, 0, 0, 0.2) 2px,
+        transparent 2px,
+        transparent 4px
+      )`
+    }
+    initFrame(url)
+      .then(onLoad)
+      .catch(reason => console.warn(reason))
   }
 
-  function render() {
-    initFrame()
-      .then(() => {
-        observer = new MutationObserver(handleMutatons)
-        // configuration of the observer:
-        var config = { attributes: true, childList: true, characterData: true }
-        // pass in the target node, as well as the observer options
-        observer.observe(element, config)
-      })
-      .catch(reason => {
-        console.warn(reason)
-      })
+  function remove() {
+    const existingFrame = window.document.getElementById(frameID)
+    if (existingFrame) existingFrame.remove()
   }
 
-  function unloadFrame() {
-    return new Promise(resolve => {
-      observer.disconnect()
-      element.remove()
-      resolve()
-    })
+  function required(keyword) {
+    throw new Error(`Prameter \`${keyword}\` is required`)
   }
 
-  render()
+  return {
+    inject,
+    remove
+  }
 }

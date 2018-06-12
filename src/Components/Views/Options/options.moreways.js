@@ -43,15 +43,15 @@ export class MoreWaysBlock extends React.Component {
         </WaysTitle>
         <WaysList>
           <ButtonLink color={Shades.darksmoke}>
-            <Icon name="pocketnewtab" margin="0 0 10px" size="48px" />
+            <Icon name="newtab" margin="0 0 10px" size="48px" />
             <div>Pocket New Tab</div>
           </ButtonLink>
           <ButtonLink color={Shades.darksmoke}>
-            <Icon name="androidlogo" margin="0 0 10px" size="48px" />
+            <Icon name="android" margin="0 0 10px" size="48px" />
             <div>Android</div>
           </ButtonLink>
           <ButtonLink color={Shades.darksmoke}>
-            <Icon name="iphoneipad" margin="0 0 10px" size="48px" />
+            <Icon name="ios" margin="0 0 10px" size="48px" />
             <div>iPhone/Ipad</div>
           </ButtonLink>
           <ButtonLink color={Shades.darksmoke}>
