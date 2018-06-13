@@ -46,29 +46,7 @@
     "extends": [
       "react-app",
       "prettier"
-    ],
-    "rules": {
-      "no-unneeded-ternary": "warn",
-      "linebreak-style": [
-        "error",
-        "unix"
-      ],
-      "quotes": [
-        "error",
-        "single"
-      ],
-      "semi": [
-        "error",
-        "never"
-      ],
-      "no-unused-vars": [
-        "warn",
-        {
-          "vars": "all",
-          "args": "after-used"
-        }
-      ]
-    }
+    ]
   },
   "prettier": {
     "bracketSpacing": true,
