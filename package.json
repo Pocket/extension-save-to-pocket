@@ -70,32 +70,6 @@
       ]
     }
   },
-  "stylelint": {
-    "extends": "stylelint-config-standard",
-    "plugins": [
-      "stylelint-order"
-    ],
-    "rules": {
-      "color-named": "never",
-      "indentation": [
-        2,
-        {
-          "ignore": [
-            "value"
-          ]
-        }
-      ],
-      "max-nesting-depth": 3,
-      "number-max-precision": 4,
-      "property-no-vendor-prefix": true,
-      "at-rule-no-vendor-prefix": true,
-      "at-rule-no-unknown": null,
-      "media-feature-name-no-vendor-prefix": true,
-      "selector-no-vendor-prefix": true,
-      "value-no-vendor-prefix": true,
-      "order/properties-alphabetical-order": true
-    }
-  },
   "prettier": {
     "bracketSpacing": true,
     "jsxBracketSameLine": true,
