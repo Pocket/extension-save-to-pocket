@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pocket New Tab - Development Page</title>
+    <style>
+        @font-face {
+    font-family: 'proxima-nova';
+    font-style: normal;
+    font-weight: 400;
+    src: url('./fonts/ProximaNova-Reg-webfont.eot');
+    src: url('./fonts/ProximaNova-Reg-webfont.eot?iefix') format('eot'),
+         url('./fonts/ProximaNova-Reg-webfont.woff') format('woff'),
+         url('./fonts/ProximaNova-Reg-webfont.ttf') format('truetype');
+    }
+
+    @font-face {
+        font-family: 'proxima-nova';
+        font-style: normal;
+        font-weight: 600;
+        src: url('./fonts/ProximaNova-Sbold-webfont.eot');
+        src: url('./fonts/ProximaNova-Sbold-webfont.eot?iefix') format('eot'),
+             url('./fonts/ProximaNova-Sbold-webfont.woff') format('woff'),
+             url('./fonts/ProximaNova-Sbold-webfont.ttf') format('truetype');
+    }
+
+    @font-face {
+        font-family: 'proxima-nova';
+        font-style: normal;
+        font-weight: 800;
+        src: url('./fonts/ProximaNova-Bold-webfont.eot');
+        src: url('./fonts/ProximaNova-Bold-webfont.eot?iefix') format('eot'),
+             url('./fonts/ProximaNova-Bold-webfont.woff') format('woff'),
+             url('./fonts/ProximaNova-Bold-webfont.ttf') format('truetype');
+    }
+
+    html {
+        font-size: 62.5%;
+    }
+
+    body {
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        font-family: "proxima-nova", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, sans-serif;
+        font-size: 1.6em;
+    }
+p {
+  margin-top: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 300;
+  letter-spacing: -.1rem;
+  margin-bottom: 2.0rem;
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 4.6rem;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 3.6rem;
+  line-height: 1.25;
+}
+
+h3 {
+  font-size: 2.8rem;
+  line-height: 1.3;
+}
+
+h4 {
+  font-size: 2.2rem;
+  letter-spacing: -.08rem;
+  line-height: 1.35;
+}
+
+h5 {
+  font-size: 1.8rem;
+  letter-spacing: -.05rem;
+  line-height: 1.5;
+}
+
+h6 {
+  font-size: 1.6rem;
+  letter-spacing: 0;
+  line-height: 1.4;
+}
+
+    .container{
+        box-sizing: border-box;
+        display: inline-block;
+        max-width: 700px;
+        text-align: left;
+    }
+    header{
+        display: block;
+        padding: 35px 0;
+        text-align: center;
+    }
+    .questions{
+        list-style-type: none;
+        margin:0;
+        padding: 0;
+    }
+    .questionItem{
+        display: flex;
+        padding: 35px;
+        box-shadow: 0 0 25px 1px rgba(0,0,0,0.2);
+        border-radius: 8px;
+    }
+    .question {
+        width: 50%;
+    }
+    .answer {
+        width: 50%;
+    }
+    .answer a{
+        text-decoration: none;
+        font-weight: 100;
+    }
+    .answer ul{
+        list-style-type: circle;
+    }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h2>Save to Pocket Extension is ready to develop.</h2>
+    </header>
+    <ul class="questions">
+        <li class="questionItem">
+            <div class="question">
+                <h3>What do I do now?</h3>
+                <p>Exellent question!  Choose the browser you are developing for and follow their instructions on how to load a development extension.</p>
+            </div>
+            <div class="answer">
+                <ul>
+                    <li>
+                        <a href="https://developer.chrome.com/extensions/getstarted#unpacked">
+                            Chrome
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://dev.opera.com/extensions/basics/#step-4-testing-your-extension">
+                            Opera
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/yandex/browser-extensions/wiki/Custom-Extension-Install-In-Developer-Mode">
+                            Yandex
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://github.com/brave/browser-laptop/wiki/Developer-Notes-on-Installing-or-Updating-Extensions">
+                            Brave
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://docs.microsoft.com/en-us/microsoft-edge/extensions/guides/adding-and-removing-extensions">
+                            Edge
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://help.vivaldi.com/article/extensions/">
+                            Vivaldi
+                        </a>
+                    </li>
+                </ul>
+        </li>
+    </ul>
+</div>
+<script type="text/javascript" src="/Users/base/Development/Pocket/Extensions/Save To Pocket/build/_dev/js/background.bundle.js"></script></body>
+</html>
