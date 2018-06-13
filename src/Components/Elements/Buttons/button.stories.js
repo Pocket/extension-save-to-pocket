@@ -15,9 +15,8 @@ const ButtonCTA = styled('button')`
   ${StyledButton({ type: 'cta' })};
 `
 const ButtonContainer = styled('div')`
-  display: grid;
-  grid-template-rows: repeat(3, 1fr);
-  grid-gap: 1em;
+  display: flex;
+  flex-direction: rows;
 `
 storiesOf('Elements|Buttons', module)
   .addDecorator(story => (
