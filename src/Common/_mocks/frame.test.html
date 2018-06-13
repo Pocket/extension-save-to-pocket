@@ -1,0 +1,78 @@
+<html>
+
+<head>
+  <title>Bouncing Frame</title>
+  <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/iframe-resizer@3.5.3/js/iframeResizer.contentWindow.min.js"></script> </head>
+
+<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+<style>
+  body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+  }
+</style>
+
+<body>
+  <div id="root"></div>
+
+  <script>
+    window.onload = function () {
+      class Bounce extends React.Component {
+        constructor(props) {
+          super(props)
+          this.state = { height: 100 }
+          setInterval(this.randomizeHeight.bind(this), 1000)
+        }
+
+        randomizeHeight() {
+          const randomHeight = _.random(100, 600);
+          this.setState({ height: randomHeight })
+        }
+
+        render() {
+          return React.createElement('div', {
+            style: {
+              display: 'grid',
+              gridTemplateColumns: '1px auto'
+            }
+          },
+            React.createElement('div',
+              {
+                style: {
+                  width: '1px',
+                  height: `${this.state.height}px`,
+                  background: 'transparent'
+                }
+              },
+              ' '),
+            React.createElement('div',
+              {
+                style:
+                {
+                  transition: 'height 500ms ease-in-out',
+                  height: `${this.state.height}px`,
+                  background: '#FFF',
+                  boxShadow: '0 2px 5px rgba(0, 0, 0, 0.5)',
+                  color: '#222',
+                  borderRadius: '4px',
+                  padding: '10px',
+                  boxSizing: 'border-box'
+                }
+              },
+              'Box Height, ' + this.state.height + 'px')
+          )
+        }
+      }
+      ReactDOM.render(
+        React.createElement(Bounce),
+        document.getElementById('root')
+      );
+    };
+  </script>
+
+</body>
+
+</html>
