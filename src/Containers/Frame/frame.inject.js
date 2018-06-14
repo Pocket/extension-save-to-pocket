@@ -1,9 +1,9 @@
-import { iframeResizer } from 'iframe-resizer/js'
-export function FrameInjector() {
+export const FrameInject = function() {
   const frameID = 'save_to_pocket_extension_frame'
 
   let frame = document.createElement('iframe')
   let element
+  let animationFrameRequest
 
   frame.id = frameID
   frame.style.border = 'none'
@@ -25,21 +25,18 @@ export function FrameInjector() {
       const existingFrame = window.document.getElementById(frameID)
       if (existingFrame) existingFrame.remove()
       if (document.body) return resolve(appendIFrame(url))
-      window.requestAnimationFrame(initFrame)
+      animationFrameRequest = window.requestAnimationFrame(initFrame)
     })
   }
 
   function appendIFrame(url) {
     frame.src = url
     element = window.document.body.appendChild(frame)
-    iframeResizer({}, element)
+    return element
+    // iframeResizer({}, element)
   }
 
-  function inject({
-    url = required('url'),
-    showFrame = false,
-    onLoad = () => {}
-  }) {
+  function inject({ url = required('url'), showFrame = false }) {
     // DEV ONLY
     if (showFrame) {
       frame.style.background = `repeating-linear-gradient(
@@ -50,12 +47,11 @@ export function FrameInjector() {
         transparent 4px
       )`
     }
-    initFrame(url)
-      .then(onLoad)
-      .catch(reason => console.warn(reason))
+    return initFrame(url).catch(reason => console.warn(reason))
   }
 
   function remove() {
+    window.cancelAnimationFrame(animationFrameRequest)
     const existingFrame = window.document.getElementById(frameID)
     if (existingFrame) existingFrame.remove()
   }
@@ -64,8 +60,5 @@ export function FrameInjector() {
     throw new Error(`Prameter \`${keyword}\` is required`)
   }
 
-  return {
-    inject,
-    remove
-  }
+  return { inject, remove }
 }

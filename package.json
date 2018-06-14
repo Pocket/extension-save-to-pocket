@@ -59,6 +59,7 @@
     "blueimp-md5": "^2.10.0",
     "emotion": "^9.1.3",
     "emotion-theming": "^9.1.2",
+    "iframe-resizer": "^3.6.1",
     "js-base64": "^2.4.5",
     "match-sorter": "^2.2.3",
     "prop-types": "^15.5.10",
