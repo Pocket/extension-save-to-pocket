@@ -55,11 +55,14 @@ module.exports = {
   // This means they will be the "root" imports that are included in JS bundle.
   entry: {
     background: [paths.background],
+    frame: [paths.frame + '/frame.js'],
+    // frameReporter: [paths.frame + '/frame.reporter.js'],
     options: [paths.options + '/options.js'],
     login: [paths.login],
     logout: [paths.logout],
-    save: [paths.save + '/save.js'],
-    twitter: [paths.twitter]
+    app: [paths.appSrc + '/app.js'],
+    twitter: [paths.twitter],
+    frameTest: [paths.frame + '/_storybookFiles/frame.test.resize.js']
   },
   output: {
     // Add /* filename */ comments to generated require()s in the output.
@@ -232,9 +235,15 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       inject: true,
-      template: paths.save + '/save.html',
-      filename: 'save.html',
-      chunks: ['save']
+      template: paths.appSrc + '/app.html',
+      filename: 'app.html',
+      chunks: ['app']
+    }),
+    new HtmlWebpackPlugin({
+      inject: true,
+      template: paths.frame + '/_storybookFiles/frame.test.resize.html',
+      filename: 'frame.test.resize.html',
+      chunks: ['frameTest']
     }),
     // Add module names to factory functions so they appear in browser profiler.
     new webpack.NamedModulesPlugin(),

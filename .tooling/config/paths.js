@@ -45,7 +45,7 @@ const newPaths = {
   manifest: resolveApp('src/manifest.yml'),
   locales: resolveApp('src/Common/_locales'),
   background: resolveApp('src/Containers/Background/background.js'),
-  save: resolveApp('src/Containers/Save'),
+  frame: resolveApp('src/Containers/Frame'),
   options: resolveApp('src/Containers/Options'),
   login: resolveApp('src/Containers/Auth/login.js'),
   logout: resolveApp('src/Containers/Auth/logout.js'),

@@ -62,7 +62,7 @@ manifest_version: 2
 externally_connectable:
   ids: []
 web_accessible_resources:
-  - save.html
+  - app.html
   - fonts/ProximaNova-Reg-webfont.eot
   - fonts/ProximaNova-Reg-webfont.woff
   - fonts/ProximaNova-Reg-webfont.ttf
