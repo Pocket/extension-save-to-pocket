@@ -24,18 +24,18 @@ const Wrapper = styled('li')`
   line-height: 1.25em;
   color: ${Shades.pitch};
   border-top: 1px solid ${Shades.smoke};
+  padding: 12px 8px;
 `
 
 const Content = styled('div')`
-  padding: 10px;
-  height: 90px;
+  min-height: 90px;
   overflow: hidden;
   box-sizing: border-box;
 `
 
 const Source = styled('div')`
   color: $silver;
-  font-size: 10px;
+  font-size: 0.9em;
   line-height: 1em;
   margin: 0 0 10px;
 `
@@ -43,8 +43,7 @@ const Source = styled('div')`
 const SaveAction = styled('button')`
   ${buttonReset};
   cursor: pointer;
-  padding: 0 10px 5px;
-  color: ${Shades.pitch};
+  color: ${Shades.overcast};
   &:hover {
     color: ${Colors.hotCoral};
   }
@@ -55,6 +54,7 @@ const TitleLink = styled('button')`
   cursor: pointer;
   font-weight: 600;
   padding-bottom: 2px;
+  padding-right: 10px;
   box-sizing: border-box;
   max-height: 50px;
   color: ${Shades.pitch};
@@ -73,6 +73,7 @@ const Image = styled('div')`
   width: 90px;
   grid-row: 1/-1;
   grid-column: 2;
+  border-radius: 4px;
 `
 
 /* Renders
@@ -109,7 +110,8 @@ export class RecommendationItem extends Component {
         </Content>
 
         <SaveAction onClick={this.handleSaveClick}>
-          <Icon name="pocketmark" size="1.2em" /> {copy[status]}
+          <Icon name="pocketmark" size="1.2em" margin="0 6px 0 0" />
+          {copy[status]}
         </SaveAction>
 
         <Image imageUrl={item.top_image_url} />
