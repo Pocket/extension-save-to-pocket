@@ -1,47 +1,44 @@
 import { delay } from 'redux-saga'
-import {
-  put,
-  call,
-  take,
-  takeLatest,
-  takeEvery,
-  select,
-  race
-} from 'redux-saga/effects'
-import { updateToolbarIcon } from '../../Common/interface'
-import { saveToPocket, archiveItem, removeItem } from '../../Common/api'
-import { requireAuthorization } from '../auth/_auth'
-import { getCurrentLanguageCode } from '../../Common/helpers'
+import { put, call, select, race } from 'redux-saga/effects'
+import { take, takeLatest, takeEvery } from 'redux-saga/effects'
+import { updateToolbarIcon } from 'Common/interface'
+import { saveToPocket, archiveItem, removeItem } from 'Common/api'
+import { getCurrentLanguageCode } from 'Common/helpers'
+import { requireAuthorization } from 'Containers/Auth/auth.state'
 
-// INITIAL STATE
-const initialState = {}
+/* ACTIONS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+const SAVE_PAGE_TO_POCKET = 'SAVE_PAGE_TO_POCKET'
+const SAVE_URL_TO_POCKET = 'SAVE_URL_TO_POCKET'
+const REMOVE_ITEM_FROM_POCKET = 'REMOVE_ITEM_FROM_POCKET'
+const ARCHIVE_ITEM_ON_POCKET = 'ARCHIVE_ITEM_ON_POCKET'
+const CLOSE_SAVE_PANEL = 'CLOSE_SAVE_PANEL'
+const CANCEL_CLOSE_SAVE_PANEL = 'CANCEL_CLOSE_SAVE_PANEL'
 
-// ACTIONS
 export const saveActions = {
-  savePageToPocket: data => ({ type: 'SAVE_PAGE_TO_POCKET', data }),
-  saveUrlToPocket: data => ({ type: 'SAVE_URL_TO_POCKET', data }),
-  removeItem: data => ({ type: 'REMOVE_ITEM_FROM_POCKET', data }),
-  archiveItem: data => ({ type: 'ARCHIVE_ITEM_ON_POCKET', data }),
-  closeSavePanel: data => ({ type: 'CLOSE_SAVE_PANEL', data }),
-  cancelCloseSavePanel: () => ({ type: 'CANCEL_CLOSE_SAVE_PANEL' })
+  savePageToPocket: data => ({ type: SAVE_PAGE_TO_POCKET, data }),
+  saveUrlToPocket: data => ({ type: SAVE_URL_TO_POCKET, data }),
+  removeItem: data => ({ type: REMOVE_ITEM_FROM_POCKET, data }),
+  archiveItem: data => ({ type: ARCHIVE_ITEM_ON_POCKET, data }),
+  closeSavePanel: data => ({ type: CLOSE_SAVE_PANEL, data }),
+  cancelCloseSavePanel: () => ({ type: CANCEL_CLOSE_SAVE_PANEL })
 }
 
-// REDUCER
-function buildSaveData(item) {
-  return {
-    id: item.item_id,
-    url: item.resolved_url || item.normal_url,
-    given_url: item.given_url,
-    title: item.title
-  }
-}
-
-export const saves = (state = initialState, action) => {
+/* REDUCERS :: STATE SHAPE
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+export const saveReducers = (state = {}, action) => {
   switch (action.type) {
     case 'SAVE_TO_POCKET_SUCCESS': {
+      const { tabId, data } = action
+      const { response } = data
       return {
         ...state,
-        [action.tabId]: buildSaveData(action.data.response)
+        [tabId]: {
+          id: response.item_id,
+          url: response.resolved_url || response.normal_url,
+          given_url: response.given_url,
+          title: response.title
+        }
       }
     }
 
@@ -57,23 +54,18 @@ export const saves = (state = initialState, action) => {
   }
 }
 
-// SAGAS
-export function* wCloseSavePanel() {
-  yield takeLatest('CLOSE_SAVE_PANEL', closePanelRequest)
-}
-export function* wSavePage() {
-  yield takeEvery('SAVE_PAGE_TO_POCKET', saveRequest)
-}
-export function* wSaveUrl() {
-  yield takeLatest('SAVE_URL_TO_POCKET', saveRequest)
-}
-export function* wArchiveItem() {
-  yield takeLatest('ARCHIVE_ITEM_ON_POCKET', archiveItemRequest)
-}
-export function* wRemoveItem() {
-  yield takeLatest('REMOVE_ITEM_FROM_POCKET', removeItemRequest)
-}
+/* SAGAS :: WATCHERS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+export const saveSagas = [
+  takeLatest(CLOSE_SAVE_PANEL, closePanelRequest),
+  takeEvery(SAVE_PAGE_TO_POCKET, saveRequest),
+  takeLatest(SAVE_URL_TO_POCKET, saveRequest),
+  takeLatest(ARCHIVE_ITEM_ON_POCKET, archiveItemRequest),
+  takeLatest(REMOVE_ITEM_FROM_POCKET, removeItemRequest)
+]
 
+/* SAGAS :: GETTERS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 const getCurrentItem = state => {
   const activeTabId = state.active
   const activeTab = state.tabs[activeTabId]
@@ -85,10 +77,10 @@ const getCurrentItem = state => {
   }
 }
 
-const getCurrentSetup = state => {
-  return state.setup
-}
+const getCurrentSetup = state => state.setup
 
+/* SAGAS :: RESPONDERS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 function* closePanelRequest(action) {
   const { tabId, timeout = 1500 } = action.data
 
@@ -207,7 +199,8 @@ function* removeSuccess(data, current) {
   yield put({ type: 'ITEM_REMOVED', tabId: current.tabId })
 }
 
-// Utilities
+/* UTTILITIES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 function buildSaveObject(action) {
   switch (action.data.from) {
     case 'browserAction': {

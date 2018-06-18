@@ -1,5 +1,4 @@
-import styles from './twitter.scss' // Import Styles
-import { addMessageListener, sendMessage } from '../../../Common/interface'
+import { addMessageListener, sendMessage } from 'Common/interface'
 
 const mutationConfig = {
   childList: true,
@@ -29,7 +28,7 @@ const saveToPocketMarkup = `
     type="button" data-nav="share_tweet_to_pocket">
     <div class="IconContainer js-tooltip" data-original-title="Save To Pocket">
         <span class="Icon Icon--medium Icon--saveToPocket">
-            <svg class=${styles.pocketIcon}
+            <svg
             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1836 1836">
               <path d="M217.7,148.1A153.7,153.7,0,0,0,74.7,248.2,146.5,146.5,0,0,0,64,303.6V811L71.1,911a800.4,800.4,0,0,0,330.5,568.2l10.7,7.1H416a812.9,812.9,0,0,0,334.1,144.7,873.7,873.7,0,0,0,169.7,17.9,757.5,757.5,0,0,0,157.2-14.3l19.7-3.6a7.1,7.1,0,0,0,7.1-3.6,882.6,882.6,0,0,0,318-141.1h3.6l10.7-7.1a825.4,825.4,0,0,0,335.9-571.7l7.1-100.1V300a246.6,246.6,0,0,0-7.1-51.8,159,159,0,0,0-146.5-100.1h0M1400.4,778.8l-402,377a119.7,119.7,0,0,1-164.4,0l-398.4-377a116.1,116.1,0,0,1-3.6-162.6,119.7,119.7,0,0,1,164.4-3.6L916.2,916.4l319.8-303.7a119.7,119.7,0,0,1,164.4,3.6,112.6,112.6,0,0,1,5.4,159Z"/>
             </svg>
@@ -101,9 +100,9 @@ function handleSave(elementId, permaLink) {
 }
 
 function resolveSave(data) {
-  const elementId = data.saveObject.elementId
-  const tweet = document.getElementById(`pocketButton-${elementId}`)
-  tweet.classList.add(styles.saved)
+  // const elementId = data.saveObject.elementId
+  // const tweet = document.getElementById(`pocketButton-${elementId}`)
+  // tweet.classList.add(styles.saved)
 }
 
 function handleAction(action, sender, sendResponse) {
