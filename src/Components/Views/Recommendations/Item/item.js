@@ -24,7 +24,7 @@ const Wrapper = styled('li')`
   line-height: 1.25em;
   color: ${Shades.pitch};
   border-top: 1px solid ${Shades.smoke};
-  padding: 12px 8px;
+  padding: 8px;
 `
 
 const Content = styled('div')`
