@@ -49,7 +49,7 @@ const newPaths = {
   options: resolveApp('src/Containers/Options'),
   login: resolveApp('src/Containers/Auth/login.js'),
   logout: resolveApp('src/Containers/Auth/logout.js'),
-  twitter: resolveApp('src/Containers/Integrations/Twitter/twitter.js')
+  twitter: resolveApp('src/Containers/Sites/Twitter/twitter.js')
 }
 
 // config after eject: we're in ./config/
