@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'react-emotion'
-import { Shades } from 'Elements/Colors/colors'
+import { Shades, Colors } from 'Elements/Colors/colors'
 import { Icon } from 'Elements/Icons/icon'
-import { ButtonLink } from 'Elements/Buttons/button'
+import { buttonReset } from 'Elements/Buttons/button'
 import { localize } from 'Common/_locales/locales'
 import { openTabWithUrl } from 'Common/interface'
 
@@ -25,6 +25,16 @@ const WaysList = styled('div')`
   text-align: center;
 `
 
+const WaysLink = styled('button')`
+  ${buttonReset};
+  display: flex;
+  flex-direction: column;
+  color: ${Shades.darksmoke};
+  &:hover {
+    color: ${Colors.teal};
+  }
+`
+
 export class MoreWaysBlock extends React.Component {
   // TODO: Move these links to constants
   openNewTabExt = () =>
@@ -42,22 +52,22 @@ export class MoreWaysBlock extends React.Component {
           {localize('options_page', 'more_ways_to_save_title')}
         </WaysTitle>
         <WaysList>
-          <ButtonLink color={Shades.darksmoke}>
+          <WaysLink>
             <Icon name="newtab" margin="0 0 10px" size="48px" />
             <div>Pocket New Tab</div>
-          </ButtonLink>
-          <ButtonLink color={Shades.darksmoke}>
+          </WaysLink>
+          <WaysLink>
             <Icon name="android" margin="0 0 10px" size="48px" />
             <div>Android</div>
-          </ButtonLink>
-          <ButtonLink color={Shades.darksmoke}>
+          </WaysLink>
+          <WaysLink>
             <Icon name="ios" margin="0 0 10px" size="48px" />
             <div>iPhone/Ipad</div>
-          </ButtonLink>
-          <ButtonLink color={Shades.darksmoke}>
+          </WaysLink>
+          <WaysLink>
             <Icon name="mac" margin="0 0 10px" size="48px" />
             <div>Mac</div>
-          </ButtonLink>
+          </WaysLink>
         </WaysList>
       </SectionBlockFull>
     )
