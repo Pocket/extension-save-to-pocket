@@ -5,19 +5,20 @@ import createSagaMiddleware from 'redux-saga'
 
 /* IMPORT CONTAINER STATES
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-import { saveReducers, saveSagas } from 'Containers/Save/save.state'
+import { activeTabSagas } from 'Containers/Background/tab.active.state'
+import { activeTabReducers } from 'Containers/Background/tab.active.state'
 
 /* REDUCERS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 const rootReducer = combineReducers({
-  app: saveReducers
+  activeTabId: activeTabReducers
 })
 
 /* SAGAS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 const sagaMiddleware = createSagaMiddleware()
 function* rootSaga() {
-  yield all([...saveSagas])
+  yield all([...activeTabSagas])
 }
 
 /* STORE

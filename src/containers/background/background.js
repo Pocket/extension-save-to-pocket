@@ -1,5 +1,7 @@
 import * as Interface from 'Common/interface'
 import { isNewTab, getBaseUrl, isSystemPage } from 'Common/helpers'
+import { activeTabActions } from 'Containers/Background/tab.active.state'
+import { store } from 'store'
 
 /* SETUP
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -8,49 +10,14 @@ Interface.onUpdateAvailable(() => Interface.reloadExtension())
 Interface.setUninstallUrl('https://getpocket.com/chrome-exit-survey/')
 
 setBrowserAction()
+setContextMenus()
 setTabListeners()
-
-/* MESSAGE
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-Interface.addMessageListener((request, sender, sendResponse) => {
-  if (request.action === 'getExtensionInfo') {
-    Interface.getExtensionInfo().then(sendResponse)
-    return true
-  }
-
-  if (request.action === 'getTabId') {
-    sendResponse(sender.tab.id)
-    return true
-  }
-
-  if (request.action === 'frameLoaded') {
-    console.log('Frame Loaded')
-  }
-
-  if (request.action === 'frameFocus') {
-    console.log('Frame Focused')
-  }
-
-  if (request.action === 'frameResized') {
-    Interface.sendMessageToTab(sender.tab.id, {
-      type: 'frameResize',
-      height: request.height
-    })
-  }
-
-  if (request.action === 'twitterCheck') {
-    console.log('Checking Twitter')
-  }
-
-  if (request.action === 'twitterSave') {
-    console.log('Twitter Save')
-    return true
-  }
-})
 
 /* Context Menus
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-Interface.contextMenus().removeAll(createContextMenus)
+function setContextMenus() {
+  Interface.contextMenus().removeAll(createContextMenus)
+}
 
 function createContextMenus() {
   Interface.contextMenus().create({
@@ -95,17 +62,15 @@ function takeContextAction(info, tab) {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 function setBrowserAction() {
   Interface.browserAction().onClicked.addListener((tab, url) => {
+    // If we are not on a valid page type
     if (isNewTab(tab, url) || isSystemPage(tab, url))
       return Interface.openUrl(getBaseUrl() + 'a/?s=ext_rc_open')
 
     checkTabInjection(tab).then(response => {
       // Inject if there is no tab
       if (response !== 'tabAvailable') {
-        return injectTab(tab, () => {
-          takeBrowserAction(tab, url)
-        })
+        return injectTab(tab, () => takeBrowserAction(tab, url))
       }
-
       //Otherwise carry on, all is well
       takeBrowserAction(tab, url)
     })
@@ -113,40 +78,89 @@ function setBrowserAction() {
 }
 
 function takeBrowserAction(tab, url) {
-  console.log(tab, url)
+  console.log({ tab, url })
 }
 
+/* INCOMING MESSAGESt
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+Interface.addMessageListener((request, sender, sendResponse) => {
+  if (request.action === 'getExtensionInfo') {
+    Interface.getExtensionInfo().then(sendResponse)
+    return true
+  }
+
+  if (request.action === 'getTabId') {
+    sendResponse(sender.tab.id)
+    return true
+  }
+
+  if (request.action === 'frameLoaded') {
+    console.log('Frame Loaded')
+  }
+
+  if (request.action === 'frameFocus') {
+    console.log('Frame Focused', request.status)
+  }
+
+  if (request.action === 'frameResized') {
+    Interface.sendMessageToTab(sender.tab.id, {
+      type: 'frameResize',
+      height: request.height
+    })
+  }
+
+  if (request.action === 'twitterCheck') {
+    console.log('Checking Twitter')
+  }
+
+  if (request.action === 'twitterSave') {
+    console.log('Twitter Save')
+    return true
+  }
+})
+
+/* Tabs
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 function setTabListeners() {
+  const {
+    activeTabChanged,
+    activeTabUpdated,
+    activeWindowChanged,
+    tabRemoved,
+    tabReplaced
+  } = activeTabActions
+
   Interface.onTabActivated(activeInfo => {
-    console.log(activeInfo)
+    store.dispatch(activeTabChanged(activeInfo))
   })
 
   Interface.onTabUpdate((tabId, changeInfo) => {
     // Checking frame to avoid invalidating on a Single Page App
     checkFrameLoaded(tabId).then(available => {
       if (changeInfo.status === 'loading' && changeInfo.url) {
-        console.log('Tab Updated')
+        const frame = available ? 'loaded' : 'unloaded'
+        store.dispatch(activeTabUpdated({ tabId, frame, changeInfo }))
       }
     })
   })
 
   Interface.onFocusChanged(() => {
     Interface.getCurrentTab(tab => {
-      if (tab[0]) {
-        console.log('Window changed')
-      }
+      if (tab[0]) store.dispatch(activeWindowChanged({ tabId: tab[0].id }))
     })
   })
 
   Interface.onTabRemoved((tabId, removeInfo) => {
-    console.log('Tab Removed')
+    store.dispatch(tabRemoved({ tabId, removeInfo }))
   })
 
-  Interface.onTabReplaced((addedTabId, removedTabId) => {
-    console.log('Tab Replaced')
+  Interface.onTabReplaced((tabId, removedTabId) => {
+    store.dispatch(tabReplaced({ tabId, removedTabId }))
   })
 }
 
+/* Frames
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 function checkFrameLoaded(tabId) {
   return new Promise(resolve => {
     Interface.sendMessageToTab(tabId, { type: 'checkFrame' }, resolve)
