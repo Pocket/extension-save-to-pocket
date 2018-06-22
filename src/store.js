@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux'
+import { composeWithDevTools } from 'remote-redux-devtools'
 import { all } from 'redux-saga/effects'
 import { createStore, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
@@ -23,6 +24,8 @@ function* rootSaga() {
 
 /* STORE
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-const enhancers = applyMiddleware(sagaMiddleware)
+const composeEnhancers = composeWithDevTools({ port: 8000 })
+
+const enhancers = composeEnhancers(applyMiddleware(sagaMiddleware))
 export const store = createStore(rootReducer, {}, enhancers)
 sagaMiddleware.run(rootSaga)
