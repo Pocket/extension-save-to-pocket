@@ -2,12 +2,13 @@ import React, { Component } from 'react'
 import AutosizeInput from 'react-input-autosize'
 import { KEYS } from 'Common/constants'
 import styled, { css } from 'react-emotion'
+import { Shades } from 'Elements/Colors/colors'
 
 const InputWrapper = styled('div')`
   display: inline-block;
   margin-bottom: 0.7em;
   input {
-    color: ${props => props.theme.card.color};
+    color: ${Shades.pitch};
   }
 `
 const InputStyle = css`

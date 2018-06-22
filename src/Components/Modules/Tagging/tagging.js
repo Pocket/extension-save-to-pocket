@@ -4,12 +4,13 @@ import TagChips from './tag.chips'
 import TagInput from './tag.input'
 import TagError from './tag.error'
 import TypeAhead from '../TypeAhead/typeAhead'
+import { Shades } from 'Elements/Colors/colors'
 
 const TagBox = styled('div')`
   font-size: 12px;
   border-radius: 4px;
   display: block;
-  border: 1px solid ${props => props.theme.card.border};
+  border: 1px solid ${Shades.overcast};
   padding: 0.7em 0.7em 0;
   min-height: 2em;
   position: relative;
