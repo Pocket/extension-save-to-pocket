@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import { store } from './store'
 import { FrameObserver } from 'Containers/Frame/frame.observer'
 import { SavePanel } from 'Containers/Save/save.container.js'
+import { SVGSymbols } from 'Elements/Icons/icon.symbols'
 
 export class AppFrame extends Component {
   constructor(props) {
@@ -24,7 +25,8 @@ export class AppFrame extends Component {
 
   render() {
     return (
-      <div ref={this.heightRef}>
+      <div ref={this.heightRef} style={{ width: '320px', padding: '10px' }}>
+        <SVGSymbols />
         <Provider store={store}>
           <SavePanel />
         </Provider>
