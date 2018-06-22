@@ -64,7 +64,7 @@ export const saveSagas = [
   takeLatest(REMOVE_ITEM_FROM_POCKET, removeItemRequest)
 ]
 
-/* SAGAS :: GETTERS
+/* SAGAS :: SELECTORS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 const getCurrentItem = state => {
   const activeTabId = state.active
