@@ -17,6 +17,10 @@ const ToolbarWrapper = styled('div')`
   position: relative;
   text-align: left;
   z-index: 100;
+  transform: translateY(${props => (props.animateIn ? 0 : '-150%')});
+  opacity: ${props => (props.animateIn ? 1 : 0)};
+  transition: transform 350ms cubic-bezier(0.165, 0.84, 0.44, 1),
+    opacity 200ms cubic-bezier(0.165, 0.84, 0.44, 1);
 `
 
 const ToolbarBody = styled('div')`
@@ -34,10 +38,16 @@ function Tags({ status }) {
 }
 
 export class ToolbarMain extends Component {
+  state = { animateIn: false }
+
+  componentDidMount() {
+    this.setState({ animateIn: true })
+  }
+
   render() {
     const { status, type } = this.props
     return (
-      <ToolbarWrapper>
+      <ToolbarWrapper animateIn={this.state.animateIn}>
         <ToolbarHeader status={status} type={type} />
         {status === 'error' ? <ToolbarError /> : <Tags status={status} />}
       </ToolbarWrapper>
