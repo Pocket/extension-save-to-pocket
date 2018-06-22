@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
+import { Toolbar } from 'Containers/Save/Toolbar/toolbar.container'
 
 export class SaveContainer extends Component {
   constructor(props) {
@@ -9,7 +10,11 @@ export class SaveContainer extends Component {
   }
 
   render() {
-    return <h1>Save Container</h1>
+    return (
+      <React.Fragment>
+        <Toolbar status={'saving'} type={'page'} />
+      </React.Fragment>
+    )
   }
 }
 
