@@ -28,18 +28,23 @@ function handleAction(action, sender, sendResponse) {
 }
 
 function unloadFrame() {
-  removeMessageListener(handleAction)
-  FrameInject().remove()
+  if (frame) {
+    removeMessageListener(handleAction)
+    FrameInject().remove()
+    frame = false
+  }
+}
+
+function frameClicked() {
+  sendMessage(null, { action: 'frameFocus', status: false })
 }
 
 // Set up frame when file is injected
 FrameInject()
-  .inject({ url: getURL('/app.html'), showFrame: false })
+  .inject({ url: getURL('/app.html'), showFrame: true })
   .then(frameElement => {
     frame = frameElement
-    document.addEventListener('click', function() {
-      sendMessage(null, { action: 'frameFocus', status: false })
-    })
+    document.addEventListener('click', frameClicked)
 
     sendMessage(null, { action: 'frameLoaded' })
 

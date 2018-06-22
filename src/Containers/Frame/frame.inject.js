@@ -15,7 +15,7 @@ export const FrameInject = function() {
   frame.style.top = 0
   frame.style.left = 'auto'
   frame.style.float = 'none'
-  frame.style.width = '335px'
+  frame.style.width = '340px'
   frame.style.zIndex = 2147483647
   frame.style.background = 'transparent'
   frame.setAttribute('allowtransparency', true)
@@ -43,8 +43,8 @@ export const FrameInject = function() {
         45deg,
         rgba(255, 0, 0, 0.2),
         rgba(255, 0, 0, 0.2) 2px,
-        transparent 2px,
-        transparent 4px
+        rgba(255, 255, 255, 0.4) 2px,
+        rgba(255, 255, 255, 0.4) 4px
       )`
     }
     return initFrame(url).catch(reason => console.warn(reason))
