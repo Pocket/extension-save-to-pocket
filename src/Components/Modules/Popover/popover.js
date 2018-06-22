@@ -42,7 +42,10 @@ export class Content extends Component {
       <PopoverContext.Consumer>
         {({ on, onHover, offHover }) =>
           on ? (
-            <PopoverContent onMouseOver={onHover} onMouseOut={offHover}>
+            <PopoverContent
+              onMouseOver={onHover}
+              onMouseOut={offHover}
+              data-positioned>
               {this.props.children}
             </PopoverContent>
           ) : null
