@@ -1,5 +1,5 @@
 import React from 'react'
-import styled, { css } from 'react-emotion'
+import styled from 'react-emotion'
 import { Shades, Colors } from 'Elements/Colors/colors'
 import { Icon } from 'Elements/Icons/icon'
 import { localize } from 'Common/_locales/locales'

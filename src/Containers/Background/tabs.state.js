@@ -21,19 +21,6 @@ export const tabsActions = {
 }
 
 // REDUCERS
-export const active = (state = 0, action) => {
-  switch (action.type) {
-    case 'REQUEST_SAVE_TO_POCKET': {
-      return action.tabId
-    }
-    case 'SET_TAB_ACTIVE': {
-      return action.tabId
-    }
-    default:
-      return state
-  }
-}
-
 export const tabs = (state = {}, action) => {
   switch (action.type) {
     case 'SET_TAB_IDLE': {

@@ -1,33 +1,37 @@
 import { put, takeLatest, select, call } from 'redux-saga/effects'
-import { getSetting, setSettings, removeSettings } from '../../Common/interface'
-import { getBool, mergeDedupe } from '../../Common/utilities'
-import { getGuid, fetchStoredTags } from '../../Common/api'
+import { getSetting, setSettings, removeSettings } from 'Common/interface'
+import { getBool, mergeDedupe } from 'Common/utilities'
+import { getGuid, fetchStoredTags } from 'Common/api'
 
-// INITIAL STATE
+/* INITIAL STATE
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 const initialState = {
   base_api_version: 'v3/',
-  base_loglevel: 'DEFAULT',
   base_URL: 'https://getpocket.com/',
-
   base_installed: 1,
-
   on_save_recommendations: 1,
-
   sites_facebook: 1,
   sites_hackernews: 1,
   sites_reddit: 1,
   sites_twitter: 1
 }
 
-// ACTIONS
+/* ACTIONS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+const SETUP = 'SETUP'
+const TOGGLE_RECOMMENDATIONS = 'TOGGLE_RECOMMENDATIONS'
+const TOGGLE_SHORTCUT = 'TOGGLE_SHORTCUT'
+const TOGGLE_SITE = 'TOGGLE_SITE'
+
 export const setupActions = {
-  setupExtension: () => ({ type: 'SETUP' }),
-  toggleRecommendations: () => ({ type: 'TOGGLE_RECOMMENDATIONS' }),
-  toggleKeyboardShortcut: () => ({ type: 'TOGGLE_SHORTCUT' }),
-  toggleSite: sitename => ({ type: 'TOGGLE_SITE', sitename })
+  setupExtension: () => ({ type: SETUP }),
+  toggleRecommendations: () => ({ type: TOGGLE_RECOMMENDATIONS }),
+  toggleKeyboardShortcut: () => ({ type: TOGGLE_SHORTCUT }),
+  toggleSite: sitename => ({ type: TOGGLE_SITE, sitename })
 }
 
-// REDUCERS
+/* REDUCERS :: STATE SHAPE
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 export const setup = (state = initialState, action) => {
   switch (action.type) {
     case 'SETUP_EXTENSION_COMPLETE':
@@ -81,64 +85,26 @@ export const setup = (state = initialState, action) => {
   }
 }
 
-// SAGAS
-export function* wSetup() {
-  yield takeLatest('SETUP', initSetup)
-}
-export function* wHydrate() {
-  yield takeLatest('HYDRATE_STATE', hydrateState)
-}
-export function* wToggleRecs() {
-  yield takeLatest('TOGGLE_RECOMMENDATIONS', toggleRecommendations)
-}
-export function* wToggleSite() {
-  yield takeLatest('TOGGLE_SITE', toggleSite)
-}
-export function* wUserLoggedIn() {
-  yield takeLatest('USER_LOGGED_IN', hydrateTags)
-}
+/* SAGAS :: WATCHERS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+export const setupSagas = [
+  takeLatest(SETUP, initSetup),
+  takeLatest(TOGGLE_RECOMMENDATIONS, toggleRecommendations),
+  takeLatest(TOGGLE_SITE, toggleSite)
+]
 
+/* SAGAS :: SELECTORS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 const getSetup = state => {
   return state.setup
 }
 
+/* SAGAS :: RESPONDERS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 function* initSetup() {
   const data = yield getGuid()
-
   setSettings({ ...initialState, id_guid: data.guid })
-
   yield put({ type: 'SETUP_EXTENSION_COMPLETE', guid: data.guid })
-}
-
-function* hydrateState() {
-  // Consolidate tags: Remove this in 3.0.1.0
-  const tags = JSON.parse(getSetting('tags')) || []
-  const storedTags = JSON.parse(getSetting('tags_stored')) || []
-  const tags_stored = mergeDedupe([...tags, ...storedTags])
-
-  if (tags.length) {
-    setSettings({ tags_stored: JSON.stringify(tags_stored) })
-    removeSettings(['tags'])
-  }
-
-  const hydrated = {
-    oauth_token: getSetting('oauth_token'),
-    account_username: getSetting('account_username'),
-    account_birth: getSetting('account_birth'),
-    account_email: getSetting('account_email'),
-    account_name_first: getSetting('account_name_first'),
-    account_name_last: getSetting('account_name_last'),
-    account_avatar: getSetting('account_avatar'),
-    account_premium: getBool(getSetting('account_premium')),
-    on_save_recommendations: getBool(getSetting('on_save_recommendations')),
-    sites_facebook: getBool(getSetting('sites_facebook')),
-    sites_hackernews: getBool(getSetting('sites_hackernews')),
-    sites_reddit: getBool(getSetting('sites_reddit')),
-    sites_twitter: getBool(getSetting('sites_twitter')),
-    tags_stored
-  }
-
-  yield put({ type: 'HYDRATED_STATE', hydrated })
 }
 
 function* toggleRecommendations() {
@@ -157,20 +123,4 @@ function* toggleSite(action) {
 
   setSettings(settingsObject)
   yield put({ type: 'SET_SITES', sites: { [sitename]: !active } })
-}
-
-function* hydrateTags() {
-  // Check for server tags
-  const fetchedSince = getSetting('tags_fetched_timestamp') || 0
-  const fetchTags = yield call(fetchStoredTags, fetchedSince)
-  const fetchedTags = fetchTags ? fetchTags.tags || [] : []
-  const storedTags = JSON.parse(getSetting('tags_stored')) || []
-  const tags_stored = mergeDedupe([...storedTags, ...fetchedTags])
-
-  setSettings({
-    tags_stored: JSON.stringify(tags_stored),
-    tags_fetched_timestamp: Date.now()
-  })
-
-  yield put({ type: 'HYDRATED_TAGS', tags_stored })
 }

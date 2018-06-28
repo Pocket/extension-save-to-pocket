@@ -1,5 +1,5 @@
 import styled, { css } from 'react-emotion'
-import { Colors, Shades } from 'Elements/Colors/colors'
+import { Colors } from 'Elements/Colors/colors'
 
 export const buttonReset = css`
   input:focus,

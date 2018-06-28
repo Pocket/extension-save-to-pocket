@@ -4,15 +4,10 @@ import { connect } from 'react-redux'
 import { Toolbar } from 'Containers/Save/Toolbar/toolbar.container'
 
 export class SaveContainer extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
-  }
-
   render() {
     return (
       <React.Fragment>
-        <Toolbar status={'saving'} type={'page'} />
+        <Toolbar />
       </React.Fragment>
     )
   }
