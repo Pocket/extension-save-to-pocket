@@ -30,6 +30,8 @@ export const AUTH_URL =
 
 export const LOGOUT_URL = 'https://getpocket.com/lo'
 
+export const LOGOUT_SUCCESS = '*://getpocket.com/extension_login_success'
+
 export const SET_SHORTCUTS = 'chrome://extensions/configureCommands'
 
 export const RECOMMENDED_PAGE =

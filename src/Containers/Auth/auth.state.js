@@ -1,95 +1,73 @@
-import { delay } from 'redux-saga'
-import { put, takeEvery, takeLatest, select } from 'redux-saga/effects'
-import * as Interface from '../../Common/interface'
-import { authorize, getGuid } from '../../Common/api'
-import { AUTH_URL } from '../../Common/constants'
+import { take, call, put, takeEvery, takeLatest } from 'redux-saga/effects'
+import { AUTH_URL, LOGOUT_SUCCESS } from 'Common/constants'
+import { authorize, getGuid } from 'Common/api'
+import { closeTabs } from 'Common/interface'
+import { getSetting } from 'Common/interface'
+import { queryTabs } from 'Common/interface'
+import { removeSettings } from 'Common/interface'
+import { setSettings } from 'Common/interface'
 
-var postLoginPromise
+/* ACTIONS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+const AUTH_CODE_RECIEVED = 'AUTH_CODE_RECIEVED'
+const USER_LOGGED_IN = 'USER_LOGGED_IN'
+const USER_LOGGED_OUT = 'USER_LOGGED_OUT'
 
-/* SAGAS
--------------------------------------------------- */
-const getSetup = state => state.setup
-
-export function* wAuthCodeRecieved() {
-  yield takeEvery('AUTH_CODE_RECIEVED', verifyAuthCode)
+export const authActions = {
+  authCodeRecieved: payload => ({ type: AUTH_CODE_RECIEVED, payload }),
+  userLoggedIn: payload => ({ type: USER_LOGGED_IN, payload }),
+  userLoggedOut: payload => ({ type: USER_LOGGED_OUT, payload })
 }
-export function* wLogout() {
-  yield takeLatest('USER_LOGOUT', handleLogOut)
-}
 
-export function* requireAuthorization() {
-  const current = yield select(getSetup)
-  return yield getAuthToken(current)
+/* SAGAS :: WATCHERS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+export const authSagas = [
+  takeEvery(AUTH_CODE_RECIEVED, verifyAuthCode),
+  takeLatest(USER_LOGGED_OUT, handleLogOut)
+]
+
+/* SAGAS :: RESPONDERS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+export function* authRequired(action) {
+  let token = yield call(getAuthToken)
+  if (token) return token
+
+  showLoginPage()
+
+  while (!token) {
+    yield take(USER_LOGGED_IN)
+    return yield call(getAuthToken)
+  }
 }
 
 function* verifyAuthCode(action) {
-  yield delay(1000) // Pause for user edification
-  yield handleAuthCode(action.loginMessage)
+  yield loginUser(action.payload)
+  yield put({ type: 'USER_LOGGED_IN' })
+  closeLoginPages()
 }
 
-/* CHECK/RETURN OAUTH TOKEN
--------------------------------------------------- */
-function getAuthToken(current) {
-  return new Promise(function(resolve, reject) {
-    const shouldResolve = isAuthorized(current)
-    if (shouldResolve) resolve(current.oauth_token)
-    else showLoginPage(resolve, reject)
-  })
+/* UTILITIES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+function getAuthToken() {
+  return getSetting('oauth_token')
 }
 
-function isAuthorized(current) {
-  const storedToken = Interface.getSetting('oauth_token')
-  return (
-    storedToken && current.oauth_token && storedToken === current.oauth_token
-  )
-}
-
-/* PAGE HANDLERS
--------------------------------------------------- */
 function showLoginPage(resolve, reject) {
-  postLoginPromise = { resolve, reject }
   window.open(AUTH_URL)
 }
 
-function closeLoginPage() {
-  Interface.queryTabs(
-    { url: '*://getpocket.com/extension_login_success' },
-    function(tabs) {
-      let tabIDs = tabs.map(tab => tab.id)
-      Interface.closeTabs(tabIDs)
-    }
-  )
-}
-
-/* RESPONSE HANDLERS
--------------------------------------------------- */
-function* handleAuthCode(responseValue) {
-  const accountObject = yield loginUser(responseValue)
-  yield put({ type: 'USER_LOGGED_IN', accountObject })
-  closeLoginPage()
-}
-
-function* handleLogOut() {
-  const accountKeys = [
-    'oauth_token',
-    'account_username',
-    'account_birth',
-    'account_email',
-    'account_name_first',
-    'account_name_last',
-    'account_avatar',
-    'account_premium',
-    'id_guid'
-  ]
-  Interface.removeSettings(accountKeys)
-  yield put({ type: 'USER_LOGGED_OUT', accountKeys })
+function closeLoginPages() {
+  queryTabs({ url: LOGOUT_SUCCESS }, tabs => {
+    let tabIDs = tabs.map(tab => tab.id)
+    closeTabs(tabIDs)
+  })
 }
 
 /* LOGIN
 -------------------------------------------------- */
 function loginUser(userCookies) {
   return getGuid()
-    .then(response => authorize(response, userCookies))
+    .then(guidResponse => authorize(guidResponse, userCookies))
     .then(response => {
       const account = response.account
       const accountObject = {
@@ -103,12 +81,27 @@ function loginUser(userCookies) {
         account_premium: account.premium_status
       }
 
-      Interface.setSettings(accountObject)
-      if (postLoginPromise) postLoginPromise.resolve(response.access_token)
-
-      return accountObject
+      setSettings(accountObject)
     })
     .catch(errResponse => {
-      console.warn(errResponse)
+      throw new Error('Login Failed', errResponse)
     })
+}
+
+/* LOGOUT
+-------------------------------------------------- */
+function* handleLogOut() {
+  const accountKeys = [
+    'oauth_token',
+    'account_username',
+    'account_birth',
+    'account_email',
+    'account_name_first',
+    'account_name_last',
+    'account_avatar',
+    'account_premium',
+    'id_guid'
+  ]
+  removeSettings(accountKeys)
+  yield put({ type: 'USER_LOGGED_OUT', accountKeys })
 }

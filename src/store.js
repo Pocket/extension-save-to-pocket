@@ -10,6 +10,7 @@ import { PORT_NAME } from 'Common/constants'
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 import { activeTabSagas } from 'Containers/Background/tab.active.state'
 import { activeTabReducers } from 'Containers/Background/tab.active.state'
+import { authSagas } from 'Containers/Auth/auth.state'
 
 /* REDUCERS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
