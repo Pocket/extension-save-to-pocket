@@ -2,13 +2,16 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { Toolbar } from 'Containers/Save/Toolbar/toolbar.container'
+import { saveActions } from './save.state'
 
 export class SaveContainer extends Component {
   render() {
     return (
-      <React.Fragment>
+      <div
+        onMouseEnter={this.props.cancelIdleTimer}
+        onMouseLeave={this.props.startIdleTimer}>
         <Toolbar />
-      </React.Fragment>
+      </div>
     )
   }
 }
@@ -16,10 +19,10 @@ export class SaveContainer extends Component {
 /* CONNECT TO STATE
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({}, dispatch)
+  return bindActionCreators(saveActions, dispatch)
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
   return {}
 }
 
