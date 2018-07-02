@@ -118,7 +118,10 @@
     "extends": [
       "react-app",
       "prettier"
-    ]
+    ],
+    "rules":{
+      "object-shorthand": ["warn", "always", { "avoidQuotes": true }]
+    }
   },
   "prettier": {
     "bracketSpacing": true,
