@@ -13,7 +13,8 @@ import * as API from '../../../common/api'
 // ACTIONS
 export const surveyActions = {
   surveyRespond: data => ({ type: 'SURVEY_RESPONSE', data }),
-  surveyCancel: () => ({ type: 'SURVEY_CANCEL' })
+  surveyCancel: () => ({ type: 'SURVEY_CANCEL' }),
+  surveyHide: () => ({ type: 'SURVEY_HIDE' })
 }
 
 const initialState = {
@@ -29,6 +30,9 @@ export const survey = (state = initialState, action) => {
   switch (action.type) {
     case 'SURVEY_SHOW': {
       return { ...state, show: true }
+    }
+    case 'SURVEY_HIDE': {
+      return { ...state, show: false }
     }
 
     case 'SURVEY_COMPLETE': {

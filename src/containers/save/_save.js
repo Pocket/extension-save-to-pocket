@@ -234,6 +234,7 @@ function* archiveSuccess(data, current) {
 function* removeItemRequest() {
   const current = yield select(getCurrentItem)
   yield put({ type: 'ITEM_REMOVE_REQUEST', tabId: current.tabId })
+  yield put({ type: 'SURVEY_HIDE' })
 
   const authToken = yield call(requireAuthorization)
   try {
