@@ -5,13 +5,11 @@ export function openPocket() {
   openUrl(getBaseUrl())
 }
 
-export function isNewTab(tab, url) {
-  return (
-    typeof url === 'undefined' && tab.active && tab.url === 'chrome://newtab/'
-  )
+export function isNewTab(tab) {
+  return tab.active && tab.url === 'chrome://newtab/'
 }
 
-export function isSystemPage(tab, url) {
+export function isSystemPage(tab) {
   return (
     tab.active &&
     (tab.url.startsWith('chrome://') ||

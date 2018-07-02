@@ -33,7 +33,6 @@ export const FrameInject = function() {
     frame.src = url
     element = window.document.body.appendChild(frame)
     return element
-    // iframeResizer({}, element)
   }
 
   function inject({ url = required('url'), showFrame = false }) {
