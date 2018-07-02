@@ -20,9 +20,7 @@ const InputStyle = css`
 `
 
 export default class TagInput extends Component {
-  /* Input Events
-  –––––––––––––––––––––––––––––––––––––––––––––––––––– */
-
+  // Input Events
   onFocus = event => {
     this.props.onFocus(event)
   }
@@ -103,6 +101,7 @@ export default class TagInput extends Component {
     return (
       <InputWrapper>
         <AutosizeInput
+          autoFocus={true}
           inputRef={this.props.inputRef}
           inputClassName={InputStyle}
           value={this.props.value}
