@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import styled from 'react-emotion'
 import { Shades } from 'Elements/Colors/colors'
 import { PanelBase } from 'Elements/Foundations/foundation'
-
-import Tagging from 'Modules/Tagging/tagging'
-import { ToolbarError } from './Main/main.error'
 import { ToolbarHeader } from './Main/main.header'
+import { ToolbarError } from './Main/main.error'
 
+/* Styles
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 const ToolbarWrapper = styled('div')`
   ${PanelBase};
   color: ${Shades.pitch};
@@ -23,33 +23,26 @@ const ToolbarWrapper = styled('div')`
     opacity 200ms cubic-bezier(0.165, 0.84, 0.44, 1);
 `
 
-const ToolbarBody = styled('div')`
-  padding-top: 6px;
-`
-
-const validForTags = ['saving', 'saved']
-
-function Tags({ status }) {
-  return validForTags.includes(status) ? (
-    <ToolbarBody>
-      <Tagging />
-    </ToolbarBody>
-  ) : null
-}
+/* Renderers
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 export class ToolbarMain extends Component {
-  state = { animateIn: false }
+  state = { animate: false }
 
   componentDidMount() {
-    this.setState({ animateIn: true })
+    this.setState({ animate: true })
+  }
+
+  get shouldShow() {
+    return this.props.status !== 'idle' && this.state.animate
   }
 
   render() {
-    const { status, type } = this.props
+    const { status, saveType, tagging } = this.props
     return (
-      <ToolbarWrapper animateIn={this.state.animateIn}>
-        <ToolbarHeader status={status} type={type} />
-        {status === 'error' ? <ToolbarError /> : <Tags status={status} />}
+      <ToolbarWrapper animateIn={this.shouldShow}>
+        <ToolbarHeader status={status} saveType={saveType} />
+        {status === 'error' ? <ToolbarError /> : tagging}
       </ToolbarWrapper>
     )
   }

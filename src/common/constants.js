@@ -36,3 +36,15 @@ export const SET_SHORTCUTS = 'chrome://extensions/configureCommands'
 
 export const RECOMMENDED_PAGE =
   '"https://getpocket.com/a/recommended/?src=ext_recs"'
+
+export const ITEM_DETAILS = [
+  'item_id',
+  'resolved_id',
+  'normal_url',
+  'resolved_url',
+  'resolved_normal_url',
+  'given_url',
+  'title',
+  'excerpt',
+  'word_count'
+]

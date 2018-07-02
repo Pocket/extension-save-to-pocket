@@ -25,8 +25,8 @@ const HeaderWrapper = styled('div')`
 
 export class ToolbarHeader extends Component {
   get statusText() {
-    const { status, type } = this.props
-    if (status === 'saved') return localize('status', `${type}_${status}`)
+    const { status, saveType } = this.props
+    if (status === 'saved') return localize('status', `${saveType}_${status}`)
     return localize('status', status)
   }
 
@@ -46,6 +46,6 @@ export class ToolbarHeader extends Component {
 }
 
 ToolbarHeader.defaultProps = {
-  type: 'page',
-  status: 'saved'
+  saveType: 'page',
+  status: 'saving'
 }

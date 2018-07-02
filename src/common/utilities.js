@@ -87,3 +87,15 @@ export function getBool(value) {
 export function mergeDedupe(arrayOfArrays) {
   return [...new Set([].concat(...arrayOfArrays))]
 }
+
+// https://stackoverflow.com/questions/38750705/filter-object-properties-by-key-in-es6
+export function filterAllowedFields(object, allowed) {
+  return Object.keys(object)
+    .filter(key => allowed.includes(key))
+    .reduce((obj, key) => {
+      return {
+        ...obj,
+        [key]: object[key]
+      }
+    }, {})
+}

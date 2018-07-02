@@ -4,13 +4,9 @@ import { connect } from 'react-redux'
 import { ToolbarMain } from 'Views/Toolbar/toolbar'
 
 export class ToolbarContainer extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
-  }
-
   render() {
-    return <ToolbarMain status={'saving'} type={'page'} />
+    const { status, saveType } = this.props
+    return <ToolbarMain status={status} saveType={saveType} />
   }
 }
 
@@ -21,7 +17,11 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-  return {}
+  const activeSave = state.saves[state.tab]
+  return {
+    status: activeSave.status,
+    saveType: activeSave.saveType
+  }
 }
 
 export const Toolbar = connect(
