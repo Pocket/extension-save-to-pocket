@@ -6,23 +6,29 @@ import createSagaMiddleware from 'redux-saga'
 
 import { wrapStore } from 'react-chrome-redux'
 import { PORT_NAME } from 'Common/constants'
+
 /* IMPORT CONTAINER STATES
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-import { activeTabSagas } from 'Containers/Background/tab.active.state'
-import { activeTabReducers } from 'Containers/Background/tab.active.state'
 import { authSagas } from 'Containers/Auth/auth.state'
+
+import { tabSagas } from 'Containers/Background/tab.state'
+import { tabReducers } from 'Containers/Background/tab.state'
+
+import { saveSagas } from 'Containers/Save/save.state'
+import { saveReducers } from 'Containers/Save/save.state'
 
 /* REDUCERS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 const rootReducer = combineReducers({
-  activeTabId: activeTabReducers
+  tab: tabReducers,
+  saves: saveReducers
 })
 
 /* SAGAS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 const sagaMiddleware = createSagaMiddleware()
 function* rootSaga() {
-  yield all([...activeTabSagas])
+  yield all([...authSagas, ...tabSagas, ...saveSagas])
 }
 
 /* STORE
