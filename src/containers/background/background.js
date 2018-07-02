@@ -1,6 +1,7 @@
 import * as Interface from 'Common/interface'
 import { isNewTab, getBaseUrl, isSystemPage } from 'Common/helpers'
-import { activeTabActions } from 'Containers/Background/tab.active.state'
+import { tabActions } from 'Containers/Background/tab.state'
+import { saveActions } from 'Containers/Save/save.state'
 import { store } from 'store'
 
 /* SETUP
@@ -55,30 +56,59 @@ function createContextMenus() {
 }
 
 function takeContextAction(info, tab) {
-  console.log(info, tab)
+  const { saveItemToPocket } = saveActions
+  const { linkUrl } = info
+  const { id, title, url } = tab
+  const payload = linkUrl
+    ? {
+        saveType: 'link',
+        url: linkUrl,
+        tabId: id,
+        title,
+        cxt_ui: 'right_click_link',
+        ctx_url: url
+      }
+    : {
+        saveType: 'page',
+        url,
+        tabId: id,
+        title,
+        cxt_ui: 'right_click_page'
+      }
+  store.dispatch(saveItemToPocket(payload))
 }
 
 /* Browser Actions
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 function setBrowserAction() {
-  Interface.browserAction().onClicked.addListener((tab, url) => {
+  Interface.browserAction().onClicked.addListener(tab => {
     // If we are not on a valid page type
-    if (isNewTab(tab, url) || isSystemPage(tab, url))
+    if (isNewTab(tab) || isSystemPage(tab))
       return Interface.openUrl(getBaseUrl() + 'a/?s=ext_rc_open')
 
     checkTabInjection(tab).then(response => {
       // Inject if there is no tab
       if (response !== 'tabAvailable') {
-        return injectTab(tab, () => takeBrowserAction(tab, url))
+        return injectTab(tab, () => takeBrowserAction(tab))
       }
       //Otherwise carry on, all is well
-      takeBrowserAction(tab, url)
+      takeBrowserAction(tab)
     })
   })
 }
 
-function takeBrowserAction(tab, url) {
-  console.log({ tab, url })
+function takeBrowserAction(tab) {
+  const { saveItemToPocket } = saveActions
+  const { id, title, url } = tab
+  store.dispatch(
+    saveItemToPocket({
+      url,
+      title,
+      tabId: id,
+      saveType: 'page',
+      cxt_ui: 'toolbar'
+    })
+  )
 }
 
 /* INCOMING MESSAGESt
@@ -95,7 +125,7 @@ Interface.addMessageListener((request, sender, sendResponse) => {
   }
 
   if (request.action === 'frameLoaded') {
-    console.log('Frame Loaded')
+    // console.log('Frame Loaded')
   }
 
   if (request.action === 'frameFocus') {
@@ -128,7 +158,7 @@ function setTabListeners() {
     activeWindowChanged,
     tabRemoved,
     tabReplaced
-  } = activeTabActions
+  } = tabActions
 
   Interface.onTabActivated(activeInfo => {
     store.dispatch(activeTabChanged(activeInfo))
