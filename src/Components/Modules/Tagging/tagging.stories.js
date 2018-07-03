@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import samplesize from 'lodash.samplesize'
-import Tagging from './tagging'
+import { Tagging } from './tagging'
 import { COLORS } from 'Common/_mocks/colors'
 
 /* Tagging Story
@@ -9,7 +9,10 @@ import { COLORS } from 'Common/_mocks/colors'
 export default class MockState extends React.Component {
   constructor(props) {
     super(props)
-    this.state = { tags: samplesize(COLORS, 5) }
+    this.state = {
+      tags: samplesize(COLORS, 5),
+      suggestions: samplesize(COLORS, 4)
+    }
   }
 
   addTag = tag => {
@@ -33,10 +36,13 @@ export default class MockState extends React.Component {
         removeTag={this.removeTag}
         setTags={this.setTags}
         tags={this.state.tags}
+        suggestions={this.state.suggestions}
         typeahead={COLORS}
       />
     )
   }
 }
 
-storiesOf('Modules|Tagging', module).add('Tags Populated', () => <MockState />)
+storiesOf('Modules|Tagging', module)
+  .addDecorator(story => <div style={{ width: '320px' }}>{story()}</div>)
+  .add('Tags Populated', () => <MockState />)

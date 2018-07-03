@@ -3,6 +3,7 @@ import styled from 'react-emotion'
 import TagChips from './tag.chips'
 import TagInput from './tag.input'
 import TagError from './tag.error'
+import TagSuggestions from './tag.suggestions'
 import TypeAhead from '../TypeAhead/typeAhead'
 import { Shades } from 'Elements/Colors/colors'
 
@@ -11,12 +12,13 @@ const TagBox = styled('div')`
   border-radius: 4px;
   display: block;
   border: 1px solid ${Shades.overcast};
-  padding: 0.7em 0.7em 0;
+  padding: 0.8em 0.8em 0.4em;
   min-height: 2em;
   position: relative;
+  margin-top: 10px;
 `
 
-export default class Tagging extends Component {
+export class Tagging extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -97,45 +99,53 @@ export default class Tagging extends Component {
 
   render() {
     return (
-      <TagBox onClick={this.setFocus}>
-        {this.props.tags && (
-          <TagChips
-            activeTags={this.state.activeTags}
-            tags={this.props.tags}
-            handleChipClick={this.handleChipClick}
-            handleChipRemove={this.handleChipRemove}
+      <React.Fragment>
+        <TagBox onClick={this.setFocus}>
+          {this.props.tags && (
+            <TagChips
+              activeTags={this.state.activeTags}
+              tags={this.props.tags}
+              handleChipClick={this.handleChipClick}
+              handleChipRemove={this.handleChipRemove}
+            />
+          )}
+          <TagInput
+            // Set Reference
+            inputRef={this.setInputRef}
+            // Value Handling
+            value={this.state.value}
+            setValue={this.setValue}
+            characterLimit={25}
+            // Error Handling
+            clearError={this.clearError}
+            setError={this.setError}
+            hasError={this.state.hasError}
+            // Tags Active
+            hasActiveTags={this.state.activeTags.length}
+            deactivateTags={this.deactivateTags}
+            handleRemoveAction={this.handleRemoveAction}
+            // Passed Props
+            addTag={this.addTag}
+            onFocus={this.onFocus}
+            {...this.inputProps}
           />
-        )}
-        <TagInput
-          // Set Reference
-          inputRef={this.setInputRef}
-          // Value Handling
-          value={this.state.value}
-          setValue={this.setValue}
-          characterLimit={25}
-          // Error Handling
-          clearError={this.clearError}
-          setError={this.setError}
-          hasError={this.state.hasError}
-          // Tags Active
-          hasActiveTags={this.state.activeTags.length}
-          deactivateTags={this.deactivateTags}
-          handleRemoveAction={this.handleRemoveAction}
-          // Passed Props
+          <TypeAhead
+            inputReady={this.state.inputReady}
+            reFocus={this.setFocus}
+            setValue={this.setValue}
+            inputValue={this.state.value}
+            textInput={this.inputReference}
+            items={this.props.typeahead || []}
+          />
+          {this.state.hasError && <TagError characterLimit={25} />}
+        </TagBox>
+
+        <TagSuggestions
+          suggestions={this.props.suggestions}
+          tags={this.props.tags}
           addTag={this.addTag}
-          onFocus={this.onFocus}
-          {...this.inputProps}
         />
-        <TypeAhead
-          inputReady={this.state.inputReady}
-          reFocus={this.setFocus}
-          setValue={this.setValue}
-          inputValue={this.state.value}
-          textInput={this.inputReference}
-          items={this.props.typeahead || []}
-        />
-        {this.state.hasError && <TagError characterLimit={25} />}
-      </TagBox>
+      </React.Fragment>
     )
   }
 }

@@ -6,7 +6,7 @@ import { Shades } from 'Elements/Colors/colors'
 
 const InputWrapper = styled('div')`
   display: inline-block;
-  margin-bottom: 0.7em;
+  margin-bottom: 0.5em;
   input {
     color: ${Shades.pitch};
   }

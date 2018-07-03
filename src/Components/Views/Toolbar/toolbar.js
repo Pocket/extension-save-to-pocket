@@ -38,11 +38,11 @@ export class ToolbarMain extends Component {
   }
 
   render() {
-    const { status, saveType, tagging } = this.props
+    const { status, saveType } = this.props
     return (
       <ToolbarWrapper animateIn={this.shouldShow}>
         <ToolbarHeader status={status} saveType={saveType} />
-        {status === 'error' ? <ToolbarError /> : tagging}
+        {status === 'error' ? <ToolbarError /> : this.props.children}
       </ToolbarWrapper>
     )
   }
