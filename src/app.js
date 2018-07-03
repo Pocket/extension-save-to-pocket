@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import { Store } from 'react-chrome-redux'
 import { Provider } from 'react-redux'
+import { ThemeProvider } from 'emotion-theming'
 
 import { PORT_NAME } from 'Common/constants'
 import { sendMessage } from 'Common/interface'
@@ -9,6 +10,7 @@ import { sendMessage } from 'Common/interface'
 import { FrameObserver } from 'Containers/Frame/frame.observer'
 import { SavePanel } from 'Containers/Save/save.container.js'
 import { SVGSymbols } from 'Elements/Icons/icon.symbols'
+import { Themes } from 'Elements/Themes/themes'
 
 /* APP FRAME
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -59,9 +61,11 @@ getExtensionInfo().then(info => {
     ReactDOM.render(
       <React.Fragment>
         <SVGSymbols />
-        <Provider store={proxyStore}>
-          <AppFrame />
-        </Provider>
+        <ThemeProvider theme={Themes['light']}>
+          <Provider store={proxyStore}>
+            <AppFrame />
+          </Provider>
+        </ThemeProvider>
       </React.Fragment>,
       document.getElementById('pocket-extension-root')
     )
