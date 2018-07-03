@@ -16,8 +16,9 @@ const ItemWrapper = styled('li')`
 
 const ItemButton = styled('button')`
   ${buttonReset};
-  color: ${Shades.overcast};
+  color: ${Shades.darksmoke};
   font-size: 14px;
+  font-weight: 300;
   line-height: 16px;
   padding: 5px 30px 5px 18px;
   width: 100%;
