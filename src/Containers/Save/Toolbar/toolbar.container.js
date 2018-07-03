@@ -2,11 +2,16 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { ToolbarMain } from 'Views/Toolbar/toolbar'
+import { Tags } from 'Containers/Save/Toolbar/Tagging/tagging.container'
 
 export class ToolbarContainer extends Component {
   render() {
     const { status, saveType } = this.props
-    return <ToolbarMain status={status} saveType={saveType} />
+    return (
+      <ToolbarMain status={status} saveType={saveType}>
+        <Tags />
+      </ToolbarMain>
+    )
   }
 }
 

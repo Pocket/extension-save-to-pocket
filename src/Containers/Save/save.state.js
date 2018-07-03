@@ -7,6 +7,7 @@ import { authRequired } from 'Containers/Auth/auth.state'
 import { tabActions } from 'Containers/Background/tab.state'
 import { filterAllowedFields } from 'Common/utilities'
 import { ITEM_DETAILS } from 'Common/constants'
+import { taggingActions } from 'Containers/Save/Toolbar/Tagging/tagging.state'
 
 /* CONSTANTS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -121,10 +122,19 @@ function* saveRequest(action) {
 }
 
 function* saveSuccess(data) {
-  const { saveObject } = data
-  const { tabId, showSavedIcon } = saveObject
+  const {
+    saveObject: { tabId, showSavedIcon },
+    response: { item_id, resolved_url }
+  } = data
+  const payload = { tabId, item_id, resolved_url }
 
-  updateToolbarIcon(tabId, showSavedIcon)
+  yield call(updateToolbarIcon, tabId, showSavedIcon)
+
+  // const features = yield call(getFeatures)
+  // yield put(surveyActions.getSurvey(payload))
+  yield put(taggingActions.getTagSuggestions(payload))
+  // yield put(recommendationActions.getRecommendations(payload))
+
   yield put({ type: START_IDLE_TIMER, payload: { tabId, timeout: 8000 } })
 }
 
@@ -135,8 +145,9 @@ function* archiveItemRequest() {}
 function* removeItemRequest() {}
 
 // Idle Timer
+// TODO: Account for user entering the area before animation is complete
 function* startIdleTimer(action) {
-  const timeout = 1500
+  const timeout = 150000
   const tabId = yield select(getActiveTabId)
   yield race({
     task: call(idleTimer, tabId, timeout),

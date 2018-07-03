@@ -8,7 +8,7 @@ import TypeAhead from '../TypeAhead/typeAhead'
 import { Shades } from 'Elements/Colors/colors'
 
 const TagBox = styled('div')`
-  font-size: 12px;
+  font-size: 13px;
   border-radius: 4px;
   display: block;
   border: 1px solid ${Shades.overcast};
@@ -63,6 +63,7 @@ export class Tagging extends Component {
   }
 
   handleChipRemove = tag => {
+    console.log(tag)
     this.props.removeTag(tag)
   }
 

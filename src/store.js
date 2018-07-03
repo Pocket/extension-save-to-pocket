@@ -17,18 +17,22 @@ import { tabReducers } from 'Containers/Background/tab.state'
 import { saveSagas } from 'Containers/Save/save.state'
 import { saveReducers } from 'Containers/Save/save.state'
 
+import { taggingSagas } from 'Containers/Save/Toolbar/Tagging/tagging.state'
+import { taggingReducers } from 'Containers/Save/Toolbar/Tagging/tagging.state'
+
 /* REDUCERS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 const rootReducer = combineReducers({
   tab: tabReducers,
-  saves: saveReducers
+  saves: saveReducers,
+  tags: taggingReducers
 })
 
 /* SAGAS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 const sagaMiddleware = createSagaMiddleware()
 function* rootSaga() {
-  yield all([...authSagas, ...tabSagas, ...saveSagas])
+  yield all([...authSagas, ...tabSagas, ...saveSagas, ...taggingSagas])
 }
 
 /* STORE

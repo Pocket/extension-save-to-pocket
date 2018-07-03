@@ -1,8 +1,10 @@
 import React from 'react'
 import styled from 'react-emotion'
+import { Colors, Shades } from 'Elements/Colors/colors'
 
 const TagErrorWrapper = styled('div')`
-  background: #ccc;
+  background: ${Colors.hotCoral};
+  color: ${Shades.white};
   border-radius: 4px;
   box-sizing: border-box;
   left: 0;
@@ -17,7 +19,7 @@ const TagErrorWrapper = styled('div')`
 `
 const TagError = ({ characterLimit }) => {
   return (
-    <TagErrorWrapper>
+    <TagErrorWrapper data-positioned>
       Tags are limited to {characterLimit} characters
     </TagErrorWrapper>
   )

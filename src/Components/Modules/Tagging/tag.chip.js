@@ -27,8 +27,6 @@ const ChipActive = props => css`
 const ChipDelete = styled('div')`
   display: inline-block;
   padding: 0.2em;
-  font-size: 0.8em;
-  line-height: 1rem;
   border-left-width: 1px;
   border-left-style: solid;
   border-color: inherit;
@@ -48,12 +46,13 @@ const ChipDelete = styled('div')`
 const ChipCopy = styled('div')`
   display: inline-block;
   padding: 0.2em 0.6em;
+  line-height: 1.5em;
 `
 
 const ChipWrapper = styled('div')`
   ${props => (props.isActive ? ChipActive : Chip)};
   cursor: pointer;
-  display: inline-flex;
+  display: inline-block;
   border-radius: 3px;
   text-transform: lowercase;
   user-select: none;
@@ -80,7 +79,7 @@ export const TagChip = ({
     <ChipWrapper isActive={isActive} onClick={onChipClick}>
       <ChipCopy>{tag}</ChipCopy>
       <ChipDelete onClick={onRemoveClick}>
-        <Icon name="close" />
+        <Icon name="close" size={'1em'} />
       </ChipDelete>
     </ChipWrapper>
   )
