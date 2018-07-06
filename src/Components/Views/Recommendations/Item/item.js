@@ -3,6 +3,7 @@ import styled from 'react-emotion'
 import { Icon } from 'Elements/Icons/icon'
 import { Shades, Colors } from 'Elements/Colors/colors'
 import { domainForUrl } from 'Common/utilities'
+import { getImageCacheUrl } from 'Common/helpers'
 import { localize } from 'Common/_locales/locales'
 import { buttonReset } from 'Elements/Buttons/button'
 
@@ -28,7 +29,7 @@ const Wrapper = styled('li')`
 `
 
 const Content = styled('div')`
-  min-height: 90px;
+  min-height: 80px;
   overflow: hidden;
   box-sizing: border-box;
 `
@@ -82,11 +83,11 @@ export class RecommendationItem extends Component {
   get recDetails() {
     const { item, tabId, position } = this.props
     return {
-      tabId: tabId,
+      tabId,
       item_id: item.id.toString(),
       title: item.title,
       url: item.url,
-      position: position,
+      position,
       source_id: item.source_id
     }
   }
@@ -114,7 +115,7 @@ export class RecommendationItem extends Component {
           {copy[status]}
         </SaveAction>
 
-        <Image imageUrl={item.top_image_url} />
+        <Image imageUrl={getImageCacheUrl(item.top_image_url)} />
       </Wrapper>
     )
   }

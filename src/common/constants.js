@@ -48,3 +48,11 @@ export const ITEM_DETAILS = [
   'excerpt',
   'word_count'
 ]
+
+export const REC_DETAILS = [
+  'item_id',
+  'resolved_url',
+  'title',
+  'top_image_url',
+  'excerpt'
+]

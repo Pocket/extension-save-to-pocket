@@ -7,6 +7,7 @@ import { Header } from './Header/header'
 
 export const PanelWrapper = styled('div')`
   ${PanelBase};
+  margin-top: 1.5em;
 `
 
 export class RecommendationPanel extends React.Component {
