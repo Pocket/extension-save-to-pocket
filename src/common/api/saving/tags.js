@@ -2,20 +2,20 @@ import { request } from '../_request/request'
 
 /* API CALLS - Should return promises
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-export function getOnSaveTags(saveObject) {
+export function getSuggestedTags({ resolved_url, tabId }) {
   return request({
     path: 'suggested_tags/',
-    data: {
-      url: saveObject.url
-    }
-  }).then(response => [{ saveObject, status: 'ok', response }])
+    data: { url: resolved_url }
+  }).then(response => [{ tabId, status: 'ok', response }])
 }
 
-export function syncItemTags(id, tags) {
+export function syncItemTags({ item_id, tags }) {
   return request({
     path: 'send/',
     data: {
-      actions: [{ action: 'tags_add', item_id: id, tags }]
+      actions: [
+        { action: 'tags_replace', item_id: parseInt(item_id, 10), tags }
+      ]
     }
   }).then(response => response)
 }

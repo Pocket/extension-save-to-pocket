@@ -2,11 +2,10 @@ import { request } from '../_request/request'
 
 /* API CALLS - Should return promises
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-export function removeItem(access_token, itemId) {
+export function removeItem(itemId) {
   return request({
     path: 'send/',
     data: {
-      access_token: access_token,
       actions: [
         {
           action: 'delete',

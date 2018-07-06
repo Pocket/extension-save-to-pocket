@@ -3,15 +3,15 @@ import { getCurrentLanguageCode } from '../../helpers'
 
 /* API CALLS - Should return promises
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-export function getRecommendations(resolved_id) {
+export function getRecommendations({ resolved_id, count = 6 }) {
   var lang = getCurrentLanguageCode()
   return request({
     path: 'getSuggestedItems/',
     data: {
-      resolved_id: resolved_id,
+      resolved_id,
+      count,
       version: 2,
-      locale_lang: lang,
-      count: 3
+      locale_lang: lang
     }
   }).then(response => response)
 }
@@ -20,7 +20,7 @@ export function saveRecToPocket(saveObject, access_token) {
   return request({
     path: 'send/',
     data: {
-      access_token: access_token,
+      access_token,
       actions: [
         {
           action: 'add',
@@ -48,7 +48,7 @@ export function openRecommendation(saveObject, access_token) {
   return request({
     path: 'send/',
     data: {
-      access_token: access_token,
+      access_token,
       actions: [
         {
           action: 'itemrec_open',

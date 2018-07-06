@@ -11,7 +11,7 @@ export function getTrendingArticles(data, count) {
       guid: data.guid,
       version: 2,
       locale_lang: lang,
-      count: count
+      count
     }
   }).then(response => [{ status: 'ok', response }])
 }

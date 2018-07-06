@@ -5,28 +5,25 @@ import {
   saveRecToPocket,
   openRecommendation
 } from './saving/recommendations'
-import { getOnSaveTags, syncItemTags, fetchStoredTags } from './saving/tags'
+import { getSuggestedTags, syncItemTags, fetchStoredTags } from './saving/tags'
 import { archiveItem } from './saving/archive'
 import { removeItem } from './saving/remove'
 import { authorize } from './auth/authorize'
 import { getGuid } from './auth/guid'
 import { getTrendingArticles } from './newtab/trendingArticles'
 import { getTrendingTopics } from './newtab/trendingTopics'
-import {
-  sendAnalytics,
-  sendSpocAnalytics,
-  sendSurveyAnalytics
-} from './analytics/analytics'
+import { sendAnalytics, sendSpocAnalytics } from './analytics/analytics'
+import { getItem } from './saving/details'
 import { getFeatures } from './features/features'
-import { sendSurvey } from './survey/survey'
 
 export {
   authorize,
   saveToPocket,
+  getItem,
   getRecommendations,
   saveRecToPocket,
   openRecommendation,
-  getOnSaveTags,
+  getSuggestedTags,
   request,
   archiveItem,
   removeItem,
@@ -35,9 +32,7 @@ export {
   getTrendingTopics,
   sendAnalytics,
   sendSpocAnalytics,
-  sendSurveyAnalytics,
   syncItemTags,
   fetchStoredTags,
-  getFeatures,
-  sendSurvey
+  getFeatures
 }
