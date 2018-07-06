@@ -22,6 +22,7 @@ const ItemButton = styled('button')`
   line-height: 16px;
   padding: 5px 30px 5px 18px;
   width: 100%;
+  user-select: none;
 
   &:hover {
     background-color: ${Colors.teal};

@@ -19,10 +19,20 @@ const OverflowTrigger = styled('button')`
 export class Overflow extends Component {
   state = { active: false }
 
+  archiveItem = () => {
+    this.setState({ active: false })
+    this.props.archiveItem()
+  }
+
+  removeItem = () => {
+    this.setState({ active: false })
+    this.props.removeItem()
+  }
+
   render() {
     return (
       <React.Fragment>
-        <Popover>
+        <Popover closeOnClick={true}>
           <Trigger>
             <OverflowTrigger>
               <Icon name="overflow" />
@@ -30,7 +40,10 @@ export class Overflow extends Component {
           </Trigger>
 
           <Content>
-            <OverflowMenu active={this.state.active} />
+            <OverflowMenu
+              archiveItem={this.archiveItem}
+              removeItem={this.removeItem}
+            />
           </Content>
         </Popover>
       </React.Fragment>

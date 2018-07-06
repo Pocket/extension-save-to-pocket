@@ -31,6 +31,7 @@ export class ToolbarHeader extends Component {
   }
 
   render() {
+    const { archiveItem, removeItem } = this.props
     return (
       <HeaderWrapper>
         <StatusText>
@@ -39,7 +40,7 @@ export class ToolbarHeader extends Component {
           </StatusIcon>
           {this.statusText}
         </StatusText>
-        <Overflow />
+        <Overflow archiveItem={archiveItem} removeItem={removeItem} />
       </HeaderWrapper>
     )
   }

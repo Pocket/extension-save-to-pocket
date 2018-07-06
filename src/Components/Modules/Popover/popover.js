@@ -40,11 +40,12 @@ export class Content extends Component {
   render() {
     return (
       <PopoverContext.Consumer>
-        {({ on, onHover, offHover }) =>
+        {({ on, onHover, offHover, onClick }) =>
           on ? (
             <PopoverContent
               onMouseOver={onHover}
               onMouseOut={offHover}
+              onClick={onClick}
               data-positioned>
               {this.props.children}
             </PopoverContent>
@@ -79,6 +80,10 @@ export class Popover extends Component {
     }, 250)
   }
 
+  onClick = () => {
+    if (this.props.closeOnClick) this.deActivate()
+  }
+
   render() {
     return (
       <PopoverContext.Provider
@@ -87,6 +92,7 @@ export class Popover extends Component {
           toggle: this.toggle,
           onHover: this.onHover,
           offHover: this.offHover,
+          onClick: this.onClick,
           activateOnClick: this.props.activateOnClick
         }}>
         <NullWrapper ref={this.containerRef}>{this.props.children}</NullWrapper>

@@ -11,12 +11,9 @@ const OverflowList = styled('ul')`
 export class OverflowMenu extends Component {
   render() {
     return (
-      <OverflowList
-        active={this.props.active}
-        onMouseOver={this.props.onHover}
-        onMouseOut={this.props.offHover}>
-        <OverflowItem name="archive_page" method={() => {}} />
-        <OverflowItem name="remove_page" method={() => {}} />
+      <OverflowList>
+        <OverflowItem name="archive_page" method={this.props.archiveItem} />
+        <OverflowItem name="remove_page" method={this.props.removeItem} />
         <OverflowItem name="open_pocket" method={() => {}} divider />
         <OverflowItem name="settings" method={() => {}} />
       </OverflowList>
