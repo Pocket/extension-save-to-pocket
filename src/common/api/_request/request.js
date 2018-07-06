@@ -25,14 +25,14 @@ function request(options, skipAuth) {
 
   const fetchSettings = {
     method: 'POST',
-    headers: headers,
+    headers,
     body: JSON.stringify(options.data)
   }
 
   return fetch(getAPIUrl() + options.path, fetchSettings)
     .then(handleErrors)
     .then(response => response.json())
-    .catch(error => console.log(error))
+    .catch(error => console.warn(error))
 }
 
 function handleErrors(response) {
