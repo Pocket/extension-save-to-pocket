@@ -63,7 +63,6 @@ export class Tagging extends Component {
   }
 
   handleChipRemove = tag => {
-    console.log(tag)
     this.props.removeTag(tag)
   }
 

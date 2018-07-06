@@ -92,6 +92,7 @@ function loginUser(userCookies) {
 -------------------------------------------------- */
 function* handleLogOut() {
   const accountKeys = [
+    'guid',
     'oauth_token',
     'account_username',
     'account_birth',
@@ -99,8 +100,7 @@ function* handleLogOut() {
     'account_name_first',
     'account_name_last',
     'account_avatar',
-    'account_premium',
-    'id_guid'
+    'account_premium'
   ]
   removeSettings(accountKeys)
   yield put({ type: 'USER_LOGGED_OUT', accountKeys })

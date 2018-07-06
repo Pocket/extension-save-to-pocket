@@ -101,7 +101,7 @@ export default class TagInput extends Component {
     return (
       <InputWrapper>
         <AutosizeInput
-          autoFocus={true}
+          // autoFocus={true}
           inputRef={this.props.inputRef}
           inputClassName={InputStyle}
           value={this.props.value}

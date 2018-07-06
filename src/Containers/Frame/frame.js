@@ -41,7 +41,7 @@ function frameClicked() {
 
 // Set up frame when file is injected
 FrameInject()
-  .inject({ url: getURL('/app.html'), showFrame: true })
+  .inject({ url: getURL('/app.html'), showFrame: false })
   .then(frameElement => {
     frame = frameElement
     document.addEventListener('click', frameClicked)

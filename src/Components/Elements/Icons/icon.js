@@ -27,8 +27,8 @@ export const Icon = ({
         height: size,
         width: size,
         fill: color,
-        padding: padding,
-        margin: margin,
+        padding,
+        margin,
         ...style
       }}>
       <use xlinkHref={`#${name}`} />

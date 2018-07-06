@@ -78,7 +78,10 @@ export function sendMessageToAllTabs(msg) {
 }
 
 export function connect(extensionId, connectObject) {
-  return chrome.runtime.connect(extensionId, connectObject)
+  return chrome.runtime.connect(
+    extensionId,
+    connectObject
+  )
 }
 
 export function onConnect(handler) {
@@ -168,7 +171,7 @@ export function openUrl(url) {
 
 export function openTabWithUrl(url, inBackground) {
   let makeTabActive = inBackground === true ? false : true
-  return chrome.tabs.create({ url: url, active: makeTabActive })
+  return chrome.tabs.create({ url, active: makeTabActive })
 }
 
 export function openTab() {
@@ -187,7 +190,7 @@ export function setToolbarIcon(tabId, iconName) {
   const smallIconPath = `images/${iconName}-19.png`
   const bigIconPath = `images/${iconName}-38.png`
   chrome.browserAction.setIcon({
-    tabId: tabId,
+    tabId,
     path: {
       '19': smallIconPath,
       '38': bigIconPath
