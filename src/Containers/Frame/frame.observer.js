@@ -39,17 +39,17 @@ export class FrameObserver {
   }
 
   getRect = function(element) {
-    if (element._boundingClientRect) return element._boundingClientRect
+    // if (element._boundingClientRect) return element._boundingClientRect
     element._boundingClientRect = element.getBoundingClientRect()
     return element._boundingClientRect
   }
 
   handleMutations = mutations => {
     mutations.forEach(mutation => {
-      const transition = window.getComputedStyle(mutation.target).transition
-
-      if (transition === 'all 0s ease 0s') return this.updateHeight()
-      this.startMonitor()
+      // const transition = window.getComputedStyle(mutation.target).transition
+      // if (transition === 'all 0s ease 0s') return this.updateHeight()
+      // this.startMonitor()
+      this.updateHeight()
     })
   }
 
@@ -70,6 +70,7 @@ export class FrameObserver {
   }
 
   calculateHeight = () => {
+    console.log('updating height')
     const absoluteNodes = this.node.querySelectorAll('[data-positioned]')
     const absoluteHeights = Array.from(
       absoluteNodes,
@@ -79,11 +80,11 @@ export class FrameObserver {
     return Math.max(...allHeights) + 20
   }
 
-  updateHeight = () => {
+  updateHeight = mutation => {
     const height = this.calculateHeight()
     const message = {
       action: 'frameResized',
-      height: height
+      height
     }
     if (typeof chrome !== 'undefined') return sendMessage(null, message)
     return window.parent.postMessage(message, '*')
