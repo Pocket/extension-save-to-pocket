@@ -105,3 +105,12 @@ export function getImageCacheUrl(url, resize, fallback) {
 export function getItemPosition(item) {
   return item.offsetLeft - item.scrollLeft + item.clientLeft + item.offsetWidth
 }
+
+export function syncStateAndSettings(values) {
+  return Object.keys(values).reduce((obj, key) => {
+    return {
+      ...obj,
+      [key]: getSetting(key) || values[key]
+    }
+  }, {})
+}
