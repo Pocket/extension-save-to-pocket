@@ -114,7 +114,7 @@ export default class TypeAhead extends React.Component {
   ------------------------------------------------------- */
   render() {
     return this.isOpen ? (
-      <TypeAheadMenu>
+      <TypeAheadMenu data-positioned>
         {this.state.items.map((item, index) => (
           <TypeAheadItem
             key={item + index}

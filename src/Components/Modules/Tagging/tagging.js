@@ -11,8 +11,10 @@ const TagBox = styled('div')`
   font-size: 13px;
   border-radius: 4px;
   display: block;
-  border: 1px solid ${Shades.overcast};
-  padding: 0.8em 0.8em 0.4em;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+  background-color: ${Shades.white};
+  border: 1px solid ${Shades.silver};
+  padding: 0.5em 0.5em 0;
   min-height: 2em;
   position: relative;
   margin-top: 10px;

@@ -21,31 +21,28 @@ const ChipActive = props => css`
   &:hover {
     color: ${props.theme.chip.active.color};
     border-color: ${props.theme.chip.active.border};
-    background-color: ${props.theme.chip.active.background};
+    background-color: ${props.theme.chip.active.hover.background};
   }
 `
 const ChipDelete = styled('div')`
   display: inline-block;
-  padding: 0.2em;
-  border-left-width: 1px;
-  border-left-style: solid;
-  border-color: inherit;
+  padding: 0.2em 0.4em 0.2em 0;
   color: ${props => {
     return props.isActive
-      ? props.theme.chip.active.color
-      : props.theme.chip.border
+      ? props.theme.chip.active.delete
+      : props.theme.chip.delete
   }};
   &:hover {
     color: ${props => {
       return props.isActive
-        ? props.theme.chip.active.color
-        : props.theme.chip.color
+        ? props.theme.chip.active.hover.delete
+        : props.theme.chip.hover.delete
     }};
 `
 
 const ChipCopy = styled('div')`
   display: inline-block;
-  padding: 0.2em 0.6em;
+  padding: 0 0.2em 0 0.6em;
   line-height: 1.5em;
 `
 
@@ -54,6 +51,8 @@ const ChipWrapper = styled('div')`
   cursor: pointer;
   display: inline-block;
   border-radius: 3px;
+  border-width: 1px;
+  border-style: solid;
   text-transform: lowercase;
   user-select: none;
   margin-bottom: 0.5em;
@@ -78,7 +77,7 @@ export const TagChip = ({
   return (
     <ChipWrapper isActive={isActive} onClick={onChipClick}>
       <ChipCopy>{tag}</ChipCopy>
-      <ChipDelete onClick={onRemoveClick}>
+      <ChipDelete onClick={onRemoveClick} isActive={isActive}>
         <Icon name="close" size={'1em'} />
       </ChipDelete>
     </ChipWrapper>
