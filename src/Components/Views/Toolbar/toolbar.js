@@ -17,31 +17,22 @@ const ToolbarWrapper = styled('div')`
   position: relative;
   text-align: left;
   z-index: 100;
-  transform: translateY(${props => (props.animateIn ? 0 : '-150%')});
-  opacity: ${props => (props.animateIn ? 1 : 0)};
-  transition: transform 350ms cubic-bezier(0.165, 0.84, 0.44, 1),
-    opacity 200ms cubic-bezier(0.165, 0.84, 0.44, 1);
 `
 
 /* Renderers
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 export class ToolbarMain extends Component {
-  state = { animate: false }
-
-  componentDidMount() {
-    this.setState({ animate: true })
-  }
-
-  get shouldShow() {
-    return this.props.status !== 'idle' && this.state.animate
-  }
-
   render() {
-    const { status, saveType } = this.props
+    const { status, saveType, archiveItem, removeItem } = this.props
     return (
-      <ToolbarWrapper animateIn={this.shouldShow}>
-        <ToolbarHeader status={status} saveType={saveType} />
+      <ToolbarWrapper>
+        <ToolbarHeader
+          status={status}
+          saveType={saveType}
+          archiveItem={archiveItem}
+          removeItem={removeItem}
+        />
         {status === 'error' ? <ToolbarError /> : this.props.children}
       </ToolbarWrapper>
     )

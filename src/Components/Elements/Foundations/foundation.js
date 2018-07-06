@@ -3,11 +3,11 @@ import { css } from 'react-emotion'
 
 export const PanelBase = css`
   background-color: ${Shades.white};
-  border-color: ${Shades.white};
+  /* border-color: ${Shades.white}; */
+  /* border-width: 1px; */
+  /* border-style: solid; */
   border-radius: 4px;
-  border-style: solid;
-  border-width: 2px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
   box-sizing: border-box;
   margin: 0;
   padding: 0;
