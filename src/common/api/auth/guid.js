@@ -1,5 +1,5 @@
 import { request } from '../_request/request'
-import { getSetting, setSettings, cookies } from '../../interface'
+import { getSetting, cookies } from '../../interface'
 import { arrayHasValues } from '../../utilities'
 import { getBaseUrl } from '../../helpers'
 
@@ -16,7 +16,6 @@ export function getGuid() {
             })
           // Site Guid
           if (resolvedValues[1]) {
-            setSettings({ guid: resolvedValues[1].value })
             resolve({
               source: 'site',
               guid: resolvedValues[1].value
@@ -26,7 +25,6 @@ export function getGuid() {
           // Server Guid
           getServerGuid()
             .then(data => {
-              setSettings({ guid: data.guid })
               return resolve({ source: 'server', guid: data.guid })
             })
             .catch(err => reject(err))
