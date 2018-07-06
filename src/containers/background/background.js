@@ -2,10 +2,14 @@ import * as Interface from 'Common/interface'
 import { isNewTab, getBaseUrl, isSystemPage } from 'Common/helpers'
 import { tabActions } from 'Containers/Background/tab.state'
 import { saveActions } from 'Containers/Save/save.state'
+import { setupActions } from './setup.state'
+
 import { store } from 'store'
 
 /* SETUP
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+store.dispatch(setupActions.setupExtension())
+
 // TODO: Talk to product and Switch this to a notification
 Interface.onUpdateAvailable(() => Interface.reloadExtension())
 Interface.setUninstallUrl('https://getpocket.com/chrome-exit-survey/')

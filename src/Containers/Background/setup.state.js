@@ -1,16 +1,12 @@
 import { put, takeLatest, select, call } from 'redux-saga/effects'
-import { getSetting, setSettings, removeSettings } from 'Common/interface'
-import { getBool, mergeDedupe } from 'Common/utilities'
-import { getGuid, fetchStoredTags } from 'Common/api'
+import { getSetting, setSettings } from 'Common/interface'
+import { syncStateAndSettings } from 'Common/helpers'
+import { getGuid, fetchStoredTags, getFeatures } from 'Common/api'
 
 /* INITIAL STATE
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 const initialState = {
-  base_api_version: 'v3/',
-  base_URL: 'https://getpocket.com/',
-  base_installed: 1,
   on_save_recommendations: 1,
-  sites_facebook: 1,
   sites_hackernews: 1,
   sites_reddit: 1,
   sites_twitter: 1
@@ -32,31 +28,11 @@ export const setupActions = {
 
 /* REDUCERS :: STATE SHAPE
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-export const setup = (state = initialState, action) => {
+export const setupReducers = (state = initialState, action) => {
   switch (action.type) {
     case 'SETUP_EXTENSION_COMPLETE':
-      return { ...state, guid: action.guid }
-
-    case 'HYDRATED_STATE': {
-      return { ...state, ...action.hydrated }
-    }
-    case 'HYDRATED_TAGS': {
-      return { ...state, tags_stored: action.tags_stored }
-    }
-
-    case 'USER_LOGGED_OUT': {
-      const accountKeys = action.accountKeys
-      return Object.keys(state).reduce((accumulator, key) => {
-        if (accountKeys.indexOf(key) < 0) accumulator[key] = state[key]
-        return accumulator
-      }, {})
-    }
-    case 'USER_LOGGED_IN': {
-      return {
-        ...state,
-        ...action.accountObject
-      }
-    }
+      const { settings } = action.payload
+      return { ...state, ...settings }
 
     case 'SET_RECOMMENDATIONS': {
       return {
@@ -69,13 +45,6 @@ export const setup = (state = initialState, action) => {
       return {
         ...state,
         ...action.sites
-      }
-    }
-
-    case 'UPDATE_STORED_TAGS': {
-      return {
-        ...state,
-        tags_stored: [...action.tags]
       }
     }
 
@@ -102,9 +71,17 @@ const getSetup = state => {
 /* SAGAS :: RESPONDERS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 function* initSetup() {
+  const base = {
+    base_api_version: 'v3/',
+    base_URL: 'https://getpocket.com/',
+    base_installed: 1
+  }
+
+  const settings = syncStateAndSettings(initialState)
   const data = yield getGuid()
-  setSettings({ ...initialState, id_guid: data.guid })
-  yield put({ type: 'SETUP_EXTENSION_COMPLETE', guid: data.guid })
+
+  setSettings({ guid: data.guid, ...base, ...settings })
+  yield put({ type: 'SETUP_EXTENSION_COMPLETE', payload: { settings } })
 }
 
 function* toggleRecommendations() {
@@ -123,4 +100,30 @@ function* toggleSite(action) {
 
   setSettings(settingsObject)
   yield put({ type: 'SET_SITES', sites: { [sitename]: !active } })
+}
+
+export function* serverSync(action) {
+  const syncDate = getSetting('base_syncDate') || 0
+  const today = new Date().toLocaleDateString()
+
+  if (syncDate === today)
+    return yield {
+      features: JSON.parse(getSetting('features_stored')),
+      storedTags: JSON.parse(getSetting('tags_stored'))
+    }
+
+  const featureResponse = yield call(getFeatures)
+  const storedTagsResponse = yield call(fetchStoredTags)
+
+  const features = featureResponse.response.features
+  const storedTags = storedTagsResponse.tags || []
+
+  const payload = {
+    base_syncDate: today,
+    features_stored: JSON.stringify(features),
+    tags_stored: JSON.stringify(storedTags)
+  }
+
+  setSettings(payload)
+  return yield payload
 }
