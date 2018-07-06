@@ -12,7 +12,13 @@ import { authorize } from './auth/authorize'
 import { getGuid } from './auth/guid'
 import { getTrendingArticles } from './newtab/trendingArticles'
 import { getTrendingTopics } from './newtab/trendingTopics'
-import { sendAnalytics, sendSpocAnalytics } from './analytics/analytics'
+import {
+  sendAnalytics,
+  sendSpocAnalytics,
+  sendSurveyAnalytics
+} from './analytics/analytics'
+import { getFeatures } from './features/features'
+import { sendSurvey } from './survey/survey'
 
 export {
   authorize,
@@ -29,6 +35,9 @@ export {
   getTrendingTopics,
   sendAnalytics,
   sendSpocAnalytics,
+  sendSurveyAnalytics,
   syncItemTags,
-  fetchStoredTags
+  fetchStoredTags,
+  getFeatures,
+  sendSurvey
 }
