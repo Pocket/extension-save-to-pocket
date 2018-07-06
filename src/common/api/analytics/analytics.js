@@ -7,7 +7,7 @@ export function sendAnalytics(context, guid) {
     {
       path: 'pv/',
       data: {
-        guid: guid,
+        guid,
         actions: JSON.stringify(context)
       }
     },
@@ -21,7 +21,7 @@ export function sendSpocAnalytics(access_token, actions) {
   return request({
     path: 'send/',
     data: {
-      access_token: access_token,
+      access_token,
       actions
     }
   }).then(response => {
