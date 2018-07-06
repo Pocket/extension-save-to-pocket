@@ -38,6 +38,8 @@ function selectPanelHeight(state) {
 
   const dropDownHeight = activeTab.dropDownActive ? 185 : 0
 
+  const surveyHeight = state.survey.show ? 260 : 0
+
   const statusHeight = {
     error: 195,
     saved: 195,
@@ -63,6 +65,7 @@ function selectPanelHeight(state) {
     frameLoad +
     statusHeight[status] +
     recsHeight +
+    surveyHeight +
     tagHeight +
     suggestionsHeight(suggestions)
 
