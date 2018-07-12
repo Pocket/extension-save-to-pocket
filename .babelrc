@@ -1,0 +1,43 @@
+{
+  "plugins": [
+    "syntax-dynamic-import",
+    "transform-decorators-legacy",
+    "transform-class-properties",
+    "transform-object-rest-spread",
+    ["module-resolver", {
+      "root": ["./"],
+      "alias": {
+        "src": "./src"
+      }
+    }]
+  ],
+  "presets": [
+    ["env", {
+      "targets": {
+        "chrome": 52,
+        "browsers": ["last 2 versions", "safari 7"]
+      },
+      "modules": false,
+      "loose": true
+    }],
+    "react",
+    "flow"
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        "react-hot-loader/babel"
+      ]
+    },
+    "test": {
+      "presets":[
+        ["env", { "modules": false }],
+        "react"
+        ],
+      "plugins": [
+        "transform-es2015-modules-commonjs",
+        "dynamic-import-node"
+      ]
+    }
+  }
+}

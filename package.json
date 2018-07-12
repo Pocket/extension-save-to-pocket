@@ -15,15 +15,26 @@
     "autoprefixer": "7.1.6",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.3",
-    "babel-jest": "20.0.3",
-    "babel-loader": "7.1.2",
+    "babel-jest": "^23.2.0",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-dynamic-import-node": "^2.0.0",
+    "babel-plugin-module-resolver": "^3.1.1",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.5",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-react-app": "^3.1.1",
     "babel-runtime": "^6.26.0",
     "case-sensitive-paths-webpack-plugin": "2.1.1",
     "chalk": "1.1.3",
     "css-loader": "0.28.7",
+    "cypress": "^3.0.2",
     "dotenv": "4.0.0",
     "dotenv-expand": "4.2.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "4.10.0",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-react-app": "^2.1.0",
@@ -36,15 +47,25 @@
     "file-loader": "1.1.5",
     "fs-extra": "3.0.1",
     "html-webpack-plugin": "2.29.0",
-    "jest": "20.0.4",
+    "husky": "^0.14.3",
+    "jest": "^23.3.0",
+    "lint-staged": "^7.2.0",
     "lodash.random": "^3.2.0",
     "lodash.samplesize": "^4.2.0",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",
     "postcss-loader": "2.0.8",
+    "prettier": "1.7",
     "promise": "8.0.1",
     "raf": "3.4.0",
     "react-dev-utils": "^5.0.1",
+    "react-hot-loader": "^4.3.3",
+    "jest-environment-webdriver": "^0.2.0",
+    "pocket-build-tools":
+      "git+https://git@github.com/Pocket/front-end-build-tools.git",
+    "redux-devtools-extension": "^2.13.2",
+    "remote-redux-devtools": "^0.5.12",
+    "remotedev-server": "^0.2.4",
     "resolve": "1.6.0",
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
@@ -72,55 +93,22 @@
     "react-redux": "^5.0.5",
     "redux": "^3.7.2",
     "redux-saga": "^0.15.6",
-    "remotedev-server": "^0.2.4",
-    "remote-redux-devtools": "^0.5.12"
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,mjs}"
-    ],
-    "setupFiles": [
-      "<rootDir>/.tooling/config/polyfills.js"
-    ],
-    "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
-      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}"
-    ],
-    "testEnvironment": "node",
-    "testURL": "http://localhost",
-    "transform": {
-      "^.+\\.(js|jsx|mjs)$": "<rootDir>/node_modules/babel-jest",
-      "^.+\\.css$": "<rootDir>/.tooling/config/jest/cssTransform.js",
-      "^(?!.*\\.(js|jsx|mjs|css|json)$)": "<rootDir>/.tooling/config/jest/fileTransform.js"
-    },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
-    ],
-    "moduleNameMapper": {
-      "^react-native$": "react-native-web"
-    },
-    "moduleFileExtensions": [
-      "web.js",
-      "js",
-      "json",
-      "web.jsx",
-      "jsx",
-      "node",
-      "mjs"
-    ]
+    "remote-redux-devtools": "^0.5.12",
+    "remotedev-server": "^0.2.4"
   },
   "babel": {
-    "presets": [
-      "react-app"
-    ]
+    "presets": ["react-app"]
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "prettier"
-    ],
-    "rules":{
-      "object-shorthand": ["warn", "always", { "avoidQuotes": true }]
+    "extends": ["react-app", "prettier"],
+    "rules": {
+      "object-shorthand": [
+        "warn",
+        "always",
+        {
+          "avoidQuotes": true
+        }
+      ]
     }
   },
   "prettier": {
@@ -134,11 +122,25 @@
     "tabWidth": 2,
     "trailingComma": "none"
   },
+  "lint-staged": {
+    "*.{js,jsx}": ["lint:fix", "git add"],
+    "*.{json,scss,sass,css,less}": ["prettier --write", "git add"]
+  },
   "scripts": {
     "start": "node .tooling/scripts/start.js",
     "build": "node .tooling/scripts/build.js",
-    "test": "node .tooling/scripts/test.js --env=jsdom",
-    "storybook": "start-storybook -c ./.tooling/storybook -s ./build/_dev -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook":
+      "start-storybook -c ./.tooling/storybook -s ./build/_dev -p 6006",
+    "build-storybook": "build-storybook",
+    "remotedev": "remotedev --hostname=localhost --port=8000",
+    "test": "npx jest --config=.tooling/config/jest/jest.config.js",
+    "test:watch":
+      "npx jest --config=.tooling/config/jest/jest.config.js --watch",
+    "cy:run": "npx cypress run",
+    "cy:record":
+      "npx cypress run  --record --key 401783af-4b1c-4bb1-9d05-35d9ad833c89",
+    "cy:open": "npx cypress open",
+    "precommit": "npx lint-staged",
+    "prepush": "npm test"
   }
 }

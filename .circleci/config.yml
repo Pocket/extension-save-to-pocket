@@ -1,0 +1,13 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: cypress/browsers:chrome67
+    steps:
+      - checkout
+      - run: yarn install
+      - run: npm test
+
+# TODO: create Dockerfile for use in a step to build an image
+#   (is this worth it or can we just use the build artifacts... TBD)

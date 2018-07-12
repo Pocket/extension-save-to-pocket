@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "target": "es2017",
+        "allowSyntheticDefaultImports": false,
+        "baseUrl": "./src",
+        "paths": {
+            "pocket/common/*": ["src/common/*"],
+            "pocket/containers/*": ["src/containers/*"],
+            "pocket/components/*": ["src/components/*"],
+            "pocket/store/*": ["src/store/*"],
+        }
+    },
+    "exclude": ["node_modules", "build"]
+}

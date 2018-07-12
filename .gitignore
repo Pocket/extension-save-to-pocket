@@ -24,3 +24,5 @@ yarn-error.log*
 # Account info
 keys.js
 keys.json
+*-debug*
+.debug/
