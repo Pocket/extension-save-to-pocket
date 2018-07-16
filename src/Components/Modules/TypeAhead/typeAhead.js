@@ -23,12 +23,12 @@ export default class TypeAhead extends React.Component {
   componentWillReceiveProps(nextProps) {
     if (this.state.ready) return
     this.textInput = nextProps.textInput
-    this.textInput.addEventListener('keydown', this.keyDown)
+    this.texInput && this.textInput.addEventListener('keydown', this.keyDown)
     this.setState({ ready: true })
   }
 
   componentWillUnmount() {
-    this.textInput.removeEventListener('keydown', this.keydown)
+    this.texInput && this.textInput.removeEventListener('keydown', this.keydown)
   }
 
   componentWillUpdate(nextProps) {

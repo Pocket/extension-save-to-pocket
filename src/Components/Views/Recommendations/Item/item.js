@@ -107,7 +107,7 @@ export class RecommendationItem extends Component {
       <Wrapper style={this.props.motionStyle}>
         <Content>
           <TitleLink onClick={this.handleRecClick}>{item.title}</TitleLink>
-          <Source>{domainForUrl(item.resolved_url)}</Source>
+          <Source>{item.resolved_url && domainForUrl(item.resolved_url)}</Source>
         </Content>
 
         <SaveAction onClick={this.handleSaveClick}>
