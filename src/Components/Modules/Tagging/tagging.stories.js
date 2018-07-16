@@ -1,6 +1,5 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import samplesize from 'lodash.samplesize'
 import { Tagging } from './tagging'
 import { COLORS } from 'Common/_mocks/colors'
 
@@ -10,8 +9,8 @@ export default class MockState extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      tags: samplesize(COLORS, 5),
-      suggestions: samplesize(COLORS, 4)
+      tags: COLORS.slice(0, 5),
+      suggestions: COLORS.slice(0, 4)
     }
   }
 
