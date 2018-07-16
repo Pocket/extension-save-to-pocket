@@ -2,7 +2,6 @@ import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { ToolbarMain } from './toolbar'
 import { Tagging } from 'Modules/Tagging/tagging'
-import samplesize from 'lodash.samplesize'
 import { COLORS } from 'Common/_mocks/colors'
 
 // Adding Mock State for Tag Management
@@ -10,7 +9,7 @@ export default class MockState extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      tags: samplesize(COLORS, 5)
+      tags: COLORS.slice(0, 5)
     }
   }
 
@@ -65,7 +64,7 @@ storiesOf('Views|Toolbar/Panel (Tags)', module)
   .addDecorator(story => <div style={{ width: '320px' }}>{story()}</div>)
   .add('w/ Suggestions', () => (
     <ToolbarMain saveType={'page'} status={'saved'}>
-      <MockState suggestions={samplesize(COLORS, 4)} />
+      <MockState suggestions={COLORS.slice(0, 4)} />
     </ToolbarMain>
   ))
   .add('w/o Suggestions', () => (

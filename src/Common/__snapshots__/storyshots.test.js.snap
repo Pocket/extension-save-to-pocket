@@ -11530,7 +11530,7 @@ Array [
           <div
             className="css-1lkwl71"
           >
-            OldLace
+            Wheat
           </div>
           <div
             className="css-19yvobb"
@@ -11563,7 +11563,7 @@ Array [
           <div
             className="css-1lkwl71"
           >
-            DarkSeaGreen
+            NavajoWhite
           </div>
           <div
             className="css-19yvobb"
@@ -11596,7 +11596,7 @@ Array [
           <div
             className="css-1lkwl71"
           >
-            Gold
+            Tan
           </div>
           <div
             className="css-19yvobb"
@@ -11629,7 +11629,7 @@ Array [
           <div
             className="css-1lkwl71"
           >
-            LightGray
+            GhostWhite
           </div>
           <div
             className="css-19yvobb"
@@ -11662,7 +11662,7 @@ Array [
           <div
             className="css-1lkwl71"
           >
-            LightCoral
+            Lavender
           </div>
           <div
             className="css-19yvobb"
@@ -11740,28 +11740,28 @@ Array [
           onClick={[Function]}
           onMouseDown={[Function]}
         >
-          Cornsilk
+          Olive
         </div>
         <div
           className="css-1n4dufg"
           onClick={[Function]}
           onMouseDown={[Function]}
         >
-          LightGoldenRodYellow
+          PowderBlue
         </div>
         <div
           className="css-1n4dufg"
           onClick={[Function]}
           onMouseDown={[Function]}
         >
-          DimGrey
+          MidnightBlue
         </div>
         <div
           className="css-1n4dufg"
           onClick={[Function]}
           onMouseDown={[Function]}
         >
-          MistyRose
+          LightYellow
         </div>
       </div>
     </div>
@@ -20240,7 +20240,7 @@ Array [
             <div
               className="css-1lkwl71"
             >
-              DarkSeaGreen
+              AliceBlue
             </div>
             <div
               className="css-19yvobb"
@@ -20273,7 +20273,7 @@ Array [
             <div
               className="css-1lkwl71"
             >
-              Black
+              AntiqueWhite
             </div>
             <div
               className="css-19yvobb"
@@ -20306,7 +20306,7 @@ Array [
             <div
               className="css-1lkwl71"
             >
-              LightSalmon
+              Aqua
             </div>
             <div
               className="css-19yvobb"
@@ -20339,7 +20339,7 @@ Array [
             <div
               className="css-1lkwl71"
             >
-              SteelBlue
+              Aquamarine
             </div>
             <div
               className="css-19yvobb"
@@ -20372,7 +20372,7 @@ Array [
             <div
               className="css-1lkwl71"
             >
-              Lime
+              Azure
             </div>
             <div
               className="css-19yvobb"
@@ -20440,38 +20440,6 @@ Array [
                 
               </div>
             </div>
-          </div>
-        </div>
-        <div
-          className="css-5vdg9t"
-        >
-          <div
-            className="css-1n4dufg"
-            onClick={[Function]}
-            onMouseDown={[Function]}
-          >
-            PowderBlue
-          </div>
-          <div
-            className="css-1n4dufg"
-            onClick={[Function]}
-            onMouseDown={[Function]}
-          >
-            AntiqueWhite
-          </div>
-          <div
-            className="css-1n4dufg"
-            onClick={[Function]}
-            onMouseDown={[Function]}
-          >
-            Peru
-          </div>
-          <div
-            className="css-1n4dufg"
-            onClick={[Function]}
-            onMouseDown={[Function]}
-          >
-            OrangeRed
           </div>
         </div>
       </div>
@@ -20836,7 +20804,7 @@ Array [
             <div
               className="css-1lkwl71"
             >
-              Teal
+              AliceBlue
             </div>
             <div
               className="css-19yvobb"
@@ -20869,7 +20837,7 @@ Array [
             <div
               className="css-1lkwl71"
             >
-              DarkSlateGrey
+              AntiqueWhite
             </div>
             <div
               className="css-19yvobb"
@@ -20902,7 +20870,7 @@ Array [
             <div
               className="css-1lkwl71"
             >
-              HotPink
+              Aqua
             </div>
             <div
               className="css-19yvobb"
@@ -20935,7 +20903,7 @@ Array [
             <div
               className="css-1lkwl71"
             >
-              RoyalBlue
+              Aquamarine
             </div>
             <div
               className="css-19yvobb"
@@ -20968,7 +20936,7 @@ Array [
             <div
               className="css-1lkwl71"
             >
-              GreenYellow
+              Azure
             </div>
             <div
               className="css-19yvobb"
