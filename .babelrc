@@ -36,7 +36,9 @@
         ],
       "plugins": [
         "transform-es2015-modules-commonjs",
-        "dynamic-import-node"
+        "dynamic-import-node",
+        "require-context-hook",
+        "transform-class-properties"
       ]
     }
   }

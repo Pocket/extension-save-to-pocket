@@ -1,8 +1,8 @@
 module.exports = {
   rootDir: '../../../',
   setupFiles: ['<rootDir>/.tooling/config/jest/setup/main.js'],
-  moduleFileExtensions: ['js', 'jsx'],
-  moduleDirectories: ['node_modules', 'src'],
+  moduleFileExtensions: ['js', 'jsx', 'json'],
+  moduleDirectories: ['node_modules', 'src', 'src/Components'],
   moduleNameMapper: {
     'pocket/common/(.*)': '<rootDir>/src/common/$1',
     'pocket/components/(.*)': '<rootDir>/src/components/$1',
