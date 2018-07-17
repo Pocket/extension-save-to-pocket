@@ -14,7 +14,7 @@ export class RecommendationList extends React.Component {
     return items.length ? (
       <ListWrapper>
         {items.map(item => (
-          <RecommendationItem key={item.item_id} item={item} />
+          <RecommendationItem key={item.feed_item_id} item={item} />
         ))}
       </ListWrapper>
     ) : null

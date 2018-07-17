@@ -36,10 +36,10 @@ const FieldOption = styled('button')`
 `
 
 function FieldOptions({ options, name }) {
-  return options.map(option => {
+  return options.map((option, index) => {
     const { text, value } = option
     return (
-      <FieldOption onClick={() => console.log(`${name}:${value}`)}>
+      <FieldOption key={index} onClick={() => console.log(`${name}:${value}`)}>
         {text}
       </FieldOption>
     )
@@ -50,7 +50,7 @@ function Fields({ fields }) {
   return fields.map(fieldset => {
     const { label, options, name } = fieldset
     return (
-      <FieldSet>
+      <FieldSet key={name}>
         <FieldTitle>{label}</FieldTitle>
         <FieldOptions options={options} name={name} />
       </FieldSet>
