@@ -7,6 +7,7 @@ jobs:
     steps:
       - checkout
       - run: yarn install
+      - run: bash .env
       - run: npm test
 
 # TODO: create Dockerfile for use in a step to build an image
