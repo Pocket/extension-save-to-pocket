@@ -2,16 +2,7 @@
 # NB: This is a temporary hack around renaming, we need a permanent solution
 
 if [ -z "${CI}" ]; then
-  mv src/containers/save/recommendations/* src/Containers/Save/Recommendations
-  mv src/containers/save/*.js src/Containers/Save
-  mv src/containers/options/* src/Containers/Options
-  mv src/containers/background/* src/Containers/Background
-  mv src/containers/auth/* src/Containers/Auth
-  mv src/common/_locales src/Common
-  rm -rf src/Common/api
-  mv src/common/api src/Common
-  mv src/common/*.js src/Common
-else
+  # if not in CI
   mv src/containers/auth src/containers/Auth
   mv src/containers/background src/containers/Background
   mv src/containers/options src/containers/Options
@@ -23,4 +14,15 @@ else
   mv src/containers src/Containers
   mv src/common src/Common
   mv src/components src/Components
+else
+  # if CI
+  mv src/containers/save/recommendations/* src/Containers/Save/Recommendations
+  mv src/containers/save/*.js src/Containers/Save
+  mv src/containers/options/* src/Containers/Options
+  mv src/containers/background/* src/Containers/Background
+  mv src/containers/auth/* src/Containers/Auth
+  mv src/common/_locales src/Common
+  rm -rf src/Common/api
+  mv src/common/api src/Common
+  mv src/common/*.js src/Common
 fi
