@@ -7,8 +7,7 @@ jobs:
     steps:
       - checkout
       - run: yarn install
-      - run: bash .env
-      - run: npm test
+      - run: yarn test
 
 # TODO: create Dockerfile for use in a step to build an image
 #   (is this worth it or can we just use the build artifacts... TBD)
