@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: cypress/browsers:chrome67
+      - image: circleci/node:10.6.0-browsers
     steps:
       - checkout
       - run: yarn install
