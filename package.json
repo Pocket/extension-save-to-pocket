@@ -132,6 +132,7 @@
     "*.{json,scss,sass,css,less}": ["prettier --write", "git add"]
   },
   "scripts": {
+    "postinstall": ".tooling/scripts/postinstall.sh",
     "start": "node .tooling/scripts/start.js",
     "build": "node .tooling/scripts/build.js",
     "lint": "npx eslint -f table",
