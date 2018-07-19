@@ -154,7 +154,7 @@ storiesOf('Elements|Icons', module)
   ))
   .add('All', () => (
     <div style={{ fontSize: '128px', lineHeight: '1.25em' }}>
-      {extensionIcons.map(icon => <Icon name={icon} key={icon.name} />)}
+      {extensionIcons.map((icon, index) => <Icon name={icon} key={index} />)}
     </div>
   ))
 

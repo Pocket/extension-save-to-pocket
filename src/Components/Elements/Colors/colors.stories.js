@@ -52,11 +52,11 @@ storiesOf('Elements|Colors', module)
   .add('Colors', () => displayColors({ Colors, Shades }))
 
 function displayColors(colorObject) {
-  return Object.keys(colorObject).map(colorType => {
+  return Object.keys(colorObject).map((colorType, index) => {
     const colors = colorObject[colorType]
 
     return (
-      <div>
+      <div key={index}>
         <h1
           className={css`
             font-weight: 100;

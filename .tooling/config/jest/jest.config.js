@@ -4,10 +4,10 @@ module.exports = {
   moduleFileExtensions: ['js', 'jsx', 'json'],
   moduleDirectories: ['node_modules', 'src', 'src/Components'],
   moduleNameMapper: {
-    'pocket/common/(.*)': '<rootDir>/src/common/$1',
-    'pocket/components/(.*)': '<rootDir>/src/components/$1',
-    'pocket/containers/(.*)': '<rootDir>/src/containers/$1',
-    'pocket/store/(.*)': '<rootDir>/src/store/$1'
+    // 'Common(.*)': '<rootDir>/src/common/$1',
+    // 'Components(.*)': '<rootDir>/src/components/$1',
+    // 'Containers(.*)': '<rootDir>/src/containers/$1',
+    // 'Store(.*)': '<rootDir>/src/store/$1'
   },
   transform: {
     '^.+\\.(js|jsx|mjs)$': 'babel-jest',
