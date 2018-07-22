@@ -101,9 +101,6 @@
     "remote-redux-devtools": "^0.5.12",
     "remotedev-server": "^0.2.4"
   },
-  "babel": {
-    "presets": ["react-app"]
-  },
   "eslintConfig": {
     "extends": ["react-app", "prettier"],
     "rules": {
