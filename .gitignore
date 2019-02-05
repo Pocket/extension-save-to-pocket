@@ -26,3 +26,5 @@ keys.js
 keys.json
 *-debug*
 .debug/
+
+.vscode/
