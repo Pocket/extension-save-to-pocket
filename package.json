@@ -135,7 +135,7 @@
     "lint": "npx eslint -f table",
     "lint:fix": "npx eslint --fix",
     "storybook":
-      "start-storybook -c ./.tooling/storybook -s ./build/_dev -p 6008",
+      "start-storybook -c ./.tooling/storybook -s ./build/_dev -p 6006",
     "build-storybook": "build-storybook",
     "remotedev": "remotedev --hostname=localhost --port=8000",
     "test": "npx jest --config=.tooling/config/jest/jest.config.js",
