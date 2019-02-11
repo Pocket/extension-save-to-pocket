@@ -25,20 +25,23 @@ const Wrapper = styled('li')`
   line-height: 1.25em;
   color: ${Shades.pitch};
   border-top: 1px solid ${Shades.smoke};
-  padding: 8px;
+  padding: 10px;
 `
 
 const Content = styled('div')`
+  display: grid;
+  grid-template-rows: 2fr 1fr;
   min-height: 80px;
   overflow: hidden;
   box-sizing: border-box;
 `
 
 const Source = styled('div')`
-  color: $silver;
+  color: ${Shades.silver};
   font-size: 0.9em;
   line-height: 1em;
   margin: 0 0 10px;
+  align-self: end;
 `
 
 const SaveAction = styled('button')`
@@ -53,7 +56,6 @@ const SaveAction = styled('button')`
 const TitleLink = styled('button')`
   ${buttonReset};
   cursor: pointer;
-  font-weight: 600;
   padding-bottom: 2px;
   padding-right: 10px;
   box-sizing: border-box;

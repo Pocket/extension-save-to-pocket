@@ -2,7 +2,7 @@ import { Shades } from '../Colors/colors'
 import { css } from 'react-emotion'
 
 export const PanelBase = css`
-  background-color: ${Shades.white};
+  background-color: ${Shades.powder};
   /* border-color: ${Shades.white}; */
   /* border-width: 1px; */
   /* border-style: solid; */
