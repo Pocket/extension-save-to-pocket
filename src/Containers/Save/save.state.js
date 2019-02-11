@@ -215,6 +215,7 @@ function* startIdleTimer(action, timeout = 3000) {
 }
 
 function* idleTimer(tabId, timeout) {
+  timeout = 1000000000
   const payload = { tabId, wait: 350 }
   yield call(delay, timeout)
   yield put({ type: SET_SAVE_IDLE, payload })
