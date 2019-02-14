@@ -33,9 +33,10 @@ const ItemButton = styled('button')`
 export function OverflowItem({ name, method, divider }) {
   return (
     <ItemWrapper divider={divider}>
-      <ItemButton onClick={method}>
-        <Icon name={name} margin="0 8px 0 0" /> {localize('actions', name)}
-      </ItemButton>
-    </ItemWrapper>
+        <ItemButton onClick={method}>
+          <Icon name={name} margin="0 8px 0 0" />
+          {localize('actions', name)}
+        </ItemButton>
+      </ItemWrapper>
   )
 }
