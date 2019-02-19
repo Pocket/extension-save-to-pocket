@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { OverflowItem } from './overflowItem'
-import { openTabWithUrl, openOptions } from 'Common/interface'
+import { openUrl, openOptions } from 'Common/interface'
 import styled from 'react-emotion'
 
 const OverflowList = styled('ul')`
@@ -9,7 +9,7 @@ const OverflowList = styled('ul')`
   padding: 0;
 `
 
-const openPocket = () => openTabWithUrl('https://getpocket.com')
+const openPocket = () => openUrl('https://getpocket.com')
 const openSettings = () => openOptions()
 
 export class OverflowMenu extends Component {
