@@ -13,7 +13,7 @@ const ToolbarWrapper = styled('div')`
   font-size: 16px;
   font-weight: 400;
   line-height: 1.5;
-  padding: 8px 10px;
+  padding: 10px;
   position: relative;
   text-align: left;
   z-index: 100;

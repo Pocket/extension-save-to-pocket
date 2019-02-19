@@ -13,6 +13,7 @@ export const Shades = {
   pitch: '#222222',
   tar: '#333333',
   coal: '#444444',
+  lightsmoke: '#eeeeee',
   darksmoke: '#666666',
   overcast: '#999999',
   silver: '#bbbbbb',

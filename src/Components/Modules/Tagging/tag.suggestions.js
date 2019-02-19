@@ -10,8 +10,8 @@ const SuggestionList = styled('div')`
 `
 
 const SuggestionWrapper = styled('div')`
-  background-color: ${Shades.white};
-  border: 1px solid ${Shades.smoke};
+  background-color: ${Shades.lightsmoke};
+  border: 1px solid ${Shades.silver};
   cursor: pointer;
   display: inline-block;
   border-radius: 4px;
@@ -21,7 +21,6 @@ const SuggestionWrapper = styled('div')`
   padding: 0.2em 0.6em;
   margin-bottom: 0.5em;
   margin-right: 0.5em;
-  font-style: italic;
   &:last-child {
     margin-right: 0;
   }
