@@ -50,7 +50,10 @@ export const taggingReducers = (state = {}, action) => {
       const tagState = state[tabId]
       return {
         ...state,
-        [tabId]: { ...tagState, tags }
+        // TODO: Shows tags previously entered, feature should be tested before deploying with next release
+        // TODO: Further discussion and testing on persist existing tags feature (allows users to view and delete existing tags)
+        // [tabId]: { ...tagState, tags }
+        [tabId]: { ...tagState, tags: [] }
       }
     }
 
