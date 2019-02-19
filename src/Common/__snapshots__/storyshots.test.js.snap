@@ -18146,6 +18146,7 @@ Array [
               xlinkHref="#archive_page"
             />
           </svg>
+           
           Archive Page
         </button>
       </li>
@@ -18458,6 +18459,7 @@ Array [
               xlinkHref="#open_pocket"
             />
           </svg>
+           
           Open Pocket
         </button>
       </li>
@@ -18770,6 +18772,7 @@ Array [
               xlinkHref="#remove_page"
             />
           </svg>
+           
           Remove Page
         </button>
       </li>
@@ -19082,6 +19085,7 @@ Array [
               xlinkHref="#settings"
             />
           </svg>
+           
           Settings
         </button>
       </li>
@@ -19396,6 +19400,7 @@ Array [
                 xlinkHref="#archive_page"
               />
             </svg>
+             
             Archive Page
           </button>
         </li>
@@ -19423,6 +19428,7 @@ Array [
                 xlinkHref="#remove_page"
               />
             </svg>
+             
             Remove Page
           </button>
         </li>
@@ -19451,6 +19457,7 @@ Array [
                 xlinkHref="#open_pocket"
               />
             </svg>
+             
             Open Pocket
           </button>
         </li>
@@ -19479,6 +19486,7 @@ Array [
                 xlinkHref="#settings"
               />
             </svg>
+             
             Settings
           </button>
         </li>
