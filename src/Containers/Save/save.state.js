@@ -206,7 +206,7 @@ function* removeItemRequest(action) {
 
 // Idle Timer
 // TODO: Account for user entering the area before animation is complete
-function* startIdleTimer(action, timeout = 3000) {
+function* startIdleTimer(action, timeout = 6000) {
   const tabId = yield select(getActiveTabId)
   yield race({
     task: call(idleTimer, tabId, timeout),
