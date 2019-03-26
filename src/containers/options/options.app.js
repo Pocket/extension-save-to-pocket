@@ -210,7 +210,7 @@ export default class Options extends Component {
         </div>
 
         <footer className={styles.footer}>
-          &copy; Copyright 2017 Read It Later Inc.
+          &copy; Copyright {new Date().getFullYear()} Read It Later Inc.
           <a
             className={styles.privacylegal}
             href="https://getpocket.com/legal?src=extensions"
