@@ -1,14 +1,14 @@
 {
   "extDescriptionGoogleChrome" : {
-    "message" : "Chrome 向け Pocket 拡張機能 - 記事、ビデオなどを保存するベストな方法",
+    "message" : "記事、ビデオなどをキャプチャする最も速く簡単な方法です。",
     "description" : "Chrome 向け拡張機能の詳細"
   },
   "extDescriptionOpera" : {
-    "message" : "Opera 向け Pocket 拡張機能 - 記事、ビデオなどを保存するベストな方法",
+    "message" : "記事、ビデオなどをキャプチャする最も速く簡単な方法です。",
     "description" : "Opera 向け拡張機能の詳細"
   },
   "extDescriptionYandex" : {
-    "message" : "Yandex.Browser 向け Pocket 拡張機能 - 記事、ビデオなどを保存するベストな方法",
+    "message" : "記事、ビデオなどをキャプチャする最も速く簡単な方法です。",
     "description" : "Extension Description for Yandex.Browser"
   },
   "contextMenuEntryTitle" : {
