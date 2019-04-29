@@ -1,14 +1,14 @@
 {
   "extDescriptionGoogleChrome" : {
-    "message" : "Extension Pocket pour Chrome : le meilleur moyen de sauvegarder des articles, des vidéos et bien plus encore",
+    "message" : "Le moyen le plus facile et le plus rapide de sauvegarder des articles, des vidéos et bien plus encore.",
     "description" : "Description de l'extension pour Chrome"
   },
   "extDescriptionOpera" : {
-    "message" : "Extension Pocket pour Opera : le meilleur moyen de sauvegarder des articles, des vidéos et bien plus encore",
+    "message" : "Le moyen le plus facile et le plus rapide de sauvegarder des articles, des vidéos et bien plus encore.",
     "description" : "Description de l'extension pour Opera"
   },
   "extDescriptionYandex" : {
-    "message" : "Extension Pocket pour Yandex Browser : le meilleur moyen de sauvegarder des articles, des vidéos et bien plus encore",
+    "message" : "Le moyen le plus facile et le plus rapide de sauvegarder des articles, des vidéos et bien plus encore.",
     "description" : "Extension Description for Yandex.Browser"
   },
   "contextMenuEntryTitle" : {

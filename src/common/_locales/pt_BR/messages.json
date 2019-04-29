@@ -1,14 +1,14 @@
 {
   "extDescriptionGoogleChrome" : {
-    "message" : "Pocket Extension para Chrome - A melhor maneira de salvar artigos, vídeos e muito mais",
+    "message" : "A maneira mais fácil e rápida de salvar artigos, vídeos e muito mais.",
     "description" : "Descrição da extensão para Chrome"
   },
   "extDescriptionOpera" : {
-    "message" : "Pocket Extension para Opera - A melhor maneira de salvar artigos, vídeos e muito mais",
+    "message" : "A maneira mais fácil e rápida de salvar artigos, vídeos e muito mais.",
     "description" : "Descrição da extensão para Opera"
   },
   "extDescriptionYandex" : {
-    "message" : "Pocket Extension para Yandex.Browser - A melhor maneira de salvar artigos, vídeos e muito mais",
+    "message" : "A maneira mais fácil e rápida de salvar artigos, vídeos e muito mais.",
     "description" : "Extension Description for Yandex.Browser"
   },
   "contextMenuEntryTitle" : {
