@@ -1,14 +1,14 @@
 {
   "extDescriptionGoogleChrome" : {
-    "message" : "Rozszerzenie aplikacji Pocket dla przeglądarki Chrome — najlepszy sposób zapisywania artykułów, filmów wideo i nie tylko",
+    "message" : "Najłatwiejsza i najszybsza metoda zapisywania artykułów, filmów i innych treści.",
     "description" : "Opis rozszerzenia dla przeglądarki Chrome"
   },
   "extDescriptionOpera" : {
-    "message" : "Rozszerzenie aplikacji Pocket dla przeglądarki Opera — najlepsza metoda zapisywania artykułów, filmów wideo i nie tylko",
+    "message" : "Najłatwiejsza i najszybsza metoda zapisywania artykułów, filmów i innych treści.",
     "description" : "Opis rozszerzenia dla przeglądarki Opera"
   },
   "extDescriptionYandex" : {
-    "message" : "Rozszerzenie aplikacji Pocket dla przeglądarki Yandex.Browser — najlepsza metoda zapisywania artykułów, filmów wideo i nie tylko",
+    "message" : "Najłatwiejsza i najszybsza metoda zapisywania artykułów, filmów i innych treści.",
     "description" : "Extension Description for Yandex.Browser"
   },
   "contextMenuEntryTitle" : {
