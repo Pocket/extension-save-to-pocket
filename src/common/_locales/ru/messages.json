@@ -1,14 +1,14 @@
 {
   "extDescriptionGoogleChrome" : {
-    "message" : "Расширение Pocket для Chrome - это самый удобный способ сохранять статьи, видео и многое другое",
+    "message" : "Самый просто способ сохранения статей, видео и других материалов.",
     "description" : "Описание расширения для Chrome"
   },
   "extDescriptionOpera" : {
-    "message" : "Расширение Pocket для Opera - это самый удобный способ сохранять статьи, видео и многое другое",
+    "message" : "Самый просто способ сохранения статей, видео и других материалов.",
     "description" : "Описание расширения для Opera"
   },
   "extDescriptionYandex" : {
-    "message" : "Расширение Pocket для Яндекс.Браузера - Лучший способ сохранять статьи, видео и многое другое",
+    "message" : "Самый просто способ сохранения статей, видео и других материалов.",
     "description" : "Extension Description for Yandex.Browser"
   },
   "contextMenuEntryTitle" : {
