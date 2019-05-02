@@ -1,14 +1,14 @@
 {
   "extDescriptionGoogleChrome" : {
-    "message" : "Chrome 版 Pocket 扩展件－－保存文章、视频等的最佳方式",
+    "message" : "捕获文章、视频等内容的最轻松、快捷方式。",
     "description" : "Chrome 版扩展件说明"
   },
   "extDescriptionOpera" : {
-    "message" : "Opera 版 Pocket 扩展件－－保存文章、视频等的最佳方式",
+    "message" : "捕获文章、视频等内容的最轻松、快捷方式。",
     "description" : "Opera 版扩展件说明"
   },
   "extDescriptionYandex" : {
-    "message" : "Yandex.Browser 版 Pocket 扩展件－－保存文章、视频等的最佳方式",
+    "message" : "捕获文章、视频等内容的最轻松、快捷方式。",
     "description" : "Extension Description for Yandex.Browser"
   },
   "contextMenuEntryTitle" : {

@@ -1,14 +1,14 @@
 {
   "extDescriptionGoogleChrome" : {
-    "message" : "Chrome용 Pocket 확장 - 아티클, 동영상 등을 저장할 최상의 방법",
+    "message" : "아티클, 동영상 등을 캡처하는 가장 쉽고 가장 빠른 방법.",
     "description" : "Chrome에 대한 확장 설명"
   },
   "extDescriptionOpera" : {
-    "message" : "Opera용 Pocket 확장 - 아티클, 동영상 등을 저장할 최상의 방법",
+    "message" : "아티클, 동영상 등을 캡처하는 가장 쉽고 가장 빠른 방법.",
     "description" : "Opera에 대한 확장 설명"
   },
   "extDescriptionYandex" : {
-    "message" : "Yandex.Browser용 Pocket 확장 - 아티클, 동영상 등을 저장할 최상의 방법",
+    "message" : "아티클, 동영상 등을 캡처하는 가장 쉽고 가장 빠른 방법.",
     "description" : "Extension Description for Yandex.Browser"
   },
   "contextMenuEntryTitle" : {
