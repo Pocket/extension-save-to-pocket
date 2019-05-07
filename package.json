@@ -8,7 +8,7 @@
   "private": true,
   "devDependencies": {
     "eslint-config-prettier": "^2.9.0",
-    "pocket-build-tools": "git+https://git@github.com/Pocket/front-end-build-tools.git",
+    "pocket-build-tools": "git+https://git@github.com/Pocket/front-end-build-tools.git#add/circleCI",
     "redux-devtools-extension": "^2.13.2",
     "remote-redux-devtools": "^0.5.12",
     "remotedev-server": "^0.2.4"
