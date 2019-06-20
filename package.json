@@ -11,7 +11,7 @@
     "pocket-build-tools": "git+https://git@github.com/Pocket/front-end-build-tools.git#add/circleCI",
     "redux-devtools-extension": "^2.13.2",
     "remote-redux-devtools": "^0.5.12",
-    "remotedev-server": "^0.2.4"
+    "remotedev-server": "^0.3.1"
   },
   "dependencies": {
     "autosize-input": "^0.4.0",
@@ -101,6 +101,8 @@
     "remotedev": "remotedev --hostname=localhost --port=8000",
     "start": "build-pocket save-to-pocket start",
     "build": "build-pocket save-to-pocket build",
+    "publish-build:pr": "build-pocket save-to-pocket publish --pull-request",
+    "publish-build": "build-pocket save-to-pocket publish",
     "test": "build-pocket save-to-pocket test --env=jsdom"
   }
 }
