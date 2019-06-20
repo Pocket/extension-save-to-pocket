@@ -1,11 +1,41 @@
 version: 2
-
 jobs:
   build:
     docker:
       - image: circleci/node:10.9.0-browsers
     steps:
       - checkout
-      - run: yarn install
+      - run: yarn
+      - run: yarn build
+      - run: yarn publish-build:pr
+  build_release:
+    docker:
+      - image: circleci/node:10.9.0-browsers
+    steps:
+      - checkout
+      - run: yarn
+      - run: yarn build
+      - run: yarn publish-build
+  test:
+    docker:
+      - image: circleci/node:10.9.0-browsers
+    steps:
+      - checkout
+      - run: yarn
       - run: yarn test
-      - run: IGNORE_KEYS=true yarn build $API_KEY
+
+workflows:
+  version: 2
+  build_test:
+    jobs:
+    - test
+    - build
+  release:
+    jobs:
+    - build_release:
+        filters:
+          branches:
+            only:
+            - master
+            - develop
+            - /rc-.*/
