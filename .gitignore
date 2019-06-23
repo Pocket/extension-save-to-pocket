@@ -23,3 +23,6 @@ yarn-error.log*
 # Account info
 keys.js
 keys.json
+
+# ignore npm package lock, using yarn for CI for consistency
+package-lock.json
