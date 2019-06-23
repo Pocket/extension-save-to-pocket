@@ -24,3 +24,6 @@ yarn-error.log*
 keys.js
 keys.json
 *-debug
+
+# ignore npm package lock, using yarn for CI for consistency
+package-lock.json
