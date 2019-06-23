@@ -8,6 +8,14 @@ jobs:
       - run: yarn
       - run: yarn build
       - run: yarn publish-build:pr
+  puppeteer_test:
+    docker:
+      - image: circleci/node:10.9.0-browsers
+    steps:
+      - checkout
+      - run: yarn
+      - run: yarn build
+      - run: yarn test:puppeteer
   build_release:
     docker:
       - image: circleci/node:10.9.0-browsers
@@ -33,6 +41,13 @@ workflows:
   release:
     jobs:
     - build_release:
+        filters:
+          branches:
+            only:
+            - master
+            - develop
+            - /rc-.*/
+    - puppeteer_test:
         filters:
           branches:
             only:
