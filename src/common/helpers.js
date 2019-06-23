@@ -11,7 +11,7 @@ export function isNewTab(tab, url) {
   )
 }
 
-export function isSystemPage(tab, url) {
+export function isSystemPage(tab) {
   return (
     tab.active &&
     (tab.url.startsWith('chrome://') ||
