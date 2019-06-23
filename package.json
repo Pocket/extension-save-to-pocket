@@ -107,6 +107,7 @@
     "publish-build:pr": "build-pocket save-to-pocket publish --pull-request",
     "publish-build": "build-pocket save-to-pocket publish",
     "test": "BABEL_ENV=test NODE_ENV=test npx jest --config=./config/jest/jest.config.js",
-    "test:watch": "BABEL_ENV=test NODE_ENV=test npx jest --config=./config/jest/jest.config.js --watch"
+    "test:watch": "BABEL_ENV=test NODE_ENV=test npx jest --config=./config/jest/jest.config.js --watch",
+    "test:puppeteer": "echo \" Puppeteer testing will be incorporated in the near future \""
   }
 }
