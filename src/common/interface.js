@@ -184,8 +184,12 @@ export function activePrivateMode(tab) {
 }
 
 export function setToolbarIcon(tabId, iconName) {
-  const smallIconPath = `images/${iconName}-19.png`
-  const bigIconPath = `images/${iconName}-38.png`
+  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+  const darkMode =  !prefersDark ? '-dark' : ''
+
+  const smallIconPath = `images/${iconName}${darkMode}-19.png`
+  const bigIconPath = `images/${iconName}${darkMode}-38.png`
+
   chrome.browserAction.setIcon({
     tabId: tabId,
     path: {
