@@ -185,7 +185,7 @@ export function activePrivateMode(tab) {
 
 export function setToolbarIcon(tabId, iconName) {
   const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-  const darkMode =  !prefersDark ? '-dark' : ''
+  const darkMode =  prefersDark ? '-dark' : ''
 
   const smallIconPath = `images/${iconName}${darkMode}-19.png`
   const bigIconPath = `images/${iconName}${darkMode}-38.png`
