@@ -18,7 +18,9 @@ store.dispatch(installed ? hydrateState() : setupExtension())
 Interface.onUpdateAvailable(() => Interface.reloadExtension())
 
 Interface.setUninstallUrl('https://getpocket.com/chrome-exit-survey/')
-
+Interface.onTabCreated(({ id: tabId }) => setTimeout(() => {
+  Interface.setToolbarIcon(tabId, 'browser-action-icon')
+}, 200))
 setBrowserAction()
 setTabListeners()
 
