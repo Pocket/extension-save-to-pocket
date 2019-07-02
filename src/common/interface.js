@@ -191,7 +191,7 @@ export function setToolbarIcon(tabId, iconName) {
   const bigIconPath = `images/${iconName}${darkMode}-38.png`
 
   chrome.browserAction.setIcon({
-    tabId: tabId,
+    tabId,
     path: {
       '19': smallIconPath,
       '38': bigIconPath
