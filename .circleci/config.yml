@@ -54,3 +54,4 @@ workflows:
             - master
             - develop
             - /rc-.*/
+            - /.*-rc/
