@@ -47,6 +47,7 @@ workflows:
             - master
             - develop
             - /rc-.*/
+            - /.*-rc/
     - puppeteer_test:
         filters:
           branches:
