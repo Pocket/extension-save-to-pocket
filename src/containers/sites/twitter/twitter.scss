@@ -1,6 +1,23 @@
 .pocketIconContainer {
-  margin: 6px 40px 0 0;
-  max-height: 27px;
+  cursor: pointer;
+  position: relative;
+  border-radius: 100%;
+  width: 35px;
+  height: 35px;
+  position: relative;
+  left: -5px;
+  &:hover {
+    background: #ef405630;
+    .pocketIcon {
+      stroke: #ef4056;
+    }
+  }
+  .list-view & {
+    margin-top: -2px;
+  }
+  .focus-view & {
+    margin-top: 5px;
+  }
 }
 .pocketIcon {
   display: inline-block;
@@ -8,8 +25,10 @@
   height: 16px;
   vertical-align: bottom;
   width: 16px;
+  position: relative;
+  top: 9px;
+  left: 9px;
 
-  &:hover,
   .saved & {
     fill: #ef4056;
   }
