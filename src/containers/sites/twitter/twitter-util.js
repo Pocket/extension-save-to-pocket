@@ -6,10 +6,15 @@ import { sendMessage } from '../../../common/interface'
 const saveToPocketMarkup = `
 <div class="ProfileTweet-actionButton u-textUserColorHover js-actionButton ${styles.pocketIconContainer}"
     type="button" data-nav="share_tweet_to_pocket">
-    <svg class=${styles.pocketIcon}
-      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1836 1836">
-        <path d="M217.7,148.1A153.7,153.7,0,0,0,74.7,248.2,146.5,146.5,0,0,0,64,303.6V811L71.1,911a800.4,800.4,0,0,0,330.5,568.2l10.7,7.1H416a812.9,812.9,0,0,0,334.1,144.7,873.7,873.7,0,0,0,169.7,17.9,757.5,757.5,0,0,0,157.2-14.3l19.7-3.6a7.1,7.1,0,0,0,7.1-3.6,882.6,882.6,0,0,0,318-141.1h3.6l10.7-7.1a825.4,825.4,0,0,0,335.9-571.7l7.1-100.1V300a246.6,246.6,0,0,0-7.1-51.8,159,159,0,0,0-146.5-100.1h0M1400.4,778.8l-402,377a119.7,119.7,0,0,1-164.4,0l-398.4-377a116.1,116.1,0,0,1-3.6-162.6,119.7,119.7,0,0,1,164.4-3.6L916.2,916.4l319.8-303.7a119.7,119.7,0,0,1,164.4,3.6,112.6,112.6,0,0,1,5.4,159Z"/>
-      </svg>
+    <svg class=${styles.pocketIconFill} width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M14.1474 7.69474L9.85262 11.7368C9.63157 11.9895 9.2842 12.0842 9.03157 12.0842C8.71578 12.0842 8.39999 11.9895 8.14736 11.7368L3.91578 7.69474C3.47368 7.22105 3.41052 6.43158 3.91578 5.92631C4.38947 5.48421 5.17894 5.42105 5.65262 5.92631L9.03157 9.17895L12.4737 5.92631C12.9158 5.42105 13.7053 5.48421 14.1474 5.92631C14.5895 6.43158 14.5895 7.22105 14.1474 7.69474M16.3263 1H1.73684C0.789474 1 0 1.72632 0 2.67368V8.07368C0 12.9684 4.04211 17.0421 9.03158 17.0421C13.9895 17.0421 18 12.9684 18 8.07368V2.67368C18 1.72632 17.2421 1 16.3263 1"/>
+    </svg>
+
+
+    <svg class=${styles.pocketIconStroke} width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M1.87942 2.5C1.67164 2.5 1.5 2.67337 1.5 2.89083V7.66667C1.5 11.8566 4.85944 15.25 9 15.25C13.1406 15.25 16.5 11.8566 16.5 7.66667V2.89083C16.5 2.67337 16.3284 2.5 16.1206 2.5H1.87942ZM1.87942 1H16.1206C17.1602 1 18 1.8483 18 2.89083V7.66667C18 12.6817 13.9724 16.75 9 16.75C4.02761 16.75 0 12.6817 0 7.66667V2.89083C0 1.8483 0.839815 1 1.87942 1ZM12.2247 6.08969C12.5203 5.79957 12.9952 5.80405 13.2853 6.0997C13.5754 6.39535 13.5709 6.8702 13.2753 7.16031L9.5253 10.8402C9.23359 11.1264 8.76641 11.1264 8.4747 10.8402L4.7247 7.16031C4.42905 6.8702 4.42457 6.39535 4.71469 6.0997C5.0048 5.80405 5.47965 5.79957 5.7753 6.08969L9 9.25406L12.2247 6.08969Z"/>
+    </svg>
+
 </div>
 `
 const saveToPocketButton = document.createElement('div')
@@ -56,7 +61,7 @@ export function getTweetInfo(twitterActionListCotnainerElement) {
   const $tweet = $(twitterActionListCotnainerElement).closest('article')
   // Fetch the single time element, from there we can grab the href from the parent to get the screen name and status id.
 
-  if($tweet.length === 0) {
+  if ($tweet.length === 0) {
     // This is legacy twitter, no article tag parent present!'
     throw Error('legacyTwitter')
   }
