@@ -42,16 +42,27 @@ export function getPocketButtonClone({ permaLink, isFocusViewTweet }) {
   return pocketIconButtonClone
 }
 
+export function getTweetLink($article) {
+  const link = $article.find('[lang] > a').attr('href')
+    || $article.find('#tweet-rich-content-label a').attr('href')
+
+  const isExternalLink = link.match(/https?:/i)
+
+  return isExternalLink && link
+}
+
 // Handle saving
 export function handleSave(elementId, permaLink, event) {
   event.preventDefault()
+  const $article = $(`#${elementId}`).closest('article')
+  const tweetLink = getTweetLink($article)
   sendMessage(
     null,
-    { action: 'twitterSave', elementId, permaLink },
+    { action: 'twitterSave', elementId, permaLink: tweetLink || permaLink },
     function resolveSave(data) {
       const elementId = data.saveObject.elementId
-      const tweet = document.getElementById(elementId)
-      tweet.classList.add(styles.saved)
+      const tweetActionContainer = document.getElementById(elementId)
+      tweetActionContainer.classList.add(styles.saved)
     }
   )
 }
