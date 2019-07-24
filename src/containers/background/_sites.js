@@ -16,10 +16,10 @@ function getTweetId(link) {
 }
 
 function* saveTweetRequest(saveObject) {
-  const { permaLink, elementId } = saveObject.request
+  const { permaLink, elementId, tweetLink } = saveObject.request
   const authToken = yield call(requireAuthorization)
 
-  const url = `https://twitter.com${permaLink}`
+  const url = tweetLink || `https://twitter.com${permaLink}`
   const tweet_id = getTweetId(permaLink)
   const data = saveToPocket({ url, elementId, additionalParams: { tweet_id } }, authToken)
 

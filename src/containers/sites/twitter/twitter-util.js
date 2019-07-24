@@ -46,7 +46,7 @@ export function getTweetLink($article) {
   const link = $article.find('[lang] > a').attr('href')
     || $article.find('#tweet-rich-content-label a').attr('href')
 
-  const isExternalLink = link.match(/https?:/i)
+  const isExternalLink = link && link.match(/https?:/i)
 
   return isExternalLink && link
 }
@@ -58,7 +58,7 @@ export function handleSave(elementId, permaLink, event) {
   const tweetLink = getTweetLink($article)
   sendMessage(
     null,
-    { action: 'twitterSave', elementId, permaLink: tweetLink || permaLink },
+    { action: 'twitterSave', elementId, permaLink, tweetLink },
     function resolveSave(data) {
       const elementId = data.saveObject.elementId
       const tweetActionContainer = document.getElementById(elementId)
@@ -78,15 +78,13 @@ export function getTweetInfo(twitterActionListCotnainerElement) {
   }
 
   let permaLink = window.location.pathname
-  let isFocusViewTweet = true
-
   const $link = $tweet.find('time').parent()
   const permaLinkFromLink = $link.attr('href')
   if (permaLinkFromLink) {
-    // if there is a $link with href, the tweet is not in focus but just part of the list view
     permaLink = permaLinkFromLink
-    isFocusViewTweet = false
   }
+
+  const isFocusViewTweet = $tweet.attr('data-testid') === 'tweetDetail'
 
   return {
     permaLink,
