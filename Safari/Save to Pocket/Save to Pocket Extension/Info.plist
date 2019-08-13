@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Save to Pocket</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>XPC!</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>LSMinimumSystemVersion</key>
+	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
+	<key>NSExtension</key>
+	<dict>
+		<key>NSExtensionPointIdentifier</key>
+		<string>com.apple.Safari.extension</string>
+		<key>NSExtensionPrincipalClass</key>
+		<string>$(PRODUCT_MODULE_NAME).SafariExtensionHandler</string>
+		<key>SFSafariStyleSheet</key>
+		<array>
+			<dict>
+				<key>Style Sheet</key>
+				<string>./build/safari/Pocket.safariextension/sites/global/base.css</string>
+			</dict>
+			<dict>
+				<key>Style Sheet</key>
+				<string>./build/safari/Pocket.safariextension/sites/global/proximanova_chrome.css</string>
+			</dict>
+			<dict>
+				<key>Style Sheet</key>
+				<string>./build/safari/Pocket.safariextension/sites/global/ext_save.css</string>
+			</dict>
+		</array>
+		<key>SFSafariContentScript</key>
+		<array>
+			<dict>
+				<key>Script</key>
+				<string>./build/safari/Pocket.safariextension/js/jquery-2.1.1.min.js</string>
+			</dict>
+			<dict>
+				<key>Script</key>
+				<string>./build/safari/Pocket.safariextension/sites/global/jquery.tokeninput.min.js</string>
+			</dict>
+			<dict>
+				<key>Script</key>
+				<string>./build/safari/Pocket.safariextension/js/shared.js</string>
+			</dict>
+			<dict>
+				<key>Script</key>
+				<string>./build/safari/Pocket.safariextension/js/i18n.js</string>
+			</dict>
+			<dict>
+				<key>Script</key>
+				<string>./build/safari/Pocket.safariextension/js/safari-content-tester.js</string>
+			</dict>
+			<dict>
+				<key>Script</key>
+				<string>./build/safari/Pocket.safariextension/js/safari-content.js</string>
+			</dict>
+			<dict>
+				<key>Script</key>
+				<string>./build/safari/Pocket.safariextension/js/ril.js</string>
+			</dict>
+			<dict>
+				<key>Script</key>
+				<string>./build/safari/Pocket.safariextension/js/authentication.js</string>
+			</dict>
+			<dict>
+				<key>Script</key>
+				<string>./build/safari/Pocket.safariextension/js/background.js</string>
+			</dict>
+			<dict>
+				<key>Script</key>
+				<string>./build/safari/Pocket.safariextension/js/r.js</string>
+			</dict>
+			<dict>
+				<key>Script</key>
+				<string>./build/safari/Pocket.safariextension/js/keyboard-shortcut.js</string>
+			</dict>
+			<dict>
+				<key>Script</key>
+				<string>./build/safari/Pocket.safariextension/js/safari-login-signup-window-resize.js</string>
+			</dict>
+			<dict>
+				<key>Script</key>
+				<string>./build/safari/Pocket.safariextension/js/login-inject.js</string>
+			</dict>
+			<dict>
+				<key>Script</key>
+				<string>./build/safari/Pocket.safariextension/js/logout-inject.js</string>
+			</dict>
+		</array>
+		<key>SFSafariToolbarItem</key>
+		<dict>
+			<key>Action</key>
+			<string>Command</string>
+			<key>Identifier</key>
+			<string>Button</string>
+			<key>Image</key>
+			<string>ToolbarItemIcon.pdf</string>
+			<key>Label</key>
+			<string>Your Button</string>
+		</dict>
+		<key>SFSafariWebsiteAccess</key>
+		<dict>
+			<key>Level</key>
+			<string>All</string>
+		</dict>
+	</dict>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2019 Pocket. All rights reserved.</string>
+	<key>NSHumanReadableDescription</key>
+	<string>Save anything on the web to Pocket with one click.</string>
+	<key>NSAllowsArbitraryLoads</key>
+	<true/>
+</dict>
+</plist>

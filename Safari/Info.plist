@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Author</key>
+	<string>Read It Later, Inc.</string>
+	<key>Builder Version</key>
+	<string>7534.56.5</string>
+	<key>CFBundleDisplayName</key>
+	<string>Save to Pocket</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.ideashower.pocket.safari</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.9.20</string>
+	<key>CFBundleVersion</key>
+	<string>42</string>
+	<key>Chrome</key>
+	<dict>
+		<key>Context Menu Items</key>
+		<array>
+			<dict>
+				<key>Command</key>
+				<string>handleSaveToPocketContextMenu</string>
+				<key>Identifier</key>
+				<string>SaveToPocket</string>
+				<key>Title</key>
+				<string>Save To Pocket</string>
+			</dict>
+		</array>
+		<key>Global Page</key>
+		<string>html/background.html</string>
+		<key>Popovers</key>
+		<array>
+		</array>
+		<key>Toolbar Items</key>
+		<array>
+			<dict>
+				<key>Command</key>
+				<string>handleSaveToPocketToolbar</string>
+				<key>Identifier</key>
+				<string>pocket</string>
+				<key>Image</key>
+				<string>img/safari-icon.png</string>
+				<key>Label</key>
+				<string>Pocket</string>
+				<key>Palette Label</key>
+				<string>Pocket</string>
+				<key>Tool Tip</key>
+				<string>Save to Pocket</string>
+			</dict>
+		</array>
+	</dict>
+	<key>Content</key>
+	<dict>
+		<key>Scripts</key>
+		<dict>
+			<key>Start</key>
+			<array>
+				<string>js/jquery-2.1.1.min.js</string>
+				<string>js/safari-content.js</string>
+				<string>js/shared.js</string>
+				<string>js/keyboard-shortcut.js</string>
+			</array>
+		</dict>
+	</dict>
+	<key>Description</key>
+	<string>Save anything on the web to Pocket with one click.</string>
+	<key>ExtensionInfoDictionaryVersion</key>
+	<string>1.0</string>
+	<key>Permissions</key>
+	<dict>
+		<key>Website Access</key>
+		<dict>
+			<key>Include Secure Pages</key>
+			<true/>
+			<key>Level</key>
+			<string>All</string>
+		</dict>
+	</dict>
+	<key>Update Manifest URL</key>
+	<string>https://pocket-extensions.s3.amazonaws.com/safari/upload.plist</string>
+	<key>Website</key>
+	<string>http://getpocket.com/</string>
+</dict>
+</plist>
