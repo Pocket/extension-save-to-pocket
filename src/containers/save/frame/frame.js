@@ -4,9 +4,16 @@ import {
   removeMessageListener,
   sendMessage
 } from '../../../common/interface'
-export default function frame() {
-  let frame = document.createElement('iframe')
 
+let frameInjected = false
+export default function frame() {
+  if(frameInjected) {
+    console.log('already has iframed!')
+    return
+  }
+  let frame = document.createElement('iframe')
+  const head = document.createElement('head')
+  frame.append(head)
   let element
 
   frame.style.border = 'none'
@@ -78,5 +85,6 @@ export default function frame() {
   }
 
   render()
+  frameInjected = true
 }
 // })(getURL, addMessageListener, removeMessageListener, sendMessage)

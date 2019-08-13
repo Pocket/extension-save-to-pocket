@@ -27,7 +27,10 @@ const initialState = {}
 
 // ACTIONS
 export const saveActions = {
-  savePageToPocket: data => ({ type: 'SAVE_PAGE_TO_POCKET', data }),
+  savePageToPocket: data => {
+    debugger
+    return ({ type: 'SAVE_PAGE_TO_POCKET', data })
+  },
   saveUrlToPocket: data => ({ type: 'SAVE_URL_TO_POCKET', data }),
   removeItem: data => ({ type: 'REMOVE_ITEM_FROM_POCKET', data }),
   archiveItem: data => ({ type: 'ARCHIVE_ITEM_ON_POCKET', data }),

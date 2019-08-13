@@ -207,7 +207,7 @@ function setTabListeners() {
         case 'toolbarItemClicked':
           console.log('toolbarItemClicked')
           frame()
-          takeBrowserAction()
+          takeBrowserAction({}, window.location.href)
           break
         case 'executeScript':
           eval(message)
