@@ -65,7 +65,7 @@
 		314EF9922289D10400704C32 /* script.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = script.js; sourceTree = "<group>"; };
 		314EF9942289D10400704C32 /* ToolbarItemIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ToolbarItemIcon.pdf; sourceTree = "<group>"; };
 		314EF9962289D10400704C32 /* Save_to_Pocket_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Save_to_Pocket_Extension.entitlements; sourceTree = "<group>"; };
-		FF13B6C622AAFAE300D818FE /* build */ = {isa = PBXFileReference; lastKnownFileType = folder; name = build; path = ../../../build; sourceTree = "<group>"; };
+		FF13B6C622AAFAE300D818FE /* build */ = {isa = PBXFileReference; lastKnownFileType = folder; name = build; path = ../../../_build; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

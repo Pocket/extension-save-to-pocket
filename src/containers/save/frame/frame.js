@@ -4,8 +4,9 @@ import {
   removeMessageListener,
   sendMessage
 } from '../../../common/interface'
-;(function(getURL, addMessageListener, removeMessageListener, sendMessage) {
+export default function frame() {
   let frame = document.createElement('iframe')
+
   let element
 
   frame.style.border = 'none'
@@ -60,6 +61,7 @@ import {
   }
 
   function render() {
+    debugger
     initFrame().then(() => {
       document.addEventListener('click', function() {
         sendMessage(null, { action: 'frameFocus', status: false })
@@ -76,4 +78,5 @@ import {
   }
 
   render()
-})(getURL, addMessageListener, removeMessageListener, sendMessage)
+}
+// })(getURL, addMessageListener, removeMessageListener, sendMessage)

@@ -137,6 +137,8 @@ function getSurvey(features) {
 }
 
 function* saveRequest(action) {
+  console.log('saveRequest')
+  debugger
   yield put({ type: 'CANCEL_CLOSE_SAVE_PANEL' })
   yield put({ type: 'SURVEY_RESET' })
 

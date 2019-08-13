@@ -1,3 +1,4 @@
+import frame from '../save/frame/frame'
 import { Framer } from '../save/frame/framer'
 import * as Interface from '../../common/interface'
 import { isNewTab, getBaseUrl, isSystemPage } from '../../common/helpers'
@@ -19,10 +20,12 @@ Interface.onUpdateAvailable(() => Interface.reloadExtension())
 
 Interface.setUninstallUrl('https://getpocket.com/chrome-exit-survey/')
 Interface.setToolbarIcon(null, 'browser-action-icon')
-Interface.onTabCreated(({ id: tabId }) => setTimeout(() => {
-  Interface.setToolbarIcon(tabId, 'browser-action-icon')
-}, 200))
-setBrowserAction()
+Interface.onTabCreated(({ id: tabId }) =>
+  setTimeout(() => {
+    Interface.setToolbarIcon(tabId, 'browser-action-icon')
+  }, 200)
+)
+// setBrowserAction() // not needed for safari
 setTabListeners()
 
 const pocketFrame = new Framer(store)
@@ -73,7 +76,7 @@ Interface.addMessageListener((request, sender, sendResponse) => {
   }
 })
 
-Interface.contextMenus().removeAll(createContextMenus)
+// Interface.contextMenus().removeAll(createContextMenus)
 
 function createContextMenus() {
   Interface.contextMenus().create({
@@ -96,6 +99,7 @@ function createContextMenus() {
         }
 
         //Otherwise carry on, all is well
+        console.log('takeContextAction', { info, tab })
         takeContextAction(info, tab)
       })
     }
@@ -179,6 +183,48 @@ function setTabListeners() {
   Interface.onTabReplaced((addedTabId, removedTabId) => {
     store.dispatch({ type: 'TAB_REPLACED', addedTabId, removedTabId })
   })
+
+  window.safari.self.addEventListener(
+    'message',
+    ({ message: { name, message, headers, userInfo } }) => {
+      console.log('swift message event', { name, message, userInfo })
+      switch (name) {
+        case 'apiRequestCallback_get':
+          debugger
+          console.log('get API Callback received')
+          break
+        case 'apiRequestCallback_oauth_authorize':
+          debugger
+          console.log('/oauth/is_valid_token API Callback received')
+          break
+        case 'apiRequestCallback_oauth_is_valid_token':
+          debugger
+          console.log('/oauth/is_valid_token API Callback received')
+          break
+        case 'clientAPICallback':
+          console.log('API Callback received')
+          break
+        case 'toolbarItemClicked':
+          console.log('toolbarItemClicked')
+          frame()
+          takeBrowserAction()
+          break
+        case 'executeScript':
+          eval(message)
+          break
+        case '__performCb':
+          // var cbId = message.cbId
+          // var data = message.data
+          // Callbacker.performCbFromIdWithData(data, cbId)
+          break
+        case 'isSafariContentAvailable':
+          // safari.extension.dispatchMessage('safariContentAvailable', message)
+          break
+        default:
+          break
+      }
+    }
+  )
 }
 
 function checkFrameLoaded(tabId) {
@@ -194,5 +240,7 @@ function checkTabInjection(tab) {
 }
 
 function injectTab(tab, callback) {
-  Interface.executeScript(tab.id, { file: 'js/frame.bundle.js' }, callback)
+  // Interface.executeScript(tab.id, { file: 'js/frame.bundle.js' }, callback)
+  frame()
+  callback()
 }
