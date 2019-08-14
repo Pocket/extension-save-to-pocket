@@ -68,7 +68,6 @@ export default function frame() {
   }
 
   function render() {
-    debugger
     initFrame().then(() => {
       document.addEventListener('click', function() {
         sendMessage(null, { action: 'frameFocus', status: false })

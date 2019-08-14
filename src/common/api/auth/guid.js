@@ -42,6 +42,7 @@ export function getExtensionGuid() {
 export function getSiteGuid() {
   return new Promise((resolve, reject) => {
     try {
+      debugger
       cookies().get(
         {
           url: getBaseUrl(),

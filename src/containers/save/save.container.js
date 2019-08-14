@@ -1,4 +1,4 @@
-import styles from './save.scss' // Import Styles
+// import styles from './save.scss' // Import Styles
 import React, { Component } from 'react'
 //
 import Toolbar from './toolbar/toolbar.main'
@@ -44,6 +44,7 @@ class SaveContainer extends Component {
   }
 
   render() {
+    const styles = require('./save.scss')
     return (
       <TransitionMotion
         defaultStyles={this.getDefaultStyles()}
