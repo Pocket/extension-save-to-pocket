@@ -152,6 +152,7 @@ function* saveRequest(action) {
 
   const saveObject = buildSaveObject(action)
   const saveHash = saveObject.saveHash
+  debugger
   const authToken = yield call(requireAuthorization)
 
   const data = yield call(saveToPocket, saveObject, authToken)

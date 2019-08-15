@@ -31,6 +31,7 @@ function* verifyAuthCode(action) {
 -------------------------------------------------- */
 function getAuthToken(current) {
   return new Promise(function(resolve, reject) {
+    debugger
     const shouldResolve = isAuthorized(current)
     if (shouldResolve) resolve(current.oauth_token)
     else showLoginPage(resolve, reject)

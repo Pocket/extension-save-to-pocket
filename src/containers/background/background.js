@@ -189,6 +189,10 @@ function setTabListeners() {
     ({ message: { name, message, headers, userInfo } }) => {
       console.log('swift message event', { name, message, userInfo })
       switch (name) {
+        case 'apiRequestCallback_send':
+          debugger
+          console.log('send API Callback received')
+          break
         case 'apiRequestCallback_get':
           debugger
           console.log('get API Callback received')

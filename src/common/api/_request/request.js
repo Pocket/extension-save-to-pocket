@@ -40,4 +40,44 @@ function handleErrors(response) {
   return response
 }
 
-export { request }
+function apiRequest(options, skipAuth) {
+  return Promise((resolve, reject) => {
+    if (!CONSUMER_KEY) throw new Error('Invalid Auth Key')
+    if (!skipAuth) options.data.access_token = getAccessToken()
+    options.data.consumer_key = CONSUMER_KEY
+
+    const callback = `apiRequestCallback${options.path.replace(/\//g, '_')}`
+    const url = getAPIUrl() + options.path
+    const data = options.data || {}
+    debugger
+    window.safari.extension.dispatchMessage('callPocket', {
+      url,
+      method: 'POST',
+      parameters: data,
+      callback,
+      headers: {
+        accept: 'application/json, text/javascript, */*; q=0.01',
+        'X-Accept': 'application/json',
+        origin: 'safari://app.extension'
+      }
+    })
+
+    window.safari.self.addEventListener(
+      'message',
+      ({ message: { name, message, headers, userInfo } }) => {
+        console.log('swift message event', { name, message, userInfo })
+        switch (name) {
+          case 'apiRequestCallback_send':
+            debugger
+            console.log('send API Callback received')
+            resolve(userInfo)
+            break
+          default:
+            break
+        }
+      }
+    )
+  })
+}
+
+export { apiRequest as request }
