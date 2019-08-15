@@ -51,6 +51,15 @@
 				<string>./_build/_dev/js/key.js</string>
 			</dict>
 		</array>
+		<key>SFSafariContextMenu</key>
+		<array>
+			<dict>
+				<key>Text</key>
+				<string>Save to Pocket</string>
+				<key>Command</key>
+				<string>saveToPocket</string>
+			</dict>
+		</array>
 		<key>SFSafariToolbarItem</key>
 		<dict>
 			<key>Action</key>
