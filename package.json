@@ -87,12 +87,22 @@
       "order/properties-alphabetical-order": true
     }
   },
+  "prettier": {
+    "bracketSpacing": true,
+    "jsxBracketSameLine": true,
+    "printWidth": 80,
+    "semi": false,
+    "singleQuote": true,
+    "useTabs": false,
+    "tabWidth": 2,
+    "trailingComma": "none"
+  },
   "lint-staged": {
     "*.{js,jsx}": [
       "npm run lint:fix",
       "git add"
     ],
-    "*.{json,scss,sass,css,less}": [
+    "*.{scss,sass,css,less}": [
       "prettier --write",
       "git add"
     ]
