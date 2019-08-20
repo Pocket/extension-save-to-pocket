@@ -36,6 +36,14 @@
 				<key>Script</key>
 				<string>script.js</string>
 			</dict>
+			<dict>
+				<key>Script</key>
+				<string>login.js</string>
+				<key>Allowed URL Patterns</key>
+				<array>
+					<string>https://getpocket.com/extension_login_success</string>
+				</array>
+			</dict>
 		</array>
 		<key>SFSafariContextMenu</key>
 		<array>
