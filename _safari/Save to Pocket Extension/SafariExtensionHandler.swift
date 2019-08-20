@@ -8,11 +8,14 @@
 
 import SafariServices
 
-enum RequestErrors: Error {
+enum RequestError: Error {
+  case undefined
   case auth
   case url
   case statusCode
   case error
+  /// Received invalid or unexpected JSON response data
+  case json
 }
 
 class SafariExtensionHandler: SFSafariExtensionHandler {
@@ -29,7 +32,14 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
       NSLog("Main Script Injected")
     
     case "AUTH_CODE_RECEIVED":
-      SaveToPocketAPI.validateAuthCode(from: page, userInfo: userInfo)
+      SaveToPocketAPI.validateAuthCode(from: page, userInfo: userInfo) { result in
+        switch result {
+        case .success(_):
+          NSLog("Auth code validated")
+        case .failure(let error):
+          NSLog("Failed to validate auth code: \(error)")
+        }
+      }
       
     default:
       page.getPropertiesWithCompletionHandler { properties in

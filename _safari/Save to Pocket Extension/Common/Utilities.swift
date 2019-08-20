@@ -8,15 +8,19 @@
 
 import SafariServices
 
-class Utilities: SafariExtensionHandler {
+class Utilities {
   
-  static func closeTab(from page: SFSafariPage, userInfo: [String : Any]?) {
+  static let queue: DispatchQueue = {
+    DispatchQueue(label: "Utilities.Queue", qos: .background)
+  }()
+  
+  class func closeTab(from page: SFSafariPage, userInfo: [String : Any]?) {
     page.getContainingTab { (tab) in
       tab.close()
     }
   }
   
-  static func openBackgroundTab(from page: SFSafariPage, userInfo: [String : Any]?) {
+  class func openBackgroundTab(from page: SFSafariPage, userInfo: [String : Any]?) {
     guard let uri: String = userInfo?["url"] as? String, let url = URL(string: uri) else {
       NSLog("Invalid URI: \(String(describing: userInfo))")
       return
@@ -31,57 +35,46 @@ class Utilities: SafariExtensionHandler {
       })
     }
   }
-
-  static func request(from page: SFSafariPage, userInfo: [String : Any]?) throws -> Data? {
+  
+  class func request(from page: SFSafariPage, userInfo: [String : Any]?, completion: @escaping (Result<Data, RequestError>) -> Void) -> Void {
+    
     guard let uri: String = userInfo?["url"] as? String, let url = URL(string: uri) else {
-      throw RequestErrors.url
+      completion(.failure(.url))
+      return
     }
     
-    // Semaphor gives us the ability to emulate async/await
-    let semaphore = DispatchSemaphore(value: 0)
-    
-    // Construct the URLRequest
-    var urlRequest = URLRequest(url: url)
-    urlRequest.httpMethod = "POST"
-    
-    // Add request parameters
-    if let parameters = userInfo?["parameters"] as? [ String : Any],
-      JSONSerialization.isValidJSONObject(parameters),
-      let jsonData = try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) {
-      urlRequest.httpBody = jsonData
-      urlRequest.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
-      urlRequest.setValue("application/json", forHTTPHeaderField: "X-Accept")
+    // Use a dedicated serial queue for executing requests.
+    // This queue will run on a background thread.
+        
+    queue.async {
+          // Construct the URLRequest
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = "POST"
+        
+        // Add request parameters
+        if let parameters = userInfo?["parameters"] as? [ String : Any],
+          JSONSerialization.isValidJSONObject(parameters),
+          let jsonData = try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) {
+          urlRequest.httpBody = jsonData
+          urlRequest.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
+          urlRequest.setValue("application/json", forHTTPHeaderField: "X-Accept")
+        }
+        
+        // Make the request and capure the response
+        _ = URLSession.shared.dataTask(with: urlRequest){ data, response, error in
+          // Once we get the response, check that it's valid?
+          if let restResponse = response as? HTTPURLResponse, restResponse.statusCode > 300 {
+            completion(.failure(.statusCode))
+          }
+          guard let responseData = data else {
+            completion(.failure(.error))
+            return
+          }
+          // Excellent—Pass on the data
+          let string = String(data: responseData, encoding: String.Encoding.utf8)
+          NSLog("Auth Success (string): (\(String(describing: string!)))")
+          completion(.success(responseData))
+        }.resume()
+      }
     }
-    
-    // Variables to hold response
-    var data: Data?
-    var response: URLResponse?
-    var error: Error?
-    
-    // Make the request and capure the response
-    _ = URLSession.shared.dataTask(with: urlRequest){ rData, rResponse, rError in
-      data = rData
-      response = rResponse
-      error = rError
-      semaphore.signal()
-      }.resume()
-    
-    // Pause execution until we get the signal from the semaphore
-    _ = semaphore.wait(timeout: .distantFuture)
-    
-    // Once we get the response, check that it's valid?
-    if let restResponse = response as? HTTPURLResponse, restResponse.statusCode > 300 {
-      throw RequestErrors.statusCode
-    }
-    
-    // Are there any errors?
-    if error != nil {
-      throw RequestErrors.error
-    }
-    
-    // Excellent—Pass on the data
-    let string = String(data: data!, encoding: String.Encoding.utf8)
-    NSLog("Auth Success (string): (\(String(describing: string!)))")
-    return data
-  }
 }
