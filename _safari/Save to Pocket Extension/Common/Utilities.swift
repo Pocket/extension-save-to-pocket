@@ -65,6 +65,7 @@ class Utilities {
           // Once we get the response, check that it's valid?
           if let restResponse = response as? HTTPURLResponse, restResponse.statusCode > 300 {
             completion(.failure(.statusCode))
+            return
           }
           guard let responseData = data else {
             completion(.failure(.error))
