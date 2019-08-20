@@ -29,7 +29,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
       NSLog("Main Script Injected")
     
     case "AUTH_CODE_RECEIVED":
-      NSLog("Authentication Token Received")
+      SaveToPocketAPI.validateAuthCode(from: page, userInfo: userInfo)
       
     default:
       page.getPropertiesWithCompletionHandler { properties in
