@@ -74,10 +74,6 @@ class SaveToPocketAPI: SafariExtensionHandler{
   }
 
   static func validateAuthCode(from page: SFSafariPage, userInfo: [String : Any]?, completion: @escaping (Result<String, RequestError>) -> Void) -> Void {
-    
-    // Since we got the Auth Code from the passed in page, we close that page
-    Utilities.closeTab(from: page, userInfo: userInfo)
-    
     guard let userId = userInfo!["userId"] as? String, let token = userInfo!["token"] as? String  else {
       NSLog("Auth Tokens Missing: \(String(describing: userInfo))")
       return
