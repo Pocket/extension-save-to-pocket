@@ -39,3 +39,9 @@ struct Profile: Decodable{
   let avatar_url: String?
 }
 
+struct Dispatch {
+  static let SAVE_TO_POCKET_REQUEST: String = "SAVE_TO_POCKET_REQUEST"
+  static let SAVE_TO_POCKET_SUCCESS: String = "SAVE_TO_POCKET_SUCCESS"
+  static let SAVE_TO_POCKET_FAILURE: String = "SAVE_TO_POCKET_FAILURE"
+
+}
