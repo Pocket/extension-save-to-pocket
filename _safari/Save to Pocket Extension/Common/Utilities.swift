@@ -56,24 +56,28 @@ class Utilities {
           JSONSerialization.isValidJSONObject(parameters),
           let jsonData = try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) {
           urlRequest.httpBody = jsonData
+          
           urlRequest.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")
           urlRequest.setValue("application/json", forHTTPHeaderField: "X-Accept")
         }
         
         // Make the request and capure the response
-        _ = URLSession.shared.dataTask(with: urlRequest){ data, response, error in
+          _ = URLSession.shared.dataTask(with: urlRequest){ data, response, error in
           // Once we get the response, check that it's valid?
+          
           if let restResponse = response as? HTTPURLResponse, restResponse.statusCode > 300 {
             completion(.failure(.statusCode))
             return
           }
+          
           guard let responseData = data else {
             completion(.failure(.error))
             return
           }
+            
           // Excellent—Pass on the data
           let string = String(data: responseData, encoding: String.Encoding.utf8)
-          NSLog("Auth Success (string): (\(String(describing: string!)))")
+          NSLog("Success (string): (\(String(describing: string!)))")
           completion(.success(responseData))
         }.resume()
       }
