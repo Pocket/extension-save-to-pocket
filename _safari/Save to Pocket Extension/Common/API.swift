@@ -139,7 +139,9 @@ class SaveToPocketAPI: SafariExtensionHandler{
 
         case .failure(_):
           NSLog("Auth Failed: (\(String(describing: requestInfo)))")
-
+          completion(.failure(.auth))
+          return
+          
         case .success(let data):
           guard let authJSON = try? JSONDecoder().decode(AuthResponse.self, from: data) else {
             NSLog("Auth Failed: (\(String(describing: requestInfo)))")
@@ -189,7 +191,7 @@ class SaveToPocketAPI: SafariExtensionHandler{
     Utilities.request(from: page, userInfo: requestInfo) { result in
       switch result {
 
-      case .failure(_):
+      case .failure(let error):
         NSLog("Save Failed: (\(String(describing: requestInfo)))")
         completion(.failure(error))
         return
