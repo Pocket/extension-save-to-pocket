@@ -26,9 +26,33 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     NSLog("Message received: \(messageName), with userInfo: \(String(describing: userInfo))")
 
     switch messageName {
+    case Receive.MAIN_SCRIPT_INJECTED:
+      return
 
-    case "AUTH_CODE_RECEIVED":
+    case Receive.AUTH_CODE_RECEIVED:
       Actions.auth(from: page, userInfo: userInfo)
+      return
+
+    case Receive.USER_LOG_IN:
+      return
+
+    case Receive.USER_LOG_OUT:
+      return
+
+    case Receive.SAVE_PAGE_TO_POCKET:
+      return
+
+    case Receive.SAVE_URL_TO_POCKET:
+      return
+
+    case Receive.ARCHIVE_ITEM:
+      return
+
+    case Receive.REMOVE_ITEM:
+      return
+
+    case Receive.EDIT_TAGS:
+      return
 
     default:
       page.getPropertiesWithCompletionHandler { properties in
