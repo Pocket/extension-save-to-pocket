@@ -75,7 +75,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
         }
 
         // Hey AuthToken exists! Save the page
-        // MAKE CALL TO SAVE
+        Actions.savePage(from: page!, access_token: access_token)
 
         // DEV ONLY:  Remove that auth token
         Actions.logOut(from: page!)

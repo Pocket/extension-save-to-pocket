@@ -74,12 +74,13 @@ class SaveToPocketAPI: SafariExtensionHandler{
   }
 
   static func validateAuthCode(from page: SFSafariPage, userInfo: [String : Any]?, completion: @escaping (Result<String, RequestError>) -> Void) -> Void {
+
+    // Check that tokens were properly returned
     guard let userId = userInfo!["userId"] as? String, let token = userInfo!["token"] as? String  else {
       NSLog("Auth Tokens Missing: \(String(describing: userInfo))")
       return
     }
-    NSLog("User ID: (\(String(describing: userId))) - Token: (\(String(describing: token))")
-    
+
     // Create a serial queue.
     let queue = DispatchQueue(label: "API.validateAuthCode")
 
@@ -99,7 +100,7 @@ class SaveToPocketAPI: SafariExtensionHandler{
 
         case .success(let g):
           guid = g
-          NSLog("GUID: \(String(describing: guid))")
+
           // Signal semaphore to unblock this queue.
           waitOnGuid.signal()
         }
@@ -151,8 +152,65 @@ class SaveToPocketAPI: SafariExtensionHandler{
           defaults.set(authJSON.access_token, forKey: "access_token")
 
           completion(.success(authJSON.access_token))
+
         }
       }
     }
   }
+
+  static func saveToPocket(
+    from page: SFSafariPage,
+    url: String,
+    access_token: String,
+    completion: @escaping (Result<Any, RequestError>) -> Void
+    ) -> Void {
+
+
+    // Build Action
+    let saveAction: [String : Any] = [
+      "action": "add",
+      "url": url
+    ]
+
+    // Build request data dictionary
+    let requestData: [String : Any] = [
+      "consumer_key": CONSUMER_KEY,
+      "access_token": access_token,
+      "actions": [saveAction]
+    ]
+
+
+    let requestInfo: [String : Any] = [
+      "url" : "https://getpocket.com/v3/send/",
+      "method" : "POST",
+      "parameters" : requestData
+    ];
+
+    Utilities.request(from: page, userInfo: requestInfo) { result in
+      switch result {
+
+      case .failure(_):
+        NSLog("Save Failed: (\(String(describing: requestInfo)))")
+
+      case .success(let data):
+        guard let saveJSON = try? JSONDecoder().decode(AddResponse.self, from: data) else {
+          NSLog("Save Failed: (\(String(describing: requestInfo)))")
+          completion(.failure(.json))
+          return
+        }
+
+        completion(.success(saveJSON))
+
+      }
+    }
+
+    // Make call to save item to Pocket
+    NSLog("""
+      Attempt to save (\(String(describing: url)))
+      with access_token: (\(String(describing: access_token)))
+      """)
+
+
+  }
 }
+
