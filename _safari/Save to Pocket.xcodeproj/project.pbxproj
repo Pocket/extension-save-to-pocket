@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		31443DD6230E02230034D807 /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 31443DD5230E02230034D807 /* fonts */; };
 		314EF9732289D10200704C32 /* Save_to_Pocket.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 314EF9722289D10200704C32 /* Save_to_Pocket.entitlements */; };
 		314EF9752289D10200704C32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314EF9742289D10200704C32 /* AppDelegate.swift */; };
 		314EF9782289D10200704C32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 314EF9762289D10200704C32 /* Main.storyboard */; };
@@ -54,6 +55,7 @@
 /* Begin PBXFileReference section */
 		3118929122E7C186002BFA42 /* Save to Pocket.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Save to Pocket.entitlements"; sourceTree = "<group>"; };
 		3118929522E7E18C002BFA42 /* Save to Pocket Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Save to Pocket Extension.entitlements"; sourceTree = "<group>"; };
+		31443DD5230E02230034D807 /* fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = fonts; sourceTree = "<group>"; };
 		314EF96F2289D10200704C32 /* Save to Pocket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Save to Pocket.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		314EF9722289D10200704C32 /* Save_to_Pocket.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Save_to_Pocket.entitlements; sourceTree = "<group>"; };
 		314EF9742289D10200704C32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 		314EF9712289D10200704C32 /* Save to Pocket */ = {
 			isa = PBXGroup;
 			children = (
+				31443DD5230E02230034D807 /* fonts */,
 				3118929122E7C186002BFA42 /* Save to Pocket.entitlements */,
 				314EF9722289D10200704C32 /* Save_to_Pocket.entitlements */,
 				314EF9742289D10200704C32 /* AppDelegate.swift */,
@@ -257,6 +260,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D8B90092306506200B9CF3E /* Info.plist in Resources */,
+				31443DD6230E02230034D807 /* fonts in Resources */,
 				314EF9732289D10200704C32 /* Save_to_Pocket.entitlements in Resources */,
 				314EF97C2289D10300704C32 /* Assets.xcassets in Resources */,
 				314EF9782289D10200704C32 /* Main.storyboard in Resources */,
