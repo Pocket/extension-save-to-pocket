@@ -9,7 +9,12 @@
 struct GuidResponse: Decodable {
   let guid: String
 }
-//
+
+struct AddResponse: Decodable{
+  let status: Int
+}
+
+
 struct AuthResponse: Decodable{
   let access_token: String
   let username: String?
