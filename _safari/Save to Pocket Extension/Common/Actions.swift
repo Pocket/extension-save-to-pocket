@@ -69,7 +69,7 @@ static func savePage(from page: SFSafariPage, access_token: String){
       // Status should be replaced with relevant data
       page.dispatchMessageToScript(
         withName: Dispatch.SAVE_TO_POCKET_REQUEST,
-        userInfo: ["item": status]
+        userInfo: nil
       )
 
 
@@ -93,7 +93,7 @@ static func savePage(from page: SFSafariPage, access_token: String){
           // Status should be replaced with relevant data
           page.dispatchMessageToScript(
             withName: Dispatch.SAVE_TO_POCKET_FAILURE,
-            userInfo: ["item": status]
+            userInfo: ["error": error]
           )
 
         }
