@@ -21,26 +21,15 @@ enum RequestError: Error {
 class SafariExtensionHandler: SFSafariExtensionHandler {
 
   override func messageReceived(withName messageName: String, from page: SFSafariPage, userInfo: [String : Any]?) {
-    // This method will be called when a content script provided by your extension calls
-    // safari.extension.dispatchMessage("<some message name>").
 
+    // This method will be called when a content script provided by your extension calls
     NSLog("Message received: \(messageName), with userInfo: \(String(describing: userInfo))")
 
     switch messageName {
-    
-    case "MAIN_SCRIPT_INJECTED":
-      NSLog("Main Script Injected")
-    
+
     case "AUTH_CODE_RECEIVED":
-      SaveToPocketAPI.validateAuthCode(from: page, userInfo: userInfo) { result in
-        switch result {
-        case .success(_):
-          NSLog("Auth code validated")
-        case .failure(let error):
-          NSLog("Failed to validate auth code: \(error)")
-        }
-      }
-      
+      Actions.auth(from: page, userInfo: userInfo)
+
     default:
       page.getPropertiesWithCompletionHandler { properties in
         NSLog("""
@@ -72,24 +61,25 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     // Open Auth Page
     window.getActiveTab { (tab) in
       tab?.getActivePage(completionHandler: { (page) in
-        
+
         // Grab our stored values
         let defaults = UserDefaults.standard
-        
+
         // Do we have an auth token?
         guard let access_token = defaults.string(forKey: "access_token") else {
-          
-          // No auth token, so let's get one
-          Utilities.openBackgroundTab(from: page!,
-                                      userInfo: ["url" : "https://getpocket.com/signup?src=extension&route=/extension_login_success"])
+
+          // No auth token, need to log in
+          Actions.logIn(from: page!)
           return
+
         }
-        
-        
+
         // Hey AuthToken exists! Save the page
         // MAKE CALL TO SAVE
+
+        // DEV ONLY:  Remove that auth token
+        Actions.logOut(from: page!)
       })
     }
   }
-
 }
