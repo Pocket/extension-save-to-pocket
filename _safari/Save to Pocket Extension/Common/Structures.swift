@@ -14,7 +14,6 @@ struct AddResponse: Decodable{
   let status: Int
 }
 
-
 struct AuthResponse: Decodable{
   let access_token: String
   let username: String?
@@ -43,5 +42,28 @@ struct Dispatch {
   static let SAVE_TO_POCKET_REQUEST: String = "SAVE_TO_POCKET_REQUEST"
   static let SAVE_TO_POCKET_SUCCESS: String = "SAVE_TO_POCKET_SUCCESS"
   static let SAVE_TO_POCKET_FAILURE: String = "SAVE_TO_POCKET_FAILURE"
+  static let ARCHIVE_ITEM_SUCCESS: String = "ARCHIVE_ITEM_SUCCESS"
+  static let ARCHIVE_ITEM_FAILURE: String = "ARCHIVE_ITEM_FAILURE"
+  static let REMOVE_ITEM_SUCCESS: String = "REMOVE_ITEM_SUCCESS"
+  static let REMOVE_ITEM_FAILURE: String = "REMOVE_ITEM_FAILURE"
+  static let TAGS_ADDED_SUCCESS: String = "TAGS_ADDED_SUCCESS"
+  static let TAGS_ADDED_FAILURE: String = "TAGS_ADDED_FAILURE"
+  static let SUGGESTED_TAGS_SUCCESS: String = "SUGGESTED_TAGS_SUCCESS"
+  static let SUGGESTED_TAGS_FAILURE: String = "SUGGESTED_TAGS_FAILURE"
+  static let USER_LOG_IN_SUCCESS: String = "USER_LOG_IN_SUCCESS"
+  static let USER_LOG_IN_FAILURE: String = "USER_LOG_IN_FAILURE"
+  static let USER_LOG_OUT_SUCCESS: String = "USER_LOG_OUT_SUCCESS"
+  static let USER_LOG_OUT_FAILURE: String = "USER_LOG_OUT_FAILURE"
+}
 
+struct Receive {
+  static let MAIN_SCRIPT_INJECTED: String = "MAIN_SCRIPT_INJECTED"
+  static let AUTH_CODE_RECEIVED: String = "AUTH_CODE_RECEIVED"
+  static let USER_LOG_IN: String = "USER_LOG_IN"
+  static let USER_LOG_OUT: String = "USER_LOG_OUT"
+  static let SAVE_PAGE_TO_POCKET: String = "SAVE_PAGE_TO_POCKET"
+  static let SAVE_URL_TO_POCKET: String = "SAVE_URL_TO_POCKET"
+  static let ARCHIVE_ITEM: String = "ARCHIVE_ITEM"
+  static let REMOVE_ITEM: String = "REMOVE_ITEM"
+  static let EDIT_TAGS: String = "EDIT_TAGS"
 }
