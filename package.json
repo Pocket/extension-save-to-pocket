@@ -7,6 +7,10 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
+    "@storybook/addon-actions": "^5.1.11",
+    "@storybook/addon-links": "^5.1.11",
+    "@storybook/addons": "^5.1.11",
+    "@storybook/react": "^5.1.11",
     "autoprefixer": "^9.6.0",
     "babel-core": "6.26.3",
     "babel-eslint": "7.2.3",
@@ -119,6 +123,8 @@
     "publish-build": "build-pocket save-to-pocket publish",
     "test": "BABEL_ENV=test NODE_ENV=test npx jest --config=./config/jest/jest.config.js",
     "test:watch": "BABEL_ENV=test NODE_ENV=test npx jest --config=./config/jest/jest.config.js --watch",
-    "test:puppeteer": "echo \" Puppeteer testing will be incorporated in the near future \""
+    "test:puppeteer": "echo \" Puppeteer testing will be incorporated in the near future \"",
+    "storybook": "yarn start-storybook -p 6010",
+    "build-storybook": "build-storybook"
   }
 }
