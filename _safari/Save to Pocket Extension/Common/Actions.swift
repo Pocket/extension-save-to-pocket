@@ -56,6 +56,36 @@ class Actions {
 
   }
 
+static func savePage(from page: SFSafariPage, access_token: String){
 
+    page.getPropertiesWithCompletionHandler { properties in
+
+      // Check we have a URL
+      guard let url = properties?.url?.absoluteString else {
+        NSLog("Invalid URL")
+        return
+      }
+
+      SaveToPocketAPI.saveToPocket(from: page, url: url, access_token: access_token) { result in
+
+        switch result {
+
+        case .success(let status):
+          NSLog("Page Saved: \(status)")
+
+        case .failure(let error):
+          NSLog("Page failed to save: \(error)")
+
+        }
+
+      }
+
+    }
+
+  }
+
+  static func saveLink(){
+
+  }
 
 } // End Actions
