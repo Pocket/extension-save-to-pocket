@@ -109,6 +109,10 @@ To load the extension:
 (*Note: During the development process a single folder (`_dev`) be generated.*)
 ---
 
+### Storybook
+Run `yarn storybook` to run storybook. It will run on http://localhost:6010
+
+
 ## Third Party Tools Licenses
 -  [autosize-input](https://github.com/JedWatson/react-input-autosize) - MIT License - Copyright (c) 2017 Jed Watson.
 -  [blueimp-md5](https://github.com/blueimp/JavaScript-MD5) - MIT License - Copyright (c) 2011 Sebastian Tschan
