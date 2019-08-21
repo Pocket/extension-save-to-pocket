@@ -1,23 +1,46 @@
-import style from './toggle.scss'
-import React, { Component } from 'react'
+import React from 'react'
+import styled from '@emotion/styled'
 import PropTypes from 'prop-types'
-import classNames from 'classnames/bind'
+import { COLORS } from '../../common/_styles/colors'
+const { $silver, $overcast, $teal, $white, $pitch } = COLORS
 
-const cx = classNames.bind(style)
+const Button = styled.button`
+  all: unset;
+  background: ${props => (props.active ? $teal : $silver)};
+  border: 1px solid ${$overcast};
+  border-color: ${props => (props.darkMode ? $pitch : $overcast)};
+  border-radius: 2em;
+  cursor: pointer;
+  display: inline-block;
+  height: 10px;
+  margin-right: 5px;
+  outline: 0;
+  padding: 2px;
+  transition: all 0.4s ease;
+  width: 20px;
 
-export default class Toggle extends Component {
-  render() {
-    const toggleClass = cx({
-      toggle: true,
-      active: this.props.active,
-      darkMode: this.props.darkMode
-    })
-
-    return <button className={toggleClass} onClick={this.props.action} />
+  &::after {
+    background: ${$white};
+    border-radius: 50%;
+    content: '';
+    display: block;
+    height: 100%;
+    left: ${props => (props.active ? '50%' : '0')};
+    position: relative;
+    transition: all 0.2s ease;
+    width: 50%;
   }
-}
+`
 
 Toggle.propTypes = {
+  darkMode: PropTypes.bool,
   active: PropTypes.bool,
   action: PropTypes.func
+}
+export default function Toggle({ action, active, darkMode, children }) {
+  return (
+    <Button onClick={action} active={active} darkMode={darkMode}>
+      {children}
+    </Button>
+  )
 }
