@@ -66,15 +66,35 @@ static func savePage(from page: SFSafariPage, access_token: String){
         return
       }
 
+      // Status should be replaced with relevant data
+      page.dispatchMessageToScript(
+        withName: Dispatch.SAVE_TO_POCKET_REQUEST,
+        userInfo: ["item": status]
+      )
+
+
       SaveToPocketAPI.saveToPocket(from: page, url: url, access_token: access_token) { result in
 
         switch result {
 
         case .success(let status):
+
           NSLog("Page Saved: \(status)")
+
+          // Status should be replaced with relevant data
+          page.dispatchMessageToScript(
+            withName: Dispatch.SAVE_TO_POCKET_SUCCESS,
+            userInfo: ["item": status]
+          )
 
         case .failure(let error):
           NSLog("Page failed to save: \(error)")
+
+          // Status should be replaced with relevant data
+          page.dispatchMessageToScript(
+            withName: Dispatch.SAVE_TO_POCKET_FAILURE,
+            userInfo: ["item": status]
+          )
 
         }
 
