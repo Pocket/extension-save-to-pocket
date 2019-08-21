@@ -51,7 +51,7 @@ export const mixin_pocketButton = css`
   -moz-user-select: none;
   -ms-user-select: none;
 `
-const mixin_pocketButtonStyled = css`
+export const mixin_pocketButtonStyled = css`
   ${mixin_pocketButton}
 
   border-radius: 3px;
@@ -63,7 +63,7 @@ const mixin_pocketButtonStyled = css`
     transform: translateY(1px);
   }
 `
-const mixin_pocketButtonYes = css`
+export const mixin_pocketButtonYes = css`
 ${mixin_pocketButtonStyled}
 
   background-color: ${$emerald}
@@ -73,7 +73,7 @@ ${mixin_pocketButtonStyled}
     background-color: darken(${$emerald} 5%);
   }
 `
-const mixin_pocketButtonNo = css`
+export const mixin_pocketButtonNo = css`
 ${mixin_pocketButtonStyled}
 
   background-color: ${$darksmoke}
@@ -83,7 +83,7 @@ ${mixin_pocketButtonStyled}
     background-color: darken(${$darksmoke} 10%);
   }
 `
-const mixin_hoverDown = css`
+export const mixin_hoverDown = css`
   box-shadow: ${$shadowDown};
   transform: translateY(1px);
 `
