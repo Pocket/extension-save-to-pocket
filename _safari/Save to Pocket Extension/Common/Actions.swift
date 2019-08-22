@@ -113,7 +113,28 @@ class Actions {
 
   }
 
-  static func saveLink(){
+  static func saveLink(from page: SFSafariPage, url: String){
+        let defaults = UserDefaults.standard
+
+        // Do we have an auth token?
+        guard let access_token = defaults.string(forKey: "access_token") else {
+          // No auth token, need to log in
+          Actions.logIn(from: page)
+          return
+        }
+    
+        NSLog("Save page with access token: \(access_token)")
+  }
+
+  static func archiveItem(from page: SFSafariPage, userInfo: [String : Any]?){
+
+  }
+
+  static func removeItem(from page: SFSafariPage, userInfo: [String : Any]?){
+
+  }
+
+  static func editTags(from page: SFSafariPage, userInfo: [String : Any]?){
 
   }
 
