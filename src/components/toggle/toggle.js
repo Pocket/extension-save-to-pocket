@@ -37,10 +37,8 @@ Toggle.propTypes = {
   active: PropTypes.bool,
   action: PropTypes.func
 }
-export default function Toggle({ action, active, darkMode, children }) {
+export default function Toggle({ action, active, darkMode }) {
   return (
-    <Button onClick={action} active={active} darkMode={darkMode}>
-      {children}
-    </Button>
+    <Button onClick={action} active={active} darkMode={darkMode}/>
   )
 }
