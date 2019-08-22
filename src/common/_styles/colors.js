@@ -1,7 +1,7 @@
 export const COLORS = {
-  '$hot-coral': '#ef4056',
+  $hotCoral: '#ef4056',
   $amber: '#fcb643',
-  '$mint-green': '#83edb8',
+  $mintGreen: '#83edb8',
   $teal: '#50bcb6',
   $tealHover: 'darken($teal, 10%)',
   $emerald: '#00a69d',
