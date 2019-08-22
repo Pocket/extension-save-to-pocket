@@ -51,7 +51,7 @@
 				<key>Text</key>
 				<string>Save to Pocket</string>
 				<key>Command</key>
-				<string>saveToPocket</string>
+				<string>SAVE_TO_POCKET_CONTEXT</string>
 			</dict>
 		</array>
 		<key>SFSafariToolbarItem</key>
