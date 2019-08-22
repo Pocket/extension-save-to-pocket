@@ -73,10 +73,6 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     validationHandler(true, "")
   }
 
-  override func popoverViewController() -> SFSafariExtensionViewController {
-    return SafariExtensionViewController.shared
-  }
-
   override func toolbarItemClicked(in window: SFSafariWindow) {
     // This method will be called when your toolbar item is clicked.
     NSLog("The extension's toolbar item was clicked.")
@@ -84,21 +80,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     // Open Auth Page
     window.getActiveTab { (tab) in
       tab?.getActivePage(completionHandler: { (page) in
-
-        // Grab our stored values
-        let defaults = UserDefaults.standard
-
-        // Do we have an auth token?
-        guard let access_token = defaults.string(forKey: "access_token") else {
-
-          // No auth token, need to log in
-          Actions.logIn(from: page!)
-          return
-
-        }
-
-        // Hey AuthToken exists! Save the page
-        Actions.savePage(from: page!, access_token: access_token)
+        Actions.savePage(from: page!)
 
         // DEV ONLY:  Remove that auth token
         Actions.logOut(from: page!)
