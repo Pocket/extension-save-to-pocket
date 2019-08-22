@@ -33,24 +33,31 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
       return
 
     case Receive.USER_LOG_IN:
+      Actions.logIn(from: page)
       return
 
     case Receive.USER_LOG_OUT:
+      Actions.logOut(from: page)
       return
 
     case Receive.SAVE_PAGE_TO_POCKET:
+      Actions.savePage(from: page)
       return
 
     case Receive.SAVE_URL_TO_POCKET:
+      Actions.savePage(from: page)
       return
 
     case Receive.ARCHIVE_ITEM:
+      Actions.archiveItem(from: page, userInfo: userInfo)
       return
 
     case Receive.REMOVE_ITEM:
+      Actions.removeItem(from: page, userInfo: userInfo)
       return
 
     case Receive.EDIT_TAGS:
+      Actions.editTags(from: page, userInfo: userInfo)
       return
 
     default:
