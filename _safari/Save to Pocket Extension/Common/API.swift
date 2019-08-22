@@ -6,22 +6,6 @@
 //  Copyright © 2019 Pocket. All rights reserved.
 //
 
-// ✅ SUPPORT THESE FOR MVP
-// ---------------------------------------
-// authorize
-// getGuid
-
-// saveToPocket
-// getOnSaveTags
-
-// syncItemTags
-// fetchStoredTags
-
-// archiveItem
-// removeItem
-
-// sendAnalytics
-
 // 🙈 FAST FOLLOW WITH THESE
 // ---------------------------------------
 // getFeatures
@@ -40,7 +24,7 @@ class SaveToPocketAPI: SafariExtensionHandler{
   static func getGuid(
     from page: SFSafariPage,
     completion: @escaping (Result<String, RequestError>) -> Void
-  ) -> Void {
+    ) -> Void {
 
     // Build request data dictionary
     let requestData: [String : Any] = [
@@ -73,7 +57,11 @@ class SaveToPocketAPI: SafariExtensionHandler{
     }
   }
 
-  static func validateAuthCode(from page: SFSafariPage, userInfo: [String : Any]?, completion: @escaping (Result<String, RequestError>) -> Void) -> Void {
+  static func validateAuthCode(
+    from page: SFSafariPage,
+    userInfo: [String : Any]?,
+    completion: @escaping (Result<String, RequestError>) -> Void
+    ) -> Void {
 
     // Check that tokens were properly returned
     guard let userId = userInfo!["userId"] as? String, let token = userInfo!["token"] as? String  else {
@@ -141,7 +129,7 @@ class SaveToPocketAPI: SafariExtensionHandler{
           NSLog("Auth Failed: (\(String(describing: requestInfo)))")
           completion(.failure(.auth))
           return
-          
+
         case .success(let data):
           guard let authJSON = try? JSONDecoder().decode(AuthResponse.self, from: data) else {
             NSLog("Auth Failed: (\(String(describing: requestInfo)))")
@@ -216,5 +204,16 @@ class SaveToPocketAPI: SafariExtensionHandler{
 
 
   }
+
+  static func removeItem(){}
+
+  static func archiveItem(){}
+
+  static func getOnSaveTags(){}
+
+  static func syncItemTags(){}
+
+  static func fetchStoredTags(){}
+
 }
 
