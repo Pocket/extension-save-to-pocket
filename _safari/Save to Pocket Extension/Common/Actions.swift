@@ -42,7 +42,7 @@ class Actions {
           SFSafariApplication.getActiveWindow { (window) in
             window?.getActiveTab { (tab) in
               tab?.getActivePage(completionHandler: { (page) in
-                self.savePage(from: page!, access_token: access_token)
+                self.savePage(from: page!)
               })
             }
           }
@@ -56,9 +56,18 @@ class Actions {
 
   }
 
-static func savePage(from page: SFSafariPage, access_token: String){
+  static func savePage(from page: SFSafariPage){
 
     page.getPropertiesWithCompletionHandler { properties in
+
+        let defaults = UserDefaults.standard
+
+        // Do we have an auth token?
+        guard let access_token = defaults.string(forKey: "access_token") else {
+          // No auth token, need to log in
+          Actions.logIn(from: page)
+          return
+        }
 
       // Check we have a URL
       guard let url = properties?.url?.absoluteString else {
