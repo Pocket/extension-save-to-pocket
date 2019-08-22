@@ -61,6 +61,7 @@ struct Receive {
   static let AUTH_CODE_RECEIVED: String = "AUTH_CODE_RECEIVED"
   static let USER_LOG_IN: String = "USER_LOG_IN"
   static let USER_LOG_OUT: String = "USER_LOG_OUT"
+  static let SAVE_TO_POCKET_CONTEXT: String = "SAVE_TO_POCKET_CONTEXT"
   static let SAVE_PAGE_TO_POCKET: String = "SAVE_PAGE_TO_POCKET"
   static let SAVE_URL_TO_POCKET: String = "SAVE_URL_TO_POCKET"
   static let ARCHIVE_ITEM: String = "ARCHIVE_ITEM"
