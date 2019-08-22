@@ -14,8 +14,7 @@ enum RequestError: Error {
   case url
   case statusCode
   case error
-  /// Received invalid or unexpected JSON response data
-  case json
+  case json  // Received invalid or unexpected JSON response data
 }
 
 class SafariExtensionHandler: SFSafariExtensionHandler {
