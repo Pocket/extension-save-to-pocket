@@ -1,47 +1,84 @@
-import styles from './dropdown.scss'
-import React, { Component } from 'react'
-import classNames from 'classnames/bind'
-import dropdownItem from './dropdownItem'
+import React from 'react'
+import DropdownItem from './dropdownItem'
 import * as Icon from '../icons'
-const cx = classNames.bind(styles)
+import styled from '@emotion/styled'
+import PropTypes from 'prop-types'
+import { COLORS } from '../../common/_styles/colors'
+const { $snow, $overcast, $white, $darksmoke } = COLORS
 
-export default class Dropdown extends Component {
-  onHover = () => {
-    clearTimeout(this.hoverTimer)
-    if (this.props.active) return
+const DropdownWrapper = styled.div`
+  float: right;
+  padding: 3px 0;
+  text-align: right;
 
-    this.props.setStatus(this.props.tabId, true)
+  ul {
+    background: ${$white};
+    border: 1px solid ${$snow};
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    list-style-type: none;
+    margin: 0;
+    opacity: ${props => props.active ? '1' : '0'};
+    padding: 9px 0 7px;
+    position: absolute;
+    right: 5px;
+    top: 22px;
+    transform: ${props => props.active ? 'translateX(0)' : 'translateX(200%)'};
+    transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    z-index: 10;
+
+    &::after {
+      clear: both;
+      content: ' ';
+      display: block;
+    }
   }
 
-  offHover = () => {
-    this.hoverTimer = setTimeout(() => {
-      this.props.setStatus(this.props.tabId, false)
+  button {
+    all: unset;
+    color: ${$overcast};
+    cursor: pointer;
+
+    &:hover {
+      color: ${$darksmoke};
+    }
+    padding: 0 0 0 5px;
+  }
+`
+Dropdown.propTypes = {
+  active: PropTypes.bool,
+  tabId: PropTypes.string,
+  list: PropTypes.array,
+  setStatus: PropTypes.func
+}
+export default function Dropdown({ active, tabId, list, setStatus }) {
+  let hoverTimer
+  const onHover = () => {
+    clearTimeout(hoverTimer)
+    if (active) return
+
+    setStatus(tabId, true)
+  }
+
+  const offHover = () => {
+    hoverTimer = setTimeout(() => {
+      setStatus(tabId, false)
     }, 250)
   }
-
-  render() {
-    const overflowClass = cx({
-      overflowList: true,
-      active: this.props.active
-    })
-
-    return (
-      <div className={styles.actions}>
-        <button
-          className={styles.overflowButton}
-          onMouseOver={this.onHover}
-          onMouseOut={this.offHover}>
-          {Icon.Overflow()}
-        </button>
-        {this.props.active && (
-          <ul
-            className={overflowClass}
-            onMouseOver={this.onHover}
-            onMouseOut={this.offHover}>
-            {this.props.list.map(dropdownItem)}
-          </ul>
-        )}
-      </div>
-    )
-  }
+  return (
+    <DropdownWrapper active={active}>
+      <button
+        onMouseOver={onHover}
+        onMouseOut={offHover}>
+        {Icon.Overflow()}
+      </button>
+      {active && (
+        <ul
+          onMouseOver={onHover}
+          onMouseOut={offHover}>
+          {list.map((entryObject, index) => <DropdownItem key={index} entryObject={entryObject}/>)}
+        </ul>
+      )}
+    </DropdownWrapper>
+  )
 }
