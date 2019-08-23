@@ -1,12 +1,19 @@
-import styles from './item.scss'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import classNames from 'classnames/bind'
 import * as Icon from '../../../../components/icons'
 import { localize } from '../../../../common/_locales/locales'
 import SpocHeader from './spoc.header'
+import {
+  ItemWrapper,
+  SpocContainer,
+  SaveButton,
+  ItemImage,
+  ItemLink,
+  ItemTitle,
+  ItemActions,
+  ItemSource
+} from './item'
 
-const cx = classNames.bind(styles)
 const copy = {
   idle: localize('actions', 'save'),
   saving: localize('recommendations', 'saving'),
@@ -54,19 +61,8 @@ export default class RecommendationSpoc extends Component {
   render() {
     let item = this.props.item
 
-    let recommendationItemClass = cx({
-      item: true,
-      hasImage: item.has_image
-    })
-
-    let saveButtonClass = cx({
-      save: true,
-      saved: item.status === 'saved',
-      saving: item.status === 'saving'
-    })
-
     return (
-      <li style={this.props.motionStyle} className={recommendationItemClass}>
+      <ItemWrapper style={this.props.motionStyle}>
         <SpocHeader
           tabId={this.props.tabId}
           itemId={item.id.toString()}
@@ -80,27 +76,23 @@ export default class RecommendationSpoc extends Component {
           spocRemove={this.props.spocRemove}
         />
 
-        <div className={styles.spocContainer}>
-          {item.has_image && (
-            <div className={styles.image} style={this.imageStyle} />
-          )}
+        <SpocContainer>
+          {item.has_image && <ItemImage style={this.imageStyle} />}
 
-          <div className={styles.title}>
-            <a
+          <ItemTitle>
+            <ItemLink
               onClick={this.onClick}
-              className={styles.link}
               href={item.url}
               rel="noopener noreferrer"
               target="_blank">
               {item.title}
-            </a>
-          </div>
+            </ItemLink>
+          </ItemTitle>
 
-          <div className={styles.source}>{item.display_url}</div>
+          <ItemSource>{item.display_url}</ItemSource>
 
-          <div className={styles.actions}>
-            <button
-              className={saveButtonClass}
+          <ItemActions>
+            <SaveButton
               onClick={() => {
                 return this.props.saveRecommendation({
                   tabId: this.props.tabId,
@@ -112,10 +104,10 @@ export default class RecommendationSpoc extends Component {
                 })
               }}>
               {Icon.Save()} {this.saveCopy}
-            </button>
-          </div>
-        </div>
-      </li>
+            </SaveButton>
+          </ItemActions>
+        </SpocContainer>
+      </ItemWrapper>
     )
   }
 }
