@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import PropTypes from 'prop-types'
-import { COLORS } from '../../common/_styles/colors'
+import { COLORS } from '../../common/styles/colors'
 const { $silver, $overcast, $teal, $white, $pitch } = COLORS
 
 const Button = styled.button`

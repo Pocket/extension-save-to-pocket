@@ -27,12 +27,12 @@ const listItems = [
     method: () => {}
   }
 ]
-storiesOf('Dropdown', module).add('active', () => {
+storiesOf('Components | Dropdown', module).add('active', () => {
   return (
     <Dropdown tabId="1" active={true} setStatus={() => {}} list={listItems} />
   )
 })
-storiesOf('Dropdown', module).add('inactive', () => {
+.add('inactive', () => {
   return (
     <Dropdown tabId="1" active={false} setStatus={() => {}} list={listItems} />
   )

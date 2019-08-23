@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import PropTypes from 'prop-types'
-import { COLORS } from '../../common/_styles/colors'
+import { COLORS } from '../../common/styles/colors'
 const { $snow, $overcast, $teal, $white } = COLORS
 
 const ListItem = styled.li`

@@ -1,10 +1,21 @@
-import styleClass from './item.scss'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { TransitionMotion, spring, presets } from 'react-motion'
 import RecommendationItem from './item'
 import RecommendationSpoc from './spoc'
+import styled from '@emotion/styled'
+import { TYPOGRAPHY } from '../../../../common/styles/variables'
+const { $fontstackDefault } = TYPOGRAPHY
 
+const ListWrapper = styled.li`
+  all: unset;
+  display: block;
+  font-family: ${$fontstackDefault};
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-align: left;
+`
 export default class RecommendationList extends Component {
   // actual animation-related logic
   getDefaultStyles = () => {
@@ -48,7 +59,7 @@ export default class RecommendationList extends Component {
         willLeave={this.willLeave}
         willEnter={this.willEnter}>
         {interpolatedStyles => (
-          <ul className={styleClass.list}>
+          <ListWrapper>
             {interpolatedStyles.map((config, index) => {
               return config.data.isSpoc ? (
                 <RecommendationSpoc
@@ -80,7 +91,7 @@ export default class RecommendationList extends Component {
                 />
               )
             })}
-          </ul>
+          </ListWrapper>
         )}
       </TransitionMotion>
     )
