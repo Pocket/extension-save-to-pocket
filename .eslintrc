@@ -3,6 +3,9 @@
     "react-app",
     "prettier"
   ],
+  "plugins": [
+    "react-hooks"
+  ],
   "rules": {
     "no-unneeded-ternary": "warn",
     "linebreak-style": [
@@ -23,6 +26,8 @@
         "vars": "all",
         "args": "after-used"
       }
-    ]
+    ],
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "error"
   }
 }
