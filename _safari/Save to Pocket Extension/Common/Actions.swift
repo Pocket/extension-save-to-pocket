@@ -41,8 +41,8 @@ class Actions {
 
           SFSafariApplication.getActiveWindow { (window) in
             window?.getActiveTab { (tab) in
-              tab?.getActivePage(completionHandler: { (page) in
-                self.savePage(from: page!)
+              tab?.getActivePage(completionHandler: { (pageToSave) in
+                self.savePage(from: pageToSave!)
               })
             }
           }
