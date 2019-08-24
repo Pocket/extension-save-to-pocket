@@ -93,7 +93,7 @@ class Actions {
           // Status should be replaced with relevant data
           page.dispatchMessageToScript(
             withName: Dispatch.SAVE_TO_POCKET_SUCCESS,
-            userInfo: ["item": status]
+            userInfo: nil // FIX: passing anything other than nil breaks this
           )
 
         case .failure(let error):
@@ -102,7 +102,7 @@ class Actions {
           // Status should be replaced with relevant data
           page.dispatchMessageToScript(
             withName: Dispatch.SAVE_TO_POCKET_FAILURE,
-            userInfo: ["error": error]
+            userInfo: nil
           )
 
         }
