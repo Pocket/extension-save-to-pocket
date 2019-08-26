@@ -1,4 +1,3 @@
-import styles from './tagging.scss'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import matchSorter from 'match-sorter'
@@ -7,10 +6,76 @@ import Downshift from 'downshift'
 import Suggestions from './suggestions/suggestions'
 import Taginput from './taginput/taginput'
 import { localize } from '../../../../common/_locales/locales'
-import classNames from 'classnames/bind'
+import styled from '@emotion/styled'
+import { COLORS } from '../../../../common/styles/colors'
+import { TYPOGRAPHY } from '../../../../common/styles/variables'
+const { $smoke, $overcast, $white, $teal } = COLORS
+const { $fontstackDefault } = TYPOGRAPHY
 
-const cx = classNames.bind(styles)
+const TaggingWrapper = styled.div`
+  font-family: ${$fontstackDefault};
+  padding: 5px 0 0;
+  position: relative;
+`
+const TaggingPlaceholder = styled.div`
+  color: ${$overcast};
+  left: 29px;
+  position: absolute;
+  top: 10px;
+`
+const TaggingWell = styled.div`
+  background: ${$white};
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="#999999"><path d="M83.38 54.6L43.8 17.02H17.41V43.4l39.58 39.58L83.38 54.6zM30.95 36.81c-3.45 0-6.25-2.67-6.25-5.96s2.8-5.97 6.25-5.97 6.25 2.67 6.25 5.97c0 3.29-2.8 5.96-6.25 5.96z"/></svg>');
+  background-position: 4px 7px;
+  background-repeat: no-repeat;
+  background-size: 22px;
+  border: 1px solid ${$smoke};
+  border-radius: 3px;
+  box-sizing: border-box;
+  font-size: 13px;
+  line-height: 16px;
+  margin: 0;
+  padding: 4px 10px;
+  position: relative;
+  text-align: left;
+`
 
+const TaggingTypeaheadWrapper = styled.div`
+  position: relative;
+`
+
+const typeaheadActiveStyle = `
+  background-color: ${$teal};
+  color: ${$white};
+`
+const TaggingTypeaheadItem = styled.div`
+  cursor: pointer;
+  display: block;
+  padding: 2px 8px;
+  ${props => (props.active ? typeaheadActiveStyle : '')}
+  &:hover {
+    ${typeaheadActiveStyle}
+  }
+`
+const TaggingTypeaheadList = styled.div`
+  background: ${$white};
+  border: 1px solid ${$smoke};
+  border-radius: 0 0 3px 3px;
+  border-top: none;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  display: block;
+  left: 0;
+  list-style-type: none;
+  margin: 0;
+  max-height: 8.8em;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: 2px 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+`
 export default class Tagging extends Component {
   constructor(props) {
     super(props)
@@ -102,13 +167,8 @@ export default class Tagging extends Component {
   /* Render Component
     –––––––––––––––––––––––––––––––––––––––––––––––––– */
   render() {
-    let taggingClass = cx({
-      well: true,
-      active: this.props.inputFocused
-    })
-
     return (
-      <div className={styles.tagging}>
+      <TaggingWrapper>
         <Downshift
           onSelect={this.onSelect}
           render={({
@@ -118,13 +178,12 @@ export default class Tagging extends Component {
             highlightedIndex
           }) => (
             <div>
-              <div className={taggingClass} onMouseUp={this.onMouseUp}>
-                {this.state.placeholder &&
-                  !this.hasTags() && (
-                    <div className={styles.placeholder}>
-                      {localize('tagging', 'add_tags')}
-                    </div>
-                  )}
+              <TaggingWell onMouseUp={this.onMouseUp}>
+                {this.state.placeholder && !this.hasTags() && (
+                  <TaggingPlaceholder>
+                    {localize('tagging', 'add_tags')}
+                  </TaggingPlaceholder>
+                )}
 
                 {!!this.hasTags() && (
                   <Chips
@@ -151,53 +210,52 @@ export default class Tagging extends Component {
                   makeTagsInactive={this.makeTagsInactive}
                   storedTags={this.storedTags}
                 />
-              </div>
+              </TaggingWell>
 
               {!isOpen || !this.storedTags.length ? null : (
-                <div className={styles.typeaheadWrapper}>
-                  <div className={styles.typeaheadList}>
+                <TaggingTypeaheadWrapper>
+                  <TaggingTypeaheadList>
                     {this.storedTags.map((item, index) => {
-                      const itemStyle = cx({
-                        typeahead: true,
-                        active: highlightedIndex === index
-                      })
                       return (
-                        <div
-                          className={itemStyle}
+                        <TaggingTypeaheadItem
+                          active={highlightedIndex === index}
                           key={`item-${index}`}
                           {...getItemProps({
                             item,
                             index
                           })}>
                           {item}
-                        </div>
+                        </TaggingTypeaheadItem>
                       )
                     })}
-                  </div>
-                </div>
+                  </TaggingTypeaheadList>
+                </TaggingTypeaheadWrapper>
               )}
             </div>
           )}
         />
 
-        {this.props.tags &&
-          this.props.tags.suggested && (
-            <Suggestions
-              value={this.state.inputvalue}
-              tags={this.props.tags}
-              suggestions={this.props.tags.suggested}
-              addTag={this.addTag}
-              activate={this.activateTag}
-              activateSuggestion={this.activateSuggestion}
-            />
-          )}
-      </div>
+        {this.props.tags && this.props.tags.suggested && (
+          <Suggestions
+            value={this.state.inputvalue}
+            tags={this.props.tags}
+            suggestions={this.props.tags.suggested}
+            addTag={this.addTag}
+            activate={this.activateTag}
+            activateSuggestion={this.activateSuggestion}
+          />
+        )}
+      </TaggingWrapper>
     )
   }
 }
 
 Tagging.propTypes = {
-  tags: PropTypes.object,
+  tags: PropTypes.shape({
+    marked: PropTypes.array,
+    used: PropTypes.array,
+    suggested: PropTypes.array
+  }),
   activateTag: PropTypes.func,
   deactivateTags: PropTypes.func,
   addTag: PropTypes.func,
