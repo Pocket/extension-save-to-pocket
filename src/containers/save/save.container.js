@@ -1,12 +1,21 @@
-import styles from './save.scss' // Import Styles
 import React, { Component } from 'react'
-//
 import Toolbar from './toolbar/toolbar.main'
 import Recommendations from './recommendations/recommendations.main'
 import Survey from './survey/survey.main'
-
 import { TransitionMotion, spring, presets } from 'react-motion' //
+import styled from '@emotion/styled'
+import { mixin_fontBase } from '../../common/styles/components'
 
+const SaveHanger = styled.div`
+  ${mixin_fontBase}
+
+  font-size: 16px;
+  position: fixed;
+  right: 10px;
+  top: 15px;
+  width: 320px;
+  z-index: 2147483647;
+`
 class SaveContainer extends Component {
   getDefaultStyles = () => {
     return [
@@ -55,15 +64,12 @@ class SaveContainer extends Component {
             <div>
               {items.map(item => {
                 return (
-                  <div
+                  <SaveHanger
                     onMouseEnter={this.props.onHover}
                     onMouseLeave={this.props.offHover}
-                    className={styles.hanger}
                     key={item.key}
                     style={{
-                      transform: `translateY(${
-                        item.style.transform
-                      }%) translateZ(0)`,
+                      transform: `translateY(${item.style.transform}%) translateZ(0)`,
                       transformStyle: 'preserve-3d',
                       opacity: item.style.opacity
                     }}>
@@ -88,19 +94,18 @@ class SaveContainer extends Component {
                       inputFocused={this.props.inputFocused}
                       setInputFocusState={this.props.setInputFocusState}
                     />
-                    {this.props.showRecs &&
-                      !this.props.survey.show && (
-                        <Recommendations
-                          tabId={this.props.tab_id}
-                          recs={this.props.currentRecs}
-                          saveRecommendation={this.props.saveRecommendation}
-                          openRecommendation={this.props.openRecommendation}
-                          spocImpression={this.props.spocImpression}
-                          spocView={this.props.spocView}
-                          spocClick={this.props.spocClick}
-                          spocRemove={this.props.spocRemove}
-                        />
-                      )}
+                    {this.props.showRecs && !this.props.survey.show && (
+                      <Recommendations
+                        tabId={this.props.tab_id}
+                        recs={this.props.currentRecs}
+                        saveRecommendation={this.props.saveRecommendation}
+                        openRecommendation={this.props.openRecommendation}
+                        spocImpression={this.props.spocImpression}
+                        spocView={this.props.spocView}
+                        spocClick={this.props.spocClick}
+                        spocRemove={this.props.spocRemove}
+                      />
+                    )}
                     {this.props.survey.show && (
                       <Survey
                         survey={this.props.survey}
@@ -108,7 +113,7 @@ class SaveContainer extends Component {
                         surveyCancel={this.props.surveyCancel}
                       />
                     )}
-                  </div>
+                  </SaveHanger>
                 )
               })}
             </div>
