@@ -1,10 +1,34 @@
-import styles from './toolbar.scss'
 import React, { Component } from 'react'
 import Dropdown from '../../../components/dropdown/dropdown'
 import Tagging from './tagging/tagging'
 import ToolbarError from './toolbar.error'
 import * as Icon from '../../../components/icons'
 import { localize } from '../../../common/_locales/locales'
+import styled from '@emotion/styled'
+import { COLORS } from '../../../common/styles/colors'
+import { TYPOGRAPHY } from '../../../common/styles/variables'
+import { mixin_pocketPanel } from '../../../common/styles/components'
+const { $panelShadow, $pitch } = COLORS
+const { $fontstackDefault } = TYPOGRAPHY
+
+const ToolbarWrapper = styled.div`
+  ${mixin_pocketPanel}
+  box-shadow: ${$panelShadow};
+  color: ${$pitch};
+  font-family: ${$fontstackDefault};
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  padding: 8px 10px;
+  position: relative;
+  text-align: left;
+  z-index: 100;
+`
+const ToolbarStatus = styled.span`
+  display: inline-block;
+  font-weight: 600;
+  padding: 3px 0;
+`
 
 function getStatus(type, status) {
   if (status === 'saved') return localize('status', `${type}_${status}`)
@@ -56,25 +80,24 @@ class Toolbar extends Component {
       : false
 
     return (
-      <div className={styles.toolbar}>
+      <ToolbarWrapper>
         {Icon.PocketLogo({
           width: '22px',
           height: '22px',
           marginRight: '8px'
         })}
-        <span className={styles.statusText}>{this.statusText}</span>
+        <ToolbarStatus>{this.statusText}</ToolbarStatus>
 
         {status === 'error' && <ToolbarError />}
 
-        {status !== 'removed' &&
-          status !== 'error' && (
-            <Dropdown
-              tabId={this.props.tabId}
-              active={dropDownActive}
-              setStatus={this.props.setDropDownStatus}
-              list={this.listItems}
-            />
-          )}
+        {status !== 'removed' && status !== 'error' && (
+          <Dropdown
+            tabId={this.props.tabId}
+            active={dropDownActive}
+            setStatus={this.props.setDropDownStatus}
+            list={this.listItems}
+          />
+        )}
 
         {(status === 'saved' || status === 'saving') && (
           <Tagging
@@ -92,7 +115,7 @@ class Toolbar extends Component {
             setInputFocusState={this.props.setInputFocusState}
           />
         )}
-      </div>
+      </ToolbarWrapper>
     )
   }
 }

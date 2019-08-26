@@ -1,11 +1,38 @@
-import styles from './taginput.scss'
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { localize } from '../../../../../common/_locales/locales'
 import AutosizeInput from 'react-input-autosize'
-// import Downshift from 'downshift'
-import classNames from 'classnames/bind'
-const cx = classNames.bind(styles)
+import styled from '@emotion/styled'
+import { css } from '@emotion/core'
+import { COLORS } from '../../../../../common/styles/colors'
+const { $pitch, $powder, $hotCoral } = COLORS
+
+const tagInputCss = active => css`
+  all: unset;
+  color: ${$pitch};
+  display: inline-block;
+  line-height: 16px;
+  margin-bottom: 3px;
+  margin-left: ${active? '0' : '16px'};
+  margin-right: 3px;
+  margin-top: 3px;
+  min-width: 0.3em;
+  padding: 2px 4px;
+`
+
+const TagError = styled.div`
+  background-color: ${$powder};
+  border: 1px solid ${$hotCoral};
+  border-radius: 3px;
+  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
+  color: ${$hotCoral};
+  left: 50%;
+  padding: 6px 12px;
+  position: absolute;
+  top: 100%;
+  transform: translate(-50%, -2px);
+  width: 80%;
+`
 
 const BACKSPACE = 8
 const COMMA = 44
@@ -93,16 +120,12 @@ export default class Taginput extends Component {
   }
 
   render() {
-    let inputClass = cx({
-      tagInput: true,
-      active: this.props.hasTags
-    })
-
+    const hasError = this.props.error || this.state.error
     return (
       <React.Fragment>
         <AutosizeInput
           {...this.props.getInputProps({
-            inputClassName: inputClass,
+            css: tagInputCss(this.props.hasTags),
             ref: this.props.inputRef,
             value: this.props.value,
             onChange: this.onChange,
@@ -113,10 +136,8 @@ export default class Taginput extends Component {
             onKeyPress: this.onInput
           })}
         />
-        {this.state.error && (
-          <div className={styles.tagError}>
-            {localize('tagging', 'invalid_tags')}
-          </div>
+        {hasError && (
+          <TagError>{localize('tagging', 'invalid_tags')}</TagError>
         )}
       </React.Fragment>
     )
@@ -124,6 +145,7 @@ export default class Taginput extends Component {
 }
 
 Taginput.propTypes = {
+  getInputProps: PropTypes.func,
   setBlur: PropTypes.func,
   setFocus: PropTypes.func,
   addTag: PropTypes.func,
