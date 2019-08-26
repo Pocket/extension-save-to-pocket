@@ -20,7 +20,7 @@ export const mixin_fontBase = css`
     Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', Helvetica,
     sans-serif !important;
 `
-const mixin_pocketPanel = css`
+export const mixin_pocketPanel = css`
   background-color: ${$powder}
   border-color: ${$white}
   border-radius: 4px;
