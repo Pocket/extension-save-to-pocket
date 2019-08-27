@@ -1,15 +1,11 @@
 import { COLORS, UTILIZATION } from './colors'
 import { TYPOGRAPHY } from './variables'
 const {
-  $powder,
   $white,
-  $night,
-  $pitch,
   $emerald,
   $darksmoke,
 } = COLORS
 const {
-  $shadow,
   $shadowButton,
   $shadowDown,
   $shadowButtonDown
@@ -20,19 +16,6 @@ export const mixin_fontBase = `
   font-family: 'proxima-nova', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', Helvetica,
     sans-serif !important;
-`
-export const mixin_pocketPanel = props => `
-  border-radius: 4px;
-  border-style: solid;
-  border-width: 2px;
-  box-shadow: ${$shadow}
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  z-index: 100;
-  background-color: ${props.darkMode ? $night : $powder};
-  border-color: ${props.darkMode ? $pitch : $white};
 `
 
 export const mixin_pocketButton = `
@@ -72,8 +55,8 @@ ${mixin_pocketButtonStyled}
 export const mixin_pocketButtonNo = `
 ${mixin_pocketButtonStyled}
 
-  background-color: ${$darksmoke}
-  color: ${$white}
+  background-color: ${$darksmoke};
+  color: ${$white};
 
   &:hover {
     background-color: darken(${$darksmoke} 10%);
