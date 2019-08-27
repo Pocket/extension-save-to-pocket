@@ -5,14 +5,15 @@ import ToolbarError from './toolbar.error'
 import * as Icon from '../../../components/icons'
 import { localize } from '../../../common/_locales/locales'
 import styled from '@emotion/styled'
-import { COLORS } from '../../../common/styles/colors'
+import { COLORS, UTILIZATION } from '../../../common/styles/colors'
 import { TYPOGRAPHY } from '../../../common/styles/variables'
 import { mixin_pocketPanel } from '../../../common/styles/components'
-const { $panelShadow, $pitch } = COLORS
+const {  $pitch } = COLORS
+const { $panelShadow } = UTILIZATION
 const { $fontstackDefault } = TYPOGRAPHY
 
 const ToolbarWrapper = styled.div`
-  ${mixin_pocketPanel}
+  ${props => mixin_pocketPanel(props)}
   box-shadow: ${$panelShadow};
   color: ${$pitch};
   font-family: ${$fontstackDefault};

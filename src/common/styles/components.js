@@ -1,28 +1,27 @@
-import { css } from '@emotion/core'
-import { COLORS } from './colors'
+import { COLORS, UTILIZATION } from './colors'
 import { TYPOGRAPHY } from './variables'
 const {
-  $shadow,
   $powder,
   $white,
   $night,
   $pitch,
   $emerald,
+  $darksmoke,
+} = COLORS
+const {
+  $shadow,
   $shadowButton,
   $shadowDown,
-  $darksmoke,
   $shadowButtonDown
-} = COLORS
+} = UTILIZATION
 const { $fontstackDefault } = TYPOGRAPHY
 
-export const mixin_fontBase = css`
+export const mixin_fontBase = `
   font-family: 'proxima-nova', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', Helvetica,
     sans-serif !important;
 `
-export const mixin_pocketPanel = css`
-  background-color: ${$powder}
-  border-color: ${$white}
+export const mixin_pocketPanel = props => `
   border-radius: 4px;
   border-style: solid;
   border-width: 2px;
@@ -32,14 +31,11 @@ export const mixin_pocketPanel = css`
   padding: 0;
   width: 100%;
   z-index: 100;
-
-  .darkMode & {
-    background-color: ${$night}
-    border-color: ${$pitch}
-  }
+  background-color: ${props.darkMode ? $night : $powder};
+  border-color: ${props.darkMode ? $pitch : $white};
 `
 
-export const mixin_pocketButton = css`
+export const mixin_pocketButton = `
   all: unset;
   background-color: none;
   border: 0;
@@ -51,7 +47,7 @@ export const mixin_pocketButton = css`
   -moz-user-select: none;
   -ms-user-select: none;
 `
-export const mixin_pocketButtonStyled = css`
+export const mixin_pocketButtonStyled = `
   ${mixin_pocketButton}
 
   border-radius: 3px;
@@ -63,7 +59,7 @@ export const mixin_pocketButtonStyled = css`
     transform: translateY(1px);
   }
 `
-export const mixin_pocketButtonYes = css`
+export const mixin_pocketButtonYes = `
 ${mixin_pocketButtonStyled}
 
   background-color: ${$emerald}
@@ -73,7 +69,7 @@ ${mixin_pocketButtonStyled}
     background-color: darken(${$emerald} 5%);
   }
 `
-export const mixin_pocketButtonNo = css`
+export const mixin_pocketButtonNo = `
 ${mixin_pocketButtonStyled}
 
   background-color: ${$darksmoke}
@@ -83,7 +79,7 @@ ${mixin_pocketButtonStyled}
     background-color: darken(${$darksmoke} 10%);
   }
 `
-export const mixin_hoverDown = css`
+export const mixin_hoverDown = `
   box-shadow: ${$shadowDown};
   transform: translateY(1px);
 `
@@ -91,12 +87,12 @@ export const mixin_hoverDown = css`
 export const $narrow = '700px'
 export const $mobile = '320px'
 
-export const mixin_narrow = css`
+export const mixin_narrow = `
   @media (min-width: #{$mobile}) and (max-width: #{${$narrow} - 1px}) {
     @content;
   }
 `
-export const mixin_mobile = css`
+export const mixin_mobile = `
   @media (max-width: #{${$mobile} - 1px}) {
     @content;
   }
