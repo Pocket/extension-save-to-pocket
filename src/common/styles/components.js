@@ -7,7 +7,6 @@ const {
 } = COLORS
 const {
   $shadowButton,
-  $shadowDown,
   $shadowButtonDown
 } = UTILIZATION
 const { $fontstackDefault } = TYPOGRAPHY
@@ -45,7 +44,7 @@ export const mixin_pocketButtonStyled = `
 export const mixin_pocketButtonYes = `
 ${mixin_pocketButtonStyled}
 
-  background-color: ${$emerald}
+  background-color: ${$emerald};
   color: ${$white};
 
   &:hover {
@@ -61,23 +60,4 @@ ${mixin_pocketButtonStyled}
   &:hover {
     background-color: darken(${$darksmoke} 10%);
   }
-`
-export const mixin_hoverDown = `
-  box-shadow: ${$shadowDown};
-  transform: translateY(1px);
-`
-
-export const $narrow = '700px'
-export const $mobile = '320px'
-
-export const mixin_narrow = `
-  @media (min-width: #{$mobile}) and (max-width: #{${$narrow} - 1px}) {
-    @content;
-  }
-`
-export const mixin_mobile = `
-  @media (max-width: #{${$mobile} - 1px}) {
-    @content;
-  }
-}
 `
