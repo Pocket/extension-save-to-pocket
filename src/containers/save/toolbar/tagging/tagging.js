@@ -25,7 +25,7 @@ const TaggingPlaceholder = styled.div`
 `
 const TaggingWell = styled.div`
   background: ${$white};
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="#999999"><path d="M83.38 54.6L43.8 17.02H17.41V43.4l39.58 39.58L83.38 54.6zM30.95 36.81c-3.45 0-6.25-2.67-6.25-5.96s2.8-5.97 6.25-5.97 6.25 2.67 6.25 5.97c0 3.29-2.8 5.96-6.25 5.96z"/></svg>');
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%23999999"><path d="M83.38 54.6L43.8 17.02H17.41V43.4l39.58 39.58L83.38 54.6zM30.95 36.81c-3.45 0-6.25-2.67-6.25-5.96s2.8-5.97 6.25-5.97 6.25 2.67 6.25 5.97c0 3.29-2.8 5.96-6.25 5.96z"/></svg>');
   background-position: 4px 7px;
   background-repeat: no-repeat;
   background-size: 22px;
