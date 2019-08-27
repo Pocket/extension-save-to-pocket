@@ -7,13 +7,19 @@ import { localize } from '../../../common/_locales/locales'
 import styled from '@emotion/styled'
 import { COLORS, UTILIZATION } from '../../../common/styles/colors'
 import { TYPOGRAPHY } from '../../../common/styles/variables'
-import { mixin_pocketPanel } from '../../../common/styles/components'
-const {  $pitch } = COLORS
+const {  $night, $powder, $white, $pitch } = COLORS
 const { $panelShadow } = UTILIZATION
 const { $fontstackDefault } = TYPOGRAPHY
 
 const ToolbarWrapper = styled.div`
-  ${props => mixin_pocketPanel(props)}
+  border-radius: 4px;
+  border-style: solid;
+  border-width: 2px;
+  box-sizing: border-box;
+  margin: 0;
+  width: 100%;
+  background-color: ${props => props.darkMode ? $night : $powder};
+  border-color: ${props => props.darkMode ? $pitch : $white};
   box-shadow: ${$panelShadow};
   color: ${$pitch};
   font-family: ${$fontstackDefault};
