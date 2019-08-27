@@ -46,7 +46,7 @@ export const mixin_pocketButtonYes = `
 ${mixin_pocketButtonStyled}
 
   background-color: ${$emerald}
-  color: ${$white}
+  color: ${$white};
 
   &:hover {
     background-color: darken(${$emerald} 5%);
