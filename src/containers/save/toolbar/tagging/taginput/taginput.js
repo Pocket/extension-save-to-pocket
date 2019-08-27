@@ -22,6 +22,7 @@ const TagError = styled.div`
 
 const InputWrapper = styled('div')`
   max-width: 100%;
+  display: inline-block;
   input {
     all: unset;
     color: ${$pitch};
