@@ -3,22 +3,8 @@ import PropTypes from 'prop-types'
 import { localize } from '../../../../../common/_locales/locales'
 import AutosizeInput from 'react-input-autosize'
 import styled from '@emotion/styled'
-import { css } from '@emotion/core'
 import { COLORS } from '../../../../../common/styles/colors'
 const { $pitch, $powder, $hotCoral } = COLORS
-
-const tagInputCss = active => css`
-  all: unset;
-  color: ${$pitch};
-  display: inline-block;
-  line-height: 16px;
-  margin-bottom: 3px;
-  margin-left: ${active? '0' : '16px'};
-  margin-right: 3px;
-  margin-top: 3px;
-  min-width: 0.3em;
-  padding: 2px 4px;
-`
 
 const TagError = styled.div`
   background-color: ${$powder};
@@ -32,6 +18,22 @@ const TagError = styled.div`
   top: 100%;
   transform: translate(-50%, -2px);
   width: 80%;
+`
+
+const InputWrapper = styled('div')`
+  max-width: 100%;
+  input {
+    all: unset;
+    color: ${$pitch};
+    display: inline-block;
+    line-height: 16px;
+    margin-bottom: 3px;
+    margin-left: ${props => props.active ? '0' : '16px'};
+    margin-right: 3px;
+    margin-top: 3px;
+    min-width: 0.3em;
+    padding: 2px 4px;
+  }
 `
 
 const BACKSPACE = 8
@@ -122,10 +124,9 @@ export default class Taginput extends Component {
   render() {
     const hasError = this.props.error || this.state.error
     return (
-      <React.Fragment>
+      <InputWrapper active={this.props.hasTags}>
         <AutosizeInput
           {...this.props.getInputProps({
-            css: tagInputCss(this.props.hasTags),
             ref: this.props.inputRef,
             value: this.props.value,
             onChange: this.onChange,
@@ -136,10 +137,8 @@ export default class Taginput extends Component {
             onKeyPress: this.onInput
           })}
         />
-        {hasError && (
-          <TagError>{localize('tagging', 'invalid_tags')}</TagError>
-        )}
-      </React.Fragment>
+        {hasError && <TagError>{localize('tagging', 'invalid_tags')}</TagError>}
+      </InputWrapper>
     )
   }
 }
