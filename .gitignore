@@ -64,3 +64,6 @@ Pods/
 
 # Ignore Carthage installed files
 Carthage/
+
+# vsCode
+.vscode/
