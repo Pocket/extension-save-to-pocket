@@ -27,7 +27,7 @@ const listItems = [
     method: () => {}
   }
 ]
-storiesOf('Components | Dropdown', module)
+storiesOf('Modules | Dropdown', module)
   .add('active', () => {
     return (
       <Dropdown tabId="1" active={true} setStatus={() => {}} list={listItems} />
