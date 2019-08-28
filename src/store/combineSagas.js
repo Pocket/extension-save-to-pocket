@@ -1,6 +1,6 @@
 import { all, takeLatest } from 'redux-saga/effects'
-import { openPocket } from '../common/helpers'
-import { openOptions } from '../common/interface'
+import { openPocket } from 'common/helpers'
+import { openOptions } from 'common/interface'
 
 import { wSetup } from '../containers/background/_setup'
 import { wHydrate } from '../containers/background/_setup'

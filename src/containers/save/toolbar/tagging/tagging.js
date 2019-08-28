@@ -5,10 +5,10 @@ import Chips from './chips/chips'
 import Downshift from 'downshift'
 import Suggestions from './suggestions/suggestions'
 import Taginput from './taginput/taginput'
-import { localize } from '../../../../common/_locales/locales'
+import { localize } from 'common/_locales/locales'
 import styled from '@emotion/styled'
-import { COLORS } from '../../../../common/styles/colors'
-import { TYPOGRAPHY } from '../../../../common/styles/variables'
+import { COLORS } from 'common/styles/colors'
+import { TYPOGRAPHY } from 'common/styles/variables'
 const { $smoke, $overcast, $white, $teal } = COLORS
 const { $fontstackDefault } = TYPOGRAPHY
 

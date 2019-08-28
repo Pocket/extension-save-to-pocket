@@ -1,9 +1,9 @@
 import Loading from './loading'
-import { localize } from '../../../../common/_locales/locales'
+import { localize } from 'common/_locales/locales'
 import React from 'react'
 import styled from '@emotion/styled'
 import PropTypes from 'prop-types'
-import { COLORS } from '../../../../common/styles/colors'
+import { COLORS } from 'common/styles/colors'
 const { $darksmoke, $teal } = COLORS
 
 const hasRecs = recs => recs

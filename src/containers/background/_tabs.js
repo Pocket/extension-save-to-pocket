@@ -1,5 +1,5 @@
 import { put, takeEvery, select } from 'redux-saga/effects'
-import { sendMessageToTab } from '../../common/interface'
+import { sendMessageToTab } from 'common/interface'
 
 // ACTIONS
 export const tabsActions = {

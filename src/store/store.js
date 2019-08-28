@@ -2,7 +2,7 @@ import {} from 'redux'
 import { wrapStore } from 'react-chrome-redux'
 import { compose, createStore, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
-import { PORT_NAME } from '../common/constants'
+import { PORT_NAME } from 'common/constants'
 import rootSaga from './combineSagas'
 import rootReducer from './combineReducers'
 

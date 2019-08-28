@@ -1,4 +1,4 @@
-import { sendMessageToTab } from '../../../common/interface'
+import { sendMessageToTab } from 'common/interface'
 
 function frameObserver(store, onChange) {
   let currentState
