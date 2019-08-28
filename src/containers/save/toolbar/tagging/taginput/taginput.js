@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { localize } from '../../../../../common/_locales/locales'
+import { localize } from 'common/_locales/locales'
 import AutosizeInput from 'react-input-autosize'
 import styled from '@emotion/styled'
-import { COLORS } from '../../../../../common/styles/colors'
+import { COLORS } from 'common/styles/colors'
 const { $pitch, $powder, $hotCoral } = COLORS
 
 const TagError = styled.div`

@@ -4,7 +4,7 @@ import { TransitionMotion, spring, presets } from 'react-motion'
 import RecommendationItem from './item'
 import RecommendationSpoc from './spoc'
 import styled from '@emotion/styled'
-import { TYPOGRAPHY } from '../../../../common/styles/variables'
+import { TYPOGRAPHY } from 'common/styles/variables'
 const { $fontstackDefault } = TYPOGRAPHY
 
 const ListWrapper = styled.li`

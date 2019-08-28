@@ -1,6 +1,6 @@
 import $ from 'jquery'
 import styles from './twitter.scss' // Import Styles
-import { sendMessage } from '../../../common/interface'
+import { sendMessage } from 'common/interface'
 
 // Define Markup
 const saveToPocketMarkup = `
