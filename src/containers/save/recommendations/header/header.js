@@ -1,4 +1,4 @@
-import Loading from './loading'
+import Loader from 'elements/loader/loader'
 import { localize } from 'common/_locales/locales'
 import React from 'react'
 import styled from '@emotion/styled'
@@ -31,16 +31,29 @@ const HeaderSection = styled.div`
   text-align: center;
   text-transform: uppercase;
 `
+const LoaderPanel = styled.div`
+  display: block;
+  font-size: 12px;
+  padding: 15px 0 20px;
+  text-align: center;
+`
+
 Header.propTypes = {
   recs: PropTypes.shape({
     reason: PropTypes.string,
     feed: PropTypes.array
   })
 }
+
 export default function Header({ recs }) {
   return (
     <HeaderWrapper>
-      {!hasRecs(recs) && <Loading />}
+      {!hasRecs(recs) && (
+        <LoaderPanel>
+          <Loader></Loader>
+          {localize('recommendations', 'loading')}
+        </LoaderPanel>
+      )}
 
       {hasRecs(recs) && (
         <div>
