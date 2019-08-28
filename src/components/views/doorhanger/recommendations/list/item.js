@@ -120,6 +120,7 @@ export const SaveButton = styled.button`
   }
 `
 export const ItemWrapper = styled.li`
+  list-style-type: none;
   background-color: ${$powder};
   border-top: 1px solid ${$smoke};
 
