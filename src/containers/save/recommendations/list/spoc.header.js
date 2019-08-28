@@ -2,7 +2,7 @@ import SpocMenu from './spoc.menu.js'
 import React, { useEffect } from 'react'
 import styled from '@emotion/styled'
 import PropTypes from 'prop-types'
-import { COLORS } from '../../../../common/styles/colors'
+import { COLORS } from 'common/styles/colors'
 const { $pitch } = COLORS
 
 const SponsorHeader = styled.div`

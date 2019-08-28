@@ -1,6 +1,6 @@
 import { Store } from 'react-chrome-redux'
-import { PORT_NAME } from '../../common/constants'
-import { sendMessage } from '../../common/interface'
+import { PORT_NAME } from 'common/constants'
+import { sendMessage } from 'common/interface'
 
 getExtensionInfo().then(info => {
   const proxyStore = new Store({

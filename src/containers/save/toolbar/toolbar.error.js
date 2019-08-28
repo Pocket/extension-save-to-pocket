@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import { localize } from '../../../common/_locales/locales'
+import { localize } from 'common/_locales/locales'
 import styled from '@emotion/styled'
-import { COLORS } from '../../../common/styles/colors'
+import { COLORS } from 'common/styles/colors'
 const { $snow, $black } = COLORS
 
 const ToolbarErrorWrapper = styled.div`

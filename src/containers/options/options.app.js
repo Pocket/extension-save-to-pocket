@@ -5,12 +5,12 @@ import {
   AndroidLogo,
   IphoneIpad,
   Mac
-} from '../../components/icons'
-import Toggle from '../../components/toggle/toggle'
+} from 'components/icons'
+import Toggle from 'components/toggle/toggle'
 import React, { Component } from 'react'
-import { openTabWithUrl } from '../../common/interface'
-import { localize } from '../../common/_locales/locales'
-import { AUTH_URL, LOGOUT_URL, SET_SHORTCUTS } from '../../common/constants'
+import { openTabWithUrl } from 'common/interface'
+import { localize } from 'common/_locales/locales'
+import { AUTH_URL, LOGOUT_URL, SET_SHORTCUTS } from 'common/constants'
 
 export default class Options extends Component {
   userData = () => {

@@ -2,9 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider, connect } from 'react-redux'
 import { Store } from 'react-chrome-redux'
-import { PORT_NAME } from '../../common/constants'
+import { PORT_NAME } from 'common/constants'
 import { mapStateToProps, mapDispatchToProps } from '../../store/connect'
-import { sendMessage } from '../../common/interface'
+import { sendMessage } from 'common/interface'
 import App from './options.app'
 
 getExtensionInfo().then(info => {

@@ -1,6 +1,6 @@
 import { takeLatest, call } from 'redux-saga/effects'
 import { requireAuthorization } from '../auth/_auth'
-import { saveToPocket } from '../../common/api'
+import { saveToPocket } from 'common/api'
 
 // SAGAS
 export function* wSaveTweet() {

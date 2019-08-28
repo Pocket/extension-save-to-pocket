@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import SaveContainer from './save.container'
-import { getCurrentLanguageCode } from '../../common/helpers'
+import { getCurrentLanguageCode } from 'common/helpers'
 
 const activeState = [
   'saved',
