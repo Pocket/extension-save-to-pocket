@@ -3,7 +3,7 @@ import DropdownItem from './dropdownItem'
 import * as Icon from '../icons'
 import styled from '@emotion/styled'
 import PropTypes from 'prop-types'
-import { COLORS } from 'common/styles/colors'
+import { COLORS } from 'elements/colors/colors'
 const { $snow, $overcast, $white, $darksmoke } = COLORS
 
 const DropdownWrapper = styled.div`
@@ -18,12 +18,13 @@ const DropdownWrapper = styled.div`
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     list-style-type: none;
     margin: 0;
-    opacity: ${props => props.active ? '1' : '0'};
+    opacity: ${props => (props.active ? '1' : '0')};
     padding: 9px 0 7px;
     position: absolute;
     right: 5px;
     top: 22px;
-    transform: ${props => props.active ? 'translateX(0)' : 'translateX(200%)'};
+    transform: ${props =>
+      props.active ? 'translateX(0)' : 'translateX(200%)'};
     transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
     z-index: 10;
 
@@ -67,16 +68,14 @@ export default function Dropdown({ active, tabId, list, setStatus }) {
   }
   return (
     <DropdownWrapper active={active}>
-      <button
-        onMouseOver={onHover}
-        onMouseOut={offHover}>
+      <button onMouseOver={onHover} onMouseOut={offHover}>
         {Icon.Overflow()}
       </button>
       {active && (
-        <ul
-          onMouseOver={onHover}
-          onMouseOut={offHover}>
-          {list.map((entryObject, index) => <DropdownItem key={index} entryObject={entryObject}/>)}
+        <ul onMouseOver={onHover} onMouseOut={offHover}>
+          {list.map((entryObject, index) => (
+            <DropdownItem key={index} entryObject={entryObject} />
+          ))}
         </ul>
       )}
     </DropdownWrapper>

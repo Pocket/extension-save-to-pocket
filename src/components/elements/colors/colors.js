@@ -3,7 +3,7 @@ export const COLORS = {
   $amber: '#fcb643',
   $mintGreen: '#83edb8',
   $teal: '#50bcb6',
-  $tealHover: 'darken($teal, 10%)',
+  $tealHover: '#42aea8',
   $emerald: '#00a69d',
   $black: '#000',
   $night: '#1f1f1f',
@@ -20,8 +20,10 @@ export const COLORS = {
   $powder: '#f9f9f9',
   $white: '#fff'
 }
+
 const $rainbow =
   'linear-gradient(90deg, #afecc3  0%, #84c3c0  34%, #d45a68  67%, #ecbf63  100%)'
+
 export const UTILIZATION = {
   $rainbow,
   $shadowButton: '2px 2px 8px rgba(0, 0, 0, 0.4)',
