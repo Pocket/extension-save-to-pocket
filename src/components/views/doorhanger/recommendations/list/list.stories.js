@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react'
 import RecommendationList from './list'
 import RecommendationItem from './item'
 import SpocHeader from './spoc.header'
-storiesOf('Recommendations | List', module)
+storiesOf('Views | Recommendations', module)
   .add('list item', () => (
     <RecommendationItem
       motionStyle={{}}
@@ -24,7 +24,7 @@ storiesOf('Recommendations | List', module)
       tabId={1}
     />
   ))
-  .add('spoc header', () => (
+  .add('spoc', () => (
     <SpocHeader
       tabId={1}
       itemId={1}
@@ -38,7 +38,7 @@ storiesOf('Recommendations | List', module)
       spocRemove={() => {}}
     />
   ))
-  .add('recommendation list', () => (
+  .add('list', () => (
     <RecommendationList
       tabId={1}
       openRecommendation={() => {}}
