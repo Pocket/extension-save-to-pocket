@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import PropTypes from 'prop-types'
-import { COLORS } from 'common/styles/colors'
+import { COLORS } from 'elements/colors/colors'
 import { mixin_pocketButton } from 'common/styles/components'
 import * as Icon from 'components/icons'
 import { domainForUrl } from 'common/utilities'
