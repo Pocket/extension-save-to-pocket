@@ -12,10 +12,10 @@ const LoaderPanel = styled.div`
 `
 
 const LoaderWrapper = styled.div`
-    display: inline-block;
-    width: 30px;
-  }
+  display: inline-block;
+  width: 30px;
 `
+
 const LoaderAnimation = styled.div`
     display: inline-block;
     margin: 0 auto;
