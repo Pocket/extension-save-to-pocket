@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import PropTypes from 'prop-types'
 import { COLORS } from 'elements/colors/colors'
 import { mixin_pocketButton } from 'common/styles/components'
-import * as Icon from 'components/icons'
+import * as Icon from 'elements/icons'
 import { domainForUrl } from 'common/utilities'
 import { localize } from 'common/_locales/locales'
 const {

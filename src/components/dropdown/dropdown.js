@@ -1,6 +1,6 @@
 import React from 'react'
 import DropdownItem from './dropdownItem'
-import * as Icon from '../icons'
+import * as Icon from 'elements/icons'
 import styled from '@emotion/styled'
 import PropTypes from 'prop-types'
 import { COLORS } from 'elements/colors/colors'
