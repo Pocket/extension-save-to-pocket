@@ -19,8 +19,11 @@ const ChipItem = styled.li`
   border-radius: 3px;
   color: ${$pitch};
   cursor: pointer;
-  display: inline-block;
+  display: inline-flex;
+  align-content: center;
+  align-items: center;
   font-weight: 300;
+  font-size: 13px;
   line-height: 16px;
   margin-bottom: 2px;
   margin-right: 3px;
@@ -37,10 +40,9 @@ const ChipItem = styled.li`
     display: inline-block;
     font-size: 18px;
     font-weight: 100;
-    line-height: 15px;
+    line-height: 16px;
     padding-left: 4px;
     vertical-align: middle;
-
     &:hover {
       color: ${$hotCoral};
     }
