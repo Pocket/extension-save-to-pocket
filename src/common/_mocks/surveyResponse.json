@@ -1,0 +1,35 @@
+{
+  "parameters": {
+    "timestamp": 1526419671,
+    "hash": "4fba45db9ebf17ac91a3b21cde155671",
+    "survey_id": "4361321",
+    "target_id": "4361321",
+    "impression_limit": "5"
+  },
+  "fields": [
+    {
+      "name": "q_99",
+      "label": "When would you like to return to this?",
+      "type": "radio",
+      "required": true,
+      "options": [
+        {
+          "value": "0:10001",
+          "text": "Very Soon"
+        },
+        {
+          "value": "1:10003",
+          "text": "When I have time"
+        },
+        {
+          "value": "2:10002",
+          "text": "Not sure"
+        },
+        {
+          "value": "2:10002",
+          "text": "I'm just collecting"
+        }
+      ]
+    }
+  ]
+}
