@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Dropdown from 'components/dropdown/dropdown'
-import Tagging from './tagging/tagging'
+import Dropdown from 'modules/dropdown/dropdown'
+import Tagging from 'modules/tagging/tagging'
 import ToolbarError from './toolbar.error'
 import * as Icon from 'elements/icons'
 import { localize } from 'common/_locales/locales'
