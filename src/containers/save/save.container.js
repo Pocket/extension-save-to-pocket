@@ -4,7 +4,7 @@ import Recommendations from './recommendations/recommendations.main'
 import Survey from './survey/survey.main'
 import { TransitionMotion, spring, presets } from 'react-motion' //
 import styled from '@emotion/styled'
-import { mixin_fontBase } from '../../common/styles/components'
+import { mixin_fontBase } from 'common/styles/components'
 
 const SaveHanger = styled.div`
   ${mixin_fontBase}

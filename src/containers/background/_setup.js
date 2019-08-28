@@ -1,7 +1,7 @@
 import { put, takeLatest, select, call } from 'redux-saga/effects'
-import { getSetting, setSettings, removeSettings } from '../../common/interface'
-import { getBool, mergeDedupe } from '../../common/utilities'
-import { getGuid, fetchStoredTags } from '../../common/api'
+import { getSetting, setSettings, removeSettings } from 'common/interface'
+import { getBool, mergeDedupe } from 'common/utilities'
+import { getGuid, fetchStoredTags } from 'common/api'
 
 // INITIAL STATE
 const initialState = {

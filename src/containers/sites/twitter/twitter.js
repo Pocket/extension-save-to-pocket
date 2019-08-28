@@ -1,4 +1,4 @@
-import { addMessageListener, sendMessage } from '../../../common/interface'
+import { addMessageListener, sendMessage } from 'common/interface'
 import { handleSave, getTweetInfo, getPocketButtonClone, addPocketIconToActionList } from './twitter-util'
 
 const mutationConfig = {

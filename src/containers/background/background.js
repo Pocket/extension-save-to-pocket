@@ -1,6 +1,6 @@
 import { Framer } from '../save/frame/framer'
-import * as Interface from '../../common/interface'
-import { isNewTab, getBaseUrl, isSystemPage } from '../../common/helpers'
+import * as Interface from 'common/interface'
+import { isNewTab, getBaseUrl, isSystemPage } from 'common/helpers'
 import { initializeStore } from '../../store/store'
 import { closeSavePanel } from '../../store/combineActions'
 import { cancelCloseSavePanel } from '../../store/combineActions'
