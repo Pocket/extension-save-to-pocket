@@ -1,14 +1,7 @@
-import { COLORS, UTILIZATION } from './colors'
+import { COLORS, UTILIZATION } from 'elements/colors/colors'
 import { TYPOGRAPHY } from './variables'
-const {
-  $white,
-  $emerald,
-  $darksmoke,
-} = COLORS
-const {
-  $shadowButton,
-  $shadowButtonDown
-} = UTILIZATION
+const { $white, $emerald, $darksmoke } = COLORS
+const { $shadowButton, $shadowButtonDown } = UTILIZATION
 const { $fontstackDefault } = TYPOGRAPHY
 
 export const mixin_fontBase = `

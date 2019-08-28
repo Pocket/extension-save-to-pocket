@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled from '@emotion/styled'
 import { openTabWithUrl } from 'common/interface'
 import { mixin_pocketButton } from 'common/styles/components'
-import { COLORS } from 'common/styles/colors'
+import { COLORS } from 'elements/colors/colors'
 import { TYPOGRAPHY } from 'common/styles/variables'
 const { $fontstackDefault } = TYPOGRAPHY
 const {

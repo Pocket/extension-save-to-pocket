@@ -5,7 +5,7 @@ import ToolbarError from './toolbar.error'
 import * as Icon from 'components/icons'
 import { localize } from 'common/_locales/locales'
 import styled from '@emotion/styled'
-import { COLORS, UTILIZATION } from 'common/styles/colors'
+import { COLORS, UTILIZATION } from 'elements/colors/colors'
 import { TYPOGRAPHY } from 'common/styles/variables'
 const { $night, $powder, $white, $pitch } = COLORS
 const { $panelShadow } = UTILIZATION
