@@ -50,7 +50,7 @@ export default function Header({ recs }) {
     <HeaderWrapper>
       {!hasRecs(recs) && (
         <LoaderPanel>
-          <Loader></Loader>
+          <Loader />
           {localize('recommendations', 'loading')}
         </LoaderPanel>
       )}
