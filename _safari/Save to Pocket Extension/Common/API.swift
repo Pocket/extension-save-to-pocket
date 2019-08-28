@@ -106,7 +106,7 @@ class SaveToPocketAPI: SafariExtensionHandler{
       // Build request data dictionary
       let requestData: [String : Any] = [
         "consumer_key": CONSUMER_KEY,
-        "guid": guid as Any,
+        "guid": guid!,
         "token": token,
         "user_id" : userId,
         "account": "1",
