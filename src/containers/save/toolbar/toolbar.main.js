@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import Dropdown from '../../../components/dropdown/dropdown'
+import Dropdown from 'components/dropdown/dropdown'
 import Tagging from './tagging/tagging'
 import ToolbarError from './toolbar.error'
-import * as Icon from '../../../components/icons'
-import { localize } from '../../../common/_locales/locales'
+import * as Icon from 'components/icons'
+import { localize } from 'common/_locales/locales'
 import styled from '@emotion/styled'
-import { COLORS, UTILIZATION } from '../../../common/styles/colors'
-import { TYPOGRAPHY } from '../../../common/styles/variables'
-const {  $night, $powder, $white, $pitch } = COLORS
+import { COLORS, UTILIZATION } from 'common/styles/colors'
+import { TYPOGRAPHY } from 'common/styles/variables'
+const { $night, $powder, $white, $pitch } = COLORS
 const { $panelShadow } = UTILIZATION
 const { $fontstackDefault } = TYPOGRAPHY
 
@@ -18,8 +18,8 @@ const ToolbarWrapper = styled.div`
   box-sizing: border-box;
   margin: 0;
   width: 100%;
-  background-color: ${props => props.darkMode ? $night : $powder};
-  border-color: ${props => props.darkMode ? $pitch : $white};
+  background-color: ${props => (props.darkMode ? $night : $powder)};
+  border-color: ${props => (props.darkMode ? $pitch : $white)};
   box-shadow: ${$panelShadow};
   color: ${$pitch};
   font-family: ${$fontstackDefault};

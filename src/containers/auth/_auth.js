@@ -1,8 +1,8 @@
 import { delay } from 'redux-saga'
 import { put, takeEvery, takeLatest, select } from 'redux-saga/effects'
-import * as Interface from '../../common/interface'
-import { authorize, getGuid } from '../../common/api'
-import { AUTH_URL } from '../../common/constants'
+import * as Interface from 'common/interface'
+import { authorize, getGuid } from 'common/api'
+import { AUTH_URL } from 'common/constants'
 
 var postLoginPromise
 

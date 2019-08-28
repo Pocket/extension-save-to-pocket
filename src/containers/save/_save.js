@@ -12,15 +12,15 @@ import {
   updateToolbarIcon,
   setSettings,
   getSetting
-} from '../../common/interface'
+} from 'common/interface'
 import {
   saveToPocket,
   archiveItem,
   removeItem,
   getFeatures
-} from '../../common/api'
+} from 'common/api'
 import { requireAuthorization } from '../auth/_auth'
-import { getCurrentLanguageCode } from '../../common/helpers'
+import { getCurrentLanguageCode } from 'common/helpers'
 
 // INITIAL STATE
 const initialState = {}
