@@ -16,7 +16,7 @@ const SaveHanger = styled.div`
   width: 320px;
   z-index: 2147483647;
 `
-class SaveContainer extends Component {
+class DoorHanger extends Component {
   getDefaultStyles = () => {
     return [
       {
@@ -124,4 +124,4 @@ class SaveContainer extends Component {
   }
 }
 
-export default SaveContainer
+export default DoorHanger
