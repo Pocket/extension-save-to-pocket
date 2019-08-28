@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Toolbar from './toolbar/toolbar.main'
 import Recommendations from 'views/doorhanger/recommendations/recommendations'
-import Survey from './survey/survey.main'
+import Survey from 'views/doorhanger/survey/survey.main'
 import { TransitionMotion, spring, presets } from 'react-motion' //
 import styled from '@emotion/styled'
 import { mixin_fontBase } from 'common/styles/components'
