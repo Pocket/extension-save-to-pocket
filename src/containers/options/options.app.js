@@ -1,4 +1,3 @@
-import styles from './options.scss'
 import {
   PocketLogo,
   PocketNewtab,
@@ -11,7 +10,170 @@ import React, { Component } from 'react'
 import { openTabWithUrl } from 'common/interface'
 import { localize } from 'common/_locales/locales'
 import { AUTH_URL, LOGOUT_URL, SET_SHORTCUTS } from 'common/constants'
+import styled from '@emotion/styled'
+import { COLORS } from 'components/elements/colors/colors'
+import { TYPOGRAPHY } from 'common/styles/variables'
+import { mixin_pocketButton } from 'common/styles/components'
+const {
+  $pitch,
+  $gray,
+  $snow,
+  $tar,
+  $darksmoke,
+  $teal,
+  $coal,
+  $emerald
+} = COLORS
+const { $fontstackDefault } = TYPOGRAPHY
 
+const OptionsButtonLink = styled.button`
+  ${mixin_pocketButton}
+  color: ${$coal};
+  text-decoration: underline;
+
+  &:hover {
+    color: ${$emerald};
+  }
+`
+const OptionsContainer = styled.div`
+  box-sizing: border-box;
+  display: inline-block;
+  font-family: ${$fontstackDefault};
+  margin-bottom: 80px;
+  padding: 0 30px;
+  width: 700px;
+
+  @media (min-width: 320px) and (max-width: 767px) {
+    width: 100%;
+  }
+`
+const OptionsTitle = styled.h1`
+  color: ${props => (props.darkMode ? $gray : $pitch)};
+  font-size: 28px;
+  font-weight: 300;
+  margin: 70px 0 0;
+  padding: 0 0 20px;
+  text-align: left;
+`
+const OptionsSection = styled.div`
+  align-items: center;
+  border-top: 1px solid ${$snow};
+  display: flex;
+  font-size: 14px;
+  justify-content: flex-start;
+  padding: 20px 0;
+  text-align: left;
+
+  .darkMode & {
+    border-color: ${$tar};
+  }
+
+  @media (min-width: 320px) and (max-width: 767px) {
+    flex-direction: column;
+  }
+`
+const OptionsSectionTitle = styled.div`
+  color: ${props => (props.darkMode ? $gray : $darksmoke)};
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin-right: 35px;
+  padding-bottom: 5px;
+  text-transform: uppercase;
+  width: 230px;
+  @media (min-width: 320px) and (max-width: 767px) {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+`
+const OptionsSectionContent = styled.div`
+  display: flex;
+`
+const OptionsSectionContentFull = styled.div`
+  display: block;
+  width: 100%;
+`
+const OptionsContentFullBlock = styled.a`
+  color: ${$darksmoke};
+  display: block;
+  margin: 20px 0 10px;
+  text-align: center;
+
+  &:hover {
+    color: ${$teal};
+  }
+`
+const OptionsPrivacyLegal = styled.a`
+  color: ${$darksmoke};
+  display: block;
+  margin: 10px 0 0;
+
+  &:hover {
+    color: ${$teal};
+  }
+`
+const OptionsSectionMain = styled.div`
+  color: ${props => (props.darkMode ? $gray : $darksmoke)};
+  display: block;
+  font-size: 16px;
+  width: 370px;
+
+  .sectionContentFull & {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+  @media (min-width: 320px) and (max-width: 767px) {
+    width: 100%;
+  }
+`
+const OptionsBlockCopy = styled.div`
+  display: block;
+  font-weight: 600;
+  margin-top: 15px;
+`
+const OptionsInfo = styled.div`
+  font-size: 0.8em;
+  margin-top: 10px;
+`
+const OptionsSaveServicesList = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  & > li {
+    margin-bottom: 10px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+`
+const OptionsQuestionsList = styled.ul`
+  line-height: 1.5em;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  a {
+    color: ${$darksmoke};
+    padding: 5px 0;
+    text-transform: lowercase;
+
+    &:hover {
+      color: ${$teal};
+    }
+  }
+`
+const OptionsFooter = styled.footer`
+  color: ${$darksmoke};
+  display: block;
+  font-size: 14px;
+  font-weight: 300;
+  margin-top: 40px;
+  text-align: center;
+`
 export default class Options extends Component {
   userData = () => {
     const setup = this.props.setup
@@ -24,11 +186,9 @@ export default class Options extends Component {
     return (
       <div>
         {username} &nbsp; ({' '}
-        <button
-          className={styles.buttonLink}
-          onClick={() => openTabWithUrl(LOGOUT_URL)}>
+        <OptionsButtonLink onClick={() => openTabWithUrl(LOGOUT_URL)}>
           {localize('options_page', 'logout_link')}
-        </button>{' '}
+        </OptionsButtonLink>{' '}
         )
       </div>
     )
@@ -36,11 +196,9 @@ export default class Options extends Component {
 
   loggedOut = () => {
     return (
-      <button
-        className={styles.buttonLink}
-        onClick={() => openTabWithUrl(AUTH_URL)}>
+      <OptionsButtonLink onClick={() => openTabWithUrl(AUTH_URL)}>
         {localize('options_page', 'login_link')}
-      </button>
+      </OptionsButtonLink>
     )
   }
 
@@ -50,8 +208,8 @@ export default class Options extends Component {
 
   render() {
     return (
-      <div className={styles.container}>
-        <h1 className={styles.title}>
+      <OptionsContainer>
+        <OptionsTitle darkMode={this.props.darkMode}>
           {PocketLogo({
             width: '26px',
             height: '26px',
@@ -61,37 +219,37 @@ export default class Options extends Component {
           })}
           {localize('options_page', 'header')} -{' '}
           {localize('options_page', 'save_to_pocket')}
-        </h1>
+        </OptionsTitle>
 
-        <div className={styles.section}>
-          <div className={styles.sectionContent}>
-            <div className={styles.sectionTitle}>
+        <OptionsSection>
+          <OptionsSectionContent>
+            <OptionsSectionTitle>
               {localize('options_page', 'login_title')}
-            </div>
-            <div className={styles.sectionMain}>{this.userData()}</div>
-          </div>
-        </div>
+            </OptionsSectionTitle>
+            <OptionsSectionMain>{this.userData()}</OptionsSectionMain>
+          </OptionsSectionContent>
+        </OptionsSection>
 
-        <div className={styles.section}>
-          <div className={styles.sectionContent}>
-            <div className={styles.sectionTitle}>
+        <OptionsSection>
+          <OptionsSectionContent>
+            <OptionsSectionTitle>
               {localize('options_page', 'keyboard_shortcut_title')}
-            </div>
-            <div className={styles.sectionMain}>
-              <button className={styles.buttonLink} onClick={this.setShortcuts}>
+            </OptionsSectionTitle>
+            <OptionsSectionMain>
+              <OptionsButtonLink onClick={this.setShortcuts}>
                 {localize('options_page', 'record_shortcut')}
-              </button>
-            </div>
-          </div>
-        </div>
+              </OptionsButtonLink>
+            </OptionsSectionMain>
+          </OptionsSectionContent>
+        </OptionsSection>
 
-        <div className={styles.section}>
-          <div className={styles.sectionContent}>
-            <div className={styles.sectionTitle}>
+        <OptionsSection>
+          <OptionsSectionContent>
+            <OptionsSectionTitle>
               {localize('options_page', 'quick_save_services_title')}
-            </div>
-            <div className={styles.sectionMain}>
-              <ul className={styles.saveServices}>
+            </OptionsSectionTitle>
+            <OptionsSectionMain>
+              <OptionsSaveServicesList>
                 <li>
                   <Toggle
                     active={this.props.setup.sites_twitter}
@@ -99,38 +257,38 @@ export default class Options extends Component {
                   />
                   Twitter
                 </li>
-              </ul>
-              <div className={styles.info}>
+              </OptionsSaveServicesList>
+              <OptionsInfo>
                 {localize('options_page', 'services_info')}
-              </div>
-            </div>
-          </div>
-        </div>
+              </OptionsInfo>
+            </OptionsSectionMain>
+          </OptionsSectionContent>
+        </OptionsSection>
 
-        <div className={styles.section}>
-          <div className={styles.sectionContent}>
-            <div className={styles.sectionTitle}>
+        <OptionsSection>
+          <OptionsSectionContent>
+            <OptionsSectionTitle>
               {localize('options_page', 'recommendations_title')}
-            </div>
-            <div className={styles.sectionMain}>
+            </OptionsSectionTitle>
+            <OptionsSectionMain>
               <Toggle
                 active={this.props.setup.on_save_recommendations}
                 action={this.props.toggleRecommendations}
               />
-              <div className={styles.info}>
+              <OptionsInfo>
                 {localize('options_page', 'recommendations_detail')}
-              </div>
-            </div>
-          </div>
-        </div>
+              </OptionsInfo>
+            </OptionsSectionMain>
+          </OptionsSectionContent>
+        </OptionsSection>
 
-        <div className={styles.section}>
-          <div className={styles.sectionContent}>
-            <div className={styles.sectionTitle}>
+        <OptionsSection>
+          <OptionsSectionContent>
+            <OptionsSectionTitle>
               {localize('options_page', 'questions_pocket_title')}
-            </div>
-            <div className={styles.sectionMain}>
-              <ul className={styles.questions}>
+            </OptionsSectionTitle>
+            <OptionsSectionMain>
+              <OptionsQuestionsList>
                 <li>
                   <a href="https://help.getpocket.com">
                     {localize('options_page', 'search_support_link')}
@@ -146,19 +304,18 @@ export default class Options extends Component {
                     {localize('options_page', 'get_in_touch_on_twitter_link')}
                   </a>
                 </li>
-              </ul>
-            </div>
-          </div>
-        </div>
+              </OptionsQuestionsList>
+            </OptionsSectionMain>
+          </OptionsSectionContent>
+        </OptionsSection>
 
-        <div className={styles.section}>
-          <div className={styles.sectionContentFull}>
-            <div className={styles.sectionTitle}>
+        <OptionsSection>
+          <OptionsSectionContentFull className="sectionContentFull">
+            <OptionsSectionTitle>
               {localize('options_page', 'more_ways_to_save_title')}
-            </div>
-            <div className={styles.sectionMain}>
-              <a
-                className={styles.contentFullBlock}
+            </OptionsSectionTitle>
+            <OptionsSectionMain>
+              <OptionsContentFullBlock
                 href="https://chrome.google.com/webstore/detail/pocket-new-tab/mlnnopicjonfamklpcdfnbcomdlopmof?authuser=1"
                 rel="noopener noreferrer"
                 target="_blank">
@@ -167,10 +324,11 @@ export default class Options extends Component {
                   height: '48px',
                   marginRight: 0
                 })}
-                <div className={styles.blockCopy}>Pocket New Tab</div>
-              </a>
-              <a
-                className={styles.contentFullBlock}
+                <OptionsBlockCopy darkMode={this.props.darkMode}>
+                  Pocket New Tab
+                </OptionsBlockCopy>
+              </OptionsContentFullBlock>
+              <OptionsContentFullBlock
                 href="http://getpocket.com/android/"
                 rel="noopener noreferrer"
                 target="_blank">
@@ -179,10 +337,11 @@ export default class Options extends Component {
                   height: '48px',
                   marginRight: 0
                 })}
-                <div className={styles.blockCopy}>Android</div>
-              </a>
-              <a
-                className={styles.contentFullBlock}
+                <OptionsBlockCopy darkMode={this.props.darkMode}>
+                  Android
+                </OptionsBlockCopy>
+              </OptionsContentFullBlock>
+              <OptionsContentFullBlock
                 href="http://getpocket.com/iphone/"
                 rel="noopener noreferrer"
                 target="_blank">
@@ -191,10 +350,11 @@ export default class Options extends Component {
                   height: '48px',
                   marginRight: 0
                 })}
-                <div className={styles.blockCopy}>iPhone/Ipad</div>
-              </a>
-              <a
-                className={styles.contentFullBlock}
+                <OptionsBlockCopy darkMode={this.props.darkMode}>
+                  iPhone/Ipad
+                </OptionsBlockCopy>
+              </OptionsContentFullBlock>
+              <OptionsContentFullBlock
                 href="http://getpocket.com/mac/"
                 rel="noopener noreferrer"
                 target="_blank">
@@ -203,23 +363,24 @@ export default class Options extends Component {
                   height: '48px',
                   marginRight: 0
                 })}
-                <div className={styles.blockCopy}>Mac</div>
-              </a>
-            </div>
-          </div>
-        </div>
+                <OptionsBlockCopy darkMode={this.props.darkMode}>
+                  Mac
+                </OptionsBlockCopy>
+              </OptionsContentFullBlock>
+            </OptionsSectionMain>
+          </OptionsSectionContentFull>
+        </OptionsSection>
 
-        <footer className={styles.footer}>
+        <OptionsFooter>
           &copy; Copyright {new Date().getFullYear()} Read It Later Inc.
-          <a
-            className={styles.privacylegal}
+          <OptionsPrivacyLegal
             href="https://getpocket.com/legal?src=extensions"
             rel="noopener noreferrer"
             target="_blank">
             Legal &amp; Privacy
-          </a>
-        </footer>
-      </div>
+          </OptionsPrivacyLegal>
+        </OptionsFooter>
+      </OptionsContainer>
     )
   }
 }
