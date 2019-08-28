@@ -10,27 +10,26 @@ const hasRecs = recs => recs
 const hasFeed = recs => recs && recs.feed && recs.feed.length > 0
 
 const HeaderWrapper = styled.div`
-    a {
-      color: ${$teal};
-      display: block;
-      text-align: center;
+  a {
+    color: ${$teal};
+    display: block;
+    text-align: center;
 
-      &:hover {
-        color: darken(${$teal}, 10%);
-      }
+    &:hover {
+      color: darken(${$teal}, 10%);
     }
   }
 `
 const HeaderSection = styled.div`
-    color: ${$darksmoke};
-    font-size: 12px;
-    font-weight: 400;
-    letter-spacing: 0.1px;
-    line-height: 16px;
-    margin: 0;
-    padding: 0.5em 0 0.8em;
-    text-align: center;
-    text-transform: uppercase;
+  color: ${$darksmoke};
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.1px;
+  line-height: 16px;
+  margin: 0;
+  padding: 0.5em 0 0.8em;
+  text-align: center;
+  text-transform: uppercase;
 `
 Header.propTypes = {
   recs: PropTypes.shape({
