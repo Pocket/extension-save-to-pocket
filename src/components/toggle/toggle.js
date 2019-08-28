@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from '@emotion/styled'
 import PropTypes from 'prop-types'
-import { COLORS } from 'common/styles/colors'
+import { COLORS } from 'elements/colors/colors'
 const { $silver, $overcast, $teal, $white, $pitch } = COLORS
 
 const Button = styled.button`
@@ -38,7 +38,5 @@ Toggle.propTypes = {
   action: PropTypes.func
 }
 export default function Toggle({ action, active, darkMode }) {
-  return (
-    <Button onClick={action} active={active} darkMode={darkMode}/>
-  )
+  return <Button onClick={action} active={active} darkMode={darkMode} />
 }

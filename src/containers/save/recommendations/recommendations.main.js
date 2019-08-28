@@ -3,7 +3,7 @@ import styled from '@emotion/styled'
 import PropTypes from 'prop-types'
 import RecommendationList from './list/list'
 import Header from './header/header'
-import { COLORS, UTILIZATION } from 'common/styles/colors'
+import { COLORS, UTILIZATION } from 'elements/colors/colors'
 import { TYPOGRAPHY } from 'common/styles/variables'
 const { $fontstackDefault } = TYPOGRAPHY
 const { $powder, $white, $pitch } = COLORS

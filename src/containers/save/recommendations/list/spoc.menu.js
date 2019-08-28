@@ -2,7 +2,7 @@ import * as Icon from 'components/icons'
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import PropTypes from 'prop-types'
-import { COLORS } from 'common/styles/colors'
+import { COLORS } from 'elements/colors/colors'
 const { $white, $pitch, $overcast, $teal } = COLORS
 const SponsorMenu = styled.div`
   float: right;
