@@ -1,4 +1,4 @@
-import * as Icon from 'components/icons'
+import * as Icon from 'elements/icons'
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import PropTypes from 'prop-types'

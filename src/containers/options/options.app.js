@@ -5,7 +5,7 @@ import {
   AndroidLogo,
   IphoneIpad,
   Mac
-} from 'components/icons'
+} from 'elements/icons'
 import Toggle from 'elements/toggle/toggle'
 import React, { Component } from 'react'
 import { openTabWithUrl } from 'common/interface'

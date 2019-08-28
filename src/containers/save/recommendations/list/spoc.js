@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import * as Icon from 'components/icons'
+import * as Icon from 'elements/icons'
 import { localize } from 'common/_locales/locales'
 import SpocHeader from './spoc.header'
 import {
