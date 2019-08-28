@@ -6,7 +6,7 @@ import {
   IphoneIpad,
   Mac
 } from 'components/icons'
-import Toggle from 'components/toggle/toggle'
+import Toggle from 'elements/toggle/toggle'
 import React, { Component } from 'react'
 import { openTabWithUrl } from 'common/interface'
 import { localize } from 'common/_locales/locales'
