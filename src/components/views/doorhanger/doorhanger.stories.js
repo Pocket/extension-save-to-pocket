@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { storiesOf } from '@storybook/react'
-import SaveContainer from './save.container'
+import DoorHanger from './doorhanger'
 
 const props = {
   isSaveActive: () => {},
@@ -40,9 +40,10 @@ const props = {
   surveyRespond: () => {},
   surveyCancel: () => {}
 }
-storiesOf('Save | Container', module).add('show save container', () => (
-  <SaveContainer
-    isSaveActive={props.isSaveActive()}
+
+storiesOf('Views | DoorHanger', module).add('show', () => (
+  <DoorHanger
+    isSaveActive={true}
     showRecs={props.showRecs}
     onHover={props.onHover}
     offHover={props.offHover}

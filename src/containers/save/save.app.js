@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import SaveContainer from './save.container'
+import DoorHanger from 'views/doorhanger/doorhanger'
 import { getCurrentLanguageCode } from 'common/helpers'
 
 const activeState = [
@@ -100,7 +100,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <SaveContainer
+        <DoorHanger
           isSaveActive={this.isSaveActive()}
           showRecs={this.showRecs}
           onHover={this.onHover}
