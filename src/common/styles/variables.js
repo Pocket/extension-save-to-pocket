@@ -1,4 +1,4 @@
-import { COLORS } from './colors'
+import { COLORS } from 'elements/colors/colors'
 const { $black } = COLORS
 
 export const MEDIA_QUERIES = {

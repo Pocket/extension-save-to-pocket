@@ -1,16 +1,8 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
-import { COLORS } from 'common/styles/colors'
-const {
-  $pitch,
-  $snow,
-  $silver,
-  $tar,
-  $darksmoke,
-  $overcast,
-  $white
-} = COLORS
+import { COLORS } from 'elements/colors/colors'
+const { $pitch, $snow, $silver, $tar, $darksmoke, $overcast, $white } = COLORS
 
 const SuggestionsWrapper = styled.div`
   box-sizing: border-box;

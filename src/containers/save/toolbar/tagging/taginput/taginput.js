@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { localize } from 'common/_locales/locales'
 import AutosizeInput from 'react-input-autosize'
 import styled from '@emotion/styled'
-import { COLORS } from 'common/styles/colors'
+import { COLORS } from 'elements/colors/colors'
 const { $pitch, $powder, $hotCoral } = COLORS
 
 const TagError = styled.div`
@@ -29,7 +29,7 @@ const InputWrapper = styled('div')`
     display: inline-block;
     line-height: 16px;
     margin-bottom: 3px;
-    margin-left: ${props => props.active ? '0' : '16px'};
+    margin-left: ${props => (props.active ? '0' : '16px')};
     margin-right: 3px;
     margin-top: 3px;
     min-width: 0.3em;
