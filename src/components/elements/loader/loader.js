@@ -1,15 +1,7 @@
 import React from 'react'
-import { localize } from 'common/_locales/locales'
 import { COLORS } from 'elements/colors/colors'
 import styled from '@emotion/styled'
 const { $overcast } = COLORS
-
-const LoaderPanel = styled.div`
-  display: block;
-  font-size: 12px;
-  padding: 15px 0 20px;
-  text-align: center;
-`
 
 const LoaderWrapper = styled.div`
   display: inline-block;
@@ -71,14 +63,11 @@ const LoaderAnimation = styled.div`
 `
 export default function Loader() {
   return (
-    <LoaderPanel>
-      <LoaderWrapper>
-        <LoaderAnimation>
-          <div />
-          <div />
-        </LoaderAnimation>
-      </LoaderWrapper>
-      {localize('recommendations', 'loading')}
-    </LoaderPanel>
+    <LoaderWrapper>
+      <LoaderAnimation>
+        <div />
+        <div />
+      </LoaderAnimation>
+    </LoaderWrapper>
   )
 }
