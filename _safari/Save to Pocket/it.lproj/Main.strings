@@ -1,0 +1,45 @@
+
+/* Class = "NSMenuItem"; title = "Save to Pocket"; ObjectID = "1Xt-HY-uBw"; */
+"1Xt-HY-uBw.title" = "Save to Pocket";
+
+/* Class = "NSMenuItem"; title = "Quit Save to Pocket"; ObjectID = "4sb-4s-VLi"; */
+"4sb-4s-VLi.title" = "Quit Save to Pocket";
+
+/* Class = "NSMenuItem"; title = "About Save to Pocket"; ObjectID = "5kV-Vb-QxS"; */
+"5kV-Vb-QxS.title" = "About Save to Pocket";
+
+/* Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6"; */
+"AYu-sK-qS6.title" = "Main Menu";
+
+/* Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ"; */
+"F2S-fz-NVQ.title" = "Help";
+
+/* Class = "NSMenuItem"; title = "Save to Pocket Help"; ObjectID = "FKE-Sm-Kum"; */
+"FKE-Sm-Kum.title" = "Save to Pocket Help";
+
+/* Class = "NSWindow"; title = "App Name"; ObjectID = "IQv-IB-iLA"; */
+"IQv-IB-iLA.title" = "App Name";
+
+/* Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS"; */
+"Kd2-mp-pUS.title" = "Show All";
+
+/* Class = "NSMenuItem"; title = "Hide Save to Pocket"; ObjectID = "Olw-nP-bQN"; */
+"Olw-nP-bQN.title" = "Hide Save to Pocket";
+
+/* Class = "NSTextFieldCell"; title = "App Name"; ObjectID = "S7v-7o-3vW"; */
+"S7v-7o-3vW.title" = "App Name";
+
+/* Class = "NSButtonCell"; alternateTitle = "Install"; ObjectID = "Srx-0j-A4D"; */
+"Srx-0j-A4D.alternateTitle" = "Install";
+
+/* Class = "NSButtonCell"; title = "Open in Safari Extensions Preferences…"; ObjectID = "Srx-0j-A4D"; */
+"Srx-0j-A4D.title" = "Open in Safari Extensions Preferences…";
+
+/* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO"; */
+"Vdr-fp-XzO.title" = "Hide Others";
+
+/* Class = "NSMenu"; title = "Save to Pocket"; ObjectID = "uQy-DD-JDr"; */
+"uQy-DD-JDr.title" = "Save to Pocket";
+
+/* Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd"; */
+"wpr-3q-Mcd.title" = "Help";
