@@ -1,6 +1,5 @@
 import $ from 'jquery'
-import styles from './twitter.scss' // Import Styles
-import { sendMessage } from 'common/interface'
+import { sendMessage } from '../../../common/interface'
 import { css } from 'emotion'
 
 const pocketIconFillStroke = `
@@ -10,6 +9,16 @@ const pocketIconFillStroke = `
   position: relative;
   top: 10px;
   left: 9px;
+`
+const pocketIconFill = css`
+  ${pocketIconFillStroke}
+  display: none;
+  fill: #ef4056;
+`
+const pocketIconStroke = css`
+  ${pocketIconFillStroke}
+  display: inline-block;
+  fill: rgb(136, 153, 166);
 `
 const pocketIconContainer = css`
   cursor: pointer;
@@ -22,16 +31,8 @@ const pocketIconContainer = css`
   transition: background 200ms;
   &:hover {
     background: #ef405630;
-    .pocketIconStroke {
+    .${pocketIconStroke} {
       fill: #ef4056;
-    }
-  }
-  .saved & {
-    .pocketIconFill {
-      display: inline-block;
-    }
-    .pocketIconStroke {
-      display: none;
     }
   }
   .list-view & {
@@ -42,17 +43,15 @@ const pocketIconContainer = css`
     zoom: 1.1;
   }
 `
-const pocketIconFill = css`
-  ${pocketIconFillStroke}
-  display: none;
-  fill: #ef4056;
+const savedClass = css`
+  .${pocketIconFill} {
+    display: inline-block;
+  }
+  .${pocketIconStroke} {
+    display: none;
+  }
 `
 
-const pocketIconStroke = css`
-  ${pocketIconFillStroke}
-  display: inline-block;
-  fill: rgb(136, 153, 166);
-`
 // Define Markup
 const saveToPocketMarkup = `
 <div class="ProfileTweet-actionButton u-textUserColorHover js-actionButton ${pocketIconContainer}"
@@ -88,7 +87,7 @@ export function getPocketButtonClone({ permaLink, isFocusViewTweet }) {
     .attr({
       'data-permalink-path': permaLink
     })
-    .addClass(isFocusViewTweet ? styles['focus-view'] : styles['list-view'])
+    .addClass(isFocusViewTweet ? 'focus-view' : 'list-view')
 
   return pocketIconButtonClone
 }
@@ -114,7 +113,7 @@ export function handleSave(elementId, permaLink, event) {
     function resolveSave(data) {
       const elementId = data.saveObject.elementId
       const tweetActionContainer = document.getElementById(elementId)
-      tweetActionContainer.classList.add(styles.saved)
+      tweetActionContainer.classList.add(savedClass)
     }
   )
 }
