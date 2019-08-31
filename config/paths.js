@@ -84,6 +84,7 @@ module.exports = {
   appLoginJs: resolveApp('src/containers/auth/login'),
   appLogoutJs: resolveApp('src/containers/auth/logout'),
   appSaveJs: resolveApp('src/containers/save/save'),
+  appSafari: resolveApp('src/containers/safari/inject'),
   appSaveHTML: resolveApp('src/containers/save/save.html'),
   appTwitterJs: resolveApp('src/containers/sites/twitter/twitter'),
   appManifest: resolveApp('src/manifest.yml'),

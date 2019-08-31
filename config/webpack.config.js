@@ -138,7 +138,7 @@ module.exports = function(webpackEnv) {
     bail: isEnvProduction,
     devtool: isEnvProduction
       ? shouldUseSourceMap
-        ? 'source-map'
+        ? 'inline-source-map'
         : false
       : isEnvDevelopment && 'cheap-module-source-map',
     // These are the "entry points" to our application.
@@ -149,6 +149,7 @@ module.exports = function(webpackEnv) {
           require.resolve('react-dev-utils/webpackHotDevClient'),
         paths.appBackground
       ].filter(Boolean),
+      safari: [paths.appSafari],
       options: [paths.appOptions],
       login: [paths.appLoginJs],
       logout: [paths.appLogoutJs],
