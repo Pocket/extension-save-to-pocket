@@ -8,6 +8,8 @@
 
 import SafariServices
 
+var postAuthSave:SFSafariPage? = nil
+
 class Actions {
 
   static func logIn(from page: SFSafariPage){
@@ -28,9 +30,6 @@ class Actions {
 
   static func auth(from page: SFSafariPage, userInfo: [String : Any]?){
 
-    // Since we got the Auth Code from the passed in page, we close that page
-    Utilities.closeTab(from: page, userInfo: userInfo)
-
     // Make an API call to validate the extension
     SaveToPocketAPI.validateAuthCode(from: page, userInfo: userInfo) { result in
 
@@ -39,15 +38,19 @@ class Actions {
         case .success(let access_token):
           NSLog("Validated auth code: \(access_token)")
 
-          SFSafariApplication.getActiveWindow { (window) in
-            window?.getActiveTab { (tab) in
-              tab?.getActivePage(completionHandler: { (pageToSave) in
-                self.savePage(from: pageToSave!)
-              })
-            }
-          }
+          // Activate tab
+          postAuthSave?.getContainingTab(completionHandler: { tab in
+            tab.activate(completionHandler: {
+              // Save the correct page
+              self.savePage(from: postAuthSave!)
+              // Since we got the Auth Code from the passed in page, we close that page
+              Utilities.closeTab(from: page, userInfo: userInfo)
+            })
+          })
 
         case .failure(let error):
+          // Since we got the Auth Code from the passed in page, we close that page
+          Utilities.closeTab(from: page, userInfo: userInfo)
           NSLog("Failed to validate auth code: \(error)")
 
       }
@@ -64,7 +67,8 @@ class Actions {
 
         // Do we have an auth token?
         guard let access_token = defaults.string(forKey: "access_token") else {
-          // No auth token, need to log in
+          // No auth token.  Save reference to the page and log
+          postAuthSave = page
           Actions.logIn(from: page)
           return
         }
@@ -122,7 +126,7 @@ class Actions {
           Actions.logIn(from: page)
           return
         }
-    
+
         NSLog("Save page with access token: \(access_token)")
   }
 
