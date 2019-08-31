@@ -18,7 +18,7 @@ enum RequestError: Error {
 }
 
 class SafariExtensionHandler: SFSafariExtensionHandler {
-
+  
   override func messageReceived(withName messageName: String, from page: SFSafariPage, userInfo: [String : Any]?) {
 
     // This method will be called when a content script provided by your extension calls
@@ -72,14 +72,14 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
   }
 
   override func contextMenuItemSelected(withCommand command: String, in page: SFSafariPage, userInfo: [String : Any]? = nil){
-    
+
     NSLog("Context with \(command) \(Receive.SAVE_TO_POCKET_CONTEXT)")
-    
+
     // Not sure this is viable to actuall receive url info
     if(command == Receive.SAVE_TO_POCKET_CONTEXT){
       NSLog("Save to pocket context with userInfo: \(String(describing: userInfo!))")
     }
-    
+
   }
 
   override func messageReceivedFromContainingApp(withName messageName: String, userInfo: [String : Any]? = nil) {
@@ -95,13 +95,10 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     // This method will be called when your toolbar item is clicked.
     NSLog("The extension's toolbar item was clicked.")
 
-    // Open Auth Page
+    // Save Page
     window.getActiveTab { (tab) in
       tab?.getActivePage(completionHandler: { (page) in
         Actions.savePage(from: page!)
-
-        // DEV ONLY:  Remove that auth token
-        Actions.logOut(from: page!)
       })
     }
   }
