@@ -6,9 +6,8 @@ import { TransitionMotion, spring, presets } from 'react-motion' //
 import styled from '@emotion/styled'
 import { mixin_fontBase } from 'common/styles/components'
 
-const SaveHanger = styled.div`
-  ${mixin_fontBase}
-
+const DoorHangerWrapper = styled.div`
+  ${mixin_fontBase};
   font-size: 16px;
   position: fixed;
   right: 10px;
@@ -16,6 +15,7 @@ const SaveHanger = styled.div`
   width: 320px;
   z-index: 2147483647;
 `
+
 class DoorHanger extends Component {
   getDefaultStyles = () => {
     return [
@@ -52,6 +52,14 @@ class DoorHanger extends Component {
     return { transform: spring(-240), opacity: spring(0) }
   }
 
+  get storedTags() {
+    return this.props.setup ? this.props.setup.tags_stored : []
+  }
+
+  get showSurvey() {
+    return this.props.survey ? this.props.survey.show : false
+  }
+
   render() {
     return (
       <TransitionMotion
@@ -64,7 +72,7 @@ class DoorHanger extends Component {
             <div>
               {items.map(item => {
                 return (
-                  <SaveHanger
+                  <DoorHangerWrapper
                     onMouseEnter={this.props.onHover}
                     onMouseLeave={this.props.offHover}
                     key={item.key}
@@ -90,11 +98,11 @@ class DoorHanger extends Component {
                       closePanel={this.props.closePanel}
                       removeTag={this.props.removeTag}
                       removeTags={this.props.removeTags}
-                      storedTags={this.props.setup.tags_stored}
+                      storedTags={this.storedTags}
                       inputFocused={this.props.inputFocused}
                       setInputFocusState={this.props.setInputFocusState}
                     />
-                    {this.props.showRecs && !this.props.survey.show && (
+                    {this.props.showRecs && !this.showSurvey && (
                       <Recommendations
                         tabId={this.props.tab_id}
                         recs={this.props.currentRecs}
@@ -106,14 +114,14 @@ class DoorHanger extends Component {
                         spocRemove={this.props.spocRemove}
                       />
                     )}
-                    {this.props.survey.show && (
+                    {this.showSurvey && (
                       <Survey
                         survey={this.props.survey}
                         surveyRespond={this.props.surveyRespond}
                         surveyCancel={this.props.surveyCancel}
                       />
                     )}
-                  </SaveHanger>
+                  </DoorHangerWrapper>
                 )
               })}
             </div>
