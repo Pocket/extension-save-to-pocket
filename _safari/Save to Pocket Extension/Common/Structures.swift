@@ -12,6 +12,12 @@ struct GuidResponse: Decodable {
 
 struct AddResponse: Decodable{
   let status: Int
+  let item: Item?
+}
+
+struct Item: Decodable{
+  let item_id: String?
+  let resolved_url: String?
 }
 
 struct AuthResponse: Decodable{
@@ -37,6 +43,8 @@ struct Profile: Decodable{
   let description: String?
   let avatar_url: String?
 }
+
+
 
 struct Dispatch {
   static let SAVE_TO_POCKET_REQUEST: String = "SAVE_TO_POCKET_REQUEST"
