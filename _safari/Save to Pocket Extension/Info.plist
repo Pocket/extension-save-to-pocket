@@ -34,7 +34,11 @@
 		<array>
 			<dict>
 				<key>Script</key>
-				<string>script.js</string>
+				<string>vendors~safari.chunk.js</string>
+			</dict>
+			<dict>
+				<key>Script</key>
+				<string>safari.js</string>
 			</dict>
 			<dict>
 				<key>Script</key>
