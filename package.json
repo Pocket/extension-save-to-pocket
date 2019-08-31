@@ -66,8 +66,8 @@
     "workbox-webpack-plugin": "4.3.1"
   },
   "dependencies": {
-    "@emotion/core": "^10.0.10",
-    "@emotion/styled": "^10.0.5",
+    "@emotion/core": "^10.0.16",
+    "@emotion/styled": "^10.0.15",
     "autosize-input": "^0.4.0",
     "blueimp-md5": "^2.10.0",
     "classnames": "^2.2.5",
