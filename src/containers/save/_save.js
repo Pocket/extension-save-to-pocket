@@ -8,17 +8,8 @@ import {
   select,
   race
 } from 'redux-saga/effects'
-import {
-  updateToolbarIcon,
-  setSettings,
-  getSetting
-} from 'common/interface'
-import {
-  saveToPocket,
-  archiveItem,
-  removeItem,
-  getFeatures
-} from 'common/api'
+import { updateToolbarIcon, setSettings, getSetting } from 'common/interface'
+import { saveToPocket, archiveItem, removeItem, getFeatures } from 'common/api'
 import { requireAuthorization } from '../auth/_auth'
 import { getCurrentLanguageCode } from 'common/helpers'
 
