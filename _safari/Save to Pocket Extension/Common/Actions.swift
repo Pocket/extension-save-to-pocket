@@ -26,6 +26,12 @@ class Actions {
     let defaults = UserDefaults.standard
     defaults.removeObject(forKey: "access_token")
 
+    // Status should be replaced with relevant data
+    page.dispatchMessageToScript(
+      withName: Dispatch.USER_LOG_OUT_SUCCESS,
+      userInfo: nil
+    )
+
   }
 
   static func auth(from page: SFSafariPage, userInfo: [String : Any]?){
