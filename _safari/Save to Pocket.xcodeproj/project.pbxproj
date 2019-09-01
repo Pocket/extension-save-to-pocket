@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		311869CD231C7E3D00B8C29D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 311869CC231C7E3D00B8C29D /* InfoPlist.strings */; };
 		314EF9732289D10200704C32 /* Save_to_Pocket.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 314EF9722289D10200704C32 /* Save_to_Pocket.entitlements */; };
 		314EF9752289D10200704C32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314EF9742289D10200704C32 /* AppDelegate.swift */; };
 		314EF9782289D10200704C32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 314EF9762289D10200704C32 /* Main.storyboard */; };
@@ -52,6 +53,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		311869CC231C7E3D00B8C29D /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		3118929122E7C186002BFA42 /* Save to Pocket.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Save to Pocket.entitlements"; sourceTree = "<group>"; };
 		3118929522E7E18C002BFA42 /* Save to Pocket Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Save to Pocket Extension.entitlements"; sourceTree = "<group>"; };
 		314EF96F2289D10200704C32 /* Save to Pocket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Save to Pocket.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				31E6BC90231C672B009B7D58 /* Info.plist */,
+				311869CC231C7E3D00B8C29D /* InfoPlist.strings */,
 				5D9349172309148C00974849 /* Common */,
 				3118929522E7E18C002BFA42 /* Save to Pocket Extension.entitlements */,
 				314EF9962289D10400704C32 /* Save_to_Pocket_Extension.entitlements */,
@@ -313,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D0477E423071DF90026D77F /* login.js in Resources */,
+				311869CD231C7E3D00B8C29D /* InfoPlist.strings in Resources */,
 				314EF9952289D10400704C32 /* ToolbarItemIcon.pdf in Resources */,
 				5D8B900D23065E7800B9CF3E /* script.js in Resources */,
 				31E6BC91231C672B009B7D58 /* Info.plist in Resources */,
