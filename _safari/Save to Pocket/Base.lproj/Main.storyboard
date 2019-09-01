@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14269.14" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14865.1" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11134"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14865.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -65,7 +67,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Save_to_Pocket" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -75,8 +77,8 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController showSeguePresentationStyle="single" id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="App Name" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" titlebarAppearsTransparent="YES" id="IQv-IB-iLA">
-                        <windowStyleMask key="styleMask" closable="YES" miniaturizable="YES"/>
+                    <window key="window" title="App Name" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="IQv-IB-iLA">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" fullSizeContentView="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
@@ -96,61 +98,77 @@
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="Save_to_Pocket" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="329"/>
+                        <rect key="frame" x="0.0" y="0.0" width="583" height="371"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="42" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZLV-xE-AGT">
-                                <rect key="frame" x="0.0" y="34" width="480" height="250"/>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="10f-Lu-W1H">
+                                <rect key="frame" x="0.0" y="0.0" width="583" height="371"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="bgTriangle" id="XZb-he-vmh"/>
+                            </imageView>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="X1M-w3-9da">
+                                <rect key="frame" x="35" y="158" width="199" height="108"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="195" id="RrD-zd-YNx"/>
+                                </constraints>
+                                <textFieldCell key="cell" selectable="YES" id="vuh-O7-RhV">
+                                    <font key="font" size="18" name="Doyle-Medium"/>
+                                    <string key="title">One last thing:
+check the box next to Pocket in your Safari preferences. </string>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tQk-8V-gsS">
+                                <rect key="frame" x="299" y="0.0" width="284" height="287"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="left" image="Preferences" id="eEK-VW-bqd"/>
+                            </imageView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="fNZ-Kz-7My">
+                                <rect key="frame" x="37" y="80" width="195" height="43"/>
                                 <subviews>
-                                    <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FWV-e2-WQh" userLabel="IconView">
-                                        <rect key="frame" x="176" y="122" width="128" height="128"/>
-                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" image="AppIcon" id="Hhb-TZ-Dhg"/>
-                                    </imageView>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EB0-ac-UZR">
-                                        <rect key="frame" x="206" y="63" width="68" height="17"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" title="App Name" id="S7v-7o-3vW">
-                                            <font key="font" metaFont="system"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rH5-xg-t8R">
+                                        <rect key="frame" x="50" y="14" width="96" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Finish setup" id="o2g-OP-mef">
+                                            <font key="font" size="16" name="GraphikLCG-Medium"/>
+                                            <color key="textColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ooh-eV-eLQ">
-                                        <rect key="frame" x="99" y="-7" width="282" height="32"/>
-                                        <buttonCell key="cell" type="push" title="Open in Safari Extensions Preferences…" alternateTitle="Install" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingMiddle" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Srx-0j-A4D">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                            <string key="keyEquivalent" base64-UTF8="YES">
-DQ
-</string>
-                                            <connections>
-                                                <action selector="openSafariExtensionPreferences:" target="XfG-lQ-9wD" id="vKk-Xb-MPh"/>
-                                            </connections>
-                                        </buttonCell>
-                                    </button>
                                 </subviews>
-                                <visibilityPriorities>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                </visibilityPriorities>
-                                <customSpacing>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                </customSpacing>
-                            </stackView>
+                                <constraints>
+                                    <constraint firstItem="rH5-xg-t8R" firstAttribute="centerY" secondItem="fNZ-Kz-7My" secondAttribute="centerY" id="MNe-qb-bk1"/>
+                                    <constraint firstItem="rH5-xg-t8R" firstAttribute="centerX" secondItem="fNZ-Kz-7My" secondAttribute="centerX" id="q8z-xw-wI5"/>
+                                    <constraint firstAttribute="height" constant="43" id="ydA-Sb-1nP"/>
+                                </constraints>
+                                <gestureRecognizers>
+                                    <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="1" id="trx-fU-IUr">
+                                        <connections>
+                                            <action selector="didClickButtonWithClick:" target="XfG-lQ-9wD" id="Kj9-D3-7p9"/>
+                                        </connections>
+                                    </clickGestureRecognizer>
+                                </gestureRecognizers>
+                            </customView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="ZLV-xE-AGT" secondAttribute="trailing" id="7aD-Ze-9ed"/>
-                            <constraint firstItem="ZLV-xE-AGT" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="45" id="AJ3-sx-ZQx"/>
-                            <constraint firstAttribute="bottom" secondItem="ZLV-xE-AGT" secondAttribute="bottom" constant="34" id="KVY-ss-lTJ"/>
-                            <constraint firstItem="ZLV-xE-AGT" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="mT6-ee-vkp"/>
+                            <constraint firstAttribute="trailing" secondItem="tQk-8V-gsS" secondAttribute="trailing" id="HL0-wG-nOY"/>
+                            <constraint firstItem="X1M-w3-9da" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="37" id="Rqc-k5-p3c"/>
+                            <constraint firstItem="X1M-w3-9da" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="105" id="YPR-c3-fse"/>
+                            <constraint firstAttribute="bottom" secondItem="10f-Lu-W1H" secondAttribute="bottom" id="cpX-Up-eiJ"/>
+                            <constraint firstAttribute="bottom" secondItem="tQk-8V-gsS" secondAttribute="bottom" id="dFe-7t-VS8"/>
+                            <constraint firstItem="10f-Lu-W1H" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="fWb-PO-NhG"/>
+                            <constraint firstItem="10f-Lu-W1H" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="gNg-bo-MVx"/>
+                            <constraint firstItem="fNZ-Kz-7My" firstAttribute="leading" secondItem="X1M-w3-9da" secondAttribute="leading" id="jxp-mr-Mzf"/>
+                            <constraint firstAttribute="trailing" secondItem="10f-Lu-W1H" secondAttribute="trailing" id="m6i-Lb-4Wn"/>
+                            <constraint firstItem="fNZ-Kz-7My" firstAttribute="top" secondItem="X1M-w3-9da" secondAttribute="bottom" constant="35" id="vP2-xb-dgv"/>
+                            <constraint firstItem="fNZ-Kz-7My" firstAttribute="trailing" secondItem="X1M-w3-9da" secondAttribute="trailing" id="zxB-HK-AH3"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="appNameLabel" destination="EB0-ac-UZR" id="SDO-j1-PQa"/>
+                        <outlet property="buttonContainer" destination="fNZ-Kz-7My" id="7bX-iz-yxB"/>
+                        <outlet property="buttonTitle" destination="rH5-xg-t8R" id="Odf-jN-uLj"/>
+                        <outlet property="gestureRecognizer" destination="trx-fU-IUr" id="nTX-Od-Asm"/>
+                        <outlet property="view" destination="m2S-Jp-Qdl" id="rr3-eG-LIi"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -159,6 +177,7 @@ DQ
         </scene>
     </scenes>
     <resources>
-        <image name="AppIcon" width="128" height="128"/>
+        <image name="Preferences" width="284" height="287"/>
+        <image name="bgTriangle" width="583" height="371"/>
     </resources>
 </document>
