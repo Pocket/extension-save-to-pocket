@@ -26,15 +26,6 @@
 /* Class = "NSMenuItem"; title = "Hide Save to Pocket"; ObjectID = "Olw-nP-bQN"; */
 "Olw-nP-bQN.title" = "Hide Save to Pocket";
 
-/* Class = "NSTextFieldCell"; title = "App Name"; ObjectID = "S7v-7o-3vW"; */
-"S7v-7o-3vW.title" = "App Name";
-
-/* Class = "NSButtonCell"; alternateTitle = "Install"; ObjectID = "Srx-0j-A4D"; */
-"Srx-0j-A4D.alternateTitle" = "Install";
-
-/* Class = "NSButtonCell"; title = "Open in Safari Extensions Preferences…"; ObjectID = "Srx-0j-A4D"; */
-"Srx-0j-A4D.title" = "Open in Safari Extensions Preferences…";
-
 /* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO"; */
 "Vdr-fp-XzO.title" = "Hide Others";
 
@@ -43,3 +34,9 @@
 
 /* Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd"; */
 "wpr-3q-Mcd.title" = "Help";
+
+/* Class = "NSTextFieldCell"; title = "Finish setup"; ObjectID = "o2g-OP-mef"; */
+"o2g-OP-mef.title" = "";
+
+/* Class = "NSTextFieldCell"; title = "One last thing:\ncheck the box next to Pocket in your Safari preferences. "; ObjectID = "vuh-O7-RhV"; */
+"vuh-O7-RhV.title" = "";
