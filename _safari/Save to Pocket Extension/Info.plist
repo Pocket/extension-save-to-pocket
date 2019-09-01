@@ -73,6 +73,8 @@
 	</dict>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2019 Pocket. All rights reserved.</string>
+	<key>NSHumanReadableDescription</key>
+	<string>Pocket’s Safari extension is the easiest, fastest way to capture articles, videos, and anything else you find online.</string>
 	<key>NSAllowsArbitraryLoads</key>
 	<true/>
 </dict>
