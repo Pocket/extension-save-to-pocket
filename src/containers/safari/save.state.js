@@ -1,19 +1,25 @@
+/*global safari*/
+import { takeLatest, put } from 'redux-saga/effects'
+
 import { SAVE_TO_POCKET_REQUEST } from './actions'
 import { SAVE_TO_POCKET_SUCCESS } from './actions'
 import { SAVE_TO_POCKET_FAILURE } from './actions'
+import { SAVE_TO_POCKET_UPDATE } from './actions'
 import { ARCHIVE_ITEM } from './actions'
+import { ARCHIVE_ITEM_REQUEST } from './actions'
 import { REMOVE_ITEM } from './actions'
+import { REMOVE_ITEM_REQUEST } from './actions'
 import { ARCHIVE_ITEM_SUCCESS } from './actions'
 import { ARCHIVE_ITEM_FAILURE } from './actions'
 import { REMOVE_ITEM_SUCCESS } from './actions'
 import { REMOVE_ITEM_FAILURE } from './actions'
-
 import { USER_LOG_OUT_SUCCESS } from './actions'
 
 // INITIAL STATE
 const initialState = {
   status: 'inactive',
-  type: 'page'
+  type: 'page',
+  item_id: false
 }
 
 // ACTIONS
@@ -29,15 +35,15 @@ export const saveReducers = (state = initialState, action) => {
       return { ...state, status: 'saving' }
     }
 
-    case SAVE_TO_POCKET_SUCCESS: {
-      return { ...state, status: 'saved' }
-    }
-
     case SAVE_TO_POCKET_FAILURE: {
-      return { ...state, status: 'error' }
+      return { ...state, status: 'error', item_id: false }
     }
 
-    case ARCHIVE_ITEM: {
+    case SAVE_TO_POCKET_UPDATE: {
+      return { ...state, ...action.payload }
+    }
+
+    case ARCHIVE_ITEM_REQUEST: {
       return { ...state, status: 'archiving' }
     }
 
@@ -49,7 +55,7 @@ export const saveReducers = (state = initialState, action) => {
       return { ...state, status: 'error' }
     }
 
-    case REMOVE_ITEM: {
+    case REMOVE_ITEM_REQUEST: {
       return { ...state, status: 'removing' }
     }
 
@@ -62,11 +68,43 @@ export const saveReducers = (state = initialState, action) => {
     }
 
     case USER_LOG_OUT_SUCCESS: {
-      return { ...state, status: 'inactive' }
+      return { ...state, status: 'inactive', item_id: false }
     }
 
     default: {
       return state
     }
   }
+}
+
+/* SAGAS :: WATCHERS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+export const saveSagas = [
+  takeLatest(SAVE_TO_POCKET_SUCCESS, saveToPocketSuccess),
+  takeLatest(ARCHIVE_ITEM, archiveItem),
+  takeLatest(REMOVE_ITEM, removeItem)
+]
+
+/* SAGAS :: RESPONDERS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+function* saveToPocketSuccess(action) {
+  // Move this to a saga
+  const { response } = action.payload
+  const { action_results } = response
+  const result = action_results[0]
+  const payload = { status: 'saved', item_id: result.resolved_id }
+
+  yield put({ type: SAVE_TO_POCKET_UPDATE, payload })
+}
+
+function* archiveItem(action) {
+  const { payload } = action
+  safari.extension.dispatchMessage(ARCHIVE_ITEM_REQUEST, payload)
+  yield put({ type: ARCHIVE_ITEM_REQUEST, payload })
+}
+
+function* removeItem(action) {
+  const { payload } = action
+  safari.extension.dispatchMessage(REMOVE_ITEM_REQUEST, payload)
+  yield put({ type: REMOVE_ITEM_REQUEST, payload })
 }
