@@ -14,7 +14,14 @@ class SafariApp extends Component {
 
   get isSaveActive() {
     const { status } = this.props
-    const validStatus = ['saving', 'saved', 'error']
+    const validStatus = [
+      'saving',
+      'saved',
+      'archiving',
+      'archived',
+      'removing',
+      'error'
+    ]
     const isActive = validStatus.indexOf(status) !== -1
     return isActive
   }
