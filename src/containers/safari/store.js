@@ -8,6 +8,7 @@ import createSagaMiddleware from 'redux-saga'
 /* IMPORT CONTAINER STATES
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 import { saveReducers } from './save.state'
+import { saveSagas } from './save.state'
 
 import { appSagas } from './app.state'
 
@@ -24,7 +25,7 @@ const rootReducer = () =>
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 const sagaMiddleware = createSagaMiddleware()
 function* rootSaga() {
-  yield all([...appSagas])
+  yield all([...appSagas, ...saveSagas])
 }
 
 /* STORE
