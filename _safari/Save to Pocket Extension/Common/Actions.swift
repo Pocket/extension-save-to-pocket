@@ -96,14 +96,14 @@ class Actions {
 
         switch result {
 
-        case .success(let status):
+        case .success(let response):
 
-          NSLog("Page Saved: \(status)")
+          NSLog("Page Saved: \(response)")
 
           // Status should be replaced with relevant data
           page.dispatchMessageToScript(
             withName: Dispatch.SAVE_TO_POCKET_SUCCESS,
-            userInfo: nil // FIX: passing anything other than nil breaks this
+            userInfo: ["response":response]
           )
 
         case .failure(let error):
