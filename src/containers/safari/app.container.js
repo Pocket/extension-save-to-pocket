@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import Doorhanger from 'components/views/doorhanger/doorhanger'
 import { appActions } from './app.state'
+import { saveActions } from './save.state'
 
 class SafariApp extends Component {
   state = {
@@ -22,14 +23,24 @@ class SafariApp extends Component {
     this.setState(state => ({ dropDownActive: !state.dropDownActive }))
   }
 
+  archiveItem = () => {
+    const { type, item_id, archiveItem } = this.props
+    archiveItem({ type, item_id })
+  }
+
+  removeItem = () => {
+    const { type, item_id, removeItem } = this.props
+    removeItem({ type, item_id })
+  }
+
   render() {
     const { status, type, userLogOut } = this.props
     const { dropDownActive } = this.state
     const actions = {
       openPocket: () => {},
       openOptions: userLogOut,
-      archiveItem: () => {},
-      removeItem: () => {}
+      archiveItem: this.archiveItem,
+      removeItem: this.removeItem
     }
 
     return (
@@ -46,12 +57,12 @@ class SafariApp extends Component {
 /* CONNECT TO STATE
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ ...appActions }, dispatch)
+  return bindActionCreators({ ...appActions, ...saveActions }, dispatch)
 }
 
 function mapStateToProps(state) {
-  const { status, type } = state.saves
-  return { status, type }
+  const { status, type, item_id } = state.saves
+  return { status, type, item_id }
 }
 
 export default connect(
