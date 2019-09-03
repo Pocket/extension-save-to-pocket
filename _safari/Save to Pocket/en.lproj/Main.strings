@@ -1,3 +1,4 @@
+
 /* Class = "NSMenuItem"; title = "Save to Pocket"; ObjectID = "1Xt-HY-uBw"; */
 "1Xt-HY-uBw.title" = "Save to Pocket";
 
@@ -22,21 +23,20 @@
 /* Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS"; */
 "Kd2-mp-pUS.title" = "Show All";
 
-/* Class = "NSTextFieldCell"; title = "Finish setup"; ObjectID = "o2g-OP-mef"; */
-"o2g-OP-mef.title" = "";
-
 /* Class = "NSMenuItem"; title = "Hide Save to Pocket"; ObjectID = "Olw-nP-bQN"; */
 "Olw-nP-bQN.title" = "Hide Save to Pocket";
-
-/* Class = "NSMenu"; title = "Save to Pocket"; ObjectID = "uQy-DD-JDr"; */
-"uQy-DD-JDr.title" = "Save to Pocket";
 
 /* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO"; */
 "Vdr-fp-XzO.title" = "Hide Others";
 
+/* Class = "NSTextFieldCell"; title = "Finish setup"; ObjectID = "o2g-OP-mef"; */
+"o2g-OP-mef.title" = "Finish setup";
+
+/* Class = "NSMenu"; title = "Save to Pocket"; ObjectID = "uQy-DD-JDr"; */
+"uQy-DD-JDr.title" = "Save to Pocket";
+
 /* Class = "NSTextFieldCell"; title = "One last thing:\ncheck the box next to Pocket in your Safari preferences. "; ObjectID = "vuh-O7-RhV"; */
-"vuh-O7-RhV.title" = "";
+"vuh-O7-RhV.title" = "One last thing:\ncheck the box next to Pocket in your Safari preferences. ";
 
 /* Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd"; */
 "wpr-3q-Mcd.title" = "Help";
-

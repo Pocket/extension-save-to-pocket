@@ -71,6 +71,7 @@
 		311869DF231C7F7200B8C29D /* pt-PT */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-PT"; path = "pt-PT.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		311869E0231C7F7200B8C29D /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		311869E1231C7F7300B8C29D /* es-419 */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "es-419"; path = "es-419.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		311869E3231D85EE00B8C29D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		3118929122E7C186002BFA42 /* Save to Pocket.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Save to Pocket.entitlements"; sourceTree = "<group>"; };
 		3118929522E7E18C002BFA42 /* Save to Pocket Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Save to Pocket Extension.entitlements"; sourceTree = "<group>"; };
 		314EF96F2289D10200704C32 /* Save to Pocket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Save to Pocket.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -420,6 +421,7 @@
 				31778F532318114E0080DAF0 /* es */,
 				31778F56231811520080DAF0 /* es-419 */,
 				31778F59231811560080DAF0 /* ru */,
+				311869E3231D85EE00B8C29D /* en */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
