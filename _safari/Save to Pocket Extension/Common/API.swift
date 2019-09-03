@@ -205,7 +205,53 @@ class SaveToPocketAPI: SafariExtensionHandler{
 
   }
 
-  static func removeItem(){}
+  static func removeItem(
+    from page: SFSafariPage,
+    item_id: String,
+    access_token: String,
+    completion: @escaping (Result<Any, RequestError>) -> Void
+    ) -> Void {
+    
+    // Build Action
+    let removeAction: [String : Any] = [
+      "action": "remove",
+      "item_id": item_id
+    ]
+    
+    // Build request data dictionary
+    let requestData: [String : Any] = [
+      "consumer_key": CONSUMER_KEY,
+      "access_token": access_token,
+      "actions": [removeAction]
+    ]
+    
+    
+    let requestInfo: [String : Any] = [
+      "url" : "https://getpocket.com/v3/send/",
+      "method" : "POST",
+      "parameters" : requestData
+    ];
+    
+    Utilities.request(from: page, userInfo: requestInfo) { result in
+      switch result {
+        
+      case .failure(let error):
+        NSLog("Remove Failed: (\(String(describing: requestInfo)))")
+        completion(.failure(error))
+        return
+        
+      case .success(let data):
+        guard let removeJSON = try? JSONSerialization.jsonObject(with: data) else {
+          NSLog("Remove Failed: (\(String(describing: requestInfo)))")
+          completion(.failure(.json))
+          return
+        }
+        
+        completion(.success(removeJSON))
+        
+      }
+    }
+  }
 
   static func archiveItem(){}
 
