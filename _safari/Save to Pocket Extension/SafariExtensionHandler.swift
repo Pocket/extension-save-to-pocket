@@ -18,7 +18,7 @@ enum RequestError: Error {
 }
 
 class SafariExtensionHandler: SFSafariExtensionHandler {
-  
+
   override func messageReceived(withName messageName: String, from page: SFSafariPage, userInfo: [String : Any]?) {
 
     // This method will be called when a content script provided by your extension calls
@@ -52,7 +52,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
       Actions.archiveItem(from: page, userInfo: userInfo)
       return
 
-    case Receive.REMOVE_ITEM:
+    case Receive.REMOVE_ITEM_REQUEST:
       Actions.removeItem(from: page, userInfo: userInfo)
       return
 
