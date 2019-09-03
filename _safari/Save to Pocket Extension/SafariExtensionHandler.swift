@@ -48,7 +48,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
       Actions.savePage(from: page)
       return
 
-    case Receive.ARCHIVE_ITEM:
+    case Receive.ARCHIVE_ITEM_REQUEST:
       Actions.archiveItem(from: page, userInfo: userInfo)
       return
 

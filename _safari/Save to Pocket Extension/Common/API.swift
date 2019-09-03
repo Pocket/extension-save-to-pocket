@@ -253,7 +253,53 @@ class SaveToPocketAPI: SafariExtensionHandler{
     }
   }
 
-  static func archiveItem(){}
+  static func archiveItem(
+    from page: SFSafariPage,
+    item_id: String,
+    access_token: String,
+    completion: @escaping (Result<Any, RequestError>) -> Void
+    ) -> Void {
+
+    // Build Action
+    let archiveAction: [String : Any] = [
+      "action": "archive",
+      "item_id": item_id
+    ]
+    
+    // Build request data dictionary
+    let requestData: [String : Any] = [
+      "consumer_key": CONSUMER_KEY,
+      "access_token": access_token,
+      "actions": [archiveAction]
+    ]
+    
+    
+    let requestInfo: [String : Any] = [
+      "url" : "https://getpocket.com/v3/send/",
+      "method" : "POST",
+      "parameters" : requestData
+    ];
+    
+    Utilities.request(from: page, userInfo: requestInfo) { result in
+      switch result {
+        
+      case .failure(let error):
+        NSLog("Archive Failed: (\(String(describing: requestInfo)))")
+        completion(.failure(error))
+        return
+        
+      case .success(let data):
+        guard let archiveJSON = try? JSONSerialization.jsonObject(with: data) else {
+          NSLog("Archive Failed: (\(String(describing: requestInfo)))")
+          completion(.failure(.json))
+          return
+        }
+        
+        completion(.success(archiveJSON))
+        
+      }
+    }
+  }
 
   static func getOnSaveTags(){}
 
