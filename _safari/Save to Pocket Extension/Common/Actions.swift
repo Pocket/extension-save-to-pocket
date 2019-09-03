@@ -137,7 +137,50 @@ class Actions {
   }
 
   static func archiveItem(from page: SFSafariPage, userInfo: [String : Any]?){
+    guard let item_id = userInfo!["item_id"] else {
+        NSLog("No item id to archive: \(String(describing: userInfo))")
+        return
+    }
 
+    let defaults = UserDefaults.standard
+    
+    // Do we have an auth token?
+    guard let access_token = defaults.string(forKey: "access_token") else {
+      // No auth token.  Save reference to the page and log
+      postAuthSave = page
+      Actions.logIn(from: page)
+      return
+    }
+    
+   
+    NSLog("Archive page with item id: \(String(describing: item_id))")
+    
+    // Make an API call to validate the extension
+    SaveToPocketAPI.archiveItem(from: page, item_id: item_id as! String, access_token: access_token) { result in
+      
+      switch result {
+        
+      case .success(let response):
+        NSLog("Item Archived: \(response)")
+        
+        // Status should be replaced with relevant data
+        page.dispatchMessageToScript(
+          withName: Dispatch.ARCHIVE_ITEM_SUCCESS,
+          userInfo: nil
+        )
+        
+      case .failure(let error):
+        NSLog("Item Archive Failed: \(error)")
+        
+        // Status should be replaced with relevant data
+        page.dispatchMessageToScript(
+          withName: Dispatch.ARCHIVE_ITEM_FAILURE,
+          userInfo: nil
+        )
+      }
+      
+    }
+    
   }
 
   static func removeItem(from page: SFSafariPage, userInfo: [String : Any]?){

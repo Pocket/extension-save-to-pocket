@@ -72,7 +72,7 @@ struct Receive {
   static let SAVE_TO_POCKET_CONTEXT: String = "SAVE_TO_POCKET_CONTEXT"
   static let SAVE_PAGE_TO_POCKET: String = "SAVE_PAGE_TO_POCKET"
   static let SAVE_URL_TO_POCKET: String = "SAVE_URL_TO_POCKET"
-  static let ARCHIVE_ITEM: String = "ARCHIVE_ITEM"
+  static let ARCHIVE_ITEM_REQUEST: String = "ARCHIVE_ITEM_REQUEST"
   static let REMOVE_ITEM_REQUEST: String = "REMOVE_ITEM_REQUEST"
   static let EDIT_TAGS: String = "EDIT_TAGS"
 }
