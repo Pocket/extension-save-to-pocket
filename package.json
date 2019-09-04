@@ -99,7 +99,7 @@
   "scripts": {
     "start": "node config/scripts/start.js",
     "build": "node config/scripts/build.js",
-    "compile": "node config/scripts/build.js; xcodebuild -project _safari/Save\\ To\\ Pocket.xcodeproj -target 'Save to Pocket' clean build",
+    "compile": "node config/scripts/build.js && osascript -e 'quit app \"Safari\"' && osascript -e 'quit app \"Save To Pocket\"'; xcodebuild -project _safari/Save\\ To\\ Pocket.xcodeproj -target 'Save to Pocket' clean build",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
