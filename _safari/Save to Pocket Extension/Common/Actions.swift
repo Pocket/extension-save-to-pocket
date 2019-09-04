@@ -105,7 +105,10 @@ class Actions {
             withName: Dispatch.SAVE_TO_POCKET_SUCCESS,
             userInfo: ["item_id":item_id]
           )
-
+          
+          // Get suggested tags (if applicable)
+          self.getSuggestedTags(from: page, saved_url: url )
+          
         case .failure(let error):
           NSLog("Page failed to save: \(error)")
 
@@ -231,6 +234,63 @@ class Actions {
 
   }
 
+  static func getSuggestedTags(from page: SFSafariPage, saved_url: String){
+    let defaults = UserDefaults.standard
+    
+    // Is the user premium?
+    let premium_status = defaults.string(forKey: "premium_status")
+    
+    if premium_status != "1" {
+      NSLog("No suggested tags: premium_status (\(String(describing: premium_status)))")
+      return
+    }
+
+    // Do we have an auth token?
+    guard let access_token = defaults.string(forKey: "access_token") else {
+      // No auth token.  Save reference to the page and log
+      postAuthSave = page
+      Actions.logIn(from: page)
+      return
+    }
+    
+    // Let the client side know we are fetching tags
+    page.dispatchMessageToScript(
+      withName: Dispatch.SUGGESTED_TAGS_REQUEST,
+      userInfo: nil
+    )
+    
+    // Make an API call to validate the extension
+    SaveToPocketAPI.getOnSaveTags(
+      from: page,
+      saved_url: saved_url,
+      access_token: access_token) { result in
+      
+      switch result {
+        
+      case .success(let response):
+        NSLog("Suggested tags \(response)")
+        
+        // Pass Suggested Tags to client side
+        page.dispatchMessageToScript(
+          withName: Dispatch.SUGGESTED_TAGS_SUCCESS,
+          userInfo: ["response": response]
+        )
+        
+      case .failure(let error):
+        NSLog("Item Archive Failed: \(error)")
+        
+        // Status should be replaced with relevant data
+        page.dispatchMessageToScript(
+          withName: Dispatch.SUGGESTED_TAGS_FAILURE,
+          userInfo: nil
+        )
+      }
+      
+    }
+    
+    
+  }
+  
   static func editTags(from page: SFSafariPage, userInfo: [String : Any]?){
 
   }
