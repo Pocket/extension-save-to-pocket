@@ -89,10 +89,10 @@ export const saveSagas = [
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 function* saveToPocketSuccess(action) {
   // Move this to a saga
-  const { response } = action.payload
-  const { action_results } = response
-  const result = action_results[0]
-  const payload = { status: 'saved', item_id: result.resolved_id }
+  const { item_id } = action.payload
+  // const { action_results } = response
+  // const result = action_results[0]
+  const payload = { status: 'saved', item_id }
 
   yield put({ type: SAVE_TO_POCKET_UPDATE, payload })
 }
