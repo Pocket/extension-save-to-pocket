@@ -138,8 +138,11 @@ class SaveToPocketAPI: SafariExtensionHandler{
           }
 
           // Store Account data
+          NSLog("Auth Success: (\(String(describing: authJSON)))")
           let defaults = UserDefaults.standard
+
           defaults.set(authJSON.access_token, forKey: "access_token")
+          defaults.set(authJSON.account?.premium_status, forKey: "premium_status")
 
           completion(.success(authJSON.access_token))
 
