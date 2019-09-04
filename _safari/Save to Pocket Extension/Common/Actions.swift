@@ -96,14 +96,14 @@ class Actions {
 
         switch result {
 
-        case .success(let response):
+        case .success(let item_id):
 
-          NSLog("Page Saved: \(response)")
+          NSLog("Page Saved: \(item_id)")
 
-          // Status should be replaced with relevant data
+          // Pass item_id to client side (to operate on saved item)
           page.dispatchMessageToScript(
             withName: Dispatch.SAVE_TO_POCKET_SUCCESS,
-            userInfo: ["response":response]
+            userInfo: ["item_id":item_id]
           )
 
         case .failure(let error):
