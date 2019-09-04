@@ -10,9 +10,13 @@ struct GuidResponse: Decodable {
   let guid: String
 }
 
-struct AddResponse: Decodable{
-  let status: Int
-  let item: Item?
+struct ActionResults: Codable {
+    let action_results: [ActionResult]?
+}
+
+struct ActionResult: Codable {
+    let item_id: String?
+    let resolved_url: String?
 }
 
 struct Item: Decodable{
