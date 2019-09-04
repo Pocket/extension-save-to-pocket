@@ -315,7 +315,46 @@ class SaveToPocketAPI: SafariExtensionHandler{
     }
   }
 
-  static func getOnSaveTags(){}
+  static func getOnSaveTags(
+    from page: SFSafariPage,
+    saved_url: String,
+    access_token: String,
+    completion: @escaping (Result<Any, RequestError>) -> Void
+    ) -> Void {
+
+    // Build request data dictionary
+    let requestData: [String : Any] = [
+      "consumer_key": CONSUMER_KEY,
+      "access_token": access_token,
+      "url": saved_url
+    ]
+    
+    let requestInfo: [String : Any] = [
+      "url" : "https://getpocket.com/v3/suggested_tags/",
+      "method" : "POST",
+      "parameters" : requestData
+    ];
+    
+    Utilities.request(from: page, userInfo: requestInfo) { result in
+      switch result {
+        
+      case .failure(let error):
+        NSLog("On Save Tags Failed: (\(String(describing: requestInfo)))")
+        completion(.failure(error))
+        return
+        
+      case .success(let data):
+        guard let onSaveTagsJson = try? JSONSerialization.jsonObject(with: data) else {
+          NSLog("On Save Tags Failed: (\(String(describing: requestInfo)))")
+          completion(.failure(.json))
+          return
+        }
+        
+        completion(.success(onSaveTagsJson))
+        
+      }
+    }
+  }
 
   static func syncItemTags(){}
 
