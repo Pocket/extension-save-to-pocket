@@ -107,3 +107,7 @@ export function getImageCacheUrl(url, resize, fallback) {
 export function getItemPosition(item) {
   return item.offsetLeft - item.scrollLeft + item.clientLeft + item.offsetWidth
 }
+
+export function checkDuplicate(list, tagValue) {
+  return list.filter(tag => tag.name === tagValue).length
+}
