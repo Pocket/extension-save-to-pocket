@@ -10,6 +10,7 @@ import { REMOVE_ITEM_SUCCESS } from './actions'
 import { REMOVE_ITEM_FAILURE } from './actions'
 import { TAGS_ADDED_SUCCESS } from './actions'
 import { TAGS_ADDED_FAILURE } from './actions'
+import { SUGGESTED_TAGS_REQUEST } from './actions'
 import { SUGGESTED_TAGS_SUCCESS } from './actions'
 import { SUGGESTED_TAGS_FAILURE } from './actions'
 import { USER_LOG_IN_SUCCESS } from './actions'
@@ -27,7 +28,10 @@ export const dispatchInit = () => {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 function handleMessage(event) {
   const { message, name = 'Unknown Action' } = event || {}
-  console.log(event)
+
+  console.groupCollapsed(name)
+  console.log(message)
+  console.groupEnd(name)
 
   switch (name) {
     case SAVE_TO_POCKET_REQUEST: {
@@ -75,6 +79,11 @@ function handleMessage(event) {
       return
     }
 
+    case SUGGESTED_TAGS_REQUEST: {
+      store.dispatch({ type: SUGGESTED_TAGS_REQUEST })
+      return
+    }
+
     case SUGGESTED_TAGS_SUCCESS: {
       store.dispatch({ type: SUGGESTED_TAGS_SUCCESS, payload: message })
       return
@@ -106,10 +115,7 @@ function handleMessage(event) {
     }
 
     default: {
-      console.groupCollapsed(name)
-      console.log(message)
-      console.groupEnd(name)
-      break
+      return
     }
   }
 }
