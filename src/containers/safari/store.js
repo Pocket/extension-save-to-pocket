@@ -10,13 +10,16 @@ import createSagaMiddleware from 'redux-saga'
 import { saveReducers } from './save.state'
 import { saveSagas } from './save.state'
 
+import { tagsReducers } from './tags.state'
+
 import { appSagas } from './app.state'
 
 /* REDUCERS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 const rootReducer = () =>
   combineReducers({
-    saves: saveReducers
+    saves: saveReducers,
+    tags: tagsReducers
     // localize: localizeReducer,
     // app: appReducers
   })
