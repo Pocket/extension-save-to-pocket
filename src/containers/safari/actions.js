@@ -5,6 +5,7 @@ export const USER_LOG_OUT = 'USER_LOG_OUT'
 export const ARCHIVE_ITEM = 'ARCHIVE_ITEM'
 export const REMOVE_ITEM = 'REMOVE_ITEM'
 export const EDIT_TAGS = 'EDIT_TAGS'
+export const OPEN_POCKET = 'OPEN_POCKET'
 
 /* Dispatched messages from SAE
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
