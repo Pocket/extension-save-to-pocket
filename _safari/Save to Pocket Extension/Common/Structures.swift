@@ -24,6 +24,15 @@ struct Item: Decodable{
   let resolved_url: String?
 }
 
+struct SuggestedTags {
+  let suggestedTags: [SuggestedTag]?
+  let status, error: Int?
+}
+
+struct SuggestedTag {
+  let tag: String?
+}
+
 struct AuthResponse: Decodable{
   let access_token: String
   let username: String?
@@ -60,6 +69,7 @@ struct Dispatch {
   static let REMOVE_ITEM_FAILURE: String = "REMOVE_ITEM_FAILURE"
   static let TAGS_ADDED_SUCCESS: String = "TAGS_ADDED_SUCCESS"
   static let TAGS_ADDED_FAILURE: String = "TAGS_ADDED_FAILURE"
+  static let SUGGESTED_TAGS_REQUEST: String = "SUGGESTED_TAGS_REQUEST"
   static let SUGGESTED_TAGS_SUCCESS: String = "SUGGESTED_TAGS_SUCCESS"
   static let SUGGESTED_TAGS_FAILURE: String = "SUGGESTED_TAGS_FAILURE"
   static let USER_LOG_IN_SUCCESS: String = "USER_LOG_IN_SUCCESS"
