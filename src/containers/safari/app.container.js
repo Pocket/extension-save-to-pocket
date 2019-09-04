@@ -6,10 +6,12 @@ import { connect } from 'react-redux'
 import Doorhanger from 'components/views/doorhanger/doorhanger'
 import { appActions } from './app.state'
 import { saveActions } from './save.state'
+import { tagActions } from './tags.state'
 
 class SafariApp extends Component {
   state = {
-    dropDownActive: false
+    dropDownActive: false,
+    inputFocused: false
   }
 
   get isSaveActive() {
@@ -24,6 +26,10 @@ class SafariApp extends Component {
     ]
     const isActive = validStatus.indexOf(status) !== -1
     return isActive
+  }
+
+  setInputFocusState = bool => {
+    this.setState({ inputFocused: bool })
   }
 
   setDropDownStatus = () => {
@@ -41,13 +47,31 @@ class SafariApp extends Component {
   }
 
   render() {
-    const { status, type, userLogOut } = this.props
+    const { status, type, userLogOut, openPocket } = this.props
     const { dropDownActive } = this.state
-    const actions = {
-      openPocket: () => {},
+
+    const dropDownProps = {
+      openPocket: openPocket,
       openOptions: userLogOut,
       archiveItem: this.archiveItem,
       removeItem: this.removeItem
+    }
+
+    const taggingProps = {
+      activateTag: this.props.activateTag,
+      deactivateTag: this.props.deactivateTag,
+      deactivateTags: this.props.deactivateTags,
+      addTag: this.props.addTag,
+      removeTag: this.props.removeTag,
+      removeTags: this.props.removeTags,
+      inputFocused: this.state.inputFocused,
+      setInputFocusState: this.setInputFocusState
+    }
+
+    const currentTags = {
+      suggested: this.props.suggested,
+      used: this.props.used,
+      marked: this.props.marked
     }
 
     return (
@@ -56,7 +80,9 @@ class SafariApp extends Component {
         isSaveActive={this.isSaveActive}
         currentTab={{ status, type, dropDownActive }}
         setDropDownStatus={this.setDropDownStatus}
-        {...actions}
+        currentTags={currentTags}
+        {...dropDownProps}
+        {...taggingProps}
       />
     )
   }
@@ -64,12 +90,16 @@ class SafariApp extends Component {
 /* CONNECT TO STATE
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ ...appActions, ...saveActions }, dispatch)
+  return bindActionCreators(
+    { ...appActions, ...saveActions, ...tagActions },
+    dispatch
+  )
 }
 
 function mapStateToProps(state) {
   const { status, type, item_id } = state.saves
-  return { status, type, item_id }
+  const { suggested, used, marked } = state.tags
+  return { status, type, item_id, suggested, used, marked }
 }
 
 export default connect(
