@@ -11,6 +11,7 @@ import { saveReducers } from './save.state'
 import { saveSagas } from './save.state'
 
 import { tagsReducers } from './tags.state'
+import { tagsSagas } from './tags.state'
 
 import { appSagas } from './app.state'
 
@@ -28,7 +29,7 @@ const rootReducer = () =>
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 const sagaMiddleware = createSagaMiddleware()
 function* rootSaga() {
-  yield all([...appSagas, ...saveSagas])
+  yield all([...appSagas, ...saveSagas, ...tagsSagas])
 }
 
 /* STORE
