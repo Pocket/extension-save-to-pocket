@@ -11,8 +11,8 @@ const settings =   {
 }
 
 const logOut = {
-  copy: 'Log Out',
-  icon: Icon.Profile,
+  copy: 'Logout',
+  // icon: Icon.Profile,
   method: () => {}
 }
 
@@ -29,8 +29,8 @@ const listItems = [
     method: () => {}
   },
   {
-    copy: 'Open Pocket',
-    icon: Icon.OpenPocket,
+    copy: 'Open My List',
+    // icon: Icon.OpenPocket,
     method: () => {},
     divider: true
   }

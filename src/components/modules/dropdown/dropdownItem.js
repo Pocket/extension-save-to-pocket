@@ -43,10 +43,11 @@ DropdownItem.propTypes = {
   entryObject: PropTypes.object
 }
 export default function DropdownItem({ entryObject }) {
+  const icon = entryObject.icon ? entryObject.icon() : false
   return (
     <ListItem divider={entryObject.divider}>
       <button onClick={entryObject.method}>
-        {entryObject.icon()} {entryObject.copy}
+        {icon ? icon : null} {entryObject.copy}
       </button>
     </ListItem>
   )
