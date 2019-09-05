@@ -59,6 +59,10 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     case Receive.TAGS_SYNC:
       Actions.tagsSync(from: page, userInfo: userInfo)
       return
+    
+    case Receive.OPEN_POCKET:
+      Actions.openPocket(from: page)
+      return
 
     default:
       page.getPropertiesWithCompletionHandler { properties in
