@@ -54,6 +54,20 @@ class Toolbar extends Component {
   }
 
   get listItems() {
+    const settings = {
+      copy: localize('actions', 'settings'),
+      icon: Icon.Settings,
+      method: this.props.openOptions
+    }
+
+    const logOut = {
+      copy: localize('actions', 'logout'),
+      icon: Icon.Question,
+      method: this.props.logOut
+    }
+
+    const lastItem = this.props.noSettings ? logOut : settings
+
     return [
       {
         copy: localize('actions', 'archive_page'),
@@ -71,11 +85,7 @@ class Toolbar extends Component {
         method: this.props.openPocket,
         divider: true
       },
-      {
-        copy: localize('actions', 'settings'),
-        icon: Icon.Settings,
-        method: this.props.openOptions
-      }
+      lastItem
     ]
   }
 
