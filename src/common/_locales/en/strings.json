@@ -1,62 +1,63 @@
 {
-    "status": {
-        "archived": "Archived.",
-        "archiving":  "Archiving...",
-        "error": "Error!",
-        "link_saved": "Link Saved!",
-        "page_saved": "Page Saved!",
-        "removed": "Removed.",
-        "removing": "Removing...",
-        "saving": "Saving..."
-    },
-    "actions": {
-        "archive_page": "Archive Page",
-        "close": "Close",
-        "open_pocket": "Open Pocket",
-        "remove_page": "Remove Page",
-        "save": "Save",
-        "settings": "Settings"
-    },
-    "tagging": {
-        "add_tags": "Add Tags",
-        "invalid_tags": "Tags are limited to 25 characters",
-        "getting_tags": "Getting Tags",
-        "saving_tags": "Saving Tags"
-    },
-    "recommendations": {
-        "explore": "Explore Pocket's recommendations",
-        "loading": "Loading recommendations",
-        "more_on": "More on",
-        "more_stories_detail": "Want to find more great stories?",
-        "people_also_saved" : "People also saved: ",
-        "rec_saved": "Recommendation Saved",
-        "save_to_pocket" : "Save To Pocket",
-        "saved": "Saved",
-        "saving": "Saving"
-    },
-    "options_page": {
-        "get_in_touch_on_twitter_link": "get in touch on Twitter",
-        "header": "OPTIONS",
-        "keyboard_shortcut_enabled" : "Enabled",
-        "keyboard_shortcut_title" : "Keyboard Shortcut:",
-        "learn_more_link" : "(learn more)",
-        "login_link" : "Click here to log in",
-        "login_title" : "Logged in as: ",
-        "logout_link" : "logout",
-        "more_ways_to_save_title" : "More ways to use Pocket:",
-        "questions_pocket_title": "Questions about Pocket?",
-        "quick_save_services_title" : "Quick save services:",
-        "recommendations_detail": "When you save a page, see recommended stories from Pocket based on similar topics.",
-        "recommendations_title": "Recommendations on Save",
-        "record_shortcut" : "Record a new shortcut",
-        "reset_to_default": "Reset to default",
-        "save_to_pocket" : "Save To Pocket",
-        "search_support_link": "Search support",
-        "send_us_an_email_link": "send us an email",
-        "services_info": "When enabled, you can add directly to Pocket any items from these services"
-    },
-    "error":{
-        "page_not_saved": "Page Not Saved",
-        "page_not_saved_detail" : "Pocket encountered an error when trying to save this page. Please try again."
-    }
+  "status": {
+    "archived": "Archived.",
+    "archiving": "Archiving...",
+    "error": "Error!",
+    "link_saved": "Link Saved!",
+    "page_saved": "Page Saved!",
+    "removed": "Removed.",
+    "removing": "Removing...",
+    "saving": "Saving..."
+  },
+  "actions": {
+    "archive_page": "Archive Page",
+    "close": "Close",
+    "open_pocket": "Open Pocket",
+    "remove_page": "Remove Page",
+    "save": "Save",
+    "settings": "Settings",
+    "logout": "Log Out"
+  },
+  "tagging": {
+    "add_tags": "Add Tags",
+    "invalid_tags": "Tags are limited to 25 characters",
+    "getting_tags": "Getting Tags",
+    "saving_tags": "Saving Tags"
+  },
+  "recommendations": {
+    "explore": "Explore Pocket's recommendations",
+    "loading": "Loading recommendations",
+    "more_on": "More on",
+    "more_stories_detail": "Want to find more great stories?",
+    "people_also_saved": "People also saved: ",
+    "rec_saved": "Recommendation Saved",
+    "save_to_pocket": "Save To Pocket",
+    "saved": "Saved",
+    "saving": "Saving"
+  },
+  "options_page": {
+    "get_in_touch_on_twitter_link": "get in touch on Twitter",
+    "header": "OPTIONS",
+    "keyboard_shortcut_enabled": "Enabled",
+    "keyboard_shortcut_title": "Keyboard Shortcut:",
+    "learn_more_link": "(learn more)",
+    "login_link": "Click here to log in",
+    "login_title": "Logged in as: ",
+    "logout_link": "logout",
+    "more_ways_to_save_title": "More ways to use Pocket:",
+    "questions_pocket_title": "Questions about Pocket?",
+    "quick_save_services_title": "Quick save services:",
+    "recommendations_detail": "When you save a page, see recommended stories from Pocket based on similar topics.",
+    "recommendations_title": "Recommendations on Save",
+    "record_shortcut": "Record a new shortcut",
+    "reset_to_default": "Reset to default",
+    "save_to_pocket": "Save To Pocket",
+    "search_support_link": "Search support",
+    "send_us_an_email_link": "send us an email",
+    "services_info": "When enabled, you can add directly to Pocket any items from these services"
+  },
+  "error": {
+    "page_not_saved": "Page Not Saved",
+    "page_not_saved_detail": "Pocket encountered an error when trying to save this page. Please try again."
+  }
 }

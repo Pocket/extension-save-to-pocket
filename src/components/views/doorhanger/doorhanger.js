@@ -83,6 +83,8 @@ class DoorHanger extends Component {
                     }}>
                     <Toolbar
                       tabId={this.props.tab_id}
+                      noSettings={this.props.noSettings}
+                      logOut={this.props.logOut}
                       setDropDownStatus={this.props.setDropDownStatus}
                       openPocket={this.props.openPocket}
                       openOptions={this.props.openOptions}
