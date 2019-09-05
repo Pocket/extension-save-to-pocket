@@ -36,6 +36,7 @@ export const TAGS_DEACTIVATE = 'TAGS_DEACTIVATE'
 export const TAG_ADD = 'TAG_ADD'
 export const TAG_REMOVE = 'TAG_REMOVE'
 export const TAGS_REMOVE = 'TAGS_REMOVE'
+export const TAGS_SYNC = 'TAGS_SYNC'
 
 export const USER_LOG_IN_SUCCESS = 'USER_LOG_IN_SUCCESS'
 export const USER_LOG_IN_FAILURE = 'USER_LOG_IN_FAILURE'

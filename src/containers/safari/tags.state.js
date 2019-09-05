@@ -1,4 +1,6 @@
-// /*global safari*/
+/*global safari*/
+import { delay } from 'redux-saga'
+import { takeLatest, select } from 'redux-saga/effects'
 import { checkDuplicate } from 'common/helpers'
 import { SUGGESTED_TAGS_REQUEST } from './actions'
 import { SUGGESTED_TAGS_SUCCESS } from './actions'
@@ -9,6 +11,7 @@ import { TAGS_DEACTIVATE } from './actions'
 import { TAG_ADD } from './actions'
 import { TAG_REMOVE } from './actions'
 import { TAGS_REMOVE } from './actions'
+import { TAGS_SYNC } from './actions'
 
 // INITIAL STATE
 const initialState = {
@@ -105,4 +108,28 @@ function tagActivate(state, tag) {
 function tabDeactivate(state, tag) {
   const { marked } = state
   return marked.filter(item => item !== tag)
+}
+
+/* SAGAS :: WATCHERS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+export const tagsSagas = [
+  takeLatest([TAG_ADD, TAG_REMOVE, TAGS_REMOVE], tagChanges)
+]
+
+/* SAGAS :: SELECTORS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+const getTaggingPayload = state => {
+  return {
+    item_id: state.saves.item_id,
+    tags: state.tags.used
+  }
+}
+
+/* SAGAS :: RESPONDERS
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+function* tagChanges() {
+  const payload = yield select(getTaggingPayload)
+  yield delay(500)
+
+  safari.extension.dispatchMessage(TAGS_SYNC, JSON.stringify(payload))
 }
