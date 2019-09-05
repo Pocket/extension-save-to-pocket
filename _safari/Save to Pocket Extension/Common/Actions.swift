@@ -105,10 +105,10 @@ class Actions {
             withName: Dispatch.SAVE_TO_POCKET_SUCCESS,
             userInfo: ["item_id":item_id]
           )
-          
+
           // Get suggested tags (if applicable)
           self.getSuggestedTags(from: page, saved_url: url )
-          
+
         case .failure(let error):
           NSLog("Page failed to save: \(error)")
 
@@ -146,7 +146,7 @@ class Actions {
     }
 
     let defaults = UserDefaults.standard
-    
+
     // Do we have an auth token?
     guard let access_token = defaults.string(forKey: "access_token") else {
       // No auth token.  Save reference to the page and log
@@ -154,36 +154,36 @@ class Actions {
       Actions.logIn(from: page)
       return
     }
-    
-   
+
+
     NSLog("Archive page with item id: \(String(describing: item_id))")
-    
+
     // Make an API call to validate the extension
     SaveToPocketAPI.archiveItem(from: page, item_id: item_id as! String, access_token: access_token) { result in
-      
+
       switch result {
-        
+
       case .success(let response):
         NSLog("Item Archived: \(response)")
-        
+
         // Status should be replaced with relevant data
         page.dispatchMessageToScript(
           withName: Dispatch.ARCHIVE_ITEM_SUCCESS,
           userInfo: nil
         )
-        
+
       case .failure(let error):
         NSLog("Item Archive Failed: \(error)")
-        
+
         // Status should be replaced with relevant data
         page.dispatchMessageToScript(
           withName: Dispatch.ARCHIVE_ITEM_FAILURE,
           userInfo: nil
         )
       }
-      
+
     }
-    
+
   }
 
   static func removeItem(from page: SFSafariPage, userInfo: [String : Any]?){
@@ -192,9 +192,9 @@ class Actions {
       NSLog("No item id to archive: \(String(describing: userInfo))")
       return
     }
-    
+
     let defaults = UserDefaults.standard
-    
+
     // Do we have an auth token?
     guard let access_token = defaults.string(forKey: "access_token") else {
       // No auth token.  Save reference to the page and log
@@ -202,44 +202,44 @@ class Actions {
       Actions.logIn(from: page)
       return
     }
-    
-    
+
+
     NSLog("Removing page with item id: \(String(describing: item_id))")
-    
+
     // Make an API call to validate the extension
     SaveToPocketAPI.removeItem(from: page, item_id: item_id as! String, access_token: access_token) { result in
-      
+
       switch result {
-        
+
       case .success(let response):
         NSLog("Item Removed: \(response)")
-        
+
         // Status should be replaced with relevant data
         page.dispatchMessageToScript(
           withName: Dispatch.REMOVE_ITEM_SUCCESS,
           userInfo: nil
         )
-        
+
       case .failure(let error):
         NSLog("Item Remove Failed: \(error)")
-        
+
         // Status should be replaced with relevant data
         page.dispatchMessageToScript(
           withName: Dispatch.REMOVE_ITEM_FAILURE,
           userInfo: nil
         )
       }
-      
+
     }
 
   }
 
   static func getSuggestedTags(from page: SFSafariPage, saved_url: String){
     let defaults = UserDefaults.standard
-    
+
     // Is the user premium?
     let premium_status = defaults.string(forKey: "premium_status")
-    
+
     if premium_status != "1" {
       NSLog("No suggested tags: premium_status (\(String(describing: premium_status)))")
       return
@@ -252,47 +252,97 @@ class Actions {
       Actions.logIn(from: page)
       return
     }
-    
+
     // Let the client side know we are fetching tags
     page.dispatchMessageToScript(
       withName: Dispatch.SUGGESTED_TAGS_REQUEST,
       userInfo: nil
     )
-    
+
     // Make an API call to validate the extension
     SaveToPocketAPI.getOnSaveTags(
       from: page,
       saved_url: saved_url,
       access_token: access_token) { result in
-      
+
       switch result {
-        
+
       case .success(let response):
         NSLog("Suggested tags \(response)")
-        
+
         // Pass Suggested Tags to client side
         page.dispatchMessageToScript(
           withName: Dispatch.SUGGESTED_TAGS_SUCCESS,
           userInfo: ["response": response]
         )
-        
+
       case .failure(let error):
         NSLog("Item Archive Failed: \(error)")
-        
+
         // Status should be replaced with relevant data
         page.dispatchMessageToScript(
           withName: Dispatch.SUGGESTED_TAGS_FAILURE,
           userInfo: nil
         )
       }
-      
-    }
-    
-    
-  }
-  
-  static func editTags(from page: SFSafariPage, userInfo: [String : Any]?){
 
+    }
+
+
+  }
+
+  static func tagsSync(from page: SFSafariPage, userInfo: [String : Any]?){
+    let defaults = UserDefaults.standard
+
+    // Do we have an auth token?
+    guard let access_token = defaults.string(forKey: "access_token") else {
+      // No auth token.  Save reference to the page and log
+      postAuthSave = page
+      Actions.logIn(from: page)
+      return
+    }
+
+    guard let item_id = userInfo!["item_id"] as? String else {
+        NSLog("No item id to sync tags: \(String(describing: userInfo))")
+        return
+    }
+
+    guard let tags = userInfo!["tags"] else {
+      NSLog("No tags to sync: \(String(describing: userInfo))")
+      return
+    }
+
+    NSLog("Sync tags: \(String(describing: tags))")
+    
+    // Make an API call to validate the extension
+    SaveToPocketAPI.syncItemTags(
+      from: page,
+      item_id: item_id,
+      tags: [tags],
+      access_token: access_token) { result in
+
+      switch result {
+
+      case .success(let response):
+        NSLog("Sync Tags Sucess \(response)")
+
+         // Pass Suggested Tags to client side
+         page.dispatchMessageToScript(
+           withName: Dispatch.TAGS_ADDED_SUCCESS,
+           userInfo: ["response": response]
+         )
+
+      case .failure(let error):
+        NSLog("Sync Tags Failed: \(error)")
+
+         // Status should be replaced with relevant data
+         page.dispatchMessageToScript(
+           withName: Dispatch.TAGS_ADDED_FAILURE,
+           userInfo: nil
+         )
+      }
+
+    }
   }
 
 } // End Actions
