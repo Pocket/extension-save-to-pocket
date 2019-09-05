@@ -188,35 +188,19 @@ class SaveToPocketAPI: SafariExtensionHandler{
         return
 
       case .success(let data):
-        
+
         NSLog("Save Failed: (\(String(describing: data)))")
-        
+
         guard let actionResults = try? JSONDecoder().decode(ActionResults.self, from: data) else {
           completion(.failure(.json))
           return
         }
-        
+
         let item_id = actionResults.action_results![0].item_id!
         NSLog("Save Success (Item ID): (\(String(describing: item_id)))")
-        
-//        guard let saveJSON = try? JSONSerialization.jsonObject(with: data) else {
-//          NSLog("Save Failed: (\(String(describing: requestInfo)))")
-//          completion(.failure(.json))
-//          return
-//        }
-
         completion(.success(item_id))
-
       }
     }
-
-    // Make call to save item to Pocket
-    NSLog("""
-      Attempt to save (\(String(describing: url)))
-      with access_token: (\(String(describing: access_token)))
-      """)
-
-
   }
 
   static func removeItem(
@@ -225,44 +209,44 @@ class SaveToPocketAPI: SafariExtensionHandler{
     access_token: String,
     completion: @escaping (Result<Any, RequestError>) -> Void
     ) -> Void {
-    
+
     // Build Action
     let removeAction: [String : Any] = [
       "action": "remove",
       "item_id": item_id
     ]
-    
+
     // Build request data dictionary
     let requestData: [String : Any] = [
       "consumer_key": "70018-b83d4728573df682a7c50b3d",
       "access_token": access_token,
       "actions": [removeAction]
     ]
-    
-    
+
+
     let requestInfo: [String : Any] = [
       "url" : "https://getpocket.com/v3/send/",
       "method" : "POST",
       "parameters" : requestData
     ];
-    
+
     Utilities.request(from: page, userInfo: requestInfo) { result in
       switch result {
-        
+
       case .failure(let error):
         NSLog("Remove Failed: (\(String(describing: requestInfo)))")
         completion(.failure(error))
         return
-        
+
       case .success(let data):
         guard let removeJSON = try? JSONSerialization.jsonObject(with: data) else {
           NSLog("Remove Failed: (\(String(describing: requestInfo)))")
           completion(.failure(.json))
           return
         }
-        
+
         completion(.success(removeJSON))
-        
+
       }
     }
   }
@@ -279,38 +263,38 @@ class SaveToPocketAPI: SafariExtensionHandler{
       "action": "archive",
       "item_id": item_id
     ]
-    
+
     // Build request data dictionary
     let requestData: [String : Any] = [
       "consumer_key": "70018-b83d4728573df682a7c50b3d",
       "access_token": access_token,
       "actions": [archiveAction]
     ]
-    
-    
+
+
     let requestInfo: [String : Any] = [
       "url" : "https://getpocket.com/v3/send/",
       "method" : "POST",
       "parameters" : requestData
     ];
-    
+
     Utilities.request(from: page, userInfo: requestInfo) { result in
       switch result {
-        
+
       case .failure(let error):
         NSLog("Archive Failed: (\(String(describing: requestInfo)))")
         completion(.failure(error))
         return
-        
+
       case .success(let data):
         guard let archiveJSON = try? JSONSerialization.jsonObject(with: data) else {
           NSLog("Archive Failed: (\(String(describing: requestInfo)))")
           completion(.failure(.json))
           return
         }
-        
+
         completion(.success(archiveJSON))
-        
+
       }
     }
   }
@@ -328,35 +312,85 @@ class SaveToPocketAPI: SafariExtensionHandler{
       "access_token": access_token,
       "url": saved_url
     ]
-    
+
     let requestInfo: [String : Any] = [
       "url" : "https://getpocket.com/v3/suggested_tags/",
       "method" : "POST",
       "parameters" : requestData
     ];
-    
+
     Utilities.request(from: page, userInfo: requestInfo) { result in
       switch result {
-        
+
       case .failure(let error):
         NSLog("On Save Tags Failed: (\(String(describing: requestInfo)))")
         completion(.failure(error))
         return
-        
+
       case .success(let data):
         guard let onSaveTagsJson = try? JSONSerialization.jsonObject(with: data) else {
           NSLog("On Save Tags Failed: (\(String(describing: requestInfo)))")
           completion(.failure(.json))
           return
         }
-        
+
         completion(.success(onSaveTagsJson))
-        
+
       }
     }
   }
 
-  static func syncItemTags(){}
+  static func syncItemTags(
+    from page: SFSafariPage,
+    item_id: String,
+    tags: Array<Any>,
+    access_token: String,
+    completion: @escaping (Result<Any, RequestError>) -> Void
+    ) -> Void {
+
+    // Build Action
+    let addTagsAction: [String : Any] = [
+      "action": "tags_add",
+      "item_id": item_id,
+      "tags": tags
+    ]
+    
+    // Build request data dictionary
+    let requestData: [String : Any] = [
+      "consumer_key": "70018-b83d4728573df682a7c50b3d",
+      "access_token": access_token,
+      "actions": [addTagsAction]
+    ]
+    
+    
+    let requestInfo: [String : Any] = [
+      "url" : "https://getpocket.com/v3/send/",
+      "method" : "POST",
+      "parameters" : requestData
+    ];
+    
+    NSLog("Request Add Tags: (\(String(describing: requestInfo)))")
+    
+    Utilities.request(from: page, userInfo: requestInfo) { result in
+      switch result {
+        
+      case .failure(let error):
+        NSLog("Add Tags Failed: (\(String(describing: requestInfo)))")
+        completion(.failure(error))
+        return
+        
+      case .success(let data):
+        guard let addTagsJson = try? JSONSerialization.jsonObject(with: data) else {
+          NSLog("Add Tags Failed: (\(String(describing: requestInfo)))")
+          completion(.failure(.json))
+          return
+        }
+        
+        completion(.success(addTagsJson))
+        
+      }
+    }
+  }
 
   static func fetchStoredTags(){}
 
