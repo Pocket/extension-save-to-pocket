@@ -77,6 +77,8 @@ class SafariApp extends Component {
     return (
       <Doorhanger
         tab_id={1}
+        logOut={this.props.userLogOut}
+        noSettings={true}
         isSaveActive={this.isSaveActive}
         currentTab={{ status, type, dropDownActive }}
         setDropDownStatus={this.setDropDownStatus}
