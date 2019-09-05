@@ -28,5 +28,10 @@
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Doyle-Medium.otf</string>
+		<string>Graphik LCG-Medium.otf</string>
+	</array>
 </dict>
 </plist>
