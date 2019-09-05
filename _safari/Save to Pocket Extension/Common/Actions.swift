@@ -307,7 +307,7 @@ class Actions {
         return
     }
 
-    guard let tags = userInfo!["tags"] else {
+    guard let tags: Array<Any> = userInfo?["tags"] as? Array<String> else {
       NSLog("No tags to sync: \(String(describing: userInfo))")
       return
     }
@@ -318,7 +318,7 @@ class Actions {
     SaveToPocketAPI.syncItemTags(
       from: page,
       item_id: item_id,
-      tags: [tags],
+      tags: tags,
       access_token: access_token) { result in
 
       switch result {
