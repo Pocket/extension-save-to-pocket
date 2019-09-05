@@ -56,13 +56,13 @@ class Toolbar extends Component {
   get listItems() {
     const settings = {
       copy: localize('actions', 'settings'),
-      icon: Icon.Settings,
+      // icon: Icon.Settings,
       method: this.props.openOptions
     }
 
     const logOut = {
       copy: localize('actions', 'logout'),
-      icon: Icon.Profile,
+      // icon: Icon.Profile,
       method: this.props.logOut
     }
 
@@ -81,7 +81,7 @@ class Toolbar extends Component {
       },
       {
         copy: localize('actions', 'open_pocket'),
-        icon: Icon.OpenPocket,
+        // icon: Icon.OpenPocket,
         method: this.props.openPocket,
         divider: true
       },
