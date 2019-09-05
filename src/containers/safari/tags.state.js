@@ -128,8 +128,10 @@ const getTaggingPayload = state => {
 /* SAGAS :: RESPONDERS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 function* tagChanges() {
+  yield delay(1000)
   const payload = yield select(getTaggingPayload)
-  yield delay(500)
 
-  safari.extension.dispatchMessage(TAGS_SYNC, JSON.stringify(payload))
+  if (payload) {
+    safari.extension.dispatchMessage(TAGS_SYNC, payload)
+  }
 }
