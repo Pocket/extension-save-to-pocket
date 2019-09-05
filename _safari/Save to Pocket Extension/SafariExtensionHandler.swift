@@ -56,8 +56,8 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
       Actions.removeItem(from: page, userInfo: userInfo)
       return
 
-    case Receive.EDIT_TAGS:
-      Actions.editTags(from: page, userInfo: userInfo)
+    case Receive.TAGS_SYNC:
+      Actions.tagsSync(from: page, userInfo: userInfo)
       return
 
     default:
