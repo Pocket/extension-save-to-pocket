@@ -62,7 +62,7 @@ class Toolbar extends Component {
 
     const logOut = {
       copy: localize('actions', 'logout'),
-      icon: Icon.Question,
+      icon: Icon.Profile,
       method: this.props.logOut
     }
 
