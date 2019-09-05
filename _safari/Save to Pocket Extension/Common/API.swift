@@ -189,8 +189,6 @@ class SaveToPocketAPI: SafariExtensionHandler{
 
       case .success(let data):
 
-        NSLog("Save Failed: (\(String(describing: data)))")
-
         guard let actionResults = try? JSONDecoder().decode(ActionResults.self, from: data) else {
           completion(.failure(.json))
           return
