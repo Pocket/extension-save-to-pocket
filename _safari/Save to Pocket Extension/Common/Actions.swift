@@ -14,9 +14,10 @@ class Actions {
 
   static func logIn(from page: SFSafariPage){
 
-    Utilities.openBackgroundTab(
+    Utilities.openTab(
       from: page,
-      userInfo: ["url" : "https://getpocket.com/signup?src=extension&route=/extension_login_success"]
+      userInfo: ["url" : "https://getpocket.com/signup?src=extension&route=/extension_login_success"],
+      makeActive: false
     )
 
   }
@@ -34,6 +35,16 @@ class Actions {
 
   }
 
+  static func openPocket(from page: SFSafariPage) {
+    
+    Utilities.openTab(
+      from: page,
+      userInfo: ["url" : "https://app.getpocket.com/"],
+      makeActive: true
+    )
+    
+  }
+  
   static func auth(from page: SFSafariPage, userInfo: [String : Any]?){
 
     // Make an API call to validate the extension
