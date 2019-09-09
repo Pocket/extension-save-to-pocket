@@ -22,10 +22,17 @@ import { USER_LOG_OUT_FAILURE } from './actions'
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 export const dispatchInit = () => {
   safari.self.addEventListener('message', handleMessage)
+  document.addEventListener('contextmenu', handleContextMenu, false)
 }
 
 /* Handle incoming messages
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+function handleContextMenu(event) {
+  const link = event.target.href
+  const urlToSave = link ? link : 'page'
+  safari.extension.setContextMenuEventUserInfo(event, { urlToSave })
+}
+
 function handleMessage(event) {
   const { message, name = 'Unknown Action' } = event || {}
 
