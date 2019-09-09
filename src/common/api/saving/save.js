@@ -12,6 +12,7 @@ export function saveToPocket(saveObject, access_token) {
           action: 'add',
           url: saveObject.url,
           title: saveObject.title,
+          ...saveObject.actionInfo,
           ...saveObject.additionalParams
         }
       ]
