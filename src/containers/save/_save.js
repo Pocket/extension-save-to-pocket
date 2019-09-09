@@ -136,8 +136,7 @@ function* saveRequest(action) {
   const tabId = action.data.tab.id
   yield put({ type: 'REQUEST_SAVE_TO_POCKET', saveType, tabId })
 
-  const setup = yield select(getCurrentSetup)
-  const saveObject = buildSaveObject(action, setup)
+  const saveObject = buildSaveObject(action)
   const saveHash = saveObject.saveHash
   const authToken = yield call(requireAuthorization)
 
@@ -200,18 +199,11 @@ function* saveSuccess(saveObject, resolvedId) {
 
 function* archiveItemRequest() {
   const current = yield select(getCurrentItem)
-  const setup = yield select(getCurrentSetup)
-  const cxt_premium_status = setup.account_premium
-
   yield put({ type: 'ITEM_ARCHIVE_REQUEST', tabId: current.tabId })
 
   const authToken = yield call(requireAuthorization)
   try {
-    const data = yield call(archiveItem, authToken, current.item.id, {
-      cxt_premium_status,
-      cxt_view: 'ext_popover',
-      cxt_ui: 'toolbar'
-    })
+    const data = yield call(archiveItem, authToken, current.item.id)
     yield archiveSuccess(data, current)
   } catch (error) {
     yield put({ type: 'ITEM_ARCHIVE_ERROR', error, current })
@@ -232,18 +224,12 @@ function* archiveSuccess(data, current) {
 
 function* removeItemRequest() {
   const current = yield select(getCurrentItem)
-  const setup = yield select(getCurrentSetup)
-  const cxt_premium_status = setup.account_premium
   yield put({ type: 'ITEM_REMOVE_REQUEST', tabId: current.tabId })
   yield put({ type: 'SURVEY_HIDE' })
 
   const authToken = yield call(requireAuthorization)
   try {
-    const data = yield call(removeItem, authToken, current.item.id, {
-      cxt_premium_status,
-      cxt_view: 'ext_popover',
-      cxt_ui: 'toolbar'
-    })
+    const data = yield call(removeItem, authToken, current.item.id)
     yield removeSuccess(data, current)
   } catch (error) {
     yield put({ type: 'ITEM_REMOVE_ERROR', error, current })
@@ -263,8 +249,7 @@ function* removeSuccess(data, current) {
 }
 
 // Utilities
-function buildSaveObject(action, setup) {
-  const cxt_premium_status = setup.account_premium
+function buildSaveObject(action) {
   switch (action.data.from) {
     case 'browserAction': {
       const tab = action.data.tab
@@ -273,7 +258,7 @@ function buildSaveObject(action, setup) {
       const url = tab.url
       const title = tab.title
       const saveType = 'page'
-      const actionInfo = { cxt_ui: 'toolbar', cxt_premium_status }
+      const actionInfo = { cxt_ui: 'toolbar' }
       const showSavedIcon = true
 
       return {
@@ -295,7 +280,7 @@ function buildSaveObject(action, setup) {
       const title = savedLink ? info.selectionText || info.linkUrl : tab.title
       const cxt_ui = savedLink ? 'right_click_link' : 'right_click_page'
       const saveType = savedLink ? 'link' : 'page'
-      const actionInfo = { cxt_ui, cxt_premium_status }
+      const actionInfo = { cxt_ui, cxt_url: tab.url }
       const showSavedIcon = savedLink ? 0 : 1
 
       return {
