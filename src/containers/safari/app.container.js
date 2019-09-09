@@ -82,7 +82,9 @@ class SafariApp extends Component {
         isSaveActive={this.isSaveActive}
         currentTab={{ status, type, dropDownActive }}
         setDropDownStatus={this.setDropDownStatus}
+        completeSave={this.props.completeSave}
         currentTags={currentTags}
+        inputFocused={this.state.inputFocused}
         {...dropDownProps}
         {...taggingProps}
       />
