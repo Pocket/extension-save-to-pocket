@@ -5,6 +5,7 @@ import Survey from 'views/doorhanger/survey/survey.main'
 import { TransitionMotion, spring, presets } from 'react-motion' //
 import styled from '@emotion/styled'
 import { mixin_fontBase } from 'common/styles/components'
+import { withAutoHider } from 'modules/autohide/autohide.hoc'
 
 const DoorHangerWrapper = styled.div`
   ${mixin_fontBase};
@@ -17,6 +18,26 @@ const DoorHangerWrapper = styled.div`
 `
 
 class DoorHanger extends Component {
+  componentDidUpdate(prevProps) {
+    const { isSaveActive, hasTimedOut, inputFocused } = this.props
+    const { beginTiming, startTimer, resetTimer, completeSave } = this.props
+
+    if (inputFocused !== prevProps.inputFocused) {
+      if (inputFocused) return resetTimer()
+      if (startTimer) return startTimer()
+    }
+
+    if (hasTimedOut) {
+      resetTimer()
+      completeSave()
+      return
+    }
+
+    if (isSaveActive === prevProps.isSaveActive) return
+
+    if (isSaveActive && beginTiming) beginTiming()
+  }
+
   getDefaultStyles = () => {
     return [
       {
@@ -31,7 +52,7 @@ class DoorHanger extends Component {
   }
 
   getStyles = () => {
-    return this.props.isSaveActive && this.props.currentTab
+    return this.showing
       ? [
           {
             data: {},
@@ -52,12 +73,26 @@ class DoorHanger extends Component {
     return { transform: spring(-240), opacity: spring(0) }
   }
 
+  get showing() {
+    const { isSaveActive, currentTab, hasTimedOut } = this.props
+    return isSaveActive && currentTab && !hasTimedOut
+  }
+
   get storedTags() {
     return this.props.setup ? this.props.setup.tags_stored : []
   }
 
   get showSurvey() {
     return this.props.survey ? this.props.survey.show : false
+  }
+
+  onHover = () => {
+    this.props.resetTimer()
+  }
+
+  offHover = () => {
+    const { inputFocused } = this.props
+    if (!inputFocused) this.props.startTimer()
   }
 
   render() {
@@ -73,8 +108,8 @@ class DoorHanger extends Component {
               {items.map(item => {
                 return (
                   <DoorHangerWrapper
-                    onMouseEnter={this.props.onHover}
-                    onMouseLeave={this.props.offHover}
+                    onMouseEnter={this.onHover}
+                    onMouseLeave={this.offHover}
                     key={item.key}
                     style={{
                       transform: `translateY(${item.style.transform}%) translateZ(0)`,
@@ -134,4 +169,4 @@ class DoorHanger extends Component {
   }
 }
 
-export default DoorHanger
+export default withAutoHider(DoorHanger)

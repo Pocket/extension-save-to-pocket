@@ -5,6 +5,7 @@ import { SAVE_TO_POCKET_REQUEST } from './actions'
 import { SAVE_TO_POCKET_SUCCESS } from './actions'
 import { SAVE_TO_POCKET_FAILURE } from './actions'
 import { SAVE_TO_POCKET_UPDATE } from './actions'
+import { SAVE_TO_POCKET_COMPLETE } from './actions'
 import { ARCHIVE_ITEM } from './actions'
 import { ARCHIVE_ITEM_REQUEST } from './actions'
 import { REMOVE_ITEM } from './actions'
@@ -25,7 +26,8 @@ const initialState = {
 // ACTIONS
 export const saveActions = {
   archiveItem: payload => ({ type: ARCHIVE_ITEM, payload }),
-  removeItem: payload => ({ type: REMOVE_ITEM, payload })
+  removeItem: payload => ({ type: REMOVE_ITEM, payload }),
+  completeSave: () => ({ type: SAVE_TO_POCKET_COMPLETE })
 }
 
 // REDUCER
@@ -41,6 +43,10 @@ export const saveReducers = (state = initialState, action) => {
 
     case SAVE_TO_POCKET_UPDATE: {
       return { ...state, ...action.payload }
+    }
+
+    case SAVE_TO_POCKET_COMPLETE: {
+      return { ...state, status: 'inactive' }
     }
 
     case ARCHIVE_ITEM_REQUEST: {
