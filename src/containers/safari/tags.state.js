@@ -46,8 +46,8 @@ export const tagsReducers = (state = initialState, action) => {
     }
 
     case SUGGESTED_TAGS_REQUEST: {
-      const suggested = []
-      return { ...state, suggested }
+      // TODO: Provide feedback to user
+      return { ...state }
     }
 
     case TAG_ADD: {
