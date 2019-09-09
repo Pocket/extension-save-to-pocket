@@ -59,7 +59,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
     case Receive.TAGS_SYNC:
       Actions.tagsSync(from: page, userInfo: userInfo)
       return
-    
+
     case Receive.OPEN_POCKET:
       Actions.openPocket(from: page)
       return
@@ -77,13 +77,11 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
 
   override func contextMenuItemSelected(withCommand command: String, in page: SFSafariPage, userInfo: [String : Any]? = nil){
 
-    NSLog("Context with \(command) \(Receive.SAVE_TO_POCKET_CONTEXT)")
-
-    // Not sure this is viable to actuall receive url info
     if(command == Receive.SAVE_TO_POCKET_CONTEXT){
       NSLog("Save to pocket context with userInfo: \(String(describing: userInfo!))")
     }
 
+    Actions.saveFromContext(from: page, userInfo: userInfo)
   }
 
   override func messageReceivedFromContainingApp(withName messageName: String, userInfo: [String : Any]? = nil) {
