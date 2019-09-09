@@ -9,6 +9,7 @@
 import SafariServices
 
 var postAuthSave:SFSafariPage? = nil
+var postAuthLink:String? = nil
 
 class Actions {
 
@@ -36,15 +37,15 @@ class Actions {
   }
 
   static func openPocket(from page: SFSafariPage) {
-    
+
     Utilities.openTab(
       from: page,
       userInfo: ["url" : "https://app.getpocket.com/"],
       makeActive: true
     )
-    
+
   }
-  
+
   static func auth(from page: SFSafariPage, userInfo: [String : Any]?){
 
     // Make an API call to validate the extension
@@ -58,8 +59,17 @@ class Actions {
           // Activate tab
           postAuthSave?.getContainingTab(completionHandler: { tab in
             tab.activate(completionHandler: {
-              // Save the correct page
-              self.savePage(from: postAuthSave!)
+              
+              if((postAuthLink) != nil){
+                // Save the correct link
+                self.saveLink(from: postAuthSave!, url: postAuthLink!)
+                postAuthLink = nil
+              }
+              else{
+                // Save the correct page
+                self.savePage(from: postAuthSave!)
+              }
+
               // Since we got the Auth Code from the passed in page, we close that page
               Utilities.closeTab(from: page, userInfo: userInfo)
             })
@@ -74,6 +84,21 @@ class Actions {
 
     }
 
+  }
+
+  static func saveFromContext(from page: SFSafariPage, userInfo: [String : Any]?){
+    
+    let url = userInfo!["urlToSave"] as! String
+    NSLog("Saving from context")
+    
+    if url == "page" {
+      NSLog("Context without a link")
+      Actions.savePage(from: page)
+      return
+    }
+    
+    NSLog("Context with link")
+    Actions.saveLink(from: page, url: url)
   }
 
   static func savePage(from page: SFSafariPage){
@@ -138,16 +163,56 @@ class Actions {
   }
 
   static func saveLink(from page: SFSafariPage, url: String){
-        let defaults = UserDefaults.standard
+      let defaults = UserDefaults.standard
 
-        // Do we have an auth token?
-        guard let access_token = defaults.string(forKey: "access_token") else {
-          // No auth token, need to log in
-          Actions.logIn(from: page)
-          return
-        }
+      // Do we have an auth token?
+      guard let access_token = defaults.string(forKey: "access_token") else {
+        // No auth token, need to log in
+        postAuthSave = page
+        postAuthLink = url
+        Actions.logIn(from: page)
+        return
+      }
 
-        NSLog("Save page with access token: \(access_token)")
+    // Status should be replaced with relevant data
+    page.dispatchMessageToScript(
+      withName: Dispatch.SAVE_TO_POCKET_REQUEST,
+      userInfo: nil
+    )
+    
+    
+    SaveToPocketAPI.saveToPocket(from: page, url: url, access_token: access_token) { result in
+      
+      switch result {
+        
+      case .success(let item_id):
+        
+        NSLog("Link Saved: \(item_id)")
+        
+        // Pass item_id to client side (to operate on saved item)
+        page.dispatchMessageToScript(
+          withName: Dispatch.SAVE_TO_POCKET_SUCCESS,
+          userInfo: ["item_id":item_id]
+        )
+        
+        // Get suggested tags (if applicable)
+        self.getSuggestedTags(from: page, saved_url: url )
+        
+      case .failure(let error):
+        NSLog("Link failed to save: \(error)")
+        
+        // Status should be replaced with relevant data
+        page.dispatchMessageToScript(
+          withName: Dispatch.SAVE_TO_POCKET_FAILURE,
+          userInfo: nil
+        )
+        
+      }
+      
+    }
+    
+    NSLog("Saving Link: \(String(describing: url))")
+
   }
 
   static func archiveItem(from page: SFSafariPage, userInfo: [String : Any]?){
@@ -288,7 +353,7 @@ class Actions {
         )
 
       case .failure(let error):
-        NSLog("Item Archive Failed: \(error)")
+        NSLog("Suggested tags Failed: \(error)")
 
         // Status should be replaced with relevant data
         page.dispatchMessageToScript(
@@ -324,7 +389,7 @@ class Actions {
     }
 
     NSLog("Sync tags: \(String(describing: tags))")
-    
+
     // Make an API call to validate the extension
     SaveToPocketAPI.syncItemTags(
       from: page,
