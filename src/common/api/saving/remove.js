@@ -2,7 +2,7 @@ import { request } from '../_request/request'
 
 /* API CALLS - Should return promises
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-export function removeItem(access_token, itemId) {
+export function removeItem(access_token, itemId, actionInfo) {
   return request({
     path: 'send/',
     data: {
@@ -11,7 +11,7 @@ export function removeItem(access_token, itemId) {
         {
           action: 'delete',
           item_id: itemId,
-          cxt_ui: 'newtab'
+          ...actionInfo
         }
       ]
     }
