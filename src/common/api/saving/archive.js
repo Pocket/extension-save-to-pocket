@@ -2,7 +2,7 @@ import { request } from '../_request/request'
 
 /* API CALLS - Should return promises
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-export function archiveItem(access_token, itemId, actionInfo) {
+export function archiveItem(access_token, itemId) {
   return request({
     path: 'send/',
     data: {
@@ -10,8 +10,7 @@ export function archiveItem(access_token, itemId, actionInfo) {
       actions: [
         {
           action: 'archive',
-          item_id: itemId,
-          ...actionInfo
+          item_id: itemId
         }
       ]
     }
