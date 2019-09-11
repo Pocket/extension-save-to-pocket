@@ -169,7 +169,8 @@ class SaveToPocketAPI: SafariExtensionHandler{
     let requestData: [String : Any] = [
       "consumer_key": CONSUMER_KEY,
       "access_token": access_token,
-      "actions": [saveAction]
+      "actions": [saveAction],
+      "cxt_ui": "toolbar"
     ]
 
 
@@ -218,7 +219,9 @@ class SaveToPocketAPI: SafariExtensionHandler{
     let requestData: [String : Any] = [
       "consumer_key": CONSUMER_KEY,
       "access_token": access_token,
-      "actions": [removeAction]
+      "actions": [removeAction],
+      "cxt_ui": "toolbar",
+      "cxt_view": "ext_popover"
     ]
 
 
@@ -266,7 +269,9 @@ class SaveToPocketAPI: SafariExtensionHandler{
     let requestData: [String : Any] = [
       "consumer_key": CONSUMER_KEY,
       "access_token": access_token,
-      "actions": [archiveAction]
+      "actions": [archiveAction],
+      "cxt_ui": "toolbar",
+      "cxt_view": "ext_popover"
     ]
 
 
@@ -352,40 +357,42 @@ class SaveToPocketAPI: SafariExtensionHandler{
       "item_id": item_id,
       "tags": tags
     ]
-    
+
     // Build request data dictionary
     let requestData: [String : Any] = [
       "consumer_key": CONSUMER_KEY,
       "access_token": access_token,
-      "actions": [addTagsAction]
+      "actions": [addTagsAction],
+      "cxt_ui": "toolbar",
+      "cxt_view": "ext_popover"
     ]
-    
-    
+
+
     let requestInfo: [String : Any] = [
       "url" : "https://getpocket.com/v3/send/",
       "method" : "POST",
       "parameters" : requestData
     ];
-    
+
     NSLog("Request Add Tags: (\(String(describing: requestInfo)))")
-    
+
     Utilities.request(from: page, userInfo: requestInfo) { result in
       switch result {
-        
+
       case .failure(let error):
         NSLog("Add Tags Failed: (\(String(describing: requestInfo)))")
         completion(.failure(error))
         return
-        
+
       case .success(let data):
         guard let addTagsJson = try? JSONSerialization.jsonObject(with: data) else {
           NSLog("Add Tags Failed: (\(String(describing: requestInfo)))")
           completion(.failure(.json))
           return
         }
-        
+
         completion(.success(addTagsJson))
-        
+
       }
     }
   }
