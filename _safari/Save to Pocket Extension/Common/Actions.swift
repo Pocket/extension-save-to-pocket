@@ -59,7 +59,7 @@ class Actions {
           // Activate tab
           postAuthSave?.getContainingTab(completionHandler: { tab in
             tab.activate(completionHandler: {
-              
+
               if((postAuthLink) != nil){
                 // Save the correct link
                 self.saveLink(from: postAuthSave!, url: postAuthLink!)
@@ -87,16 +87,16 @@ class Actions {
   }
 
   static func saveFromContext(from page: SFSafariPage, userInfo: [String : Any]?){
-    
+
     let url = userInfo!["urlToSave"] as! String
     NSLog("Saving from context")
-    
+
     if url == "page" {
       NSLog("Context without a link")
       Actions.savePage(from: page)
       return
     }
-    
+
     NSLog("Context with link")
     Actions.saveLink(from: page, url: url)
   }
@@ -121,6 +121,8 @@ class Actions {
         return
       }
 
+      let premium_status = defaults.string(forKey: "premium_status") ?? ""
+
       // Status should be replaced with relevant data
       page.dispatchMessageToScript(
         withName: Dispatch.SAVE_TO_POCKET_REQUEST,
@@ -128,7 +130,7 @@ class Actions {
       )
 
 
-      SaveToPocketAPI.saveToPocket(from: page, url: url, access_token: access_token) { result in
+        SaveToPocketAPI.saveToPocket(from: page, url: url, access_token: access_token, premium_status: premium_status) { result in
 
         switch result {
 
@@ -174,43 +176,45 @@ class Actions {
         return
       }
 
+      let premium_status = defaults.string(forKey: "premium_status") ?? ""
+
     // Status should be replaced with relevant data
     page.dispatchMessageToScript(
       withName: Dispatch.SAVE_TO_POCKET_REQUEST,
       userInfo: nil
     )
-    
-    
-    SaveToPocketAPI.saveToPocket(from: page, url: url, access_token: access_token) { result in
-      
+
+
+    SaveToPocketAPI.saveToPocket(from: page, url: url, access_token: access_token, premium_status: premium_status) { result in
+
       switch result {
-        
+
       case .success(let item_id):
-        
+
         NSLog("Link Saved: \(item_id)")
-        
+
         // Pass item_id to client side (to operate on saved item)
         page.dispatchMessageToScript(
           withName: Dispatch.SAVE_TO_POCKET_SUCCESS,
           userInfo: ["item_id":item_id]
         )
-        
+
         // Get suggested tags (if applicable)
         self.getSuggestedTags(from: page, saved_url: url )
-        
+
       case .failure(let error):
         NSLog("Link failed to save: \(error)")
-        
+
         // Status should be replaced with relevant data
         page.dispatchMessageToScript(
           withName: Dispatch.SAVE_TO_POCKET_FAILURE,
           userInfo: nil
         )
-        
+
       }
-      
+
     }
-    
+
     NSLog("Saving Link: \(String(describing: url))")
 
   }
@@ -231,11 +235,12 @@ class Actions {
       return
     }
 
+    let premium_status = defaults.string(forKey: "premium_status") ?? ""
 
     NSLog("Archive page with item id: \(String(describing: item_id))")
 
     // Make an API call to validate the extension
-    SaveToPocketAPI.archiveItem(from: page, item_id: item_id as! String, access_token: access_token) { result in
+    SaveToPocketAPI.archiveItem(from: page, item_id: item_id as! String, access_token: access_token, premium_status: premium_status) { result in
 
       switch result {
 
@@ -279,11 +284,12 @@ class Actions {
       return
     }
 
+    let premium_status = defaults.string(forKey: "premium_status") ?? ""
 
     NSLog("Removing page with item id: \(String(describing: item_id))")
 
     // Make an API call to validate the extension
-    SaveToPocketAPI.removeItem(from: page, item_id: item_id as! String, access_token: access_token) { result in
+    SaveToPocketAPI.removeItem(from: page, item_id: item_id as! String, access_token: access_token, premium_status: premium_status) { result in
 
       switch result {
 
@@ -378,6 +384,8 @@ class Actions {
       return
     }
 
+    let premium_status = defaults.string(forKey: "premium_status") ?? ""
+
     guard let item_id = userInfo!["item_id"] as? String else {
         NSLog("No item id to sync tags: \(String(describing: userInfo))")
         return
@@ -395,7 +403,8 @@ class Actions {
       from: page,
       item_id: item_id,
       tags: tags,
-      access_token: access_token) { result in
+      access_token: access_token,
+      premium_status: premium_status) { result in
 
       switch result {
 
