@@ -163,16 +163,16 @@ class SaveToPocketAPI: SafariExtensionHandler{
     // Build Action
     let saveAction: [String : Any] = [
       "action": "add",
-      "url": url
+      "url": url,
+      "cxt_ui": "toolbar",
+      "cxt_premium_status": premium_status
     ]
 
     // Build request data dictionary
     let requestData: [String : Any] = [
       "consumer_key": "70018-b83d4728573df682a7c50b3d",
       "access_token": access_token,
-      "actions": [saveAction],
-      "cxt_ui": "toolbar",
-      "cxt_premium_status": premium_status
+      "actions": [saveAction]
     ]
 
 
@@ -215,17 +215,17 @@ class SaveToPocketAPI: SafariExtensionHandler{
     // Build Action
     let removeAction: [String : Any] = [
       "action": "delete",
-      "item_id": item_id
+      "item_id": item_id,
+      "cxt_ui": "toolbar",
+      "cxt_view": "ext_popover",
+      "cxt_premium_status": premium_status
     ]
 
     // Build request data dictionary
     let requestData: [String : Any] = [
       "consumer_key": "70018-b83d4728573df682a7c50b3d",
       "access_token": access_token,
-      "actions": [removeAction],
-      "cxt_ui": "toolbar",
-      "cxt_view": "ext_popover",
-      "cxt_premium_status": premium_status
+      "actions": [removeAction]
     ]
 
 
@@ -267,17 +267,17 @@ class SaveToPocketAPI: SafariExtensionHandler{
     // Build Action
     let archiveAction: [String : Any] = [
       "action": "archive",
-      "item_id": item_id
+      "item_id": item_id,
+      "cxt_ui": "toolbar",
+      "cxt_view": "ext_popover",
+      "cxt_premium_status": premium_status
     ]
 
     // Build request data dictionary
     let requestData: [String : Any] = [
       "consumer_key": "70018-b83d4728573df682a7c50b3d",
       "access_token": access_token,
-      "actions": [archiveAction],
-      "cxt_ui": "toolbar",
-      "cxt_view": "ext_popover",
-      "cxt_premium_status": premium_status
+      "actions": [archiveAction]
     ]
 
 
