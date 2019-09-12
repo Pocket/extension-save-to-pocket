@@ -155,6 +155,7 @@ class SaveToPocketAPI: SafariExtensionHandler{
     from page: SFSafariPage,
     url: String,
     access_token: String,
+    premium_status: String,
     completion: @escaping (Result<Any, RequestError>) -> Void
     ) -> Void {
 
@@ -170,7 +171,8 @@ class SaveToPocketAPI: SafariExtensionHandler{
       "consumer_key": "70018-b83d4728573df682a7c50b3d",
       "access_token": access_token,
       "actions": [saveAction],
-      "cxt_ui": "toolbar"
+      "cxt_ui": "toolbar",
+      "cxt_premium_status": premium_status
     ]
 
 
@@ -206,6 +208,7 @@ class SaveToPocketAPI: SafariExtensionHandler{
     from page: SFSafariPage,
     item_id: String,
     access_token: String,
+    premium_status: String,
     completion: @escaping (Result<Any, RequestError>) -> Void
     ) -> Void {
 
@@ -221,7 +224,8 @@ class SaveToPocketAPI: SafariExtensionHandler{
       "access_token": access_token,
       "actions": [removeAction],
       "cxt_ui": "toolbar",
-      "cxt_view": "ext_popover"
+      "cxt_view": "ext_popover",
+      "cxt_premium_status": premium_status
     ]
 
 
@@ -256,6 +260,7 @@ class SaveToPocketAPI: SafariExtensionHandler{
     from page: SFSafariPage,
     item_id: String,
     access_token: String,
+    premium_status: String,
     completion: @escaping (Result<Any, RequestError>) -> Void
     ) -> Void {
 
@@ -271,7 +276,8 @@ class SaveToPocketAPI: SafariExtensionHandler{
       "access_token": access_token,
       "actions": [archiveAction],
       "cxt_ui": "toolbar",
-      "cxt_view": "ext_popover"
+      "cxt_view": "ext_popover",
+      "cxt_premium_status": premium_status
     ]
 
 
@@ -348,6 +354,7 @@ class SaveToPocketAPI: SafariExtensionHandler{
     item_id: String,
     tags: Array<Any>,
     access_token: String,
+    premium_status: String,
     completion: @escaping (Result<Any, RequestError>) -> Void
     ) -> Void {
 
@@ -364,7 +371,8 @@ class SaveToPocketAPI: SafariExtensionHandler{
       "access_token": access_token,
       "actions": [addTagsAction],
       "cxt_ui": "toolbar",
-      "cxt_view": "ext_popover"
+      "cxt_view": "ext_popover",
+      "cxt_premium_status": premium_status
     ]
 
 
