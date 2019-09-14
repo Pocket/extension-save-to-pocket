@@ -11,11 +11,11 @@ export function getOnSaveTags(saveObject) {
   }).then(response => [{ saveObject, status: 'ok', response }])
 }
 
-export function syncItemTags(id, tags) {
+export function syncItemTags(id, tags, actionInfo) {
   return request({
     path: 'send/',
     data: {
-      actions: [{ action: 'tags_add', item_id: id, tags }]
+      actions: [{ action: 'tags_add', item_id: id, tags, ...actionInfo }]
     }
   }).then(response => response)
 }
