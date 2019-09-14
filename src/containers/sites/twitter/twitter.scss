@@ -14,15 +14,20 @@
     display: none;
   }
 }
+.pocketIconWrapper {
+  position: relative;
+  width: 35px;
+}
 .pocketIconContainer {
   cursor: pointer;
-  position: relative;
   border-radius: 100%;
   width: 35px;
   height: 35px;
-  position: relative;
+  position: absolute;
   left: -5px;
   transition: background 200ms;
+  margin-top: -2px;
+
   &:hover {
     background: #ef405630;
     .pocketIconStroke {
@@ -33,11 +38,12 @@
     @include show-fill;
   }
   .list-view & {
-    margin-top: -2px;
+    left: -23px;
+    top: -3px;
   }
   .focus-view & {
-    margin-top: 5px;
     zoom: 1.1;
+    top: 6px;
   }
 }
 

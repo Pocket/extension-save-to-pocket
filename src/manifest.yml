@@ -1,5 +1,5 @@
 name: 'Save to Pocket'
-version: 3.0.6.8
+version: 3.0.6.9
 options_page: options.html
 description: __MSG_extDescriptionGoogleChrome__
 default_locale: "en"

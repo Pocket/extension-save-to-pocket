@@ -19,7 +19,8 @@ const saveToPocketMarkup = `
 const saveToPocketButton = document.createElement('div')
 saveToPocketButton.classList.add(
   'ProfileTweet-action',
-  'ProfileTweet-action--stp'
+  'ProfileTweet-action--stp',
+  styles.pocketIconWrapper
 )
 saveToPocketButton.innerHTML = saveToPocketMarkup
 
@@ -83,7 +84,7 @@ export function getTweetInfo(twitterActionListCotnainerElement) {
     permaLink = permaLinkFromLink
   }
 
-  const isFocusViewTweet = $tweet.getAttribute('data-testid') === 'tweetDetail'
+  const isFocusViewTweet = $tweet.querySelectorAll('[data-testid] [role=group]').length === 0
 
   return {
     permaLink,
