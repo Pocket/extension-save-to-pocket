@@ -210,7 +210,7 @@ class SaveToPocketAPI: SafariExtensionHandler{
 
     // Build Action
     let removeAction: [String : Any] = [
-      "action": "remove",
+      "action": "delete",
       "item_id": item_id
     ]
 
