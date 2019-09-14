@@ -239,7 +239,9 @@ function* tagChanges() {
   })
 
   const actionInfo = {
-    cxt_premium_status
+    cxt_premium_status,
+    cxt_ui: 'toolbar',
+    cxt_view: 'ext_popover'
   }
   yield call(API.syncItemTags, tagInfo.id, tagInfo.tags, { actionInfo })
 }
