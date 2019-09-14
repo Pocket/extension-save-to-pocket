@@ -243,5 +243,5 @@ function* tagChanges() {
     cxt_ui: 'toolbar',
     cxt_view: 'ext_popover'
   }
-  yield call(API.syncItemTags, tagInfo.id, tagInfo.tags, { actionInfo })
+  yield call(API.syncItemTags, tagInfo.id, tagInfo.tags, actionInfo )
 }
