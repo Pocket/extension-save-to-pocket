@@ -194,6 +194,10 @@ const getStoredTags = state => {
   return state.setup.tags_stored || []
 }
 
+const getCurrentSetup = state => {
+  return state.setup
+}
+
 function* tagSuggestions(action) {
   try {
     const tagData = yield call(
@@ -214,6 +218,9 @@ function* tagSuggestions(action) {
 }
 
 function* tagChanges() {
+  const setup = yield select(getCurrentSetup)
+  const cxt_premium_status = setup.account_premium
+
   const tagInfo = yield select(getUsedTags)
   yield delay(2000)
 
@@ -231,5 +238,8 @@ function* tagChanges() {
     tabId: tagInfo.tabId
   })
 
-  yield call(API.syncItemTags, tagInfo.id, tagInfo.tags)
+  const actionInfo = {
+    cxt_premium_status
+  }
+  yield call(API.syncItemTags, tagInfo.id, tagInfo.tags, { actionInfo })
 }
