@@ -398,6 +398,10 @@ class Actions {
       return
     }
 
+    let suggestedCount = userInfo?["suggestedCount"] as? Int ?? 0
+
+    let usedSuggestedCount = userInfo?["usedSuggestedCount"] as? Int ?? 0
+
     NSLog("Sync tags: \(String(describing: tags))")
 
     // Make an API call to validate the extension
@@ -405,6 +409,8 @@ class Actions {
       from: page,
       item_id: item_id,
       tags: tags,
+      suggestedCount: suggestedCount,
+      usedSuggestedCount: usedSuggestedCount,
       access_token: access_token,
       premium_status: premium_status) { result in
 

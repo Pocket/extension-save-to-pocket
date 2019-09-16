@@ -353,6 +353,8 @@ class SaveToPocketAPI: SafariExtensionHandler{
     from page: SFSafariPage,
     item_id: String,
     tags: Array<Any>,
+    suggestedCount: Int,
+    usedSuggestedCount: Int,
     access_token: String,
     premium_status: String,
     completion: @escaping (Result<Any, RequestError>) -> Void
@@ -362,17 +364,21 @@ class SaveToPocketAPI: SafariExtensionHandler{
     let addTagsAction: [String : Any] = [
       "action": "tags_add",
       "item_id": item_id,
-      "tags": tags
+      "tags": tags,
+      "cxt_ui": "toolbar",
+      "cxt_view": "ext_popover",
+      "cxt_premium_status": premium_status,
+      "cxt_remove_cnt": 0,
+      "cxt_enter_cnt": tags.count,
+      "cxt_suggested_available": suggestedCount,
+      "cxt_suggested_cnt": usedSuggestedCount
     ]
 
     // Build request data dictionary
     let requestData: [String : Any] = [
       "consumer_key": CONSUMER_KEY,
       "access_token": access_token,
-      "actions": [addTagsAction],
-      "cxt_ui": "toolbar",
-      "cxt_view": "ext_popover",
-      "cxt_premium_status": premium_status
+      "actions": [addTagsAction]
     ]
 
 
