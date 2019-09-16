@@ -50,7 +50,7 @@ Safari adds an additional layer that contributes to distributing and installing 
 
 ## Basic Data Flow
 
-![basic data flow diagram](basic-flow.png)
+![basic data flow diagram](./assets/basic-flow.png)
 
 The way data flows in an extension at its most basic is:
 
@@ -73,7 +73,7 @@ From here on out we will go through piece by piece and add them to our data flow
 
 #### Toolbar Icon
 
-![expanded data flow diagram](expanded-flow-1.png)
+![expanded data flow diagram](./assets/expanded-flow-1.png)
 
 When the user clicks on the toolbar icon the [Extension Layer](#extension-layer) receives a message that contains information about the page/tab that is focused.
 
@@ -83,7 +83,7 @@ When the user clicks on the toolbar icon the [Extension Layer](#extension-layer)
 
 #### Context Menu (_right click menu_)
 
-![expanded data flow diagram](expanded-flow-2.png)
+![expanded data flow diagram](./assets/expanded-flow-2.png)
 
 When the user right clicks on something in the page the context menu appears.  The extensions allow us to add an item to that context menu. When the user selects this added menu item we make a check whether they are clicking on a link or not.  If it is a link, we save that link, otherwise we save the page the context menu was invoked on.
 
@@ -93,7 +93,7 @@ When the user right clicks on something in the page the context menu appears.  T
 
 ### Extension Layer Details
 
-![expanded data flow diagram](extension-layer-1.png)
+![expanded data flow diagram](./assets/extension-layer-1.png)
 
 This is where the ~~✨Magic~~ bulk of the extension functionality is contained.  The key to understanding this layer is to think of it as isolated from the other layers.  This layer is a locked room and the only way to interact with it is to pass explicit messages back and forth between the other layers.
 
