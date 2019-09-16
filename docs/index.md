@@ -19,15 +19,14 @@ Here we aim to get down some facts about the Save to Pocket extension and its im
 
 ## Fundamentals
 
-Browser extension add additional functionality to the browser—in our case, the ability to Save to Pocket. How do we do this you might ask.
+Extensions are powerful and can do quite a bit using the same technology that is used to build web sites and web apps (HTML/Javascript/CSS).  The primary difference is that extensions code runs in a few isolated contexts which we will think of as layers. Each layer handles a different aspect of the extension.
 
-~~✨Magic.~~
-
-When implementing a browser extension, it's helpful to think of it as a series of layers. Each layer handles a different aspect of the extension.
-- [Browser Layer](#browser-layer) - Actions from the extended browser
-- [Extension Layer](#extension-layer) - Process that runs in the background
+- [Browser Layer](#browser-layer) - Actions added to the browser chrome _(toolbar, context menu)_
+- [Extension Layer](#extension-layer) - Background process that runs seperate from the page.
 - [View Layer](#view-layer) - Content that operates in the current page
 - [Native Layer](#native-layer-safari-only) - (_Safari Only_) native app to manage the extension.
+
+A typical website runs solely in the [View Layer](#view-layer), where as an extension adds an additional [Extension Layer](#extension-layer) that runs in the background.  All the layers in play are as follows:
 
 ### Browser Layer
 
