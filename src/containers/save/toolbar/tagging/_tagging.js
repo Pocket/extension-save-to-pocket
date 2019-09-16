@@ -198,6 +198,10 @@ const getCurrentSetup = state => {
   return state.setup
 }
 
+const getActiveTags = state => {
+  return state.tags[state.active]
+}
+
 function* tagSuggestions(action) {
   try {
     const tagData = yield call(
@@ -218,6 +222,7 @@ function* tagSuggestions(action) {
 }
 
 function* tagChanges() {
+  const activeTags = yield select(getActiveTags)
   const setup = yield select(getCurrentSetup)
   const cxt_premium_status = setup.account_premium
 
@@ -238,7 +243,19 @@ function* tagChanges() {
     tabId: tagInfo.tabId
   })
 
+  const { suggested, used } = activeTags
+  const usedSuggested = used.reduce((curr, usedTag) => {
+    if(suggested.includes(usedTag)) {
+      curr.push(usedTag)
+    }
+    return usedTag
+  }, [])
+
   const actionInfo = {
+    cxt_suggested_available: suggested.length,
+    cxt_enter_cnt: used.length,
+    cxt_suggested_cnt: usedSuggested.length,
+    cxt_remove_cnt: 0,
     cxt_premium_status,
     cxt_ui: 'toolbar',
     cxt_view: 'ext_popover'
