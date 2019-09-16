@@ -1,4 +1,13 @@
-# Extension Architecture (_Work in Progress_)
+# Save To Pocket Extension
+
+## What is it?
+Save to Pocket Extension is a web browser extension that provides Pocket users the ability to save content to their Pocket account.  It does this through either a toolbar button or a context menu item that, when activated, send the page or selected link to the Pocket API.
+
+Additionally, a small, injected pop-over in the upper right hand of the current page provides feedback indicating status of the save and allows the user to operate on the content they have just saved by adding tags, archiving the page, or removing it from their list.
+
+The extension will also show the user additional recommendations of content based on the content they have just saved.  The user can turn off these recommendations in the extension settings _(webkit only at this time)_
+
+## Extension Architecture
 
 > Get your facts first, then you can distort them as you please. — Mark Twain
 
