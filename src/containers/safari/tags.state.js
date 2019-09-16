@@ -118,10 +118,13 @@ export const tagsSagas = [
 
 /* SAGAS :: SELECTORS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-const getTaggingPayload = state => {
+const getTaggingState = state => {
+  const { suggested, used } = state.tags
+
   return {
     item_id: state.saves.item_id,
-    tags: state.tags.used
+    used,
+    suggested
   }
 }
 
@@ -129,9 +132,16 @@ const getTaggingPayload = state => {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 function* tagChanges() {
   yield delay(1000)
-  const payload = yield select(getTaggingPayload)
-
-  if (payload) {
+  const taggingState = yield select(getTaggingState)
+  const { used, suggested, item_id } = taggingState
+  const usedSuggested = used.filter(usedTag => suggested.includes(usedTag))
+  const payload = {
+    item_id,
+    tags: used,
+    suggestedCount: suggested.length,
+    usedSuggestedCount: usedSuggested.length
+  }
+  if (taggingState) {
     safari.extension.dispatchMessage(TAGS_SYNC, payload)
   }
 }
