@@ -2,6 +2,7 @@
 import { USER_LOG_OUT } from './actions'
 import { OPEN_POCKET } from './actions'
 import { takeLatest } from 'redux-saga/effects'
+import { delay } from 'redux-saga'
 
 // ACTIONS
 export const appActions = {
@@ -32,5 +33,6 @@ function* logOutRequest() {
 }
 
 function* openPocket() {
+  yield delay(500)
   yield safari.extension.dispatchMessage(OPEN_POCKET)
 }
