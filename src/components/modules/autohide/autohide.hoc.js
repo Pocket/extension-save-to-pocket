@@ -28,7 +28,6 @@ export const withAutoHider = WrappedComponent => {
     }
 
     render() {
-      console.log(this.state)
       return (
         <WrappedComponent
           {...this.props}
@@ -43,47 +42,3 @@ export const withAutoHider = WrappedComponent => {
 
   return AutoHiderHOC
 }
-// export function withAutoHide(passedComponent) {
-//   return function autoHiderHOC(passedProps) {
-//     class AutoHider extends Component {
-
-//       constructor(props) {
-//         super(props)
-//         this.state = { show: true }
-//       }
-
-//       componentDidMount() {
-//         const { pause = false } = passedProps
-//         if (pause) return
-//         this.startTimer(this.initialDelay)
-//       }
-
-//       componentWillUnmount() {
-//         clearTimeout(this.timer)
-//       }
-
-//       componentDidUpdate(prevProps) {
-//         if (prevProps.pause !== passedProps.pause) {
-//           if (passedProps.pause) return clearTimeout(this.timer)
-//           this.startTimer()
-//         }
-//       }
-
-//       onTimeout = () => {
-//         this.setState({ show: false })
-//       }
-
-//       render() {
-//         const autoHideProps = { show: this.state.show }
-
-//         return React.createElement(
-//           passedComponent,
-//           { ...passedProps, ...autoHideProps },
-//           [...passedProps.children]
-//         )
-//       }
-//     }
-
-//     return AutoHider
-//   }
-// }
