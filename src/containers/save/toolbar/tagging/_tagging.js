@@ -244,10 +244,15 @@ function* tagChanges() {
   })
 
   const { suggested, used } = activeTags
-  const usedSuggested = used.length ? used.filter(usedTag => suggested.includes(usedTag)) : []
+  const usedSuggested = used.reduce((curr, usedTag) => {
+    if(suggested.includes(usedTag)) {
+      curr.push(usedTag)
+    }
+    return usedTag
+  }, [])
 
   const actionInfo = {
-    cxt_suggested_available: used.length ? suggested.length : 0,
+    cxt_suggested_available: suggested.length,
     cxt_enter_cnt: used.length,
     cxt_suggested_cnt: usedSuggested.length,
     cxt_remove_cnt: 0,
