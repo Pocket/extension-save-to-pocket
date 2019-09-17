@@ -40,6 +40,10 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
       Actions.logOut(from: page)
       return
 
+    case Receive.LOGGED_OUT_OF_POCKET:
+      Actions.logOut(from: page)
+      return
+      
     case Receive.SAVE_PAGE_TO_POCKET:
       Actions.savePage(from: page)
       return

@@ -90,4 +90,5 @@ struct Receive {
   static let REMOVE_ITEM_REQUEST: String = "REMOVE_ITEM_REQUEST"
   static let TAGS_SYNC: String = "TAGS_SYNC"
   static let OPEN_POCKET: String = "OPEN_POCKET"
+  static let LOGGED_OUT_OF_POCKET: String = "LOGGED_OUT_OF_POCKET"
 }
