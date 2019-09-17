@@ -44,6 +44,7 @@ class SafariApp extends Component {
   removeItem = () => {
     const { type, item_id, removeItem } = this.props
     removeItem({ type, item_id })
+    this.setState({ dropDownActive: false })
   }
 
   openPocket = () => {
