@@ -118,6 +118,8 @@ class Actions {
       // Check we have a URL
       guard let url = properties?.url?.absoluteString else {
         NSLog("Invalid URL")
+        // Redirect to Pocket Site
+        Actions.openPocket(from: page)
         return
       }
 
