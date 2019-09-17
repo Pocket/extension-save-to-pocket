@@ -46,12 +46,18 @@ class SafariApp extends Component {
     removeItem({ type, item_id })
   }
 
+  openPocket = () => {
+    const { openPocket } = this.props
+    this.setState({ dropDownActive: false })
+    openPocket()
+  }
+
   render() {
-    const { status, type, userLogOut, openPocket } = this.props
+    const { status, type, userLogOut } = this.props
     const { dropDownActive } = this.state
 
     const dropDownProps = {
-      openPocket: openPocket,
+      openPocket: this.openPocket,
       openOptions: userLogOut,
       archiveItem: this.archiveItem,
       removeItem: this.removeItem
