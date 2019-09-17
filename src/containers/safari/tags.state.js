@@ -134,11 +134,11 @@ function* tagChanges() {
   yield delay(1000)
   const taggingState = yield select(getTaggingState)
   const { used, suggested, item_id } = taggingState
-  const usedSuggested = used.length ? used.filter(usedTag => suggested.includes(usedTag)) : []
+  const usedSuggested = used.filter(usedTag => suggested.includes(usedTag))
   const payload = {
     item_id,
     tags: used,
-    suggestedCount: used.length ? suggested.length : 0,
+    suggestedCount: suggested.length,
     usedSuggestedCount: usedSuggested.length
   }
   if (taggingState) {
