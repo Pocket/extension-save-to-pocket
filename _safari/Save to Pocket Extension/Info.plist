@@ -48,6 +48,14 @@
 					<string>https://getpocket.com/extension_login_success</string>
 				</array>
 			</dict>
+			<dict>
+				<key>Script</key>
+				<string>logout.js</string>
+				<key>Allowed URL Patterns</key>
+				<array>
+					<string>https://getpocket.com/login</string>
+				</array>
+			</dict>
 		</array>
 		<key>SFSafariContextMenu</key>
 		<array>

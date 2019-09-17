@@ -18,7 +18,7 @@ class Actions {
     Utilities.openTab(
       from: page,
       userInfo: ["url" : "https://getpocket.com/signup?src=extension&route=/extension_login_success"],
-      makeActive: false
+      makeActive: true
     )
 
   }
