@@ -32,8 +32,8 @@ class SafariApp extends Component {
     this.setState({ inputFocused: bool })
   }
 
-  setDropDownStatus = () => {
-    this.setState(state => ({ dropDownActive: !state.dropDownActive }))
+  setDropDownStatus = (tabId, value) => {
+    this.setState({ dropDownActive: value })
   }
 
   archiveItem = () => {
