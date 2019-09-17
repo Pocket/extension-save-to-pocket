@@ -15,6 +15,7 @@ import { ARCHIVE_ITEM_FAILURE } from './actions'
 import { REMOVE_ITEM_SUCCESS } from './actions'
 import { REMOVE_ITEM_FAILURE } from './actions'
 import { USER_LOG_OUT_SUCCESS } from './actions'
+import { OPEN_POCKET } from './actions'
 
 // INITIAL STATE
 const initialState = {
@@ -74,6 +75,10 @@ export const saveReducers = (state = initialState, action) => {
     }
 
     case USER_LOG_OUT_SUCCESS: {
+      return { ...state, status: 'inactive', item_id: false }
+    }
+
+    case OPEN_POCKET: {
       return { ...state, status: 'inactive', item_id: false }
     }
 
