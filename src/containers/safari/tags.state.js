@@ -141,7 +141,7 @@ function* tagChanges() {
     suggestedCount: suggested.length,
     usedSuggestedCount: usedSuggested.length
   }
-  if (taggingState) {
+  if (used.length) {
     safari.extension.dispatchMessage(TAGS_SYNC, payload)
   }
 }
