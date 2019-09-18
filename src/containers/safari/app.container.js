@@ -90,6 +90,7 @@ class SafariApp extends Component {
         currentTab={{ status, type, dropDownActive }}
         setDropDownStatus={this.setDropDownStatus}
         completeSave={this.props.completeSave}
+        closePanel={this.props.completeSave}
         currentTags={currentTags}
         inputFocused={this.state.inputFocused}
         {...dropDownProps}
