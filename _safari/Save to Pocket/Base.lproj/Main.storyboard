@@ -111,7 +111,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="195" id="RrD-zd-YNx"/>
                                 </constraints>
-                                <textFieldCell key="cell" selectable="YES" id="vuh-O7-RhV">
+                                <textFieldCell key="cell" id="vuh-O7-RhV">
                                     <font key="font" size="18" name="Doyle-Medium"/>
                                     <string key="title">One last thing:
 check the box next to Pocket in your Safari preferences. </string>
