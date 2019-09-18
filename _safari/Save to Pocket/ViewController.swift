@@ -68,7 +68,7 @@ class ViewController: NSViewController {
     }
     
     @IBAction func didClickNeedHelpButton(click: NSButton) {
-        NSWorkspace.shared.open(URL(string: "https://github.com/Pocket/ios-article-view/pull/13")!)
+        NSWorkspace.shared.open(URL(string: "https://getpocket.com/howto-pocket-for-safari")!)
     }
 
 }
