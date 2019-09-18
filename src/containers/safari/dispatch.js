@@ -18,6 +18,8 @@ import { USER_LOG_IN_FAILURE } from './actions'
 import { USER_LOG_OUT_SUCCESS } from './actions'
 import { USER_LOG_OUT_FAILURE } from './actions'
 
+import { injectDomElements } from './inject'
+
 /* Add Safari Listeners
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 export const dispatchInit = () => {
@@ -36,12 +38,14 @@ function handleContextMenu(event) {
 function handleMessage(event) {
   const { message, name = 'Unknown Action' } = event || {}
 
-  console.groupCollapsed(name)
+  console.groupCollapsed(`RECEIVE: ${name}`)
   console.log(message)
-  console.groupEnd(name)
+  console.groupEnd(`RECEIVE: ${name}`)
 
   switch (name) {
     case SAVE_TO_POCKET_REQUEST: {
+      injectDomElements() // Check for DOM elements
+
       store.dispatch({ type: SAVE_TO_POCKET_REQUEST })
       return
     }
