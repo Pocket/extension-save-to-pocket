@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -43,18 +44,6 @@
                                         <menuItem title="Quit Save to Pocket" keyEquivalent="q" id="4sb-4s-VLi">
                                             <connections>
                                                 <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
-                                            </connections>
-                                        </menuItem>
-                                    </items>
-                                </menu>
-                            </menuItem>
-                            <menuItem title="Help" id="wpr-3q-Mcd">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
-                                    <items>
-                                        <menuItem title="Save to Pocket Help" keyEquivalent="?" id="FKE-Sm-Kum">
-                                            <connections>
-                                                <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -107,7 +96,7 @@
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="bgTriangle" id="XZb-he-vmh"/>
                             </imageView>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="X1M-w3-9da">
-                                <rect key="frame" x="35" y="134" width="199" height="132"/>
+                                <rect key="frame" x="35" y="182" width="199" height="84"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="195" id="RrD-zd-YNx"/>
                                 </constraints>
@@ -124,10 +113,10 @@ check the box next to Pocket in your Safari preferences. </string>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="left" image="Preferences" id="eEK-VW-bqd"/>
                             </imageView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="fNZ-Kz-7My">
-                                <rect key="frame" x="37" y="56" width="195" height="43"/>
+                                <rect key="frame" x="37" y="104" width="195" height="43"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rH5-xg-t8R">
-                                        <rect key="frame" x="50" y="13" width="96" height="17"/>
+                                        <rect key="frame" x="50" y="14" width="96" height="16"/>
                                         <textFieldCell key="cell" lineBreakMode="clipping" title="Finish setup" id="o2g-OP-mef">
                                             <font key="font" size="16" name="GraphikLCG-Medium"/>
                                             <color key="textColor" name="selectedMenuItemTextColor" catalog="System" colorSpace="catalog"/>
