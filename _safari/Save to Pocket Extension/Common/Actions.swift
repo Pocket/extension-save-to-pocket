@@ -132,7 +132,7 @@ class Actions {
       )
 
 
-        SaveToPocketAPI.saveToPocket(from: page, url: url, access_token: access_token, premium_status: premium_status) { result in
+        SaveToPocketAPI.saveToPocket(from: page, url: url, access_token: access_token, premium_status: premium_status, ui_context: "right_click_page") { result in
 
         switch result {
 
@@ -187,7 +187,7 @@ class Actions {
     )
 
 
-    SaveToPocketAPI.saveToPocket(from: page, url: url, access_token: access_token, premium_status: premium_status) { result in
+    SaveToPocketAPI.saveToPocket(from: page, url: url, access_token: access_token, premium_status: premium_status, ui_context: "right_click_link") { result in
 
       switch result {
 

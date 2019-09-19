@@ -160,6 +160,7 @@ class SaveToPocketAPI: SafariExtensionHandler{
     url: String,
     access_token: String,
     premium_status: String,
+    ui_context: String,
     completion: @escaping (Result<Any, RequestError>) -> Void
     ) -> Void {
 
@@ -168,7 +169,7 @@ class SaveToPocketAPI: SafariExtensionHandler{
     let saveAction: [String : Any] = [
       "action": "add",
       "url": url,
-      "cxt_ui": "toolbar",
+      "cxt_ui": ui_context,
       "cxt_premium_status": premium_status
     ]
 
