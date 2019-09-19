@@ -27,6 +27,8 @@ yarn-error.log*
 # Account info
 keys.js
 keys.json
+keys.xcconfig
+
 *-debug
 
 # ignore npm package lock, using yarn for CI for consistency
