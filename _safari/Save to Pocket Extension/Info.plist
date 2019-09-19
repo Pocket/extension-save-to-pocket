@@ -75,7 +75,7 @@
 			<key>Identifier</key>
 			<string>Button</string>
 			<key>Image</key>
-			<string>ToolbarItemIcon.pdf</string>
+			<string>saveButton.pdf</string>
 			<key>Label</key>
 			<string>Save To Pocket</string>
 		</dict>
