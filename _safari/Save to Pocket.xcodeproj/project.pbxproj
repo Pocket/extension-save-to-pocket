@@ -18,7 +18,6 @@
 		314EF9882289D10400704C32 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 314EF9872289D10400704C32 /* Cocoa.framework */; };
 		314EF98D2289D10400704C32 /* SafariExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314EF98C2289D10400704C32 /* SafariExtensionViewController.swift */; };
 		314EF9902289D10400704C32 /* SafariExtensionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 314EF98E2289D10400704C32 /* SafariExtensionViewController.xib */; };
-		314EF9952289D10400704C32 /* ToolbarItemIcon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 314EF9942289D10400704C32 /* ToolbarItemIcon.pdf */; };
 		5D0477E423071DF90026D77F /* login.js in Resources */ = {isa = PBXBuildFile; fileRef = 5D0477E323071DF90026D77F /* login.js */; };
 		5D0D0518231D948D00F13C12 /* safari.js in Resources */ = {isa = PBXBuildFile; fileRef = 5D0D0516231D948D00F13C12 /* safari.js */; };
 		5D0D0519231D948D00F13C12 /* vendors~safari.chunk.js in Resources */ = {isa = PBXBuildFile; fileRef = 5D0D0517231D948D00F13C12 /* vendors~safari.chunk.js */; };
@@ -27,6 +26,8 @@
 		5D789155230B0E8100845FC2 /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D789154230B0E8100845FC2 /* Structures.swift */; };
 		5D789157230BA6B000845FC2 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D789156230BA6B000845FC2 /* API.swift */; };
 		5D93491623090EA600974849 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D93491523090EA600974849 /* Utilities.swift */; };
+		5DEB8C142333DC3900F4B8B2 /* savedButton.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEB8C122333DC3900F4B8B2 /* savedButton.pdf */; };
+		5DEB8C152333DC3900F4B8B2 /* saveButton.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEB8C132333DC3900F4B8B2 /* saveButton.pdf */; };
 		FFAD317322CBBC39002C543F /* SafariExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314EF98A2289D10400704C32 /* SafariExtensionHandler.swift */; };
 /* End PBXBuildFile section */
 
@@ -86,7 +87,6 @@
 		314EF98A2289D10400704C32 /* SafariExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariExtensionHandler.swift; sourceTree = "<group>"; };
 		314EF98C2289D10400704C32 /* SafariExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariExtensionViewController.swift; sourceTree = "<group>"; };
 		314EF98F2289D10400704C32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SafariExtensionViewController.xib; sourceTree = "<group>"; };
-		314EF9942289D10400704C32 /* ToolbarItemIcon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = ToolbarItemIcon.pdf; sourceTree = "<group>"; };
 		314EF9962289D10400704C32 /* Save_to_Pocket_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Save_to_Pocket_Extension.entitlements; sourceTree = "<group>"; };
 		31778F2C231810930080DAF0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		31778F2D231810930080DAF0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SafariExtensionViewController.strings"; sourceTree = "<group>"; };
@@ -127,6 +127,8 @@
 		5D789154230B0E8100845FC2 /* Structures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
 		5D789156230BA6B000845FC2 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		5D93491523090EA600974849 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		5DEB8C122333DC3900F4B8B2 /* savedButton.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = savedButton.pdf; sourceTree = "<group>"; };
+		5DEB8C132333DC3900F4B8B2 /* saveButton.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = saveButton.pdf; sourceTree = "<group>"; };
 		5DEBE81C2333359B002FF684 /* keys.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = keys.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -202,7 +204,8 @@
 				314EF98A2289D10400704C32 /* SafariExtensionHandler.swift */,
 				314EF98C2289D10400704C32 /* SafariExtensionViewController.swift */,
 				314EF98E2289D10400704C32 /* SafariExtensionViewController.xib */,
-				314EF9942289D10400704C32 /* ToolbarItemIcon.pdf */,
+				5DEB8C132333DC3900F4B8B2 /* saveButton.pdf */,
+				5DEB8C122333DC3900F4B8B2 /* savedButton.pdf */,
 				5D59099423315BE5005C6245 /* logout.js */,
 				5D0477E323071DF90026D77F /* login.js */,
 				5D0D0516231D948D00F13C12 /* safari.js */,
@@ -344,8 +347,9 @@
 				5D0477E423071DF90026D77F /* login.js in Resources */,
 				311869D0231C7F6200B8C29D /* InfoPlist.strings in Resources */,
 				5D0D0518231D948D00F13C12 /* safari.js in Resources */,
-				314EF9952289D10400704C32 /* ToolbarItemIcon.pdf in Resources */,
 				5D0D0519231D948D00F13C12 /* vendors~safari.chunk.js in Resources */,
+				5DEB8C142333DC3900F4B8B2 /* savedButton.pdf in Resources */,
+				5DEB8C152333DC3900F4B8B2 /* saveButton.pdf in Resources */,
 				314EF9902289D10400704C32 /* SafariExtensionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
