@@ -273,7 +273,7 @@ function buildSaveObject(action, setup) {
       const url = tab.url
       const title = tab.title
       const saveType = 'page'
-      const actionInfo = { cxt_ui: 'toolbar', cxt_premium_status }
+      const actionInfo = { cxt_ui: 'toolbar', cxt_premium_status, cxt_view: 'ext_popover' }
       const showSavedIcon = true
 
       return {
@@ -295,7 +295,7 @@ function buildSaveObject(action, setup) {
       const title = savedLink ? info.selectionText || info.linkUrl : tab.title
       const cxt_ui = savedLink ? 'right_click_link' : 'right_click_page'
       const saveType = savedLink ? 'link' : 'page'
-      const actionInfo = { cxt_ui, cxt_premium_status }
+      const actionInfo = { cxt_ui, cxt_premium_status, cxt_view: 'ext_popover' }
       const showSavedIcon = savedLink ? 0 : 1
 
       return {
