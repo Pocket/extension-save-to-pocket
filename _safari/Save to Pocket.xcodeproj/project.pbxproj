@@ -127,6 +127,7 @@
 		5D789154230B0E8100845FC2 /* Structures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
 		5D789156230BA6B000845FC2 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		5D93491523090EA600974849 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		5DEBE81C2333359B002FF684 /* keys.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = keys.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +207,7 @@
 				5D0477E323071DF90026D77F /* login.js */,
 				5D0D0516231D948D00F13C12 /* safari.js */,
 				5D0D0517231D948D00F13C12 /* vendors~safari.chunk.js */,
+				5DEBE81C2333359B002FF684 /* keys.xcconfig */,
 			);
 			path = "Save to Pocket Extension";
 			sourceTree = "<group>";
@@ -575,6 +577,7 @@
 		};
 		314EF99A2289D10400704C32 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5DEBE81C2333359B002FF684 /* keys.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Save to Pocket Extension/Save to Pocket Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
@@ -594,6 +597,7 @@
 		};
 		314EF99B2289D10400704C32 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5DEBE81C2333359B002FF684 /* keys.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Save to Pocket Extension/Save to Pocket Extension.entitlements";
 				CODE_SIGN_STYLE = Automatic;

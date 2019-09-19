@@ -21,6 +21,10 @@ import SafariServices
 
 class SaveToPocketAPI: SafariExtensionHandler{
 
+  static var CONSUMER_KEY: String {
+    return Bundle.main.object(forInfoDictionaryKey: "consumerKey") as! String
+  }
+
   static func getGuid(
     from page: SFSafariPage,
     completion: @escaping (Result<String, RequestError>) -> Void
