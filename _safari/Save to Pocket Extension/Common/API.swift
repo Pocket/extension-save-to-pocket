@@ -170,6 +170,7 @@ class SaveToPocketAPI: SafariExtensionHandler{
       "action": "add",
       "url": url,
       "cxt_ui": ui_context,
+      "cxt_view": "ext_popover",
       "cxt_premium_status": premium_status
     ]
 
