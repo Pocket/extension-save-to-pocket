@@ -86,14 +86,14 @@ class Actions {
 
   }
 
-  static func saveFromContext(from page: SFSafariPage, userInfo: [String : Any]?){
+  static func saveFromContext(from page: SFSafariPage, userInfo: [String : Any]?, is_menu: Bool){
 
     let url = userInfo!["urlToSave"] as! String
     NSLog("Saving from context")
 
     if url == "page" {
       NSLog("Context without a link")
-      Actions.savePage(from: page)
+      Actions.savePage(from: page, is_menu: is_menu)
       return
     }
 
@@ -101,7 +101,7 @@ class Actions {
     Actions.saveLink(from: page, url: url)
   }
 
-  static func savePage(from page: SFSafariPage){
+  static func savePage(from page: SFSafariPage, is_menu: Bool? = false){
 
     page.getPropertiesWithCompletionHandler { properties in
 
@@ -131,8 +131,11 @@ class Actions {
         userInfo: nil
       )
 
-
-        SaveToPocketAPI.saveToPocket(from: page, url: url, access_token: access_token, premium_status: premium_status, ui_context: "right_click_page") { result in
+        var ui_context = "toolbar"
+        if (is_menu ?? false) {
+            ui_context = "right_click_page"
+        }
+        SaveToPocketAPI.saveToPocket(from: page, url: url, access_token: access_token, premium_status: premium_status, ui_context: ui_context) { result in
 
         switch result {
 
