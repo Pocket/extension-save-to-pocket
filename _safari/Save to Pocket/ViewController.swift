@@ -15,6 +15,7 @@ class ViewController: NSViewController {
     @IBOutlet var buttonContainer: NSButton!
     @IBOutlet var buttonTitle: NSTextField!
     @IBOutlet var gestureRecognizer: NSGestureRecognizer!
+    @IBOutlet var needHelp: NSButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -64,6 +65,10 @@ class ViewController: NSViewController {
 
             }
         }
+    }
+    
+    @IBAction func didClickNeedHelpButton(click: NSButton) {
+        NSWorkspace.shared.open(URL(string: "https://github.com/Pocket/ios-article-view/pull/13")!)
     }
 
 }
