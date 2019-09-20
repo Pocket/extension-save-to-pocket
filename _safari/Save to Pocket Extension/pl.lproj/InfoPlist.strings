@@ -7,9 +7,10 @@
 */
 
 /**
+ Character limit: 120 characters
  Shown: in the Safari preferences panel, under Extensions for the Save to Pocket extension.
  Purpose: user-facing; describes what the extension does
  Shorter variant: "Pocket’s extension is the easiest way to save articles, videos and anything else you find online."
  */
 
-NSHumanReadableDescription = "Pocket’s Safari extension is the easiest, fastest way to capture articles, videos, and anything else you find online.";
+NSHumanReadableDescription = "Rozszerzenie Pocket do przeglądarki Safari to najłatwiejsza i najszybsza metoda zapisywania artykułów, filmów i innych treści znalezionych w Internecie.";
