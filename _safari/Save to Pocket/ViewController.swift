@@ -59,7 +59,7 @@ class ViewController: NSViewController {
     }
   
     @IBAction func openSafariExtensionPreferences(_ sender: AnyObject?) {
-        SFSafariApplication.showPreferencesForExtension(withIdentifier: "com.pocket.safari.save") { error in
+        SFSafariApplication.showPreferencesForExtension(withIdentifier: "com.pocket.safari.save.extension") { error in
             if let _ = error {
                 // Insert code to inform the user that something went wrong.
 
