@@ -85,7 +85,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
       NSLog("Save to pocket context with userInfo: \(String(describing: userInfo!))")
     }
 
-    Actions.saveFromContext(from: page, userInfo: userInfo, is_menu: true)
+    Actions.saveFromContext(from: page, userInfo: userInfo)
   }
 
   override func messageReceivedFromContainingApp(withName messageName: String, userInfo: [String : Any]? = nil) {
