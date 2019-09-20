@@ -137,9 +137,22 @@ check the box next to Pocket in your Safari preferences. </string>
                                     </clickGestureRecognizer>
                                 </gestureRecognizers>
                             </customView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KS5-nJ-s61">
+                                <rect key="frame" x="258" y="11" width="68" height="12"/>
+                                <buttonCell key="cell" type="roundRect" title="Need help?" bezelStyle="roundedRect" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="YDh-4u-9JC">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" size="12" name="GraphikLCG-Regular"/>
+                                </buttonCell>
+                                <color key="contentTintColor" red="0.08977634459733963" green="0.28515338897705078" blue="0.67409378290176392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="didClickNeedHelpButtonWithClick:" target="XfG-lQ-9wD" id="L0S-op-wfy"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="tQk-8V-gsS" secondAttribute="trailing" id="HL0-wG-nOY"/>
+                            <constraint firstItem="10f-Lu-W1H" firstAttribute="baseline" secondItem="KS5-nJ-s61" secondAttribute="firstBaseline" constant="14" id="Hjk-sH-1st"/>
+                            <constraint firstItem="KS5-nJ-s61" firstAttribute="centerX" secondItem="10f-Lu-W1H" secondAttribute="centerX" id="IdH-sM-lf4"/>
                             <constraint firstItem="X1M-w3-9da" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="37" id="Rqc-k5-p3c"/>
                             <constraint firstItem="X1M-w3-9da" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="105" id="YPR-c3-fse"/>
                             <constraint firstAttribute="bottom" secondItem="10f-Lu-W1H" secondAttribute="bottom" id="cpX-Up-eiJ"/>
@@ -156,6 +169,7 @@ check the box next to Pocket in your Safari preferences. </string>
                         <outlet property="buttonContainer" destination="fNZ-Kz-7My" id="7bX-iz-yxB"/>
                         <outlet property="buttonTitle" destination="rH5-xg-t8R" id="Odf-jN-uLj"/>
                         <outlet property="gestureRecognizer" destination="trx-fU-IUr" id="nTX-Od-Asm"/>
+                        <outlet property="needHelp" destination="KS5-nJ-s61" id="kCf-nu-6Yi"/>
                         <outlet property="view" destination="m2S-Jp-Qdl" id="rr3-eG-LIi"/>
                     </connections>
                 </viewController>
