@@ -10,6 +10,7 @@ import SafariServices
 
 var postAuthSave:SFSafariPage? = nil
 var postAuthLink:String? = nil
+var postAuthContext:String? = "toolbar"
 
 class Actions {
 
@@ -67,7 +68,7 @@ class Actions {
               }
               else{
                 // Save the correct page
-                self.savePage(from: postAuthSave!)
+                self.savePage(from: postAuthSave!, ui_context: postAuthContext!)
               }
 
               // Since we got the Auth Code from the passed in page, we close that page
@@ -86,14 +87,15 @@ class Actions {
 
   }
 
-  static func saveFromContext(from page: SFSafariPage, userInfo: [String : Any]?, is_menu: Bool){
+  static func saveFromContext(from page: SFSafariPage, userInfo: [String : Any]?){
 
     let url = userInfo!["urlToSave"] as! String
     NSLog("Saving from context")
 
     if url == "page" {
       NSLog("Context without a link")
-      Actions.savePage(from: page, is_menu: is_menu)
+      postAuthContext = "right_click_page"
+      Actions.savePage(from: page, ui_context: "right_click_page")
       return
     }
 
@@ -101,7 +103,7 @@ class Actions {
     Actions.saveLink(from: page, url: url)
   }
 
-  static func savePage(from page: SFSafariPage, is_menu: Bool? = false){
+  static func savePage(from page: SFSafariPage, ui_context: String = "toolbar"){
 
     page.getPropertiesWithCompletionHandler { properties in
 
@@ -131,10 +133,6 @@ class Actions {
         userInfo: nil
       )
 
-        var ui_context = "toolbar"
-        if (is_menu ?? false) {
-            ui_context = "right_click_page"
-        }
         SaveToPocketAPI.saveToPocket(from: page, url: url, access_token: access_token, premium_status: premium_status, ui_context: ui_context) { result in
 
         switch result {
@@ -177,6 +175,7 @@ class Actions {
         // No auth token, need to log in
         postAuthSave = page
         postAuthLink = url
+        postAuthContext = "right_click_link"
         Actions.logIn(from: page)
         return
       }
