@@ -30,7 +30,8 @@ export const dispatchInit = () => {
 /* Handle incoming messages
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 function handleContextMenu(event) {
-  const link = event.target.href
+  const anchor = event.target.closest('a')
+  const link = anchor ? anchor.href : false
   const urlToSave = link ? link : 'page'
   safari.extension.setContextMenuEventUserInfo(event, { urlToSave })
 }
