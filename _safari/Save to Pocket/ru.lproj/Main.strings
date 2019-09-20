@@ -1,42 +1,42 @@
 
 /* Class = "NSMenuItem"; title = "Save to Pocket"; ObjectID = "1Xt-HY-uBw"; */
-"1Xt-HY-uBw.title" = "Save to Pocket";
+"1Xt-HY-uBw.title" = "Сохранить в Pocket";
 
 /* Class = "NSMenuItem"; title = "Quit Save to Pocket"; ObjectID = "4sb-4s-VLi"; */
-"4sb-4s-VLi.title" = "Quit Save to Pocket";
+"4sb-4s-VLi.title" = "Выйти из \"Сохранить в Pocket\"";
 
 /* Class = "NSMenuItem"; title = "About Save to Pocket"; ObjectID = "5kV-Vb-QxS"; */
-"5kV-Vb-QxS.title" = "About Save to Pocket";
+"5kV-Vb-QxS.title" = "О программе \"Сохранить в Pocket\"";
 
 /* Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6"; */
-"AYu-sK-qS6.title" = "Main Menu";
+"AYu-sK-qS6.title" = "Главное меню";
 
 /* Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ"; */
-"F2S-fz-NVQ.title" = "Help";
+"F2S-fz-NVQ.title" = "Помощь";
 
 /* Class = "NSMenuItem"; title = "Save to Pocket Help"; ObjectID = "FKE-Sm-Kum"; */
-"FKE-Sm-Kum.title" = "Save to Pocket Help";
+"FKE-Sm-Kum.title" = "Справка \"Сохранить в Pocket\"";
 
 /* Class = "NSWindow"; title = "App Name"; ObjectID = "IQv-IB-iLA"; */
-"IQv-IB-iLA.title" = "App Name";
+"IQv-IB-iLA.title" = "Сохранить в Pocket";
 
 /* Class = "NSMenuItem"; title = "Show All"; ObjectID = "Kd2-mp-pUS"; */
-"Kd2-mp-pUS.title" = "Show All";
+"Kd2-mp-pUS.title" = "Показать все";
 
 /* Class = "NSMenuItem"; title = "Hide Save to Pocket"; ObjectID = "Olw-nP-bQN"; */
-"Olw-nP-bQN.title" = "Hide Save to Pocket";
+"Olw-nP-bQN.title" = "Скрыть \"Сохранить в Pocket\"";
 
 /* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO"; */
-"Vdr-fp-XzO.title" = "Hide Others";
-
-/* Class = "NSMenu"; title = "Save to Pocket"; ObjectID = "uQy-DD-JDr"; */
-"uQy-DD-JDr.title" = "Save to Pocket";
-
-/* Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd"; */
-"wpr-3q-Mcd.title" = "Help";
+"Vdr-fp-XzO.title" = "Скрыть другие";
 
 /* Class = "NSTextFieldCell"; title = "Finish setup"; ObjectID = "o2g-OP-mef"; */
-"o2g-OP-mef.title" = "";
+"o2g-OP-mef.title" = "Завершить настройку";
+
+/* Class = "NSMenu"; title = "Save to Pocket"; ObjectID = "uQy-DD-JDr"; */
+"uQy-DD-JDr.title" = "Сохранить в Pocket";
 
 /* Class = "NSTextFieldCell"; title = "One last thing:\ncheck the box next to Pocket in your Safari preferences. "; ObjectID = "vuh-O7-RhV"; */
-"vuh-O7-RhV.title" = "";
+"vuh-O7-RhV.title" = "И последнее:\nустановите флажок рядом с Pocket в настройках Safari. ";
+
+/* Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd"; */
+"wpr-3q-Mcd.title" = "Помощь";
