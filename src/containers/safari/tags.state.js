@@ -2,6 +2,7 @@
 import { delay } from 'redux-saga'
 import { takeLatest, select } from 'redux-saga/effects'
 import { checkDuplicate } from 'common/helpers'
+import { SAVE_TO_POCKET_REQUEST } from './actions'
 import { SUGGESTED_TAGS_REQUEST } from './actions'
 import { SUGGESTED_TAGS_SUCCESS } from './actions'
 import { SUGGESTED_TAGS_FAILURE } from './actions'
@@ -36,6 +37,10 @@ export const tagsReducers = (state = initialState, action) => {
   switch (action.type) {
     case SUGGESTED_TAGS_FAILURE: {
       return { ...state, suggested: false }
+    }
+
+    case SAVE_TO_POCKET_REQUEST: {
+      return initialState
     }
 
     case SUGGESTED_TAGS_SUCCESS: {
