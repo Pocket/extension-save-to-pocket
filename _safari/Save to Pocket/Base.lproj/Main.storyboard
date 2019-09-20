@@ -138,7 +138,7 @@ check the box next to Pocket in your Safari preferences. </string>
                                 </gestureRecognizers>
                             </customView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KS5-nJ-s61">
-                                <rect key="frame" x="258" y="11" width="68" height="12"/>
+                                <rect key="frame" x="222" y="11" width="68" height="12"/>
                                 <buttonCell key="cell" type="roundRect" title="Need help?" bezelStyle="roundedRect" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="YDh-4u-9JC">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="12" name="GraphikLCG-Regular"/>
@@ -152,9 +152,9 @@ check the box next to Pocket in your Safari preferences. </string>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="tQk-8V-gsS" secondAttribute="trailing" id="HL0-wG-nOY"/>
                             <constraint firstItem="10f-Lu-W1H" firstAttribute="baseline" secondItem="KS5-nJ-s61" secondAttribute="firstBaseline" constant="14" id="Hjk-sH-1st"/>
-                            <constraint firstItem="KS5-nJ-s61" firstAttribute="centerX" secondItem="10f-Lu-W1H" secondAttribute="centerX" id="IdH-sM-lf4"/>
                             <constraint firstItem="X1M-w3-9da" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="37" id="Rqc-k5-p3c"/>
                             <constraint firstItem="X1M-w3-9da" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="105" id="YPR-c3-fse"/>
+                            <constraint firstItem="KS5-nJ-s61" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="222" id="caL-Lc-tC9"/>
                             <constraint firstAttribute="bottom" secondItem="10f-Lu-W1H" secondAttribute="bottom" id="cpX-Up-eiJ"/>
                             <constraint firstAttribute="bottom" secondItem="tQk-8V-gsS" secondAttribute="bottom" id="dFe-7t-VS8"/>
                             <constraint firstItem="10f-Lu-W1H" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="fWb-PO-NhG"/>
