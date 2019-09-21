@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>consumerKey</key>
-	<string>$(CONSUMER_KEY)</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -21,17 +19,17 @@
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
+	<key>NSAllowsArbitraryLoads</key>
+	<true/>
 	<key>NSExtension</key>
 	<dict>
 		<key>NSExtensionPointIdentifier</key>
 		<string>com.apple.Safari.extension</string>
 		<key>NSExtensionPrincipalClass</key>
 		<string>$(PRODUCT_MODULE_NAME).SafariExtensionHandler</string>
-		<key>SFSafariStyleSheet</key>
-		<array/>
 		<key>SFSafariContentScript</key>
 		<array>
 			<dict>
@@ -43,31 +41,33 @@
 				<string>safari.js</string>
 			</dict>
 			<dict>
-				<key>Script</key>
-				<string>login.js</string>
 				<key>Allowed URL Patterns</key>
 				<array>
 					<string>https://getpocket.com/extension_login_success</string>
 				</array>
+				<key>Script</key>
+				<string>login.js</string>
 			</dict>
 			<dict>
-				<key>Script</key>
-				<string>logout.js</string>
 				<key>Allowed URL Patterns</key>
 				<array>
 					<string>https://getpocket.com/login</string>
 				</array>
+				<key>Script</key>
+				<string>logout.js</string>
 			</dict>
 		</array>
 		<key>SFSafariContextMenu</key>
 		<array>
 			<dict>
-				<key>Text</key>
-				<string>Save to Pocket</string>
 				<key>Command</key>
 				<string>SAVE_TO_POCKET_CONTEXT</string>
+				<key>Text</key>
+				<string>Save to Pocket</string>
 			</dict>
 		</array>
+		<key>SFSafariStyleSheet</key>
+		<array/>
 		<key>SFSafariToolbarItem</key>
 		<dict>
 			<key>Action</key>
@@ -87,9 +87,9 @@
 	</dict>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2019 Pocket. All rights reserved.</string>
-	<key>NSAllowsArbitraryLoads</key>
-	<true/>
 	<key>NSHumanReadableDescription</key>
 	<string>Pocket’s Safari extension is the easiest, fastest way to capture articles, videos, and anything else you find online.</string>
+	<key>consumerKey</key>
+	<string>$(CONSUMER_KEY)</string>
 </dict>
 </plist>
