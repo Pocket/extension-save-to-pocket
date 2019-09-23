@@ -160,6 +160,7 @@ check the box next to Pocket in your Safari preferences. </string>
                             <constraint firstItem="10f-Lu-W1H" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="fWb-PO-NhG"/>
                             <constraint firstItem="10f-Lu-W1H" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="gNg-bo-MVx"/>
                             <constraint firstItem="fNZ-Kz-7My" firstAttribute="leading" secondItem="X1M-w3-9da" secondAttribute="leading" id="jxp-mr-Mzf"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="KS5-nJ-s61" secondAttribute="trailing" id="kbq-WU-tKn"/>
                             <constraint firstAttribute="trailing" secondItem="10f-Lu-W1H" secondAttribute="trailing" id="m6i-Lb-4Wn"/>
                             <constraint firstItem="fNZ-Kz-7My" firstAttribute="top" secondItem="X1M-w3-9da" secondAttribute="bottom" constant="35" id="vP2-xb-dgv"/>
                             <constraint firstItem="fNZ-Kz-7My" firstAttribute="trailing" secondItem="X1M-w3-9da" secondAttribute="trailing" id="zxB-HK-AH3"/>
