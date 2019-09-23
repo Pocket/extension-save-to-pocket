@@ -1,0 +1,20 @@
+{
+  "title": [
+    {
+      "pattern": "^(build|ci|docs|feat|fix|project|refactor|ui|style|test|chore).{1,}",
+      "message": "Your title needs to be prefixed with on of the following types: build|ci|docs|feat|fix|project|refactor|ui|style|test|chore"
+    }
+  ],
+  "body": [
+    {
+      "pattern": ".{1,}",
+      "message": "You need literally anything in your description"
+    }
+  ],
+  "head.ref": [
+    {
+      "pattern": "^(build|ci|docs|feat|fix|perf|refactor|style|test|refactor|project|release)/",
+      "message": "Your branch name is invalid"
+    }
+  ]
+}
