@@ -10,5 +10,9 @@
 	<true/>
 	<key>com.apple.security.network.server</key>
 	<true/>
+	<key>com.apple.security.application-groups</key>
+	<array>
+		<string>$(TeamIdentifierPrefix)safari.save</string>
+	</array>
 </dict>
 </plist>
