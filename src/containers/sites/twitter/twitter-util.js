@@ -1,4 +1,3 @@
-import $ from 'jquery'
 import styles from './twitter.scss' // Import Styles
 import { sendMessage } from '../../../common/interface'
 
@@ -31,20 +30,20 @@ export function getPocketButtonClone({ permaLink, isFocusViewTweet }) {
   pocketIconButtonClone.id = `pocketButton-${Math.random()
     .toString(36)
     .substring(7)}`
-  const $clone = $(pocketIconButtonClone)
-  // add debug attribute
-  $clone
-    .attr({
-      'data-permalink-path': permaLink
-    })
-    .addClass(isFocusViewTweet ? styles['focus-view'] : styles['list-view'])
+  pocketIconButtonClone.setAttribute('data-permalink-path', permaLink)
+  pocketIconButtonClone.classList.add(isFocusViewTweet ? styles['focus-view'] : styles['list-view'])
 
   return pocketIconButtonClone
 }
 
 export function getTweetLink($article) {
-  const link = $article.find('[lang] > a').attr('href')
-    || $article.find('#tweet-rich-content-label a').attr('href')
+  let link
+
+  if($article.querySelector('[lang] > a')) {
+    link = $article.querySelector('[lang] > a').getAttribute('href')
+  } else {
+    link = $article.querySelector('#tweet-rich-content-label a').getAttribute('href')
+  }
 
   const isExternalLink = link && link.match(/https?:/i)
 
@@ -54,7 +53,7 @@ export function getTweetLink($article) {
 // Handle saving
 export function handleSave(elementId, permaLink, event) {
   event.preventDefault()
-  const $article = $(`#${elementId}`).closest('article')
+  const $article = document.getElementById(elementId).closest('article')
   const tweetLink = getTweetLink($article)
   sendMessage(
     null,
@@ -69,7 +68,7 @@ export function handleSave(elementId, permaLink, event) {
 
 export function getTweetInfo(twitterActionListCotnainerElement) {
   // Find the Tweet container
-  const $tweet = $(twitterActionListCotnainerElement).closest('article')
+  const $tweet = twitterActionListCotnainerElement.closest('article')
   // Fetch the single time element, from there we can grab the href from the parent to get the screen name and status id.
 
   if ($tweet.length === 0) {
@@ -78,13 +77,13 @@ export function getTweetInfo(twitterActionListCotnainerElement) {
   }
 
   let permaLink = window.location.pathname
-  const $link = $tweet.find('time').parent()
-  const permaLinkFromLink = $link.attr('href')
+  const $link = $tweet.querySelector('time').parentElement
+  const permaLinkFromLink = $link.getAttribute('href')
   if (permaLinkFromLink) {
     permaLink = permaLinkFromLink
   }
 
-  const isFocusViewTweet = $tweet.attr('data-testid') === 'tweetDetail'
+  const isFocusViewTweet = $tweet.getAttribute('data-testid') === 'tweetDetail'
 
   return {
     permaLink,
@@ -101,10 +100,7 @@ export function addPocketIconToActionList({
   twitterActionListCotnainerElement,
   pocketIconButtonClone
 }) {
-  const $twitterActionListCotnainerElement = $(
-    twitterActionListCotnainerElement
-  )
-  const $shareAction = $($twitterActionListCotnainerElement.children()[3])
-  $shareAction.after(pocketIconButtonClone)
-  $twitterActionListCotnainerElement.addClass('PocketAdded')
+  const shareAction = twitterActionListCotnainerElement.children[3]
+  shareAction.after(pocketIconButtonClone)
+  twitterActionListCotnainerElement.classList.add('PocketAdded')
 }
