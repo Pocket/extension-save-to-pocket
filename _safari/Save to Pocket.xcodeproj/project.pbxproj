@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		311869CF231C7F2500B8C29D /* fonts in Resources */ = {isa = PBXBuildFile; fileRef = 311869CE231C7F2500B8C29D /* fonts */; };
 		311869D0231C7F6200B8C29D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 311869D2231C7F6200B8C29D /* InfoPlist.strings */; };
-		314EF9732289D10200704C32 /* Save_to_Pocket.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 314EF9722289D10200704C32 /* Save_to_Pocket.entitlements */; };
 		314EF9752289D10200704C32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314EF9742289D10200704C32 /* AppDelegate.swift */; };
 		314EF9782289D10200704C32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 314EF9762289D10200704C32 /* Main.storyboard */; };
 		314EF97A2289D10200704C32 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314EF9792289D10200704C32 /* ViewController.swift */; };
@@ -76,7 +75,6 @@
 		3118929122E7C186002BFA42 /* Save to Pocket.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Save to Pocket.entitlements"; sourceTree = "<group>"; };
 		3118929522E7E18C002BFA42 /* Save to Pocket Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Save to Pocket Extension.entitlements"; sourceTree = "<group>"; };
 		314EF96F2289D10200704C32 /* Save to Pocket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Save to Pocket.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		314EF9722289D10200704C32 /* Save_to_Pocket.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Save_to_Pocket.entitlements; sourceTree = "<group>"; };
 		314EF9742289D10200704C32 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		314EF9772289D10200704C32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		314EF9792289D10200704C32 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -87,7 +85,6 @@
 		314EF98A2289D10400704C32 /* SafariExtensionHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariExtensionHandler.swift; sourceTree = "<group>"; };
 		314EF98C2289D10400704C32 /* SafariExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariExtensionViewController.swift; sourceTree = "<group>"; };
 		314EF98F2289D10400704C32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/SafariExtensionViewController.xib; sourceTree = "<group>"; };
-		314EF9962289D10400704C32 /* Save_to_Pocket_Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Save_to_Pocket_Extension.entitlements; sourceTree = "<group>"; };
 		31778F2C231810930080DAF0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		31778F2D231810930080DAF0 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/SafariExtensionViewController.strings"; sourceTree = "<group>"; };
 		31778F2F2318109A0080DAF0 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -175,7 +172,6 @@
 			children = (
 				311869CE231C7F2500B8C29D /* fonts */,
 				3118929122E7C186002BFA42 /* Save to Pocket.entitlements */,
-				314EF9722289D10200704C32 /* Save_to_Pocket.entitlements */,
 				314EF9742289D10200704C32 /* AppDelegate.swift */,
 				314EF9762289D10200704C32 /* Main.storyboard */,
 				314EF9792289D10200704C32 /* ViewController.swift */,
@@ -200,7 +196,6 @@
 				311869D2231C7F6200B8C29D /* InfoPlist.strings */,
 				5D9349172309148C00974849 /* Common */,
 				3118929522E7E18C002BFA42 /* Save to Pocket Extension.entitlements */,
-				314EF9962289D10400704C32 /* Save_to_Pocket_Extension.entitlements */,
 				314EF98A2289D10400704C32 /* SafariExtensionHandler.swift */,
 				314EF98C2289D10400704C32 /* SafariExtensionViewController.swift */,
 				314EF98E2289D10400704C32 /* SafariExtensionViewController.xib */,
@@ -332,7 +327,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				314EF9732289D10200704C32 /* Save_to_Pocket.entitlements in Resources */,
 				314EF97C2289D10300704C32 /* Assets.xcassets in Resources */,
 				314EF9782289D10200704C32 /* Main.storyboard in Resources */,
 				311869CF231C7F2500B8C29D /* fonts in Resources */,
@@ -497,6 +491,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -560,6 +555,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 4;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -586,9 +582,7 @@
 			baseConfigurationReference = 5DEBE81C2333359B002FF684 /* keys.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Save to Pocket Extension/Save to Pocket Extension.entitlements";
-				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = EX3VH4YFCH;
 				INFOPLIST_FILE = "Save to Pocket Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -608,9 +602,7 @@
 			baseConfigurationReference = 5DEBE81C2333359B002FF684 /* keys.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Save to Pocket Extension/Save to Pocket Extension.entitlements";
-				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = EX3VH4YFCH;
 				INFOPLIST_FILE = "Save to Pocket Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -631,10 +623,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Save to Pocket/Save to Pocket.entitlements";
-				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = EX3VH4YFCH;
 				INFOPLIST_FILE = "Save to Pocket/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -653,10 +643,8 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Save to Pocket/Save to Pocket.entitlements";
-				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = EX3VH4YFCH;
 				INFOPLIST_FILE = "Save to Pocket/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
