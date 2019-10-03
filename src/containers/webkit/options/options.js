@@ -1,13 +1,11 @@
-import { Store } from 'webext-redux'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider, connect } from 'react-redux'
-
+import { Store } from 'webext-redux'
 import { PORT_NAME } from 'common/constants'
+import { mapStateToProps, mapDispatchToProps } from 'store/connect'
 import { sendMessage } from 'common/interface'
-
-import { mapStateToProps, mapDispatchToProps } from '../../store/connect'
-import App from './save.app'
+import App from './options.app'
 
 getExtensionInfo().then(info => {
   const proxyStore = new Store({
@@ -15,11 +13,7 @@ getExtensionInfo().then(info => {
     extensionId: info.id
   })
 
-  proxyStore.ready(getTabId).then(tabId => {
-    document.addEventListener('click', function() {
-      sendMessage(null, { action: 'frameFocus', status: true })
-    })
-
+  proxyStore.ready().then(() => {
     const ConnectedApp = connect(
       mapStateToProps,
       mapDispatchToProps
@@ -27,18 +21,12 @@ getExtensionInfo().then(info => {
 
     ReactDOM.render(
       <Provider store={proxyStore}>
-        <ConnectedApp tab_id={tabId} />
+        <ConnectedApp />
       </Provider>,
-      document.getElementById('pocket-extension-root')
+      document.getElementById('pocket-extension-anchor')
     )
   })
 })
-
-function getTabId() {
-  return new Promise(resolve =>
-    sendMessage(null, { action: 'getTabId' }, resolve)
-  )
-}
 
 function getExtensionInfo() {
   return new Promise(resolve =>
