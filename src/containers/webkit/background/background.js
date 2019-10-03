@@ -1,14 +1,14 @@
 import { Framer } from '../save/frame/framer'
 import * as Interface from 'common/interface'
 import { isNewTab, getBaseUrl, isSystemPage } from 'common/helpers'
-import { initializeStore } from '../../store/store'
-import { closeSavePanel } from '../../store/combineActions'
-import { cancelCloseSavePanel } from '../../store/combineActions'
-import { frameLoaded } from '../../store/combineActions'
-import { setupExtension } from '../../store/combineActions'
-import { hydrateState } from '../../store/combineActions'
-import { savePageToPocket } from '../../store/combineActions'
-import { saveUrlToPocket } from '../../store/combineActions'
+import { initializeStore } from 'store/store'
+import { closeSavePanel } from 'store/combineActions'
+import { cancelCloseSavePanel } from 'store/combineActions'
+import { frameLoaded } from 'store/combineActions'
+import { setupExtension } from 'store/combineActions'
+import { hydrateState } from 'store/combineActions'
+import { savePageToPocket } from 'store/combineActions'
+import { saveUrlToPocket } from 'store/combineActions'
 
 const store = initializeStore()
 const installed = Interface.getSetting('base_installed')

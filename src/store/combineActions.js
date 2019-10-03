@@ -1,9 +1,9 @@
-import { setupActions } from '../containers/background/_setup'
-import { tabsActions } from '../containers/background/_tabs'
-import { saveActions } from '../containers/save/_save'
-import { taggingActions } from '../containers/save/toolbar/tagging/_tagging'
-import { recommendationActions } from '../containers/save/recommendations/_recommendations'
-import { surveyActions } from '../containers/save/survey/_survey'
+import { setupActions } from 'containers/webkit/background/_setup'
+import { tabsActions } from 'containers/webkit/background/_tabs'
+import { saveActions } from 'containers/webkit/save/_save'
+import { taggingActions } from 'containers/webkit/save/toolbar/tagging/_tagging'
+import { recommendationActions } from 'containers/webkit/save/recommendations/_recommendations'
+import { surveyActions } from 'containers/webkit/save/survey/_survey'
 
 const { setupExtension, toggleRecommendations, toggleSite } = setupActions
 
