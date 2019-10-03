@@ -20,7 +20,7 @@ class App extends Component {
     }
   }
 
-  UNSAFE_componentWillUpdate(nextProps, nextState) {
+  UNSAFE_componentWillUpdate(nextProps) {
     const isActive = nextProps.tab_id === nextProps.active
     const currentTab = nextProps.tabs ? nextProps.tabs[nextProps.active] : false
     const isValid = currentTab

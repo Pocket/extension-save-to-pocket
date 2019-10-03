@@ -19,9 +19,11 @@ Interface.onUpdateAvailable(() => Interface.reloadExtension())
 
 Interface.setUninstallUrl('https://getpocket.com/chrome-exit-survey/')
 Interface.setToolbarIcon(null, 'browser-action-icon')
-Interface.onTabCreated(({ id: tabId }) => setTimeout(() => {
-  Interface.setToolbarIcon(tabId, 'browser-action-icon')
-}, 200))
+Interface.onTabCreated(({ id: tabId }) =>
+  setTimeout(() => {
+    Interface.setToolbarIcon(tabId, 'browser-action-icon')
+  }, 200)
+)
 setBrowserAction()
 setTabListeners()
 
@@ -194,5 +196,5 @@ function checkTabInjection(tab) {
 }
 
 function injectTab(tab, callback) {
-  Interface.executeScript(tab.id, { file: 'js/frame.bundle.js' }, callback)
+  Interface.executeScript(tab.id, { file: 'js/frame.js' }, callback)
 }

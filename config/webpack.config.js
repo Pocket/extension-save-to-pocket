@@ -25,7 +25,7 @@ const getClientEnvironment = require('./env')
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin')
 // const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin')
 // const typescriptFormatter = require('react-dev-utils/typescriptFormatter')
-const eslint = require('eslint')
+// const eslint = require('eslint')
 
 const postcssNormalize = require('postcss-normalize')
 
@@ -144,22 +144,18 @@ module.exports = function(webpackEnv) {
     // These are the "entry points" to our application.
     // This means they will be the "root" imports that are included in JS bundle.
     entry: {
-      background: [
-        isEnvDevelopment &&
-          require.resolve('react-dev-utils/webpackHotDevClient'),
-        paths.appBackground
-      ].filter(Boolean),
+      background: [paths.appBackground],
       safari: [paths.appSafari],
       options: [paths.appOptions],
       login: [paths.appLoginJs],
       logout: [paths.appLogoutJs],
       frame: [paths.appFrameJs],
-      save: [paths.appSaveJs]
-      // twitter: [paths.appTwitterJs]
+      save: [paths.appSaveJs],
+      twitter: [paths.appTwitterJs]
     },
     output: {
       // The build folder.
-      path: isEnvProduction ? paths.appBuild : undefined,
+      path: isEnvProduction ? paths.appBuildDefault : undefined,
       // Add /* filename */ comments to generated require()s in the output.
       pathinfo: isEnvDevelopment,
       // There will be one main bundle, and one file per asynchronous chunk.
@@ -168,7 +164,7 @@ module.exports = function(webpackEnv) {
       // TODO: remove this when upgrading to webpack 5
       futureEmitAssets: true,
       // There are also additional JS chunk files if you use code splitting.
-      chunkFilename: 'js/[name].chunk.js',
+      chunkFilename: 'js/vendors.js',
       // We inferred the "public path" (such as / or /my-project) from homepage.
       // We use "/" in development.
       publicPath: publicPath,
@@ -252,10 +248,10 @@ module.exports = function(webpackEnv) {
       // Automatically split vendor and commons
       // https://twitter.com/wSokra/status/969633336732905474
       // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
-      splitChunks: {
-        chunks: 'all',
-        name: true
-      },
+      // splitChunks: {
+      //   chunks: 'all',
+      //   name: false
+      // },
       // We need runtime embedded due to nature of the extension
       runtimeChunk: false
     },
@@ -284,7 +280,7 @@ module.exports = function(webpackEnv) {
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
         // guards against forgotten dependencies and such.
-        PnpWebpackPlugin,
+        // PnpWebpackPlugin,
         // Prevents users from importing files from outside of src/ (or node_modules/).
         // This often causes confusion because we only process files within src/ with babel.
         // To fix this, we prevent you from importing files out of src/ -- if you'd like to,
@@ -297,7 +293,7 @@ module.exports = function(webpackEnv) {
       plugins: [
         // Also related to Plug'n'Play, but this time it tells Webpack to load its loaders
         // from the current package.
-        PnpWebpackPlugin.moduleLoader(module)
+        // PnpWebpackPlugin.moduleLoader(module)
       ]
     },
     module: {
@@ -484,32 +480,32 @@ module.exports = function(webpackEnv) {
       ]
     },
     plugins: [
-      // Generates an `index.html` file with the <script> injected.
-      new HtmlWebpackPlugin(
-        Object.assign(
-          {},
-          {
-            inject: false,
-            template: paths.appHtml
-          },
-          isEnvProduction
-            ? {
-                minify: {
-                  removeComments: true,
-                  collapseWhitespace: true,
-                  removeRedundantAttributes: true,
-                  useShortDoctype: true,
-                  removeEmptyAttributes: true,
-                  removeStyleLinkTypeAttributes: true,
-                  keepClosingSlash: true,
-                  minifyJS: true,
-                  minifyCSS: true,
-                  minifyURLs: true
-                }
-              }
-            : undefined
-        )
-      ),
+      // // Generates an `index.html` file with the <script> injected.
+      // new HtmlWebpackPlugin(
+      //   Object.assign(
+      //     {},
+      //     {
+      //       inject: false,
+      //       template: paths.appHtml
+      //     },
+      //     isEnvProduction
+      //       ? {
+      //           minify: {
+      //             removeComments: true,
+      //             collapseWhitespace: true,
+      //             removeRedundantAttributes: true,
+      //             useShortDoctype: true,
+      //             removeEmptyAttributes: true,
+      //             removeStyleLinkTypeAttributes: true,
+      //             keepClosingSlash: true,
+      //             minifyJS: true,
+      //             minifyCSS: true,
+      //             minifyURLs: true
+      //           }
+      //         }
+      //       : undefined
+      //   )
+      // ),
       // Since we are building an extension, we are less concerned with network
       // requests and invalidating caches.  A single chunk per file avoids gaps
       // in the injection vs sandbox/app paradigm
@@ -531,6 +527,18 @@ module.exports = function(webpackEnv) {
       // // new InterpolateHtmlPlugin(HtmlWebpackPlugin, env.raw),
       // // This gives some necessary context to module not found errors, such as
       // // the requesting resource.
+      new HtmlWebpackPlugin({
+        inject: true,
+        template: paths.appSaveHTML,
+        filename: 'save.html',
+        chunks: ['save']
+      }),
+      new HtmlWebpackPlugin({
+        inject: true,
+        template: paths.appOptionsHTML,
+        filename: 'options.html',
+        chunks: ['options']
+      }),
       new ModuleNotFoundPlugin(paths.appPath),
       // Makes some environment variables available to the JS code, for example:
       // if (process.env.NODE_ENV === 'production') { ... }. See `./env.js`.

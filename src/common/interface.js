@@ -59,6 +59,7 @@ export function onFocusChanged(callback) {
 }
 /* Messaging
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+// eslint-disable-next-line no-unused-vars
 export function sendMessage(extensionId = null, message, cb) {
   let callback = isFunction(cb) ? cb : () => {}
   return chrome.runtime.sendMessage(message, callback)
@@ -167,7 +168,7 @@ export function openUrl(url) {
 }
 
 export function openTabWithUrl(url, inBackground) {
-  let makeTabActive = inBackground === true ? false : true
+  let makeTabActive = inBackground === true ? false : true //eslint-disable-line no-unneeded-ternary
   return chrome.tabs.create({ url: url, active: makeTabActive })
 }
 
@@ -184,8 +185,10 @@ export function activePrivateMode(tab) {
 }
 
 export function setToolbarIcon(tabId, iconName) {
-  const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
-  const darkMode =  prefersDark ? '-dark' : ''
+  const prefersDark =
+    window.matchMedia &&
+    window.matchMedia('(prefers-color-scheme: dark)').matches
+  const darkMode = prefersDark ? '-dark' : ''
 
   const smallIconPath = `images/${iconName}${darkMode}-19.png`
   const bigIconPath = `images/${iconName}${darkMode}-38.png`

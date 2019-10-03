@@ -72,6 +72,7 @@
     "blueimp-md5": "^2.10.0",
     "classnames": "^2.2.5",
     "downshift": "^1.30.2",
+    "emotion": "^10.0.17",
     "js-base64": "^2.4.3",
     "match-sorter": "^2.2.1",
     "react": "^16.9.0",
@@ -84,7 +85,8 @@
     "react-redux": "^5.0.5",
     "redux": "^3.7.2",
     "redux-saga": "^0.15.6",
-    "semver": "6.3.0"
+    "semver": "6.3.0",
+    "yamljs": "^0.3.0"
   },
   "prettier": {
     "bracketSpacing": true,
