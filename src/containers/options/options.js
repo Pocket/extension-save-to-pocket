@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider, connect } from 'react-redux'
-import { Store } from 'react-chrome-redux'
+import { Store } from 'webext-redux'
 import { PORT_NAME } from 'common/constants'
 import { mapStateToProps, mapDispatchToProps } from '../../store/connect'
 import { sendMessage } from 'common/interface'
@@ -14,7 +14,10 @@ getExtensionInfo().then(info => {
   })
 
   proxyStore.ready().then(() => {
-    const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App)
+    const ConnectedApp = connect(
+      mapStateToProps,
+      mapDispatchToProps
+    )(App)
 
     ReactDOM.render(
       <Provider store={proxyStore}>

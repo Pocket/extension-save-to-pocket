@@ -1,5 +1,5 @@
 import {} from 'redux'
-import { wrapStore } from 'react-chrome-redux'
+import { wrapStore } from 'webext-redux'
 import { compose, createStore, applyMiddleware } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import { PORT_NAME } from 'common/constants'

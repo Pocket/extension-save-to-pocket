@@ -1,4 +1,4 @@
-import { Store } from 'react-chrome-redux'
+import { Store } from 'webext-redux'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider, connect } from 'react-redux'
@@ -20,7 +20,10 @@ getExtensionInfo().then(info => {
       sendMessage(null, { action: 'frameFocus', status: true })
     })
 
-    const ConnectedApp = connect(mapStateToProps, mapDispatchToProps)(App)
+    const ConnectedApp = connect(
+      mapStateToProps,
+      mapDispatchToProps
+    )(App)
 
     ReactDOM.render(
       <Provider store={proxyStore}>
