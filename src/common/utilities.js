@@ -44,7 +44,7 @@ export function arrayHasValues(checkArray) {
 
 export function shallowQueryParams(source) {
   const array = []
-  for (let key in source) {
+  for (var key in source) {
     if (source[key]) {
       let type = Object.prototype.toString
         .call(source[key])

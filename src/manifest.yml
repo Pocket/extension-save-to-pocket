@@ -1,4 +1,4 @@
-name: 'Save to Pocket'
+name: "Save to Pocket"
 version: 3.0.6.8
 options_page: options.html
 description: __MSG_extDescriptionGoogleChrome__
@@ -6,15 +6,15 @@ default_locale: "en"
 background:
   scripts:
     - js/key.js
-    - js/background.bundle.js
+    - js/background.js
 
 permissions:
   - tabs
   - contextMenus
   - cookies
   - notifications
-  - 'http://*/*'
-  - 'https://*/*'
+  - "http://*/*"
+  - "https://*/*"
 
 browser_action:
   default_icon:
@@ -23,26 +23,22 @@ browser_action:
   default_title: __MSG_toolbarButtonTitle__
 
 content_scripts:
-  -
-    matches:
+  - matches:
       - "*://*/*"
     css:
       - fonts/fonts.css
-  -
-    matches:
-      - '*://getpocket.com/extension_login_success'
+  - matches:
+      - "*://getpocket.com/extension_login_success"
     js:
-      - js/login.bundle.js
-  -
-    matches:
-      - '*://getpocket.com/login?e=4'
+      - js/login.js
+  - matches:
+      - "*://getpocket.com/login?e=4"
     js:
-      - js/logout.bundle.js
-  -
-    matches:
-      - '*://twitter.com/*'
+      - js/logout.js
+  - matches:
+      - "*://twitter.com/*"
     js:
-      - js/twitter.bundle.js
+      - js/twitter.js
 
 icons:
   128: images/icon-128.png
