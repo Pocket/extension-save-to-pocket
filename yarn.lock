@@ -12072,6 +12072,15 @@ wbuf@^1.7.3:
   dependencies:
     minimalistic-assert "^1.0.0"
 
+webext-redux@^2.1.4:
+  version "2.1.4"
+  resolved "https://registry.yarnpkg.com/webext-redux/-/webext-redux-2.1.4.tgz#356fb0b6acad9bb8f04fcb317bb7856d9e7f2820"
+  integrity sha512-YNs8Q38jxcf4ANVxlbpMIo+fa2U4uQYuOIZePVNCi4Y01nOKTMR+DC7T2zaozkFALq5tkmkHcOmklMJwPMh3mg==
+  dependencies:
+    lodash.assignin "^4.2.0"
+    lodash.clonedeep "^4.5.0"
+    redux "^3.7.2"
+
 webidl-conversions@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/webidl-conversions/-/webidl-conversions-4.0.2.tgz#a855980b1f0b6b359ba1d5d9fb39ae941faa63ad"
