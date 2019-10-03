@@ -1,4 +1,4 @@
-import { Store } from 'react-chrome-redux'
+import { Store } from 'webext-redux'
 import { PORT_NAME } from 'common/constants'
 import { sendMessage } from 'common/interface'
 
