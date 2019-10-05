@@ -1,11 +1,11 @@
 /*global safari*/
+import createCache from '@emotion/cache'
+import { CacheProvider } from '@emotion/core'
+import { MAIN_SCRIPT_INJECTED } from 'actions'
+import SafariApp from 'containers/safari/app.container'
+import { dispatchInit } from 'containers/safari/dispatch'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { dispatchInit } from 'containers/safari/dispatch'
-import SafariApp from 'containers/safari/app.container'
-import { CacheProvider } from '@emotion/core'
-import createCache from '@emotion/cache'
-import { MAIN_SCRIPT_INJECTED } from 'containers/safari/actions'
 import { Provider } from 'react-redux'
 import { store } from './store'
 //

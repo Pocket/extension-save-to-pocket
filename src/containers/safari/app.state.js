@@ -1,6 +1,6 @@
 /*global safari*/
-import { USER_LOG_OUT } from './actions'
-import { OPEN_POCKET } from './actions'
+import { USER_LOG_OUT } from 'actions'
+import { OPEN_POCKET } from 'actions'
 import { takeLatest } from 'redux-saga/effects'
 import { delay } from 'redux-saga'
 
