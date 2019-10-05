@@ -14,7 +14,10 @@ process.on('unhandledRejection', err => {
 // Ensure environment variables are read.
 require('../env')
 
-const fs = require('fs')
+const fs = require('fs-extra')
+const utilities = require('./utilities.js')
+const path = require('path')
+const YAML = require('yamljs')
 const chalk = require('react-dev-utils/chalk')
 const webpack = require('webpack')
 const WebpackDevServer = require('webpack-dev-server')
@@ -26,7 +29,7 @@ const {
   prepareProxy,
   prepareUrls
 } = require('react-dev-utils/WebpackDevServerUtils')
-const openBrowser = require('react-dev-utils/openBrowser')
+
 const paths = require('../paths')
 const configFactory = require('../webpack.config')
 const createDevServerConfig = require('../webpackDevServer.config')
@@ -79,6 +82,12 @@ checkBrowsers(paths.appPath, isInteractive)
     const appName = require(paths.appPackageJson).name
     const useTypeScript = fs.existsSync(paths.appTsConfig)
     const urls = prepareUrls(protocol, HOST, port)
+
+    // Merge with the public folder
+    utilities.copyPublicFolder(paths)
+    utilities.copyLocalesFolder(paths)
+    buildManifest()
+
     const devSocket = {
       warnings: warnings =>
         devServer.sockWrite(devServer.sockets, 'warnings', warnings),
@@ -128,3 +137,21 @@ checkBrowsers(paths.appPath, isInteractive)
     }
     process.exit(1)
   })
+
+function buildManifest() {
+  const keys = utilities.getKeys(paths)
+  const manifest = YAML.load(paths.appManifest)
+  const key = 'chrome'
+
+  fs.outputFile(
+    path.join(paths.appBuildDefault, 'js/key.js'),
+    `const CONSUMER_KEY = '${keys[key]}'`
+  )
+
+  manifest.description = utilities.descriptionKey[key]
+
+  fs.writeFileSync(
+    path.join(paths.appBuildDefault, 'manifest.json'),
+    JSON.stringify(manifest, null, 4)
+  )
+}
