@@ -1,13 +1,14 @@
-/* Dispatch messages to SAE
+/* Dispatch messages incoming
   –––––––––––––––––––––––––––––––––––––––––––––––––– */
 export const MAIN_SCRIPT_INJECTED = 'MAIN_SCRIPT_INJECTED'
-export const USER_LOG_OUT = 'USER_LOG_OUT'
+export const LOGGED_OUT_OF_POCKET = 'LOGGED_OUT_OF_POCKET'
 export const ARCHIVE_ITEM = 'ARCHIVE_ITEM'
 export const REMOVE_ITEM = 'REMOVE_ITEM'
 export const EDIT_TAGS = 'EDIT_TAGS'
 export const OPEN_POCKET = 'OPEN_POCKET'
+export const AUTH_CODE_RECEIVED = 'AUTH_CODE_RECEIVED'
 
-/* Dispatched messages from SAE
+/* Dispatched messages outgoing
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 export const SAVE_TO_POCKET_REQUEST = 'SAVE_TO_POCKET_REQUEST'
@@ -39,8 +40,10 @@ export const TAG_REMOVE = 'TAG_REMOVE'
 export const TAGS_REMOVE = 'TAGS_REMOVE'
 export const TAGS_SYNC = 'TAGS_SYNC'
 
+export const USER_LOG_IN = 'USER_LOG_IN'
 export const USER_LOG_IN_SUCCESS = 'USER_LOG_IN_SUCCESS'
 export const USER_LOG_IN_FAILURE = 'USER_LOG_IN_FAILURE'
 
+export const USER_LOG_OUT = 'USER_LOG_OUT'
 export const USER_LOG_OUT_SUCCESS = 'USER_LOG_OUT_SUCCESS'
 export const USER_LOG_OUT_FAILURE = 'USER_LOG_IN_FAILURE'
