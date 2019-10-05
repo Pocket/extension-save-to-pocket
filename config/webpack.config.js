@@ -155,14 +155,14 @@ module.exports = function(webpackEnv) {
     },
     output: {
       // The build folder.
-      path: isEnvProduction ? paths.appBuildDefault : undefined,
+      path: paths.appBuildDefault,
       // Add /* filename */ comments to generated require()s in the output.
       pathinfo: isEnvDevelopment,
       // There will be one main bundle, and one file per asynchronous chunk.
       // In development, it does not produce real files.
       filename: 'js/[name].js',
       // TODO: remove this when upgrading to webpack 5
-      futureEmitAssets: true,
+      futureEmitAssets: false,
       // There are also additional JS chunk files if you use code splitting.
       chunkFilename: 'js/vendors.js',
       // We inferred the "public path" (such as / or /my-project) from homepage.
