@@ -12,10 +12,14 @@ export function isNewTab(tab, url) {
 }
 
 export function isSystemPage(tab) {
+  return tab.active && isSystemLink(tab.url)
+}
+
+export function isSystemLink(link) {
   return (
-    tab.active &&
-    (tab.url.startsWith('chrome://') ||
-      tab.url.startsWith('chrome-extension://'))
+    link.startsWith('chrome://') ||
+    link.startsWith('chrome-extension://') ||
+    link.startsWith('chrome-search://')
   )
 }
 
