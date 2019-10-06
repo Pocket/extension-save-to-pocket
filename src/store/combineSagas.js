@@ -21,7 +21,7 @@ import { wSaveUrl } from '../containers/save/_save'
 import { wRemoveItem } from '../containers/save/_save'
 import { wArchiveItem } from '../containers/save/_save'
 
-import { wTagChanges } from '../containers/save/toolbar/tagging/_tagging'
+import { wTagChanges, wTagInputFocus } from '../containers/save/toolbar/tagging/_tagging'
 import { wSuggestedTags } from '../containers/save/toolbar/tagging/_tagging'
 
 import { wRecommendations } from '../containers/save/recommendations/_recommendations'
@@ -69,6 +69,7 @@ export default function* rootSaga() {
     wArchiveItem(),
 
     wTagChanges(),
+    wTagInputFocus(),
     wSuggestedTags(),
 
     wRecommendations(),

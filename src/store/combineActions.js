@@ -23,6 +23,7 @@ const {
   activateTag,
   deactivateTag,
   addTag,
+  setTagInputFocus,
   removeTag,
   deactivateTags,
   removeTags
@@ -56,6 +57,7 @@ export {
   activateTag,
   deactivateTag,
   addTag,
+  setTagInputFocus,
   removeTag,
   deactivateTags,
   removeTags,
