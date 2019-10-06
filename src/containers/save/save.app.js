@@ -53,8 +53,9 @@ class App extends Component {
     return isActive
   }
 
-  setInputFocusState = bool => {
-    this.setState({ inputFocused: bool })
+  setInputFocusState = inputFocused => {
+    this.props.setTagInputFocus(inputFocused)
+    this.setState({ inputFocused })
   }
 
   get tabIsActive() {

@@ -17,6 +17,9 @@ export const taggingActions = {
   addTag: tag => {
     return { type: 'TAG_ADD', tag }
   },
+  setTagInputFocus: tagInputFocus => {
+    return { type: 'TAG_INPUT_FOCUS', tagInputFocus }
+  },
   deactivateTags: data => {
     return { type: 'TAGS_DEACTIVATE', data }
   },
@@ -78,6 +81,11 @@ export const tags = (state = {}, action) => {
           used: [...usedTags, tagValue]
         }
       }
+    }
+
+    case 'TAG_INPUT_FOCUS': {
+      const { tagInputFocus } = action
+      return { ...state, tagInputFocus }
     }
 
     case 'TAG_REMOVE': {
@@ -174,6 +182,9 @@ export function* wSuggestedTags() {
 export function* wTagChanges() {
   yield takeLatest(['TAG_ADD', 'TAG_REMOVE', 'TAGS_REMOVE'], tagChanges)
 }
+export function* wTagInputFocus() {
+  yield takeLatest(['TAG_INPUT_FOCUS'], tagInputFocus)
+}
 
 const getUsedTags = state => {
   const activeTabId = state.active
@@ -189,6 +200,8 @@ const getUsedTags = state => {
     tabId: activeTabId
   }
 }
+
+const getTagInputFocus = state => state.tagInputFocused
 
 const getStoredTags = state => {
   return state.setup.tags_stored || []
@@ -232,4 +245,12 @@ function* tagChanges() {
   })
 
   yield call(API.syncItemTags, tagInfo.id, tagInfo.tags)
+}
+
+function* tagInputFocus() {
+  const focused = yield select(getTagInputFocus)
+
+  if(focused) {
+    yield put({ type: 'CANCEL_CLOSE_SAVE_PANEL' })
+  }
 }
