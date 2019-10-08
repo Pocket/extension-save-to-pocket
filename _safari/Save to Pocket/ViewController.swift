@@ -25,7 +25,11 @@ class ViewController: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.layer?.backgroundColor = CGColor.init(red: 1, green: 1, blue: 1, alpha: 1)
+        if #available(macOS 10.14, *) {
+            // Do nothing - on >= 10.14 the window is set based on theme.
+        } else {
+            self.view.layer?.backgroundColor = CGColor(red: 1, green: 1, blue: 1, alpha: 1)
+        }
         self.buttonContainer.layer?.backgroundColor = CGColor(red: 1, green: 0.2, blue: 0.33, alpha: 1)
         self.buttonContainer.layer?.cornerRadius = 3
       
