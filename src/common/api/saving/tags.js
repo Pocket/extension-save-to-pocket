@@ -17,7 +17,11 @@ export function syncItemTags(id, tags, actionInfo) {
     data: {
       actions: [{ action: 'tags_add', item_id: id, tags, ...actionInfo }]
     }
-  }).then(response => response)
+  }).then(response => {
+    return response
+      ? { status: 'ok', response: response.action_results[0] }
+      : undefined
+  })
 }
 
 export function fetchStoredTags(since) {
