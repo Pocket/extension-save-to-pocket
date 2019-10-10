@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14868"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -96,7 +96,7 @@
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="bgTriangle" id="XZb-he-vmh"/>
                             </imageView>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="X1M-w3-9da">
-                                <rect key="frame" x="35" y="182" width="199" height="84"/>
+                                <rect key="frame" x="35" y="158" width="199" height="108"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="195" id="RrD-zd-YNx"/>
                                 </constraints>
@@ -113,7 +113,7 @@ check the box next to Pocket in your Safari preferences. </string>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="left" image="Preferences" id="eEK-VW-bqd"/>
                             </imageView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="fNZ-Kz-7My">
-                                <rect key="frame" x="37" y="104" width="195" height="43"/>
+                                <rect key="frame" x="37" y="80" width="195" height="43"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="rH5-xg-t8R">
                                         <rect key="frame" x="50" y="14" width="96" height="16"/>
@@ -143,7 +143,7 @@ check the box next to Pocket in your Safari preferences. </string>
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" size="12" name="GraphikLCG-Regular"/>
                                 </buttonCell>
-                                <color key="contentTintColor" red="0.08977634459733963" green="0.28515338897705078" blue="0.67409378290176392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="contentTintColor" red="0.086274509803921567" green="0.28627450980392155" blue="0.67450980392156867" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="didClickNeedHelpButtonWithClick:" target="XfG-lQ-9wD" id="L0S-op-wfy"/>
                                 </connections>
@@ -170,6 +170,7 @@ check the box next to Pocket in your Safari preferences. </string>
                         <outlet property="buttonContainer" destination="fNZ-Kz-7My" id="7bX-iz-yxB"/>
                         <outlet property="buttonTitle" destination="rH5-xg-t8R" id="Odf-jN-uLj"/>
                         <outlet property="gestureRecognizer" destination="trx-fU-IUr" id="nTX-Od-Asm"/>
+                        <outlet property="header" destination="X1M-w3-9da" id="YOq-g7-5fm"/>
                         <outlet property="needHelp" destination="KS5-nJ-s61" id="kCf-nu-6Yi"/>
                         <outlet property="view" destination="m2S-Jp-Qdl" id="rr3-eG-LIi"/>
                     </connections>
