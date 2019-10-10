@@ -8,7 +8,7 @@ import { appActions } from './app.state'
 import { saveActions } from './save.state'
 import { tagActions } from './tags.state'
 
-class SafariApp extends Component {
+class ExtensionApp extends Component {
   state = {
     dropDownActive: false,
     inputFocused: false
@@ -117,4 +117,4 @@ function mapStateToProps(state) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SafariApp)
+)(ExtensionApp)
