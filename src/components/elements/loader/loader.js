@@ -21,7 +21,7 @@ const LoaderAnimation = styled.div`
       position: absolute;
       top: 0;
 
-      &:first-child {
+      &:first-of-type {
         animation: scale 1.25s 0s cubic-bezier(0.09, 0.57, 0.49, 0.9) infinite;
         background: ${$overcast};
         height: 10px;

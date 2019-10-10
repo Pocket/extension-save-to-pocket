@@ -32,7 +32,7 @@ const ChipItem = styled.li`
   background-color: ${props => (props.active ? $smoke : $powder)};
   padding: ${props => (props.active ? '2px 5px 2px 6px' : '2px 12px')};
 
-  &:first-child {
+  &:first-of-type {
     margin-left: 20px;
   }
 
