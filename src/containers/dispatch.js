@@ -1,5 +1,6 @@
-/*global safari*/
-import { store } from './store'
+/*global safari chrome*/
+import { store } from 'store'
+import { injectDomElements } from './inject'
 
 import { SAVE_TO_POCKET_REQUEST } from 'actions'
 import { SAVE_TO_POCKET_SUCCESS } from 'actions'
@@ -18,13 +19,20 @@ import { USER_LOG_IN_FAILURE } from 'actions'
 import { USER_LOG_OUT_SUCCESS } from 'actions'
 import { USER_LOG_OUT_FAILURE } from 'actions'
 
-import { injectDomElements } from './inject'
-
 /* Add Safari Listeners
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 export const dispatchInit = () => {
-  safari.self.addEventListener('message', handleMessage)
-  document.addEventListener('contextmenu', handleContextMenu, false)
+  if (chrome) {
+    chrome.runtime.onMessage.addListener(function(request) {
+      const { action: name, payload: message } = request
+      handleMessage({ name, message })
+    })
+  }
+
+  if (typeof safari !== 'undefined') {
+    safari.self.addEventListener('message', handleMessage)
+    document.addEventListener('contextmenu', handleContextMenu, false)
+  }
 }
 
 /* Handle incoming messages
@@ -39,9 +47,9 @@ function handleContextMenu(event) {
 function handleMessage(event) {
   const { message, name = 'Unknown Action' } = event || {}
 
-  console.groupCollapsed(`RECEIVE: ${name}`)
-  console.log(message)
-  console.groupEnd(`RECEIVE: ${name}`)
+  // console.groupCollapsed(`RECEIVE: ${name}`)
+  // console.log(message)
+  // console.groupEnd(`RECEIVE: ${name}`)
 
   switch (name) {
     case SAVE_TO_POCKET_REQUEST: {

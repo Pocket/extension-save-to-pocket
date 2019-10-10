@@ -1,4 +1,3 @@
-/*global safari*/
 import { takeLatest, put } from 'redux-saga/effects'
 
 import { SAVE_TO_POCKET_REQUEST } from 'actions'
@@ -99,10 +98,7 @@ export const saveSagas = [
 /* SAGAS :: RESPONDERS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 function* saveToPocketSuccess(action) {
-  // Move this to a saga
   const { item_id } = action.payload
-  // const { action_results } = response
-  // const result = action_results[0]
   const payload = { status: 'saved', item_id }
 
   yield put({ type: SAVE_TO_POCKET_UPDATE, payload })
@@ -110,12 +106,10 @@ function* saveToPocketSuccess(action) {
 
 function* archiveItem(action) {
   const { payload } = action
-  safari.extension.dispatchMessage(ARCHIVE_ITEM_REQUEST, payload)
   yield put({ type: ARCHIVE_ITEM_REQUEST, payload })
 }
 
 function* removeItem(action) {
   const { payload } = action
-  safari.extension.dispatchMessage(REMOVE_ITEM_REQUEST, payload)
   yield put({ type: REMOVE_ITEM_REQUEST, payload })
 }

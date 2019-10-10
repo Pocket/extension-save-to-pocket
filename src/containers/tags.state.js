@@ -1,6 +1,5 @@
-/*global safari*/
-import { delay } from 'redux-saga'
-import { takeLatest, select } from 'redux-saga/effects'
+import { delay } from 'redux-saga/effects'
+import { takeLatest, select, put } from 'redux-saga/effects'
 import { checkDuplicate } from 'common/helpers'
 import { SAVE_TO_POCKET_REQUEST } from 'actions'
 import { SUGGESTED_TAGS_REQUEST } from 'actions'
@@ -13,6 +12,9 @@ import { TAG_ADD } from 'actions'
 import { TAG_REMOVE } from 'actions'
 import { TAGS_REMOVE } from 'actions'
 import { TAGS_SYNC } from 'actions'
+import { TAG_SYNC_REQUEST } from 'actions'
+import { TAG_SYNC_SUCCESS } from 'actions'
+import { TAG_SYNC_FAILURE } from 'actions'
 
 // INITIAL STATE
 const initialState = {
@@ -92,6 +94,15 @@ export const tagsReducers = (state = initialState, action) => {
       return { ...state, marked: [] }
     }
 
+    case TAG_SYNC_REQUEST: {
+      return state
+    }
+
+    case TAG_SYNC_SUCCESS:
+    case TAG_SYNC_FAILURE: {
+      return state
+    }
+
     default: {
       return state
     }
@@ -147,6 +158,6 @@ function* tagChanges() {
     usedSuggestedCount: usedSuggested.length
   }
   if (used.length) {
-    safari.extension.dispatchMessage(TAGS_SYNC, payload)
+    yield put({ type: TAGS_SYNC, payload })
   }
 }
