@@ -2,6 +2,7 @@ import { combineReducers } from 'redux'
 import { all } from 'redux-saga/effects'
 import { createStore, applyMiddleware, compose } from 'redux'
 import createSagaMiddleware from 'redux-saga'
+import { outgoingMiddleware } from './middleware'
 
 // import { localizeReducer } from 'react-localize-redux'
 
@@ -35,7 +36,7 @@ function* rootSaga() {
 /* STORE
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 const composeEnhancers = compose
-const enhancers = applyMiddleware(sagaMiddleware)
+const enhancers = applyMiddleware(outgoingMiddleware, sagaMiddleware)
 
 /** PERSISTED STATE
 --------------------------------------------------------------- */
