@@ -2,11 +2,10 @@ import { request } from '../_request/request'
 
 /* API CALLS - Should return promises
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-export function saveToPocket(saveObject, access_token) {
+export function saveToPocket(saveObject) {
   return request({
     path: 'send/',
     data: {
-      access_token: access_token,
       actions: [
         {
           action: 'add',
