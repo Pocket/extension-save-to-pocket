@@ -7,13 +7,13 @@ import createSagaMiddleware from 'redux-saga'
 
 /* IMPORT CONTAINER STATES
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-import { saveReducers } from './save.state'
-import { saveSagas } from './save.state'
+import { saveReducers } from 'containers/save.state'
+import { saveSagas } from 'containers/save.state'
 
-import { tagsReducers } from './tags.state'
-import { tagsSagas } from './tags.state'
+import { tagsReducers } from 'containers/tags.state'
+import { tagsSagas } from 'containers/tags.state'
 
-import { appSagas } from './app.state'
+// import { appSagas } from 'containers/webkit/app.state'
 
 /* REDUCERS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -29,7 +29,7 @@ const rootReducer = () =>
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 const sagaMiddleware = createSagaMiddleware()
 function* rootSaga() {
-  yield all([...appSagas, ...saveSagas, ...tagsSagas])
+  yield all([...saveSagas, ...tagsSagas])
 }
 
 /* STORE
