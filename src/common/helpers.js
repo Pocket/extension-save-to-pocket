@@ -1,4 +1,6 @@
-import { getSetting, setSettings, openUrl } from './interface'
+/* global chrome */
+
+import { openUrl } from './interface'
 import { shallowQueryParams } from './utilities'
 
 export function openPocket() {
@@ -45,7 +47,7 @@ export function getSlug(url) {
 }
 
 export function getAccessToken() {
-  return getSetting('oauth_token')
+  return getSetting('access_token')
 }
 
 export function isAuthorized() {
@@ -114,4 +116,29 @@ export function getItemPosition(item) {
 
 export function checkDuplicate(list, tagValue) {
   return list.filter(tag => tag.name === tagValue).length
+}
+
+export function getSetting(key) {
+  return localStorage.getItem(key)
+}
+
+export function setSettings(values) {
+  Object.keys(values).forEach(function(key) {
+    localStorage.setItem(key, values[key])
+  })
+}
+
+export function removeSettings(values) {
+  values.forEach(function(key) {
+    localStorage.removeItem(key)
+  })
+}
+
+export function closeLoginPage() {
+  chrome.tabs.query(
+    { url: '*://getpocket.com/extension_login_success' },
+    tabs => {
+      chrome.tabs.remove(tabs.map(tab => tab.id))
+    }
+  )
 }
