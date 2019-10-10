@@ -1,7 +1,8 @@
 /* global chrome */
 import { openPocket, isSystemPage, isSystemLink } from 'common/helpers'
-import { getSetting, setSettings, closeLoginPage } from 'common/helpers'
-import { getGuid, saveToPocket, authorize, syncItemTags } from 'common/api'
+import { getSetting, setSettings, removeSettings } from 'common/helpers'
+import { closeLoginPage } from 'common/helpers'
+import { authorize, getGuid, saveToPocket, syncItemTags } from 'common/api'
 import { removeItem, archiveItem } from 'common/api'
 
 import { AUTH_URL } from 'common/constants'
@@ -21,6 +22,7 @@ import { ARCHIVE_ITEM_FAILURE } from 'actions'
 import { REMOVE_ITEM_REQUEST } from 'actions'
 import { REMOVE_ITEM_SUCCESS } from 'actions'
 import { REMOVE_ITEM_FAILURE } from 'actions'
+import { USER_LOG_OUT_SUCCESS } from '../../../actions'
 
 var postAuthSave = null
 
@@ -133,7 +135,12 @@ export async function authCodeRecieved(tab, payload) {
   if (postAuthSave) save(postAuthSave)
 }
 
-export function logOut() {}
+export function logOut(tab) {
+  const { id: tabId } = tab
+  removeSettings(['access_token'])
+
+  chrome.tabs.sendMessage(tabId, { action: USER_LOG_OUT_SUCCESS })
+}
 
 export function logIn(saveObject) {
   postAuthSave = saveObject
