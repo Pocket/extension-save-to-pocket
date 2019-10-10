@@ -5,7 +5,6 @@ const isWsl = require('is-wsl')
 const path = require('path')
 const webpack = require('webpack')
 // const resolve = require('resolve')
-const PnpWebpackPlugin = require('pnp-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin')
 // const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin')
@@ -26,6 +25,7 @@ const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin')
 // const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin')
 // const typescriptFormatter = require('react-dev-utils/typescriptFormatter')
 // const eslint = require('eslint')
+const ExtensionReloader = require('webpack-extension-reloader')
 
 const postcssNormalize = require('postcss-normalize')
 
@@ -145,7 +145,7 @@ module.exports = function(webpackEnv) {
     // This means they will be the "root" imports that are included in JS bundle.
     entry: {
       background: [paths.appBackground],
-      safari: [paths.appSafari],
+      inject: [paths.appInjectJs],
       options: [paths.appOptions],
       login: [paths.appLoginJs],
       logout: [paths.appLogoutJs],
@@ -580,7 +580,23 @@ module.exports = function(webpackEnv) {
       // solution that requires the user to opt into importing specific locales.
       // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
       // You can remove this if you don't use Moment.js:
-      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+      isEnvDevelopment &&
+        new ExtensionReloader({
+          reloadPage: true, // Force the reload of the page also
+          entries: {
+            background: paths.appBackground,
+            contentScript: [
+              paths.appSafari,
+              paths.appLoginJs,
+              paths.appLogoutJs,
+              paths.appFrameJs,
+              paths.appSaveJs,
+              paths.appTwitterJs
+            ],
+            options: paths.appOptions
+          }
+        })
     ].filter(Boolean),
     // Some libraries import Node modules but don't use them in the browser.
     // Tell Webpack to provide empty mocks for them so importing them works.
