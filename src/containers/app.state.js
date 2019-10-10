@@ -1,10 +1,12 @@
-import { OPEN_POCKET } from 'actions'
 import { takeLatest, put } from 'redux-saga/effects'
 import { delay } from 'redux-saga/effects'
+import { OPEN_POCKET } from 'actions'
+import { USER_LOG_OUT } from 'actions'
 
 // ACTIONS
 export const appActions = {
-  openPocket: () => ({ type: OPEN_POCKET })
+  openPocket: () => ({ type: OPEN_POCKET }),
+  userLogOut: () => ({ type: USER_LOG_OUT })
 }
 
 // REDUCER

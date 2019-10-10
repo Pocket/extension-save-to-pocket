@@ -44,6 +44,10 @@ chrome.runtime.onMessage.addListener(function(message, sender) {
   const { type, payload } = message
   const { tab } = sender
 
+  console.groupCollapsed(`RECEIVE: ${type}`)
+  console.log(message)
+  console.groupEnd(`RECEIVE: ${type}`)
+
   switch (type) {
     case AUTH_CODE_RECEIVED:
       handlers.authCodeRecieved(tab, payload)
