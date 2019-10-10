@@ -1,13 +1,9 @@
-import { delay } from 'redux-saga'
+import { delay } from 'redux-saga/effects'
 import { put, call, takeEvery, race } from 'redux-saga/effects'
 import { requireAuthorization } from '../../auth/_auth'
 import { getGuid } from 'common/api/auth/guid'
 
-import {
-  getSetting,
-  setSettings,
-  removeSettings
-} from 'common/interface'
+import { getSetting, setSettings, removeSettings } from 'common/interface'
 import * as API from 'common/api'
 
 // ACTIONS

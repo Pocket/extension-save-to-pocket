@@ -1,4 +1,4 @@
-import { delay } from 'redux-saga'
+import { delay } from 'redux-saga/effects'
 import {
   put,
   call,
@@ -273,7 +273,11 @@ function buildSaveObject(action, setup) {
       const url = tab.url
       const title = tab.title
       const saveType = 'page'
-      const actionInfo = { cxt_ui: 'toolbar', cxt_premium_status, cxt_view: 'ext_popover' }
+      const actionInfo = {
+        cxt_ui: 'toolbar',
+        cxt_premium_status,
+        cxt_view: 'ext_popover'
+      }
       const showSavedIcon = true
 
       return {

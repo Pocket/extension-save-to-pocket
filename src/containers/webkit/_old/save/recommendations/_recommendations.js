@@ -1,4 +1,4 @@
-import { delay } from 'redux-saga'
+import { delay } from 'redux-saga/effects'
 import { put, call, takeEvery, race } from 'redux-saga/effects'
 import * as API from 'common/api'
 import { getBestImage } from 'common/helpers'
