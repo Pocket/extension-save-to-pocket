@@ -1,9 +1,7 @@
-/*global safari*/
 import createCache from '@emotion/cache'
 import { CacheProvider } from '@emotion/core'
-import { MAIN_SCRIPT_INJECTED } from 'actions'
-import SafariApp from 'containers/safari/app.container'
-import { dispatchInit } from 'containers/safari/dispatch'
+import ExtensionApp from 'containers/app.container'
+import { dispatchInit } from 'containers/dispatch'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
@@ -30,13 +28,10 @@ export function injectDomElements() {
   ReactDOM.render(
     <Provider store={store}>
       <CacheProvider value={myCache}>
-        <SafariApp />
+        <ExtensionApp />
       </CacheProvider>
     </Provider>,
-    root,
-    () => {
-      safari.extension.dispatchMessage(MAIN_SCRIPT_INJECTED)
-    }
+    root
   )
 }
 
