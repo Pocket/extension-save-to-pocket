@@ -1,9 +1,9 @@
-import { setupActions } from 'containers/webkit/background/_setup'
-import { tabsActions } from 'containers/webkit/background/_tabs'
-import { saveActions } from 'containers/webkit/save/_save'
-import { taggingActions } from 'containers/webkit/save/toolbar/tagging/_tagging'
-import { recommendationActions } from 'containers/webkit/save/recommendations/_recommendations'
-import { surveyActions } from 'containers/webkit/save/survey/_survey'
+import { setupActions } from 'containers/webkit/_old/background/_setup'
+import { tabsActions } from 'containers/webkit/_old/background/_tabs'
+import { saveActions } from 'containers/webkit/_old/save/_save'
+import { taggingActions } from 'containers/webkit/_old/save/toolbar/tagging/_tagging'
+import { recommendationActions } from 'containers/webkit/_old/save/recommendations/_recommendations'
+import { surveyActions } from 'containers/webkit/_old/save/survey/_survey'
 
 const { setupExtension, toggleRecommendations, toggleSite } = setupActions
 
