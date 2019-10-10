@@ -1,4 +1,4 @@
-import { delay } from 'redux-saga'
+import { delay } from 'redux-saga/effects'
 import { put, call, takeLatest, select } from 'redux-saga/effects'
 import * as API from 'common/api/'
 import { setSettings } from 'common/interface'
@@ -255,5 +255,5 @@ function* tagChanges() {
     cxt_ui: 'toolbar',
     cxt_view: 'ext_popover'
   }
-  yield call(API.syncItemTags, tagInfo.id, tagInfo.tags, actionInfo )
+  yield call(API.syncItemTags, tagInfo.id, tagInfo.tags, actionInfo)
 }
