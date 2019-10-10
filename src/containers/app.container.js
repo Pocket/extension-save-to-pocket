@@ -53,6 +53,12 @@ class ExtensionApp extends Component {
     openPocket()
   }
 
+  logOut = () => {
+    const { userLogOut } = this.props
+    this.setState({ dropDownActive: false })
+    userLogOut()
+  }
+
   render() {
     const { status, type, userLogOut } = this.props
     const { dropDownActive } = this.state
@@ -84,7 +90,7 @@ class ExtensionApp extends Component {
     return (
       <Doorhanger
         tab_id={1}
-        logOut={this.props.userLogOut}
+        logOut={this.logOut}
         noSettings={true}
         isSaveActive={this.isSaveActive}
         currentTab={{ status, type, dropDownActive }}
