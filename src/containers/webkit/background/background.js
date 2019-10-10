@@ -1,200 +1,83 @@
-import { Framer } from '../save/frame/framer'
-import * as Interface from 'common/interface'
-import { isNewTab, getBaseUrl, isSystemPage } from 'common/helpers'
-import { initializeStore } from 'store/store'
-import { closeSavePanel } from 'store/combineActions'
-import { cancelCloseSavePanel } from 'store/combineActions'
-import { frameLoaded } from 'store/combineActions'
-import { setupExtension } from 'store/combineActions'
-import { hydrateState } from 'store/combineActions'
-import { savePageToPocket } from 'store/combineActions'
-import { saveUrlToPocket } from 'store/combineActions'
+/* global chrome */
+import * as handlers from './handlerActions'
+import { AUTH_CODE_RECEIVED } from 'actions'
+import { USER_LOG_IN } from 'actions'
+import { USER_LOG_OUT } from 'actions'
+import { LOGGED_OUT_OF_POCKET } from 'actions'
+import { ARCHIVE_ITEM_REQUEST } from 'actions'
+import { REMOVE_ITEM_REQUEST } from 'actions'
+import { TAGS_SYNC } from 'actions'
+import { OPEN_POCKET } from 'actions'
 
-const store = initializeStore()
-const installed = Interface.getSetting('base_installed')
-store.dispatch(installed ? hydrateState() : setupExtension())
-
-// TODO: Switch this to a notification
-Interface.onUpdateAvailable(() => Interface.reloadExtension())
-
-Interface.setUninstallUrl('https://getpocket.com/chrome-exit-survey/')
-Interface.setToolbarIcon(null, 'browser-action-icon')
-Interface.onTabCreated(({ id: tabId }) =>
-  setTimeout(() => {
-    Interface.setToolbarIcon(tabId, 'browser-action-icon')
-  }, 200)
-)
-setBrowserAction()
-setTabListeners()
-
-const pocketFrame = new Framer(store)
-pocketFrame.watch()
-
-/* MESSAGE
+/* Initial Setup
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-Interface.addMessageListener((request, sender, sendResponse) => {
-  if (request.action === 'getExtensionInfo') {
-    Interface.getExtensionInfo().then(sendResponse)
-    return true
-  }
+chrome.runtime.onInstalled.addListener(function() {
+  chrome.contextMenus.create({
+    title: 'Open Your Pocket List',
+    id: 'toolbarContextClick',
+    contexts: ['browser_action']
+  })
 
-  if (request.action === 'getTabId') {
-    sendResponse(sender.tab.id)
-    return true
-  }
+  chrome.contextMenus.create({
+    title: 'Log Out',
+    id: 'toolbarContextClickLogOut',
+    contexts: ['browser_action']
+  })
 
-  if (request.action === 'frameLoaded') {
-    store.dispatch(frameLoaded(sender.tab.id))
-  }
-
-  if (request.action === 'frameFocus') {
-    const state = store.getState()
-    const isClosed =
-      state.tabs &&
-      state.tabs[sender.tab.id] &&
-      state.tabs[sender.tab.id].status === 'idle'
-    if (isClosed) return
-
-    request.status
-      ? store.dispatch(cancelCloseSavePanel({ tabId: sender.tab.id }))
-      : store.dispatch(closeSavePanel({ tabId: sender.tab.id }))
-  }
-
-  if (request.action === 'twitterCheck') {
-    const twitterState = store.getState()
-    sendResponse(twitterState.setup && twitterState.setup.sites_twitter)
-  }
-
-  if (request.action === 'twitterSave') {
-    store.dispatch({
-      type: 'SAVE_TWEET_TO_POCKET',
-      request,
-      sendResponse
-    })
-    return true
-  }
+  // Page Context - Right click menu on page
+  chrome.contextMenus.create({
+    title: 'Save To Pocket',
+    id: 'pageContextClick',
+    contexts: ['page', 'frame', 'editable', 'image', 'video', 'audio', 'link', 'selection'] // prettier-ignore
+  })
 })
 
-Interface.contextMenus().removeAll(createContextMenus)
+// Browser Action - Toolbar
+chrome.browserAction.onClicked.addListener(handlers.browserAction)
 
-function createContextMenus() {
-  Interface.contextMenus().create({
-    title: 'Save To Pocket',
-    contexts: [
-      'page',
-      'frame',
-      'editable',
-      'image',
-      'video',
-      'audio',
-      'link',
-      'selection'
-    ],
-    onclick: (info, tab) => {
-      checkTabInjection(tab).then(response => {
-        // Inject if there is no tab
-        if (response !== 'tabAvailable') {
-          return injectTab(tab, () => takeContextAction(info, tab))
-        }
+// Context Menus - Right/Options Click Menu
+chrome.contextMenus.onClicked.addListener(handlers.contextClick)
 
-        //Otherwise carry on, all is well
-        takeContextAction(info, tab)
-      })
-    }
-  })
+/* Message Handler
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+chrome.runtime.onMessage.addListener(function(message, sender) {
+  const { type, payload } = message
+  const { tab } = sender
 
-  Interface.contextMenus().create({
-    title: 'Open Your Pocket List',
-    contexts: ['browser_action'],
-    onclick: () => {
-      Interface.openTabWithUrl(getBaseUrl() + 'a/?s=ext_rc_open')
-    }
-  })
-}
+  switch (type) {
+    case AUTH_CODE_RECEIVED:
+      handlers.authCodeRecieved(tab, payload)
+      return
 
-function takeContextAction(info, tab) {
-  store.dispatch(
-    info.linkUrl
-      ? saveUrlToPocket({ info, tab, from: 'context' })
-      : savePageToPocket({ info, tab, from: 'context' })
-  )
-}
+    case USER_LOG_IN:
+      handlers.logIn(tab)
+      return
 
-function setBrowserAction() {
-  Interface.browserAction().onClicked.addListener((tab, url) => {
-    if (isNewTab(tab, url) || isSystemPage(tab, url))
-      return Interface.openUrl(getBaseUrl() + 'a/?s=ext_rc_open')
+    case USER_LOG_OUT:
+      handlers.logOut(tab)
+      return
 
-    checkTabInjection(tab).then(response => {
-      // Inject if there is no tab
-      if (response !== 'tabAvailable') {
-        return injectTab(tab, () => {
-          takeBrowserAction(tab, url)
-        })
-      }
+    case LOGGED_OUT_OF_POCKET:
+      handlers.logOut(tab)
+      return
 
-      //Otherwise carry on, all is well
-      takeBrowserAction(tab, url)
-    })
-  })
-}
+    case ARCHIVE_ITEM_REQUEST:
+      handlers.archiveItemAction(tab, payload)
+      return
 
-function takeBrowserAction(tab, url) {
-  store.dispatch(savePageToPocket({ tab, url, from: 'browserAction' }))
-}
+    case REMOVE_ITEM_REQUEST:
+      handlers.removeItemAction(tab, payload)
+      return
 
-function setTabListeners() {
-  Interface.onTabActivated(activeInfo => {
-    store.dispatch({ type: 'ACTIVE_TAB_CHANGED', tabInfo: activeInfo })
-  })
+    case TAGS_SYNC:
+      handlers.tagsSyncAction(tab, payload)
+      return
 
-  Interface.onTabUpdate((tabId, changeInfo) => {
-    // Checking frame to avoid invalidating on a Single Page App
-    checkFrameLoaded(tabId).then(available => {
-      if (changeInfo.status === 'loading' && changeInfo.url) {
-        store.dispatch({
-          type: 'ACTIVE_TAB_UPDATED',
-          tabId,
-          frame: available ? 'loaded' : 'unloaded',
-          tabInfo: changeInfo
-        })
-      }
-    })
-  })
+    case OPEN_POCKET:
+      handlers.openPocket()
+      return
 
-  Interface.onFocusChanged(() => {
-    Interface.getCurrentTab(tab => {
-      if (tab[0])
-        store.dispatch({
-          type: 'ACTIVE_WINDOW_CHANGED',
-          tabInfo: {
-            tabId: tab[0].id
-          }
-        })
-    })
-  })
-
-  Interface.onTabRemoved((tabId, removeInfo) => {
-    store.dispatch({ type: 'TAB_CLOSED', tabId, removeInfo: removeInfo })
-  })
-
-  Interface.onTabReplaced((addedTabId, removedTabId) => {
-    store.dispatch({ type: 'TAB_REPLACED', addedTabId, removedTabId })
-  })
-}
-
-function checkFrameLoaded(tabId) {
-  return new Promise(resolve => {
-    Interface.sendMessageToTab(tabId, { type: 'checkFrame' }, resolve)
-  })
-}
-
-function checkTabInjection(tab) {
-  return new Promise(resolve => {
-    Interface.sendMessageToTab(tab.id, { type: 'checkTab' }, resolve)
-  })
-}
-
-function injectTab(tab, callback) {
-  Interface.executeScript(tab.id, { file: 'js/frame.js' }, callback)
-}
+    default:
+      return
+  }
+})
