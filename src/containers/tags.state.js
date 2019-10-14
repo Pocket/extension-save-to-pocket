@@ -15,9 +15,11 @@ import { TAGS_SYNC } from 'actions'
 import { TAG_SYNC_REQUEST } from 'actions'
 import { TAG_SYNC_SUCCESS } from 'actions'
 import { TAG_SYNC_FAILURE } from 'actions'
+import { UPDATE_STORED_TAGS } from 'actions'
 
 // INITIAL STATE
 const initialState = {
+  tags_stored: [],
   suggested: [],
   saved: [],
   used: [],
@@ -46,10 +48,8 @@ export const tagsReducers = (state = initialState, action) => {
     }
 
     case SUGGESTED_TAGS_SUCCESS: {
-      const { response } = action.payload
-      const { suggested_tags } = response
-      const suggested = suggested_tags.map(tag => tag.tag)
-      return { ...state, suggested }
+      const suggested_tags = action.payload.suggested_tags || []
+      return { ...state, suggested: suggested_tags }
     }
 
     case SUGGESTED_TAGS_REQUEST: {
@@ -101,6 +101,11 @@ export const tagsReducers = (state = initialState, action) => {
     case TAG_SYNC_SUCCESS:
     case TAG_SYNC_FAILURE: {
       return state
+    }
+
+    case UPDATE_STORED_TAGS: {
+      const { tags_stored } = action.payload
+      return { ...state, tags_stored }
     }
 
     default: {

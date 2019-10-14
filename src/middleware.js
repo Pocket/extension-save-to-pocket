@@ -6,6 +6,7 @@ import { TAGS_SYNC } from 'actions'
 import { ARCHIVE_ITEM_REQUEST } from 'actions'
 import { REMOVE_ITEM_REQUEST } from 'actions'
 import { COLOR_MODE_CHANGE } from 'actions'
+import { SAVE_REC_REQUEST } from 'actions'
 
 const outgoingActions = [
   OPEN_POCKET,
@@ -14,6 +15,7 @@ const outgoingActions = [
   SAVE_TO_POCKET_REQUEST,
   ARCHIVE_ITEM_REQUEST,
   REMOVE_ITEM_REQUEST,
+  SAVE_REC_REQUEST,
   TAGS_SYNC
 ]
 
