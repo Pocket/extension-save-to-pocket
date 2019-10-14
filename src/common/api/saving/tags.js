@@ -6,9 +6,10 @@ export function getOnSaveTags(saveObject) {
   return request({
     path: 'suggested_tags/',
     data: {
-      url: saveObject.url
+      url: saveObject.url,
+      version: 2
     }
-  }).then(response => [{ saveObject, status: 'ok', response }])
+  }).then(response => ({ saveObject, status: 'ok', response }))
 }
 
 export function syncItemTags(id, tags, actionInfo) {
