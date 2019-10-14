@@ -19,6 +19,7 @@ import { USER_LOG_IN_FAILURE } from 'actions'
 import { USER_LOG_OUT_SUCCESS } from 'actions'
 import { USER_LOG_OUT_FAILURE } from 'actions'
 import { COLOR_MODE_CHANGE } from 'actions'
+import { UPDATE_STORED_TAGS } from '../actions'
 
 /* Add Listeners
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -103,6 +104,11 @@ function handleMessage(event) {
 
     case TAGS_ADDED_FAILURE: {
       store.dispatch({ type: TAGS_ADDED_FAILURE, payload: message })
+      return
+    }
+
+    case UPDATE_STORED_TAGS: {
+      store.dispatch({ type: UPDATE_STORED_TAGS, payload: message })
       return
     }
 
