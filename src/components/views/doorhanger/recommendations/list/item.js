@@ -119,15 +119,6 @@ export const SaveButton = styled.button`
     color: ${$hotCoral};
   }
 `
-export const ItemWrapper = styled.li`
-  list-style-type: none;
-  background-color: ${$powder};
-  border-top: 1px solid ${$smoke};
-
-  &:hover {
-    background-color: ${$white};
-  }
-`
 
 RecommendationItem.propTypes = {
   tabId: PropTypes.number,
@@ -141,7 +132,6 @@ RecommendationItem.propTypes = {
     title: PropTypes.string,
     source_id: PropTypes.string
   }),
-  motionStyle: PropTypes.object,
   openRecommendation: PropTypes.func,
   saveRecommendation: PropTypes.func
 }
@@ -149,7 +139,6 @@ export default function RecommendationItem({
   tabId,
   position,
   item,
-  motionStyle,
   saveRecommendation,
   openRecommendation
 }) {
@@ -173,38 +162,36 @@ export default function RecommendationItem({
   }
 
   return (
-    <ItemWrapper style={motionStyle}>
-      <ItemContainer hasImage={item.has_image}>
-        {item.has_image && <ItemImage style={imageStyle} />}
+    <ItemContainer hasImage={item.has_image}>
+      {item.has_image && <ItemImage style={imageStyle} />}
 
-        <ItemTitle>
-          <ItemLink
-            onClick={onClick}
-            href={item.url}
-            rel="noopener noreferrer"
-            target="_blank">
-            {item.title}
-          </ItemLink>
-        </ItemTitle>
+      <ItemTitle>
+        <ItemLink
+          onClick={onClick}
+          href={item.url}
+          rel="noopener noreferrer"
+          target="_blank">
+          {item.title}
+        </ItemLink>
+      </ItemTitle>
 
-        <ItemSource>{domainForUrl(item.display_url)}</ItemSource>
+      <ItemSource>{domainForUrl(item.display_url)}</ItemSource>
 
-        <ItemActions>
-          <SaveButton
-            onClick={() => {
-              return saveRecommendation({
-                tabId: tabId,
-                item_id: item.id.toString(),
-                title: item.title,
-                url: item.url,
-                position: position,
-                source_id: item.source_id
-              })
-            }}>
-            {Icon.Save()} {saveCopy}
-          </SaveButton>
-        </ItemActions>
-      </ItemContainer>
-    </ItemWrapper>
+      <ItemActions>
+        <SaveButton
+          onClick={() => {
+            return saveRecommendation({
+              tabId: tabId,
+              item_id: item.id.toString(),
+              title: item.title,
+              url: item.url,
+              position: position,
+              source_id: item.source_id
+            })
+          }}>
+          {Icon.Save()} {saveCopy}
+        </SaveButton>
+      </ItemActions>
+    </ItemContainer>
   )
 }
