@@ -1,13 +1,31 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { TransitionMotion, spring, presets } from 'react-motion'
+import posed from 'react-pose'
 import RecommendationItem from './item'
 import RecommendationSpoc from './spoc'
 import styled from '@emotion/styled'
 import { TYPOGRAPHY } from 'common/styles/variables'
+import { COLORS } from 'elements/colors/colors'
+const { $powder, $smoke, $white } = COLORS
+
 const { $fontstackDefault } = TYPOGRAPHY
 
-const ListWrapper = styled.ul`
+const ListAnimator = posed.ul({
+  open: {
+    delayChildren: 200,
+    staggerChildren: 150
+  },
+  closed: {
+    delay: 300
+  }
+})
+
+const ItemAnimator = posed.li({
+  open: { y: 0, opacity: 1 },
+  closed: { y: 40, opacity: 0 }
+})
+
+const ListWrapper = styled(ListAnimator)`
   all: unset;
   display: block;
   font-family: ${$fontstackDefault};
@@ -15,85 +33,39 @@ const ListWrapper = styled.ul`
   margin: 0;
   padding: 0;
   text-align: left;
+
+  li {
+    list-style-type: none;
+    background-color: ${$powder};
+    border-top: 1px solid ${$smoke};
+    &:hover {
+      background-color: ${$white};
+    }
+  }
 `
 export default class RecommendationList extends Component {
-  // actual animation-related logic
-  getDefaultStyles = () => {
-    return this.props.list.map(rec => {
-      return {
-        ...rec,
-        data: rec,
-        key: 'id' + rec.id,
-        style: { height: 0, opacity: 0 }
-      }
-    })
-  }
-
-  getStyles = () => {
-    return this.props.list.map(rec => {
-      const recHeight = rec.isSpoc ? 140 : 110
-      return {
-        ...rec,
-        data: rec,
-        key: 'id' + rec.id,
-        style: {
-          height: spring(recHeight, { stiffness: 150, damping: 14 }),
-          opacity: spring(1, presets.stiff)
-        }
-      }
-    })
-  }
-
-  willEnter() {
-    return { height: 0, opacity: 0 }
-  }
-  willLeave() {
-    return { height: spring(0), opacity: spring(0) }
-  }
-
   render() {
     return (
-      <TransitionMotion
-        defaultStyles={this.getDefaultStyles()}
-        styles={this.getStyles()}
-        willLeave={this.willLeave}
-        willEnter={this.willEnter}>
-        {interpolatedStyles => (
-          <ListWrapper>
-            {interpolatedStyles.map((config, index) => {
-              return config.data.isSpoc ? (
-                <RecommendationSpoc
-                  motionStyle={config.style}
-                  key={config.key}
-                  item={config.data}
-                  position={index}
-                  openRecommendation={this.props.openRecommendation}
-                  saveRecommendation={this.props.saveRecommendation}
-                  spocImpression={this.props.spocImpression}
-                  spocView={this.props.spocView}
-                  spocClick={this.props.spocClick}
-                  spocRemove={this.props.spocRemove}
-                  tabId={this.props.tabId}
-                />
-              ) : (
-                <RecommendationItem
-                  motionStyle={config.style}
-                  key={config.key}
-                  item={config.data}
-                  position={index}
-                  openRecommendation={this.props.openRecommendation}
-                  saveRecommendation={this.props.saveRecommendation}
-                  spocImpression={this.props.spocImpression}
-                  spocView={this.props.spocView}
-                  spocClick={this.props.spocClick}
-                  spocRemove={this.props.spocRemove}
-                  tabId={this.props.tabId}
-                />
-              )
-            })}
-          </ListWrapper>
-        )}
-      </TransitionMotion>
+      <ListWrapper pose={this.props.list.length ? 'open' : 'closed'}>
+        {this.props.list.map((rec, index) => {
+          const Rec = rec.isSpoc ? RecommendationSpoc : RecommendationItem
+          return (
+            <ItemAnimator key={rec.id}>
+              <Rec
+                item={rec}
+                position={index}
+                openRecommendation={this.props.openRecommendation}
+                saveRecommendation={this.props.saveRecommendation}
+                spocImpression={this.props.spocImpression}
+                spocView={this.props.spocView}
+                spocClick={this.props.spocClick}
+                spocRemove={this.props.spocRemove}
+                tabId={this.props.tabId}
+              />
+            </ItemAnimator>
+          )
+        })}
+      </ListWrapper>
     )
   }
 }

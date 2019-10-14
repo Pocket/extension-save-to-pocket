@@ -4,7 +4,6 @@ import * as Icon from 'elements/icons'
 import { localize } from 'common/_locales/locales'
 import SpocHeader from './spoc.header'
 import {
-  ItemWrapper,
   SpocContainer,
   SaveButton,
   ItemImage,
@@ -62,7 +61,7 @@ export default class RecommendationSpoc extends Component {
     let item = this.props.item
 
     return (
-      <ItemWrapper style={this.props.motionStyle}>
+      <React.Fragment>
         <SpocHeader
           tabId={this.props.tabId}
           itemId={item.id.toString()}
@@ -107,7 +106,7 @@ export default class RecommendationSpoc extends Component {
             </SaveButton>
           </ItemActions>
         </SpocContainer>
-      </ItemWrapper>
+      </React.Fragment>
     )
   }
 }
