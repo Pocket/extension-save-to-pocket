@@ -83,6 +83,13 @@ class ExtensionApp extends Component {
         tags_stored: this.props.tags_stored
       }
     }
+
+    const recProps = {
+      currentRecs: {
+        feed: this.props.feed,
+        reason: this.props.reason
+      },
+      showRecs: true
     }
 
     const currentTags = {
@@ -105,6 +112,7 @@ class ExtensionApp extends Component {
         inputFocused={this.state.inputFocused}
         {...dropDownProps}
         {...taggingProps}
+        {...recProps}
       />
     )
   }
@@ -121,6 +129,7 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
   const { status, type, item_id } = state.saves
   const { suggested, used, marked, tags_stored } = state.tags
+  const { feed } = state.recs
   return {
     status,
     type,
@@ -129,6 +138,7 @@ function mapStateToProps(state) {
     used,
     marked,
     tags_stored,
+    feed
   }
 }
 
