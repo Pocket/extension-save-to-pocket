@@ -14,6 +14,8 @@ import { saveSagas } from 'containers/save.state'
 import { tagsReducers } from 'containers/tags.state'
 import { tagsSagas } from 'containers/tags.state'
 
+import { recReducers } from 'containers/recs.state'
+import { recSagas } from 'containers/recs.state'
 // import { appSagas } from 'containers/webkit/app.state'
 
 /* REDUCERS
@@ -21,7 +23,8 @@ import { tagsSagas } from 'containers/tags.state'
 const rootReducer = () =>
   combineReducers({
     saves: saveReducers,
-    tags: tagsReducers
+    tags: tagsReducers,
+    recs: recReducers
     // localize: localizeReducer,
     // app: appReducers
   })
@@ -30,7 +33,7 @@ const rootReducer = () =>
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 const sagaMiddleware = createSagaMiddleware()
 function* rootSaga() {
-  yield all([...saveSagas, ...tagsSagas])
+  yield all([...saveSagas, ...tagsSagas, ...recSagas])
 }
 
 /* STORE
