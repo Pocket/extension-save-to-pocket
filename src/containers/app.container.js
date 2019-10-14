@@ -78,7 +78,11 @@ class ExtensionApp extends Component {
       removeTag: this.props.removeTag,
       removeTags: this.props.removeTags,
       inputFocused: this.state.inputFocused,
-      setInputFocusState: this.setInputFocusState
+      setInputFocusState: this.setInputFocusState,
+      setup: {
+        tags_stored: this.props.tags_stored
+      }
+    }
     }
 
     const currentTags = {
@@ -116,8 +120,16 @@ function mapDispatchToProps(dispatch) {
 
 function mapStateToProps(state) {
   const { status, type, item_id } = state.saves
-  const { suggested, used, marked } = state.tags
-  return { status, type, item_id, suggested, used, marked }
+  const { suggested, used, marked, tags_stored } = state.tags
+  return {
+    status,
+    type,
+    item_id,
+    suggested,
+    used,
+    marked,
+    tags_stored,
+  }
 }
 
 export default connect(
