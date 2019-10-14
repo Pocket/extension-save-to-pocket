@@ -72,12 +72,9 @@ async function getTagSuggestions(url, tabId) {
 async function getItemRecommendations(resolved_id, tabId) {
   chrome.tabs.sendMessage(tabId, { action: GET_RECS_REQUEST })
 
-  const response = await getRecommendations(resolved_id)
+  const payload = await getRecommendations(resolved_id)
 
-  if (response) {
-    chrome.tabs.sendMessage(tabId, {
-      action: GET_RECS_SUCCESS,
-      payload: { response }
-    })
+  if (payload) {
+    chrome.tabs.sendMessage(tabId, { action: GET_RECS_SUCCESS, payload })
   }
 }
