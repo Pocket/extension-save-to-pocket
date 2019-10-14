@@ -7,7 +7,7 @@ import styled from '@emotion/styled'
 import { TYPOGRAPHY } from 'common/styles/variables'
 const { $fontstackDefault } = TYPOGRAPHY
 
-const ListWrapper = styled.li`
+const ListWrapper = styled.ul`
   all: unset;
   display: block;
   font-family: ${$fontstackDefault};
