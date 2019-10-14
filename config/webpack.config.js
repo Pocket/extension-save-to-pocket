@@ -146,12 +146,12 @@ module.exports = function(webpackEnv) {
     entry: {
       background: [paths.appBackground],
       inject: [paths.appInjectJs],
-      options: [paths.appOptions],
+      // options: [paths.appOptions],
+      // frame: [paths.appFrameJs],
+      // save: [paths.appSaveJs],
+      // twitter: [paths.appTwitterJs]
       login: [paths.appLoginJs],
-      logout: [paths.appLogoutJs],
-      frame: [paths.appFrameJs],
-      save: [paths.appSaveJs],
-      twitter: [paths.appTwitterJs]
+      logout: [paths.appLogoutJs]
     },
     output: {
       // The build folder.
@@ -587,7 +587,8 @@ module.exports = function(webpackEnv) {
           entries: {
             background: paths.appBackground,
             contentScript: [
-              paths.appSafari,
+              paths.appDispatchJs,
+              paths.appInjectJs,
               paths.appLoginJs,
               paths.appLogoutJs,
               paths.appFrameJs,
