@@ -1,7 +1,9 @@
 /* global chrome */
+import { saveSuccess } from './handlersPostSave'
 import { openPocket, isSystemPage, isSystemLink } from 'common/helpers'
 import { getSetting, setSettings, removeSettings } from 'common/helpers'
 import { closeLoginPage } from 'common/helpers'
+import { updateToolbarIcon } from 'common/interface'
 import { authorize, getGuid, saveToPocket, syncItemTags } from 'common/api'
 import { removeItem, archiveItem } from 'common/api'
 
@@ -22,7 +24,7 @@ import { ARCHIVE_ITEM_FAILURE } from 'actions'
 import { REMOVE_ITEM_REQUEST } from 'actions'
 import { REMOVE_ITEM_SUCCESS } from 'actions'
 import { REMOVE_ITEM_FAILURE } from 'actions'
-import { USER_LOG_OUT_SUCCESS } from '../../../actions'
+import { USER_LOG_OUT_SUCCESS } from 'actions'
 
 var postAuthSave = null
 
@@ -69,6 +71,8 @@ async function save({ linkUrl, pageUrl, title, tabId }) {
     : { action: SAVE_TO_POCKET_FAILURE, payload }
 
   chrome.tabs.sendMessage(tabId, message)
+
+  if (payload) saveSuccess(tabId, { ...payload, isLink: Boolean(linkUrl) })
 }
 
 /* Archive item
@@ -103,6 +107,8 @@ export async function removeItemAction(tab, payload) {
     : { action: REMOVE_ITEM_FAILURE, payload }
 
   chrome.tabs.sendMessage(tabId, message)
+
+  if (response) updateToolbarIcon(tabId, false)
 }
 
 /* Add tags to item
@@ -128,8 +134,9 @@ export async function authCodeRecieved(tab, payload) {
   const guidResponse = await getGuid()
   const authResponse = await authorize(guidResponse, payload)
 
-  const { access_token } = authResponse
-  setSettings({ access_token })
+  const { access_token, account, username } = authResponse
+  const { premium_status } = account
+  setSettings({ access_token, premium_status, username })
 
   closeLoginPage()
   if (postAuthSave) save(postAuthSave)
@@ -148,3 +155,14 @@ export function logIn(saveObject) {
 }
 
 export { openPocket }
+
+/* Tab Changes
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+export function tabUpdated(tabId, changeInfo) {
+  if (changeInfo.status === 'loading' && changeInfo.url) {
+    // if actively loading a new page, unset save state on icon
+    updateToolbarIcon(tabId, false)
+  }
+}
+
+// export function tabActivated({ tabId, windowId }) {}
