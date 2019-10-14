@@ -10,8 +10,6 @@ import { archiveItem } from './saving/archive'
 import { removeItem } from './saving/remove'
 import { authorize } from './auth/authorize'
 import { getGuid } from './auth/guid'
-import { getTrendingArticles } from './newtab/trendingArticles'
-import { getTrendingTopics } from './newtab/trendingTopics'
 import {
   sendAnalytics,
   sendSpocAnalytics,
@@ -31,8 +29,6 @@ export {
   archiveItem,
   removeItem,
   getGuid,
-  getTrendingArticles,
-  getTrendingTopics,
   sendAnalytics,
   sendSpocAnalytics,
   sendSurveyAnalytics,
