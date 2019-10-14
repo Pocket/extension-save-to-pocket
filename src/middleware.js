@@ -5,10 +5,12 @@ import { USER_LOG_OUT } from 'actions'
 import { TAGS_SYNC } from 'actions'
 import { ARCHIVE_ITEM_REQUEST } from 'actions'
 import { REMOVE_ITEM_REQUEST } from 'actions'
+import { COLOR_MODE_CHANGE } from 'actions'
 
 const outgoingActions = [
   OPEN_POCKET,
   USER_LOG_OUT,
+  COLOR_MODE_CHANGE,
   SAVE_TO_POCKET_REQUEST,
   ARCHIVE_ITEM_REQUEST,
   REMOVE_ITEM_REQUEST,
