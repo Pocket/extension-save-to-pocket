@@ -85,6 +85,7 @@ module.exports = {
   appLoginJs: resolveApp('src/containers/login'),
   appLogoutJs: resolveApp('src/containers/logout'),
   appInjectJs: resolveApp('src/containers/inject'),
+  appDispatchJs: resolveApp('src/containers/dispatch'),
   appSaveJs: resolveApp('src/containers/webkit/_old/save/save'),
   appSaveHTML: resolveApp('src/containers/webkit/_old/save/save.html'),
   appTwitterJs: resolveApp('src/containers/webkit/_old/sites/twitter/twitter'),
