@@ -131,7 +131,7 @@ export const ItemWrapper = styled.li`
 
 RecommendationItem.propTypes = {
   tabId: PropTypes.number,
-  position: PropTypes.string,
+  position: PropTypes.number,
   item: PropTypes.shape({
     id: PropTypes.number,
     has_image: PropTypes.bool,
