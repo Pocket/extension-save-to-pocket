@@ -18,8 +18,9 @@ import { USER_LOG_IN_SUCCESS } from 'actions'
 import { USER_LOG_IN_FAILURE } from 'actions'
 import { USER_LOG_OUT_SUCCESS } from 'actions'
 import { USER_LOG_OUT_FAILURE } from 'actions'
+import { COLOR_MODE_CHANGE } from 'actions'
 
-/* Add Safari Listeners
+/* Add Listeners
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 export const dispatchInit = () => {
   if (chrome) {
@@ -33,6 +34,12 @@ export const dispatchInit = () => {
     safari.self.addEventListener('message', handleMessage)
     document.addEventListener('contextmenu', handleContextMenu, false)
   }
+
+  // Make sure the toolbar icon is in sync with users light/dark preference
+  window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+    const darkMode = e.matches
+    store.dispatch({ type: COLOR_MODE_CHANGE, payload: { darkMode } })
+  })
 }
 
 /* Handle incoming messages
