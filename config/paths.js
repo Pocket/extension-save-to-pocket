@@ -78,17 +78,21 @@ module.exports = {
   appSrc: resolveApp('src'),
   appKeys: resolveApp('keys.json'),
   appLocales: resolveApp('src/common/_locales'),
-  appBackground: resolveApp('src/containers/webkit/background/background'),
-  appOptions: resolveApp('src/containers/webkit/_old/options/options'),
-  appOptionsHTML: resolveApp('src/containers/webkit/_old/options/options.html'),
-  appFrameJs: resolveApp('src/containers/webkit/_old/save/frame/frame'),
+  appBackground: resolveApp('src/containers/chromium/background/background'),
+  appOptions: resolveApp('src/containers/chromium/_old/options/options'),
+  appOptionsHTML: resolveApp(
+    'src/containers/chromium/_old/options/options.html'
+  ),
+  appFrameJs: resolveApp('src/containers/chromium/_old/save/frame/frame'),
   appLoginJs: resolveApp('src/containers/login'),
   appLogoutJs: resolveApp('src/containers/logout'),
   appInjectJs: resolveApp('src/containers/inject'),
   appDispatchJs: resolveApp('src/containers/dispatch'),
-  appSaveJs: resolveApp('src/containers/webkit/_old/save/save'),
-  appSaveHTML: resolveApp('src/containers/webkit/_old/save/save.html'),
-  appTwitterJs: resolveApp('src/containers/webkit/_old/sites/twitter/twitter'),
+  appSaveJs: resolveApp('src/containers/chromium/_old/save/save'),
+  appSaveHTML: resolveApp('src/containers/chromium/_old/save/save.html'),
+  appTwitterJs: resolveApp(
+    'src/containers/chromium/_old/sites/twitter/twitter'
+  ),
   // appSafari: resolveApp('src/containers/safari/inject'),
   appManifest: resolveApp('src/manifest.yml'),
   appTsConfig: resolveApp('tsconfig.json'),
