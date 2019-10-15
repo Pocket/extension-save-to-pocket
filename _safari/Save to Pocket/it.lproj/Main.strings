@@ -11,12 +11,6 @@
 /* Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6"; */
 "AYu-sK-qS6.title" = "Menu principale";
 
-/* Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ"; */
-"F2S-fz-NVQ.title" = "Aiuto";
-
-/* Class = "NSMenuItem"; title = "Save to Pocket Help"; ObjectID = "FKE-Sm-Kum"; */
-"FKE-Sm-Kum.title" = "Aiuto per Salva su Pocket";
-
 /* Class = "NSWindow"; title = "App Name"; ObjectID = "IQv-IB-iLA"; */
 "IQv-IB-iLA.title" = "Salva in Pocket";
 
@@ -29,6 +23,9 @@
 /* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO"; */
 "Vdr-fp-XzO.title" = "Nascondi altro";
 
+/* Class = "NSButtonCell"; title = "Need help?"; ObjectID = "YDh-4u-9JC"; */
+"YDh-4u-9JC.title" = "Hai bisogno di aiuto?";
+
 /* Class = "NSTextFieldCell"; title = "Finish setup"; ObjectID = "o2g-OP-mef"; */
 "o2g-OP-mef.title" = "Completa l'installazione";
 
@@ -37,6 +34,3 @@
 
 /* Class = "NSTextFieldCell"; title = "One last thing:\ncheck the box next to Pocket in your Safari preferences. "; ObjectID = "vuh-O7-RhV"; */
 "vuh-O7-RhV.title" = "Un ultimo suggerimento:\nspunta la casella vicino a Pocket nelle preferenze di Safari. ";
-
-/* Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd"; */
-"wpr-3q-Mcd.title" = "Aiuto";
