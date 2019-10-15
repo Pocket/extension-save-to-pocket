@@ -11,12 +11,6 @@
 /* Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6"; */
 "AYu-sK-qS6.title" = "主功能表";
 
-/* Class = "NSMenu"; title = "Help"; ObjectID = "F2S-fz-NVQ"; */
-"F2S-fz-NVQ.title" = "說明";
-
-/* Class = "NSMenuItem"; title = "Save to Pocket Help"; ObjectID = "FKE-Sm-Kum"; */
-"FKE-Sm-Kum.title" = "儲存到 Pocket 說明";
-
 /* Class = "NSWindow"; title = "App Name"; ObjectID = "IQv-IB-iLA"; */
 "IQv-IB-iLA.title" = "儲存到 Pocket";
 
@@ -29,6 +23,9 @@
 /* Class = "NSMenuItem"; title = "Hide Others"; ObjectID = "Vdr-fp-XzO"; */
 "Vdr-fp-XzO.title" = "隱藏其他";
 
+/* Class = "NSButtonCell"; title = "Need help?"; ObjectID = "YDh-4u-9JC"; */
+"YDh-4u-9JC.title" = "需要幫助？";
+
 /* Class = "NSTextFieldCell"; title = "Finish setup"; ObjectID = "o2g-OP-mef"; */
 "o2g-OP-mef.title" = "完成設定";
 
@@ -37,6 +34,3 @@
 
 /* Class = "NSTextFieldCell"; title = "One last thing:\ncheck the box next to Pocket in your Safari preferences. "; ObjectID = "vuh-O7-RhV"; */
 "vuh-O7-RhV.title" = "最後一件事：\n在 Safari 偏好設定中勾選 Pocket 旁邊的方塊。 ";
-
-/* Class = "NSMenuItem"; title = "Help"; ObjectID = "wpr-3q-Mcd"; */
-"wpr-3q-Mcd.title" = "說明";
