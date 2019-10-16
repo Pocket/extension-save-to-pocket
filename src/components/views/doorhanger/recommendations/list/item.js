@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import { COLORS } from 'elements/colors/colors'
 import { mixin_pocketButton } from 'common/styles/components'
 import * as Icon from 'elements/icons'
+import { getImageCacheUrl } from 'common/helpers'
 import { domainForUrl } from 'common/utilities'
 import { localize } from 'common/_locales/locales'
 const {
@@ -23,6 +24,7 @@ const copy = {
   saving: localize('recommendations', 'saving'),
   saved: localize('recommendations', 'saved')
 }
+
 const containerStyle = `
   box-sizing: border-box;
   display: block;
@@ -120,21 +122,6 @@ export const SaveButton = styled.button`
   }
 `
 
-RecommendationItem.propTypes = {
-  tabId: PropTypes.number,
-  position: PropTypes.number,
-  item: PropTypes.shape({
-    id: PropTypes.number,
-    has_image: PropTypes.bool,
-    image: PropTypes.string,
-    url: PropTypes.string,
-    display_url: PropTypes.string,
-    title: PropTypes.string,
-    source_id: PropTypes.string
-  }),
-  openRecommendation: PropTypes.func,
-  saveRecommendation: PropTypes.func
-}
 export default function RecommendationItem({
   tabId,
   position,
@@ -142,8 +129,9 @@ export default function RecommendationItem({
   saveRecommendation,
   openRecommendation
 }) {
+  const cachedImage = getImageCacheUrl(item.image, { width: 180, height: 216 })
   const imageStyle = {
-    backgroundImage: 'url("' + item.image + '")',
+    backgroundImage: 'url("' + cachedImage + '")',
     backgroundSize: 'cover',
     backgroundPosition: 'center'
   }
@@ -194,4 +182,20 @@ export default function RecommendationItem({
       </ItemActions>
     </ItemContainer>
   )
+}
+
+RecommendationItem.propTypes = {
+  tabId: PropTypes.number,
+  position: PropTypes.number,
+  item: PropTypes.shape({
+    id: PropTypes.number,
+    has_image: PropTypes.bool,
+    image: PropTypes.string,
+    url: PropTypes.string,
+    display_url: PropTypes.string,
+    title: PropTypes.string,
+    source_id: PropTypes.string
+  }),
+  openRecommendation: PropTypes.func,
+  saveRecommendation: PropTypes.func
 }

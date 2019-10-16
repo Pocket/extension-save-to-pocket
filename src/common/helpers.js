@@ -1,7 +1,6 @@
 /* global chrome */
 
 import { openUrl } from './interface'
-import { shallowQueryParams } from './utilities'
 
 export function openPocket() {
   openUrl(getBaseUrl())
@@ -93,21 +92,20 @@ export function getDefaultKeyboardShortCut() {
 }
 
 export function getBestImage(item) {
-  return item.images[Object.keys(item.images)[0]]
+  return item.top_image_url
     ? item.images[Object.keys(item.images)[0]].src
-    : item.top_image_url
+      ? item.top_image_url
+      : item.top_image_url
+    : item.images[Object.keys(item.images)[0]].src
 }
 
-export function getImageCacheUrl(url, resize, fallback) {
+export function getImageCacheUrl(url, imageSize) {
   if (!url) return
-
-  const query = { url }
-  if (resize) query.resize = resize
-  if (fallback) query.f = fallback
-  // return 'https://img.readitlater.com/direct?' + shallowQueryParams(query)
-  return (
-    'https://d33ypg4xwx0n86.cloudfront.net/direct?' + shallowQueryParams(query)
-  )
+  const resizeParam = imageSize ? `${imageSize.width}x${imageSize.height}` : ''
+  const encodedURL = encodeURIComponent(url.replace(/'/g, '%27'))
+  const urlParam = `${encodedURL}`
+  const cacheURL = 'https://pocket-image-cache.com' //direct'
+  return `${cacheURL}/${resizeParam}/filters:no_upscale()/${urlParam}`
 }
 
 export function getItemPosition(item) {

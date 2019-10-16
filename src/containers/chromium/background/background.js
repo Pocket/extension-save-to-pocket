@@ -1,6 +1,7 @@
 /* global chrome */
 import * as handle from './handlersActions'
 import { initColorMode, setColorMode } from './handlersSettings'
+import { saveRec, openRec } from './handlersPostSave'
 import { checkTwitterIntegration } from './handlersIntegration'
 import { twitterSaveRequest } from './handlersIntegration'
 
@@ -12,7 +13,9 @@ import { ARCHIVE_ITEM_REQUEST } from 'actions'
 import { REMOVE_ITEM_REQUEST } from 'actions'
 import { TAGS_SYNC } from 'actions'
 import { OPEN_POCKET } from 'actions'
+import { SAVE_REC_REQUEST } from 'actions'
 import { COLOR_MODE_CHANGE } from 'actions'
+import { OPEN_REC } from 'actions'
 import { CHECK_TWITTER_INTEGRATION } from 'actions'
 import { TWITTER_SAVE_REQUEST } from 'actions'
 
@@ -50,9 +53,6 @@ chrome.contextMenus.onClicked.addListener(handle.contextClick)
 
 /* Tab Handling
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-// Check our icon when we reactivate a tab ( for color preference)
-// chrome.tabs.onActivated.addListener(handle.tabActivated)
-
 // Update the icon to unsaved if we are change pages
 chrome.tabs.onUpdated.addListener(handle.tabUpdated)
 
@@ -103,6 +103,13 @@ chrome.runtime.onMessage.addListener(function(message, sender) {
       handle.openPocket()
       return
 
+    case SAVE_REC_REQUEST:
+      saveRec(tab, payload)
+      return
+
+    case OPEN_REC:
+      openRec(tab, payload)
+      return
 
     case CHECK_TWITTER_INTEGRATION:
       checkTwitterIntegration(tab, payload)

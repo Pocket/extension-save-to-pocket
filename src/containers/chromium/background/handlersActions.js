@@ -164,5 +164,3 @@ export function tabUpdated(tabId, changeInfo) {
     updateToolbarIcon(tabId, false)
   }
 }
-
-// export function tabActivated({ tabId, windowId }) {}

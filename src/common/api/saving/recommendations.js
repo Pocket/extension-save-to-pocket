@@ -16,11 +16,10 @@ export function getRecommendations(resolved_id) {
   }).then(response => response)
 }
 
-export function saveRecToPocket(saveObject, access_token) {
+export function saveRecToPocket(saveObject) {
   return request({
     path: 'send/',
     data: {
-      access_token: access_token,
       actions: [
         {
           action: 'add',
@@ -44,11 +43,10 @@ export function saveRecToPocket(saveObject, access_token) {
   })
 }
 
-export function openRecommendation(saveObject, access_token) {
+export function openRecommendation(saveObject) {
   return request({
     path: 'send/',
     data: {
-      access_token: access_token,
       actions: [
         {
           action: 'itemrec_open',
