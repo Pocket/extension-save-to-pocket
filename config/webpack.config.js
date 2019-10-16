@@ -148,7 +148,7 @@ module.exports = function(webpackEnv) {
       inject: [paths.appInjectJs],
       // options: [paths.appOptions],
       // frame: [paths.appFrameJs],
-      // twitter: [paths.appTwitterJs]
+      twitter: [paths.appTwitterJs],
       login: [paths.appLoginJs],
       logout: [paths.appLogoutJs]
     },
