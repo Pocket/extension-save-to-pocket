@@ -1,14 +1,16 @@
 /* global chrome */
 import { updateToolbarIcon } from 'common/interface'
 import { fetchStoredTags, getOnSaveTags } from 'common/api'
+import { openRecommendation } from 'common/api'
 import { getSetting, setSettings } from 'common/helpers'
-import { getRecommendations } from 'common/api'
+import { getRecommendations, saveRecToPocket } from 'common/api'
 
 import { UPDATE_STORED_TAGS } from 'actions'
 import { SUGGESTED_TAGS_SUCCESS } from 'actions'
 
 import { GET_RECS_REQUEST } from 'actions'
 import { GET_RECS_SUCCESS } from 'actions'
+import { SAVE_REC_SUCCESS } from 'actions'
 
 /* On successful save
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -77,4 +79,18 @@ async function getItemRecommendations(resolved_id, tabId) {
   if (payload) {
     chrome.tabs.sendMessage(tabId, { action: GET_RECS_SUCCESS, payload })
   }
+}
+
+export async function saveRec(tab, payload) {
+  const { id: tabId } = tab
+
+  const response = await saveRecToPocket(payload)
+
+  if (response) {
+    chrome.tabs.sendMessage(tabId, { action: SAVE_REC_SUCCESS, payload })
+  }
+}
+
+export async function openRec(tab, payload) {
+  openRecommendation(payload)
 }
