@@ -1,6 +1,9 @@
 /* global chrome */
 import * as handle from './handlersActions'
 import { initColorMode, setColorMode } from './handlersSettings'
+import { checkTwitterIntegration } from './handlersIntegration'
+import { twitterSaveRequest } from './handlersIntegration'
+
 import { AUTH_CODE_RECEIVED } from 'actions'
 import { USER_LOG_IN } from 'actions'
 import { USER_LOG_OUT } from 'actions'
@@ -10,6 +13,8 @@ import { REMOVE_ITEM_REQUEST } from 'actions'
 import { TAGS_SYNC } from 'actions'
 import { OPEN_POCKET } from 'actions'
 import { COLOR_MODE_CHANGE } from 'actions'
+import { CHECK_TWITTER_INTEGRATION } from 'actions'
+import { TWITTER_SAVE_REQUEST } from 'actions'
 
 /* Initial Setup
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -96,6 +101,15 @@ chrome.runtime.onMessage.addListener(function(message, sender) {
 
     case OPEN_POCKET:
       handle.openPocket()
+      return
+
+
+    case CHECK_TWITTER_INTEGRATION:
+      checkTwitterIntegration(tab, payload)
+      return
+
+    case TWITTER_SAVE_REQUEST:
+      twitterSaveRequest(tab, payload)
       return
 
     default:
