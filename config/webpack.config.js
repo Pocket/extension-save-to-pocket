@@ -148,7 +148,6 @@ module.exports = function(webpackEnv) {
       inject: [paths.appInjectJs],
       // options: [paths.appOptions],
       // frame: [paths.appFrameJs],
-      // save: [paths.appSaveJs],
       // twitter: [paths.appTwitterJs]
       login: [paths.appLoginJs],
       logout: [paths.appLogoutJs]
@@ -529,12 +528,6 @@ module.exports = function(webpackEnv) {
       // // the requesting resource.
       new HtmlWebpackPlugin({
         inject: true,
-        template: paths.appSaveHTML,
-        filename: 'save.html',
-        chunks: ['save']
-      }),
-      new HtmlWebpackPlugin({
-        inject: true,
         template: paths.appOptionsHTML,
         filename: 'options.html',
         chunks: ['options']
@@ -592,7 +585,6 @@ module.exports = function(webpackEnv) {
               paths.appLoginJs,
               paths.appLogoutJs,
               paths.appFrameJs,
-              paths.appSaveJs,
               paths.appTwitterJs
             ],
             options: paths.appOptions
