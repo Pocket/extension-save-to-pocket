@@ -18,7 +18,7 @@ export function addPocketButtons() {
     '[role=group]:not(.PocketAdded)'
   )
 
-  if (!actionLists.length) return
+  if (!actionLists && actionLists.length) return
 
   try {
     Array.from(actionLists, addPocketFunctionality)
@@ -120,7 +120,7 @@ export function getTweetInfo(twitterActionListCotnainerElement) {
   const tweet = twitterActionListCotnainerElement.closest('article')
 
   // This is legacy twitter, no article tag parent present!'
-  if (tweet.length === 0) throw Error('legacyTwitter')
+  if (tweet && tweet.length === 0) throw Error('legacyTwitter')
 
   // Fetch the single time element, from there we can grab the href from the
   // parent to get the screen name and status id.
