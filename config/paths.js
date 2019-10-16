@@ -78,7 +78,7 @@ module.exports = {
   appSrc: resolveApp('src'),
   appKeys: resolveApp('keys.json'),
   appLocales: resolveApp('src/common/_locales'),
-  appBackground: resolveApp('src/containers/chromium/background/background'),
+  appBackground: resolveApp('_chromium/background'),
   appOptions: resolveApp('src/components/views/options/options'),
   appOptionsHTML: resolveApp('src/components/views/options/options.html'),
   appFrameJs: resolveApp('src/containers/chromium/_old/save/frame/frame'),
