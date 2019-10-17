@@ -32,11 +32,14 @@ function request(options, skipAuth) {
   return fetch(getAPIUrl() + options.path, fetchSettings)
     .then(handleErrors)
     .then(response => response.json())
-    .catch(error => console.log(error))
 }
 
 function handleErrors(response) {
-  if (!response.ok) throw Error(response.statusText)
+  if (!response.ok) {
+    const e = new Error('Request Error')
+    e.name = response.status === 401 ? 'Auth' : 'Generic'
+    throw e
+  }
   return response
 }
 

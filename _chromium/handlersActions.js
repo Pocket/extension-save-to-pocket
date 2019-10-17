@@ -63,16 +63,25 @@ async function save({ linkUrl, pageUrl, title, tabId }) {
   chrome.tabs.sendMessage(tabId, { action: SAVE_TO_POCKET_REQUEST })
 
   const url = linkUrl || pageUrl
-  const { response: payload } = await saveToPocket({ url, title, tabId })
 
-  // send a message with the response
-  const message = payload
-    ? { action: SAVE_TO_POCKET_SUCCESS, payload }
-    : { action: SAVE_TO_POCKET_FAILURE, payload }
+  try {
+    const { response: payload } = await saveToPocket({ url, title, tabId })
+    // send a message with the response
+    const message = payload
+      ? { action: SAVE_TO_POCKET_SUCCESS, payload }
+      : { action: SAVE_TO_POCKET_FAILURE, payload }
 
-  chrome.tabs.sendMessage(tabId, message)
+    chrome.tabs.sendMessage(tabId, message)
 
-  if (payload) saveSuccess(tabId, { ...payload, isLink: Boolean(linkUrl) })
+    if (payload) saveSuccess(tabId, { ...payload, isLink: Boolean(linkUrl) })
+  } catch (error) {
+    // If it is an auth error let's redirect the user
+    if (error.name === 'Auth') return logIn({ linkUrl, pageUrl, title, tabId })
+
+    // Otherwise let's just show the error message
+    const errorMessage = { action: SAVE_TO_POCKET_FAILURE }
+    chrome.tabs.sendMessage(tabId, errorMessage)
+  }
 }
 
 /* Archive item
