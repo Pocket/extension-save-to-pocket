@@ -34,11 +34,7 @@
 		<array>
 			<dict>
 				<key>Script</key>
-				<string>vendors~safari.chunk.js</string>
-			</dict>
-			<dict>
-				<key>Script</key>
-				<string>safari.js</string>
+				<string>inject.js</string>
 			</dict>
 			<dict>
 				<key>Allowed URL Patterns</key>

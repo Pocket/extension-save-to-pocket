@@ -1,12 +1,6 @@
-import {
-  getURL,
-  addMessageListener,
-  removeMessageListener,
-  sendMessage
-} from 'common/interface'
-;(function(getURL, addMessageListener, removeMessageListener, sendMessage) {
+export function injectFrame() {
   let frame = document.createElement('iframe')
-  let element
+  let element //eslint-disable-line
 
   frame.style.border = 'none'
   frame.style.display = 'block'
@@ -36,44 +30,45 @@ import {
 
   function appendIFrame() {
     frame.setAttribute('allowtransparency', true)
-    frame.src = getURL('save.html')
+    // frame.src = getURL('save.html')
 
     element = document.body.appendChild(frame)
   }
 
-  function handleAction(action, sender, sendResponse) {
-    if (action.type === 'checkTab') {
-      sendResponse('tabAvailable')
-    }
+  // function handleAction(action, sender, sendResponse) {
+  //   if (action.type === 'checkTab') {
+  //     sendResponse('tabAvailable')
+  //   }
 
-    if (action.type === 'checkFrame') {
-      sendResponse(true)
-    }
+  //   if (action.type === 'checkFrame') {
+  //     sendResponse(true)
+  //   }
 
-    if (action.type === 'frameShift') {
-      frame.style.height = `${action.value}px`
-    }
+  //   if (action.type === 'frameShift') {
+  //     frame.style.height = `${action.value}px`
+  //   }
 
-    if (action.type === 'frameUnload') {
-      unloadFrame()
-    }
-  }
+  //   if (action.type === 'frameUnload') {
+  //     unloadFrame()
+  //   }
+  // }
 
   function render() {
     initFrame().then(() => {
-      document.addEventListener('click', function() {
-        sendMessage(null, { action: 'frameFocus', status: false })
-      })
-
-      sendMessage(null, { action: 'frameLoaded' })
-      addMessageListener(handleAction)
+      // TODO: This should just relay messages instead of
+      // TODO: sending them to the background.
+      // document.addEventListener('click', function() {
+      //   sendMessage(null, { action: 'frameFocus', status: false })
+      // })
+      // sendMessage(null, { action: 'frameLoaded' })
+      // addMessageListener(handleAction)
     })
   }
 
-  function unloadFrame() {
-    removeMessageListener(handleAction)
-    element.remove()
-  }
+  // function unloadFrame() {
+  //   // removeMessageListener(handleAction)
+  //   element.remove()
+  // }
 
   render()
-})(getURL, addMessageListener, removeMessageListener, sendMessage)
+}
