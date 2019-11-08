@@ -48,8 +48,8 @@ export const tagsReducers = (state = initialState, action) => {
     }
 
     case SUGGESTED_TAGS_SUCCESS: {
-      const suggested_tags = action.payload.suggested_tags || []
-      return { ...state, suggested: suggested_tags }
+      const { suggested_tags = [] } = action.payload.response
+      return { ...state, suggested: suggested_tags.map(tag => tag.tag) }
     }
 
     case SUGGESTED_TAGS_REQUEST: {
@@ -104,8 +104,8 @@ export const tagsReducers = (state = initialState, action) => {
     }
 
     case UPDATE_STORED_TAGS: {
-      const { tags_stored } = action.payload
-      return { ...state, tags_stored }
+      const { tags } = action.payload.response
+      return { ...state, tags_stored: tags }
     }
 
     default: {
@@ -154,7 +154,7 @@ const getTaggingState = state => {
 function* tagChanges() {
   yield delay(1000)
   const taggingState = yield select(getTaggingState)
-  const { used, suggested, item_id } = taggingState
+  const { used, suggested = [], item_id } = taggingState
   const usedSuggested = used.filter(usedTag => suggested.includes(usedTag))
   const payload = {
     item_id,

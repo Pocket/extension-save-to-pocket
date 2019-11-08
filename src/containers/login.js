@@ -1,4 +1,4 @@
-/*global chrome*/
+import { sendMessage } from 'common/interface'
 import { AUTH_CODE_RECEIVED } from 'actions'
 
 // Check page has loaded and if not add listener for it
@@ -16,7 +16,7 @@ function setLoginLoaded() {
   }
 
   setTimeout(function() {
-    chrome.runtime.sendMessage({
+    sendMessage({
       type: AUTH_CODE_RECEIVED,
       payload: loginMessage
     })

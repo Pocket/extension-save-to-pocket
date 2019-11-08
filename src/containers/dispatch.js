@@ -30,7 +30,7 @@ import { UPDATE_STORED_TAGS } from '../actions'
 /* Add Listeners
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 export const dispatchInit = () => {
-  if (chrome) {
+  if (typeof chrome !== 'undefined') {
     chrome.runtime.onMessage.addListener(function(request) {
       const { action: name, payload: message } = request
       handleMessage({ name, message })
@@ -61,9 +61,9 @@ function handleContextMenu(event) {
 function handleMessage(event) {
   const { message, name = 'Unknown Action' } = event || {}
 
-  // console.groupCollapsed(`RECEIVE: ${name}`)
-  // console.log(message)
-  // console.groupEnd(`RECEIVE: ${name}`)
+  console.groupCollapsed(`RECEIVE: ${name}`)
+  console.log(message)
+  console.groupEnd(`RECEIVE: ${name}`)
 
   switch (name) {
     case SAVE_TO_POCKET_REQUEST: {

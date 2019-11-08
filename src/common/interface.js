@@ -1,8 +1,8 @@
+/* global chrome safari */
+
 /* Utilities
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 import { isFunction } from './utilities'
-
-const chrome = window.chrome
 
 /* Listeners Functions
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -57,12 +57,15 @@ export function onTabReplaced(callback) {
 export function onFocusChanged(callback) {
   return chrome.windows.onFocusChanged.addListener(callback)
 }
+
 /* Messaging
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-// eslint-disable-next-line no-unused-vars
-export function sendMessage(extensionId = null, message, cb) {
-  let callback = isFunction(cb) ? cb : () => {}
-  return chrome.runtime.sendMessage(message, callback)
+export function sendMessage(message) {
+  if (typeof safari !== 'undefined') {
+    return safari.extension.dispatchMessage(message.type, message.payload)
+  }
+
+  chrome.runtime.sendMessage(message)
 }
 
 export function sendMessageToTab(tabId, message, cb) {
@@ -70,91 +73,10 @@ export function sendMessageToTab(tabId, message, cb) {
   return chrome.tabs.sendMessage(tabId, message, callback)
 }
 
-export function sendMessageToAllTabs(msg) {
-  getAllTabs(function(tabs) {
-    for (var i = 0; i < tabs.length; i++) {
-      sendMessageToTab(tabs[i].id, msg)
-    }
-  })
-}
-
-export function connect(extensionId, connectObject) {
-  return chrome.runtime.connect(extensionId, connectObject)
-}
-
-export function onConnect(handler) {
-  chrome.runtime.onConnect.addListener(handler)
-}
-
-/* Bookmarks
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-export function bookmark(id) {
-  return new Promise(resolve => {
-    chrome.bookmarks.get(id, resolve)
-  })
-}
-
-export function bookmarks() {
-  return new Promise(resolve => {
-    chrome.bookmarks.getTree(resolve)
-  })
-}
-
-export function bookmarksAll(id) {
-  return new Promise(resolve => {
-    chrome.bookmarks.getTree(id, resolve)
-  })
-}
-
-export function bookmarksChildren(id) {
-  return new Promise(resolve => {
-    chrome.bookmarks.getChildren(id, resolve)
-  })
-}
-
-export function onBookmarkUpdated(callback) {
-  chrome.bookmarks.onCreated.addListener(callback)
-  chrome.bookmarks.onRemoved.addListener(callback)
-  chrome.bookmarks.onChanged.addListener(callback)
-  chrome.bookmarks.onMoved.addListener(callback)
-  chrome.bookmarks.onChildrenReordered.addListener(callback)
-  chrome.bookmarks.onImportEnded.addListener(callback)
-}
-
 /* Browser
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-export function browserAction() {
-  return chrome.browserAction
-}
-export function contextMenus() {
-  return chrome.contextMenus
-}
 export function cookies() {
   return chrome.cookies
-}
-
-export function getTopSites() {
-  return new Promise(resolve => {
-    chrome.topSites.get(resolve)
-  })
-}
-
-export function checkPermission(permissions) {
-  return new Promise(resolve => {
-    chrome.permissions.contains({ permissions }, resolve)
-  })
-}
-
-export function requestPermission(permissions) {
-  return new Promise(resolve => {
-    chrome.permissions.request({ permissions }, resolve)
-  })
-}
-
-export function removePermission(permissions) {
-  return new Promise(resolve => {
-    chrome.permissions.remove({ permissions }, resolve)
-  })
 }
 
 export function getURL(url) {
@@ -172,16 +94,8 @@ export function openTabWithUrl(url, inBackground) {
   return chrome.tabs.create({ url: url, active: makeTabActive })
 }
 
-export function openTab() {
-  chrome.tabs.create({})
-}
-
 export function openOptions() {
   return chrome.runtime.openOptionsPage()
-}
-
-export function activePrivateMode(tab) {
-  return tab.incognito
 }
 
 export function setToolbarIcon(tabId, iconName) {
@@ -208,10 +122,6 @@ export function updateToolbarIcon(tabId, activateIcon) {
     : setToolbarIcon(tabId, 'browser-action-icon')
 }
 
-export function executeScript(tabId, scriptObject, cb) {
-  let callback = isFunction(cb) ? cb : () => {}
-  return chrome.tabs.executeScript(tabId, scriptObject, callback)
-}
 /* References
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
@@ -221,60 +131,8 @@ export function getExtensionInfo() {
   })
 }
 
-export function getBackgroundPage() {
-  return chrome.extension.getBackgroundPage()
-}
-
-export function getCurrentTab(cb) {
-  let callback = isFunction(cb) ? cb : () => {}
-  return chrome.tabs.query(
-    {
-      windowId: chrome.windows.WINDOW_ID_CURRENT,
-      active: true
-    },
-    function(tab) {
-      callback(tab)
-    }
-  )
-}
-
-export function getAllTabs(cb) {
-  let callback = isFunction(cb) ? cb : () => {}
-  return chrome.tabs.query({}, callback)
-}
-
-export function getPath(path) {
-  return window.chrome.runtime.getURL(path)
-}
-
-export function queryTabs(queryObject, cb) {
-  let callback = isFunction(cb) ? cb : () => {}
-  return chrome.tabs.query(queryObject, callback)
-}
-
-export function closeTabs(tabIDs) {
-  return chrome.tabs.remove(tabIDs)
-}
-
-export function getVersion() {
-  const manifestData = chrome.runtime.getManifest()
-  return manifestData.version
-}
-
-/* Commands
--------------------------------------------------- */
-export function getCommands() {
-  return new Promise(resolve => {
-    chrome.commands.getAll(resolve)
-  })
-}
-
 /* Local Storage
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-export function storage() {
-  return chrome.storage.local
-}
-
 export function getSetting(key) {
   return localStorage.getItem(key)
 }

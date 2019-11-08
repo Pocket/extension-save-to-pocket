@@ -25,18 +25,22 @@ class Actions {
   }
 
   static func logOut(from page: SFSafariPage) {
-
-    let defaults = UserDefaults.standard
-    defaults.removeObject(forKey: "access_token")
-
-    // Status should be replaced with relevant data
-    page.dispatchMessageToScript(
-      withName: Dispatch.USER_LOG_OUT_SUCCESS,
-      userInfo: nil
+    
+    Utilities.openTab(
+      from: page,
+      userInfo: ["url" : "https://getpocket.com/lo"],
+      makeActive: true
     )
-
+    
   }
 
+  static func loggedOutOfPocket(from page: SFSafariPage){
+    
+    let defaults = UserDefaults.standard
+    defaults.removeObject(forKey: "access_token")
+    
+  }
+  
   static func openPocket(from page: SFSafariPage) {
 
     Utilities.openTab(
@@ -147,6 +151,12 @@ class Actions {
             userInfo: ["item_id":item_id]
           )
 
+          // Set toolbar icon
+          self.setToolbarIcon(from: page, saved:true)
+          
+          // Get stored tags
+          self.getStoredTags(from: page )
+          
           // Get suggested tags (if applicable)
           self.getSuggestedTags(from: page, saved_url: url )
 
@@ -202,6 +212,9 @@ class Actions {
           withName: Dispatch.SAVE_TO_POCKET_SUCCESS,
           userInfo: ["item_id":item_id]
         )
+
+         // Get stored tags
+        self.getStoredTags(from: page )
 
         // Get suggested tags (if applicable)
         self.getSuggestedTags(from: page, saved_url: url )
@@ -300,6 +313,9 @@ class Actions {
       case .success(let response):
         NSLog("Item Removed: \(response)")
 
+        // Set toolbar icon
+        self.setToolbarIcon(from: page, saved:false)
+        
         // Status should be replaced with relevant data
         page.dispatchMessageToScript(
           withName: Dispatch.REMOVE_ITEM_SUCCESS,
@@ -318,6 +334,63 @@ class Actions {
 
     }
 
+  }
+
+  static func setToolbarIcon(from page: SFSafariPage, saved: Bool){
+      page.getContainingTab { (tab) in
+        tab.getContainingWindow(completionHandler: { (window) in
+          window?.getToolbarItem { (toolbarItem) in
+            
+            // Set icon to saved
+            if(saved == true){
+              let savedButton = NSImage(named: "savedButton")
+              toolbarItem?.setImage(savedButton)
+            }
+            
+            // Set icon to default
+            if(saved == false){
+              toolbarItem?.setImage(nil)
+            }
+          }
+        })
+      }
+  }
+  
+  static func getStoredTags(from page: SFSafariPage){
+    let defaults = UserDefaults.standard
+
+    // Do we have an auth token?
+    guard let access_token = defaults.string(forKey: "access_token") else {
+      // No auth token.  Save reference to the page and log
+      postAuthSave = page
+      Actions.logIn(from: page)
+      return
+    }
+
+    let since = defaults.integer(forKey: "tags_fetched_timestamp") 
+
+    // Make an API call to validate the extension
+    SaveToPocketAPI.getStoredTags(
+      from: page,
+      since: since,
+      access_token: access_token) { result in
+
+      switch result {
+
+      case .success(let response):
+        NSLog("Stored tags \(response)")
+
+        // Pass Suggested Tags to client side
+        page.dispatchMessageToScript(
+          withName: Dispatch.UPDATE_STORED_TAGS,
+          userInfo: ["response": response]
+        )
+
+      case .failure(let error):
+        NSLog("Stored tags Failed: \(error)")
+      }
+
+    }
   }
 
   static func getSuggestedTags(from page: SFSafariPage, saved_url: String){

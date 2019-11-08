@@ -84,7 +84,7 @@ chrome.runtime.onMessage.addListener(function(message, sender) {
       return
 
     case LOGGED_OUT_OF_POCKET:
-      handle.logOut(tab)
+      handle.loggedOutOfPocket(tab)
       return
 
     case ARCHIVE_ITEM_REQUEST:

@@ -7,7 +7,7 @@ import { updateToolbarIcon } from 'common/interface'
 import { authorize, getGuid, saveToPocket, syncItemTags } from 'common/api'
 import { removeItem, archiveItem } from 'common/api'
 
-import { AUTH_URL } from 'common/constants'
+import { AUTH_URL, LOGOUT_URL } from 'common/constants'
 
 import { SAVE_TO_POCKET_REQUEST } from 'actions'
 import { SAVE_TO_POCKET_SUCCESS } from 'actions'
@@ -24,7 +24,6 @@ import { ARCHIVE_ITEM_FAILURE } from 'actions'
 import { REMOVE_ITEM_REQUEST } from 'actions'
 import { REMOVE_ITEM_SUCCESS } from 'actions'
 import { REMOVE_ITEM_FAILURE } from 'actions'
-import { USER_LOG_OUT_SUCCESS } from 'actions'
 
 var postAuthSave = null
 
@@ -45,6 +44,8 @@ export function contextClick(info, tab) {
   const { id: tabId, title } = tab
 
   if (menuItemId === 'toolbarContextClick') return openPocket()
+
+  if (menuItemId === 'toolbarContextClickLogOut') return logOut()
 
   // Open list on non-standard pages/links
   if (isSystemLink(linkUrl || pageUrl)) return openPocket()
@@ -152,10 +153,11 @@ export async function authCodeRecieved(tab, payload) {
 }
 
 export function logOut(tab) {
-  const { id: tabId } = tab
-  removeSettings(['access_token'])
+  window.open(LOGOUT_URL)
+}
 
-  chrome.tabs.sendMessage(tabId, { action: USER_LOG_OUT_SUCCESS })
+export function loggedOutOfPocket(tab) {
+  removeSettings(['access_token'])
 }
 
 export function logIn(saveObject) {
