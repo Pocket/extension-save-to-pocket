@@ -17,14 +17,15 @@
 		314EF9882289D10400704C32 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 314EF9872289D10400704C32 /* Cocoa.framework */; };
 		314EF98D2289D10400704C32 /* SafariExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314EF98C2289D10400704C32 /* SafariExtensionViewController.swift */; };
 		314EF9902289D10400704C32 /* SafariExtensionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 314EF98E2289D10400704C32 /* SafariExtensionViewController.xib */; };
-		5D0477E423071DF90026D77F /* login.js in Resources */ = {isa = PBXBuildFile; fileRef = 5D0477E323071DF90026D77F /* login.js */; };
-		5D0D0518231D948D00F13C12 /* safari.js in Resources */ = {isa = PBXBuildFile; fileRef = 5D0D0516231D948D00F13C12 /* safari.js */; };
-		5D0D0519231D948D00F13C12 /* vendors~safari.chunk.js in Resources */ = {isa = PBXBuildFile; fileRef = 5D0D0517231D948D00F13C12 /* vendors~safari.chunk.js */; };
+		5D11FE932358F5AA00A85971 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5D11FE922358F5AA00A85971 /* Assets.xcassets */; };
 		5D20D3A1230CF13400496125 /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D20D3A0230CF13400496125 /* Actions.swift */; };
-		5D59099523315BE5005C6245 /* logout.js in Resources */ = {isa = PBXBuildFile; fileRef = 5D59099423315BE5005C6245 /* logout.js */; };
 		5D789155230B0E8100845FC2 /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D789154230B0E8100845FC2 /* Structures.swift */; };
 		5D789157230BA6B000845FC2 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D789156230BA6B000845FC2 /* API.swift */; };
 		5D93491623090EA600974849 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D93491523090EA600974849 /* Utilities.swift */; };
+		5DE268212357E5FF008487E4 /* login.js in Resources */ = {isa = PBXBuildFile; fileRef = 5DE2681D2357E5FF008487E4 /* login.js */; };
+		5DE268222357E5FF008487E4 /* logout.js in Resources */ = {isa = PBXBuildFile; fileRef = 5DE2681E2357E5FF008487E4 /* logout.js */; };
+		5DE268232357E5FF008487E4 /* inject.js in Resources */ = {isa = PBXBuildFile; fileRef = 5DE2681F2357E5FF008487E4 /* inject.js */; };
+		5DE268242357E5FF008487E4 /* twitter.js in Resources */ = {isa = PBXBuildFile; fileRef = 5DE268202357E5FF008487E4 /* twitter.js */; };
 		5DEB8C142333DC3900F4B8B2 /* savedButton.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEB8C122333DC3900F4B8B2 /* savedButton.pdf */; };
 		5DEB8C152333DC3900F4B8B2 /* saveButton.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEB8C132333DC3900F4B8B2 /* saveButton.pdf */; };
 		FFAD317322CBBC39002C543F /* SafariExtensionHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314EF98A2289D10400704C32 /* SafariExtensionHandler.swift */; };
@@ -116,14 +117,15 @@
 		31778F59231811560080DAF0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		31778F5A231811560080DAF0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/SafariExtensionViewController.strings; sourceTree = "<group>"; };
 		31E6BC90231C672B009B7D58 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5D0477E323071DF90026D77F /* login.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = login.js; sourceTree = "<group>"; };
-		5D0D0516231D948D00F13C12 /* safari.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = safari.js; path = ../../build/js/safari.js; sourceTree = "<group>"; };
-		5D0D0517231D948D00F13C12 /* vendors~safari.chunk.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "vendors~safari.chunk.js"; path = "../../build/js/vendors~safari.chunk.js"; sourceTree = "<group>"; };
+		5D11FE922358F5AA00A85971 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5D20D3A0230CF13400496125 /* Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
-		5D59099423315BE5005C6245 /* logout.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = logout.js; sourceTree = "<group>"; };
 		5D789154230B0E8100845FC2 /* Structures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
 		5D789156230BA6B000845FC2 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		5D93491523090EA600974849 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		5DE2681D2357E5FF008487E4 /* login.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = login.js; path = ../../build/_dev/js/login.js; sourceTree = "<group>"; };
+		5DE2681E2357E5FF008487E4 /* logout.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = logout.js; path = ../../build/_dev/js/logout.js; sourceTree = "<group>"; };
+		5DE2681F2357E5FF008487E4 /* inject.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = inject.js; path = ../../build/_dev/js/inject.js; sourceTree = "<group>"; };
+		5DE268202357E5FF008487E4 /* twitter.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = twitter.js; path = ../../build/_dev/js/twitter.js; sourceTree = "<group>"; };
 		5DEB8C122333DC3900F4B8B2 /* savedButton.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = savedButton.pdf; sourceTree = "<group>"; };
 		5DEB8C132333DC3900F4B8B2 /* saveButton.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = saveButton.pdf; sourceTree = "<group>"; };
 		5DEBE81C2333359B002FF684 /* keys.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = keys.xcconfig; sourceTree = "<group>"; };
@@ -201,11 +203,12 @@
 				314EF98E2289D10400704C32 /* SafariExtensionViewController.xib */,
 				5DEB8C132333DC3900F4B8B2 /* saveButton.pdf */,
 				5DEB8C122333DC3900F4B8B2 /* savedButton.pdf */,
-				5D59099423315BE5005C6245 /* logout.js */,
-				5D0477E323071DF90026D77F /* login.js */,
-				5D0D0516231D948D00F13C12 /* safari.js */,
-				5D0D0517231D948D00F13C12 /* vendors~safari.chunk.js */,
 				5DEBE81C2333359B002FF684 /* keys.xcconfig */,
+				5DE2681F2357E5FF008487E4 /* inject.js */,
+				5DE2681D2357E5FF008487E4 /* login.js */,
+				5DE2681E2357E5FF008487E4 /* logout.js */,
+				5DE268202357E5FF008487E4 /* twitter.js */,
+				5D11FE922358F5AA00A85971 /* Assets.xcassets */,
 			);
 			path = "Save to Pocket Extension";
 			sourceTree = "<group>";
@@ -337,13 +340,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D59099523315BE5005C6245 /* logout.js in Resources */,
-				5D0477E423071DF90026D77F /* login.js in Resources */,
+				5DE268242357E5FF008487E4 /* twitter.js in Resources */,
+				5DE268212357E5FF008487E4 /* login.js in Resources */,
 				311869D0231C7F6200B8C29D /* InfoPlist.strings in Resources */,
-				5D0D0518231D948D00F13C12 /* safari.js in Resources */,
-				5D0D0519231D948D00F13C12 /* vendors~safari.chunk.js in Resources */,
 				5DEB8C142333DC3900F4B8B2 /* savedButton.pdf in Resources */,
+				5DE268232357E5FF008487E4 /* inject.js in Resources */,
 				5DEB8C152333DC3900F4B8B2 /* saveButton.pdf in Resources */,
+				5DE268222357E5FF008487E4 /* logout.js in Resources */,
+				5D11FE932358F5AA00A85971 /* Assets.xcassets in Resources */,
 				314EF9902289D10400704C32 /* SafariExtensionViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

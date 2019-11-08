@@ -314,6 +314,61 @@ class SaveToPocketAPI: SafariExtensionHandler{
     }
   }
 
+  static func getStoredTags(
+    from page: SFSafariPage,
+    since: Int,
+    access_token: String,
+    completion: @escaping (Result<Any, RequestError>) -> Void
+    ) -> Void {
+
+    // Build request data dictionary
+    let requestData: [String : Any] = [
+      "consumer_key": CONSUMER_KEY,
+      "access_token": access_token,
+      "since": since,
+      "forcetaglist": 1,
+      "taglist": 1
+    ]
+
+    let requestInfo: [String : Any] = [
+      "url" : "https://getpocket.com/v3/get/",
+      "method" : "POST",
+      "parameters" : requestData
+    ];
+
+    Utilities.request(from: page, userInfo: requestInfo) { result in
+      switch result {
+
+      case .failure(let error):
+        NSLog("Stored Tags Failed: (\(String(describing: requestInfo)))")
+        completion(.failure(error))
+        return
+
+      case .success(let data):
+
+        guard let storedTagDecoded = try? JSONDecoder().decode(StoredTags.self, from: data) else {
+          NSLog("Decode Stored Tags Failed: (\(String(describing: requestInfo)))")
+          completion(.failure(.json))
+          return
+        }
+      
+        // Save since value
+        let defaults = UserDefaults.standard
+        defaults.set(storedTagDecoded.since, forKey: "tags_fetched_timestamp")
+
+        guard let storedTagJson = try? JSONSerialization.jsonObject(with: data) else {
+          NSLog("Stored Tags Failed: (\(String(describing: requestInfo)))")
+          completion(.failure(.json))
+          return
+        }
+
+        completion(.success(storedTagJson))
+
+      }
+    }
+    
+  }
+  
   static func getOnSaveTags(
     from page: SFSafariPage,
     saved_url: String,

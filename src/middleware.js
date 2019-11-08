@@ -1,4 +1,4 @@
-/* global chrome safari */
+import { sendMessage } from 'common/interface'
 import { SAVE_TO_POCKET_REQUEST } from 'actions'
 import { OPEN_POCKET } from 'actions'
 import { USER_LOG_OUT } from 'actions'
@@ -29,8 +29,5 @@ export const outgoingMiddleware = store => next => action => {
 
   // whitelist actions that will need local storage
   const outgoingMessage = outgoingActions.indexOf(actionType)
-  if (outgoingMessage >= 0) {
-    if (typeof safari !== 'undefined') return safari.sendMessage(action)
-    chrome.runtime.sendMessage(action)
-  }
+  if (outgoingMessage >= 0) sendMessage(action)
 }

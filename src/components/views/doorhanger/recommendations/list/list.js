@@ -46,7 +46,9 @@ const ListWrapper = styled(ListAnimator)`
 export default class RecommendationList extends Component {
   render() {
     return (
-      <ListWrapper pose={this.props.list.length ? 'open' : 'closed'}>
+      <ListWrapper
+        withParent={false}
+        pose={this.props.list.length ? 'open' : 'closed'}>
         {this.props.list.map((rec, index) => {
           const Rec = rec.isSpoc ? RecommendationSpoc : RecommendationItem
           return (

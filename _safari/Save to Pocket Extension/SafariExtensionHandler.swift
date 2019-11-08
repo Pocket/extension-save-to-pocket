@@ -41,7 +41,7 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
       return
 
     case Receive.LOGGED_OUT_OF_POCKET:
-      Actions.logOut(from: page)
+      Actions.loggedOutOfPocket(from: page)
       return
 
     case Receive.SAVE_PAGE_TO_POCKET:
@@ -94,6 +94,9 @@ class SafariExtensionHandler: SFSafariExtensionHandler {
 
   override func validateToolbarItem(in window: SFSafariWindow, validationHandler: @escaping ((Bool, String) -> Void)) {
     // This is called when Safari's state changed in some way that would require the extension's toolbar item to be validated again.
+    window.getToolbarItem { (toolbarItem) in
+      toolbarItem?.setImage(nil)
+    }
     validationHandler(true, "")
   }
 

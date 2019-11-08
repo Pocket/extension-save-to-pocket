@@ -40,15 +40,16 @@ async function getStoredTags(tabId) {
   const fetchedTags = fetchTags ? fetchTags.tags || [] : []
   const parsedTags = JSON.parse(getSetting('tags_stored')) || []
   const tags_stored = [...new Set([].concat(...parsedTags, ...fetchedTags))]
+  const tags = JSON.stringify(tags_stored)
 
   setSettings({
-    tags_stored: JSON.stringify(tags_stored),
+    tags_stored: tags,
     tags_fetched_timestamp: Date.now()
   })
 
   chrome.tabs.sendMessage(tabId, {
     action: UPDATE_STORED_TAGS,
-    payload: { tags_stored }
+    payload: { response: { tags: tags_stored } }
   })
 }
 
@@ -57,14 +58,12 @@ async function getStoredTags(tabId) {
 async function getTagSuggestions(url, tabId) {
   if (getSetting('premium_status') !== '1') return
 
-  const { response } = await getOnSaveTags({ url })
+  const response = await getOnSaveTags({ url })
 
   if (response) {
-    const suggested_tags = response.suggested_tags.map(tag => tag.tag)
-
     chrome.tabs.sendMessage(tabId, {
       action: SUGGESTED_TAGS_SUCCESS,
-      payload: { suggested_tags }
+      payload: { response }
     })
   }
 }

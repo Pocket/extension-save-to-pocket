@@ -23,8 +23,9 @@ const LoadInOut = posed.div({
     opacity: 1,
     delay: 0,
     transition: {
-      y: { type: 'spring', stiffness: 400, damping: 35 },
-      default: { duration: 500 }
+      y: { type: 'spring', stiffness: 400, damping: 55 },
+      opacity: { duration: 500 },
+      default: { duration: 0 }
     }
   },
   exit: {

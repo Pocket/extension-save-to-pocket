@@ -9,7 +9,7 @@ export function getOnSaveTags(saveObject) {
       url: saveObject.url,
       version: 2
     }
-  }).then(response => ({ saveObject, status: 'ok', response }))
+  }).then(response => response)
 }
 
 export function syncItemTags(id, tags, actionInfo) {

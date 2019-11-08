@@ -33,6 +33,10 @@ struct SuggestedTag {
   let tag: String?
 }
 
+struct StoredTags: Decodable{
+  let since: Int?
+}
+
 struct AuthResponse: Decodable{
   let access_token: String
   let username: String?
@@ -76,6 +80,7 @@ struct Dispatch {
   static let USER_LOG_IN_FAILURE: String = "USER_LOG_IN_FAILURE"
   static let USER_LOG_OUT_SUCCESS: String = "USER_LOG_OUT_SUCCESS"
   static let USER_LOG_OUT_FAILURE: String = "USER_LOG_OUT_FAILURE"
+  static let UPDATE_STORED_TAGS: String = "UPDATE_STORED_TAGS"
 }
 
 struct Receive {
