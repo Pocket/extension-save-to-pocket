@@ -1,6 +1,11 @@
+@mixin icon-style {
+  position: relative;
+  top: 2px;
+}
 @mixin show-stroke {
   .pocketIconStroke {
     display: inline-block;
+    @include icon-style;
   }
   .pocketIconFill {
     display: none;
@@ -9,6 +14,7 @@
 @mixin show-fill {
   .pocketIconFill {
     display: inline-block;
+    @include icon-style;
   }
   .pocketIconStroke {
     display: none;
@@ -16,18 +22,14 @@
 }
 .pocketIconWrapper {
   position: relative;
-  width: 70px;
-  left: 70px;
+  width: 24%;
+  text-align: right;
 }
 .pocketIconContainer {
   cursor: pointer;
   border-radius: 100%;
-  width: 35px;
-  height: 35px;
-  position: absolute;
-  left: -5px;
+  display: inline;
   transition: background 200ms;
-  margin-top: -2px;
 
   &:hover {
     background: #ef405630;
@@ -38,27 +40,13 @@
   .saved & {
     @include show-fill;
   }
-  .list-view & {
-    left: -23px;
-    top: -3px;
-  }
   .focus-view & {
     zoom: 1.1;
-    top: 6px;
   }
 }
 
 @include show-stroke;
 
-.pocketIconStroke,
-.pocketIconFill {
-  height: 16px;
-  vertical-align: bottom;
-  width: 16px;
-  position: relative;
-  top: 10px;
-  left: 9px;
-}
 .pocketIconStroke {
   fill: rgb(136, 153, 166);
 }

@@ -32,7 +32,9 @@ export function getPocketButtonClone({ permaLink, isFocusViewTweet }) {
     .toString(36)
     .substring(7)}`
   pocketIconButtonClone.setAttribute('data-permalink-path', permaLink)
-  pocketIconButtonClone.classList.add(isFocusViewTweet ? styles['focus-view'] : styles['list-view'])
+  if(isFocusViewTweet) {
+    pocketIconButtonClone.classList.add(styles['focus-view'])
+  }
 
   return pocketIconButtonClone
 }
