@@ -101,7 +101,8 @@ export function addPocketIconToActionList({
   twitterActionListCotnainerElement,
   pocketIconButtonClone
 }) {
-  const shareAction = twitterActionListCotnainerElement.children[3]
+  const lastChildIndex = twitterActionListCotnainerElement.children.length - 1
+  const shareAction = twitterActionListCotnainerElement.children[lastChildIndex]
   shareAction.after(pocketIconButtonClone)
   twitterActionListCotnainerElement.classList.add('PocketAdded')
 }

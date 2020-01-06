@@ -44,13 +44,15 @@ function stopIntegration() {
 function handleNewItems() {
   const tweetActionLists = document.querySelectorAll('[role=group]:not(.PocketAdded)')
   if (!tweetActionLists.length) return
-  try {
-    Array.from(tweetActionLists, addPocketFunctionality)
-  } catch ({ message }) {
-    if(message !== 'legacyTwitter') {
-      console.warn(message)
+  tweetActionLists.forEach(tweetActionListItem => {
+    try {
+      addPocketFunctionality(tweetActionListItem)
+    } catch ({ message }) {
+      if(message !== 'legacyTwitter') {
+        console.warn(message)
+      }
     }
-  }
+  })
 }
 
 // inject pocket icon among twitter action elements in the tweet action list container
