@@ -86,7 +86,7 @@ export function getTweetInfo(twitterActionListCotnainerElement) {
     permaLink = permaLinkFromLink
   }
 
-  const isFocusViewTweet = $tweet.querySelectorAll('[data-testid] [role=group]').length === 0
+  const isFocusViewTweet = $tweet.querySelector('[role=group] svg').getBoundingClientRect().width > 20
 
   return {
     permaLink,

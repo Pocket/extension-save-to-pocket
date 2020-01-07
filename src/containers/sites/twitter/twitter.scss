@@ -40,9 +40,12 @@
   .saved & {
     @include show-fill;
   }
-  .focus-view & {
-    zoom: 1.1;
-  }
+}
+
+.focus-view {
+  text-align: left;
+  margin: auto 0px;
+  zoom: 1.2;
 }
 
 @include show-stroke;
