@@ -40,17 +40,15 @@ export function getPocketButtonClone({ permaLink, isFocusViewTweet }) {
 }
 
 export function getTweetLink($article) {
+  const linkElement = $article.querySelector('time').closest('a')
   let link
-
-  if($article.querySelector('[lang] > a')) {
-    link = $article.querySelector('[lang] > a').getAttribute('href')
+  if(linkElement) {
+    link = linkElement.href
   } else {
-    link = $article.querySelector('#tweet-rich-content-label a').getAttribute('href')
+    // is focus view
+    link = window.location.href
   }
-
-  const isExternalLink = link && link.match(/https?:/i)
-
-  return isExternalLink && link
+  return link
 }
 
 // Handle saving
