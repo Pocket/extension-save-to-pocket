@@ -29,11 +29,24 @@
 .pocketIconContainer {
   cursor: pointer;
   border-radius: 100%;
-  display: inline;
+  display: inline-block;
   transition: background 200ms;
-
+  &:after {
+    content: ' ';
+    width: 39%;
+    height: 140%;
+    display: none;
+    position: absolute;
+    left: 60px;
+    top: -5px;
+    z-index: -1;
+    border-radius: 100%;
+  }
   &:hover {
-    background: #ef405630;
+    &:after {
+      display: block;
+      background: #ef405630;
+    }
     .pocketIconStroke {
       fill: #ef4056;
     }
@@ -46,6 +59,11 @@
 .focus-view {
   text-align: left;
   zoom: 1.2;
+  .pocketIconContainer {
+    &:after {
+      left: -6px;
+    }
+  }
 }
 
 @include show-stroke;
