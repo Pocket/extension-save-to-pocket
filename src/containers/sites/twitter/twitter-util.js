@@ -40,15 +40,14 @@ export function getPocketButtonClone({ permaLink, isFocusViewTweet }) {
 }
 
 export function getTweetLink($article) {
-  const linkElement = $article.querySelector('time').closest('a')
-  let link
-  if(linkElement) {
-    link = linkElement.href
+  const timeElement = $article.querySelector('time')
+  if(timeElement) {
+    const linkElement = timeElement.closest('a')
+    return linkElement.href
   } else {
     // is focus view
-    link = window.location.href
+    return window.location.pathname
   }
-  return link
 }
 
 // Handle saving
@@ -78,10 +77,11 @@ export function getTweetInfo(twitterActionListCotnainerElement) {
   }
 
   let permaLink = window.location.pathname
-  const $link = $tweet.querySelector('time').parentElement
-  const permaLinkFromLink = $link.getAttribute('href')
-  if (permaLinkFromLink) {
-    permaLink = permaLinkFromLink
+  const timeElement = $tweet.querySelector('time')
+  if (timeElement) {
+    const $link = timeElement.parentElement
+    const permaLinkFromLink = $link.getAttribute('href')
+    permaLink = permaLinkFromLink || permaLink
   }
 
   const isFocusViewTweet = $tweet.querySelector('[role=group] svg').getBoundingClientRect().width > 20
