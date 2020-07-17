@@ -6,12 +6,12 @@ import { getCurrentLanguageCode } from '../../helpers'
 export function getRecommendations(resolved_id) {
   var lang = getCurrentLanguageCode()
   return request({
-    path: 'getSuggestedItems/',
+    path: 'v3/discover/recIt',
     data: {
-      resolved_id: resolved_id,
-      version: 2,
+      item_id: resolved_id,
       locale_lang: lang,
-      count: 3
+      count: 3,
+      module: 'after_article_web'
     }
   }).then(response => response)
 }
