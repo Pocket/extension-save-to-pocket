@@ -93,9 +93,7 @@ export function getDefaultKeyboardShortCut() {
 
 export function getBestImage(item) {
   return item.top_image_url
-    ? item.images[Object.keys(item.images)[0]].src
-      ? item.top_image_url
-      : item.top_image_url
+    ? item.top_image_url
     : item.images[Object.keys(item.images)[0]].src
 }
 
@@ -113,7 +111,7 @@ export function getItemPosition(item) {
 }
 
 export function checkDuplicate(list, tagValue) {
-  return list.filter(tag => tag.name === tagValue).length
+  return list.filter((tag) => tag.name === tagValue).length
 }
 
 export function getSetting(key) {
@@ -121,13 +119,13 @@ export function getSetting(key) {
 }
 
 export function setSettings(values) {
-  Object.keys(values).forEach(function(key) {
+  Object.keys(values).forEach(function (key) {
     localStorage.setItem(key, values[key])
   })
 }
 
 export function removeSettings(values) {
-  values.forEach(function(key) {
+  values.forEach(function (key) {
     localStorage.removeItem(key)
   })
 }
@@ -135,8 +133,8 @@ export function removeSettings(values) {
 export function closeLoginPage() {
   chrome.tabs.query(
     { url: '*://getpocket.com/extension_login_success' },
-    tabs => {
-      chrome.tabs.remove(tabs.map(tab => tab.id))
+    (tabs) => {
+      chrome.tabs.remove(tabs.map((tab) => tab.id))
     }
   )
 }
