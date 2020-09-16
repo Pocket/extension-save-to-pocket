@@ -146,7 +146,7 @@ module.exports = function(webpackEnv) {
     entry: {
       background: [paths.appBackground],
       inject: [paths.appInjectJs],
-      // options: [paths.appOptions],
+      options: [paths.appOptions],
       // frame: [paths.appFrameJs],
       twitter: [paths.appTwitterJs],
       login: [paths.appLoginJs],

@@ -1,6 +1,6 @@
 /* global chrome */
 
-import { setSettings } from 'common/helpers'
+import { getSetting, setSettings } from 'common/helpers'
 
 export function initColorMode() {
   const darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
@@ -20,8 +20,24 @@ function updateToolbarIconMode(darkMode) {
   // Set all icons
   chrome.browserAction.setIcon({
     path: {
-      '19': smallIconPath,
-      '38': bigIconPath
+      19: smallIconPath,
+      38: bigIconPath
     }
   })
+}
+
+export function initOptions() {
+  const twitterEnabled = getSetting('sites_twitter') || 'unset'
+  if (twitterEnabled === 'unset') setSettings({ sites_twitter: true })
+
+  const recsEnabled = getSetting('on_save_recommendations') || 'unset'
+  if (recsEnabled === 'unset') setSettings({ on_save_recommendations: true })
+}
+
+export function setOnSaveRecs(tab, { isEnabled }) {
+  setSettings({ on_save_recommendations: isEnabled })
+}
+
+export function setTwitter(tab, { isEnabled }) {
+  setSettings({ sites_twitter: isEnabled })
 }

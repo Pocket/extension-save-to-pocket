@@ -4,6 +4,7 @@ import { fetchStoredTags, getOnSaveTags } from 'common/api'
 import { openRecommendation } from 'common/api'
 import { getSetting, setSettings } from 'common/helpers'
 import { getRecommendations, saveRecToPocket } from 'common/api'
+import { getBool } from 'common/utilities'
 
 import { UPDATE_STORED_TAGS } from 'actions'
 import { SUGGESTED_TAGS_SUCCESS } from 'actions'
@@ -71,6 +72,8 @@ async function getTagSuggestions(url, tabId) {
 /* Get recommendations, if set to do so
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 async function getItemRecommendations(resolved_id, tabId) {
+  if (!getBool(getSetting('on_save_recommendations'))) return
+
   chrome.tabs.sendMessage(tabId, { action: GET_RECS_REQUEST })
 
   const payload = await getRecommendations(resolved_id)
