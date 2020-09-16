@@ -1,6 +1,8 @@
 /* global chrome */
 import * as handle from './handlersActions'
 import { initColorMode, setColorMode } from './handlersSettings'
+import { setOnSaveRecs, setTwitter } from './handlersSettings'
+import { initOptions } from './handlersSettings'
 import { saveRec, openRec } from './handlersPostSave'
 import { checkTwitterIntegration } from './handlersIntegration'
 import { twitterSaveRequest } from './handlersIntegration'
@@ -18,10 +20,12 @@ import { COLOR_MODE_CHANGE } from 'actions'
 import { OPEN_REC } from 'actions'
 import { CHECK_TWITTER_INTEGRATION } from 'actions'
 import { TWITTER_SAVE_REQUEST } from 'actions'
+import { TOGGLE_ON_SAVE_RECS } from 'actions'
+import { TOGGLE_TWITTER } from 'actions'
 
 /* Initial Setup
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-chrome.runtime.onInstalled.addListener(function() {
+chrome.runtime.onInstalled.addListener(function () {
   chrome.contextMenus.create({
     title: 'Open Your Pocket List',
     id: 'toolbarContextClick',
@@ -41,8 +45,11 @@ chrome.runtime.onInstalled.addListener(function() {
     contexts: ['page', 'frame', 'editable', 'image', 'video', 'audio', 'link', 'selection'] // prettier-ignore
   })
 
-  // Update toolbar button for prefered dark/light mode
+  // Update toolbar button for preferred dark/light mode
   initColorMode()
+
+  // Set up defaults
+  initOptions()
 })
 
 // Browser Action - Toolbar
@@ -58,7 +65,7 @@ chrome.tabs.onUpdated.addListener(handle.tabUpdated)
 
 /* Message Handler
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-chrome.runtime.onMessage.addListener(function(message, sender) {
+chrome.runtime.onMessage.addListener(function (message, sender) {
   const { type, payload } = message
   const { tab } = sender
 
@@ -69,6 +76,14 @@ chrome.runtime.onMessage.addListener(function(message, sender) {
   switch (type) {
     case COLOR_MODE_CHANGE:
       setColorMode(tab, payload)
+      return
+
+    case TOGGLE_ON_SAVE_RECS:
+      setOnSaveRecs(tab, payload)
+      return
+
+    case TOGGLE_TWITTER:
+      setTwitter(tab, payload)
       return
 
     case AUTH_CODE_RECEIVED:
