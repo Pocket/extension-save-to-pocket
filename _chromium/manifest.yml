@@ -71,4 +71,11 @@ web_accessible_resources:
   - fonts/ProximaNova-Bold-webfont.eot
   - fonts/ProximaNova-Bold-webfont.woff
   - fonts/ProximaNova-Bold-webfont.ttf
-  - images/pocket-logo.png
+  - images/browser-action-icon-19.png
+  - images/browser-action-icon-38.png
+  - images/browser-action-icon-added-19.png
+  - images/browser-action-icon-added-38.png
+  - images/browser-action-icon-added-dark-19.png
+  - images/browser-action-icon-added-dark-38.png
+  - images/browser-action-icon-dark-19.png
+  - images/browser-action-icon-dark-38.png
