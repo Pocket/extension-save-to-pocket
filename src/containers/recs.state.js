@@ -33,10 +33,10 @@ export const recReducers = (state = initialState, action) => {
     }
 
     case GET_RECS_SUCCESS: {
-      const { feed, reason } = action.payload
+      const { recommendations, reason } = action.payload
       return {
         ...state,
-        feed: buildFeed(feed, action.source_id),
+        feed: buildFeed(recommendations, action.source_id),
         reason
       }
     }
