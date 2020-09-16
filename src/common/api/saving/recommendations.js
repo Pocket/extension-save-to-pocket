@@ -6,14 +6,14 @@ import { getCurrentLanguageCode } from '../../helpers'
 export function getRecommendations(resolved_id) {
   var lang = getCurrentLanguageCode()
   return request({
-    path: 'getSuggestedItems/',
+    path: 'discover/recIt',
     data: {
-      resolved_id: resolved_id,
-      version: 2,
+      item_id: resolved_id,
       locale_lang: lang,
-      count: 3
+      count: 3,
+      module: 'after_article_web'
     }
-  }).then(response => response)
+  }).then((response) => response)
 }
 
 export function saveRecToPocket(saveObject) {
@@ -36,7 +36,7 @@ export function saveRecToPocket(saveObject) {
         }
       ]
     }
-  }).then(response => {
+  }).then((response) => {
     return response
       ? { saveObject, status: 'ok', response: response.action_results[0] }
       : undefined
@@ -58,7 +58,7 @@ export function openRecommendation(saveObject) {
         }
       ]
     }
-  }).then(response => {
+  }).then((response) => {
     return response
       ? { saveObject, status: 'ok', response: response.action_results[0] }
       : undefined

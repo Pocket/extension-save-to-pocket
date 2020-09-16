@@ -119,6 +119,7 @@ export const SaveButton = styled.button`
   &:hover {
     border: 0;
     color: ${$hotCoral};
+    background-color: transparent;
   }
 `
 
