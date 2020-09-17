@@ -11,7 +11,7 @@ export function getRecommendations(resolved_id) {
       item_id: resolved_id,
       locale_lang: lang,
       count: 3,
-      module: 'after_article_web'
+      module: 'chrome_plugin'
     }
   }).then((response) => response)
 }
