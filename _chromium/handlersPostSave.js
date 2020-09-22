@@ -29,7 +29,7 @@ export async function saveSuccess(tabId, payload) {
   getTagSuggestions(url, tabId)
 
   // Request recommendations or survey ?? For future
-  getItemRecommendations(resolved_id, tabId)
+  if (resolved_id) getItemRecommendations(resolved_id, tabId)
 }
 
 /* Get stored tags
