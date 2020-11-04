@@ -39,7 +39,6 @@ export function injectDomElements() {
   if (window.top === window) {
     function setLoaded() {
       dispatchInit()
-      injectDomElements()
     }
 
     // Check page has loaded and if not add listener for it
