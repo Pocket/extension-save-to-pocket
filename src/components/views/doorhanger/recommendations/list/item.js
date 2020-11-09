@@ -150,6 +150,10 @@ export default function RecommendationItem({
     })
   }
 
+  // Append UTM to rec URLs (leave existing query strings intact)
+  const querySeparator = item.url.match(/\?/) ? '&' : '?'
+  const hrefUrl = `${item.url}${querySeparator}utm_source=pocket-chrome-recs`
+
   return (
     <ItemContainer hasImage={item.has_image}>
       {item.has_image && <ItemImage style={imageStyle} />}
@@ -157,7 +161,7 @@ export default function RecommendationItem({
       <ItemTitle>
         <ItemLink
           onClick={onClick}
-          href={item.url}
+          href={hrefUrl}
           rel="noopener noreferrer"
           target="_blank">
           {item.title}
