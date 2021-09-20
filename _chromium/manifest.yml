@@ -1,5 +1,5 @@
 name: "Save to Pocket"
-version: 3.1.3.0
+version: 3.2.0.0
 options_page: options.html
 description: __MSG_extDescriptionGoogleChrome__
 default_locale: "en"
@@ -13,8 +13,6 @@ permissions:
   - tabs
   - contextMenus
   - cookies
-  - "http://*/*"
-  - "https://*/*"
 
 browser_action:
   default_icon:
