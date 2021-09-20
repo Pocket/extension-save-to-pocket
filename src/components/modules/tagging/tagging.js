@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import matchSorter from 'match-sorter'
+import { matchSorter } from 'match-sorter'
 import Chips from 'elements/chips/chips'
 import Downshift from 'downshift'
 import Suggestions from './suggestions/suggestions'
