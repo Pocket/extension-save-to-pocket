@@ -169,9 +169,8 @@ export default class Tagging extends Component {
   render() {
     return (
       <TaggingWrapper>
-        <Downshift
-          onSelect={this.onSelect}
-          render={({
+        <Downshift onSelect={this.onSelect}>
+          {({
             getInputProps,
             getItemProps,
             isOpen,
@@ -233,7 +232,7 @@ export default class Tagging extends Component {
               )}
             </div>
           )}
-        />
+        </Downshift>
 
         {this.props.tags && this.props.tags.suggested && (
           <Suggestions
