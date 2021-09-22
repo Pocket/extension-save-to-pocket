@@ -82,7 +82,6 @@ class DoorHanger extends Component {
             <LoadInOut key="loadInOut">
               <Toolbar
                 tabId={this.props.tab_id.toString()}
-                // noSettings={this.props.noSettings}
                 logOut={this.props.logOut}
                 setDropDownStatus={this.props.setDropDownStatus}
                 openPocket={this.props.openPocket}

@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React, { useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { matchSorter } from 'match-sorter'
-import Chips from 'elements/chips/chips'
+import { Chips } from 'elements/chips/chips'
 import Downshift from 'downshift'
 import { Suggestions } from './suggestions/suggestions'
 import { Taginput } from './taginput/taginput'
@@ -76,88 +76,96 @@ const TaggingTypeaheadList = styled.div`
   top: 0;
   width: 100%;
 `
-export default class Tagging extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      placeholder: !this.hasTags(),
-      inputvalue: ''
-    }
+
+export const Tagging = ({
+  tags,
+  setInputFocusState,
+  tabId,
+  addTag,
+  activateTag,
+  deactivateTag,
+  deactivateTags,
+  removeTags,
+  removeTag,
+  storedTags,
+  inputFocused,
+  closePanel
+}) => {
+  const hasTags = () => {
+    return tags && tags.used && tags.used.length
   }
 
-  /* Utilities
-    –––––––––––––––––––––––––––––––––––––––––––––––––– */
-  hasTags = () =>
-    this.props.tags && this.props.tags.used && this.props.tags.used.length
+  const [placeholder, setPlaceholder] = useState(!hasTags())
+  const [inputvalue, setInputValue] = useState('')
+  const inputRef = useRef(null)
 
   /* Input Management
     –––––––––––––––––––––––––––––––––––––––––––––––––– */
-
-  setInputValue = inputvalue => this.setState({ inputvalue })
-  setFocus = () => {
-    this.props.setInputFocusState(true)
-    this.setState({ placeholder: false })
+  const setFocus = () => {
+    setInputFocusState(true)
+    setPlaceholder(false)
   }
-  setBlur = () => {
-    const status = this.state.inputvalue.length || this.hasTags()
-    this.props.setInputFocusState(false)
-    this.setState({ placeholder: !status })
+  const setBlur = () => {
+    const status = inputvalue.length || hasTags()
+    setInputFocusState(false)
+    setPlaceholder(!status)
   }
 
   /* Tag Management
     –––––––––––––––––––––––––––––––––––––––––––––––––– */
-  addTag = value => {
+  const addTagAction = (value) => {
     if (value === '') return
-    if (this.props.tags.used.indexOf(value) >= 0) return
-    this.props.addTag({ value, tabId: this.props.tabId })
-    this.setState({ placeholder: false, inputvalue: '' })
-    this.input.focus()
+    if (tags.used.indexOf(value) >= 0) return
+    addTag({ value, tabId })
+    setPlaceholder(false)
+    setInputValue('')
+    inputRef.current.focus()
   }
 
   /* Active/Inactive Tagging
     –––––––––––––––––––––––––––––––––––––––––––––––––– */
-  makeTagActive = tag => {
-    return this.props.activateTag({ tag, tabId: this.props.tabId })
+  const makeTagActive = (tag) => {
+    return activateTag({ tag, tabId })
   }
 
-  makeTagInactive = tag => {
-    return this.props.deactivateTag({ tag, tabId: this.props.tabId })
+  const makeTagInactive = (tag) => {
+    return deactivateTag({ tag, tabId })
   }
 
-  makeTagsInactive = blur => {
-    if (!this.props.tags.marked.length) return blur ? this.input.blur() : null
-    this.props.deactivateTags({ tabId: this.props.tabId })
+  const makeTagsInactive = (blur) => {
+    if (!tags.marked.length) return blur ? inputRef.current.blur() : null
+    deactivateTags({ tabId })
   }
 
-  handleRemoveAction = () => {
-    if (this.state.inputvalue.length || !this.hasTags()) return
-    if (!this.props.tags.marked.length) return this.makeTagActive()
-    this.props.removeTags({ tabId: this.props.tabId })
+  const handleRemoveAction = () => {
+    if (inputvalue.length || !hasTags()) return
+    if (!tags.marked.length) return makeTagActive()
+    removeTags({ tabId })
   }
 
-  removeTag = tag => {
-    this.props.removeTag({ tag, tabId: this.props.tabId })
+  const removeTagAction = (tag) => {
+    removeTag({ tag, tabId })
   }
 
-  toggleActive = (tag, active) => {
-    if (active) this.makeTagInactive(tag)
-    else this.makeTagActive(tag)
-    this.input.focus()
+  const toggleActive = (tag, active) => {
+    if (active) makeTagInactive(tag)
+    else makeTagActive(tag)
+    inputRef.current.focus()
   }
 
-  onMouseUp = e => {
-    this.input.focus()
+  const onMouseUp = e => {
+    inputRef.current.focus()
     e.stopPropagation()
     e.preventDefault()
   }
 
-  onSelect = this.addTag
+  const onSelect = addTagAction
 
-  get storedTags() {
-    const value = this.state.inputvalue
-    const usedTags = this.hasTags() ? this.props.tags.used : []
-    const storedTags = this.props.storedTags || []
-    const filteredStoredTags = storedTags.filter(
+  const storedTagsList = () => {
+    const value = inputvalue
+    const usedTags = hasTags() ? tags.used : []
+    const tagsArray = storedTags || []
+    const filteredStoredTags = tagsArray.filter(
       item => usedTags.indexOf(item) < 0
     )
     return value ? matchSorter(filteredStoredTags, value) : []
@@ -165,84 +173,82 @@ export default class Tagging extends Component {
 
   /* Render Component
     –––––––––––––––––––––––––––––––––––––––––––––––––– */
-  render() {
-    return (
-      <TaggingWrapper>
-        <Downshift onSelect={this.onSelect}>
-          {({
-            getInputProps,
-            getItemProps,
-            isOpen,
-            highlightedIndex
-          }) => (
-            <div>
-              <TaggingWell onMouseUp={this.onMouseUp}>
-                {this.state.placeholder && !this.hasTags() && (
-                  <TaggingPlaceholder>
-                    {localize('tagging', 'add_tags')}
-                  </TaggingPlaceholder>
-                )}
-
-                {!!this.hasTags() && (
-                  <Chips
-                    tags={this.props.tags.used}
-                    marked={this.props.tags.marked}
-                    toggleActive={this.toggleActive}
-                    removeTag={this.removeTag}
-                  />
-                )}
-
-                <Taginput
-                  highlightedIndex={highlightedIndex}
-                  getInputProps={getInputProps}
-                  hasTags={!!this.hasTags()}
-                  inputRef={input => (this.input = input)}
-                  value={this.state.inputvalue}
-                  focused={this.props.inputFocused}
-                  setValue={this.setInputValue}
-                  setFocus={this.setFocus}
-                  setBlur={this.setBlur}
-                  closePanel={this.props.closePanel}
-                  addTag={this.addTag}
-                  handleRemoveAction={this.handleRemoveAction}
-                  makeTagsInactive={this.makeTagsInactive}
-                  storedTags={this.storedTags}
-                />
-              </TaggingWell>
-
-              {!isOpen || !this.storedTags.length ? null : (
-                <TaggingTypeaheadWrapper>
-                  <TaggingTypeaheadList>
-                    {this.storedTags.map((item, index) => {
-                      return (
-                        <TaggingTypeaheadItem
-                          active={highlightedIndex === index}
-                          key={`item-${index}`}
-                          {...getItemProps({
-                            item,
-                            index
-                          })}>
-                          {item}
-                        </TaggingTypeaheadItem>
-                      )
-                    })}
-                  </TaggingTypeaheadList>
-                </TaggingTypeaheadWrapper>
+  return (
+    <TaggingWrapper>
+      <Downshift onSelect={onSelect}>
+        {({
+          getInputProps,
+          getItemProps,
+          isOpen,
+          highlightedIndex
+        }) => (
+          <div>
+            <TaggingWell onMouseUp={onMouseUp}>
+              {placeholder && !hasTags() && (
+                <TaggingPlaceholder>
+                  {localize('tagging', 'add_tags')}
+                </TaggingPlaceholder>
               )}
-            </div>
-          )}
-        </Downshift>
 
-        {this.props.tags && this.props.tags.suggested && (
-          <Suggestions
-            tags={this.props.tags}
-            suggestions={this.props.tags.suggested}
-            addTag={this.addTag}
-          />
+              {!!hasTags() && (
+                <Chips
+                  tags={tags.used}
+                  marked={tags.marked}
+                  toggleActive={toggleActive}
+                  removeTag={removeTagAction}
+                />
+              )}
+
+              <Taginput
+                highlightedIndex={highlightedIndex}
+                getInputProps={getInputProps}
+                hasTags={!!hasTags()}
+                inputRef={inputRef}
+                value={inputvalue}
+                focused={inputFocused}
+                setValue={setInputValue}
+                setFocus={setFocus}
+                setBlur={setBlur}
+                closePanel={closePanel}
+                addTag={addTagAction}
+                handleRemoveAction={handleRemoveAction}
+                makeTagsInactive={makeTagsInactive}
+                storedTags={storedTagsList()}
+              />
+            </TaggingWell>
+
+            {!isOpen || !storedTagsList().length ? null : (
+              <TaggingTypeaheadWrapper>
+                <TaggingTypeaheadList>
+                  {storedTagsList().map((item, index) => {
+                    return (
+                      <TaggingTypeaheadItem
+                        active={highlightedIndex === index}
+                        key={`item-${index}`}
+                        {...getItemProps({
+                          item,
+                          index
+                        })}>
+                        {item}
+                      </TaggingTypeaheadItem>
+                    )
+                  })}
+                </TaggingTypeaheadList>
+              </TaggingTypeaheadWrapper>
+            )}
+          </div>
         )}
-      </TaggingWrapper>
-    )
-  }
+      </Downshift>
+
+      {tags && tags.suggested && (
+        <Suggestions
+          tags={tags}
+          suggestions={tags.suggested}
+          addTag={addTagAction}
+        />
+      )}
+    </TaggingWrapper>
+  )
 }
 
 Tagging.propTypes = {

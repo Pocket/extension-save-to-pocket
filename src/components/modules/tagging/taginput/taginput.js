@@ -161,7 +161,7 @@ Taginput.propTypes = {
   handleRemoveAction: PropTypes.func,
   makeTagsInactive: PropTypes.func,
   setValue: PropTypes.func,
-  inputRef: PropTypes.func,
+  // inputRef: PropTypes.func,
   value: PropTypes.string,
   hasTags: PropTypes.bool
 }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { COLORS } from 'elements/colors/colors'
@@ -52,35 +52,38 @@ const ChipItem = styled.li`
     border-color: ${$overcast};
   }
 `
-export default class Chips extends Component {
-  removeTag(tag) {
-    this.props.removeTag(tag)
+export const Chips = ({ removeTag, tags, marked, toggleActive }) => {
+  const removeTagAction = (tag) => {
+    removeTag(tag)
   }
 
-  render() {
-    const listItems = this.props.tags.map((chip, index) => {
-      const marked = this.props.marked.includes(chip)
+  const listItems = () => {
+    return tags.map((chip, index) => {
+      const active = marked.includes(chip)
 
       return (
         <ChipItem
-          active={marked}
+          active={active}
           key={index}
           onMouseDown={event => event.preventDefault()}
-          onClick={() => this.props.toggleActive(chip, marked)}>
+          onClick={() => toggleActive(chip, active)}>
           {chip}
-          {marked && (
-            <span onClick={this.removeTag.bind(this, chip)}>&times;</span>
-          )}
+          {active ? (
+            <span onClick={() => removeTagAction(chip)}>&times;</span>
+          ) : null}
         </ChipItem>
       )
     })
-
-    return <ChipList>{listItems}</ChipList>
   }
+
+  return (
+    <ChipList>{listItems()}</ChipList>
+  )
 }
 
 Chips.propTypes = {
   tags: PropTypes.array,
   marked: PropTypes.array,
-  toggleActive: PropTypes.func
+  toggleActive: PropTypes.func,
+  removeTag: PropTypes.func
 }
