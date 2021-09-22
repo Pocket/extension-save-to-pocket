@@ -7,7 +7,6 @@ import Doorhanger from 'components/views/doorhanger/doorhanger'
 import { appActions } from './app.state'
 import { saveActions } from './save.state'
 import { tagActions } from './tags.state'
-import { recActions } from './recs.state'
 
 class ExtensionApp extends Component {
   state = {
@@ -85,16 +84,6 @@ class ExtensionApp extends Component {
       }
     }
 
-    const recProps = {
-      currentRecs: {
-        feed: this.props.feed,
-        reason: this.props.reason
-      },
-      showRecs: this.props.showRecs,
-      openRecommendation: this.props.openRecommendation,
-      saveRecommendation: this.props.saveRecommendation
-    }
-
     const currentTags = {
       suggested: this.props.suggested,
       used: this.props.used,
@@ -105,7 +94,7 @@ class ExtensionApp extends Component {
       <Doorhanger
         tab_id={1}
         logOut={this.logOut}
-        noSettings={true}
+        // noSettings={true}
         isSaveActive={this.isSaveActive}
         currentTab={{ status, type, dropDownActive }}
         setDropDownStatus={this.setDropDownStatus}
@@ -115,7 +104,6 @@ class ExtensionApp extends Component {
         inputFocused={this.state.inputFocused}
         {...dropDownProps}
         {...taggingProps}
-        {...recProps}
       />
     )
   }
@@ -124,7 +112,7 @@ class ExtensionApp extends Component {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 function mapDispatchToProps(dispatch) {
   return bindActionCreators(
-    { ...appActions, ...saveActions, ...tagActions, ...recActions },
+    { ...appActions, ...saveActions, ...tagActions },
     dispatch
   )
 }
@@ -132,7 +120,6 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(state) {
   const { status, type, item_id } = state.saves
   const { suggested, used, marked, tags_stored } = state.tags
-  const { feed, reason, showRecs } = state.recs
   return {
     status,
     type,
@@ -140,10 +127,7 @@ function mapStateToProps(state) {
     suggested,
     used,
     marked,
-    tags_stored,
-    feed,
-    reason,
-    showRecs
+    tags_stored
   }
 }
 

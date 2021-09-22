@@ -1,9 +1,8 @@
 /* global chrome */
 import * as handle from './handlersActions'
 import { initColorMode, setColorMode } from './handlersSettings'
-import { setOnSaveRecs, setTwitter } from './handlersSettings'
+import { setTwitter } from './handlersSettings'
 import { initOptions } from './handlersSettings'
-import { saveRec, openRec } from './handlersPostSave'
 import { checkTwitterIntegration } from './handlersIntegration'
 import { twitterSaveRequest } from './handlersIntegration'
 
@@ -15,12 +14,9 @@ import { ARCHIVE_ITEM_REQUEST } from 'actions'
 import { REMOVE_ITEM_REQUEST } from 'actions'
 import { TAGS_SYNC } from 'actions'
 import { OPEN_POCKET } from 'actions'
-import { SAVE_REC_REQUEST } from 'actions'
 import { COLOR_MODE_CHANGE } from 'actions'
-import { OPEN_REC } from 'actions'
 import { CHECK_TWITTER_INTEGRATION } from 'actions'
 import { TWITTER_SAVE_REQUEST } from 'actions'
-import { TOGGLE_ON_SAVE_RECS } from 'actions'
 import { TOGGLE_TWITTER } from 'actions'
 
 /* Initial Setup
@@ -78,10 +74,6 @@ chrome.runtime.onMessage.addListener(function (message, sender) {
       setColorMode(tab, payload)
       return
 
-    case TOGGLE_ON_SAVE_RECS:
-      setOnSaveRecs(tab, payload)
-      return
-
     case TOGGLE_TWITTER:
       setTwitter(tab, payload)
       return
@@ -116,14 +108,6 @@ chrome.runtime.onMessage.addListener(function (message, sender) {
 
     case OPEN_POCKET:
       handle.openPocket()
-      return
-
-    case SAVE_REC_REQUEST:
-      saveRec(tab, payload)
-      return
-
-    case OPEN_REC:
-      openRec(tab, payload)
       return
 
     case CHECK_TWITTER_INTEGRATION:

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { matchSorter } from 'match-sorter'
 import Chips from 'elements/chips/chips'
 import Downshift from 'downshift'
-import Suggestions from './suggestions/suggestions'
-import Taginput from './taginput/taginput'
+import { Suggestions } from './suggestions/suggestions'
+import { Taginput } from './taginput/taginput'
 import { localize } from 'common/_locales/locales'
 import styled from '@emotion/styled'
 import { COLORS } from 'elements/colors/colors'
@@ -81,8 +81,7 @@ export default class Tagging extends Component {
     super(props)
     this.state = {
       placeholder: !this.hasTags(),
-      inputvalue: '',
-      activeSuggestion: -1
+      inputvalue: ''
     }
   }
 
@@ -236,12 +235,9 @@ export default class Tagging extends Component {
 
         {this.props.tags && this.props.tags.suggested && (
           <Suggestions
-            value={this.state.inputvalue}
             tags={this.props.tags}
             suggestions={this.props.tags.suggested}
             addTag={this.addTag}
-            activate={this.activateTag}
-            activateSuggestion={this.activateSuggestion}
           />
         )}
       </TaggingWrapper>

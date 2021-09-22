@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import Toolbar from 'views/doorhanger/toolbar/toolbar.main'
-import Recommendations from 'views/doorhanger/recommendations/recommendations'
-import Survey from 'views/doorhanger/survey/survey.main'
 import posed, { PoseGroup } from 'react-pose'
 import styled from '@emotion/styled'
 import { mixin_fontBase } from 'common/styles/components'
@@ -65,10 +63,6 @@ class DoorHanger extends Component {
     return this.props.setup ? this.props.setup.tags_stored : []
   }
 
-  get showSurvey() {
-    return this.props.survey ? this.props.survey.show : false
-  }
-
   onHover = () => {
     this.props.resetTimer()
   }
@@ -88,7 +82,7 @@ class DoorHanger extends Component {
             <LoadInOut key="loadInOut">
               <Toolbar
                 tabId={this.props.tab_id.toString()}
-                noSettings={this.props.noSettings}
+                // noSettings={this.props.noSettings}
                 logOut={this.props.logOut}
                 setDropDownStatus={this.props.setDropDownStatus}
                 openPocket={this.props.openPocket}
@@ -109,25 +103,6 @@ class DoorHanger extends Component {
                 inputFocused={this.props.inputFocused}
                 setInputFocusState={this.props.setInputFocusState}
               />
-              {this.props.showRecs && !this.showSurvey && (
-                <Recommendations
-                  tabId={this.props.tab_id}
-                  recs={this.props.currentRecs}
-                  saveRecommendation={this.props.saveRecommendation}
-                  openRecommendation={this.props.openRecommendation}
-                  spocImpression={this.props.spocImpression}
-                  spocView={this.props.spocView}
-                  spocClick={this.props.spocClick}
-                  spocRemove={this.props.spocRemove}
-                />
-              )}
-              {this.showSurvey && (
-                <Survey
-                  survey={this.props.survey}
-                  surveyRespond={this.props.surveyRespond}
-                  surveyCancel={this.props.surveyCancel}
-                />
-              )}
             </LoadInOut>
           ]}
         </PoseGroup>

@@ -1,17 +1,10 @@
 /* global chrome */
 import { updateToolbarIcon } from 'common/interface'
 import { fetchStoredTags, getOnSaveTags } from 'common/api'
-import { openRecommendation } from 'common/api'
 import { getSetting, setSettings } from 'common/helpers'
-import { getRecommendations, saveRecToPocket } from 'common/api'
-import { getBool } from 'common/utilities'
 
 import { UPDATE_STORED_TAGS } from 'actions'
 import { SUGGESTED_TAGS_SUCCESS } from 'actions'
-
-import { GET_RECS_REQUEST } from 'actions'
-import { GET_RECS_SUCCESS } from 'actions'
-import { SAVE_REC_SUCCESS } from 'actions'
 
 /* On successful save
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -27,9 +20,6 @@ export async function saveSuccess(tabId, payload) {
 
   // Premium: Request suggested tags
   getTagSuggestions(url, tabId)
-
-  // Request recommendations or survey ?? For future
-  if (resolved_id) getItemRecommendations(resolved_id, tabId)
 }
 
 /* Get stored tags
@@ -67,32 +57,4 @@ async function getTagSuggestions(url, tabId) {
       payload: { response }
     })
   }
-}
-
-/* Get recommendations, if set to do so
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-async function getItemRecommendations(resolved_id, tabId) {
-  if (!getBool(getSetting('on_save_recommendations'))) return
-
-  chrome.tabs.sendMessage(tabId, { action: GET_RECS_REQUEST })
-
-  const payload = await getRecommendations(resolved_id)
-
-  if (payload) {
-    chrome.tabs.sendMessage(tabId, { action: GET_RECS_SUCCESS, payload })
-  }
-}
-
-export async function saveRec(tab, payload) {
-  const { id: tabId } = tab
-
-  const response = await saveRecToPocket(payload)
-
-  if (response) {
-    chrome.tabs.sendMessage(tabId, { action: SAVE_REC_SUCCESS, payload })
-  }
-}
-
-export async function openRec(tab, payload) {
-  openRecommendation(payload)
 }

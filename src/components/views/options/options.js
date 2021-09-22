@@ -18,7 +18,6 @@ import { TYPOGRAPHY } from 'common/styles/variables'
 import { mixin_pocketButton } from 'common/styles/components'
 import { getSetting } from 'common/interface'
 import { sendMessage } from 'common/interface'
-import { TOGGLE_ON_SAVE_RECS } from 'actions'
 import { TOGGLE_TWITTER } from 'actions'
 
 const {
@@ -184,7 +183,6 @@ const OptionsFooter = styled.footer`
 
 class OptionsApp extends Component {
   state = {
-    on_save_recommendations: getBool(getSetting('on_save_recommendations')),
     sites_twitter: getBool(getSetting('sites_twitter')),
     darkMode: getBool(getSetting('darkMode')),
     access_token: getSetting('access_token'),
@@ -229,24 +227,11 @@ class OptionsApp extends Component {
       }
     )
   }
-  toggleRecommendations = () => {
-    this.setState(
-      (state) => ({
-        on_save_recommendations: !state.on_save_recommendations
-      }),
-      () => {
-        sendMessage({
-          type: TOGGLE_ON_SAVE_RECS,
-          payload: { isEnabled: this.state.on_save_recommendations }
-        })
-      }
-    )
-  }
 
   setShortcuts = () => openTabWithUrl(SET_SHORTCUTS)
 
   render() {
-    const { on_save_recommendations, sites_twitter, darkMode } = this.state
+    const { sites_twitter, darkMode } = this.state
 
     return (
       <OptionsContainer>
@@ -298,23 +283,6 @@ class OptionsApp extends Component {
               </OptionsSaveServicesList>
               <OptionsInfo>
                 {localize('options_page', 'services_info')}
-              </OptionsInfo>
-            </OptionsSectionMain>
-          </OptionsSectionContent>
-        </OptionsSection>
-
-        <OptionsSection>
-          <OptionsSectionContent>
-            <OptionsSectionTitle>
-              {localize('options_page', 'recommendations_title')}
-            </OptionsSectionTitle>
-            <OptionsSectionMain>
-              <Toggle
-                active={on_save_recommendations}
-                action={this.toggleRecommendations}
-              />
-              <OptionsInfo>
-                {localize('options_page', 'recommendations_detail')}
               </OptionsInfo>
             </OptionsSectionMain>
           </OptionsSectionContent>

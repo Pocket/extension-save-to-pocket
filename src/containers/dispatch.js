@@ -15,11 +15,6 @@ import { SUGGESTED_TAGS_REQUEST } from 'actions'
 import { SUGGESTED_TAGS_SUCCESS } from 'actions'
 import { SUGGESTED_TAGS_FAILURE } from 'actions'
 
-import { GET_RECS_REQUEST } from 'actions'
-import { GET_RECS_SUCCESS } from 'actions'
-import { GET_RECS_FAILURE } from 'actions'
-import { SAVE_REC_SUCCESS } from 'actions'
-
 import { USER_LOG_IN_SUCCESS } from 'actions'
 import { USER_LOG_IN_FAILURE } from 'actions'
 import { USER_LOG_OUT_SUCCESS } from 'actions'
@@ -150,26 +145,6 @@ function handleMessage(event) {
 
     case USER_LOG_OUT_FAILURE: {
       store.dispatch({ type: USER_LOG_OUT_FAILURE, payload: message })
-      return
-    }
-
-    case GET_RECS_REQUEST: {
-      store.dispatch({ type: GET_RECS_REQUEST, payload: message })
-      return
-    }
-
-    case GET_RECS_SUCCESS: {
-      store.dispatch({ type: GET_RECS_SUCCESS, payload: message })
-      return
-    }
-
-    case GET_RECS_FAILURE: {
-      store.dispatch({ type: GET_RECS_FAILURE, payload: message })
-      return
-    }
-
-    case SAVE_REC_SUCCESS: {
-      store.dispatch({ type: SAVE_REC_SUCCESS, payload: message })
       return
     }
 

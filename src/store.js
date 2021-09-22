@@ -4,8 +4,6 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import createSagaMiddleware from 'redux-saga'
 import { outgoingMiddleware } from './middleware'
 
-// import { localizeReducer } from 'react-localize-redux'
-
 /* IMPORT CONTAINER STATES
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 import { saveReducers } from 'containers/save.state'
@@ -14,26 +12,19 @@ import { saveSagas } from 'containers/save.state'
 import { tagsReducers } from 'containers/tags.state'
 import { tagsSagas } from 'containers/tags.state'
 
-import { recReducers } from 'containers/recs.state'
-import { recSagas } from 'containers/recs.state'
-// import { appSagas } from 'containers/webkit/app.state'
-
 /* REDUCERS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 const rootReducer = () =>
   combineReducers({
     saves: saveReducers,
-    tags: tagsReducers,
-    recs: recReducers
-    // localize: localizeReducer,
-    // app: appReducers
+    tags: tagsReducers
   })
 
 /* SAGAS
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 const sagaMiddleware = createSagaMiddleware()
 function* rootSaga() {
-  yield all([...saveSagas, ...tagsSagas, ...recSagas])
+  yield all([...saveSagas, ...tagsSagas])
 }
 
 /* STORE

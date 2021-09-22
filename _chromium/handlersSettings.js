@@ -29,13 +29,6 @@ function updateToolbarIconMode(darkMode) {
 export function initOptions() {
   const twitterEnabled = getSetting('sites_twitter') || 'unset'
   if (twitterEnabled === 'unset') setSettings({ sites_twitter: true })
-
-  const recsEnabled = getSetting('on_save_recommendations') || 'unset'
-  if (recsEnabled === 'unset') setSettings({ on_save_recommendations: true })
-}
-
-export function setOnSaveRecs(tab, { isEnabled }) {
-  setSettings({ on_save_recommendations: isEnabled })
 }
 
 export function setTwitter(tab, { isEnabled }) {

@@ -6,8 +6,6 @@ import { TAGS_SYNC } from 'actions'
 import { ARCHIVE_ITEM_REQUEST } from 'actions'
 import { REMOVE_ITEM_REQUEST } from 'actions'
 import { COLOR_MODE_CHANGE } from 'actions'
-import { SAVE_REC_REQUEST } from 'actions'
-import { OPEN_REC } from 'actions'
 
 // Actions coming from app that should be sent to background page
 const outgoingActions = [
@@ -17,8 +15,6 @@ const outgoingActions = [
   SAVE_TO_POCKET_REQUEST,
   ARCHIVE_ITEM_REQUEST,
   REMOVE_ITEM_REQUEST,
-  SAVE_REC_REQUEST,
-  OPEN_REC,
   TAGS_SYNC
 ]
 

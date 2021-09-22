@@ -7,8 +7,6 @@ storiesOf('Options | Options', module).add('show options', () => (
     darkMode={false}
     setup={{
       sites_twitter: true,
-      on_save_recommendations: true,
-      toggleRecommendations: () => {},
       account_username: 'test_user'
     }}
 
