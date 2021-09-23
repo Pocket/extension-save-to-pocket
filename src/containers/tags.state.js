@@ -27,14 +27,12 @@ const initialState = {
 }
 
 // ACTIONS
-export const tagActions = {
-  addTag: tag => ({ type: TAG_ADD, tag }),
-  activateTag: payload => ({ type: TAG_ACTIVATE, payload }),
-  deactivateTag: payload => ({ type: TAG_DEACTIVATE, payload }),
-  deactivateTags: payload => ({ type: TAGS_DEACTIVATE, payload }),
-  removeTag: payload => ({ type: TAG_REMOVE, payload }),
-  removeTags: payload => ({ type: TAGS_REMOVE, payload })
-}
+export const addTag = (tag) => ({ type: TAG_ADD, tag })
+export const activateTag = (payload) => ({ type: TAG_ACTIVATE, payload })
+export const deactivateTag = (payload) => ({ type: TAG_DEACTIVATE, payload })
+export const deactivateTags = (payload) => ({ type: TAGS_DEACTIVATE, payload })
+export const removeTag = (payload) => ({ type: TAG_REMOVE, payload })
+export const removeTags = (payload) => ({ type: TAGS_REMOVE, payload })
 
 // REDUCER
 export const tagsReducers = (state = initialState, action) => {

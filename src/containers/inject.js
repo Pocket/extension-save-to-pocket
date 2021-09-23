@@ -1,6 +1,6 @@
 import createCache from '@emotion/cache'
 import { CacheProvider } from '@emotion/core'
-import ExtensionApp from 'containers/app.container'
+import { ExtensionApp } from 'containers/app.container'
 import { dispatchInit } from 'containers/dispatch'
 import React from 'react'
 import ReactDOM from 'react-dom'

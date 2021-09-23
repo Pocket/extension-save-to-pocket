@@ -91,13 +91,8 @@ const DoorHanger = ({
   const showing = isSaveActive && currentTab && !hasTimedOut
   const storedTags = setup ? setup.tags_stored : []
 
-  const onHover = () => {
-    resetTimer()
-  }
-
-  const offHover = () => {
-    if (!inputFocused) startTimer()
-  }
+  const onHover = () => resetTimer()
+  const offHover = () => (!inputFocused) ? startTimer() : null
 
   return (
     <DoorHangerWrapper
