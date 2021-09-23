@@ -94,7 +94,6 @@ class ExtensionApp extends Component {
       <Doorhanger
         tab_id={1}
         logOut={this.logOut}
-        // noSettings={true}
         isSaveActive={this.isSaveActive}
         currentTab={{ status, type, dropDownActive }}
         setDropDownStatus={this.setDropDownStatus}

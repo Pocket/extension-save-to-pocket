@@ -37,12 +37,7 @@ const ToolbarStatus = styled.span`
   padding: 3px 0;
 `
 
-function getStatus(type, status) {
-  if (status === 'saved') return localize('status', `${type}_${status}`)
-  return localize('status', status)
-}
-
-const Toolbar = ({
+export const Toolbar = ({
   remove,
   archive,
   currentTab,
@@ -68,7 +63,9 @@ const Toolbar = ({
   const statusText = () => {
     const type = currentTab ? currentTab.type : 'page'
     const status = currentTab ? currentTab.status : 'idle'
-    return getStatus(type, status)
+
+    if (status === 'saved') return localize('status', `${type}_${status}`)
+    return localize('status', status)
   }
 
   const listItems = [
@@ -107,18 +104,20 @@ const Toolbar = ({
       })}
       <ToolbarStatus>{statusText()}</ToolbarStatus>
 
-      {status === 'error' && <ToolbarError />}
+      {status === 'error' ? (
+        <ToolbarError />
+      ) : null}
 
-      {status !== 'removed' && status !== 'error' && (
+      {(status !== 'removed' && status !== 'error') ? (
         <Dropdown
           tabId={tabId}
           active={dropDownActive}
           setStatus={setDropDownStatus}
           list={listItems}
         />
-      )}
+      ) : null}
 
-      {(status === 'saved' || status === 'saving') && (
+      {(status === 'saved' || status === 'saving') ? (
         <Tagging
           tags={tags}
           activateTag={activateTag}
@@ -133,9 +132,7 @@ const Toolbar = ({
           inputFocused={inputFocused}
           setInputFocusState={setInputFocusState}
         />
-      )}
+      ) : null}
     </ToolbarWrapper>
   )
 }
-
-export default Toolbar

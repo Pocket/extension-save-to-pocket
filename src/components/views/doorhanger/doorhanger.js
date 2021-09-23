@@ -1,9 +1,10 @@
-import React, { Component } from 'react'
-import Toolbar from 'views/doorhanger/toolbar/toolbar.main'
+import React, { useEffect } from 'react'
+import { Toolbar } from 'views/doorhanger/toolbar/toolbar.main'
 import posed, { PoseGroup } from 'react-pose'
 import styled from '@emotion/styled'
 import { mixin_fontBase } from 'common/styles/components'
 import { withAutoHider } from 'modules/autohide/autohide.hoc'
+import { usePrevious } from 'common/helpers'
 
 const DoorHangerWrapper = styled.div`
   ${mixin_fontBase};
@@ -33,12 +34,39 @@ const LoadInOut = posed.div({
   }
 })
 
-class DoorHanger extends Component {
-  componentDidUpdate(prevProps) {
-    const { isSaveActive, hasTimedOut, inputFocused } = this.props
-    const { beginTiming, startTimer, resetTimer, completeSave } = this.props
+const DoorHanger = ({
+  active,
+  isSaveActive,
+  inputFocused,
+  hasTimedOut,
+  beginTiming,
+  startTimer,
+  resetTimer,
+  completeSave,
+  currentTab,
+  setup,
+  tab_id,
+  logOut,
+  setDropDownStatus,
+  openPocket,
+  openOptions,
+  archiveItem,
+  removeItem,
+  activateTag,
+  deactivateTag,
+  deactivateTags,
+  addTag,
+  closePanel,
+  removeTag,
+  removeTags,
+  setInputFocusState,
+  currentTags
+}) => {
+  const prevSaveActive = usePrevious(isSaveActive)
+  const prevInputFocused = usePrevious(inputFocused)
 
-    if (inputFocused !== prevProps.inputFocused) {
+  useEffect(() => {
+    if (inputFocused !== prevInputFocused) {
       if (inputFocused) return resetTimer()
       if (startTimer) return startTimer()
     }
@@ -49,65 +77,62 @@ class DoorHanger extends Component {
       return
     }
 
-    if (isSaveActive === prevProps.isSaveActive) return
+    if (isSaveActive === prevSaveActive) return
 
     if (isSaveActive && beginTiming) beginTiming()
+  }, [
+    inputFocused, prevInputFocused,
+    isSaveActive, prevSaveActive,
+    startTimer, resetTimer,
+    completeSave,
+    hasTimedOut, beginTiming
+  ])
+
+  const showing = isSaveActive && currentTab && !hasTimedOut
+  const storedTags = setup ? setup.tags_stored : []
+
+  const onHover = () => {
+    resetTimer()
   }
 
-  get showing() {
-    const { isSaveActive, currentTab, hasTimedOut } = this.props
-    return isSaveActive && currentTab && !hasTimedOut
+  const offHover = () => {
+    if (!inputFocused) startTimer()
   }
 
-  get storedTags() {
-    return this.props.setup ? this.props.setup.tags_stored : []
-  }
-
-  onHover = () => {
-    this.props.resetTimer()
-  }
-
-  offHover = () => {
-    const { inputFocused } = this.props
-    if (!inputFocused) this.props.startTimer()
-  }
-
-  render() {
-    return (
-      <DoorHangerWrapper
-        onMouseEnter={this.onHover}
-        onMouseLeave={this.offHover}>
-        <PoseGroup>
-          {this.showing && [
-            <LoadInOut key="loadInOut">
-              <Toolbar
-                tabId={this.props.tab_id.toString()}
-                logOut={this.props.logOut}
-                setDropDownStatus={this.props.setDropDownStatus}
-                openPocket={this.props.openPocket}
-                openOptions={this.props.openOptions}
-                archive={this.props.archiveItem}
-                remove={this.props.removeItem}
-                currentTab={this.props.currentTab}
-                active={this.props.active}
-                tags={this.props.currentTags}
-                activateTag={this.props.activateTag}
-                deactivateTag={this.props.deactivateTag}
-                deactivateTags={this.props.deactivateTags}
-                addTag={this.props.addTag}
-                closePanel={this.props.closePanel}
-                removeTag={this.props.removeTag}
-                removeTags={this.props.removeTags}
-                storedTags={this.storedTags}
-                inputFocused={this.props.inputFocused}
-                setInputFocusState={this.props.setInputFocusState}
-              />
-            </LoadInOut>
-          ]}
-        </PoseGroup>
-      </DoorHangerWrapper>
-    )
-  }
+  return (
+    <DoorHangerWrapper
+      onMouseEnter={onHover}
+      onMouseLeave={offHover}>
+      <PoseGroup>
+        {showing ? (
+          <LoadInOut key="loadInOut">
+            <Toolbar
+              tabId={tab_id.toString()}
+              logOut={logOut}
+              setDropDownStatus={setDropDownStatus}
+              openPocket={openPocket}
+              openOptions={openOptions}
+              archive={archiveItem}
+              remove={removeItem}
+              currentTab={currentTab}
+              active={active}
+              tags={currentTags}
+              activateTag={activateTag}
+              deactivateTag={deactivateTag}
+              deactivateTags={deactivateTags}
+              addTag={addTag}
+              closePanel={closePanel}
+              removeTag={removeTag}
+              removeTags={removeTags}
+              storedTags={storedTags}
+              inputFocused={inputFocused}
+              setInputFocusState={setInputFocusState}
+            />
+          </LoadInOut>
+        ) : null}
+      </PoseGroup>
+    </DoorHangerWrapper>
+  )
 }
 
 export default withAutoHider(DoorHanger)

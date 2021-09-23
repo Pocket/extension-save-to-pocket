@@ -1,5 +1,5 @@
 /* global chrome */
-
+import { useRef, useEffect } from 'react'
 import { openUrl } from './interface'
 
 export function openPocket() {
@@ -137,4 +137,12 @@ export function closeLoginPage() {
       chrome.tabs.remove(tabs.map((tab) => tab.id))
     }
   )
+}
+
+export function usePrevious(value) {
+  const ref = useRef()
+  useEffect(() => {
+    ref.current = value
+  })
+  return ref.current
 }
