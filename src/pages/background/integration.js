@@ -1,4 +1,3 @@
-/* global chrome */
 import { getSetting, setSettings } from 'common/helpers'
 import { getBool } from 'common/utilities'
 import { saveToPocket } from 'common/api'

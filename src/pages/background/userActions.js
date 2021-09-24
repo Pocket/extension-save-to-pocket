@@ -1,11 +1,16 @@
-/* global chrome */
-import { saveSuccess } from './handlersPostSave'
+import { saveSuccess } from './postSave'
+
 import { openPocket, isSystemPage, isSystemLink } from 'common/helpers'
-import { getSetting, setSettings, removeSettings } from 'common/helpers'
+import { getSetting, setSettings, removeSettings } from 'common/interface'
 import { closeLoginPage } from 'common/helpers'
 import { updateToolbarIcon } from 'common/interface'
-import { authorize, getGuid, saveToPocket, syncItemTags } from 'common/api'
-import { removeItem, archiveItem } from 'common/api'
+
+import { authorize } from 'common/api'
+import { getGuid } from 'common/api'
+import { saveToPocket } from 'common/api'
+import { syncItemTags } from 'common/api'
+import { removeItem } from 'common/api'
+import { archiveItem } from 'common/api'
 
 import { AUTH_URL, LOGOUT_URL } from 'common/constants'
 
@@ -57,7 +62,8 @@ export function contextClick(info, tab) {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 async function save({ linkUrl, pageUrl, title, tabId }) {
   // Are we authed?
-  const access_token = getSetting('access_token')
+  const access_token = await getSetting('access_token')
+  console.log(access_token)
   if (!access_token) return logIn({ linkUrl, pageUrl, title, tabId })
 
   // send message that we are requesting a save
@@ -150,19 +156,20 @@ export async function authCodeRecieved(tab, payload) {
 
   closeLoginPage()
   if (postAuthSave) save(postAuthSave)
+  postAuthSave = null
 }
 
-export function logOut(tab) {
+export function logOut() {
   window.open(LOGOUT_URL)
 }
 
-export function loggedOutOfPocket(tab) {
+export function loggedOutOfPocket() {
   removeSettings(['access_token'])
 }
 
 export function logIn(saveObject) {
   postAuthSave = saveObject
-  window.open(AUTH_URL)
+  chrome.tabs.create({ url: AUTH_URL })
 }
 
 export { openPocket }

@@ -9,7 +9,7 @@ if (document.readyState === 'loading') {
 }
 
 function setLogoutLoaded() {
-  setTimeout(function() {
+  setTimeout(function () {
     sendMessage({ type: LOGGED_OUT_OF_POCKET })
   }, 500)
 }

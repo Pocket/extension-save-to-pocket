@@ -1,5 +1,3 @@
-/* global chrome */
-
 import { getSetting, setSettings } from 'common/helpers'
 
 export function initColorMode() {
@@ -21,8 +19,8 @@ function updateToolbarIconMode(darkMode) {
   chrome.browserAction.setIcon({
     path: {
       19: smallIconPath,
-      38: bigIconPath
-    }
+      38: bigIconPath,
+    },
   })
 }
 
