@@ -1,4 +1,5 @@
 import * as handle from './userActions'
+import { setDefaultIcon } from 'common/interface'
 
 import { AUTH_CODE_RECEIVED } from 'actions'
 import { USER_LOG_IN } from 'actions'
@@ -16,6 +17,9 @@ import { TOGGLE_TWITTER } from 'actions'
 /* Initial Setup
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 chrome.runtime.onInstalled.addListener(function () {
+  // Use SVG icons over the png for more control
+  setDefaultIcon()
+
   chrome.contextMenus.create({
     title: 'Open Your Pocket List',
     id: 'toolbarContextClick',
