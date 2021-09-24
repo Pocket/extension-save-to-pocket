@@ -44,14 +44,26 @@ chrome.runtime.onInstalled.addListener(function () {
     id: 'pageContextClick',
     contexts: ['page', 'frame', 'editable', 'image', 'video', 'audio', 'link', 'selection'], // prettier-ignore
   })
+
+  // Update toolbar button for preferred dark/light mode
+  // initColorMode()
+
+  // Set up defaults
+  // initOptions()
 })
 
-// Browser Action - Toolbar
-// !! IMPORTANT: This action will not fire if you have a default pop-up
+/* Browser Action - Toolbar
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 chrome.action.onClicked.addListener(handle.browserAction)
 
-// Context Menus - Right/Options Click Menu
+/* Context Menus Handling
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
 chrome.contextMenus.onClicked.addListener(handle.contextClick)
+
+/* Tab Handling
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+// Update the icon to unsaved if we are change pages
+chrome.tabs.onUpdated.addListener(handle.tabUpdated)
 
 chrome.runtime.onMessage.addListener(function (message, sender) {
   const { type, payload } = message
