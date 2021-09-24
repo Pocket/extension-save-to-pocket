@@ -22,7 +22,13 @@ chrome.runtime.onInstalled.addListener(function () {
 
   chrome.contextMenus.create({
     title: 'Open Your Pocket List',
-    id: 'toolbarContextClick',
+    id: 'toolbarContextClickList',
+    contexts: ['action'],
+  })
+
+  chrome.contextMenus.create({
+    title: 'Discover more at Pocket',
+    id: 'toolbarContextClickHome',
     contexts: ['action'],
   })
 
@@ -56,12 +62,6 @@ chrome.runtime.onMessage.addListener(function (message, sender) {
   console.groupEnd(`RECEIVE: ${type}`)
 
   switch (type) {
-    case COLOR_MODE_CHANGE:
-      // setColorMode(tab, payload)
-      return
-    case TOGGLE_TWITTER:
-      // setTwitter(tab, payload)
-      return
     case AUTH_CODE_RECEIVED:
       handle.authCodeRecieved(tab, payload)
       return
@@ -82,6 +82,12 @@ chrome.runtime.onMessage.addListener(function (message, sender) {
       return
     case TAGS_SYNC:
       // handle.tagsSyncAction(tab, payload)
+      return
+    case COLOR_MODE_CHANGE:
+      // setColorMode(tab, payload)
+      return
+    case TOGGLE_TWITTER:
+      // setTwitter(tab, payload)
       return
     case OPEN_POCKET:
       handle.openPocket()

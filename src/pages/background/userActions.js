@@ -1,9 +1,9 @@
 import { saveSuccess } from './postSave'
 
-import { openPocket, isSystemPage, isSystemLink } from 'common/helpers'
+import { isSystemPage, isSystemLink } from 'common/helpers'
 import { getSetting, setSettings, removeSettings } from 'common/interface'
 import { closeLoginPage } from 'common/helpers'
-import { updateToolbarIcon } from 'common/interface'
+import { setToolbarIcon } from 'common/interface'
 
 import { authorize } from 'common/api'
 import { getGuid } from 'common/api'
@@ -12,7 +12,12 @@ import { syncItemTags } from 'common/api'
 import { removeItem } from 'common/api'
 import { archiveItem } from 'common/api'
 
-import { AUTH_URL, LOGOUT_URL } from 'common/constants'
+import {
+  AUTH_URL,
+  LOGOUT_URL,
+  POCKET_HOME,
+  POCKET_LIST,
+} from 'common/constants'
 
 import { SAVE_TO_POCKET_REQUEST } from 'actions'
 import { SAVE_TO_POCKET_SUCCESS } from 'actions'
@@ -35,7 +40,7 @@ var postAuthSave = null
 /* Browser Action - Toolbar Icon Clicked
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 export function browserAction(tab) {
-  if (isSystemPage(tab)) return openPocket() // open list on non-standard pages
+  if (isSystemPage(tab)) return openPocketHome() // open list on non-standard pages
 
   const { id: tabId, title, url: pageUrl } = tab
 
@@ -48,12 +53,12 @@ export function contextClick(info, tab) {
   const { menuItemId, linkUrl, pageUrl } = info
   const { id: tabId, title } = tab
 
-  if (menuItemId === 'toolbarContextClick') return openPocket()
-
+  if (menuItemId === 'toolbarContextClickHome') return openPocketHome()
+  if (menuItemId === 'toolbarContextClickList') return openPocketList()
   if (menuItemId === 'toolbarContextClickLogOut') return logOut()
 
   // Open list on non-standard pages/links
-  if (isSystemLink(linkUrl || pageUrl)) return openPocket()
+  if (isSystemLink(linkUrl || pageUrl)) return openPocketHome()
 
   return save({ linkUrl, pageUrl, title, tabId })
 }
@@ -63,7 +68,6 @@ export function contextClick(info, tab) {
 async function save({ linkUrl, pageUrl, title, tabId }) {
   // Are we authed?
   const access_token = await getSetting('access_token')
-  console.log(access_token)
   if (!access_token) return logIn({ linkUrl, pageUrl, title, tabId })
 
   // send message that we are requesting a save
@@ -124,7 +128,7 @@ export async function removeItemAction(tab, payload) {
 
   chrome.tabs.sendMessage(tabId, message)
 
-  if (response) updateToolbarIcon(tabId, false)
+  if (response) setToolbarIcon(tabId, false)
 }
 
 /* Add tags to item
@@ -160,7 +164,7 @@ export async function authCodeRecieved(tab, payload) {
 }
 
 export function logOut() {
-  window.open(LOGOUT_URL)
+  chrome.tabs.create({ url: LOGOUT_URL })
 }
 
 export function loggedOutOfPocket() {
@@ -172,13 +176,23 @@ export function logIn(saveObject) {
   chrome.tabs.create({ url: AUTH_URL })
 }
 
-export { openPocket }
+export function openPocket() {
+  chrome.tabs.create({ url: POCKET_LIST })
+}
+
+export function openPocketList() {
+  chrome.tabs.create({ url: POCKET_LIST })
+}
+
+export function openPocketHome() {
+  chrome.tabs.create({ url: POCKET_HOME })
+}
 
 /* Tab Changes
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 export function tabUpdated(tabId, changeInfo) {
   if (changeInfo.status === 'loading' && changeInfo.url) {
     // if actively loading a new page, unset save state on icon
-    updateToolbarIcon(tabId, false)
+    setToolbarIcon(tabId, false)
   }
 }

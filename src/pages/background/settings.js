@@ -1,41 +1,32 @@
 import { getSetting, setSettings } from 'common/helpers'
+import { setDefaultIcon } from 'common/interface'
 
 export function initColorMode() {
   const darkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
   setColorMode(null, { darkMode })
 }
 
-export function setColorMode(tab, { darkMode }) {
-  setSettings({ darkMode })
-  updateToolbarIconMode(darkMode)
+export async function setColorMode(tab, { darkMode }) {
+  await setSettings({ darkMode })
+  setDefaultIcon()
 }
 
-function updateToolbarIconMode(darkMode) {
-  const iconName = `browser-action-icon${darkMode ? '-dark' : ''}`
-  const smallIconPath = `images/${iconName}-19.png`
-  const bigIconPath = `images/${iconName}-38.png`
+export async function initOptions() {
+  const twitterEnabled = (await getSetting('sites_twitter')) || 'unset'
+  if (twitterEnabled === 'unset') {
+    await setSettings({ sites_twitter: true })
+  }
 
-  // Set all icons
-  chrome.browserAction.setIcon({
-    path: {
-      19: smallIconPath,
-      38: bigIconPath,
-    },
-  })
+  const recsEnabled = (await getSetting('on_save_recommendations')) || 'unset'
+  if (recsEnabled === 'unset') {
+    await setSettings({ on_save_recommendations: true })
+  }
 }
 
-export function initOptions() {
-  const twitterEnabled = getSetting('sites_twitter') || 'unset'
-  if (twitterEnabled === 'unset') setSettings({ sites_twitter: true })
-
-  const recsEnabled = getSetting('on_save_recommendations') || 'unset'
-  if (recsEnabled === 'unset') setSettings({ on_save_recommendations: true })
+export async function setOnSaveRecs(tab, { isEnabled }) {
+  await setSettings({ on_save_recommendations: isEnabled })
 }
 
-export function setOnSaveRecs(tab, { isEnabled }) {
-  setSettings({ on_save_recommendations: isEnabled })
-}
-
-export function setTwitter(tab, { isEnabled }) {
-  setSettings({ sites_twitter: isEnabled })
+export async function setTwitter(tab, { isEnabled }) {
+  await setSettings({ sites_twitter: isEnabled })
 }
