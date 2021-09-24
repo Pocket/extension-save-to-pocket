@@ -2,6 +2,7 @@
 
 /* Utilities
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+// import { contentScripts } from 'webextension-polyfill'
 import { isFunction } from './utilities'
 
 /* Listeners Functions

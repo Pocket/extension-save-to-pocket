@@ -1,8 +1,4 @@
-import { openUrl, getSetting, setSettings } from './interface'
-
-export function openPocket() {
-  openUrl(getBaseUrl())
-}
+import { getSetting, setSettings } from './interface'
 
 export function isNewTab(tab, url) {
   return (
