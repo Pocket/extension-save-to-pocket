@@ -1,0 +1,78 @@
+{
+  "manifest_version": 3,
+  "icons": {
+    "16": "assets/images/icon-16.png",
+    "48": "assets/images/icon-48.png",
+    "128": "assets/images/icon-128.png"
+  },
+  "action": {
+    "default_icon": {
+      "38": "assets/images/action-icon.png"
+    },
+    "default_title": "Save to Pocket"
+  },
+  "background": {
+    "service_worker": "pages/background/index.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*/*"
+      ],
+      "js": [
+        "pages/content.js"
+      ]
+    },
+    {
+      "matches": [
+        "*://getpocket.com/extension_login_success"
+      ],
+      "js": [
+        "pages/login.js"
+      ]
+    },
+    {
+      "matches": [
+        "*://getpocket.com/login?e=4"
+      ],
+      "js": [
+        "pages/logout.js"
+      ]
+    },
+    {
+      "matches": [
+        "*://twitter.com/*"
+      ],
+      "js": [
+        "pages/twitter.js"
+      ]
+    }
+  ],
+  "host_permissions": [
+    "*://getpocket.com/"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "assets/fonts/ProximaNova-Reg-webfont.eot",
+        "assets/fonts/ProximaNova-Reg-webfont.woff",
+        "assets/fonts/ProximaNova-Reg-webfont.ttf",
+        "assets/fonts/ProximaNova-Sbold-webfont.eot",
+        "assets/fonts/ProximaNova-Sbold-webfont.woff",
+        "assets/fonts/ProximaNova-Sbold-webfont.ttf",
+        "assets/fonts/ProximaNova-Bold-webfont.eot",
+        "assets/fonts/ProximaNova-Bold-webfont.woff",
+        "assets/fonts/ProximaNova-Bold-webfont.ttf"
+      ],
+      "matches": [
+        "*://*/*"
+      ]
+    }
+  ],
+  "permissions": [
+    "tabs",
+    "contextMenus",
+    "cookies",
+    "storage"
+  ]
+}
