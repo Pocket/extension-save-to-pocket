@@ -1,4 +1,4 @@
-/* global chrome safari */
+/* global safari */
 
 /* Utilities
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -84,7 +84,7 @@ export function getURL(url) {
 }
 
 export function openUrl(url) {
-  chrome.tabs.query({ active: true, currentWindow: true }, function(tab) {
+  chrome.tabs.query({ active: true, currentWindow: true }, function (tab) {
     chrome.tabs.update(tab[0].id, { url })
   })
 }
@@ -110,9 +110,9 @@ export function setToolbarIcon(tabId, iconName) {
   chrome.browserAction.setIcon({
     tabId,
     path: {
-      '19': smallIconPath,
-      '38': bigIconPath
-    }
+      19: smallIconPath,
+      38: bigIconPath,
+    },
   })
 }
 
@@ -126,7 +126,7 @@ export function updateToolbarIcon(tabId, activateIcon) {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 export function getExtensionInfo() {
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     return chrome.management.getSelf(resolve)
   })
 }
@@ -134,17 +134,15 @@ export function getExtensionInfo() {
 /* Local Storage
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 export function getSetting(key) {
-  return localStorage.getItem(key)
+  return new Promise((resolve) => {
+    chrome.storage.local.get([key], (result) => resolve(result[key]))
+  })
 }
 
 export function setSettings(values) {
-  Object.keys(values).forEach(function(key) {
-    localStorage.setItem(key, values[key])
-  })
+  chrome.storage.local.set(values)
 }
 
 export function removeSettings(values) {
-  values.forEach(function(key) {
-    localStorage.removeItem(key)
-  })
+  chrome.storage.local.remove(values)
 }
