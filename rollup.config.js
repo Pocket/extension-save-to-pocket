@@ -10,6 +10,7 @@ import resolve from '@rollup/plugin-node-resolve'
 import { chromeExtension } from 'rollup-plugin-chrome-extension'
 import { emptyDir } from 'rollup-plugin-empty-dir'
 import zip from 'rollup-plugin-zip'
+import keys from './keys.json' // See README on how to get a key
 
 const isProduction = process.env.NODE_ENV === 'production'
 const projectRootDir = path.resolve(__dirname)
@@ -27,6 +28,10 @@ export default {
     replace({
       preventAssignment: true,
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+    }),
+    replace({
+      preventAssignment: false,
+      __consumerKey__: keys.chrome,
     }),
     resolve(),
     commonjs(),
