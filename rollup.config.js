@@ -12,7 +12,8 @@ import { emptyDir } from 'rollup-plugin-empty-dir'
 import zip from 'rollup-plugin-zip'
 import keys from './keys.json' // See README on how to get a key
 
-const isProduction = process.env.NODE_ENV === 'production'
+const isRelease = process.env.IS_RELEASE === 'true'
+
 const projectRootDir = path.resolve(__dirname)
 
 export default {
@@ -59,7 +60,6 @@ export default {
       babelHelpers: 'bundled',
     }),
     css({ output: 'assets/pocket-save-extension.css' }),
-
     // Empties the output dir before a new build
     emptyDir(),
     copy({
@@ -70,6 +70,6 @@ export default {
       hook: 'writeBundle',
     }),
     // Outputs a zip file in ./releases
-    isProduction && zip({ dir: 'releases' }),
+    isRelease && zip({ dir: 'releases' }),
   ],
 }

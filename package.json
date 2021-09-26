@@ -14,8 +14,8 @@
   "license": "MIT",
   "author": "Pocket",
   "scripts": {
-    "build": "rollup -c",
-    "release": "cross-env NODE_ENV=production rollup -c",
+    "build": "NODE_ENV=production rollup -c",
+    "release": "cross-env NODE_ENV=production IS_RELEASE=true rollup -c",
     "start": "rollup -c -w",
     "test": "jest"
   },
