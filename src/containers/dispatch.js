@@ -1,4 +1,4 @@
-/*global safari chrome*/
+/*global safari*/
 import { store } from 'store'
 import { injectDomElements } from './inject'
 
@@ -25,13 +25,13 @@ import { USER_LOG_IN_FAILURE } from 'actions'
 import { USER_LOG_OUT_SUCCESS } from 'actions'
 import { USER_LOG_OUT_FAILURE } from 'actions'
 import { COLOR_MODE_CHANGE } from 'actions'
-import { UPDATE_STORED_TAGS } from '../actions'
+import { UPDATE_STORED_TAGS } from 'actions'
 
 /* Add Listeners
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 export const dispatchInit = () => {
   if (typeof chrome !== 'undefined') {
-    chrome.runtime.onMessage.addListener(function(request) {
+    chrome.runtime.onMessage.addListener(function (request) {
       const { action: name, payload: message } = request
       handleMessage({ name, message })
     })
@@ -43,7 +43,7 @@ export const dispatchInit = () => {
   }
 
   // Make sure the toolbar icon is in sync with users light/dark preference
-  window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+  window.matchMedia('(prefers-color-scheme: dark)').addListener((e) => {
     const darkMode = e.matches
     store.dispatch({ type: COLOR_MODE_CHANGE, payload: { darkMode } })
   })
