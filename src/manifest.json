@@ -23,6 +23,7 @@
         "pages/injector/content.js"
       ],
       "css": [
+        "assets/fonts/fonts.css",
         "assets/pocket-save-extension.css"
       ]
     },
@@ -53,24 +54,6 @@
   ],
   "host_permissions": [
     "*://getpocket.com/"
-  ],
-  "web_accessible_resources": [
-    {
-      "resources": [
-        "assets/fonts/ProximaNova-Reg-webfont.eot",
-        "assets/fonts/ProximaNova-Reg-webfont.woff",
-        "assets/fonts/ProximaNova-Reg-webfont.ttf",
-        "assets/fonts/ProximaNova-Sbold-webfont.eot",
-        "assets/fonts/ProximaNova-Sbold-webfont.woff",
-        "assets/fonts/ProximaNova-Sbold-webfont.ttf",
-        "assets/fonts/ProximaNova-Bold-webfont.eot",
-        "assets/fonts/ProximaNova-Bold-webfont.woff",
-        "assets/fonts/ProximaNova-Bold-webfont.ttf"
-      ],
-      "matches": [
-        "*://*/*"
-      ]
-    }
   ],
   "permissions": [
     "tabs",

@@ -1,25 +1,35 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { css, cx } from 'linaria'
+import { PocketLogo } from 'components/icons'
 
 const doorhangerStyle = css`
   position: fixed;
   top: 0;
   right: 0;
+  font-family: 'proxima-nova', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', Helvetica,
+    sans-serif !important;
+
   .doorHanger {
-    background-color: white;
+    background-color: #ffffff;
     border-radius: 4px;
-    width: 120px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #ffffff;
+    box-sizing: border-box;
+    width: 320px;
     position: absolute;
+    padding: 8px 10px;
     top: 10px;
     right: 10px;
     transform: translateY(-150%);
-    padding: 1rem;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     align-content: center;
     transition: all ease-in-out 250ms;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
   }
 
   .valid {
@@ -51,6 +61,7 @@ export const Doorhanger = ({ saveStatus }) => {
   return (
     <div className={doorhangerStyle}>
       <div className={cx('doorHanger', saveStatus, valid && 'valid')}>
+        <PocketLogo />
         <div className="saveBlock">{saveStatusCopy[saveStatus]}</div>
       </div>
     </div>
