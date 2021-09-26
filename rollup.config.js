@@ -22,8 +22,23 @@ export default {
     format: 'esm',
     chunkFileNames: path.join('chunks', '[name]-[hash].js'),
   },
+  onwarn: function onwarn(warning, warn) {
+    if (warning.code === 'FILE_NAME_CONFLICT') return // We are require to conflict due to manifest
+    warn(warning)
+  },
   plugins: [
-    chromeExtension(),
+    chromeExtension({ verbose: false }),
+    alias({
+      entries: {
+        actions: path.resolve(projectRootDir, 'src/actions.js'),
+        assets: path.resolve(projectRootDir, 'src/assets'),
+        common: path.resolve(projectRootDir, 'src/common'),
+        components: path.resolve(projectRootDir, 'src/components'),
+        connectors: path.resolve(projectRootDir, 'src/connectors'),
+        containers: path.resolve(projectRootDir, 'src/containers'),
+        pages: path.resolve(projectRootDir, 'src/pages'),
+      },
+    }),
     // Replace environment variables
     replace({
       preventAssignment: true,
@@ -34,7 +49,9 @@ export default {
       __consumerKey__: keys.chrome,
     }),
     resolve(),
-    commonjs(),
+    commonjs({
+      exclude: 'src/**',
+    }),
     linaria(),
     babel({
       // Do not transpile dependencies
@@ -51,17 +68,6 @@ export default {
         { src: 'src/assets/images/*', dest: 'build/assets/images' },
       ],
       hook: 'writeBundle',
-    }),
-    alias({
-      entries: {
-        actions: path.resolve(projectRootDir, 'src/actions.js'),
-        assets: path.resolve(projectRootDir, 'src/assets'),
-        common: path.resolve(projectRootDir, 'src/common'),
-        components: path.resolve(projectRootDir, 'src/components'),
-        connectors: path.resolve(projectRootDir, 'src/connectors'),
-        containers: path.resolve(projectRootDir, 'src/containers'),
-        pages: path.resolve(projectRootDir, 'src/pages'),
-      },
     }),
     // Outputs a zip file in ./releases
     isProduction && zip({ dir: 'releases' }),

@@ -20,7 +20,10 @@
         "*://*/*"
       ],
       "js": [
-        "pages/content.js"
+        "pages/injector/content.js"
+      ],
+      "css": [
+        "assets/pocket-save-extension.css"
       ]
     },
     {
