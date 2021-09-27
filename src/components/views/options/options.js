@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom'
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import {
   PocketLogo,
   PocketNewtab,
@@ -181,210 +181,187 @@ const OptionsFooter = styled.footer`
   text-align: center;
 `
 
-class OptionsApp extends Component {
-  state = {
-    sites_twitter: getBool(getSetting('sites_twitter')),
-    darkMode: getBool(getSetting('darkMode')),
-    access_token: getSetting('access_token'),
-    username: getSetting('username')
+const OptionsApp = () => {
+  const [sitesTwitter, setSitesTwitter] = useState(getBool(getSetting('sites_twitter')))
+  const [darkMode] = useState(getBool(getSetting('darkMode')))
+  const [accessToken] = useState(getSetting('access_token'))
+  const [userName] = useState(getSetting('username'))
+
+  const toggleTwitter = () => {
+    setSitesTwitter(!sitesTwitter)
+    const payload = { isEnabled: !sitesTwitter}
+    sendMessage({ type: TOGGLE_TWITTER, payload })
   }
 
-  userData = () => {
-    const { access_token, username } = this.state
-    return access_token && username ? this.loggedIn(username) : this.loggedOut()
-  }
+  const setShortcuts = () => openTabWithUrl(SET_SHORTCUTS)
+  const logoutAction = () => openTabWithUrl(LOGOUT_URL)
+  const loginAction = () => openTabWithUrl(AUTH_URL)
 
-  loggedIn = (username) => {
-    return (
-      <div>
-        {username} &nbsp; ({' '}
-        <OptionsButtonLink onClick={() => openTabWithUrl(LOGOUT_URL)}>
-          {localize('options_page', 'logout_link')}
-        </OptionsButtonLink>{' '}
-        )
-      </div>
-    )
-  }
+  return (
+    <OptionsContainer>
+      <OptionsTitle darkMode={darkMode}>
+        {PocketLogo({
+          width: '26px',
+          height: '26px',
+          marginRight: '10px',
+          marginTop: '3px',
+          verticalAlign: 'text-top'
+        })}
+        {localize('options_page', 'header')} -{' '}
+        {localize('options_page', 'save_to_pocket')}
+      </OptionsTitle>
 
-  loggedOut = () => {
-    return (
-      <OptionsButtonLink onClick={() => openTabWithUrl(AUTH_URL)}>
-        {localize('options_page', 'login_link')}
-      </OptionsButtonLink>
-    )
-  }
-
-  toggleTwitter = () => {
-    this.setState(
-      (state) => ({
-        sites_twitter: !state.sites_twitter
-      }),
-      () => {
-        sendMessage({
-          type: TOGGLE_TWITTER,
-          payload: { isEnabled: this.state.sites_twitter }
-        })
-      }
-    )
-  }
-
-  setShortcuts = () => openTabWithUrl(SET_SHORTCUTS)
-
-  render() {
-    const { sites_twitter, darkMode } = this.state
-
-    return (
-      <OptionsContainer>
-        <OptionsTitle darkMode={darkMode}>
-          {PocketLogo({
-            width: '26px',
-            height: '26px',
-            marginRight: '10px',
-            marginTop: '3px',
-            verticalAlign: 'text-top'
-          })}
-          {localize('options_page', 'header')} -{' '}
-          {localize('options_page', 'save_to_pocket')}
-        </OptionsTitle>
-
-        <OptionsSection>
-          <OptionsSectionContent>
-            <OptionsSectionTitle>
-              {localize('options_page', 'login_title')}
-            </OptionsSectionTitle>
-            <OptionsSectionMain>{this.userData()}</OptionsSectionMain>
-          </OptionsSectionContent>
-        </OptionsSection>
-
-        <OptionsSection>
-          <OptionsSectionContent>
-            <OptionsSectionTitle>
-              {localize('options_page', 'keyboard_shortcut_title')}
-            </OptionsSectionTitle>
-            <OptionsSectionMain>
-              <OptionsButtonLink onClick={this.setShortcuts}>
-                {localize('options_page', 'record_shortcut')}
+      <OptionsSection>
+        <OptionsSectionContent>
+          <OptionsSectionTitle>
+            {localize('options_page', 'login_title')}
+          </OptionsSectionTitle>
+          <OptionsSectionMain>
+            {(accessToken && userName) ? (
+              <div>
+                {userName} &nbsp; ({' '}
+                <OptionsButtonLink onClick={logoutAction}>
+                  {localize('options_page', 'logout_link')}
+                </OptionsButtonLink>{' '})
+              </div>
+            ) : (
+              <OptionsButtonLink onClick={loginAction}>
+                {localize('options_page', 'login_link')}
               </OptionsButtonLink>
-            </OptionsSectionMain>
-          </OptionsSectionContent>
-        </OptionsSection>
+            )}
+          </OptionsSectionMain>
+        </OptionsSectionContent>
+      </OptionsSection>
 
-        <OptionsSection>
-          <OptionsSectionContent>
-            <OptionsSectionTitle>
-              {localize('options_page', 'quick_save_services_title')}
-            </OptionsSectionTitle>
-            <OptionsSectionMain>
-              <OptionsSaveServicesList>
-                <li>
-                  <Toggle active={sites_twitter} action={this.toggleTwitter} />
-                  Twitter
-                </li>
-              </OptionsSaveServicesList>
-              <OptionsInfo>
-                {localize('options_page', 'services_info')}
-              </OptionsInfo>
-            </OptionsSectionMain>
-          </OptionsSectionContent>
-        </OptionsSection>
+      <OptionsSection>
+        <OptionsSectionContent>
+          <OptionsSectionTitle>
+            {localize('options_page', 'keyboard_shortcut_title')}
+          </OptionsSectionTitle>
+          <OptionsSectionMain>
+            <OptionsButtonLink onClick={setShortcuts}>
+              {localize('options_page', 'record_shortcut')}
+            </OptionsButtonLink>
+          </OptionsSectionMain>
+        </OptionsSectionContent>
+      </OptionsSection>
 
-        <OptionsSection>
-          <OptionsSectionContent>
-            <OptionsSectionTitle>
-              {localize('options_page', 'questions_pocket_title')}
-            </OptionsSectionTitle>
-            <OptionsSectionMain>
-              <OptionsQuestionsList>
-                <li>
-                  <a href="https://help.getpocket.com">
-                    {localize('options_page', 'search_support_link')}
-                  </a>
-                </li>
-                <li>
-                  <a href="https://getpocket.com/extension/support">
-                    {localize('options_page', 'send_us_an_email_link')}
-                  </a>
-                </li>
-                <li>
-                  <a href="https://twitter.com/intent/tweet?screen_name=pocketsupport&text=%23chrome">
-                    {localize('options_page', 'get_in_touch_on_twitter_link')}
-                  </a>
-                </li>
-              </OptionsQuestionsList>
-            </OptionsSectionMain>
-          </OptionsSectionContent>
-        </OptionsSection>
+      <OptionsSection>
+        <OptionsSectionContent>
+          <OptionsSectionTitle>
+            {localize('options_page', 'quick_save_services_title')}
+          </OptionsSectionTitle>
+          <OptionsSectionMain>
+            <OptionsSaveServicesList>
+              <li>
+                <Toggle active={sitesTwitter} action={toggleTwitter} />
+                Twitter
+              </li>
+            </OptionsSaveServicesList>
+            <OptionsInfo>
+              {localize('options_page', 'services_info')}
+            </OptionsInfo>
+          </OptionsSectionMain>
+        </OptionsSectionContent>
+      </OptionsSection>
 
-        <OptionsSection>
-          <OptionsSectionContentFull className="sectionContentFull">
-            <OptionsSectionTitle>
-              {localize('options_page', 'more_ways_to_save_title')}
-            </OptionsSectionTitle>
-            <OptionsSectionMain>
-              <OptionsContentFullBlock
-                href="https://chrome.google.com/webstore/detail/pocket-new-tab/mlnnopicjonfamklpcdfnbcomdlopmof?authuser=1"
-                rel="noopener noreferrer"
-                target="_blank">
-                {PocketNewtab({
-                  width: '48px',
-                  height: '48px',
-                  marginRight: 0
-                })}
-                <OptionsBlockCopy darkMode={darkMode}>
-                  Pocket New Tab
-                </OptionsBlockCopy>
-              </OptionsContentFullBlock>
-              <OptionsContentFullBlock
-                href="http://getpocket.com/android/"
-                rel="noopener noreferrer"
-                target="_blank">
-                {AndroidLogo({
-                  width: '48px',
-                  height: '48px',
-                  marginRight: 0
-                })}
-                <OptionsBlockCopy darkMode={darkMode}>Android</OptionsBlockCopy>
-              </OptionsContentFullBlock>
-              <OptionsContentFullBlock
-                href="http://getpocket.com/iphone/"
-                rel="noopener noreferrer"
-                target="_blank">
-                {IphoneIpad({
-                  width: '48px',
-                  height: '48px',
-                  marginRight: 0
-                })}
-                <OptionsBlockCopy darkMode={darkMode}>
-                  iPhone/Ipad
-                </OptionsBlockCopy>
-              </OptionsContentFullBlock>
-              <OptionsContentFullBlock
-                href="http://getpocket.com/mac/"
-                rel="noopener noreferrer"
-                target="_blank">
-                {Mac({
-                  width: '48px',
-                  height: '48px',
-                  marginRight: 0
-                })}
-                <OptionsBlockCopy darkMode={darkMode}>Mac</OptionsBlockCopy>
-              </OptionsContentFullBlock>
-            </OptionsSectionMain>
-          </OptionsSectionContentFull>
-        </OptionsSection>
+      <OptionsSection>
+        <OptionsSectionContent>
+          <OptionsSectionTitle>
+            {localize('options_page', 'questions_pocket_title')}
+          </OptionsSectionTitle>
+          <OptionsSectionMain>
+            <OptionsQuestionsList>
+              <li>
+                <a href="https://help.getpocket.com">
+                  {localize('options_page', 'search_support_link')}
+                </a>
+              </li>
+              <li>
+                <a href="https://getpocket.com/extension/support">
+                  {localize('options_page', 'send_us_an_email_link')}
+                </a>
+              </li>
+              <li>
+                <a href="https://twitter.com/intent/tweet?screen_name=pocketsupport&text=%23chrome">
+                  {localize('options_page', 'get_in_touch_on_twitter_link')}
+                </a>
+              </li>
+            </OptionsQuestionsList>
+          </OptionsSectionMain>
+        </OptionsSectionContent>
+      </OptionsSection>
 
-        <OptionsFooter>
-          &copy; Copyright {new Date().getFullYear()} Read It Later Inc.
-          <OptionsPrivacyLegal
-            href="https://getpocket.com/legal?src=extensions"
-            rel="noopener noreferrer"
-            target="_blank">
-            Legal &amp; Privacy
-          </OptionsPrivacyLegal>
-        </OptionsFooter>
-      </OptionsContainer>
-    )
-  }
+      <OptionsSection>
+        <OptionsSectionContentFull className="sectionContentFull">
+          <OptionsSectionTitle>
+            {localize('options_page', 'more_ways_to_save_title')}
+          </OptionsSectionTitle>
+          <OptionsSectionMain>
+            <OptionsContentFullBlock
+              href="https://chrome.google.com/webstore/detail/pocket-new-tab/mlnnopicjonfamklpcdfnbcomdlopmof?authuser=1"
+              rel="noopener noreferrer"
+              target="_blank">
+              {PocketNewtab({
+                width: '48px',
+                height: '48px',
+                marginRight: 0
+              })}
+              <OptionsBlockCopy darkMode={darkMode}>
+                Pocket New Tab
+              </OptionsBlockCopy>
+            </OptionsContentFullBlock>
+            <OptionsContentFullBlock
+              href="http://getpocket.com/android/"
+              rel="noopener noreferrer"
+              target="_blank">
+              {AndroidLogo({
+                width: '48px',
+                height: '48px',
+                marginRight: 0
+              })}
+              <OptionsBlockCopy darkMode={darkMode}>Android</OptionsBlockCopy>
+            </OptionsContentFullBlock>
+            <OptionsContentFullBlock
+              href="http://getpocket.com/iphone/"
+              rel="noopener noreferrer"
+              target="_blank">
+              {IphoneIpad({
+                width: '48px',
+                height: '48px',
+                marginRight: 0
+              })}
+              <OptionsBlockCopy darkMode={darkMode}>
+                iPhone/iPad
+              </OptionsBlockCopy>
+            </OptionsContentFullBlock>
+            <OptionsContentFullBlock
+              href="http://getpocket.com/mac/"
+              rel="noopener noreferrer"
+              target="_blank">
+              {Mac({
+                width: '48px',
+                height: '48px',
+                marginRight: 0
+              })}
+              <OptionsBlockCopy darkMode={darkMode}>Mac</OptionsBlockCopy>
+            </OptionsContentFullBlock>
+          </OptionsSectionMain>
+        </OptionsSectionContentFull>
+      </OptionsSection>
+
+      {/* NOTE: Add some localizations here */}
+      <OptionsFooter>
+        &copy; Copyright {new Date().getFullYear()} Read It Later Inc.
+        <OptionsPrivacyLegal
+          href="https://getpocket.com/legal?src=extensions"
+          rel="noopener noreferrer"
+          target="_blank">
+          Legal &amp; Privacy
+        </OptionsPrivacyLegal>
+      </OptionsFooter>
+    </OptionsContainer>
+  )
 }
 
 const root = document.getElementById('pocket-extension-anchor')
