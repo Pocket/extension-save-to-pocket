@@ -2,11 +2,11 @@ import { request } from '../_request/request'
 
 /* API CALLS - Should return promises
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-export function getOnSaveTags(saveObject) {
+export function getOnSaveTags(url) {
   return request({
     path: 'suggested_tags/',
     data: {
-      url: saveObject.url,
+      url,
       version: 2
     }
   }).then(response => response)

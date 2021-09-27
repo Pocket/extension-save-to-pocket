@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { storiesOf } from '@storybook/react'
-import Toolbar from './toolbar.main'
+import { Toolbar } from './toolbar.main'
 storiesOf('Views | Toolbar', module)
   .add('error', () => <Toolbar currentTab={{ status: 'error' }} />)
   .add('saving', () => <Toolbar currentTab={{ status: 'saving' }} />)

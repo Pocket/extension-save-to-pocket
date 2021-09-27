@@ -1,7 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Dropdown from 'modules/dropdown/dropdown'
-import Tagging from 'modules/tagging/tagging'
-import ToolbarError from './toolbar.error'
+import { Tagging } from 'modules/tagging/tagging'
+import { ToolbarError } from './toolbar.error'
 import * as Icon from 'elements/icons'
 import { localize } from 'common/_locales/locales'
 import styled from '@emotion/styled'
@@ -37,104 +37,102 @@ const ToolbarStatus = styled.span`
   padding: 3px 0;
 `
 
-function getStatus(type, status) {
-  if (status === 'saved') return localize('status', `${type}_${status}`)
-  return localize('status', status)
-}
+export const Toolbar = ({
+  remove,
+  archive,
+  currentTab,
+  openPocket,
+  logOut,
+  tabId,
+  setDropDownStatus,
+  setInputFocusState,
+  inputFocused,
+  storedTags,
+  tags,
+  activateTag,
+  deactivateTag,
+  deactivateTags,
+  removeTag,
+  removeTags,
+  addTag,
+  closePanel
+}) => {
+  const removeAction = () => remove()
+  const archiveAction = () => archive()
 
-class Toolbar extends Component {
-  remove = () => this.props.remove()
-  archive = () => this.props.archive()
-
-  get statusText() {
-    const currentTab = this.props.currentTab
+  const statusText = () => {
     const type = currentTab ? currentTab.type : 'page'
     const status = currentTab ? currentTab.status : 'idle'
-    return getStatus(type, status)
+
+    if (status === 'saved') return localize('status', `${type}_${status}`)
+    return localize('status', status)
   }
 
-  get listItems() {
-    const settings = {
-      copy: localize('actions', 'settings'),
-      // icon: Icon.Settings,
-      method: this.props.openOptions
-    }
-
-    const logOut = {
+  const listItems = [
+    {
+      copy: localize('actions', 'archive_page'),
+      icon: Icon.Archive,
+      method: archiveAction
+    },
+    {
+      copy: localize('actions', 'remove_page'),
+      icon: Icon.Remove,
+      method: removeAction
+    },
+    {
+      copy: localize('actions', 'open_pocket'),
+      method: openPocket,
+      divider: true
+    },
+    {
       copy: localize('actions', 'logout'),
-      // icon: Icon.Profile,
-      method: this.props.logOut
+      method: logOut
     }
+  ]
 
-    const lastItem = this.props.noSettings ? logOut : settings
+  const status = currentTab ? currentTab.status : 'idle'
+  const dropDownActive = currentTab
+    ? currentTab.dropDownActive
+    : false
 
-    return [
-      {
-        copy: localize('actions', 'archive_page'),
-        icon: Icon.Archive,
-        method: this.archive
-      },
-      {
-        copy: localize('actions', 'remove_page'),
-        icon: Icon.Remove,
-        method: this.remove
-      },
-      {
-        copy: localize('actions', 'open_pocket'),
-        // icon: Icon.OpenPocket,
-        method: this.props.openPocket,
-        divider: true
-      },
-      lastItem
-    ]
-  }
+  return (
+    <ToolbarWrapper>
+      {Icon.PocketLogo({
+        width: '22px',
+        height: '22px',
+        marginRight: '8px'
+      })}
+      <ToolbarStatus>{statusText()}</ToolbarStatus>
 
-  render() {
-    const currentTab = this.props.currentTab
-    const status = currentTab ? currentTab.status : 'idle'
-    const dropDownActive = this.props.currentTab
-      ? currentTab.dropDownActive
-      : false
+      {status === 'error' ? (
+        <ToolbarError />
+      ) : null}
 
-    return (
-      <ToolbarWrapper>
-        {Icon.PocketLogo({
-          width: '22px',
-          height: '22px',
-          marginRight: '8px'
-        })}
-        <ToolbarStatus>{this.statusText}</ToolbarStatus>
+      {(status !== 'removed' && status !== 'error') ? (
+        <Dropdown
+          tabId={tabId}
+          active={dropDownActive}
+          setStatus={setDropDownStatus}
+          list={listItems}
+        />
+      ) : null}
 
-        {status === 'error' && <ToolbarError />}
-
-        {status !== 'removed' && status !== 'error' && (
-          <Dropdown
-            tabId={this.props.tabId}
-            active={dropDownActive}
-            setStatus={this.props.setDropDownStatus}
-            list={this.listItems}
-          />
-        )}
-
-        {(status === 'saved' || status === 'saving') && (
-          <Tagging
-            tags={this.props.tags}
-            activateTag={this.props.activateTag}
-            deactivateTag={this.props.deactivateTag}
-            addTag={this.props.addTag}
-            deactivateTags={this.props.deactivateTags}
-            closePanel={this.props.closePanel}
-            removeTag={this.props.removeTag}
-            removeTags={this.props.removeTags}
-            tabId={this.props.tabId}
-            storedTags={this.props.storedTags}
-            inputFocused={this.props.inputFocused}
-            setInputFocusState={this.props.setInputFocusState}
-          />
-        )}
-      </ToolbarWrapper>
-    )
-  }
+      {(status === 'saved' || status === 'saving') ? (
+        <Tagging
+          tags={tags}
+          activateTag={activateTag}
+          deactivateTag={deactivateTag}
+          addTag={addTag}
+          deactivateTags={deactivateTags}
+          closePanel={closePanel}
+          removeTag={removeTag}
+          removeTags={removeTags}
+          tabId={tabId}
+          storedTags={storedTags}
+          inputFocused={inputFocused}
+          setInputFocusState={setInputFocusState}
+        />
+      ) : null}
+    </ToolbarWrapper>
+  )
 }
-
-export default Toolbar

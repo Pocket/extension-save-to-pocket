@@ -45,7 +45,7 @@ const doorhangerStyle = css`
  * Injected doorhanger to show on save
  * @param   {string} saveStatus  current status of the item operations
  */
-export const Doorhanger = ({ saveStatus }) => {
+export const Doorhanger = ({ saveStatus, storedTags, suggestedTags }) => {
   const saveStatusCopy = {
     idle: false,
     saving: 'Saving...',
