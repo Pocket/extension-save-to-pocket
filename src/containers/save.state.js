@@ -24,11 +24,9 @@ const initialState = {
 }
 
 // ACTIONS
-export const saveActions = {
-  archiveItem: payload => ({ type: ARCHIVE_ITEM, payload }),
-  removeItem: payload => ({ type: REMOVE_ITEM, payload }),
-  completeSave: () => ({ type: SAVE_TO_POCKET_COMPLETE })
-}
+export const archiveItem = (payload) => ({ type: ARCHIVE_ITEM, payload })
+export const removeItem = (payload) => ({ type: REMOVE_ITEM, payload })
+export const completeSave = () => ({ type: SAVE_TO_POCKET_COMPLETE })
 
 // REDUCER
 export const saveReducers = (state = initialState, action) => {
@@ -91,8 +89,8 @@ export const saveReducers = (state = initialState, action) => {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 export const saveSagas = [
   takeLatest(SAVE_TO_POCKET_SUCCESS, saveToPocketSuccess),
-  takeLatest(ARCHIVE_ITEM, archiveItem),
-  takeLatest(REMOVE_ITEM, removeItem)
+  takeLatest(ARCHIVE_ITEM, archiveItemSaga),
+  takeLatest(REMOVE_ITEM, removeItemSaga)
 ]
 
 /* SAGAS :: RESPONDERS
@@ -104,12 +102,12 @@ function* saveToPocketSuccess(action) {
   yield put({ type: SAVE_TO_POCKET_UPDATE, payload })
 }
 
-function* archiveItem(action) {
+function* archiveItemSaga(action) {
   const { payload } = action
   yield put({ type: ARCHIVE_ITEM_REQUEST, payload })
 }
 
-function* removeItem(action) {
+function* removeItemSaga(action) {
   const { payload } = action
   yield put({ type: REMOVE_ITEM_REQUEST, payload })
 }
