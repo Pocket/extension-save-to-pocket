@@ -28,23 +28,12 @@ const props = {
   activateTag: () => {},
   deactivateTag: () => {},
   inputFocused: () => {},
-  setInputFocusState: () => {},
-  currentRecs: () => {},
-  saveRecommendation: () => {},
-  openRecommendation: () => {},
-  spocClick: () => {},
-  spocImpression: () => {},
-  spocView: () => {},
-  spocRemove: () => {},
-  survey: () => {},
-  surveyRespond: () => {},
-  surveyCancel: () => {}
+  setInputFocusState: () => {}
 }
 
 storiesOf('Views | DoorHanger', module).add('show', () => (
   <DoorHanger
     isSaveActive={true}
-    showRecs={props.showRecs}
     onHover={props.onHover}
     offHover={props.offHover}
     tab_id={props.tab_id}
@@ -66,15 +55,5 @@ storiesOf('Views | DoorHanger', module).add('show', () => (
     setup={props.setup}
     inputFocused={props.state.inputFocused}
     setInputFocusState={props.setInputFocusState}
-    currentRecs={props.currentRecs}
-    saveRecommendation={props.saveRecommendation}
-    openRecommendation={props.openRecommendation}
-    spocImpression={props.spocImpression}
-    spocView={props.spocView}
-    spocClick={props.spocClick}
-    spocRemove={props.spocRemove}
-    survey={props.survey}
-    surveyRespond={props.surveyRespond}
-    surveyCancel={props.surveyCancel}
   />
 ))
