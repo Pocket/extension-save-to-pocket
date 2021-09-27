@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { localize } from 'common/_locales/locales'
 import styled from '@emotion/styled'
 import { COLORS } from 'elements/colors/colors'
@@ -13,14 +13,10 @@ const ToolbarErrorWrapper = styled.div`
   margin-top: 10px;
   padding: 10px;
 `
-class ToolbarError extends Component {
-  render() {
-    return (
-      <ToolbarErrorWrapper>
-        {localize('error', 'page_not_saved_detail')}
-      </ToolbarErrorWrapper>
-    )
-  }
+export const ToolbarError = () => {
+  return (
+    <ToolbarErrorWrapper>
+      {localize('error', 'page_not_saved_detail')}
+    </ToolbarErrorWrapper>
+  )
 }
-
-export default ToolbarError
