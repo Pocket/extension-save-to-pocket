@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Doorhanger } from 'components/doorhanger/doorhanger'
 
 import { SAVE_TO_POCKET_REQUEST } from 'actions'
@@ -10,8 +10,8 @@ import { REMOVE_ITEM_SUCCESS } from 'actions'
 import { REMOVE_ITEM_FAILURE } from 'actions'
 
 export const App = () => {
+  const appTarget = useRef(null)
   const [saveStatus, setSaveStatus] = useState('idle')
-
   /* Handle incoming messages
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
   const handleMessages = (event) => {
@@ -63,5 +63,21 @@ export const App = () => {
     }
   }, [])
 
-  return <Doorhanger saveStatus={saveStatus} />
+  const handleDocumentClick = (e) => {
+    if (appTarget?.current?.contains(e.target)) return
+    setSaveStatus('idle')
+  }
+
+  useEffect(() => {
+    document.addEventListener('click', handleDocumentClick)
+    return () => {
+      document.removeEventListener('click', handleDocumentClick)
+    }
+  }, [])
+
+  return (
+    <div ref={appTarget}>
+      <Doorhanger saveStatus={saveStatus} />
+    </div>
+  )
 }
