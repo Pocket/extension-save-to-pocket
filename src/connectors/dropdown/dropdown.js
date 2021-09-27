@@ -46,12 +46,7 @@ const DropdownWrapper = styled.div`
     padding: 0 0 0 5px;
   }
 `
-Dropdown.propTypes = {
-  active: PropTypes.bool,
-  tabId: PropTypes.string,
-  list: PropTypes.array,
-  setStatus: PropTypes.func
-}
+
 export default function Dropdown({ active, tabId, list, setStatus }) {
   let hoverTimer
   const onHover = () => {
@@ -66,6 +61,7 @@ export default function Dropdown({ active, tabId, list, setStatus }) {
       setStatus(tabId, false)
     }, 250)
   }
+
   return (
     <DropdownWrapper active={active}>
       <button onMouseOver={onHover} onMouseOut={offHover}>
@@ -80,4 +76,11 @@ export default function Dropdown({ active, tabId, list, setStatus }) {
       )}
     </DropdownWrapper>
   )
+}
+
+Dropdown.propTypes = {
+  active: PropTypes.bool,
+  tabId: PropTypes.string,
+  list: PropTypes.array,
+  setStatus: PropTypes.func
 }

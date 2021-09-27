@@ -5,13 +5,8 @@ import { archiveItem } from './saving/archive'
 import { removeItem } from './saving/remove'
 import { authorize } from './auth/authorize'
 import { getGuid } from './auth/guid'
-import {
-  sendAnalytics,
-  sendSpocAnalytics,
-  sendSurveyAnalytics,
-} from './analytics/analytics'
+import { sendAnalytics } from './analytics/analytics'
 import { getFeatures } from './features/features'
-import { sendSurvey } from './survey/survey'
 
 export {
   authorize,
@@ -22,10 +17,7 @@ export {
   removeItem,
   getGuid,
   sendAnalytics,
-  sendSpocAnalytics,
-  sendSurveyAnalytics,
   syncItemTags,
   fetchStoredTags,
-  getFeatures,
-  sendSurvey,
+  getFeatures
 }

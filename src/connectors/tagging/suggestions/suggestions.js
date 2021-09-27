@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { COLORS } from 'elements/colors/colors'
@@ -45,38 +45,31 @@ const SuggestionItem = styled.li`
     color: ${$white};
   }
 `
-export default class Suggestions extends Component {
-  prevent = event => {
+
+export const Suggestions = ({ addTag, suggestions, tags }) => {
+  const prevent = event => {
     event.preventDefault()
   }
 
-  get usedTags() {
-    return this.props.tags.used || []
-  }
-  get listItems() {
-    return this.props.suggestions
-      .filter(item => !this.usedTags.includes(item))
-      .map((suggestion, index) => {
-        return (
-          <SuggestionItem
-            key={index}
-            onMouseDown={event => this.prevent(event)}
-            onClick={() => this.props.addTag(suggestion)}>
-            {suggestion}
-          </SuggestionItem>
-        )
-      })
+  const listItems = () => {
+    const tagFilter = tags.used || []
+    return suggestions
+      .filter(item => !tagFilter.includes(item))
+      .map((suggestion, index) => (
+        <SuggestionItem
+          key={index}
+          onMouseDown={prevent}
+          onClick={() => addTag(suggestion)}>
+          {suggestion}
+        </SuggestionItem>
+      ))
   }
 
-  render() {
-    return (
-      <SuggestionsWrapper>
-        <div>
-          <SuggestionsList>{this.listItems}</SuggestionsList>
-        </div>
-      </SuggestionsWrapper>
-    )
-  }
+  return (
+    <SuggestionsWrapper>
+      <SuggestionsList>{listItems()}</SuggestionsList>
+    </SuggestionsWrapper>
+  )
 }
 
 Suggestions.propTypes = {

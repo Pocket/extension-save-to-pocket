@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Doorhanger } from 'components/doorhanger/doorhanger'
+import { getSetting } from 'common/interface'
 
 import { SAVE_TO_POCKET_REQUEST } from 'actions'
 import { SAVE_TO_POCKET_SUCCESS } from 'actions'
@@ -8,10 +9,15 @@ import { ARCHIVE_ITEM_SUCCESS } from 'actions'
 import { ARCHIVE_ITEM_FAILURE } from 'actions'
 import { REMOVE_ITEM_SUCCESS } from 'actions'
 import { REMOVE_ITEM_FAILURE } from 'actions'
+import { UPDATE_STORED_TAGS } from 'actions'
+import { SUGGESTED_TAGS_SUCCESS } from 'actions'
 
 export const App = () => {
   const appTarget = useRef(null)
   const [saveStatus, setSaveStatus] = useState('idle')
+  const [storedTags, setStoredTags] = useState(getSetting('tags_stored'))
+  const [suggestedTags, setSuggestedTags] = useState([])
+
   /* Handle incoming messages
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
   const handleMessages = (event) => {
@@ -49,6 +55,16 @@ export const App = () => {
         return setSaveStatus('remove_failed')
       }
 
+      case UPDATE_STORED_TAGS: {
+        const { tags } = payload
+        return setStoredTags(tags)
+      }
+
+      case SUGGESTED_TAGS_SUCCESS: {
+        const { suggestedTags } = payload
+        return setSuggestedTags(suggestedTags)
+      }
+
       default: {
         return
       }
@@ -77,7 +93,11 @@ export const App = () => {
 
   return (
     <div ref={appTarget}>
-      <Doorhanger saveStatus={saveStatus} />
+      <Doorhanger
+        saveStatus={saveStatus}
+        storedTags={storedTags}
+        suggestedTags={suggestedTags}
+      />
     </div>
   )
 }

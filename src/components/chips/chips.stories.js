@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { storiesOf } from '@storybook/react'
-import Chips from './chips'
+import { Chips } from './chips'
 storiesOf('Elements | Chips', module)
   .add('default', () => (
     <Chips

@@ -24,17 +24,6 @@
     "getting_tags": "Getting Tags",
     "saving_tags": "Saving Tags"
   },
-  "recommendations": {
-    "explore": "Explore Pocket's recommendations",
-    "loading": "Loading recommendations",
-    "more_on": "More on",
-    "more_stories_detail": "Want to find more great stories?",
-    "people_also_saved": "People also saved: ",
-    "rec_saved": "Recommendation Saved",
-    "save_to_pocket": "Save To Pocket",
-    "saved": "Saved",
-    "saving": "Saving"
-  },
   "options_page": {
     "get_in_touch_on_twitter_link": "get in touch on Twitter",
     "header": "OPTIONS",
@@ -47,8 +36,6 @@
     "more_ways_to_save_title": "More ways to use Pocket:",
     "questions_pocket_title": "Questions about Pocket?",
     "quick_save_services_title": "Quick save services:",
-    "recommendations_detail": "When you save a page, see recommended stories from Pocket based on similar topics.",
-    "recommendations_title": "Recommendations on Save",
     "record_shortcut": "Record a new shortcut",
     "reset_to_default": "Reset to default",
     "save_to_pocket": "Save To Pocket",

@@ -4,8 +4,8 @@ import { storiesOf } from '@storybook/react'
 import TagInput from './taginput'
 
 storiesOf('Modules | Tagging', module).add('input', () => (
-  <Downshift
-    render={({ getInputProps }) => (
+  <Downshift>
+    {({ getInputProps }) => (
       <div style={{ position: 'relative' }}>
         <TagInput
           setBlur={() => {}}
@@ -23,11 +23,11 @@ storiesOf('Modules | Tagging', module).add('input', () => (
         />
       </div>
     )}
-  />
+  </Downshift>
 ))
 storiesOf('Modules | Tagging', module).add('limit exceeded', () => (
-  <Downshift
-    render={({ getInputProps }) => (
+  <Downshift>
+    {({ getInputProps }) => (
       <div style={{ position: 'relative' }}>
         <TagInput
           error={true}
@@ -46,5 +46,5 @@ storiesOf('Modules | Tagging', module).add('limit exceeded', () => (
         />
       </div>
     )}
-  />
+  </Downshift>
 ))

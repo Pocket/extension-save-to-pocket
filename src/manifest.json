@@ -14,6 +14,7 @@
   "background": {
     "service_worker": "pages/background/index.js"
   },
+  "options_page": "pages/options/options.html",
   "content_scripts": [
     {
       "matches": [

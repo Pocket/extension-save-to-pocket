@@ -1,44 +1,37 @@
-import React, { Component } from 'react'
+import React, { useState, useRef } from 'react'
 
-export const withAutoHider = WrappedComponent => {
-  class AutoHiderHOC extends Component {
-    initialDelay = 5000
-    delay = 2500
-    state = {
-      hasTimedOut: false
-    }
+export const withAutoHider = (WrappedComponent) => ({ ...props }) => {
+  const [hasTimedOut, setHasTimedOut] = useState(false)
+  const initialDelay = 5000
+  const delay = 2500
+  let timer = useRef(null)
 
-    beginTiming = () => {
-      clearTimeout(this.timer)
-      this.timer = setTimeout(this.onTimeout, this.initialDelay)
-    }
-
-    startTimer = () => {
-      clearTimeout(this.timer)
-      this.timer = setTimeout(this.onTimeout, this.delay)
-    }
-
-    resetTimer = () => {
-      clearTimeout(this.timer)
-      this.setState({ hasTimedOut: false })
-    }
-
-    onTimeout = () => {
-      this.setState({ hasTimedOut: true })
-    }
-
-    render() {
-      return (
-        <WrappedComponent
-          {...this.props}
-          beginTiming={this.beginTiming}
-          startTimer={this.startTimer}
-          resetTimer={this.resetTimer}
-          hasTimedOut={this.state.hasTimedOut}
-        />
-      )
-    }
+  const beginTiming = () => {
+    clearTimeout(timer.current)
+    timer.current = setTimeout(onTimeout, initialDelay)
   }
 
-  return AutoHiderHOC
+  const startTimer = () => {
+    clearTimeout(timer.current)
+    timer.current = setTimeout(onTimeout, delay)
+  }
+
+  const resetTimer = () => {
+    clearTimeout(timer.current)
+    setHasTimedOut(false)
+  }
+
+  const onTimeout = () => {
+    setHasTimedOut(true)
+  }
+
+  return (
+    <WrappedComponent
+      {...props}
+      beginTiming={beginTiming}
+      startTimer={startTimer}
+      resetTimer={resetTimer}
+      hasTimedOut={hasTimedOut}
+    />
+  )
 }
