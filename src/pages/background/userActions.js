@@ -27,9 +27,9 @@ import { TAG_SYNC_REQUEST } from 'actions'
 import { TAG_SYNC_SUCCESS } from 'actions'
 import { TAG_SYNC_FAILURE } from 'actions'
 
-import { ARCHIVE_ITEM_REQUEST } from 'actions'
-import { ARCHIVE_ITEM_SUCCESS } from 'actions'
-import { ARCHIVE_ITEM_FAILURE } from 'actions'
+// import { ARCHIVE_ITEM_REQUEST } from 'actions'
+// import { ARCHIVE_ITEM_SUCCESS } from 'actions'
+// import { ARCHIVE_ITEM_FAILURE } from 'actions'
 
 import { REMOVE_ITEM_REQUEST } from 'actions'
 import { REMOVE_ITEM_SUCCESS } from 'actions'
