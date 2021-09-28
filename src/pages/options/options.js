@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { css, cx } from 'linaria'
 import Toggle from '../../components/toggle/toggle'
 import { getBool } from 'common/utilities'
@@ -183,10 +183,17 @@ const optionsFooter = css`
 `
 
 const OptionsApp = () => {
-  const [sitesTwitter, setSitesTwitter] = useState(getBool(getSetting('sites_twitter')))
-  const [darkMode] = useState(getBool(getSetting('darkMode')))
-  // const [accessToken] = useState(getSetting('access_token'))
-  // const [userName] = useState(getSetting('username'))
+  const [sitesTwitter, setSitesTwitter] = useState()
+  const [darkMode, setDarkMode] = useState()
+  const [accessToken, setAccessToken] = useState()
+  const [userName, setUserName] = useState()
+
+  useEffect( async ()=>{
+    setSitesTwitter(getBool(await getSetting("sites_twitter")))
+    setDarkMode(getBool(await getSetting("dark_mode")))
+    setAccessToken(await getSetting("access_token"))
+    setUserName(await getSetting("username"))
+  })
 
   const toggleTwitter = () => {
     setSitesTwitter(!sitesTwitter)
@@ -211,8 +218,7 @@ const OptionsApp = () => {
             {localize('options_page', 'login_title')}
           </div>
           <div className={cx(optionsSectionMain, darkMode ? 'darkMode' : null)}>
-            TODO: fix accessToken & userName stuff here
-            {/* {(accessToken && userName) ? (
+            {(accessToken && userName) ? (
               <div>
                 {userName} &nbsp; ({' '}
                 <button className={optionsButtonLink} onClick={logoutAction}>
@@ -223,7 +229,7 @@ const OptionsApp = () => {
               <button className={optionsButtonLink} onClick={loginAction}>
                 {localize('options_page', 'login_link')}
               </button>
-            )} */}
+            )}
           </div>
         </div>
       </div>
