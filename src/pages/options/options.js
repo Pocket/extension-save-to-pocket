@@ -189,10 +189,10 @@ const OptionsApp = () => {
   const [userName, setUserName] = useState()
 
   useEffect( async ()=>{
-    setSitesTwitter(getBool(await getSetting("sites_twitter")))
-    setDarkMode(getBool(await getSetting("dark_mode")))
-    setAccessToken(await getSetting("access_token"))
-    setUserName(await getSetting("username"))
+    setSitesTwitter(getBool(await getSetting('sites_twitter')))
+    setDarkMode(getBool(await getSetting('dark_mode')))
+    setAccessToken(await getSetting('access_token'))
+    setUserName(await getSetting('username'))
   })
 
   const toggleTwitter = () => {
@@ -274,17 +274,17 @@ const OptionsApp = () => {
           <div className={cx(optionsSectionMain, darkMode ? 'darkMode' : null)}>
             <ul className={optionsQuestionsList}>
               <li>
-                <a href="https://help.getpocket.com">
+                <a href='https://help.getpocket.com'>
                   {localize('options_page', 'search_support_link')}
                 </a>
               </li>
               <li>
-                <a href="https://getpocket.com/extension/support">
+                <a href='https://getpocket.com/extension/support'>
                   {localize('options_page', 'send_us_an_email_link')}
                 </a>
               </li>
               <li>
-                <a href="https://twitter.com/intent/tweet?screen_name=pocketsupport&text=%23chrome">
+                <a href='https://twitter.com/intent/tweet?screen_name=pocketsupport&text=%23chrome'>
                   {localize('options_page', 'get_in_touch_on_twitter_link')}
                 </a>
               </li>
@@ -301,36 +301,36 @@ const OptionsApp = () => {
           <div className={cx(optionsSectionMain, darkMode ? 'darkMode' : null)}>
             <a
               className={optionsContentFullBlock}
-              href="https://chrome.google.com/webstore/detail/pocket-new-tab/mlnnopicjonfamklpcdfnbcomdlopmof?authuser=1"
-              rel="noopener noreferrer"
-              target="_blank">
+              href='https://chrome.google.com/webstore/detail/pocket-new-tab/mlnnopicjonfamklpcdfnbcomdlopmof?authuser=1'
+              rel='noopener noreferrer'
+              target='_blank'>
               <div className={optionsBlockCopy}>
                 Pocket New Tab
               </div>
             </a>
             <a
               className={optionsContentFullBlock}
-              href="http://getpocket.com/android/"
-              rel="noopener noreferrer"
-              target="_blank">
+              href='http://getpocket.com/android/'
+              rel='noopener noreferrer'
+              target='_blank'>
               <div className={optionsBlockCopy}>
                 Android
               </div>
             </a>
             <a
               className={optionsContentFullBlock}
-              href="http://getpocket.com/iphone/"
-              rel="noopener noreferrer"
-              target="_blank">
+              href='http://getpocket.com/iphone/'
+              rel='noopener noreferrer'
+              target='_blank'>
               <div className={optionsBlockCopy}>
                 iPhone/iPad
               </div>
             </a>
             <a
               className={optionsContentFullBlock}
-              href="http://getpocket.com/mac/"
-              rel="noopener noreferrer"
-              target="_blank">
+              href='http://getpocket.com/mac/'
+              rel='noopener noreferrer'
+              target='_blank'>
               <div className={optionsBlockCopy}>
                 Mac
               </div>
@@ -344,9 +344,9 @@ const OptionsApp = () => {
         &copy; Copyright {new Date().getFullYear()} Read It Later Inc.
         <a
           className={optionsPrivacyLegal}
-          href="https://getpocket.com/legal?src=extensions"
-          rel="noopener noreferrer"
-          target="_blank">
+          href='https://getpocket.com/legal?src=extensions'
+          rel='noopener noreferrer'
+          target='_blank'>
           Legal &amp; Privacy
         </a>
       </footer>
