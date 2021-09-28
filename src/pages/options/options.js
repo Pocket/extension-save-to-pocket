@@ -1,22 +1,12 @@
 import ReactDOM from 'react-dom'
 import React, { useState } from 'react'
 import { css, cx } from 'linaria'
-import {
-  PocketLogo,
-  PocketNewtab,
-  AndroidLogo,
-  IphoneIpad,
-  Mac
-} from 'elements/icons'
-import Toggle from 'elements/toggle/toggle'
+import Toggle from '../../components/toggle/toggle'
 import { getBool } from 'common/utilities'
 import { openTabWithUrl } from 'common/interface'
 import { localize } from 'common/_locales/locales'
 import { AUTH_URL, LOGOUT_URL, SET_SHORTCUTS } from 'common/constants'
-import styled from '@emotion/styled'
-import { COLORS } from 'components/elements/colors/colors'
-import { TYPOGRAPHY } from 'common/styles/variables'
-import { mixin_pocketButton } from 'common/styles/components'
+import { COLORS } from '../../components/colors/colors'
 import { getSetting } from 'common/interface'
 import { sendMessage } from 'common/interface'
 import { TOGGLE_TWITTER } from 'actions'
@@ -31,10 +21,8 @@ const {
   $coal,
   $emerald
 } = COLORS
-const { $fontstackDefault } = TYPOGRAPHY
 
-const OptionsButtonLink = styled.button`
-  ${mixin_pocketButton}
+const optionsButtonLink = css`
   color: ${$coal};
   text-decoration: underline;
 
@@ -42,10 +30,9 @@ const OptionsButtonLink = styled.button`
     color: ${$emerald};
   }
 `
-const OptionsContainer = styled.div`
+const optionsContainer = css`
   box-sizing: border-box;
   display: inline-block;
-  font-family: ${$fontstackDefault};
   margin-bottom: 80px;
   padding: 0 30px;
   width: 700px;
@@ -54,15 +41,19 @@ const OptionsContainer = styled.div`
     width: 100%;
   }
 `
-const OptionsTitle = styled.h1`
-  color: ${(props) => (props.darkMode ? $gray : $pitch)};
+const optionsTitle = css`
+  color: ${$pitch};
   font-size: 28px;
   font-weight: 300;
   margin: 70px 0 0;
   padding: 0 0 20px;
   text-align: left;
+
+  &.darkMode {
+    color: ${$gray};
+  }
 `
-const OptionsSection = styled.div`
+const optionsSection = css`
   align-items: center;
   border-top: 1px solid ${$snow};
   display: flex;
@@ -79,8 +70,8 @@ const OptionsSection = styled.div`
     flex-direction: column;
   }
 `
-const OptionsSectionTitle = styled.div`
-  color: ${(props) => (props.darkMode ? $gray : $darksmoke)};
+const optionsSectionTitle = css`
+  color: $darksmoke;
   display: block;
   font-size: 14px;
   font-weight: 600;
@@ -93,15 +84,19 @@ const OptionsSectionTitle = styled.div`
     margin-bottom: 20px;
     width: 100%;
   }
+
+  &.darkMode {
+    color: ${$gray};
+  }
 `
-const OptionsSectionContent = styled.div`
+const optionsSectionContent = css`
   display: flex;
 `
-const OptionsSectionContentFull = styled.div`
+const optionsSectionContentFull = css`
   display: block;
   width: 100%;
 `
-const OptionsContentFullBlock = styled.a`
+const optionsContentFullBlock = css`
   color: ${$darksmoke};
   display: block;
   margin: 20px 0 10px;
@@ -111,7 +106,7 @@ const OptionsContentFullBlock = styled.a`
     color: ${$teal};
   }
 `
-const OptionsPrivacyLegal = styled.a`
+const optionsPrivacyLegal = css`
   color: ${$darksmoke};
   display: block;
   margin: 10px 0 0;
@@ -120,31 +115,36 @@ const OptionsPrivacyLegal = styled.a`
     color: ${$teal};
   }
 `
-const OptionsSectionMain = styled.div`
-  color: ${(props) => (props.darkMode ? $gray : $darksmoke)};
+const optionsSectionMain = css`
+  color: ${$darksmoke};
   display: block;
   font-size: 16px;
   width: 370px;
+
+  &.darkMode {
+    color: ${$gray};
+  }
 
   .sectionContentFull & {
     display: flex;
     justify-content: space-around;
     width: 100%;
   }
+
   @media (min-width: 320px) and (max-width: 767px) {
     width: 100%;
   }
 `
-const OptionsBlockCopy = styled.div`
+const optionsBlockCopy = css`
   display: block;
   font-weight: 600;
   margin-top: 15px;
 `
-const OptionsInfo = styled.div`
+const optionsInfo = css`
   font-size: 0.8em;
   margin-top: 10px;
 `
-const OptionsSaveServicesList = styled.ul`
+const optionsSaveServicesList = css`
   list-style: none;
   margin: 0;
   padding: 0;
@@ -157,7 +157,7 @@ const OptionsSaveServicesList = styled.ul`
     }
   }
 `
-const OptionsQuestionsList = styled.ul`
+const optionsQuestionsList = css`
   line-height: 1.5em;
   list-style-type: none;
   margin: 0;
@@ -173,7 +173,7 @@ const OptionsQuestionsList = styled.ul`
     }
   }
 `
-const OptionsFooter = styled.footer`
+const optionsFooter = css`
   color: ${$darksmoke};
   display: block;
   font-size: 14px;
@@ -185,8 +185,8 @@ const OptionsFooter = styled.footer`
 const OptionsApp = () => {
   const [sitesTwitter, setSitesTwitter] = useState(getBool(getSetting('sites_twitter')))
   const [darkMode] = useState(getBool(getSetting('darkMode')))
-  const [accessToken] = useState(getSetting('access_token'))
-  const [userName] = useState(getSetting('username'))
+  // const [accessToken] = useState(getSetting('access_token'))
+  // const [userName] = useState(getSetting('username'))
 
   const toggleTwitter = () => {
     setSitesTwitter(!sitesTwitter)
@@ -199,80 +199,74 @@ const OptionsApp = () => {
   const loginAction = () => openTabWithUrl(AUTH_URL)
 
   return (
-    <OptionsContainer>
-      <OptionsTitle darkMode={darkMode}>
-        {PocketLogo({
-          width: '26px',
-          height: '26px',
-          marginRight: '10px',
-          marginTop: '3px',
-          verticalAlign: 'text-top'
-        })}
+    <div className={optionsContainer}>
+      <h1 className={cx(optionsTitle, darkMode ? 'darkMode' : null)}>
         {localize('options_page', 'header')} -{' '}
         {localize('options_page', 'save_to_pocket')}
-      </OptionsTitle>
+      </h1>
 
-      <OptionsSection>
-        <OptionsSectionContent>
-          <OptionsSectionTitle>
+      <div className={optionsSection}>
+        <div className={optionsSectionContent}>
+          <div className={cx(optionsSectionTitle, darkMode ? 'darkMode' : null)}>
             {localize('options_page', 'login_title')}
-          </OptionsSectionTitle>
-          <OptionsSectionMain>
-            {(accessToken && userName) ? (
+          </div>
+          <div className={cx(optionsSectionMain, darkMode ? 'darkMode' : null)}>
+            TODO: fix accessToken & userName stuff here
+            {/* {(accessToken && userName) ? (
               <div>
                 {userName} &nbsp; ({' '}
-                <OptionsButtonLink onClick={logoutAction}>
+                <button className={optionsButtonLink} onClick={logoutAction}>
                   {localize('options_page', 'logout_link')}
-                </OptionsButtonLink>{' '})
+                </button>{' '})
               </div>
             ) : (
-              <OptionsButtonLink onClick={loginAction}>
+              <button className={optionsButtonLink} onClick={loginAction}>
                 {localize('options_page', 'login_link')}
-              </OptionsButtonLink>
-            )}
-          </OptionsSectionMain>
-        </OptionsSectionContent>
-      </OptionsSection>
+              </button>
+            )} */}
+          </div>
+        </div>
+      </div>
 
-      <OptionsSection>
-        <OptionsSectionContent>
-          <OptionsSectionTitle>
+      <div className={optionsSection}>
+        <div className={optionsSectionContent}>
+          <div className={cx(optionsSectionTitle, darkMode ? 'darkMode' : null)}>
             {localize('options_page', 'keyboard_shortcut_title')}
-          </OptionsSectionTitle>
-          <OptionsSectionMain>
-            <OptionsButtonLink onClick={setShortcuts}>
+          </div>
+          <div className={cx(optionsSectionMain, darkMode ? 'darkMode' : null)}>
+            <button className={optionsButtonLink} onClick={setShortcuts}>
               {localize('options_page', 'record_shortcut')}
-            </OptionsButtonLink>
-          </OptionsSectionMain>
-        </OptionsSectionContent>
-      </OptionsSection>
+            </button>
+          </div>
+        </div>
+      </div>
 
-      <OptionsSection>
-        <OptionsSectionContent>
-          <OptionsSectionTitle>
+      <div className={optionsSection}>
+        <div className={optionsSectionContent}>
+          <div className={cx(optionsSectionTitle, darkMode ? 'darkMode' : null)}>
             {localize('options_page', 'quick_save_services_title')}
-          </OptionsSectionTitle>
-          <OptionsSectionMain>
-            <OptionsSaveServicesList>
+          </div>
+          <div className={cx(optionsSectionMain, darkMode ? 'darkMode' : null)}>
+            <ul className={optionsSaveServicesList}>
               <li>
                 <Toggle active={sitesTwitter} action={toggleTwitter} />
-                Twitter
+                Toggle Twitter
               </li>
-            </OptionsSaveServicesList>
-            <OptionsInfo>
+            </ul>
+            <div className={optionsInfo}>
               {localize('options_page', 'services_info')}
-            </OptionsInfo>
-          </OptionsSectionMain>
-        </OptionsSectionContent>
-      </OptionsSection>
+            </div>
+          </div>
+        </div>
+      </div>
 
-      <OptionsSection>
-        <OptionsSectionContent>
-          <OptionsSectionTitle>
+      <div className={optionsSection}>
+        <div className={optionsSectionContent}>
+          <div className={cx(optionsSectionTitle, darkMode ? 'darkMode' : null)}>
             {localize('options_page', 'questions_pocket_title')}
-          </OptionsSectionTitle>
-          <OptionsSectionMain>
-            <OptionsQuestionsList>
+          </div>
+          <div className={cx(optionsSectionMain, darkMode ? 'darkMode' : null)}>
+            <ul className={optionsQuestionsList}>
               <li>
                 <a href="https://help.getpocket.com">
                   {localize('options_page', 'search_support_link')}
@@ -288,80 +282,69 @@ const OptionsApp = () => {
                   {localize('options_page', 'get_in_touch_on_twitter_link')}
                 </a>
               </li>
-            </OptionsQuestionsList>
-          </OptionsSectionMain>
-        </OptionsSectionContent>
-      </OptionsSection>
+            </ul>
+          </div>
+        </div>
+      </div>
 
-      <OptionsSection>
-        <OptionsSectionContentFull className="sectionContentFull">
-          <OptionsSectionTitle>
+      <div className={optionsSection}>
+        <div className={cx(optionsSectionContentFull, '.sectionContentFull')}>
+          <div className={cx(optionsSectionTitle, darkMode ? 'darkMode' : null)}>
             {localize('options_page', 'more_ways_to_save_title')}
-          </OptionsSectionTitle>
-          <OptionsSectionMain>
-            <OptionsContentFullBlock
+          </div>
+          <div className={cx(optionsSectionMain, darkMode ? 'darkMode' : null)}>
+            <a
+              className={optionsContentFullBlock}
               href="https://chrome.google.com/webstore/detail/pocket-new-tab/mlnnopicjonfamklpcdfnbcomdlopmof?authuser=1"
               rel="noopener noreferrer"
               target="_blank">
-              {PocketNewtab({
-                width: '48px',
-                height: '48px',
-                marginRight: 0
-              })}
-              <OptionsBlockCopy darkMode={darkMode}>
+              <div className={optionsBlockCopy}>
                 Pocket New Tab
-              </OptionsBlockCopy>
-            </OptionsContentFullBlock>
-            <OptionsContentFullBlock
+              </div>
+            </a>
+            <a
+              className={optionsContentFullBlock}
               href="http://getpocket.com/android/"
               rel="noopener noreferrer"
               target="_blank">
-              {AndroidLogo({
-                width: '48px',
-                height: '48px',
-                marginRight: 0
-              })}
-              <OptionsBlockCopy darkMode={darkMode}>Android</OptionsBlockCopy>
-            </OptionsContentFullBlock>
-            <OptionsContentFullBlock
+              <div className={optionsBlockCopy}>
+                Android
+              </div>
+            </a>
+            <a
+              className={optionsContentFullBlock}
               href="http://getpocket.com/iphone/"
               rel="noopener noreferrer"
               target="_blank">
-              {IphoneIpad({
-                width: '48px',
-                height: '48px',
-                marginRight: 0
-              })}
-              <OptionsBlockCopy darkMode={darkMode}>
+              <div className={optionsBlockCopy}>
                 iPhone/iPad
-              </OptionsBlockCopy>
-            </OptionsContentFullBlock>
-            <OptionsContentFullBlock
+              </div>
+            </a>
+            <a
+              className={optionsContentFullBlock}
               href="http://getpocket.com/mac/"
               rel="noopener noreferrer"
               target="_blank">
-              {Mac({
-                width: '48px',
-                height: '48px',
-                marginRight: 0
-              })}
-              <OptionsBlockCopy darkMode={darkMode}>Mac</OptionsBlockCopy>
-            </OptionsContentFullBlock>
-          </OptionsSectionMain>
-        </OptionsSectionContentFull>
-      </OptionsSection>
+              <div className={optionsBlockCopy}>
+                Mac
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
 
       {/* NOTE: Add some localizations here */}
-      <OptionsFooter>
+      <footer className={optionsFooter}>
         &copy; Copyright {new Date().getFullYear()} Read It Later Inc.
-        <OptionsPrivacyLegal
+        <a
+          className={optionsPrivacyLegal}
           href="https://getpocket.com/legal?src=extensions"
           rel="noopener noreferrer"
           target="_blank">
           Legal &amp; Privacy
-        </OptionsPrivacyLegal>
-      </OptionsFooter>
-    </OptionsContainer>
+        </a>
+      </footer>
+    </div>
   )
 }
 

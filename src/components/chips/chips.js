@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import styled from '@emotion/styled'
+import { css, cx } from 'linaria'
 import { COLORS } from 'elements/colors/colors'
 const { $powder, $gray, $pitch, $hotCoral, $smoke, $overcast } = COLORS
 
-const ChipList = styled.ul`
+const chipList = css`
   display: inline;
   list-style-type: none;
   margin: 0;
@@ -14,7 +14,7 @@ const ChipList = styled.ul`
     min-height: 21px;
   }
 `
-const ChipItem = styled.li`
+const chipItem = css`
   border: 1px solid ${$gray};
   border-radius: 3px;
   color: ${$pitch};
@@ -29,8 +29,8 @@ const ChipItem = styled.li`
   margin-right: 3px;
   margin-top: 2px;
   text-transform: lowercase;
-  background-color: ${props => (props.active ? $smoke : $powder)};
-  padding: ${props => (props.active ? '2px 5px 2px 6px' : '2px 12px')};
+  background-color: ${$powder};
+  padding: '2px 12px';
 
   &:first-of-type {
     margin-left: 20px;
@@ -52,6 +52,12 @@ const ChipItem = styled.li`
     border-color: ${$overcast};
   }
 `
+
+const chipItemActive = css`
+  background-color: ${$smoke};
+  padding: '2px 5px 2px 6px';
+`
+
 export const Chips = ({ removeTag, tags, marked, toggleActive }) => {
   const removeTagAction = (tag) => {
     removeTag(tag)
@@ -62,7 +68,8 @@ export const Chips = ({ removeTag, tags, marked, toggleActive }) => {
       const active = marked.includes(chip)
 
       return (
-        <ChipItem
+        <li
+          className={cx(chipItem, marked ? chipItemActive : null)}
           active={active}
           key={index}
           onMouseDown={event => event.preventDefault()}
@@ -71,13 +78,13 @@ export const Chips = ({ removeTag, tags, marked, toggleActive }) => {
           {active ? (
             <span onClick={() => removeTagAction(chip)}>&times;</span>
           ) : null}
-        </ChipItem>
+        </li>
       )
     })
   }
 
   return (
-    <ChipList>{listItems()}</ChipList>
+    <ul className={chipList}>{listItems()}</ul>
   )
 }
 
