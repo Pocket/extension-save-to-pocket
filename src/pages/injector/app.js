@@ -5,18 +5,20 @@ import { getSetting } from 'common/interface'
 import { SAVE_TO_POCKET_REQUEST } from 'actions'
 import { SAVE_TO_POCKET_SUCCESS } from 'actions'
 import { SAVE_TO_POCKET_FAILURE } from 'actions'
-import { ARCHIVE_ITEM_SUCCESS } from 'actions'
-import { ARCHIVE_ITEM_FAILURE } from 'actions'
+// import { ARCHIVE_ITEM_SUCCESS } from 'actions'
+// import { ARCHIVE_ITEM_FAILURE } from 'actions'
 import { REMOVE_ITEM_SUCCESS } from 'actions'
 import { REMOVE_ITEM_FAILURE } from 'actions'
 import { UPDATE_STORED_TAGS } from 'actions'
 import { SUGGESTED_TAGS_SUCCESS } from 'actions'
+import { UPDATE_ITEM_PREVIEW } from 'actions'
 
 export const App = () => {
   const appTarget = useRef(null)
   const [saveStatus, setSaveStatus] = useState('idle')
   const [storedTags, setStoredTags] = useState(getSetting('tags_stored'))
   const [suggestedTags, setSuggestedTags] = useState([])
+  const [itemPreview, setItemPreview] = useState({})
 
   /* Handle incoming messages
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -39,13 +41,13 @@ export const App = () => {
         return setSaveStatus('save_failed')
       }
 
-      case ARCHIVE_ITEM_SUCCESS: {
-        return setSaveStatus('archived')
-      }
+      // case ARCHIVE_ITEM_SUCCESS: {
+      //   return setSaveStatus('archived')
+      // }
 
-      case ARCHIVE_ITEM_FAILURE: {
-        return setSaveStatus('archive_failed')
-      }
+      // case ARCHIVE_ITEM_FAILURE: {
+      //   return setSaveStatus('archive_failed')
+      // }
 
       case REMOVE_ITEM_SUCCESS: {
         return setSaveStatus('removed')
@@ -63,6 +65,11 @@ export const App = () => {
       case SUGGESTED_TAGS_SUCCESS: {
         const { suggestedTags } = payload
         return setSuggestedTags(suggestedTags)
+      }
+
+      case UPDATE_ITEM_PREVIEW: {
+        const { item } = payload
+        return setItemPreview(item)
       }
 
       default: {
@@ -97,6 +104,7 @@ export const App = () => {
         saveStatus={saveStatus}
         storedTags={storedTags}
         suggestedTags={suggestedTags}
+        itemPreview={itemPreview}
       />
     </div>
   )

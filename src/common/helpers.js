@@ -34,10 +34,10 @@ export function getAPIUrl() {
   return getBaseUrl() + getAPIVersion()
 }
 
-export function getSlug(url) {
-  const match = url.match(/^(?:https:\/\/getpocket.com\/explore\/)(.+[^/])/i)
-  return match[1]
-}
+// export function getSlug(url) {
+//   const match = url.match(/^(?:https:\/\/getpocket.com\/explore\/)(.+[^/])/i)
+//   return match[1]
+// }
 
 export async function getAccessToken() {
   return await getSetting('access_token')
@@ -85,12 +85,6 @@ export function getDefaultKeyboardShortCut() {
     : 'ctrl+shift+S'
 }
 
-export function getBestImage(item) {
-  return item.top_image_url
-    ? item.top_image_url
-    : item.images[Object.keys(item.images)[0]].src
-}
-
 export function getImageCacheUrl(url, imageSize) {
   if (!url) return
   const resizeParam = imageSize ? `${imageSize.width}x${imageSize.height}` : ''
@@ -100,13 +94,9 @@ export function getImageCacheUrl(url, imageSize) {
   return `${cacheURL}/${resizeParam}/filters:no_upscale()/${urlParam}`
 }
 
-export function getItemPosition(item) {
-  return item.offsetLeft - item.scrollLeft + item.clientLeft + item.offsetWidth
-}
-
-export function checkDuplicate(list, tagValue) {
-  return list.filter((tag) => tag.name === tagValue).length
-}
+// export function checkDuplicate(list, tagValue) {
+//   return list.filter((tag) => tag.name === tagValue).length
+// }
 
 export function closeLoginPage() {
   chrome.tabs.query(
@@ -114,5 +104,68 @@ export function closeLoginPage() {
     (tabs) => {
       chrome.tabs.remove(tabs.map((tab) => tab.id))
     },
+  )
+}
+
+export function deriveItemData(item) {
+  return {
+    title: displayTitle(item),
+    thumbnail: displayThumbnail(item),
+    publisher: displayPublisher(item)
+  }
+}
+
+/** TITLE
+ * @param {object} feedItem An unreliable item returned from a v3 feed endpoint
+ * @returns {string} The most appropriate title to show
+ */
+ export function displayTitle(item) {
+  return (
+    item?.title ||
+    item?.resolved_title ||
+    item?.given_title ||
+    item?.display_url ||
+    displayPublisher(item) ||
+    null
+  )
+}
+
+/** PUBLISHER
+ * @param {object} feedItem An unreliable item returned from a v3 feed endpoint
+ * @returns {string} The best text to display as the publisher of this item
+ */
+ export function displayPublisher(item) {
+  const urlToUse = item?.given_url || item?.resolved_url
+  const derivedDomain = domainForUrl(urlToUse)
+  return (
+    item?.domain_metadata?.name ||
+    item?.domain ||
+    derivedDomain ||
+    null
+  )
+}
+
+/**
+ * DOMAIN FOR URL
+ * Get the base domain for a given url
+ * @param {url} url Url to get domain from
+ * @return {string} parsed domain
+ */
+ export function domainForUrl(url) {
+  if (!url) return false
+  const match = url.match(/^(?:https?:\/\/)?(?:[^@\n]+@)?(?:www\.)?([^:/\n?=]+)/im)
+  return match[1]
+}
+
+/** THUMBNAIL
+ * @param {object} feedItem An unreliable item returned from a v3 feed endpoint
+ * @returns {string:url} The most appropriate image to show as a thumbnail
+ */
+ export function displayThumbnail(item) {
+  return (
+    item?.top_image_url ||
+    item?.image?.src ||
+    item?.images?.[Object.keys(item.images)[0]]?.src ||
+    null
   )
 }
