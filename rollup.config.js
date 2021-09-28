@@ -4,6 +4,7 @@ import css from 'rollup-plugin-css-only'
 import alias from '@rollup/plugin-alias'
 import babel from '@rollup/plugin-babel'
 import commonjs from '@rollup/plugin-commonjs'
+import json from '@rollup/plugin-json'
 import replace from '@rollup/plugin-replace'
 import copy from 'rollup-plugin-copy'
 import resolve from '@rollup/plugin-node-resolve'
@@ -54,6 +55,7 @@ export default {
       exclude: 'src/**',
     }),
     linaria(),
+    json(),
     babel({
       // Do not transpile dependencies
       ignore: ['node_modules'],

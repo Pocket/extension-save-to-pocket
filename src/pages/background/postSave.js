@@ -10,6 +10,7 @@ import { SUGGESTED_TAGS_SUCCESS } from 'actions'
 export async function saveSuccess(tabId, payload) {
   // Update toolbar icon
   const { resolved_url, given_url, isLink } = payload
+  // fetch image and title from above
   const url = resolved_url || given_url //eslint-disable-line
 
   if (!isLink) setToolbarIcon(tabId, true)
