@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Doorhanger } from 'components/doorhanger/doorhanger'
+import { Doorhanger } from 'connectors/doorhanger/doorhanger'
 import { getSetting } from 'common/interface'
 
 import { SAVE_TO_POCKET_REQUEST } from 'actions'

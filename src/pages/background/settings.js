@@ -17,15 +17,15 @@ export async function initOptions() {
     await setSettings({ sites_twitter: true })
   }
 
-  const recsEnabled = (await getSetting('on_save_recommendations')) || 'unset'
-  if (recsEnabled === 'unset') {
-    await setSettings({ on_save_recommendations: true })
-  }
+  // const recsEnabled = (await getSetting('on_save_recommendations')) || 'unset'
+  // if (recsEnabled === 'unset') {
+  //   await setSettings({ on_save_recommendations: true })
+  // }
 }
 
-export async function setOnSaveRecs(tab, { isEnabled }) {
-  await setSettings({ on_save_recommendations: isEnabled })
-}
+// export async function setOnSaveRecs(tab, { isEnabled }) {
+//   await setSettings({ on_save_recommendations: isEnabled })
+// }
 
 export async function setTwitter(tab, { isEnabled }) {
   await setSettings({ sites_twitter: isEnabled })

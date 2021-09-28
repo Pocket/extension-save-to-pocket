@@ -1,7 +1,7 @@
 import { request } from './_request/request'
 import { saveToPocket } from './saving/save'
 import { getOnSaveTags, syncItemTags, fetchStoredTags } from './saving/tags'
-import { archiveItem } from './saving/archive'
+// import { archiveItem } from './saving/archive'
 import { removeItem } from './saving/remove'
 import { authorize } from './auth/authorize'
 import { getGuid } from './auth/guid'
@@ -13,7 +13,7 @@ export {
   saveToPocket,
   getOnSaveTags,
   request,
-  archiveItem,
+  // archiveItem,
   removeItem,
   getGuid,
   sendAnalytics,
