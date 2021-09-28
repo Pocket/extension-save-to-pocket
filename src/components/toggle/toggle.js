@@ -1,14 +1,14 @@
 import React from 'react'
-import styled from '@emotion/styled'
+import { css, cx } from 'linaria'
 import PropTypes from 'prop-types'
-import { COLORS } from 'elements/colors/colors'
+import { COLORS } from '../colors/colors'
 const { $silver, $overcast, $teal, $white, $pitch } = COLORS
 
-const Button = styled.button`
+const button = css`
   all: unset;
-  background: ${props => (props.active ? $teal : $silver)};
+  background: ${$silver};
   border: 1px solid ${$overcast};
-  border-color: ${props => (props.darkMode ? $pitch : $overcast)};
+  border-color: ${$overcast};
   border-radius: 2em;
   cursor: pointer;
   display: inline-block;
@@ -25,19 +25,32 @@ const Button = styled.button`
     content: '';
     display: block;
     height: 100%;
-    left: ${props => (props.active ? '50%' : '0')};
+    left: 0;
     position: relative;
     transition: all 0.2s ease;
     width: 50%;
   }
 `
 
+const buttonActive = css`
+  background: ${$teal};
+  &::after {
+    left: '50%';
+  }
+`
+
+const buttonDarkMode = css`
+  border-color: ${$pitch};
+`
+
+export default function Toggle({ action, active, darkMode }) {
+  const classes = cx(button, active ? buttonActive : null, darkMode ? buttonDarkMode : null)
+  
+  return <button className={classes} onClick={action} />
+}
+
 Toggle.propTypes = {
   darkMode: PropTypes.bool,
   active: PropTypes.bool,
   action: PropTypes.func
-}
-
-export default function Toggle({ action, active, darkMode }) {
-  return <Button onClick={action} active={active} darkMode={darkMode} />
 }
