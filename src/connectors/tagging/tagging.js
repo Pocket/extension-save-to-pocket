@@ -110,7 +110,6 @@ export const TaggingConnector = ({ closePanel }) => {
 
   return (
     <Tagging
-      tags={tagsObject}
       usedTags={usedTags}
       markedTags={markedTags}
       suggestedTags={suggestedTags}
