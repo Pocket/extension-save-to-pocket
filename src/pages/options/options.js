@@ -193,7 +193,7 @@ const OptionsApp = () => {
     setDarkMode(getBool(await getSetting('dark_mode')))
     setAccessToken(await getSetting('access_token'))
     setUserName(await getSetting('username'))
-  })
+  }, [])
 
   const toggleTwitter = () => {
     setSitesTwitter(!sitesTwitter)
