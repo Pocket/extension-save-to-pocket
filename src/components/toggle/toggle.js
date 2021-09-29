@@ -35,7 +35,7 @@ const button = css`
 const buttonActive = css`
   background: ${$teal};
   &::after {
-    left: '50%';
+    left: 50%;
   }
 `
 
