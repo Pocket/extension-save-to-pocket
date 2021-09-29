@@ -108,15 +108,12 @@ export const TaggingConnector = ({ closePanel }) => {
     submitChanges(usedDraft)
   }
 
-  const tagsObject = {
-    marked: markedTags,
-    used: usedTags,
-    suggested: suggestedTags
-  }
-
   return (
     <Tagging
       tags={tagsObject}
+      usedTags={usedTags}
+      markedTags={markedTags}
+      suggestedTags={suggestedTags}
       storedTags={storedTags}
       addTag={addTag}
       activateTag={activateTag}

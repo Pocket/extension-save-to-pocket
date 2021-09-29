@@ -74,7 +74,9 @@ const taggingTypeaheadList = css`
 `
 
 export const Tagging = ({
-  tags,
+  usedTags,
+  markedTags,
+  suggestedTags,
   storedTags,
   addTag,
   activateTag,
@@ -84,11 +86,9 @@ export const Tagging = ({
   removeTags,
   closePanel
 }) => {
-  const hasTags = () => {
-    return tags && tags.used && tags.used.length
-  }
+  const hasTags = usedTags && usedTags.length
 
-  const [placeholder, setPlaceholder] = useState(!hasTags())
+  const [placeholder, setPlaceholder] = useState(!hasTags)
   const [inputvalue, setInputValue] = useState('')
   const inputRef = useRef(null)
 
@@ -98,7 +98,7 @@ export const Tagging = ({
     setPlaceholder(false)
   }
   const setBlur = () => {
-    const status = inputvalue.length || hasTags()
+    const status = inputvalue.length || hasTags
     setPlaceholder(!status)
   }
 
@@ -106,7 +106,7 @@ export const Tagging = ({
     –––––––––––––––––––––––––––––––––––––––––––––––––– */
   const addTagAction = (value) => {
     if (value === '') return
-    if (tags.used.indexOf(value) >= 0) return
+    if (usedTags.indexOf(value) >= 0) return
     addTag({ value })
     setPlaceholder(false)
     setInputValue('')
@@ -124,13 +124,13 @@ export const Tagging = ({
   }
 
   const makeTagsInactive = (blur) => {
-    if (!tags.marked.length) return blur ? inputRef.current.blur() : null
+    if (!markedTags.length) return blur ? inputRef.current.blur() : null
     deactivateTags()
   }
 
   const handleRemoveAction = () => {
-    if (inputvalue.length || !hasTags()) return
-    if (!tags.marked.length) return makeTagActive()
+    if (inputvalue.length || !hasTags) return
+    if (!markedTags.length) return makeTagActive()
     removeTags()
   }
 
@@ -153,13 +153,10 @@ export const Tagging = ({
   const onSelect = addTagAction
 
   const storedTagsList = () => {
-    const value = inputvalue
-    const usedTags = hasTags() ? tags.used : []
-    const tagsArray = storedTags || []
-    const filteredStoredTags = tagsArray.filter(
+    const filteredStoredTags = storedTags.filter(
       item => usedTags.indexOf(item) < 0
     )
-    return value ? matchSorter(filteredStoredTags, value) : []
+    return inputvalue ? matchSorter(filteredStoredTags, inputvalue) : []
   }
 
   /* Render Component
@@ -175,16 +172,16 @@ export const Tagging = ({
         }) => (
           <div>
             <div className={taggingWell} onMouseUp={onMouseUp}>
-              {placeholder && !hasTags() && (
+              {placeholder && !hasTags && (
                 <div className={taggingPlaceholder}>
                   {localize('tagging', 'add_tags')}
                 </div>
               )}
 
-              {!!hasTags() && (
+              {!!hasTags && (
                 <Chips
-                  tags={tags.used}
-                  marked={tags.marked}
+                  tags={usedTags}
+                  marked={markedTags}
                   toggleActive={toggleActive}
                   removeTag={removeTagAction}
                 />
@@ -194,7 +191,7 @@ export const Tagging = ({
                 highlightedIndex={highlightedIndex}
                 typeaheadOpen={isOpen}
                 getInputProps={getInputProps}
-                hasTags={!!hasTags()}
+                hasTags={!!hasTags}
                 inputRef={inputRef}
                 value={inputvalue}
                 setValue={setInputValue}
@@ -227,23 +224,21 @@ export const Tagging = ({
         )}
       </Downshift>
 
-      {tags && tags.suggested && (
+      {suggestedTags ? (
         <Suggestions
-          used={tags.used}
-          suggestions={tags.suggested}
+          used={usedTags}
+          suggestions={suggestedTags}
           addTag={addTagAction}
         />
-      )}
+      ) : null}
     </div>
   )
 }
 
 Tagging.propTypes = {
-  tags: PropTypes.shape({
-    marked: PropTypes.array,
-    used: PropTypes.array,
-    suggested: PropTypes.array
-  }),
+  usedTags: PropTypes.array,
+  markedTags: PropTypes.array,
+  suggestedTags: PropTypes.array,
   storedTags: PropTypes.array,
   activateTag: PropTypes.func,
   deactivateTag: PropTypes.func,
