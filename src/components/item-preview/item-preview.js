@@ -6,6 +6,7 @@ const previewWrapper = css`
   background: #F3F3F3;
   padding: 10px;
   border-radius: 4px;
+  margin-top: 10px;
 
   img {
     width: 40px;

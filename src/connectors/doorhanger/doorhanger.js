@@ -37,6 +37,11 @@ const doorhangerStyle = css`
   .saveBlock {
     color: #1a1a1a;
     font-size: 24px;
+    margin-left: 5px;
+  }
+  .status {
+    display: flex;
+    align-items: center;
   }
 `
 
@@ -60,7 +65,7 @@ export const Doorhanger = ({ saveStatus, itemPreview, closePanel }) => {
   return (
     <div className={doorhangerStyle}>
       <div className={cx('doorHanger', saveStatus, valid && 'valid')}>
-        <div>
+        <div className='status'>
           <PocketLogo />
           <div className="saveBlock">{saveStatusCopy[saveStatus]}</div>
         </div>
