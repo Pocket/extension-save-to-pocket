@@ -78,7 +78,7 @@ export const App = () => {
   }, [])
 
   return (
-    <div ref={appTarget} id="save-to-pocket-extension">
+    <div ref={appTarget}>
       <Doorhanger
         saveStatus={saveStatus}
         itemPreview={itemPreview}
