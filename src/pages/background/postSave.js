@@ -34,7 +34,7 @@ async function getItemPreview(tabId, payload) {
 
   chrome.tabs.sendMessage(tabId, {
     action: UPDATE_ITEM_PREVIEW,
-    payload: { item },
+    payload: { item }
   })
 }
 
@@ -68,7 +68,7 @@ async function getTagSuggestions(url, tabId) {
   if (premiumStatus !== '1') return
 
   const response = await getOnSaveTags(url)
-  const suggestedTags = response ? response.suggested_tags : []
+  const suggestedTags = response ? response.suggested_tags.map(tag => tag.tag) : []
 
   if (response) {
     chrome.tabs.sendMessage(tabId, {

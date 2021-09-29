@@ -93,7 +93,7 @@ chrome.runtime.onMessage.addListener(function (message, sender) {
       // handle.removeItemAction(tab, payload)
       return
     case TAGS_SYNC:
-      // handle.tagsSyncAction(tab, payload)
+      handle.tagsSyncAction(tab, payload)
       return
     case COLOR_MODE_CHANGE:
       // setColorMode(tab, payload)

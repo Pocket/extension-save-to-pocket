@@ -2,16 +2,14 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { localize } from 'common/_locales/locales'
 import AutosizeInput from 'react-input-autosize'
-import styled from '@emotion/styled'
-import { COLORS } from 'elements/colors/colors'
-const { $pitch, $powder, $hotCoral } = COLORS
+import { css, cx } from 'linaria'
 
-const TagError = styled.div`
-  background-color: ${$powder};
-  border: 1px solid ${$hotCoral};
+const TagError = css`
+  background-color: #f9f9f9;
+  border: 1px solid #ef4056;
   border-radius: 3px;
   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
-  color: ${$hotCoral};
+  color: #ef4056;
   left: 50%;
   padding: 6px 12px;
   position: absolute;
@@ -20,20 +18,24 @@ const TagError = styled.div`
   width: 80%;
 `
 
-const InputWrapper = styled('div')`
+const InputWrapper = css`
   max-width: 100%;
   display: inline-block;
   input {
     all: unset;
-    color: ${$pitch};
+    color: #222;
     display: inline-block;
     line-height: 16px;
     margin-bottom: 3px;
-    margin-left: ${props => (props.active ? '0' : '16px')};
+    margin-left: 16px;
     margin-right: 3px;
     margin-top: 3px;
     min-width: 0.3em;
     padding: 2px 4px;
+  }
+
+  &.active input {
+    margin-left: 0;
   }
 `
 
@@ -48,13 +50,14 @@ const UP = 38
 const RIGHT = 39
 const DOWN = 40
 
-export const Taginput = ({
+export const TagInput = ({
   setValue,
   handleRemoveAction,
   makeTagsInactive,
   addTag,
   value,
   highlightedIndex,
+  typeaheadOpen,
   closePanel,
   error,
   getInputProps,
@@ -113,7 +116,7 @@ export const Taginput = ({
       if (highlightedIndex != null) return
       event.preventDefault()
       if (value) addTag(value)
-      else closePanel(0)
+      else closePanel()
     }
 
     if (
@@ -133,7 +136,7 @@ export const Taginput = ({
   }
 
   return (
-    <InputWrapper active={hasTags}>
+    <div className={cx(InputWrapper, hasTags && 'active')}>
       <AutosizeInput
         {...getInputProps({
           ref: inputRef,
@@ -147,13 +150,13 @@ export const Taginput = ({
         })}
       />
       {(error || errorState) ? (
-        <TagError>{localize('tagging', 'invalid_tags')}</TagError>
+        <div className={TagError}>{localize('tagging', 'invalid_tags')}</div>
       ) : null}
-    </InputWrapper>
+    </div>
   )
 }
 
-Taginput.propTypes = {
+TagInput.propTypes = {
   getInputProps: PropTypes.func,
   setBlur: PropTypes.func,
   setFocus: PropTypes.func,

@@ -1,27 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Doorhanger } from 'connectors/doorhanger/doorhanger'
-import { getSetting } from 'common/interface'
 
 import { SAVE_TO_POCKET_REQUEST } from 'actions'
 import { SAVE_TO_POCKET_SUCCESS } from 'actions'
 import { SAVE_TO_POCKET_FAILURE } from 'actions'
-// import { ARCHIVE_ITEM_SUCCESS } from 'actions'
-// import { ARCHIVE_ITEM_FAILURE } from 'actions'
 import { REMOVE_ITEM_SUCCESS } from 'actions'
 import { REMOVE_ITEM_FAILURE } from 'actions'
-import { UPDATE_STORED_TAGS } from 'actions'
-import { SUGGESTED_TAGS_SUCCESS } from 'actions'
 import { UPDATE_ITEM_PREVIEW } from 'actions'
 
 export const App = () => {
   const appTarget = useRef(null)
   const [saveStatus, setSaveStatus] = useState('idle')
-  const [storedTags, setStoredTags] = useState(getSetting('tags_stored'))
-  const [suggestedTags, setSuggestedTags] = useState([])
   const [itemPreview, setItemPreview] = useState({})
 
   /* Handle incoming messages
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+  –––––––––––––––––––––––––––––––––––––––––––––––––– */
   const handleMessages = (event) => {
     const { payload, action = 'Unknown Action' } = event || {}
     console.groupCollapsed(`RECEIVE: ${action}`)
@@ -41,30 +34,12 @@ export const App = () => {
         return setSaveStatus('save_failed')
       }
 
-      // case ARCHIVE_ITEM_SUCCESS: {
-      //   return setSaveStatus('archived')
-      // }
-
-      // case ARCHIVE_ITEM_FAILURE: {
-      //   return setSaveStatus('archive_failed')
-      // }
-
       case REMOVE_ITEM_SUCCESS: {
         return setSaveStatus('removed')
       }
 
       case REMOVE_ITEM_FAILURE: {
         return setSaveStatus('remove_failed')
-      }
-
-      case UPDATE_STORED_TAGS: {
-        const { tags } = payload
-        return setStoredTags(tags)
-      }
-
-      case SUGGESTED_TAGS_SUCCESS: {
-        const { suggestedTags } = payload
-        return setSuggestedTags(suggestedTags)
       }
 
       case UPDATE_ITEM_PREVIEW: {
@@ -91,6 +66,10 @@ export const App = () => {
     setSaveStatus('idle')
   }
 
+  const closePanel = () => {
+    setSaveStatus('idle')
+  }
+
   useEffect(() => {
     document.addEventListener('click', handleDocumentClick)
     return () => {
@@ -99,12 +78,11 @@ export const App = () => {
   }, [])
 
   return (
-    <div ref={appTarget}>
+    <div ref={appTarget} id="save-to-pocket-extension">
       <Doorhanger
         saveStatus={saveStatus}
-        storedTags={storedTags}
-        suggestedTags={suggestedTags}
         itemPreview={itemPreview}
+        closePanel={closePanel}
       />
     </div>
   )

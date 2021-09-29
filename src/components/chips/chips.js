@@ -1,8 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { css, cx } from 'linaria'
-import { COLORS } from 'elements/colors/colors'
-const { $powder, $gray, $pitch, $hotCoral, $smoke, $overcast } = COLORS
 
 const chipList = css`
   display: inline;
@@ -15,22 +13,22 @@ const chipList = css`
   }
 `
 const chipItem = css`
-  border: 1px solid ${$gray};
-  border-radius: 3px;
-  color: ${$pitch};
+  border: 1px solid #E8F7F6;
+  border-radius: 50px;
+  color: #004D48;
   cursor: pointer;
   display: inline-flex;
   align-content: center;
   align-items: center;
-  font-weight: 300;
-  font-size: 13px;
+  font-weight: 400;
+  font-size: 14px;
   line-height: 16px;
   margin-bottom: 2px;
   margin-right: 3px;
   margin-top: 2px;
   text-transform: lowercase;
-  background-color: ${$powder};
-  padding: '2px 12px';
+  background-color: #E8F7F6;
+  padding: 8px;
 
   &:first-of-type {
     margin-left: 20px;
@@ -44,28 +42,29 @@ const chipItem = css`
     padding-left: 4px;
     vertical-align: middle;
     &:hover {
-      color: ${$hotCoral};
+      color: #ef4056;
     }
   }
 
   &:hover {
-    border-color: ${$overcast};
+    border-color: #999;
   }
 `
 
 const chipItemActive = css`
-  background-color: ${$smoke};
-  padding: '2px 5px 2px 6px';
+  background-color: #ddd;
+  padding: 2px 5px 2px 6px;
 `
 
 export const Chips = ({ removeTag, tags, marked, toggleActive }) => {
-  const removeTagAction = (tag) => {
-    removeTag(tag)
-  }
-
   const listItems = () => {
     return tags.map((chip, index) => {
       const active = marked.includes(chip)
+      const handleToggle = (e) => toggleActive(chip, active)
+      const handleRemove = (e) => {
+        e.stopPropagation()
+        removeTag(chip)
+      }
 
       return (
         <li
@@ -73,10 +72,10 @@ export const Chips = ({ removeTag, tags, marked, toggleActive }) => {
           active={active}
           key={index}
           onMouseDown={event => event.preventDefault()}
-          onClick={() => toggleActive(chip, active)}>
+          onClick={handleToggle}>
           {chip}
           {active ? (
-            <span onClick={() => removeTagAction(chip)}>&times;</span>
+            <span onClick={handleRemove}>&times;</span>
           ) : null}
         </li>
       )

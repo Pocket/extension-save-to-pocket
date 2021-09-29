@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { css, cx } from 'linaria'
 import { PocketLogo } from 'components/icons'
 import { ItemPreview } from 'components/item-preview/item-preview'
+import { TaggingConnector } from 'connectors/tagging/tagging'
 
 const doorhangerStyle = css`
   position: fixed;
@@ -26,10 +27,6 @@ const doorhangerStyle = css`
     top: 10px;
     right: 10px;
     transform: translateY(-150%);
-    /* display: flex; */
-    /* justify-content: flex-start; */
-    /* align-items: center; */
-    /* align-content: center; */
     transition: all ease-in-out 250ms;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
   }
@@ -47,7 +44,7 @@ const doorhangerStyle = css`
  * Injected doorhanger to show on save
  * @param   {string} saveStatus  current status of the item operations
  */
-export const Doorhanger = ({ saveStatus, storedTags, suggestedTags, itemPreview }) => {
+export const Doorhanger = ({ saveStatus, itemPreview, closePanel }) => {
   const saveStatusCopy = {
     idle: false,
     saving: 'Saving...',
@@ -68,6 +65,7 @@ export const Doorhanger = ({ saveStatus, storedTags, suggestedTags, itemPreview 
           <div className="saveBlock">{saveStatusCopy[saveStatus]}</div>
         </div>
         <ItemPreview {...itemPreview} />
+        <TaggingConnector closePanel={closePanel} />
       </div>
     </div>
   )

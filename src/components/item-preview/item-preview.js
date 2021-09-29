@@ -1,5 +1,5 @@
 import React from 'react'
-import { css, cx } from 'linaria'
+import { css } from 'linaria'
 
 const previewWrapper = css`
   display: flex;
@@ -22,6 +22,7 @@ const previewWrapper = css`
     margin: 0 0 4px;
     font-size: 16px;
     font-weight: 600;
+    line-height: 20px;
     color: #1A1A1A;
   }
 
@@ -33,7 +34,7 @@ const previewWrapper = css`
 `
 
 export const ItemPreview = ({ title, thumbnail, publisher }) => {
-  return (
+  return (title && publisher) ? (
     <div className={previewWrapper}>
       {thumbnail ? <img src={thumbnail} /> : null}
       <div>
@@ -41,5 +42,5 @@ export const ItemPreview = ({ title, thumbnail, publisher }) => {
         <p>{publisher}</p>
       </div>
     </div>
-  )
+  ) : null
 }
