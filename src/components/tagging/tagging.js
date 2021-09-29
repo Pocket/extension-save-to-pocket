@@ -178,14 +178,14 @@ export const Tagging = ({
                 </div>
               )}
 
-              {!!hasTags && (
+              {!!hasTags ? (
                 <Chips
                   tags={usedTags}
                   marked={markedTags}
                   toggleActive={toggleActive}
                   removeTag={removeTagAction}
                 />
-              )}
+              ) : null }
 
               <TagInput
                 highlightedIndex={highlightedIndex}
