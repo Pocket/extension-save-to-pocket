@@ -16,7 +16,7 @@ export function syncItemTags(id, tags, actionInfo) {
   return request({
     path: 'send/',
     data: {
-      actions: [{ action: 'tags_add', item_id: id, tags, ...actionInfo }]
+      actions: [{ action: 'tags_replace', item_id: id, tags, ...actionInfo }]
     }
   }).then(response => {
     return response

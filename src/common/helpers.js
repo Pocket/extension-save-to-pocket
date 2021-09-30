@@ -94,9 +94,9 @@ export function getImageCacheUrl(url, imageSize) {
   return `${cacheURL}/${resizeParam}/filters:no_upscale()/${urlParam}`
 }
 
-// export function checkDuplicate(list, tagValue) {
-//   return list.filter((tag) => tag.name === tagValue).length
-// }
+export function checkDuplicate(list, tagValue) {
+  return list.filter((tag) => tag.name === tagValue).length
+}
 
 export function closeLoginPage() {
   chrome.tabs.query(
@@ -109,6 +109,7 @@ export function closeLoginPage() {
 
 export function deriveItemData(item) {
   return {
+    itemId: item?.item_id,
     title: displayTitle(item),
     thumbnail: displayThumbnail(item),
     publisher: displayPublisher(item)

@@ -1,264 +1,126 @@
-import React, { useRef, useState } from 'react'
-import PropTypes from 'prop-types'
-import { matchSorter } from 'match-sorter'
-import { Chips } from 'elements/chips/chips'
-import Downshift from 'downshift'
-import { Suggestions } from './suggestions/suggestions'
-import { Taginput } from './taginput/taginput'
-import { localize } from 'common/_locales/locales'
-import styled from '@emotion/styled'
-import { COLORS } from 'elements/colors/colors'
-import { TYPOGRAPHY } from 'common/styles/variables'
-const { $smoke, $overcast, $white, $teal } = COLORS
-const { $fontstackDefault } = TYPOGRAPHY
+import React, { useState, useEffect } from 'react'
+import { getSetting } from 'common/interface'
+import { checkDuplicate } from 'common/helpers'
+import { Tagging } from 'components/tagging/tagging'
 
-const TaggingWrapper = styled.div`
-  font-family: ${$fontstackDefault};
-  padding: 5px 0 0;
-  position: relative;
-`
-const TaggingPlaceholder = styled.div`
-  color: ${$overcast};
-  left: 29px;
-  position: absolute;
-  top: 10px;
-`
-const TaggingWell = styled.div`
-  background: ${$white};
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%23999999"><path d="M83.38 54.6L43.8 17.02H17.41V43.4l39.58 39.58L83.38 54.6zM30.95 36.81c-3.45 0-6.25-2.67-6.25-5.96s2.8-5.97 6.25-5.97 6.25 2.67 6.25 5.97c0 3.29-2.8 5.96-6.25 5.96z"/></svg>');
-  background-position: 4px 7px;
-  background-repeat: no-repeat;
-  background-size: 22px;
-  border: 1px solid ${$smoke};
-  border-radius: 3px;
-  box-sizing: border-box;
-  font-size: 13px;
-  line-height: 16px;
-  margin: 0;
-  padding: 4px 10px;
-  position: relative;
-  text-align: left;
-`
+import { UPDATE_STORED_TAGS } from 'actions'
+import { SUGGESTED_TAGS_SUCCESS } from 'actions'
+import { UPDATE_ITEM_PREVIEW } from 'actions'
+import { TAGS_SYNC } from 'actions'
 
-const TaggingTypeaheadWrapper = styled.div`
-  position: relative;
-`
+export const TaggingConnector = ({ closePanel }) => {
+  const [storedTags, setStoredTags] = useState([])
+  const [suggestedTags, setSuggestedTags] = useState([])
+  const [usedTags, setUsedTags] = useState([])
+  const [markedTags, setMarkedTags] = useState([])
+  const [itemId, setItemId] = useState(null)
 
-const typeaheadActiveStyle = `
-  background-color: ${$teal};
-  color: ${$white};
-`
-const TaggingTypeaheadItem = styled.div`
-  cursor: pointer;
-  display: block;
-  padding: 2px 8px;
-  ${props => (props.active ? typeaheadActiveStyle : '')}
-  &:hover {
-    ${typeaheadActiveStyle}
-  }
-`
-const TaggingTypeaheadList = styled.div`
-  background: ${$white};
-  border: 1px solid ${$smoke};
-  border-radius: 0 0 3px 3px;
-  border-top: none;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
-  display: block;
-  left: 0;
-  list-style-type: none;
-  margin: 0;
-  max-height: 8.8em;
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding: 2px 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
-`
+  useEffect(async () => {
+    const storedTagsString = await getSetting('tags_stored')
+    const storedTagsDraft = (storedTagsString) ? JSON.parse(storedTagsString) : []
+    setStoredTags(storedTagsDraft)
+  }, [])
 
-export const Tagging = ({
-  tags,
-  setInputFocusState,
-  tabId,
-  addTag,
-  activateTag,
-  deactivateTag,
-  deactivateTags,
-  removeTags,
-  removeTag,
-  storedTags,
-  inputFocused,
-  closePanel
-}) => {
-  const hasTags = () => {
-    return tags && tags.used && tags.used.length
+  /* Handle incoming messages
+  –––––––––––––––––––––––––––––––––––––––––––––––––– */
+  const handleMessages = (event) => {
+    const { payload, action = 'Unknown Action' } = event || {}
+
+    switch (action) {
+      case UPDATE_STORED_TAGS: {
+        const { tags } = payload
+        return setStoredTags(tags)
+      }
+
+      case SUGGESTED_TAGS_SUCCESS: {
+        const { suggestedTags } = payload
+        return setSuggestedTags(suggestedTags)
+      }
+
+      case UPDATE_ITEM_PREVIEW: {
+        const { item } = payload
+        setItemId(item?.itemId)
+        return
+      }
+
+      default: {
+        return
+      }
+    }
   }
 
-  const [placeholder, setPlaceholder] = useState(!hasTags())
-  const [inputvalue, setInputValue] = useState('')
-  const inputRef = useRef(null)
+  useEffect(() => {
+    chrome.runtime.onMessage.addListener(handleMessages)
+    return () => chrome.runtime.onMessage.removeListener(handleMessages)
+  }, [])
 
-  /* Input Management
-    –––––––––––––––––––––––––––––––––––––––––––––––––– */
-  const setFocus = () => {
-    setInputFocusState(true)
-    setPlaceholder(false)
-  }
-  const setBlur = () => {
-    const status = inputvalue.length || hasTags()
-    setInputFocusState(false)
-    setPlaceholder(!status)
-  }
+  const submitChanges = (usedDraft) => {
+    const usedSuggested = usedDraft.filter(usedTag => suggestedTags.includes(usedTag))
+    const payload = {
+      item_id: itemId,
+      tags: usedDraft,
+      suggestedCount: suggestedTags.length,
+      usedSuggestedCount: usedSuggested
+    }
 
-  /* Tag Management
-    –––––––––––––––––––––––––––––––––––––––––––––––––– */
-  const addTagAction = (value) => {
-    if (value === '') return
-    if (tags.used.indexOf(value) >= 0) return
-    addTag({ value, tabId })
-    setPlaceholder(false)
-    setInputValue('')
-    inputRef.current.focus()
+    chrome.runtime.sendMessage({
+      type: TAGS_SYNC,
+      payload,
+    })
   }
 
-  /* Active/Inactive Tagging
-    –––––––––––––––––––––––––––––––––––––––––––––––––– */
-  const makeTagActive = (tag) => {
-    return activateTag({ tag, tabId })
+  const addTag = ({ value }) => {
+    if (checkDuplicate(usedTags, value)) return
+    const usedDraft = [ ...usedTags, value ]
+    setUsedTags(usedDraft)
+    submitChanges(usedDraft)
   }
 
-  const makeTagInactive = (tag) => {
-    return deactivateTag({ tag, tabId })
+  const activateTag = ({ tag }) => {
+    // No Tag has been passed in so use the last used tag
+    const tagValue = tag ? tag : usedTags[usedTags.length - 1]
+    const isMarked = checkDuplicate(markedTags, tagValue) > 0
+    const marked = isMarked ? markedTags : [...markedTags, tagValue]
+
+    setMarkedTags(marked)
   }
 
-  const makeTagsInactive = (blur) => {
-    if (!tags.marked.length) return blur ? inputRef.current.blur() : null
-    deactivateTags({ tabId })
+  const deactivateTag = ({ tag }) => {
+    const marked = markedTags.filter(item => item !== tag)
+    setMarkedTags(marked)
   }
 
-  const handleRemoveAction = () => {
-    if (inputvalue.length || !hasTags()) return
-    if (!tags.marked.length) return makeTagActive()
-    removeTags({ tabId })
+  const deactivateTags = () => {
+    setMarkedTags([])
   }
 
-  const removeTagAction = (tag) => {
-    removeTag({ tag, tabId })
+  const removeTag = ({ tag }) => {
+    const usedDraft = usedTags.filter(item => item !== tag)
+    setUsedTags(usedDraft)
+    submitChanges(usedDraft)
   }
 
-  const toggleActive = (tag, active) => {
-    if (active) makeTagInactive(tag)
-    else makeTagActive(tag)
-    inputRef.current.focus()
+  const removeTags = () => {
+    if (!markedTags.length) return
+    const usedDraft = usedTags.filter(tag => !markedTags.includes(tag))
+    setUsedTags(usedDraft)
+    setMarkedTags([])
+    submitChanges(usedDraft)
   }
 
-  const onMouseUp = e => {
-    inputRef.current.focus()
-    e.stopPropagation()
-    e.preventDefault()
-  }
-
-  const onSelect = addTagAction
-
-  const storedTagsList = () => {
-    const value = inputvalue
-    const usedTags = hasTags() ? tags.used : []
-    const tagsArray = storedTags || []
-    const filteredStoredTags = tagsArray.filter(
-      item => usedTags.indexOf(item) < 0
-    )
-    return value ? matchSorter(filteredStoredTags, value) : []
-  }
-
-  /* Render Component
-    –––––––––––––––––––––––––––––––––––––––––––––––––– */
   return (
-    <TaggingWrapper>
-      <Downshift onSelect={onSelect}>
-        {({
-          getInputProps,
-          getItemProps,
-          isOpen,
-          highlightedIndex
-        }) => (
-          <div>
-            <TaggingWell onMouseUp={onMouseUp}>
-              {placeholder && !hasTags() && (
-                <TaggingPlaceholder>
-                  {localize('tagging', 'add_tags')}
-                </TaggingPlaceholder>
-              )}
-
-              {!!hasTags() && (
-                <Chips
-                  tags={tags.used}
-                  marked={tags.marked}
-                  toggleActive={toggleActive}
-                  removeTag={removeTagAction}
-                />
-              )}
-
-              <Taginput
-                highlightedIndex={highlightedIndex}
-                getInputProps={getInputProps}
-                hasTags={!!hasTags()}
-                inputRef={inputRef}
-                value={inputvalue}
-                focused={inputFocused}
-                setValue={setInputValue}
-                setFocus={setFocus}
-                setBlur={setBlur}
-                closePanel={closePanel}
-                addTag={addTagAction}
-                handleRemoveAction={handleRemoveAction}
-                makeTagsInactive={makeTagsInactive}
-                storedTags={storedTagsList()}
-              />
-            </TaggingWell>
-
-            {!isOpen || !storedTagsList().length ? null : (
-              <TaggingTypeaheadWrapper>
-                <TaggingTypeaheadList>
-                  {storedTagsList().map((item, index) => {
-                    return (
-                      <TaggingTypeaheadItem
-                        active={highlightedIndex === index}
-                        key={`item-${index}`}
-                        {...getItemProps({
-                          item,
-                          index
-                        })}>
-                        {item}
-                      </TaggingTypeaheadItem>
-                    )
-                  })}
-                </TaggingTypeaheadList>
-              </TaggingTypeaheadWrapper>
-            )}
-          </div>
-        )}
-      </Downshift>
-
-      {tags && tags.suggested && (
-        <Suggestions
-          tags={tags}
-          suggestions={tags.suggested}
-          addTag={addTagAction}
-        />
-      )}
-    </TaggingWrapper>
+    <Tagging
+      usedTags={usedTags}
+      markedTags={markedTags}
+      suggestedTags={suggestedTags}
+      storedTags={storedTags}
+      addTag={addTag}
+      activateTag={activateTag}
+      deactivateTag={deactivateTag}
+      deactivateTags={deactivateTags}
+      removeTag={removeTag}
+      removeTags={removeTags}
+      closePanel={closePanel}
+    />
   )
-}
-
-Tagging.propTypes = {
-  tags: PropTypes.shape({
-    marked: PropTypes.array,
-    used: PropTypes.array,
-    suggested: PropTypes.array
-  }),
-  activateTag: PropTypes.func,
-  deactivateTags: PropTypes.func,
-  addTag: PropTypes.func,
-  removeTags: PropTypes.func
 }
