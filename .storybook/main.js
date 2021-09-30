@@ -5,6 +5,7 @@ module.exports = {
   addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
   webpackFinal: async (config) => {
     const alias = {
+      actions: path.join(__dirname, '../src/actions'),
       assets: path.join(__dirname, '../src/assets'),
       common: path.join(__dirname, '../src/common'),
       components: path.join(__dirname, '../src/components'),
