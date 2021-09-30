@@ -1,10 +1,6 @@
 /* Messaging
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 export function sendMessage(message) {
-  // if (typeof safari !== 'undefined') {
-  //   return safari.extension.dispatchMessage(message.type, message.payload)
-  // }
-
   chrome.runtime.sendMessage(message)
 }
 
