@@ -2,7 +2,7 @@ import { request } from '../_request/request'
 
 /* API CALLS - Should return promises
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-export function removeItem(itemId, actionInfo) {
+export function removeItem(itemId) {
   return request({
     path: 'send/',
     data: {
@@ -10,7 +10,7 @@ export function removeItem(itemId, actionInfo) {
         {
           action: 'delete',
           item_id: itemId,
-          ...actionInfo
+          type: 'page'
         }
       ]
     }

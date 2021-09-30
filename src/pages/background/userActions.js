@@ -10,7 +10,6 @@ import { getGuid } from 'common/api'
 import { saveToPocket } from 'common/api'
 import { syncItemTags } from 'common/api'
 import { removeItem } from 'common/api'
-// import { archiveItem } from 'common/api'
 
 import {
   AUTH_URL,
@@ -26,10 +25,6 @@ import { SAVE_TO_POCKET_FAILURE } from 'actions'
 import { TAG_SYNC_REQUEST } from 'actions'
 import { TAG_SYNC_SUCCESS } from 'actions'
 import { TAG_SYNC_FAILURE } from 'actions'
-
-// import { ARCHIVE_ITEM_REQUEST } from 'actions'
-// import { ARCHIVE_ITEM_SUCCESS } from 'actions'
-// import { ARCHIVE_ITEM_FAILURE } from 'actions'
 
 import { REMOVE_ITEM_REQUEST } from 'actions'
 import { REMOVE_ITEM_SUCCESS } from 'actions'
@@ -95,33 +90,16 @@ async function save({ linkUrl, pageUrl, title, tabId }) {
   }
 }
 
-/* Archive item
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-// export async function archiveItemAction(tab, payload) {
-//   const { id: tabId } = tab
-//   const { item_id, ...actionInfo } = payload
-
-//   // send message that we are attempting to sync tags
-//   chrome.tabs.sendMessage(tabId, { action: ARCHIVE_ITEM_REQUEST })
-
-//   const { response } = await archiveItem(item_id, actionInfo)
-//   const message = response
-//     ? { action: ARCHIVE_ITEM_SUCCESS, payload }
-//     : { action: ARCHIVE_ITEM_FAILURE, payload }
-
-//   chrome.tabs.sendMessage(tabId, message)
-// }
-
 /* Remove item
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 export async function removeItemAction(tab, payload) {
   const { id: tabId } = tab
-  const { item_id, ...actionInfo } = payload
+  const { itemId } = payload
 
   // send message that we are attempting to sync tags
   chrome.tabs.sendMessage(tabId, { action: REMOVE_ITEM_REQUEST })
 
-  const { response } = await removeItem(item_id, actionInfo)
+  const { response } = await removeItem(itemId)
   const message = response
     ? { action: REMOVE_ITEM_SUCCESS, payload }
     : { action: REMOVE_ITEM_FAILURE, payload }

@@ -1,10 +1,4 @@
-import { getSetting, setSettings } from './interface'
-
-export function isNewTab(tab, url) {
-  return (
-    typeof url === 'undefined' && tab.active && tab.url === 'chrome://newtab/'
-  )
-}
+import { getSetting } from './interface'
 
 export function isSystemPage(tab) {
   return tab.active && isSystemLink(tab.url)
@@ -18,40 +12,8 @@ export function isSystemLink(link) {
   )
 }
 
-export function getBaseUrl() {
-  const baseURLSetting = getSetting('base_URL')
-  if (!baseURLSetting) setSettings({ base_URL: 'https://getpocket.com/' })
-  return baseURLSetting || 'https://getpocket.com/'
-}
-
-export function getAPIVersion() {
-  const APISetting = getSetting('base_api_version')
-  if (!APISetting) setSettings({ base_api_version: 'v3/' })
-  return APISetting || 'v3/'
-}
-
-export function getAPIUrl() {
-  return getBaseUrl() + getAPIVersion()
-}
-
-// export function getSlug(url) {
-//   const match = url.match(/^(?:https:\/\/getpocket.com\/explore\/)(.+[^/])/i)
-//   return match[1]
-// }
-
 export async function getAccessToken() {
   return await getSetting('access_token')
-}
-
-export function isAuthorized() {
-  return (
-    typeof getSetting('username') !== 'undefined' &&
-    typeof getSetting('oauth_token') !== 'undefined'
-  )
-}
-
-export function isMac() {
-  return navigator.platform.match(/^Mac/) !== null
 }
 
 export function getCurrentLanguageCode() {
@@ -77,21 +39,6 @@ export function getCurrentLanguageCode() {
   if (language.indexOf('zh_CN') === 0) return 'zh_CN' // Chinese Simplified
   if (language.indexOf('zh_TW') === 0) return 'zh_TW' // Chinese Traditional
   return 'en' // Default is English
-}
-
-export function getDefaultKeyboardShortCut() {
-  return isMac()
-    ? `${String.fromCharCode('8984')}+${String.fromCharCode('8679')}+P`
-    : 'ctrl+shift+S'
-}
-
-export function getImageCacheUrl(url, imageSize) {
-  if (!url) return
-  const resizeParam = imageSize ? `${imageSize.width}x${imageSize.height}` : ''
-  const encodedURL = encodeURIComponent(url.replace(/'/g, '%27'))
-  const urlParam = `${encodedURL}`
-  const cacheURL = 'https://pocket-image-cache.com' //direct'
-  return `${cacheURL}/${resizeParam}/filters:no_upscale()/${urlParam}`
 }
 
 export function checkDuplicate(list, tagValue) {

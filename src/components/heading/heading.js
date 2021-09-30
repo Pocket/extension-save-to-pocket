@@ -9,20 +9,28 @@ const headingStyle = css`
   }
 `
 
-export const Heading = ({ saveStatus }) => {
+export const Heading = ({ saveStatus, removeAction }) => {
   const saveStatusCopy = {
     idle: false,
     saving: 'Saving...',
     saved: 'Saved to Pocket',
-    remove: 'Removing...',
+    save_failed: 'Something went wrong!',
+    removing: 'Removing...',
     removed: 'Removed',
-    tags_saving: 'Saving tags...'
+    remove_failed: 'Something went wrong!',
+    tags_saving: 'Saving tags...',
+    tags_saved: 'Tags saved',
+    tags_failed: 'Something went wrong!',
+    tags_error: 'Tags limited to 25 characters'
   }
 
   return (
     <header className={headingStyle}>
-      <PocketLogo />
-      <div className="saveBlock">{saveStatusCopy[saveStatus]}</div>
+      <div>
+        <PocketLogo />
+        <div className="saveBlock">{saveStatusCopy[saveStatus]}</div>
+      </div>
+      <button onClick={removeAction}>Remove</button>
     </header>
   )
 }

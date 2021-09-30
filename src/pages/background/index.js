@@ -5,14 +5,10 @@ import { AUTH_CODE_RECEIVED } from 'actions'
 import { USER_LOG_IN } from 'actions'
 import { USER_LOG_OUT } from 'actions'
 import { LOGGED_OUT_OF_POCKET } from 'actions'
-// import { ARCHIVE_ITEM_REQUEST } from 'actions'
 import { REMOVE_ITEM_REQUEST } from 'actions'
 import { TAGS_SYNC } from 'actions'
 import { OPEN_POCKET } from 'actions'
 import { COLOR_MODE_CHANGE } from 'actions'
-import { CHECK_TWITTER_INTEGRATION } from 'actions'
-import { TWITTER_SAVE_REQUEST } from 'actions'
-import { TOGGLE_TWITTER } from 'actions'
 
 /* Initial Setup
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -86,11 +82,8 @@ chrome.runtime.onMessage.addListener(function (message, sender) {
     case LOGGED_OUT_OF_POCKET:
       handle.loggedOutOfPocket(tab)
       return
-    // case ARCHIVE_ITEM_REQUEST:
-      // handle.archiveItemAction(tab, payload)
-      // return
     case REMOVE_ITEM_REQUEST:
-      // handle.removeItemAction(tab, payload)
+      handle.removeItemAction(tab, payload)
       return
     case TAGS_SYNC:
       handle.tagsSyncAction(tab, payload)
@@ -98,17 +91,8 @@ chrome.runtime.onMessage.addListener(function (message, sender) {
     case COLOR_MODE_CHANGE:
       // setColorMode(tab, payload)
       return
-    case TOGGLE_TWITTER:
-      // setTwitter(tab, payload)
-      return
     case OPEN_POCKET:
       handle.openPocket()
-      return
-    case CHECK_TWITTER_INTEGRATION:
-      // checkTwitterIntegration(tab, payload)
-      return
-    case TWITTER_SAVE_REQUEST:
-      // twitterSaveRequest(tab, payload)
       return
     default:
       return

@@ -65,7 +65,7 @@ export const TaggingConnector = ({ closePanel }) => {
 
     chrome.runtime.sendMessage({
       type: TAGS_SYNC,
-      payload,
+      payload
     })
   }
 
