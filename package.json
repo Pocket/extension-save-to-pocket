@@ -17,7 +17,9 @@
     "build": "NODE_ENV=production rollup -c",
     "release": "cross-env NODE_ENV=production IS_RELEASE=true rollup -c",
     "start": "rollup -c -w",
-    "test": "jest"
+    "test": "jest",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "downshift": "^6.1.7",
@@ -42,11 +44,17 @@
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^13.0.5",
     "@rollup/plugin-replace": "^3.0.0",
+    "@storybook/addon-actions": "^6.3.8",
+    "@storybook/addon-essentials": "^6.3.8",
+    "@storybook/addon-links": "^6.3.8",
+    "@storybook/react": "^6.3.8",
     "@types/chrome": "^0.0.158",
     "@types/firefox-webext-browser": "^82.0.1",
     "@types/jest": "^27.0.2",
     "@types/react": "^17.0.24",
     "@types/react-dom": "^17.0.9",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-module-resolver": "^4.1.0",
     "cross-env": "^7.0.3",
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.26.0",

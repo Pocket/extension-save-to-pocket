@@ -71,3 +71,6 @@ Carthage/
 
 # vsCode
 .vscode/
+
+# linaria
+.linaria-cache/

@@ -1,19 +1,27 @@
-import React from 'react'
-
-import { storiesOf } from '@storybook/react'
+import React from 'react';
 import { Chips } from './chips'
-storiesOf('Elements | Chips', module)
-  .add('default', () => (
+
+export default {
+  title: 'Components/Chips',
+  component: Chips,
+};
+
+export const Standard = () => {
+  return (
     <Chips
       tags={['tag1', 'tag2', 'tag3']}
       marked={[]}
       toggleActive={() => {}}
     />
-  ))
-  .add('marked', () => (
+  )
+}
+
+export const Marked = () => {
+  return (
     <Chips
       tags={['tag1', 'tag2', 'tag3']}
       marked={['tag2']}
       toggleActive={() => {}}
     />
-  ))
+  )
+}

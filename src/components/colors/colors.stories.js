@@ -1,30 +1,34 @@
-import React from 'react'
-import { storiesOf } from '@storybook/react'
-import styled from '@emotion/styled'
+import React from 'react';
+import { css } from 'linaria'
 import { COLORS } from './colors'
 
-const ColorBlock = styled.div`
+const colorBlock = css`
   display: flex;
   align-items: center;
   align-content: center;
 `
-const Swatch = styled.div`
+const swatch = css`
   width: 48px;
   height: 48px;
-  background-color: ${props => COLORS[props.color]};
+  background-color: transparent;
 `
 
-const Name = styled.div`
+const name = css`
   padding-left: 10px;
 `
 
-storiesOf('Elements | Colors', module).add('swatches', () => {
+export default {
+  title: 'Components/Colors',
+  component: Colors,
+};
+
+export const Colors = () => {
   return Object.keys(COLORS).map(color => {
     return (
-      <ColorBlock>
-        <Swatch color={color} key={color} />
-        <Name>{color}</Name>
-      </ColorBlock>
+      <div className={colorBlock}>
+        <div className={swatch} key={color} style={{ backgroundColor: `${COLORS[color]}` }}/>
+        <div className={name}>{color}</div>
+      </div>
     )
   })
-})
+}
