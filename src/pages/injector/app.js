@@ -1,89 +1,36 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { Doorhanger } from 'connectors/doorhanger/doorhanger'
-
-import { SAVE_TO_POCKET_REQUEST } from 'actions'
-import { SAVE_TO_POCKET_SUCCESS } from 'actions'
-import { SAVE_TO_POCKET_FAILURE } from 'actions'
-import { REMOVE_ITEM_SUCCESS } from 'actions'
-import { REMOVE_ITEM_FAILURE } from 'actions'
-import { UPDATE_ITEM_PREVIEW } from 'actions'
+import { Doorhanger } from 'components/doorhanger/doorhanger'
+import { HeadingConnector } from 'connectors/heading/heading'
+import { ItemPreviewConnector } from 'connectors/item-preview/item-preview'
+import { TaggingConnector } from 'connectors/tagging/tagging'
+import { FooterConnector } from 'connectors/footer/footer'
 
 export const App = () => {
   const appTarget = useRef(null)
-  const [saveStatus, setSaveStatus] = useState('idle')
-  const [itemPreview, setItemPreview] = useState({})
-
-  /* Handle incoming messages
-  –––––––––––––––––––––––––––––––––––––––––––––––––– */
-  const handleMessages = (event) => {
-    const { payload, action = 'Unknown Action' } = event || {}
-    console.groupCollapsed(`RECEIVE: ${action}`)
-    console.log(payload)
-    console.groupEnd(`RECEIVE: ${action}`)
-
-    switch (action) {
-      case SAVE_TO_POCKET_REQUEST: {
-        return setSaveStatus('saving')
-      }
-
-      case SAVE_TO_POCKET_SUCCESS: {
-        return setSaveStatus('saved')
-      }
-
-      case SAVE_TO_POCKET_FAILURE: {
-        return setSaveStatus('save_failed')
-      }
-
-      case REMOVE_ITEM_SUCCESS: {
-        return setSaveStatus('removed')
-      }
-
-      case REMOVE_ITEM_FAILURE: {
-        return setSaveStatus('remove_failed')
-      }
-
-      case UPDATE_ITEM_PREVIEW: {
-        const { item } = payload
-        return setItemPreview(item)
-      }
-
-      default: {
-        return
-      }
-    }
-  }
-
-  useEffect(() => {
-    setSaveStatus('saving')
-    chrome.runtime.onMessage.addListener(handleMessages)
-    return () => {
-      chrome.runtime.onMessage.removeListener(handleMessages)
-    }
-  }, [])
+  const [isOpen, setIsOpen] = useState(false)
 
   const handleDocumentClick = (e) => {
     if (appTarget?.current?.contains(e.target)) return
-    setSaveStatus('idle')
-  }
-
-  const closePanel = () => {
-    setSaveStatus('idle')
+    setIsOpen(false)
   }
 
   useEffect(() => {
+    setIsOpen(true)
+
     document.addEventListener('click', handleDocumentClick)
-    return () => {
-      document.removeEventListener('click', handleDocumentClick)
-    }
+    return () => document.removeEventListener('click', handleDocumentClick)
   }, [])
+
+  const closePanel = () => setIsOpen(false)
 
   return (
     <div ref={appTarget}>
-      <Doorhanger
-        saveStatus={saveStatus}
-        itemPreview={itemPreview}
-        closePanel={closePanel}
-      />
+      <Doorhanger isOpen={isOpen}>
+        <HeadingConnector />
+        <ItemPreviewConnector />
+        <TaggingConnector closePanel={closePanel} />
+        <FooterConnector />
+      </Doorhanger>
     </div>
   )
 }
