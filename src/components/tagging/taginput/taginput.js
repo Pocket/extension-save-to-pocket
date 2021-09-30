@@ -57,7 +57,6 @@ export const TagInput = ({
   addTag,
   value,
   highlightedIndex,
-  typeaheadOpen,
   closePanel,
   error,
   getInputProps,
@@ -164,7 +163,6 @@ TagInput.propTypes = {
   handleRemoveAction: PropTypes.func,
   makeTagsInactive: PropTypes.func,
   setValue: PropTypes.func,
-  // inputRef: PropTypes.func,
   value: PropTypes.string,
   hasTags: PropTypes.bool
 }
