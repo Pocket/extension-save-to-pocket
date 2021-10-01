@@ -43,14 +43,6 @@
       "js": [
         "pages/logout.js"
       ]
-    },
-    {
-      "matches": [
-        "*://twitter.com/*"
-      ],
-      "js": [
-        "pages/twitter.js"
-      ]
     }
   ],
   "host_permissions": [
