@@ -9,7 +9,6 @@ import { AUTH_URL, LOGOUT_URL, SET_SHORTCUTS } from 'common/constants'
 import { COLORS } from '../../components/colors/colors'
 import { getSetting } from 'common/interface'
 import { sendMessage } from 'common/interface'
-import { TOGGLE_TWITTER } from 'actions'
 
 const {
   $pitch,
@@ -183,23 +182,15 @@ const optionsFooter = css`
 `
 
 const OptionsApp = () => {
-  const [sitesTwitter, setSitesTwitter] = useState()
   const [darkMode, setDarkMode] = useState()
   const [accessToken, setAccessToken] = useState()
   const [userName, setUserName] = useState()
 
   useEffect( async ()=>{
-    setSitesTwitter(getBool(await getSetting('sites_twitter')))
     setDarkMode(getBool(await getSetting('dark_mode')))
     setAccessToken(await getSetting('access_token'))
     setUserName(await getSetting('username'))
   }, [])
-
-  const toggleTwitter = () => {
-    setSitesTwitter(!sitesTwitter)
-    const payload = { isEnabled: !sitesTwitter}
-    sendMessage({ type: TOGGLE_TWITTER, payload })
-  }
 
   const setShortcuts = () => openTabWithUrl(SET_SHORTCUTS)
   const logoutAction = () => openTabWithUrl(LOGOUT_URL)
@@ -243,25 +234,6 @@ const OptionsApp = () => {
             <button className={optionsButtonLink} onClick={setShortcuts}>
               {localize('options_page', 'record_shortcut')}
             </button>
-          </div>
-        </div>
-      </div>
-
-      <div className={optionsSection}>
-        <div className={optionsSectionContent}>
-          <div className={cx(optionsSectionTitle, darkMode ? 'darkMode' : null)}>
-            {localize('options_page', 'quick_save_services_title')}
-          </div>
-          <div className={cx(optionsSectionMain, darkMode ? 'darkMode' : null)}>
-            <ul className={optionsSaveServicesList}>
-              <li>
-                <Toggle active={sitesTwitter} action={toggleTwitter} />
-                Toggle Twitter
-              </li>
-            </ul>
-            <div className={optionsInfo}>
-              {localize('options_page', 'services_info')}
-            </div>
           </div>
         </div>
       </div>

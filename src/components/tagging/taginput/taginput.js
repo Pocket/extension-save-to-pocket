@@ -4,7 +4,7 @@ import { localize } from 'common/_locales/locales'
 import AutosizeInput from 'react-input-autosize'
 import { css, cx } from 'linaria'
 
-const TagError = css`
+const tagError = css`
   background-color: #f9f9f9;
   border: 1px solid #ef4056;
   border-radius: 3px;
@@ -18,24 +18,22 @@ const TagError = css`
   width: 80%;
 `
 
-const InputWrapper = css`
+const inputWrapper = css`
   max-width: 100%;
   display: inline-block;
+  margin: 3px 0;
+
   input {
     all: unset;
     color: #222;
     display: inline-block;
     line-height: 16px;
     margin-bottom: 3px;
-    margin-left: 16px;
+    margin-left: 0;
     margin-right: 3px;
     margin-top: 3px;
     min-width: 0.3em;
     padding: 2px 4px;
-  }
-
-  &.active input {
-    margin-left: 0;
   }
 `
 
@@ -60,7 +58,6 @@ export const TagInput = ({
   closePanel,
   error,
   getInputProps,
-  hasTags,
   inputRef,
   setFocus,
   setBlur
@@ -135,7 +132,7 @@ export const TagInput = ({
   }
 
   return (
-    <div className={cx(InputWrapper, hasTags && 'active')}>
+    <div className={inputWrapper}>
       <AutosizeInput
         {...getInputProps({
           ref: inputRef,
@@ -149,7 +146,7 @@ export const TagInput = ({
         })}
       />
       {(error || errorState) ? (
-        <div className={TagError}>{localize('tagging', 'invalid_tags')}</div>
+        <div className={tagError}>{localize('tagging', 'invalid_tags')}</div>
       ) : null}
     </div>
   )

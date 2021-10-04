@@ -8,6 +8,7 @@ import { LOGGED_OUT_OF_POCKET } from 'actions'
 import { REMOVE_ITEM_REQUEST } from 'actions'
 import { TAGS_SYNC } from 'actions'
 import { OPEN_POCKET } from 'actions'
+import { OPEN_OPTIONS } from 'actions'
 import { COLOR_MODE_CHANGE } from 'actions'
 
 /* Initial Setup
@@ -93,6 +94,9 @@ chrome.runtime.onMessage.addListener(function (message, sender) {
       return
     case OPEN_POCKET:
       handle.openPocket()
+      return
+    case OPEN_OPTIONS:
+      handle.openOptionsPage()
       return
     default:
       return

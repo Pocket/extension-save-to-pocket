@@ -13,47 +13,28 @@ const chipList = css`
   }
 `
 const chipItem = css`
+  background-color: #E8F7F6;
   border: 1px solid #E8F7F6;
   border-radius: 50px;
   color: #004D48;
   cursor: pointer;
-  display: inline-flex;
-  align-content: center;
-  align-items: center;
-  font-weight: 400;
+  display: inline-block;
   font-size: 14px;
   line-height: 16px;
-  margin-bottom: 2px;
-  margin-right: 3px;
-  margin-top: 2px;
-  text-transform: lowercase;
-  background-color: #E8F7F6;
+  margin-right: 9px;
   padding: 8px;
-
-  &:first-of-type {
-    margin-left: 20px;
-  }
+  text-align: center;
+  text-transform: lowercase;
+  transform: translateZ(0.1);
 
   span {
-    display: inline-block;
-    font-size: 18px;
-    font-weight: 100;
-    line-height: 16px;
-    padding-left: 4px;
-    vertical-align: middle;
-    &:hover {
-      color: #ef4056;
-    }
+    color: #1A1A1A;
+    margin-left: 10px;
   }
 
-  &:hover {
-    border-color: #999;
+  &.active {
+    border: 1px solid #000;
   }
-`
-
-const chipItemActive = css`
-  background-color: #ddd;
-  padding: 2px 5px 2px 6px;
 `
 
 export const Chips = ({ removeTag, tags, marked, toggleActive }) => {
@@ -68,7 +49,7 @@ export const Chips = ({ removeTag, tags, marked, toggleActive }) => {
 
       return (
         <li
-          className={cx(chipItem, marked ? chipItemActive : null)}
+          className={cx(chipItem, active === true ?? 'active')}
           active={active}
           key={index}
           onMouseDown={event => event.preventDefault()}

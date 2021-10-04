@@ -17,7 +17,7 @@ const doorhangerStyle = css`
     border-width: 2px;
     border-color: #ffffff;
     box-sizing: border-box;
-    width: 320px;
+    width: 393px;
     position: absolute;
     padding: 8px 10px;
     top: 10px;

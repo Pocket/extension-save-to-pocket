@@ -9,25 +9,21 @@ import { localize } from 'common/_locales/locales'
 import { Chips } from 'components/chips/chips'
 
 const taggingWrapper = css`
-  padding: 5px 0 0;
+  padding: 10px 0 0;
   position: relative;
 `
 const taggingPlaceholder = css`
   color: #999;
-  left: 29px;
   position: absolute;
-  top: 10px;
+  left: 10px;
+  top: 14px;
 `
 const taggingWell = css`
   background: #fff;
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="%23999999"><path d="M83.38 54.6L43.8 17.02H17.41V43.4l39.58 39.58L83.38 54.6zM30.95 36.81c-3.45 0-6.25-2.67-6.25-5.96s2.8-5.97 6.25-5.97 6.25 2.67 6.25 5.97c0 3.29-2.8 5.96-6.25 5.96z"/></svg>');
-  background-position: 4px 7px;
-  background-repeat: no-repeat;
-  background-size: 22px;
-  border: 1px solid #ddd;
-  border-radius: 3px;
+  border: 1px solid #D9D9D9;
+  border-radius: 4px;
   box-sizing: border-box;
-  font-size: 13px;
+  font-size: 16px;
   line-height: 16px;
   margin: 0;
   padding: 4px 10px;
@@ -191,7 +187,6 @@ export const Tagging = ({
                 highlightedIndex={highlightedIndex}
                 typeaheadOpen={isOpen}
                 getInputProps={getInputProps}
-                hasTags={!!hasTags}
                 inputRef={inputRef}
                 value={inputvalue}
                 setValue={setInputValue}
