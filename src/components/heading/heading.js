@@ -3,9 +3,38 @@ import { css, cx } from 'linaria'
 import { PocketLogo } from 'components/icons'
 
 const headingStyle = css`
+  display: flex;
+  justify-content: space-between;
+  background-color: #E8F7F6;
+  border-radius: 30px;
+  padding: 15px 20px;
+
+  svg {
+    height: 25px;
+    width: 25px;
+    margin-right: 14px;
+  }
+
   .saveBlock {
+    display: inline-block;
     color: #1a1a1a;
-    font-size: 24px;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  button {
+    display: inline-block;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 14px;
+    color: #1A1A1A;
+    padding: 0;
+
+    &:hover {
+      text-decoration: underline;
+      background: transparent;
+    }
   }
 `
 

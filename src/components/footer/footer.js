@@ -1,14 +1,37 @@
 import React from 'react'
-import { css, cx } from 'linaria'
+import { css } from 'linaria'
 
 const footerWrapper = css`
-  border-top: 1px solid black;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #D9D9D9;
+  margin-top: 24px;
+  padding: 18px 0 8px;
+
+  svg {
+    display: inline-block;
+  }
+
+  button {
+    display: inline-block;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 14px;
+    color: #1A1A1A;
+    padding: 0;
+
+    &:hover {
+      text-decoration: underline;
+      background: transparent;
+    }
+  }
 `
 
-export const Footer = ({ settingsClick }) => {
+export const Footer = ({ myListClick, settingsClick }) => {
   return (
     <footer className={footerWrapper}>
-      <button>My List</button>
+      <button onClick={myListClick}> My List</button>
       <button onClick={settingsClick}>Settings</button>
     </footer>
   )

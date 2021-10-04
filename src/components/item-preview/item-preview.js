@@ -25,6 +25,10 @@ const previewWrapper = css`
     font-weight: 600;
     line-height: 20px;
     color: #1A1A1A;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   p {

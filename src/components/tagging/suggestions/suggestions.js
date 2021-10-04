@@ -25,13 +25,11 @@ const suggestionItem = css`
   color: #004D48;
   cursor: pointer;
   display: inline-block;
-  font-weight: 300;
-  letter-spacing: 0.05em;
+  font-size: 14px;
   line-height: 16px;
   margin-bottom: 4px;
-  margin-right: 6px;
-  min-width: 15%;
-  padding: 2px 8px;
+  margin-right: 4px;
+  padding: 8px;
   text-align: center;
   text-transform: lowercase;
   transform: translateZ(0.1);

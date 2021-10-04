@@ -166,6 +166,10 @@ export function openPocketHome() {
   chrome.tabs.create({ url: POCKET_HOME })
 }
 
+export function openOptionsPage() {
+  chrome.runtime.openOptionsPage()
+}
+
 /* Tab Changes
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 export function tabUpdated(tabId, changeInfo) {
