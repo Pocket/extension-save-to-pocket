@@ -1,6 +1,6 @@
 import React from 'react'
 import { css, cx } from 'linaria'
-import { PocketLogo } from 'components/icons'
+import { PocketLogoIcon } from 'components/icons/icons'
 
 const headingStyle = css`
   display: flex;
@@ -9,7 +9,7 @@ const headingStyle = css`
   border-radius: 30px;
   padding: 15px 20px;
 
-  svg {
+  .icon {
     height: 25px;
     width: 25px;
     margin-right: 14px;
@@ -56,7 +56,7 @@ export const Heading = ({ saveStatus, removeAction }) => {
   return (
     <header className={headingStyle}>
       <div>
-        <PocketLogo />
+        <PocketLogoIcon />
         <div className="saveBlock">{saveStatusCopy[saveStatus]}</div>
       </div>
       <button onClick={removeAction}>Remove</button>
