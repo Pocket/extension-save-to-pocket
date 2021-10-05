@@ -41,12 +41,6 @@ chrome.runtime.onInstalled.addListener(function () {
     id: 'pageContextClick',
     contexts: ['page', 'frame', 'editable', 'image', 'video', 'audio', 'link', 'selection'], // prettier-ignore
   })
-
-  // Update toolbar button for preferred dark/light mode
-  // initColorMode()
-
-  // Set up defaults
-  // initOptions()
 })
 
 /* Browser Action - Toolbar
@@ -90,7 +84,7 @@ chrome.runtime.onMessage.addListener(function (message, sender) {
       handle.tagsSyncAction(tab, payload)
       return
     case COLOR_MODE_CHANGE:
-      // setColorMode(tab, payload)
+      handle.setColorMode(tab, payload)
       return
     case OPEN_POCKET:
       handle.openPocket()

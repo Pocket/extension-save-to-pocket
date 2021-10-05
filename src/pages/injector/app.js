@@ -4,12 +4,15 @@ import { HeadingConnector } from 'connectors/heading/heading'
 import { ItemPreviewConnector } from 'connectors/item-preview/item-preview'
 import { TaggingConnector } from 'connectors/tagging/tagging'
 import { FooterConnector } from 'connectors/footer/footer'
+import { getSetting } from 'common/interface'
+import { getOSModeClass } from 'common/helpers'
 
 import { SAVE_TO_POCKET_REQUEST } from 'actions'
 
 export const App = () => {
   const appTarget = useRef(null)
   const [isOpen, setIsOpen] = useState(false)
+  const [theme, setTheme] = useState('pocket-theme-light')
 
   /* Handle incoming messages
   –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -31,6 +34,12 @@ export const App = () => {
     }
   }
 
+  useEffect(async () => {
+    let newTheme = await getSetting('theme')
+    if (newTheme === 'system') newTheme = getOSModeClass()
+    setTheme(`pocket-theme-${newTheme}`)
+  }, [])
+
   const handleDocumentClick = (e) => {
     if (appTarget?.current?.contains(e.target)) return
     setIsOpen(false)
@@ -50,7 +59,7 @@ export const App = () => {
   const closePanel = () => setIsOpen(false)
 
   return (
-    <div ref={appTarget}>
+    <div ref={appTarget} className={theme}>
       <Doorhanger isOpen={isOpen}>
         <HeadingConnector />
         <ItemPreviewConnector />
