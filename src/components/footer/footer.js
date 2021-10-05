@@ -1,5 +1,6 @@
 import React from 'react'
 import { css } from 'linaria'
+import { SettingsIcon } from 'components/icons/icons'
 
 const footerWrapper = css`
   display: flex;
@@ -8,7 +9,9 @@ const footerWrapper = css`
   margin-top: 24px;
   padding: 18px 0 8px;
 
-  svg {
+  .icon {
+    height: 25px;
+    width: 25px;
     display: inline-block;
   }
 
@@ -32,7 +35,9 @@ export const Footer = ({ myListClick, settingsClick }) => {
   return (
     <footer className={footerWrapper}>
       <button onClick={myListClick}> My List</button>
-      <button onClick={settingsClick}>Settings</button>
+      <button onClick={settingsClick}>
+        <SettingsIcon />
+      </button>
     </footer>
   )
 }
