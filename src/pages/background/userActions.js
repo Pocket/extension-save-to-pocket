@@ -178,3 +178,9 @@ export function tabUpdated(tabId, changeInfo) {
     setToolbarIcon(tabId, false)
   }
 }
+
+/* Theme Changes
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+export async function setColorMode(tab, { theme }) {
+  await setSettings({ theme })
+}
