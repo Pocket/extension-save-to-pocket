@@ -117,3 +117,36 @@ export function deriveItemData(item) {
     null
   )
 }
+
+/**
+ * Helper function to figure out what the CSS class name should be based on the
+ * mode name that maps to the current OS color mode.
+ * @return  {String}  Formatted CSS class name
+ */
+ export function getOSModeClass() {
+  console.log('getting color')
+  if (!window.matchMedia) return
+  console.log('no bounce!')
+
+  const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  const isNotSpecified = window.matchMedia(
+    '(prefers-color-scheme: no-preference)'
+  ).matches
+  const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+  let mode
+
+  if (isLightMode) {
+    mode = 'light'
+  }
+  if (isDarkMode) {
+    mode = 'dark'
+  }
+  // fallback if no system setting
+  if (isNotSpecified || hasNoSupport) {
+    console.log('no support')
+    mode = 'light'
+  }
+
+  return mode
+}

@@ -36,11 +36,18 @@ const headingStyle = css`
       background: transparent;
     }
   }
+
+  &.error {
+    background-color: #FDF2F5;
+
+    .saveBlock {
+      color: #EF4056;
+    }
+  }
 `
 
 export const Heading = ({ saveStatus, removeAction }) => {
   const saveStatusCopy = {
-    idle: false,
     saving: 'Saving...',
     saved: 'Saved to Pocket',
     save_failed: 'Something went wrong!',
@@ -53,13 +60,19 @@ export const Heading = ({ saveStatus, removeAction }) => {
     tags_error: 'Tags limited to 25 characters'
   }
 
+  const loadingStatus = ['saving', 'removing', 'tags_saving']
+  const isLoading = loadingStatus.includes(saveStatus)
+
+  const errorStatus = ['save_failed', 'remove_failed', 'tags_failed', 'tags_error']
+  const hasError = errorStatus.includes(saveStatus)
+
   return (
-    <header className={headingStyle}>
+    <header className={cx(headingStyle, hasError && 'error')}>
       <div>
         <PocketLogoIcon />
         <div className="saveBlock">{saveStatusCopy[saveStatus]}</div>
       </div>
-      <button onClick={removeAction}>Remove</button>
+      {!hasError ? (<button onClick={removeAction}>Remove</button>) : null}
     </header>
   )
 }

@@ -10,6 +10,7 @@ import { TAGS_SYNC } from 'actions'
 import { OPEN_POCKET } from 'actions'
 import { OPEN_OPTIONS } from 'actions'
 import { COLOR_MODE_CHANGE } from 'actions'
+import { setColorMode } from 'pages/background/settings'
 
 /* Initial Setup
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -44,9 +45,6 @@ chrome.runtime.onInstalled.addListener(function () {
 
   // Update toolbar button for preferred dark/light mode
   // initColorMode()
-
-  // Set up defaults
-  // initOptions()
 })
 
 /* Browser Action - Toolbar
@@ -90,7 +88,7 @@ chrome.runtime.onMessage.addListener(function (message, sender) {
       handle.tagsSyncAction(tab, payload)
       return
     case COLOR_MODE_CHANGE:
-      // setColorMode(tab, payload)
+      setColorMode(tab, payload)
       return
     case OPEN_POCKET:
       handle.openPocket()

@@ -1,14 +1,13 @@
 import ReactDOM from 'react-dom'
 import React, { useEffect, useState } from 'react'
 import { css, cx } from 'linaria'
-import Toggle from '../../components/toggle/toggle'
-import { getBool } from 'common/utilities'
 import { openTabWithUrl } from 'common/interface'
 import { localize } from 'common/_locales/locales'
 import { AUTH_URL, LOGOUT_URL, SET_SHORTCUTS } from 'common/constants'
 import { COLORS } from '../../components/colors/colors'
 import { getSetting } from 'common/interface'
-import { sendMessage } from 'common/interface'
+import { COLOR_MODE_CHANGE } from 'actions'
+import { getOSModeClass } from 'common/helpers'
 
 const {
   $pitch,
@@ -183,11 +182,13 @@ const optionsFooter = css`
 
 const OptionsApp = () => {
   const [darkMode, setDarkMode] = useState()
+  const [storedTheme, setStoredTheme] = useState('light')
+  const [pageTheme, setPageTheme] = useState('light')
   const [accessToken, setAccessToken] = useState()
   const [userName, setUserName] = useState()
 
-  useEffect( async ()=>{
-    setDarkMode(getBool(await getSetting('dark_mode')))
+  useEffect( async () => {
+    updateTheme(await getSetting('theme'))
     setAccessToken(await getSetting('access_token'))
     setUserName(await getSetting('username'))
   }, [])
@@ -196,9 +197,16 @@ const OptionsApp = () => {
   const logoutAction = () => openTabWithUrl(LOGOUT_URL)
   const loginAction = () => openTabWithUrl(AUTH_URL)
 
+  const updateTheme = (mode) => {
+    chrome.runtime.sendMessage({ type: COLOR_MODE_CHANGE, payload: { theme: mode } })
+    const newTheme = (mode === 'system') ? getOSModeClass() : mode
+    setStoredTheme(mode)
+    setPageTheme(newTheme)
+  }
+
   return (
-    <div className={optionsContainer}>
-      <h1 className={cx(optionsTitle, darkMode ? 'darkMode' : null)}>
+    <div className={cx(optionsContainer, `pocket-theme-${pageTheme}`)}>
+      <h1 className={cx(optionsTitle)}>
         {localize('options_page', 'header')} -{' '}
         {localize('options_page', 'save_to_pocket')}
       </h1>
@@ -234,6 +242,46 @@ const OptionsApp = () => {
             <button className={optionsButtonLink} onClick={setShortcuts}>
               {localize('options_page', 'record_shortcut')}
             </button>
+          </div>
+        </div>
+      </div>
+
+      <div className={optionsSection}>
+        <div className={optionsSectionContent}>
+          <div className={cx(optionsSectionTitle)}>
+            Theme
+          </div>
+          <div className={cx(optionsSectionMain)}>
+            <div>
+              <input
+                id="light"
+                type="radio"
+                name="light"
+                onChange={() => updateTheme('light')}
+                checked={storedTheme === 'light'}
+              />
+              <label htmlFor="light">Light</label>
+            </div>
+            <div>
+              <input
+                id="dark"
+                type="radio"
+                name="dark"
+                onChange={() => updateTheme('dark')}
+                checked={storedTheme === 'dark'}
+              />
+              <label htmlFor="dark">Dark</label>
+            </div>
+            <div>
+              <input
+                id="system"
+                type="radio"
+                name="system"
+                onChange={() => updateTheme('system')}
+                checked={storedTheme === 'system'}
+              />
+              <label htmlFor="system">System</label>
+            </div>
           </div>
         </div>
       </div>
