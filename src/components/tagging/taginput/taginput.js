@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { localize } from 'common/_locales/locales'
 import AutosizeInput from 'react-input-autosize'
 import { css, cx } from 'linaria'
 
@@ -56,7 +55,6 @@ export const TagInput = ({
   value,
   highlightedIndex,
   closePanel,
-  error,
   getInputProps,
   inputRef,
   setFocus,
@@ -145,9 +143,6 @@ export const TagInput = ({
           onKeyPress: onInput
         })}
       />
-      {(error || errorState) ? (
-        <div className={tagError}>{localize('tagging', 'invalid_tags')}</div>
-      ) : null}
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import { css, cx } from 'linaria'
+import { localize } from 'common/_locales/locales'
 import { PocketLogoIcon } from 'components/icons/icons'
 
 const headingStyle = css`
@@ -47,19 +48,6 @@ const headingStyle = css`
 `
 
 export const Heading = ({ saveStatus, removeAction }) => {
-  const saveStatusCopy = {
-    saving: 'Saving...',
-    saved: 'Saved to Pocket',
-    save_failed: 'Something went wrong!',
-    removing: 'Removing...',
-    removed: 'Removed',
-    remove_failed: 'Something went wrong!',
-    tags_saving: 'Saving tags...',
-    tags_saved: 'Tags saved',
-    tags_failed: 'Something went wrong!',
-    tags_error: 'Tags limited to 25 characters'
-  }
-
   const loadingStatus = ['saving', 'removing', 'tags_saving']
   const isLoading = loadingStatus.includes(saveStatus)
 
@@ -70,9 +58,11 @@ export const Heading = ({ saveStatus, removeAction }) => {
     <header className={cx(headingStyle, hasError && 'error')}>
       <div>
         <PocketLogoIcon />
-        <div className="saveBlock">{saveStatusCopy[saveStatus]}</div>
+        <div className="saveBlock">{localize('heading', saveStatus)}</div>
       </div>
-      {!hasError ? (<button onClick={removeAction}>Remove</button>) : null}
+      {!hasError ? (
+        <button onClick={removeAction}>{localize('buttons', 'remove')}</button>
+      ) : null}
     </header>
   )
 }
