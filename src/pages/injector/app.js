@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react'
-import { cx } from 'linaria'
 import { Doorhanger } from 'components/doorhanger/doorhanger'
 import { HeadingConnector } from 'connectors/heading/heading'
 import { ItemPreviewConnector } from 'connectors/item-preview/item-preview'
@@ -60,7 +59,7 @@ export const App = () => {
   const closePanel = () => setIsOpen(false)
 
   return (
-    <div ref={appTarget} className={(cx(theme))}>
+    <div ref={appTarget} className={theme}>
       <Doorhanger isOpen={isOpen}>
         <HeadingConnector />
         <ItemPreviewConnector />
