@@ -124,9 +124,7 @@ export function deriveItemData(item) {
  * @return  {String}  Formatted CSS class name
  */
  export function getOSModeClass() {
-  console.log('getting color')
-  if (!window.matchMedia) return
-  console.log('no bounce!')
+  if (!window.matchMedia) return 'light'
 
   const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
   const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
@@ -144,7 +142,6 @@ export function deriveItemData(item) {
   }
   // fallback if no system setting
   if (isNotSpecified || hasNoSupport) {
-    console.log('no support')
     mode = 'light'
   }
 
