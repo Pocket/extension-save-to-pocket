@@ -8,14 +8,15 @@ import { COLORS } from '../../components/colors/colors'
 import { getSetting } from 'common/interface'
 import { COLOR_MODE_CHANGE } from 'actions'
 import { getOSModeClass } from 'common/helpers'
+import { Logo } from 'components/logo/logo'
+import { FacebookIcon } from 'components/icons/icons'
+import { TwitterIcon } from 'components/icons/icons'
+import { PocketLogoIcon } from 'components/icons/icons'
 
 const {
   $pitch,
-  $gray,
   $snow,
-  $tar,
   $darksmoke,
-  $teal,
   $coal,
   $emerald
 } = COLORS
@@ -46,10 +47,6 @@ const optionsTitle = css`
   margin: 70px 0 0;
   padding: 0 0 20px;
   text-align: left;
-
-  &.darkMode {
-    color: ${$gray};
-  }
 `
 const optionsSection = css`
   align-items: center;
@@ -59,10 +56,6 @@ const optionsSection = css`
   justify-content: flex-start;
   padding: 20px 0;
   text-align: left;
-
-  .darkMode & {
-    border-color: ${$tar};
-  }
 
   @media (min-width: 320px) and (max-width: 767px) {
     flex-direction: column;
@@ -82,36 +75,9 @@ const optionsSectionTitle = css`
     margin-bottom: 20px;
     width: 100%;
   }
-
-  &.darkMode {
-    color: ${$gray};
-  }
 `
 const optionsSectionContent = css`
   display: flex;
-`
-const optionsSectionContentFull = css`
-  display: block;
-  width: 100%;
-`
-const optionsContentFullBlock = css`
-  color: ${$darksmoke};
-  display: block;
-  margin: 20px 0 10px;
-  text-align: center;
-
-  &:hover {
-    color: ${$teal};
-  }
-`
-const optionsPrivacyLegal = css`
-  color: ${$darksmoke};
-  display: block;
-  margin: 10px 0 0;
-
-  &:hover {
-    color: ${$teal};
-  }
 `
 const optionsSectionMain = css`
   color: ${$darksmoke};
@@ -119,56 +85,8 @@ const optionsSectionMain = css`
   font-size: 16px;
   width: 370px;
 
-  &.darkMode {
-    color: ${$gray};
-  }
-
-  .sectionContentFull & {
-    display: flex;
-    justify-content: space-around;
-    width: 100%;
-  }
-
   @media (min-width: 320px) and (max-width: 767px) {
     width: 100%;
-  }
-`
-const optionsBlockCopy = css`
-  display: block;
-  font-weight: 600;
-  margin-top: 15px;
-`
-const optionsInfo = css`
-  font-size: 0.8em;
-  margin-top: 10px;
-`
-const optionsSaveServicesList = css`
-  list-style: none;
-  margin: 0;
-  padding: 0;
-
-  & > li {
-    margin-bottom: 10px;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-`
-const optionsQuestionsList = css`
-  line-height: 1.5em;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-
-  a {
-    color: ${$darksmoke};
-    padding: 5px 0;
-    text-transform: lowercase;
-
-    &:hover {
-      color: ${$teal};
-    }
   }
 `
 const optionsFooter = css`
@@ -181,13 +99,12 @@ const optionsFooter = css`
 `
 
 const OptionsApp = () => {
-  const [darkMode, setDarkMode] = useState()
   const [storedTheme, setStoredTheme] = useState('light')
   const [pageTheme, setPageTheme] = useState('light')
   const [accessToken, setAccessToken] = useState()
   const [userName, setUserName] = useState()
 
-  useEffect( async () => {
+  useEffect(async () => {
     updateTheme(await getSetting('theme'))
     setAccessToken(await getSetting('access_token'))
     setUserName(await getSetting('username'))
@@ -206,27 +123,27 @@ const OptionsApp = () => {
 
   return (
     <div className={cx(optionsContainer, `pocket-theme-${pageTheme}`)}>
+      <Logo />
       <h1 className={cx(optionsTitle)}>
-        {localize('options_page', 'header')} -{' '}
-        {localize('options_page', 'save_to_pocket')}
+        {localize('options', 'header')}
       </h1>
 
       <div className={optionsSection}>
         <div className={optionsSectionContent}>
-          <div className={cx(optionsSectionTitle, darkMode ? 'darkMode' : null)}>
-            {localize('options_page', 'login_title')}
+          <div className={optionsSectionTitle}>
+            {localize('options', 'login_title')}
           </div>
-          <div className={cx(optionsSectionMain, darkMode ? 'darkMode' : null)}>
+          <div className={optionsSectionMain}>
             {(accessToken && userName) ? (
               <div>
                 {userName} &nbsp; ({' '}
                 <button className={optionsButtonLink} onClick={logoutAction}>
-                  {localize('options_page', 'logout_link')}
+                  {localize('options', 'log_out')}
                 </button>{' '})
               </div>
             ) : (
               <button className={optionsButtonLink} onClick={loginAction}>
-                {localize('options_page', 'login_link')}
+                {localize('options', 'log_in')}
               </button>
             )}
           </div>
@@ -235,12 +152,12 @@ const OptionsApp = () => {
 
       <div className={optionsSection}>
         <div className={optionsSectionContent}>
-          <div className={cx(optionsSectionTitle, darkMode ? 'darkMode' : null)}>
-            {localize('options_page', 'keyboard_shortcut_title')}
+          <div className={optionsSectionTitle}>
+            {localize('options', 'shortcut_title')}
           </div>
-          <div className={cx(optionsSectionMain, darkMode ? 'darkMode' : null)}>
+          <div className={optionsSectionMain}>
             <button className={optionsButtonLink} onClick={setShortcuts}>
-              {localize('options_page', 'record_shortcut')}
+              {localize('options', 'shortcut_record')}
             </button>
           </div>
         </div>
@@ -249,7 +166,7 @@ const OptionsApp = () => {
       <div className={optionsSection}>
         <div className={optionsSectionContent}>
           <div className={cx(optionsSectionTitle)}>
-            Theme
+            {localize('options', 'theme_title')}
           </div>
           <div className={cx(optionsSectionMain)}>
             <div>
@@ -260,7 +177,7 @@ const OptionsApp = () => {
                 onChange={() => updateTheme('light')}
                 checked={storedTheme === 'light'}
               />
-              <label htmlFor="light">Light</label>
+              <label htmlFor="light">{localize('options', 'theme_light')}</label>
             </div>
             <div>
               <input
@@ -270,7 +187,7 @@ const OptionsApp = () => {
                 onChange={() => updateTheme('dark')}
                 checked={storedTheme === 'dark'}
               />
-              <label htmlFor="dark">Dark</label>
+              <label htmlFor="dark">{localize('options', 'theme_dark')}</label>
             </div>
             <div>
               <input
@@ -280,7 +197,7 @@ const OptionsApp = () => {
                 onChange={() => updateTheme('system')}
                 checked={storedTheme === 'system'}
               />
-              <label htmlFor="system">System</label>
+              <label htmlFor="system">{localize('options', 'theme_system')}</label>
             </div>
           </div>
         </div>
@@ -288,86 +205,69 @@ const OptionsApp = () => {
 
       <div className={optionsSection}>
         <div className={optionsSectionContent}>
-          <div className={cx(optionsSectionTitle, darkMode ? 'darkMode' : null)}>
-            {localize('options_page', 'questions_pocket_title')}
+          <div className={optionsSectionTitle}>
+            {localize('options', 'app_title')}
           </div>
-          <div className={cx(optionsSectionMain, darkMode ? 'darkMode' : null)}>
-            <ul className={optionsQuestionsList}>
-              <li>
-                <a href='https://help.getpocket.com'>
-                  {localize('options_page', 'search_support_link')}
-                </a>
-              </li>
-              <li>
-                <a href='https://getpocket.com/extension/support'>
-                  {localize('options_page', 'send_us_an_email_link')}
-                </a>
-              </li>
-              <li>
-                <a href='https://twitter.com/intent/tweet?screen_name=pocketsupport&text=%23chrome'>
-                  {localize('options_page', 'get_in_touch_on_twitter_link')}
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div className={optionsSection}>
-        <div className={cx(optionsSectionContentFull, '.sectionContentFull')}>
-          <div className={cx(optionsSectionTitle, darkMode ? 'darkMode' : null)}>
-            {localize('options_page', 'more_ways_to_save_title')}
-          </div>
-          <div className={cx(optionsSectionMain, darkMode ? 'darkMode' : null)}>
+          <div className={optionsSectionMain}>
             <a
-              className={optionsContentFullBlock}
-              href='https://chrome.google.com/webstore/detail/pocket-new-tab/mlnnopicjonfamklpcdfnbcomdlopmof?authuser=1'
-              rel='noopener noreferrer'
-              target='_blank'>
-              <div className={optionsBlockCopy}>
-                Pocket New Tab
-              </div>
+              href="https://apps.apple.com/us/app/pocket-save-read-grow/id309601447"
+              target="_blank"
+              rel="noopener noreferrer">
+              <img
+                src="https://assets.getpocket.com/web-ui/assets/apple-app-store-badge.2928664fe1fc6aca88583a6f606d60ba.svg"
+                alt={localize('options', 'app_apple')}
+              />
             </a>
             <a
-              className={optionsContentFullBlock}
-              href='http://getpocket.com/android/'
-              rel='noopener noreferrer'
-              target='_blank'>
-              <div className={optionsBlockCopy}>
-                Android
-              </div>
-            </a>
-            <a
-              className={optionsContentFullBlock}
-              href='http://getpocket.com/iphone/'
-              rel='noopener noreferrer'
-              target='_blank'>
-              <div className={optionsBlockCopy}>
-                iPhone/iPad
-              </div>
-            </a>
-            <a
-              className={optionsContentFullBlock}
-              href='http://getpocket.com/mac/'
-              rel='noopener noreferrer'
-              target='_blank'>
-              <div className={optionsBlockCopy}>
-                Mac
-              </div>
+              href="https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro"
+              target="_blank"
+              rel="noopener noreferrer">
+              <img
+                src="https://assets.getpocket.com/web-ui/assets/google-play-badge.db9b21a1c41f3dcd9731e1e7acfdbb57.png"
+                alt={localize('options', 'app_google')}
+              />
             </a>
           </div>
         </div>
       </div>
 
-      {/* NOTE: Add some localizations here */}
       <footer className={optionsFooter}>
-        &copy; Copyright {new Date().getFullYear()} Read It Later Inc.
         <a
-          className={optionsPrivacyLegal}
-          href='https://getpocket.com/legal?src=extensions'
+          href="https://help.getpocket.com/"
+          target="_blank"
+          rel="noopener noreferrer">
+          {localize('options', 'need_help')}
+        </a>
+
+        <a
+          href="https://getpocket.com/contact_support?field3=Question%20about%20Pocket%20Extension"
+          target="_blank"
+          rel="noopener noreferrer">
+          {localize('options', 'email_us')}
+        </a>
+
+        <div>
+          {localize('options', 'follow')}
+          <FacebookIcon />
+          <TwitterIcon />
+        </div>
+
+        <PocketLogoIcon />
+        <p dangerouslySetInnerHTML={{ __html: localize('options', 'family').replace('Mozilla', '<a href="https://mozilla.org/about/" rel="noopener noreferrer" target="_blank">Mozilla</a>')}}></p>
+
+        <p>&copy; {new Date().getFullYear()} Read It Later, Inc.</p>
+
+        <a
+          href='https://getpocket.com/privacy/?src=extension'
           rel='noopener noreferrer'
           target='_blank'>
-          Legal &amp; Privacy
+          {localize('options', 'privacy')}
+        </a>
+        <a
+          href='https://getpocket.com/tos/?src=extension'
+          rel='noopener noreferrer'
+          target='_blank'>
+          {localize('options', 'terms')}
         </a>
       </footer>
     </div>

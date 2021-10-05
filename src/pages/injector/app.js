@@ -35,7 +35,7 @@ export const App = () => {
   }
 
   useEffect(async () => {
-    let newTheme = await getSetting('theme')
+    let newTheme = await getSetting('theme') || 'light'
     if (newTheme === 'system') newTheme = getOSModeClass()
     setTheme(`pocket-theme-${newTheme}`)
   }, [])

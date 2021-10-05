@@ -1,5 +1,6 @@
 import React from 'react'
 import { css } from 'linaria'
+import { localize } from 'common/_locales/locales'
 import { SettingsIcon } from 'components/icons/icons'
 
 const footerWrapper = css`
@@ -34,7 +35,7 @@ const footerWrapper = css`
 export const Footer = ({ myListClick, settingsClick }) => {
   return (
     <footer className={footerWrapper}>
-      <button onClick={myListClick}> My List</button>
+      <button onClick={myListClick}>{localize('buttons', 'mylist')}</button>
       <button onClick={settingsClick}>
         <SettingsIcon />
       </button>
