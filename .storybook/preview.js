@@ -1,5 +1,5 @@
 import React from 'react'
-import { GlobalVariables } from "../src/pages/injector/globalStyles"
+import { GlobalVariables } from 'pages/injector/globalStyles'
 import { css, cx } from 'linaria'
 
 const storyWrapperStyles = css`
@@ -7,6 +7,7 @@ const storyWrapperStyles = css`
   width: 100vw;
   padding: 10px;
   box-sizing: border-box;
+  font-family: "Graphik Web", "Helvetica Neue", Helvetica, Arial, Sans-Serif !important;
 
   &.pocket-theme-dark {
     background-color: black;
