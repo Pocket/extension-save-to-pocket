@@ -3,20 +3,6 @@ import PropTypes from 'prop-types'
 import AutosizeInput from 'react-input-autosize'
 import { css, cx } from 'linaria'
 
-const tagError = css`
-  background-color: #f9f9f9;
-  border: 1px solid #ef4056;
-  border-radius: 3px;
-  box-shadow: 0 2px 3px rgba(0, 0, 0, 0.5);
-  color: #ef4056;
-  left: 50%;
-  padding: 6px 12px;
-  position: absolute;
-  top: 100%;
-  transform: translate(-50%, -2px);
-  width: 80%;
-`
-
 const inputWrapper = css`
   max-width: 100%;
   display: inline-block;
@@ -33,6 +19,10 @@ const inputWrapper = css`
     margin-top: 3px;
     min-width: 0.3em;
     padding: 2px 4px;
+  }
+
+  &.error input {
+    color: #ef4056;
   }
 `
 
@@ -58,25 +48,19 @@ export const TagInput = ({
   getInputProps,
   inputRef,
   setFocus,
-  setBlur
+  setBlur,
+  submitTaggingError
 }) => {
   const [errorState, setErrorState] = useState(false)
-  let errorTimer
 
   const setError = () => {
-    clearTimeout(errorTimer)
     setErrorState(true)
-
-    errorTimer = setTimeout(() => {
-      setErrorState(false)
-    }, 3000)
+    submitTaggingError(true)
   }
 
   const clearError = () => {
-    if (error) {
-      clearTimeout(errorTimer)
-      setErrorState(false)
-    }
+    setErrorState(false)
+    submitTaggingError(false)
   }
 
   /* Input Events
@@ -130,7 +114,7 @@ export const TagInput = ({
   }
 
   return (
-    <div className={inputWrapper}>
+    <div className={cx(inputWrapper, errorState && 'error')}>
       <AutosizeInput
         {...getInputProps({
           ref: inputRef,
@@ -156,5 +140,6 @@ TagInput.propTypes = {
   makeTagsInactive: PropTypes.func,
   setValue: PropTypes.func,
   value: PropTypes.string,
-  hasTags: PropTypes.bool
+  hasTags: PropTypes.bool,
+  submitTaggingError: PropTypes.func
 }

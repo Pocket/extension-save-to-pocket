@@ -80,7 +80,8 @@ export const Tagging = ({
   deactivateTags,
   removeTag,
   removeTags,
-  closePanel
+  closePanel,
+  submitTaggingError
 }) => {
   const hasTags = usedTags && usedTags.length
 
@@ -197,6 +198,7 @@ export const Tagging = ({
                 handleRemoveAction={handleRemoveAction}
                 makeTagsInactive={makeTagsInactive}
                 storedTags={storedTagsList()}
+                submitTaggingError={submitTaggingError}
               />
             </div>
 
@@ -241,5 +243,6 @@ Tagging.propTypes = {
   addTag: PropTypes.func,
   removeTag: PropTypes.func,
   removeTags: PropTypes.func,
-  closePanel: PropTypes.func
+  closePanel: PropTypes.func,
+  submitTaggingError: PropTypes.func
 }

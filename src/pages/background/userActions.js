@@ -30,6 +30,8 @@ import { REMOVE_ITEM_REQUEST } from 'actions'
 import { REMOVE_ITEM_SUCCESS } from 'actions'
 import { REMOVE_ITEM_FAILURE } from 'actions'
 
+import { UPDATE_TAG_ERROR } from 'actions'
+
 var postAuthSave = null
 
 /* Browser Action - Toolbar Icon Clicked
@@ -124,6 +126,13 @@ export async function tagsSyncAction(tab, payload) {
     : { action: TAG_SYNC_FAILURE, payload }
 
   chrome.tabs.sendMessage(tabId, message)
+}
+
+/* Submit tags error
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+export async function tagsErrorAction(tab, payload) {
+  const { id: tabId } = tab
+  chrome.tabs.sendMessage(tabId, { action: UPDATE_TAG_ERROR, payload })
 }
 
 /* Authentication user

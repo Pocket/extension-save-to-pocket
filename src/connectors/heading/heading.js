@@ -12,6 +12,7 @@ import { REMOVE_ITEM_FAILURE } from 'actions'
 import { TAG_SYNC_REQUEST } from 'actions'
 import { TAG_SYNC_SUCCESS } from 'actions'
 import { TAG_SYNC_FAILURE } from 'actions'
+import { UPDATE_TAG_ERROR } from 'actions'
 
 import { UPDATE_ITEM_PREVIEW } from 'actions'
 
@@ -65,6 +66,12 @@ export const HeadingConnector = () => {
         const { item } = payload
         setItemId(item?.itemId)
         return
+      }
+
+      case UPDATE_TAG_ERROR: {
+        const { errorStatus } = payload
+        const errorState = errorStatus ? 'tags_error' : 'saved'
+        return setSaveStatus(errorState)
       }
 
       default: {

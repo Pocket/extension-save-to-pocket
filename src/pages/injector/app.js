@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { cx } from 'linaria'
 import { Doorhanger } from 'components/doorhanger/doorhanger'
 import { HeadingConnector } from 'connectors/heading/heading'
 import { ItemPreviewConnector } from 'connectors/item-preview/item-preview'
@@ -6,6 +7,7 @@ import { TaggingConnector } from 'connectors/tagging/tagging'
 import { FooterConnector } from 'connectors/footer/footer'
 import { getSetting } from 'common/interface'
 import { getOSModeClass } from 'common/helpers'
+import { GlobalVariables } from './globalStyles'
 
 import { SAVE_TO_POCKET_REQUEST } from 'actions'
 
@@ -59,7 +61,7 @@ export const App = () => {
   const closePanel = () => setIsOpen(false)
 
   return (
-    <div ref={appTarget} className={theme}>
+    <div ref={appTarget} className={cx(GlobalVariables, theme)}>
       <Doorhanger isOpen={isOpen}>
         <HeadingConnector />
         <ItemPreviewConnector />

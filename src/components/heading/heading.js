@@ -2,6 +2,8 @@ import React from 'react'
 import { css, cx } from 'linaria'
 import { localize } from 'common/_locales/locales'
 import { PocketLogoIcon } from 'components/icons/icons'
+import { SpinnerIcon } from 'components/icons/icons'
+import { ErrorIcon } from 'components/icons/icons'
 
 const headingStyle = css`
   display: flex;
@@ -57,7 +59,9 @@ export const Heading = ({ saveStatus, removeAction }) => {
   return (
     <header className={cx(headingStyle, hasError && 'error')}>
       <div>
-        <PocketLogoIcon />
+        { isLoading ? <SpinnerIcon /> : null }
+        { hasError ? <ErrorIcon /> : null }
+        { !isLoading && !hasError ? <PocketLogoIcon /> : null }
         <div className="saveBlock">{localize('heading', saveStatus)}</div>
       </div>
       {!hasError ? (
