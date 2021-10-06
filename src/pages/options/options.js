@@ -9,9 +9,11 @@ import { getSetting } from 'common/interface'
 import { COLOR_MODE_CHANGE } from 'actions'
 import { getOSModeClass } from 'common/helpers'
 import { Logo } from 'components/logo/logo'
+import { Button } from 'components/button/button'
 import { FacebookIcon } from 'components/icons/icons'
 import { TwitterIcon } from 'components/icons/icons'
 import { PocketLogoIcon } from 'components/icons/icons'
+import { GlobalVariables } from '../injector/globalStyles'
 
 const {
   $pitch,
@@ -21,15 +23,8 @@ const {
   $emerald
 } = COLORS
 
-const optionsButtonLink = css`
-  color: ${$coal};
-  text-decoration: underline;
-
-  &:hover {
-    color: ${$emerald};
-  }
-`
 const optionsContainer = css`
+  ${GlobalVariables};
   box-sizing: border-box;
   display: inline-block;
   margin-bottom: 80px;
@@ -105,7 +100,7 @@ const OptionsApp = () => {
   const [userName, setUserName] = useState()
 
   useEffect(async () => {
-    updateTheme(await getSetting('theme'))
+    updateTheme(await getSetting('theme') || 'light')
     setAccessToken(await getSetting('access_token'))
     setUserName(await getSetting('username'))
   }, [])
@@ -136,15 +131,15 @@ const OptionsApp = () => {
           <div className={optionsSectionMain}>
             {(accessToken && userName) ? (
               <div>
-                {userName} &nbsp; ({' '}
-                <button className={optionsButtonLink} onClick={logoutAction}>
+                {userName}
+                <Button type='secondary' onClick={logoutAction}>
                   {localize('options', 'log_out')}
-                </button>{' '})
+                </Button>
               </div>
             ) : (
-              <button className={optionsButtonLink} onClick={loginAction}>
+              <Button type='secondary' onClick={loginAction}>
                 {localize('options', 'log_in')}
-              </button>
+              </Button>
             )}
           </div>
         </div>
@@ -156,9 +151,9 @@ const OptionsApp = () => {
             {localize('options', 'shortcut_title')}
           </div>
           <div className={optionsSectionMain}>
-            <button className={optionsButtonLink} onClick={setShortcuts}>
+            <Button type='primary' onClick={setShortcuts}>
               {localize('options', 'shortcut_record')}
-            </button>
+            </Button>
           </div>
         </div>
       </div>
