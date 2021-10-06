@@ -6,9 +6,7 @@ const doorhangerStyle = css`
   top: 0;
   right: 0;
   z-index: 9999;
-  font-family: 'proxima-nova', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', Helvetica,
-    sans-serif !important;
+  font-family: "Graphik Web", "Helvetica Neue", Helvetica, Arial, Sans-Serif !important;
 
   .doorHanger {
     background-color: var(--color-canvas);
