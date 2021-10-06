@@ -25,6 +25,7 @@ At this time it is set up to use the following:
 - Babel for ES6/7
 - Linaria
 - Rollup
+- Storybook
 
 ## Getting Started
 
@@ -73,6 +74,8 @@ Run `npm run build`
 
 This will create an optimized build and place it inside `_build` at the root
 directory.
+
+Running `npm run storybook` will open a development envorinment to allow for building and testing of simple components.
 
 ##### _Production_
 
