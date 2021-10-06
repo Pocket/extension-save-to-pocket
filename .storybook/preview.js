@@ -40,7 +40,7 @@ export const globalTypes = {
 
 export const decorators = [
   (Story, context) => (
-    <div className={cx(GlobalVariables, doorhangerStyle, storyWrapperStyles, `pocket-theme-${context.globals.theme}`)}>
+    <div className={cx(GlobalVariables, storyWrapperStyles, `pocket-theme-${context.globals.theme}`)}>
       <Story />
     </div>
   )
