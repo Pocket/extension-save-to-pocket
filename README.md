@@ -4,49 +4,27 @@
 
 ## Introduction
 
-Save to Pocket is a browser extension that is used to save pages to a connected Pocket account when clicking a toolbar button, selecting a context menu item, or pressing keyboard shortcut. When a page is saved, a “Page Saved!” notification appears and offers additional actions, including:
+Save to Pocket is a browser extension that is used to save pages to a connected Pocket account when clicking a toolbar button, selecting a context menu item, or pressing keyboard shortcut. When a page is saved, a “Saved to Pocket” notification appears and offers additional actions, including:
 
 - Add Tags (with support for Suggested Tags for Pocket Premium subscribers)
-- Archive Page
 - Remove Page
 - View List
 - Settings
-
-Save to Pocket also includes article Recommendations. These recommendations are displayed below the “Page Saved!” notification and are related to the item that was just saved.
-
-In addition, when the extension is installed, Save buttons will be injected on Twitter, Hacker News, and Reddit so links posted to these sites can be saved in one click.
 
 ## About this Repository
 
 This is the skeleton structure for the Save to Pocket extension codebase.
 
-It leverages an external build script (to be moved to an official repo) to keep things simple when working with the operational code.
+It leverages a `rollup` build script to keep things simple when working with the operational code.
 
 At this time it is set up to use the following:
 
 - React
-- Redux
 - Jest for testing
 - Eslint for JS linting
 - Babel for ES6/7
-- Stylelint for Style linting
-- SASS
-- CSS modules
-- Webpack for compiling
-
-## Conventions
-
-#### React
-
-[React](https://facebook.github.io/react/) is a view library developed by Facebook to create declarative, component based UI. It will automatically update the UI based on the state of the application using a virtual dom.
-
-#### Redux
-
-[Redux](http://redux.js.org/) is a library used to create a predictable state container.
-
-#### React-Chrome-Redux
-
-[React Chrome Redux](https://github.com/tshaddix/react-chrome-redux) allows us to build react/redux seamlessly with the background messaging convention in extensions. The background page holds the Redux store, while Popovers and Content-Scripts act as UI Components, passing actions and state updates between themselves and the background store.
+- Linaria
+- Rollup
 
 ## Getting Started
 
@@ -75,17 +53,15 @@ Before you get started you will need to do the following:
 }
 ```
 
-3. You are able to add multiple browsers and keys. During the build process
-   it will create a seperate folder for each browser defined.
+3. During the build process it will inject the key into the manifest file
 
 <a name="installanchor"></a>
 
 ### Installation
 
-The app is bundled with webpack via node. You may use Yarn or NPM to run the
-build/start/test scripts.
+The app is bundled with rollup via node. You may use NPM to run the build/start/test scripts.
 
-`yarn install` OR `npm install`
+`npm install`
 
 <a name="buildanchor"></a>
 
@@ -93,20 +69,17 @@ build/start/test scripts.
 
 ##### _Development_
 
-Run `yarn start` OR `npm run start`
+Run `npm run build`
 
-This will create a generic build using the first key in your `keys.json` and
-place it in `_build/_dev` at the root directory. This will watch for changes and
-automatically reload the extension. It is important to note that you will need
-to refresh the individual pages the extension is active in after a change is made.
+This will create an optimized build and place it inside `_build` at the root
+directory.
 
 ##### _Production_
 
-Run `yarn build` OR `npm run build`
+Run `npm run release`
 
-This will create an optimized build and place it inside `_build` at the root
-directory. There will be a folder for each browser defined in
-your keys.json.
+This will create an optimized build, zip it up, and place it inside `_releases` at the root
+directory.
 
 <a name="loadinganchor"></a>
 
@@ -117,8 +90,7 @@ To load the extension:
 1. Open chrome and navigate to [chrome://extensions](chrome://extensions)
 2. Check the `Developer mode` in the upper right
 3. Select `Load unpacked extension...`
-4. Select the browser folder inside the `_build` folder when prompted.
-   (_Note: During the development process a single folder (`_dev`) be generated._)
+4. Select the `_build` folder when prompted.
 
 ---
 
@@ -128,16 +100,21 @@ TBD
 
 ## Third Party Tools Licenses
 
-- [autosize-input](https://github.com/JedWatson/react-input-autosize) - MIT License - Copyright (c) 2017 Jed Watson.
-- [blueimp-md5](https://github.com/blueimp/JavaScript-MD5) - MIT License - Copyright (c) 2011 Sebastian Tschan
-- [classnames](https://github.com/JedWatson/classnames) - MIT License - Copyright (c) 2016 Jed Watson.
-- [prop-types](https://github.com/facebook/prop-types) - MIT License - Copyright (c) 2013-present, Facebook, Inc.
-- [react](https://github.com/facebook/react) - MIT License - Copyright (c) 2013-present, Facebook, Inc.
-- [react-chrome-redux](https://github.com/tshaddix/react-chrome-redux) - MIT License - Copyright (c) 2016 Tyler Shaddix
-- [react-dom](https://github.com/facebook/react) - MIT License - Copyright (c) 2013-present, Facebook, Inc.
-- [react-motion](https://github.com/chenglou/react-motion) - MIT License - Copyright (c) 2015 React Motion authors
-- [react-onclickoutside](https://github.com/Pomax/react-onclickoutside) - MIT License
-- [react-redux](https://github.com/reactjs/react-redux) - MIT License - Copyright (c) 2015-present Dan Abramov
-- [redux](https://github.com/reactjs/redux) - MIT License - Copyright (c) 2015-present Dan Abramov
-- [redux-saga](https://github.com/redux-saga/redux-saga) - MIT License - Copyright (c) 2015 Yassine Elouafi
-- [semver](https://github.com/npm/node-semver) - ISC License - Copyright (c) Isaac Z. Schlueter and Contributors
+- [downshift](https://github.com/downshift-js/downshift) - MIT License (MIT) Copyright (c) 2017 PayPal
+- [linaria](https://github.com/callstack/linaria) - MIT License (MIT) Copyright (c) 2017 Callstack
+- [match-sorter](https://github.com/kentcdodds/match-sorter) - MIT License (MIT) Copyright (c) 2020 Kent C. Dodds
+- [prop-types](https://github.com/facebook/prop-types) - MIT License (MIT) Copyright (c) 2013-present, Facebook, Inc.
+- [react](https://github.com/facebook/react) - MIT License (MIT) Copyright (c) 2013-present, Facebook, Inc.
+- [react-dom](https://github.com/facebook/react) - MIT License (MIT) Copyright (c) 2013-present, Facebook, Inc.
+- [autosize-input](https://github.com/JedWatson/react-input-autosize) - MIT License (MIT) Copyright (c) 2017 Jed Watson.
+- [webextension-polyfill](https://github.com/mozilla/webextension-polyfill) - Mozilla Public License Version 2.0
+
+- [babel](https://github.com/babel/babel) - MIT License (MIT) Copyright (c) 2014-present Sebastian McKenzie and other contributors
+- [rollup](https://github.com/rollup/rollup) - MIT License (MIT) Copyright (c) 2017 [contributers](https://github.com/rollup/rollup/graphs/contributors)
+- [storybook](https://github.com/storybookjs/storybook/) - MIT License (MIT) Copyright (c) 2017 Kadira Inc.
+- [types](https://github.com/DefinitelyTyped/DefinitelyTyped) - MIT License (MIT)
+- [cross-env](https://github.com/kentcdodds/cross-env) - MIT License (MIT) Copyright (c) 2017 Kent C. Dodds
+- [eslint](https://github.com/eslint/eslint) - Copyright (c) OpenJS Foundation
+- [jest](https://github.com/facebook/jest) - MIT License (MIT) Copyright (c) Facebook, Inc.
+- [prettier](https://github.com/prettier/prettier) - MIT License (MIT) Copyright (c) James Long
+- [styled-jsx](https://github.com/vercel/styled-jsx) - MIT License (MIT) Copyright (c) 2016-present Vercel, Inc.

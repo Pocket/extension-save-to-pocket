@@ -4,6 +4,7 @@ import { localize } from 'common/_locales/locales'
 import { PocketLogoIcon } from 'components/icons/icons'
 import { SpinnerIcon } from 'components/icons/icons'
 import { ErrorIcon } from 'components/icons/icons'
+import { Button } from 'components/button/button'
 
 const headingStyle = css`
   display: flex;
@@ -20,23 +21,17 @@ const headingStyle = css`
 
   .saveBlock {
     display: inline-block;
-    color: #1a1a1a;
+    color: var(--color-textPrimary);
     font-size: 16px;
     font-weight: 600;
   }
 
-  button {
-    display: inline-block;
-    border: none;
-    background: transparent;
-    cursor: pointer;
-    font-size: 14px;
-    color: #1A1A1A;
-    padding: 0;
-
+  button.inline {
+    text-decoration: none;
+    color: var(--color-actionPrimary);
     &:hover {
       text-decoration: underline;
-      background: transparent;
+      color: var(--color-actionPrimaryHover)
     }
   }
 
@@ -65,7 +60,7 @@ export const Heading = ({ saveStatus, removeAction }) => {
         <div className="saveBlock">{localize('heading', saveStatus)}</div>
       </div>
       {!hasError ? (
-        <button onClick={removeAction}>{localize('buttons', 'remove')}</button>
+        <Button type="inline" onClick={removeAction}>{localize('buttons', 'remove')}</Button>
       ) : null}
     </header>
   )
