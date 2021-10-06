@@ -51,10 +51,12 @@ const buttonStyles = css`
 
   &.primary {
     background-color: var(--color-actionPrimary);
+    border: 2px solid var(--color-actionPrimary);
     color: var(--color-actionPrimaryText);
 
     &:hover {
       background-color: var(--color-actionPrimaryHover);
+      border-color: var(--color-actionPrimaryHover);
     }
   }
 
