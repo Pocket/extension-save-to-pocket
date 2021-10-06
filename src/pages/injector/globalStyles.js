@@ -47,6 +47,9 @@
        --color-calloutBackgroundPrimary: #E8F7F6;
        --color-calloutBackgroundSecondary: #FDF2F5;
        --color-calloutAccent: #1A1A1A;
+
+       --color-inlineButton: #008078;
+       --color-inlineButtonHover: #008078;
      }
  
      .pocket-theme-dark {
@@ -94,6 +97,9 @@
        --color-calloutBackgroundPrimary: #004D48;
        --color-calloutBackgroundSecondary: #333333;
        --color-calloutAccent: #00CCC0;
+
+       --color-inlineButton: #E8F7F6;
+       --color-inlineButtonHover: #E8F7F6;
      }
  
    :root{
