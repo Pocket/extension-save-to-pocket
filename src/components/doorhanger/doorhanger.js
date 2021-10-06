@@ -11,20 +11,17 @@ const doorhangerStyle = css`
     sans-serif !important;
 
   .doorHanger {
-    background-color: #ffffff;
+    background-color: var(--color-canvas);
     border-radius: 4px;
-    border-style: solid;
-    border-width: 2px;
-    border-color: #ffffff;
     box-sizing: border-box;
     width: 393px;
     position: absolute;
-    padding: 8px 10px;
+    padding: 10px;
     top: 10px;
     right: 10px;
     transform: translateY(-150%);
     transition: all ease-in-out 250ms;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.25);
 
     &.open {
       transform: translateY(0);
