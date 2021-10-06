@@ -25,5 +25,9 @@ export const TAG_SYNC_FAILURE = 'TAG_SYNC_FAILURE'
 
 export const UPDATE_STORED_TAGS = 'UPDATE_STORED_TAGS'
 
+export const SEND_TAG_ERROR = 'SEND_TAG_ERROR'
+export const UPDATE_TAG_ERROR = 'UPDATE_TAG_ERROR'
+
+
 export const USER_LOG_IN = 'USER_LOG_IN'
 export const USER_LOG_OUT = 'USER_LOG_OUT'

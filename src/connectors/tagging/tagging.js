@@ -4,6 +4,7 @@ import { checkDuplicate } from 'common/helpers'
 import { Tagging } from 'components/tagging/tagging'
 
 import { UPDATE_STORED_TAGS } from 'actions'
+import { SEND_TAG_ERROR } from 'actions'
 import { SUGGESTED_TAGS_SUCCESS } from 'actions'
 import { UPDATE_ITEM_PREVIEW } from 'actions'
 import { TAGS_SYNC } from 'actions'
@@ -108,6 +109,13 @@ export const TaggingConnector = ({ closePanel }) => {
     submitChanges(usedDraft)
   }
 
+  const submitTaggingError = (errorStatus) => {
+    chrome.runtime.sendMessage({
+      type: SEND_TAG_ERROR,
+      payload: { errorStatus }
+    })
+  }
+
   return (
     <Tagging
       usedTags={usedTags}
@@ -121,6 +129,7 @@ export const TaggingConnector = ({ closePanel }) => {
       removeTag={removeTag}
       removeTags={removeTags}
       closePanel={closePanel}
+      submitTaggingError={submitTaggingError}
     />
   )
 }

@@ -11,6 +11,7 @@ import { TAGS_SYNC } from 'actions'
 import { OPEN_POCKET } from 'actions'
 import { OPEN_OPTIONS } from 'actions'
 import { COLOR_MODE_CHANGE } from 'actions'
+import { SEND_TAG_ERROR } from 'actions'
 
 /* Initial Setup
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -83,6 +84,9 @@ chrome.runtime.onMessage.addListener(function (message, sender) {
       return
     case TAGS_SYNC:
       handle.tagsSyncAction(tab, payload)
+      return
+    case SEND_TAG_ERROR:
+      handle.tagsErrorAction(tab, payload)
       return
     case COLOR_MODE_CHANGE:
       handle.setColorMode(tab, payload)
