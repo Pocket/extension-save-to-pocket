@@ -9,7 +9,7 @@ const buttonStyles = css`
   line-height: 110%;
   border: none;
   border-radius: 0.25rem;
-  padding: 12px;
+  padding: 8px 12px;
   transition: all 0.15s ease-out;
   text-decoration: none;
   cursor: pointer;
@@ -51,10 +51,12 @@ const buttonStyles = css`
 
   &.primary {
     background-color: var(--color-actionPrimary);
+    border: 2px solid var(--color-actionPrimary);
     color: var(--color-actionPrimaryText);
 
     &:hover {
       background-color: var(--color-actionPrimaryHover);
+      border-color: var(--color-actionPrimaryHover);
     }
   }
 
@@ -82,10 +84,8 @@ const buttonStyles = css`
     display: inline;
     background: none;
     padding: 0;
-    color: var(--color-textPrimary);
-    text-decoration: underline;
-    font-family: inherit;
-    font-size: inherit;
+    color: var(--color-inlineButton);
+    font-size: 14px;
 
     &:focus {
       outline: inherit;
@@ -96,7 +96,7 @@ const buttonStyles = css`
     }
 
     &:hover {
-      color: var(--color-textLinkHover);
+      color: var(--color-inlineButtonHover);
     }
   }
 `

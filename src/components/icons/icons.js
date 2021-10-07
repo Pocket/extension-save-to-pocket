@@ -3,6 +3,7 @@ import React from 'react'
 import Icon from './icon'
 import Error from './svg/Error'
 import FacebookMono from './svg/Facebook-Mono'
+import Instagram from './svg/Instagram'
 import PocketLogo from './svg/PocketLogo'
 import Settings from './svg/Settings'
 import TwitterMono from './svg/Twitter-Mono'
@@ -16,6 +17,12 @@ export const ErrorIcon = (props) => (
 export const FacebookIcon = (props) => (
   <Icon {...props}>
     <FacebookMono />
+  </Icon>
+)
+
+export const InstagramIcon = (props) => (
+  <Icon {...props}>
+    <Instagram />
   </Icon>
 )
 

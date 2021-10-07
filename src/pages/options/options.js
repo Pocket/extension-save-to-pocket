@@ -4,7 +4,6 @@ import { css, cx } from 'linaria'
 import { openTabWithUrl } from 'common/interface'
 import { localize } from 'common/_locales/locales'
 import { AUTH_URL, LOGOUT_URL, SET_SHORTCUTS } from 'common/constants'
-import { COLORS } from '../../components/colors/colors'
 import { getSetting } from 'common/interface'
 import { COLOR_MODE_CHANGE } from 'actions'
 import { getOSModeClass } from 'common/helpers'
@@ -12,85 +11,139 @@ import { Logo } from 'components/logo/logo'
 import { Button } from 'components/button/button'
 import { FacebookIcon } from 'components/icons/icons'
 import { TwitterIcon } from 'components/icons/icons'
+import { InstagramIcon } from 'components/icons/icons'
 import { PocketLogoIcon } from 'components/icons/icons'
-import { GlobalVariables } from '../injector/globalStyles'
+import { GlobalVariables, radioStyles } from '../injector/globalStyles'
 
-const {
-  $pitch,
-  $snow,
-  $darksmoke,
-  $coal,
-  $emerald
-} = COLORS
-
-const optionsContainer = css`
+const container = css`
   ${GlobalVariables};
-  box-sizing: border-box;
-  display: inline-block;
-  margin-bottom: 80px;
-  padding: 0 30px;
-  width: 700px;
+  ${radioStyles};
+  background-color: var(--color-canvas);
+  color: var(--color-textPrimary);
+  font-size: 16px;
+  width: 100vw;
+  height: 100vh;
 
-  @media (min-width: 320px) and (max-width: 767px) {
-    width: 100%;
+  a {
+    color: var(--color-textPrimary);
+    text-decoration: underline;
+    display: inline-block;
   }
 `
-const optionsTitle = css`
-  color: ${$pitch};
-  font-size: 28px;
-  font-weight: 300;
-  margin: 70px 0 0;
-  padding: 0 0 20px;
-  text-align: left;
+const wrapper = css`
+  max-width: 550px;
+  margin: 0 auto;
+  padding: 100px 20px;
 `
-const optionsSection = css`
-  align-items: center;
-  border-top: 1px solid ${$snow};
+const title = css`
+  font-size: 33px;
+  line-height: 40px;
+  font-weight: 600;
+  margin: 10px 0 15px 0;
+`
+const header = css`
+  border-bottom: 1px solid var(--color-dividerPrimary);
+  margin-bottom: 20px;
+`
+const user = css`
+  margin-right: 10px;
+`
+const section = css`
   display: flex;
-  font-size: 14px;
-  justify-content: flex-start;
   padding: 20px 0;
-  text-align: left;
 
-  @media (min-width: 320px) and (max-width: 767px) {
+  @media (max-width: 599px) {
     flex-direction: column;
   }
 `
-const optionsSectionTitle = css`
-  color: $darksmoke;
-  display: block;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  margin-right: 35px;
-  padding-bottom: 5px;
-  text-transform: uppercase;
-  width: 230px;
-  @media (min-width: 320px) and (max-width: 767px) {
-    margin-bottom: 20px;
-    width: 100%;
-  }
-`
-const optionsSectionContent = css`
+const sectionLabel = css`
   display: flex;
+  align-items: center;
+  flex: 1;
+  font-weight: 500;
 `
-const optionsSectionMain = css`
-  color: ${$darksmoke};
-  display: block;
-  font-size: 16px;
-  width: 370px;
+const sectionAction = css`
+  flex: 2;
 
-  @media (min-width: 320px) and (max-width: 767px) {
-    width: 100%;
+  @media (max-width: 599px) {
+    margin: 10px 0 0 20px;
   }
 `
-const optionsFooter = css`
-  color: ${$darksmoke};
-  display: block;
-  font-size: 14px;
-  font-weight: 300;
+const appIcon = css`
+  max-height: 40px;
+`
+const google = css`
+  margin-left: 10px;
+  height: 40px;
+  overflow: hidden;
+
+  img {
+    margin: -10px 0 0 -10px;
+    max-height: 60px;
+  }
+`
+const footer = css`
+  font-size: 16px;
   margin-top: 40px;
-  text-align: center;
+`
+const footerLinks = css`
+  display: flex;
+  justify-content: space-between;
+  margin-right: 100px;
+
+  @media (max-width: 479px) {
+    margin-right: 0;
+  }
+`
+const footerFollow = css`
+  display: flex;
+  flex-direction: column;
+`
+const footerFollowIcons = css`
+  margin-top: 20px;
+
+  .icon {
+    width: 25px;
+    height: 25px;
+    color: var(--color-textPrimary);
+  }
+
+  a + a  {
+    margin-left: 20px;
+  }
+`
+const footerCopyright = css`
+  display: flex;
+  align-items: center;
+  margin-top: 40px;
+
+  @media (max-width: 599px) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .icon {
+      margin-bottom: 10px;
+    }
+  }
+
+  .icon {
+    height: 25px;
+    margin-right: 20px;
+  }
+
+  span,
+  a {
+    margin-right: 15px; 
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+
+  p {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
 `
 
 const OptionsApp = () => {
@@ -117,21 +170,23 @@ const OptionsApp = () => {
   }
 
   return (
-    <div className={cx(optionsContainer, `pocket-theme-${pageTheme}`)}>
-      <Logo />
-      <h1 className={cx(optionsTitle)}>
-        {localize('options', 'header')}
-      </h1>
+    <div className={cx(container, `pocket-theme-${pageTheme}`)}>
+      <section className={wrapper}>
+        <header className={header}>
+          <Logo />
+          <h1 className={title}>
+            {localize('options', 'header')}
+          </h1>
+        </header>
 
-      <div className={optionsSection}>
-        <div className={optionsSectionContent}>
-          <div className={optionsSectionTitle}>
+        <div className={section}>
+          <div className={sectionLabel}>
             {localize('options', 'login_title')}
           </div>
-          <div className={optionsSectionMain}>
+          <div className={sectionAction}>
             {(accessToken && userName) ? (
               <div>
-                {userName}
+                <span className={user}>{userName}</span>
                 <Button type='secondary' onClick={logoutAction}>
                   {localize('options', 'log_out')}
                 </Button>
@@ -143,27 +198,52 @@ const OptionsApp = () => {
             )}
           </div>
         </div>
-      </div>
 
-      <div className={optionsSection}>
-        <div className={optionsSectionContent}>
-          <div className={optionsSectionTitle}>
+        <div className={section}>
+          <div className={sectionLabel}>
             {localize('options', 'shortcut_title')}
           </div>
-          <div className={optionsSectionMain}>
+          <div className={sectionAction}>
             <Button type='primary' onClick={setShortcuts}>
               {localize('options', 'shortcut_record')}
             </Button>
           </div>
         </div>
-      </div>
 
-      <div className={optionsSection}>
-        <div className={optionsSectionContent}>
-          <div className={cx(optionsSectionTitle)}>
+        <div className={section}>
+          <div className={sectionLabel}>
+            {localize('options', 'app_title')}
+          </div>
+          <div className={sectionAction}>
+            <a
+              href="https://apps.apple.com/us/app/pocket-save-read-grow/id309601447"
+              target="_blank"
+              rel="noopener noreferrer">
+              <img
+                className={appIcon}
+                src="https://assets.getpocket.com/web-ui/assets/apple-app-store-badge.2928664fe1fc6aca88583a6f606d60ba.svg"
+                alt={localize('options', 'app_apple')}
+              />
+            </a>
+            <a
+              className={google}
+              href="https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro"
+              target="_blank"
+              rel="noopener noreferrer">
+              <img
+                className={appIcon}
+                src="https://assets.getpocket.com/web-ui/assets/google-play-badge.db9b21a1c41f3dcd9731e1e7acfdbb57.png"
+                alt={localize('options', 'app_google')}
+              />
+            </a>
+          </div>
+        </div>
+
+        <div className={section}>
+          <div className={sectionLabel}>
             {localize('options', 'theme_title')}
           </div>
-          <div className={cx(optionsSectionMain)}>
+          <div className={sectionAction}>
             <div>
               <input
                 id="light"
@@ -196,75 +276,69 @@ const OptionsApp = () => {
             </div>
           </div>
         </div>
-      </div>
 
-      <div className={optionsSection}>
-        <div className={optionsSectionContent}>
-          <div className={optionsSectionTitle}>
-            {localize('options', 'app_title')}
-          </div>
-          <div className={optionsSectionMain}>
+        <footer className={footer}>
+          <div className={footerLinks}>
             <a
-              href="https://apps.apple.com/us/app/pocket-save-read-grow/id309601447"
+              href="https://help.getpocket.com/"
               target="_blank"
               rel="noopener noreferrer">
-              <img
-                src="https://assets.getpocket.com/web-ui/assets/apple-app-store-badge.2928664fe1fc6aca88583a6f606d60ba.svg"
-                alt={localize('options', 'app_apple')}
-              />
+              {localize('options', 'need_help')}
             </a>
             <a
-              href="https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro"
+              href="https://getpocket.com/contact_support?field3=Question%20about%20Pocket%20Extension"
               target="_blank"
               rel="noopener noreferrer">
-              <img
-                src="https://assets.getpocket.com/web-ui/assets/google-play-badge.db9b21a1c41f3dcd9731e1e7acfdbb57.png"
-                alt={localize('options', 'app_google')}
-              />
+              {localize('options', 'email_us')}
             </a>
+            <div className={footerFollow}>
+              {localize('options', 'follow')}
+              <div className={footerFollowIcons}>
+                <a 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://www.facebook.com/pocket/">
+                  <FacebookIcon />
+                </a>
+                <a 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://twitter.com/pocket/">
+                  <TwitterIcon />
+                </a>
+                <a 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://www.instagram.com/pocket/">
+                  <InstagramIcon />
+                </a>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
 
-      <footer className={optionsFooter}>
-        <a
-          href="https://help.getpocket.com/"
-          target="_blank"
-          rel="noopener noreferrer">
-          {localize('options', 'need_help')}
-        </a>
-
-        <a
-          href="https://getpocket.com/contact_support?field3=Question%20about%20Pocket%20Extension"
-          target="_blank"
-          rel="noopener noreferrer">
-          {localize('options', 'email_us')}
-        </a>
-
-        <div>
-          {localize('options', 'follow')}
-          <FacebookIcon />
-          <TwitterIcon />
-        </div>
-
-        <PocketLogoIcon />
-        <p dangerouslySetInnerHTML={{ __html: localize('options', 'family').replace('Mozilla', '<a href="https://mozilla.org/about/" rel="noopener noreferrer" target="_blank">Mozilla</a>')}}></p>
-
-        <p>&copy; {new Date().getFullYear()} Read It Later, Inc.</p>
-
-        <a
-          href='https://getpocket.com/privacy/?src=extension'
-          rel='noopener noreferrer'
-          target='_blank'>
-          {localize('options', 'privacy')}
-        </a>
-        <a
-          href='https://getpocket.com/tos/?src=extension'
-          rel='noopener noreferrer'
-          target='_blank'>
-          {localize('options', 'terms')}
-        </a>
-      </footer>
+          <div className={footerCopyright}>
+            <PocketLogoIcon />
+            <div>
+              <p dangerouslySetInnerHTML={{ __html: localize('options', 'family').replace('Mozilla', '<a href="https://mozilla.org/about/" rel="noopener noreferrer" target="_blank">Mozilla</a>')}}></p>
+              <div>
+                <span>&copy; {new Date().getFullYear()} Read It Later, Inc.</span>
+                <a
+                  href='https://getpocket.com/privacy/?src=extension'
+                  rel='noopener noreferrer'
+                  target='_blank'>
+                  {localize('options', 'privacy')}
+                </a>
+                <a
+                  href='https://getpocket.com/tos/?src=extension'
+                  rel='noopener noreferrer'
+                  target='_blank'>
+                  {localize('options', 'terms')}
+                </a>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </section>
     </div>
   )
 }
