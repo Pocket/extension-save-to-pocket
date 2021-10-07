@@ -26,7 +26,7 @@ const taggingWell = css`
   font-size: 16px;
   line-height: 16px;
   margin: 0;
-  padding: 4px 10px;
+  padding: 4px 5px;
   position: relative;
   text-align: left;
 
