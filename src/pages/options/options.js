@@ -32,7 +32,7 @@ const container = css`
 const wrapper = css`
   max-width: 550px;
   margin: 0 auto;
-  padding: 100px 0;
+  padding: 100px 20px;
 `
 const title = css`
   font-size: 33px;
@@ -50,6 +50,10 @@ const user = css`
 const section = css`
   display: flex;
   padding: 20px 0;
+
+  @media (max-width: 599px) {
+    flex-direction: column;
+  }
 `
 const sectionLabel = css`
   display: flex;
@@ -59,6 +63,10 @@ const sectionLabel = css`
 `
 const sectionAction = css`
   flex: 2;
+
+  @media (max-width: 599px) {
+    margin: 10px 0 0 20px;
+  }
 `
 const appIcon = css`
   max-height: 40px;
@@ -81,6 +89,10 @@ const footerLinks = css`
   display: flex;
   justify-content: space-between;
   margin-right: 100px;
+
+  @media (max-width: 479px) {
+    margin-right: 0;
+  }
 `
 const footerFollow = css`
   display: flex;
@@ -103,6 +115,15 @@ const footerCopyright = css`
   display: flex;
   align-items: center;
   margin-top: 40px;
+
+  @media (max-width: 599px) {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .icon {
+      margin-bottom: 10px;
+    }
+  }
 
   .icon {
     height: 25px;
