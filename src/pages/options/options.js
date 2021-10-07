@@ -43,6 +43,9 @@ const header = css`
   border-bottom: 1px solid var(--color-dividerPrimary);
   margin-bottom: 20px;
 `
+const user = css`
+  margin-right: 10px;
+`
 const section = css`
   display: flex;
   padding: 20px 0;
@@ -155,7 +158,7 @@ const OptionsApp = () => {
           <div className={sectionAction}>
             {(accessToken && userName) ? (
               <div>
-                {userName}{'  '}
+                <span className={user}>{userName}</span>
                 <Button type='secondary' onClick={logoutAction}>
                   {localize('options', 'log_out')}
                 </Button>
