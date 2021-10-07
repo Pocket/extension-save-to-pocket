@@ -7,11 +7,8 @@ const storyWrapperStyles = css`
   width: 100vw;
   padding: 10px;
   box-sizing: border-box;
-  font-family: "Graphik Web", "Helvetica Neue", Helvetica, Arial, Sans-Serif !important;
-
-  &.pocket-theme-dark {
-    background-color: black;
-  }
+  font-family: var(--fontSansSerif);
+  background-color: var(--color-canvas);
 `
 
 export const parameters = {

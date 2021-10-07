@@ -24,7 +24,7 @@ const previewWrapper = css`
     font-size: 16px;
     font-weight: 600;
     line-height: 20px;
-    color: #1A1A1A;
+    color: var(--color-textPrimary);
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
@@ -34,7 +34,11 @@ const previewWrapper = css`
   p {
     margin: 0;
     font-size: 14px;
-    color: #1A1A1A;
+    color: var(--color-textPrimary);
+  }
+
+  .pocket-theme-dark & {
+    background: var(--color-grey25);
   }
 `
 

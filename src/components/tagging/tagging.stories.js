@@ -8,7 +8,7 @@ export default {
 const usedTags = ['test', 'space']
 const markedTags = ['space']
 const suggestedTags = ['pink elephants', 'lava lamps']
-const storedTags = ['jamba juice', 'donut time']
+const storedTags = ['jamba','juice','donut','time','perturbedly','uxoriousness','chromogenic','creasiest','dartingness','rippingly','glabellar','auckland','wyoming','luanda','prebesetting','member','watershed','grooveless','inept','balletomane','desdemona','isodimorphous','fishybacking','vip']
 const addTag = () => {}
 const activateTag = () => {}
 const deactivateTag = () => {}

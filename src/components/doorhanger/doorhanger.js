@@ -6,7 +6,7 @@ const doorhangerStyle = css`
   top: 0;
   right: 0;
   z-index: 9999;
-  font-family: "Graphik Web", "Helvetica Neue", Helvetica, Arial, Sans-Serif !important;
+  font-family: var(--fontSansSerif);
 
   .doorHanger {
     background-color: var(--color-canvas);
