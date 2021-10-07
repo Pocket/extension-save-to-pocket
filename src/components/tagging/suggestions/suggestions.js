@@ -19,10 +19,10 @@ const suggestionsList = css`
   text-align: left;
 `
 const suggestionItem = css`
-  background-color: #E8F7F6;
-  border: 1px solid #E8F7F6;
+  background-color: var(--color-calloutBackgroundPrimary);
+  border: 1px solid var(--color-calloutBackgroundPrimary);
   border-radius: 50px;
-  color: #004D48;
+  color: var(--color-teal30);
   cursor: pointer;
   display: inline-block;
   font-size: 14px;
@@ -33,6 +33,18 @@ const suggestionItem = css`
   text-align: center;
   text-transform: lowercase;
   transform: translateZ(0.1);
+
+  &:hover {
+    border: 1px solid var(--color-grey10);
+  }
+
+  .pocket-theme-dark & {
+    color: var(--color-white100);
+
+    &:hover {
+      border-color: var(--color-white100);
+    }
+  }
 `
 
 const SuggestionItem = ({ suggestion, addTag, used }) => {

@@ -13,49 +13,41 @@ const taggingWrapper = css`
   position: relative;
 `
 const taggingPlaceholder = css`
-  color: #999;
+  color: var(--color-grey45);
   position: absolute;
   left: 10px;
   top: 14px;
 `
 const taggingWell = css`
-  background: #fff;
-  border: 1px solid #D9D9D9;
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-grey85);
   border-radius: 4px;
   box-sizing: border-box;
   font-size: 16px;
   line-height: 16px;
   margin: 0;
-  padding: 4px 10px;
+  padding: 4px 5px;
   position: relative;
   text-align: left;
+
+  .pocket-theme-dark & {
+    border-color: var(--color-grey55);
+  }
 `
 
 const taggingTypeaheadWrapper = css`
   position: relative;
+  z-index: 1;
 `
 
-const taggingTypeaheadItem = css`
-  cursor: pointer;
-  display: block;
-  padding: 2px 8px;
-
-  &.active {
-    background-color: #50bcb6;
-    color: #fff;
-  }
-  &:hover {
-    background-color: #50bcb6;
-    color: #fff;
-  }
-`
 const taggingTypeaheadList = css`
-  background: #fff;
-  border: 1px solid #ddd;
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-grey85);
   border-radius: 0 0 3px 3px;
   border-top: none;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   box-sizing: border-box;
+  color: var(--color-textPrimary);
   display: block;
   left: 0;
   list-style-type: none;
@@ -63,10 +55,43 @@ const taggingTypeaheadList = css`
   max-height: 8.8em;
   overflow-x: hidden;
   overflow-y: auto;
-  padding: 2px 0;
+  padding: 5px;
   position: absolute;
   top: 0;
   width: 100%;
+
+  .pocket-theme-dark & {
+    border-color: var(--color-grey55);
+    box-shadow: 0px 2px 4px rgba(255, 255, 255, 0.25);
+  }
+`
+
+const taggingTypeaheadItem = css`
+  background-color: var(--color-calloutBackgroundPrimary);
+  border: 1px solid var(--color-calloutBackgroundPrimary);
+  border-radius: 50px;
+  color: var(--color-teal30);
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 16px;
+  margin-bottom: 4px;
+  margin-right: 4px;
+  padding: 8px;
+  text-align: center;
+  text-transform: lowercase;
+  transform: translateZ(0.1);
+
+  .active &, &:hover {
+    border: 1px solid var(--color-grey10);
+  }
+
+  .pocket-theme-dark & {
+    color: var(--color-white100);
+  }
+  .pocket-theme-dark .active &, &:hover {
+    border-color: var(--color-white100);
+  }
 `
 
 export const Tagging = ({
@@ -207,11 +232,11 @@ export const Tagging = ({
                 <div className={taggingTypeaheadList}>
                   {storedTagsList().map((item, index) => (
                     <div
-                      className={cx(taggingTypeaheadItem, highlightedIndex === index && 'active')}
+                      className={cx(highlightedIndex === index && 'active')}
                       key={`item-${index}`}
                       {...getItemProps({ item, index})}
                     >
-                      {item}
+                      <div className={taggingTypeaheadItem}>{item}</div>
                     </div>
                   ))}
                 </div>

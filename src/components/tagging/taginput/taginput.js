@@ -6,11 +6,11 @@ import { css, cx } from 'linaria'
 const inputWrapper = css`
   max-width: 100%;
   display: inline-block;
-  margin: 3px 0;
+  margin: 4px 0;
 
   input {
     all: unset;
-    color: #222;
+    color: var(--color-textPrimary);
     display: inline-block;
     line-height: 16px;
     margin-bottom: 3px;
@@ -22,7 +22,7 @@ const inputWrapper = css`
   }
 
   &.error input {
-    color: #ef4056;
+    color: var(--color-coral);
   }
 `
 

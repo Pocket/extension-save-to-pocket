@@ -2,14 +2,14 @@ import React from 'react'
 import { css, cx } from 'linaria'
 import { localize } from 'common/_locales/locales'
 import { PocketLogoIcon } from 'components/icons/icons'
-import { SpinnerIcon } from 'components/icons/icons'
+import { Loader } from 'components/loader/loader'
 import { ErrorIcon } from 'components/icons/icons'
 import { Button } from 'components/button/button'
 
 const headingStyle = css`
   display: flex;
   justify-content: space-between;
-  background-color: #E8F7F6;
+  background-color: var(--color-calloutBackgroundPrimary);
   border-radius: 30px;
   padding: 15px 20px;
 
@@ -17,6 +17,11 @@ const headingStyle = css`
     height: 25px;
     width: 25px;
     margin-right: 14px;
+  }
+
+  .loader {
+    margin-right: 10px;
+    margin-bottom: 6px;
   }
 
   .saveBlock {
@@ -31,15 +36,30 @@ const headingStyle = css`
     color: var(--color-actionPrimary);
     &:hover {
       text-decoration: underline;
-      color: var(--color-actionPrimaryHover)
     }
   }
 
   &.error {
-    background-color: #FDF2F5;
+    background-color: var(--color-coralLightest);
 
-    .saveBlock {
-      color: #EF4056;
+    .saveBlock, .icon {
+      color: var(--color-coral);
+    }
+  }
+
+  .pocket-theme-dark & {
+    background: var(--color-grey25);
+
+    button.inline {
+      color: var(--color-teal100);
+    }
+
+    &.error {
+      background-color: var(--color-coralDark);
+
+      .saveBlock, .icon {
+        color: var(--color-coralLightest);
+      }
     }
   }
 `
@@ -54,7 +74,7 @@ export const Heading = ({ saveStatus, removeAction }) => {
   return (
     <header className={cx(headingStyle, hasError && 'error')}>
       <div>
-        { isLoading ? <SpinnerIcon /> : null }
+        { isLoading ? <Loader className="loader" /> : null }
         { hasError ? <ErrorIcon /> : null }
         { !isLoading && !hasError ? <PocketLogoIcon /> : null }
         <div className="saveBlock">{localize('heading', saveStatus)}</div>

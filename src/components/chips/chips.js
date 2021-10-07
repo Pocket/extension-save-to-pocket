@@ -7,16 +7,12 @@ const chipList = css`
   list-style-type: none;
   margin: 0;
   padding: 0;
-
-  &:last-child {
-    min-height: 21px;
-  }
 `
 const chipItem = css`
-  background-color: #E8F7F6;
-  border: 1px solid #E8F7F6;
+  background-color: var(--color-calloutBackgroundPrimary);
+  border: 1px solid var(--color-calloutBackgroundPrimary);
   border-radius: 50px;
-  color: #004D48;
+  color: var(--color-teal30);
   cursor: pointer;
   display: inline-block;
   font-size: 14px;
@@ -28,12 +24,24 @@ const chipItem = css`
   transform: translateZ(0.1);
 
   span {
-    color: #1A1A1A;
+    color: var(--color-teal30);
     margin-left: 10px;
   }
 
-  &.active {
-    border: 1px solid #000;
+  &.active, &:hover {
+    border: 1px solid var(--color-grey10);
+  }
+
+  .pocket-theme-dark & {
+    color: var(--color-white100);
+
+    span {
+      color: var(--color-white100);
+    }
+
+    &.active, &:hover {
+      border-color: var(--color-white100);
+    }
   }
 `
 
@@ -49,7 +57,7 @@ export const Chips = ({ removeTag, tags, marked, toggleActive }) => {
 
       return (
         <li
-          className={cx(chipItem, active === true ?? 'active')}
+          className={cx(chipItem, active && 'active')}
           active={active}
           key={index}
           onMouseDown={event => event.preventDefault()}
