@@ -55,7 +55,7 @@ const taggingTypeaheadList = css`
   max-height: 8.8em;
   overflow-x: hidden;
   overflow-y: auto;
-  padding: 2px 0;
+  padding: 5px;
   position: absolute;
   top: 0;
   width: 100%;
