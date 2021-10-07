@@ -26,6 +26,7 @@ const container = css`
   a {
     color: var(--color-textPrimary);
     text-decoration: underline;
+    display: inline-block;
   }
 `
 const wrapper = css`
@@ -61,8 +62,13 @@ const sectionAction = css`
 `
 const appIcon = css`
   max-height: 40px;
+`
+const google = css`
+  margin-left: 10px;
+  height: 40px;
+  overflow: hidden;
 
-  &.google-badge {
+  img {
     margin: -10px 0 0 -10px;
     max-height: 60px;
   }
@@ -198,11 +204,12 @@ const OptionsApp = () => {
               />
             </a>
             <a
+              className={google}
               href="https://play.google.com/store/apps/details?id=com.ideashower.readitlater.pro"
               target="_blank"
               rel="noopener noreferrer">
               <img
-                className={cx(appIcon, 'google-badge')}
+                className={appIcon}
                 src="https://assets.getpocket.com/web-ui/assets/google-play-badge.db9b21a1c41f3dcd9731e1e7acfdbb57.png"
                 alt={localize('options', 'app_google')}
               />
