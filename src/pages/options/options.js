@@ -11,6 +11,7 @@ import { Logo } from 'components/logo/logo'
 import { Button } from 'components/button/button'
 import { FacebookIcon } from 'components/icons/icons'
 import { TwitterIcon } from 'components/icons/icons'
+import { InstagramIcon } from 'components/icons/icons'
 import { PocketLogoIcon } from 'components/icons/icons'
 import { GlobalVariables, radioStyles } from '../injector/globalStyles'
 
@@ -302,8 +303,14 @@ const OptionsApp = () => {
                 <a 
                   target="_blank"
                   rel="noopener noreferrer"
-                  href="https://twitter.com/pocket">
+                  href="https://twitter.com/pocket/">
                   <TwitterIcon />
+                </a>
+                <a 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://www.instagram.com/pocket/">
+                  <InstagramIcon />
                 </a>
               </div>
             </div>
