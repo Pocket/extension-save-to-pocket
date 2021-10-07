@@ -12,10 +12,11 @@ import { Button } from 'components/button/button'
 import { FacebookIcon } from 'components/icons/icons'
 import { TwitterIcon } from 'components/icons/icons'
 import { PocketLogoIcon } from 'components/icons/icons'
-import { GlobalVariables } from '../injector/globalStyles'
+import { GlobalVariables, radioStyles } from '../injector/globalStyles'
 
 const container = css`
   ${GlobalVariables};
+  ${radioStyles};
   background-color: var(--color-canvas);
   color: var(--color-textPrimary);
   font-size: 16px;
@@ -44,7 +45,7 @@ const header = css`
 `
 const section = css`
   display: flex;
-  padding: 10px 0;
+  padding: 20px 0;
 `
 const sectionLabel = css`
   display: flex;
