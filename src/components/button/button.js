@@ -86,6 +86,7 @@ const buttonStyles = css`
     padding: 0;
     color: var(--color-inlineButton);
     font-size: 14px;
+    font-weight: 500;
 
     &:focus {
       outline: inherit;
@@ -101,9 +102,9 @@ const buttonStyles = css`
   }
 `
 
-export const Button = ({children, onClick, type = 'primary'}) => {
+export const Button = ({children, onClick, type = 'primary', className}) => {
   return (
-    <button className={cx(buttonStyles, type)} onClick={onClick}>
+    <button className={cx(buttonStyles, type, className)} onClick={onClick}>
       {children}
     </button>
   )
