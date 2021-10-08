@@ -182,6 +182,7 @@ export const radioStyles = css`
 
     input[type='radio'] {
       opacity: 0;
+      margin: 0;
 
       & + label {
         margin: 4px 0;
