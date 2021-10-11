@@ -1,62 +1,50 @@
 {
-  "status" : {
-    "archived" : "В архиве.",
-    "archiving" : "Архивирование...",
-    "error" : "Ошибка!",
-    "link_saved" : "Ссылка сохранена!",
-    "page_saved" : "Страница сохранена!",
-    "removed" : "Удалено.",
+  "heading" : {
+    "idle" : "Сохранить в Pocket",
+    "saving" : "Сохранение...",
+    "saved" : "Сохранено в Pocket",
+    "save_failed" : "К сожалению, что-то пошло не так!",
     "removing" : "Удаление...",
-    "saving" : "Сохранение..."
+    "removed" : "Удалено",
+    "remove_failed" : "К сожалению, что-то пошло не так!",
+    "tags_saving" : "Сохранение тегов...",
+    "tags_saved" : "Теги сохранены",
+    "tags_failed" : "К сожалению, что-то пошло не так!",
+    "tags_error" : "Длина тега ограничена 25 символами"
   },
-  "actions" : {
-    "archive_page" : "Архивировать страницу",
-    "close" : "Закрыть",
-    "open_pocket" : "Открыть Pocket",
-    "remove_page" : "Удалить страницу",
-    "save" : "Сохранить",
-    "settings" : "Настройки"
+  "buttons" : {
+    "remove" : "Удалить",
+    "mylist" : "Мой список",
+    "save" : "Сохранить"
+  },
+  "context_menu" : {
+    "open_list" : "Откройте свой список Pocket",
+    "discover_more" : "Откройте больше с Pocket",
+    "log_out" : "Выйти",
+    "save" : "Сохранить в Pocket"
   },
   "tagging" : {
-    "add_tags" : "Добавить теги",
-    "invalid_tags" : "Длина тега ограничена 25 символами",
-    "getting_tags" : "Получение тегов",
-    "saving_tags" : "Сохранение тегов"
+    "add_tags" : "Добавить теги"
   },
-  "recommendations" : {
-    "explore" : "Познакомьтесь с рекомендациями Pocket",
-    "loading" : "Загрузка рекомендаций",
-    "more_on" : "Еще на",
-    "more_stories_detail" : "Хотите узнать еще больше интересных историй?",
-    "people_also_saved" : "Пользователи также сохраняют: ",
-    "rec_saved" : "Рекомендации сохранены",
-    "save_to_pocket" : "Сохранить в Pocket",
-    "saved" : "Сохранено",
-    "saving" : "Сохранение"
-  },
-  "options_page" : {
-    "get_in_touch_on_twitter_link" : "или написать нам в Twitter",
-    "header" : "НАСТРОЙКИ",
-    "keyboard_shortcut_enabled" : "Включено",
-    "keyboard_shortcut_title" : "Сочетание клавиш:",
-    "learn_more_link" : "(узнать больше)",
-    "login_link" : "Нажмите, чтобы войти",
-    "login_title" : "Вы вошли как: ",
-    "logout_link" : "выйти",
-    "more_ways_to_save_title" : "Больше способов использовать Pocket:",
-    "questions_pocket_title" : "Возникли вопросы?",
-    "quick_save_services_title" : "Приложения с быстрым сохранением:",
-    "recommendations_detail" : "При сохранении страницы посмотрите рекомендованные истории Pocket с похожими темами.",
-    "recommendations_title" : "Рекомендации в Сохраненном",
-    "record_shortcut" : "Задать новое сочетание клавиш",
-    "reset_to_default" : "Сбросить настройки",
-    "save_to_pocket" : "Сохранить в Pocket",
-    "search_support_link" : "Поиск в базе знаний",
-    "send_us_an_email_link" : "написать нам письмо",
-    "services_info" : "В этом режиме вы можете сразу добавлять в Pocket материалы из выбранных приложений"
-  },
-  "error" : {
-    "page_not_saved" : "Страница не сохранена",
-    "page_not_saved_detail" : "Произошла ошибка, и Pocket не удалось сохранить эту страницу. Попробуйте еще раз."
+  "options" : {
+    "header" : "Расширение \"Сохранить в Pocket\"",
+    "login_title" : "Вы вошли как",
+    "log_out" : "Выйти",
+    "log_in" : "Войти",
+    "shortcut_title" : "Сочетание клавиш",
+    "shortcut_record" : "Задать новое сочетание клавиш",
+    "theme_title" : "Тема",
+    "theme_light" : "Светлый",
+    "theme_dark" : "Темный",
+    "theme_system" : "Использовать системные настройки",
+    "app_title" : "Мобильное приложение Pocket",
+    "app_apple" : "Скачать в Apple App Store",
+    "app_google" : "Загрузить из Google Play",
+    "need_help" : "Нужна помощь?",
+    "email_us" : "Пишите нам",
+    "follow" : "Следите за Pocket",
+    "family" : "Pocket входит в семейство продуктов Mozilla.",
+    "privacy" : "Политика конфиденциальности",
+    "terms" : "Условия использования"
   }
 }

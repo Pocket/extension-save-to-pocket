@@ -14,7 +14,8 @@
   },
   "buttons": {
     "remove": "Remove",
-    "mylist": "My List"
+    "mylist": "My List",
+    "save": "Save"
   },
   "context_menu": {
     "open_list": "Open Your Pocket List",
