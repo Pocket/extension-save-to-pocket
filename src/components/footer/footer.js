@@ -2,7 +2,8 @@ import React from 'react'
 import { css } from 'linaria'
 import { localize } from 'common/_locales/locales'
 import { SettingsIcon } from 'components/icons/icons'
-import { Button } from 'components/button/button'
+import { ListViewIcon } from 'components/icons/icons'
+import { Button } from 'components/button/extensions-button'
 
 const footerWrapper = css`
   background-color: var(--color-canvas);
@@ -30,7 +31,10 @@ const footerWrapper = css`
 export const Footer = ({ myListClick, settingsClick }) => {
   return (
     <footer className={footerWrapper}>
-      <Button type="secondary" onClick={myListClick}>{localize('buttons', 'mylist')}</Button>
+      <Button type="inline" onClick={myListClick}>
+        <ListViewIcon />
+        {localize('buttons', 'mylist')}
+      </Button>
       <Button className="settings" type="inline" onClick={settingsClick}>
         <SettingsIcon />
       </Button>
