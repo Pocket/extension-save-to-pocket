@@ -14,6 +14,7 @@ const footerWrapper = css`
   padding: 18px 0 8px;
 
   .icon {
+    display: inline-block;
     height: 25px;
     width: 25px;
     margin-right: 8px;
