@@ -9,7 +9,7 @@ const footerWrapper = css`
   display: flex;
   justify-content: space-between;
   border-top: 1px solid var(--color-dividerTertiary);
-  margin-top: 24px;
+  margin-top: 10px;
   padding: 18px 0 8px;
 
   .icon {
