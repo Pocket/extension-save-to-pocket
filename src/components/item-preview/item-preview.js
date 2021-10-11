@@ -20,7 +20,7 @@ const previewWrapper = css`
   }
 
   h3 {
-    margin: 0 0 4px;
+    margin: 0 0 10px;
     font-size: 16px;
     font-weight: 600;
     line-height: 20px;
