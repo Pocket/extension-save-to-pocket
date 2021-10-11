@@ -133,7 +133,7 @@ const footerCopyright = css`
 
   span,
   a {
-    margin-right: 15px; 
+    margin-right: 15px;
 
     &:last-child {
       margin-right: 0;
@@ -153,7 +153,7 @@ const OptionsApp = () => {
   const [userName, setUserName] = useState()
 
   useEffect(async () => {
-    updateTheme(await getSetting('theme') || 'light')
+    updateTheme(await getSetting('theme') || 'system')
     setAccessToken(await getSetting('access_token'))
     setUserName(await getSetting('username'))
   }, [])
@@ -294,19 +294,19 @@ const OptionsApp = () => {
             <div className={footerFollow}>
               {localize('options', 'follow')}
               <div className={footerFollowIcons}>
-                <a 
+                <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://www.facebook.com/pocket/">
                   <FacebookIcon />
                 </a>
-                <a 
+                <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://twitter.com/pocket/">
                   <TwitterIcon />
                 </a>
-                <a 
+                <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href="https://www.instagram.com/pocket/">
