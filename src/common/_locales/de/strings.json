@@ -1,62 +1,50 @@
 {
-  "status" : {
-    "archived" : "Archiviert.",
-    "archiving" : "Wird archiviert ...",
-    "error" : "Fehler!",
-    "link_saved" : "Link gespeichert!",
-    "page_saved" : "Seite gespeichert!",
-    "removed" : "Entfernt.",
+  "heading" : {
+    "idle" : "In Pocket speichern",
+    "saving" : "Speichern...",
+    "saved" : "In Pocket gespeichert",
+    "save_failed" : "Da ist etwas schiefgegangen.",
     "removing" : "Wird entfernt ...",
-    "saving" : "Speichern..."
+    "removed" : "Entfernt",
+    "remove_failed" : "Da ist etwas schiefgegangen.",
+    "tags_saving" : "Tags werden gespeichert …",
+    "tags_saved" : "Tags gespeichert",
+    "tags_failed" : "Da ist etwas schiefgegangen.",
+    "tags_error" : "Tags sind auf 25 Zeichen begrenzt."
   },
-  "actions" : {
-    "archive_page" : "Seite archivieren",
-    "close" : "Schließen",
-    "open_pocket" : "Pocket öffnen",
-    "remove_page" : "Seite entfernen",
-    "save" : "Speichern",
-    "settings" : "Einstellungen"
+  "buttons" : {
+    "remove" : "Entfernen",
+    "mylist" : "Meine Liste",
+    "save" : "Speichern"
+  },
+  "context_menu" : {
+    "open_list" : "Deine Pocket-Liste öffnen",
+    "discover_more" : "Entdecke noch mehr interessante Inhalte auf Pocket",
+    "log_out" : "Ausloggen",
+    "save" : "In Pocket speichern"
   },
   "tagging" : {
-    "add_tags" : "Tags hinzufügen",
-    "invalid_tags" : "Tags sind auf 25 Zeichen begrenzt.",
-    "getting_tags" : "Tags werden geladen",
-    "saving_tags" : "Tags werden gespeichert"
+    "add_tags" : "Tags hinzufügen"
   },
-  "recommendations" : {
-    "explore" : "Entdecke Empfehlungen von Pocket",
-    "loading" : "Empfehlungen werden geladen",
-    "more_on" : "Mehr auf",
-    "more_stories_detail" : "Möchtest du noch mehr spannende Geschichten finden?",
-    "people_also_saved" : "Andere Nutzer haben auch Folgendes gespeichert: ",
-    "rec_saved" : "Empfehlung gespeichert",
-    "save_to_pocket" : "In Pocket speichern",
-    "saved" : "Gespeichert",
-    "saving" : "Wird gespeichert …"
-  },
-  "options_page" : {
-    "get_in_touch_on_twitter_link" : "kontaktiere uns über Twitter",
-    "header" : "OPTIONEN",
-    "keyboard_shortcut_enabled" : "Aktiviert",
-    "keyboard_shortcut_title" : "Tastenkombination:",
-    "learn_more_link" : "(mehr Infos)",
-    "login_link" : "Zum Einloggen hier klicken",
-    "login_title" : "Eingeloggt als: ",
-    "logout_link" : "ausloggen",
-    "more_ways_to_save_title" : "Mehr Möglichkeiten zum Speichern von Inhalten bei Pocket:",
-    "questions_pocket_title" : "Fragen zu Pocket?",
-    "quick_save_services_title" : "Dienste schneller speichern:",
-    "recommendations_detail" : "Wenn du eine Seite speicherst, werden dir Empfehlungen von Pocket zu Geschichten zu ähnlichen Themen angezeigt.",
-    "recommendations_title" : "Empfehlungen zu gespeicherten Geschichten anzeigen",
-    "record_shortcut" : "Neue Tastenkombination festlegen",
-    "reset_to_default" : "Auf Standard zurücksetzen",
-    "save_to_pocket" : "In Pocket speichern",
-    "search_support_link" : "Support bei der Suche",
-    "send_us_an_email_link" : "schicke uns eine E-Mail",
-    "services_info" : "Falls aktiviert, kannst du alle Elemente von diesen Diensten direkt zu Pocket hinzufügen"
-  },
-  "error" : {
-    "page_not_saved" : "Seite nicht gespeichert",
-    "page_not_saved_detail" : "Pocket konnte diese Seite nicht speichern. Bitte versuche es erneut."
+  "options" : {
+    "header" : "Erweiterung zum Speichern in Pocket",
+    "login_title" : "Eingeloggt als",
+    "log_out" : "Ausloggen",
+    "log_in" : "Einloggen",
+    "shortcut_title" : "Tastenkombination",
+    "shortcut_record" : "Neue Tastenkombination festlegen",
+    "theme_title" : "Modus",
+    "theme_light" : "Hell",
+    "theme_dark" : "Dunkel",
+    "theme_system" : "Systemeinstellung verwenden",
+    "app_title" : "Die mobile Pocket-App",
+    "app_apple" : "Im Apple App Store herunterladen",
+    "app_google" : "In Google Play herunterladen",
+    "need_help" : "Du brauchst Hilfe?",
+    "email_us" : "Schreibe uns eine E-Mail",
+    "follow" : "Jetzt Pocket folgen",
+    "family" : "Pocket gehört zur Mozilla-Produktfamilie.",
+    "privacy" : "Datenschutzrichtlinie",
+    "terms" : "AGB"
   }
 }
