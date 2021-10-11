@@ -9,7 +9,7 @@ import { Button } from 'components/button/extensions-button'
 const headingStyle = css`
   display: flex;
   justify-content: space-between;
-  background-color: var(--color-calloutBackgroundPrimary);
+  background-color: var(--color-headingBackground);
   border-radius: 30px;
   padding: 15px 20px 15px 10px;
   font-size: 16px;
@@ -43,33 +43,17 @@ const headingStyle = css`
 
   button.inline {
     text-decoration: none;
-    color: var(--color-actionPrimary);
+    color: var(--color-inlineButton);
     &:hover {
       text-decoration: underline;
     }
   }
 
   &.error {
-    background-color: var(--color-coralLightest);
+    background-color: var(--color-headingErrorBackground);
 
     .saveBlock, .icon {
-      color: var(--color-coral);
-    }
-  }
-
-  .pocket-theme-dark & {
-    background: var(--color-grey25);
-
-    button.inline {
-      color: var(--color-teal100);
-    }
-
-    &.error {
-      background-color: var(--color-coralDark);
-
-      .saveBlock, .icon {
-        color: var(--color-coralLightest);
-      }
+      color: var(--color-headingIcon);
     }
   }
 `

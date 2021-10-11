@@ -12,7 +12,7 @@ const chipItem = css`
   background-color: var(--color-calloutBackgroundPrimary);
   border: 1px solid var(--color-calloutBackgroundPrimary);
   border-radius: 50px;
-  color: var(--color-teal30);
+  color: var(--color-chipsText);
   cursor: pointer;
   display: inline-block;
   font-size: 14px;
@@ -24,24 +24,12 @@ const chipItem = css`
   transform: translateZ(0.1);
 
   span {
-    color: var(--color-teal30);
+    color: var(--color-chipsText);
     margin-left: 10px;
   }
 
   &.active, &:hover {
-    border: 1px solid var(--color-grey10);
-  }
-
-  .pocket-theme-dark & {
-    color: var(--color-white100);
-
-    span {
-      color: var(--color-white100);
-    }
-
-    &.active, &:hover {
-      border-color: var(--color-white100);
-    }
+    border: 1px solid var(--color-chipsActive);
   }
 `
 

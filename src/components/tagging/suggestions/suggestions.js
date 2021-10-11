@@ -22,7 +22,7 @@ const suggestionItem = css`
   background-color: var(--color-calloutBackgroundPrimary);
   border: 1px solid var(--color-calloutBackgroundPrimary);
   border-radius: 50px;
-  color: var(--color-teal30);
+  color: var(--color-chipsText);
   cursor: pointer;
   display: inline-block;
   font-size: 14px;
@@ -35,15 +35,7 @@ const suggestionItem = css`
   transform: translateZ(0.1);
 
   &:hover {
-    border: 1px solid var(--color-grey10);
-  }
-
-  .pocket-theme-dark & {
-    color: var(--color-white100);
-
-    &:hover {
-      border-color: var(--color-white100);
-    }
+    border: 1px solid var(--color-chipsActive);
   }
 `
 

@@ -19,7 +19,7 @@ const footerWrapper = css`
     margin-right: 8px;
   }
 
-  .settings {
+  .buttonLink {
     color: var(--color-textPrimary);
     
     &:hover {
@@ -31,11 +31,11 @@ const footerWrapper = css`
 export const Footer = ({ myListClick, settingsClick }) => {
   return (
     <footer className={footerWrapper}>
-      <Button type="inline" onClick={myListClick}>
+      <Button type="inline" className="buttonLink" onClick={myListClick}>
         <ListViewIcon />
         {localize('buttons', 'mylist')}
       </Button>
-      <Button className="settings" type="inline" onClick={settingsClick}>
+      <Button type="inline" className="buttonLink" onClick={settingsClick}>
         <SettingsIcon />
       </Button>
     </footer>

@@ -20,7 +20,7 @@ const taggingPlaceholder = css`
 `
 const taggingWell = css`
   background-color: var(--color-canvas);
-  border: 1px solid var(--color-grey85);
+  border: 1px solid var(--color-taggingBorder);
   border-radius: 4px;
   box-sizing: border-box;
   font-size: 16px;
@@ -29,10 +29,6 @@ const taggingWell = css`
   padding: 4px 5px;
   position: relative;
   text-align: left;
-
-  .pocket-theme-dark & {
-    border-color: var(--color-grey55);
-  }
 `
 
 const taggingTypeaheadWrapper = css`
@@ -42,10 +38,10 @@ const taggingTypeaheadWrapper = css`
 
 const taggingTypeaheadList = css`
   background-color: var(--color-canvas);
-  border: 1px solid var(--color-grey85);
-  border-radius: 0 0 3px 3px;
+  border: 1px solid var(--color-taggingBorder);
+  border-radius: 0 0 4px 4px;
   border-top: none;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 2px 4px var(--color-taggingShadow);
   box-sizing: border-box;
   color: var(--color-textPrimary);
   display: block;
@@ -59,18 +55,13 @@ const taggingTypeaheadList = css`
   position: absolute;
   top: 0;
   width: 100%;
-
-  .pocket-theme-dark & {
-    border-color: var(--color-grey55);
-    box-shadow: 0px 2px 4px rgba(255, 255, 255, 0.25);
-  }
 `
 
 const taggingTypeaheadItem = css`
   background-color: var(--color-calloutBackgroundPrimary);
   border: 1px solid var(--color-calloutBackgroundPrimary);
   border-radius: 50px;
-  color: var(--color-teal30);
+  color: var(--color-chipsText);
   cursor: pointer;
   display: inline-block;
   font-size: 14px;
@@ -83,14 +74,7 @@ const taggingTypeaheadItem = css`
   transform: translateZ(0.1);
 
   .active &, &:hover {
-    border: 1px solid var(--color-grey10);
-  }
-
-  .pocket-theme-dark & {
-    color: var(--color-white100);
-  }
-  .pocket-theme-dark .active &, &:hover {
-    border-color: var(--color-white100);
+    border: 1px solid var(--color-chipsActive);
   }
 `
 

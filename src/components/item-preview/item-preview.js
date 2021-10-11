@@ -3,7 +3,7 @@ import { css } from 'linaria'
 
 const previewWrapper = css`
   display: flex;
-  background: #F3F3F3;
+  background: var(--color-itemPreviewBackground);
   padding: 10px;
   border-radius: 4px;
   margin-top: 10px;
@@ -35,10 +35,6 @@ const previewWrapper = css`
     margin: 0;
     font-size: 14px;
     color: var(--color-textPrimary);
-  }
-
-  .pocket-theme-dark & {
-    background: var(--color-grey25);
   }
 `
 
