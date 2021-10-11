@@ -2,7 +2,7 @@ import React from 'react'
 import { css, cx } from 'linaria'
 import { localize } from 'common/_locales/locales'
 import { PocketLogoIcon } from 'components/icons/icons'
-import { Loader } from 'components/loader/loader'
+import { Loading } from 'components/loading/loading'
 import { ErrorIcon } from 'components/icons/icons'
 import { Button } from 'components/button/button'
 
@@ -12,6 +12,7 @@ const headingStyle = css`
   background-color: var(--color-calloutBackgroundPrimary);
   border-radius: 30px;
   padding: 15px 20px;
+  font-size: 16px;
 
   .icon {
     height: 25px;
@@ -19,7 +20,7 @@ const headingStyle = css`
     margin-right: 14px;
   }
 
-  .loader {
+  .pocket-loading {
     margin-right: 10px;
     margin-bottom: 6px;
   }
@@ -64,7 +65,7 @@ const headingStyle = css`
   }
 `
 
-export const Heading = ({ saveStatus, removeAction }) => {
+export const Heading = ({ saveStatus, removeAction, saveAction }) => {
   const loadingStatus = ['saving', 'removing', 'tags_saving']
   const isLoading = loadingStatus.includes(saveStatus)
 
@@ -74,13 +75,16 @@ export const Heading = ({ saveStatus, removeAction }) => {
   return (
     <header className={cx(headingStyle, hasError && 'error')}>
       <div>
-        { isLoading ? <Loader className="loader" /> : null }
+        { isLoading ? <Loading className="pocket-loading" /> : null }
         { hasError ? <ErrorIcon /> : null }
         { !isLoading && !hasError ? <PocketLogoIcon /> : null }
         <div className="saveBlock">{localize('heading', saveStatus)}</div>
       </div>
-      {!hasError ? (
+      {!hasError && saveStatus !== 'removed' ? (
         <Button type="inline" onClick={removeAction}>{localize('buttons', 'remove')}</Button>
+      ) : null}
+      {saveStatus === 'removed' ? (
+        <Button type="inline" onClick={saveAction}>{localize('buttons', 'save')}</Button>
       ) : null}
     </header>
   )

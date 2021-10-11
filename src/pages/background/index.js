@@ -6,6 +6,7 @@ import { AUTH_CODE_RECEIVED } from 'actions'
 import { USER_LOG_IN } from 'actions'
 import { USER_LOG_OUT } from 'actions'
 import { LOGGED_OUT_OF_POCKET } from 'actions'
+import { RESAVE_ITEM_REQUEST } from 'actions'
 import { REMOVE_ITEM_REQUEST } from 'actions'
 import { TAGS_SYNC } from 'actions'
 import { OPEN_POCKET } from 'actions'
@@ -82,6 +83,8 @@ chrome.runtime.onMessage.addListener(function (message, sender) {
     case REMOVE_ITEM_REQUEST:
       handle.removeItemAction(tab, payload)
       return
+    case RESAVE_ITEM_REQUEST:
+      handle.browserAction(tab)
     case TAGS_SYNC:
       handle.tagsSyncAction(tab, payload)
       return

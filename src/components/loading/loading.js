@@ -1,7 +1,7 @@
 import React from 'react'
 import { css, cx } from 'linaria'
 
-const loadWrapper = css`
+const loadingWrapper = css`
   display: inline-flex;
   justify-content: center;
 
@@ -12,36 +12,36 @@ const loadWrapper = css`
     margin: 0 1.5px;
     fill: currentColor;
   }
-  .spin {
+  .shape {
     display: inline-block;
-    animation: bounce 1.6s infinite cubic-bezier(0.44, 0.15, 0.59, 0.89) both;
+    animation: float 1.6s infinite cubic-bezier(0.44, 0.15, 0.59, 0.89) both;
   }
-  .circle {
+  .round {
     svg {
       fill: var(--color-actionBrand);
     }
     animation-delay: -0.84s;
   }
-  .triangle {
+  .point {
     svg {
       transform-origin: 4px 5px;
       width: 8px;
       height: 8px;
       margin-top: -1px;
       fill: var(--color-amber);
-      animation: spinTriangle 1.6s infinite ease-in-out forwards;
+      animation: spinPoint 1.6s infinite ease-in-out forwards;
     }
     animation-delay: -0.42s;
   }
-  .square {
+  .block {
     svg {
       margin-bottom: 1px;
-      animation: spinSquare 1.6s infinite ease-in-out forwards;
+      animation: spinBlock 1.6s infinite ease-in-out forwards;
       fill: #116a65;
     }
   }
 
-  @keyframes bounce {
+  @keyframes float {
     0%,
     70%,
     100% {
@@ -52,7 +52,7 @@ const loadWrapper = css`
     }
   }
 
-  @keyframes spinTriangle {
+  @keyframes spinPoint {
     0% {
       transform: rotate(0deg);
     }
@@ -64,7 +64,7 @@ const loadWrapper = css`
     }
   }
 
-  @keyframes spinSquare {
+  @keyframes spinBlock {
     0% {
       transform: rotate(0deg);
     }
@@ -77,24 +77,24 @@ const loadWrapper = css`
   }
 `
 
-export const Loader = ({ className }) => {
+export const Loading = ({ className }) => {
   return (
-    <div className={cx(loadWrapper, className)}>
-      <div className="spin circle">
+    <aside className={cx(loadingWrapper, className)}>
+      <div className="shape round">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6 6">
           <circle cx="3" cy="3" r="3" />
         </svg>
       </div>
-      <div className="spin triangle">
+      <div className="shape point">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path d="M24 22H0L12 2z" />
         </svg>
       </div>
-      <div className="spin square">
+      <div className="shape block">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 6 6">
           <path d="M0 0h6v6H0z" />
         </svg>
       </div>
-    </div>
+    </aside>
   )
 }
