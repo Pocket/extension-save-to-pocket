@@ -4,7 +4,7 @@ import { localize } from 'common/_locales/locales'
 import { PocketLogoIcon } from 'components/icons/icons'
 import { Loading } from 'components/loading/loading'
 import { ErrorIcon } from 'components/icons/icons'
-import { Button } from 'components/button/button'
+import { Button } from 'components/button/extensions-button'
 
 const headingStyle = css`
   display: flex;
