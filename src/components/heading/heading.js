@@ -11,22 +11,31 @@ const headingStyle = css`
   justify-content: space-between;
   background-color: var(--color-calloutBackgroundPrimary);
   border-radius: 30px;
-  padding: 15px 20px;
+  padding: 15px 20px 15px 10px;
   font-size: 16px;
+
+  .status {
+    display: flex;
+  }
+
+  .icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    min-height: 25px;
+    margin-right: 15px;
+  }
 
   .icon {
     height: 25px;
     width: 25px;
-    margin-right: 14px;
-  }
-
-  .pocket-loading {
-    margin-right: 10px;
-    margin-bottom: 6px;
+    margin-top: 0;
   }
 
   .saveBlock {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     color: var(--color-textPrimary);
     font-size: 16px;
     font-weight: 600;
@@ -74,10 +83,12 @@ export const Heading = ({ saveStatus, removeAction, saveAction }) => {
 
   return (
     <header className={cx(headingStyle, hasError && 'error')}>
-      <div>
-        { isLoading ? <Loading className="pocket-loading" /> : null }
-        { hasError ? <ErrorIcon /> : null }
-        { !isLoading && !hasError ? <PocketLogoIcon /> : null }
+      <div className="status">
+        <div className="icon-wrapper">
+          { isLoading ? <Loading /> : null }
+          { hasError ? <ErrorIcon /> : null }
+          { !isLoading && !hasError ? <PocketLogoIcon /> : null }
+        </div>
         <div className="saveBlock">{localize('heading', saveStatus)}</div>
       </div>
       {!hasError && saveStatus !== 'removed' ? (

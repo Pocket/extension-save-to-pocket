@@ -11,7 +11,7 @@ const previewWrapper = css`
   img {
     width: 40px;
     height: 40px;
-    margin-right: 20px;
+    margin-right: 15px;
     border-radius: 4px;
   }
 
