@@ -39,6 +39,7 @@ export const App = () => {
 
     switch (action) {
       case SAVE_TO_POCKET_REQUEST: {
+        setIsOpen(true)
         return setSaveStatus('saving')
       }
 
