@@ -16,6 +16,7 @@ const chipItem = css`
   cursor: pointer;
   display: inline-block;
   font-size: 14px;
+  font-family: var(--fontSansSerif);
   line-height: 16px;
   margin-right: 9px;
   padding: 8px;

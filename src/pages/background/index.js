@@ -6,8 +6,8 @@ import { AUTH_CODE_RECEIVED } from 'actions'
 import { USER_LOG_IN } from 'actions'
 import { USER_LOG_OUT } from 'actions'
 import { LOGGED_OUT_OF_POCKET } from 'actions'
-import { RESAVE_ITEM_REQUEST } from 'actions'
-import { REMOVE_ITEM_REQUEST } from 'actions'
+import { RESAVE_ITEM } from 'actions'
+import { REMOVE_ITEM } from 'actions'
 import { TAGS_SYNC } from 'actions'
 import { OPEN_POCKET } from 'actions'
 import { OPEN_OPTIONS } from 'actions'
@@ -50,6 +50,10 @@ chrome.runtime.onInstalled.addListener(function () {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 chrome.action.onClicked.addListener(handle.browserAction)
 
+chrome.commands.onCommand.addListener((command, tab) => {
+  if (command === 'save-to-pocket-action') handle.browserAction(tab)
+})
+
 /* Context Menus Handling
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 chrome.contextMenus.onClicked.addListener(handle.contextClick)
@@ -80,10 +84,10 @@ chrome.runtime.onMessage.addListener(function (message, sender) {
     case LOGGED_OUT_OF_POCKET:
       handle.loggedOutOfPocket(tab)
       return
-    case REMOVE_ITEM_REQUEST:
+    case REMOVE_ITEM:
       handle.removeItemAction(tab, payload)
       return
-    case RESAVE_ITEM_REQUEST:
+    case RESAVE_ITEM:
       handle.browserAction(tab)
     case TAGS_SYNC:
       handle.tagsSyncAction(tab, payload)

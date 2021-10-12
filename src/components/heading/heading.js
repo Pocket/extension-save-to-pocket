@@ -37,6 +37,7 @@ const headingStyle = css`
     display: inline-flex;
     align-items: center;
     color: var(--color-textPrimary);
+    font-family: var(--fontSansSerif);
     font-size: 16px;
     font-weight: 600;
   }

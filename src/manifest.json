@@ -54,5 +54,17 @@
     "contextMenus",
     "cookies",
     "storage"
-  ]
+  ],
+  "commands": {
+    "save-to-pocket-action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+P",
+        "windows": "Ctrl+Shift+P",
+        "mac": "Command+Shift+P",
+        "chromeos": "Ctrl+Shift+P",
+        "linux": "Ctrl+Shift+P"
+      },
+      "description": "Save page to Pocket"
+    }
+  }
 }

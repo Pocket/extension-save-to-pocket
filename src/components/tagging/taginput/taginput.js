@@ -11,6 +11,7 @@ const inputWrapper = css`
   input {
     all: unset;
     color: var(--color-textPrimary);
+    font-family: var(--fontSansSerif);
     display: inline-block;
     line-height: 16px;
     margin-bottom: 3px;

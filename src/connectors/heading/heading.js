@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Heading } from 'components/heading/heading'
 
-import { REMOVE_ITEM_REQUEST } from 'actions'
-import { RESAVE_ITEM_REQUEST } from 'actions'
+import { REMOVE_ITEM } from 'actions'
+import { RESAVE_ITEM } from 'actions'
 import { UPDATE_ITEM_PREVIEW } from 'actions'
 
 export const HeadingConnector = ({ saveStatus }) => {
@@ -33,14 +33,14 @@ export const HeadingConnector = ({ saveStatus }) => {
 
   const removeAction = () => {
     chrome.runtime.sendMessage({
-      type: REMOVE_ITEM_REQUEST,
+      type: REMOVE_ITEM,
       payload: { itemId }
     })
   }
 
   const saveAction = () => {
     chrome.runtime.sendMessage({
-      type: RESAVE_ITEM_REQUEST
+      type: RESAVE_ITEM
     })
   }
 

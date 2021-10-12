@@ -24,7 +24,7 @@ import { UPDATE_TAG_ERROR } from 'actions'
 
 export const App = () => {
   const appTarget = useRef(null)
-  const [saveStatus, setSaveStatus] = useState('idle')
+  const [saveStatus, setSaveStatus] = useState('saving')
   const [isOpen, setIsOpen] = useState(false)
   const [theme, setTheme] = useState('pocket-theme-system')
 

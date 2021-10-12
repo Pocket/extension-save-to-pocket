@@ -24,6 +24,7 @@ const taggingWell = css`
   border-radius: 4px;
   box-sizing: border-box;
   font-size: 16px;
+  font-family: var(--fontSansSerif);
   line-height: 16px;
   margin: 0;
   padding: 4px 5px;
@@ -65,6 +66,7 @@ const taggingTypeaheadItem = css`
   cursor: pointer;
   display: inline-block;
   font-size: 14px;
+  font-family: var(--fontSansSerif);
   line-height: 16px;
   margin-bottom: 4px;
   margin-right: 4px;

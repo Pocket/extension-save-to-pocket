@@ -23,6 +23,7 @@ const previewWrapper = css`
     margin: 0 0 10px;
     font-size: 16px;
     font-weight: 600;
+    font-family: var(--fontSansSerif);
     line-height: 20px;
     color: var(--color-textPrimary);
     display: -webkit-box;
@@ -34,6 +35,7 @@ const previewWrapper = css`
   p {
     margin: 0;
     font-size: 14px;
+    font-family: var(--fontSansSerif);
     color: var(--color-textPrimary);
   }
 `
