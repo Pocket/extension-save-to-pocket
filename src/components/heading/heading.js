@@ -4,29 +4,38 @@ import { localize } from 'common/_locales/locales'
 import { PocketLogoIcon } from 'components/icons/icons'
 import { Loading } from 'components/loading/loading'
 import { ErrorIcon } from 'components/icons/icons'
-import { Button } from 'components/button/button'
+import { Button } from 'components/button/extensions-button'
 
 const headingStyle = css`
   display: flex;
   justify-content: space-between;
-  background-color: var(--color-calloutBackgroundPrimary);
+  background-color: var(--color-headingBackground);
   border-radius: 30px;
-  padding: 15px 20px;
+  padding: 15px 20px 15px 10px;
   font-size: 16px;
+
+  .status {
+    display: flex;
+  }
+
+  .icon-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    min-height: 25px;
+    margin-right: 15px;
+  }
 
   .icon {
     height: 25px;
     width: 25px;
-    margin-right: 14px;
-  }
-
-  .pocket-loading {
-    margin-right: 10px;
-    margin-bottom: 6px;
+    margin-top: 0;
   }
 
   .saveBlock {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     color: var(--color-textPrimary);
     font-size: 16px;
     font-weight: 600;
@@ -34,33 +43,17 @@ const headingStyle = css`
 
   button.inline {
     text-decoration: none;
-    color: var(--color-actionPrimary);
+    color: var(--color-inlineButton);
     &:hover {
       text-decoration: underline;
     }
   }
 
   &.error {
-    background-color: var(--color-coralLightest);
+    background-color: var(--color-headingErrorBackground);
 
     .saveBlock, .icon {
-      color: var(--color-coral);
-    }
-  }
-
-  .pocket-theme-dark & {
-    background: var(--color-grey25);
-
-    button.inline {
-      color: var(--color-teal100);
-    }
-
-    &.error {
-      background-color: var(--color-coralDark);
-
-      .saveBlock, .icon {
-        color: var(--color-coralLightest);
-      }
+      color: var(--color-headingIcon);
     }
   }
 `
@@ -74,10 +67,12 @@ export const Heading = ({ saveStatus, removeAction, saveAction }) => {
 
   return (
     <header className={cx(headingStyle, hasError && 'error')}>
-      <div>
-        { isLoading ? <Loading className="pocket-loading" /> : null }
-        { hasError ? <ErrorIcon /> : null }
-        { !isLoading && !hasError ? <PocketLogoIcon /> : null }
+      <div className="status">
+        <div className="icon-wrapper">
+          { isLoading ? <Loading /> : null }
+          { hasError ? <ErrorIcon /> : null }
+          { !isLoading && !hasError ? <PocketLogoIcon /> : null }
+        </div>
         <div className="saveBlock">{localize('heading', saveStatus)}</div>
       </div>
       {!hasError && saveStatus !== 'removed' ? (

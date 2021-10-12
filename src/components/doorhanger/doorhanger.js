@@ -10,7 +10,7 @@ const doorhangerStyle = css`
 
   .doorHanger {
     background-color: var(--color-canvas);
-    border-radius: 4px;
+    border-radius: 30px;
     box-sizing: border-box;
     width: 393px;
     position: absolute;

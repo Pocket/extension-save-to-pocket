@@ -4,6 +4,7 @@ import Icon from './icon'
 import Error from './svg/Error'
 import FacebookMono from './svg/Facebook-Mono'
 import Instagram from './svg/Instagram'
+import ListView from './svg/List-View'
 import PocketLogo from './svg/PocketLogo'
 import Settings from './svg/Settings'
 import TwitterMono from './svg/Twitter-Mono'
@@ -23,6 +24,12 @@ export const FacebookIcon = (props) => (
 export const InstagramIcon = (props) => (
   <Icon {...props}>
     <Instagram />
+  </Icon>
+)
+
+export const ListViewIcon = (props) => (
+  <Icon {...props}>
+    <ListView />
   </Icon>
 )
 
