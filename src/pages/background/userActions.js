@@ -1,7 +1,7 @@
 import { saveSuccess } from './postSave'
 
 import { isSystemPage, isSystemLink } from 'common/helpers'
-import { getSetting, setSettings, removeSettings } from 'common/interface'
+import { getSetting, setSettings } from 'common/interface'
 import { closeLoginPage } from 'common/helpers'
 import { setToolbarIcon } from 'common/interface'
 
@@ -155,7 +155,7 @@ export function logOut() {
 }
 
 export function loggedOutOfPocket() {
-  removeSettings(['access_token'])
+  chrome.storage.local.clear()
 }
 
 export function logIn(saveObject) {

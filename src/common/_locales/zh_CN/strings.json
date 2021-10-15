@@ -20,6 +20,7 @@
   "context_menu" : {
     "open_list" : "打开您的 Pocket 列表",
     "discover_more" : "在 Pocket 发现更多内容",
+    "log_in" : "登录",
     "log_out" : "注销",
     "save" : "保存到 Pocket"
   },

@@ -20,6 +20,7 @@
   "context_menu" : {
     "open_list" : "Откройте свой список Pocket",
     "discover_more" : "Откройте больше с Pocket",
+    "log_in" : "Войти",
     "log_out" : "Выйти",
     "save" : "Сохранить в Pocket"
   },

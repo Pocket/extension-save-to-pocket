@@ -20,6 +20,7 @@
   "context_menu": {
     "open_list": "Open Your Pocket List",
     "discover_more": "Discover more at Pocket",
+    "log_in" : "Log In",
     "log_out": "Log Out",
     "save": "Save To Pocket"
   },

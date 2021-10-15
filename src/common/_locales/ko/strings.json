@@ -20,6 +20,7 @@
   "context_menu" : {
     "open_list" : "Pocket 목록 열기",
     "discover_more" : "Pocket에서 더 찾기",
+    "log_in" : "로그인",
     "log_out" : "로그아웃",
     "save" : "Pocket에 저장"
   },

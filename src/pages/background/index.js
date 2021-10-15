@@ -4,7 +4,6 @@ import { localize } from 'common/_locales/locales'
 
 import { AUTH_CODE_RECEIVED } from 'actions'
 import { USER_LOG_IN } from 'actions'
-import { USER_LOG_OUT } from 'actions'
 import { LOGGED_OUT_OF_POCKET } from 'actions'
 import { RESAVE_ITEM } from 'actions'
 import { REMOVE_ITEM } from 'actions'
@@ -77,9 +76,6 @@ chrome.runtime.onMessage.addListener(function (message, sender) {
       return
     case USER_LOG_IN:
       handle.logIn(tab)
-      return
-    case USER_LOG_OUT:
-      handle.logOut(tab)
       return
     case LOGGED_OUT_OF_POCKET:
       handle.loggedOutOfPocket(tab)

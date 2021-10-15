@@ -64,7 +64,3 @@ export function getSetting(key) {
 export function setSettings(values) {
   chrome.storage.local.set(values)
 }
-
-export function removeSettings(values) {
-  chrome.storage.local.remove(values)
-}
