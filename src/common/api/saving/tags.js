@@ -31,6 +31,7 @@ export function fetchStoredTags(since) {
     data: {
       tags: 1,
       taglist: 1,
+      forcetaglist: 1,
       account: 1,
       since: since ? since : 0
     }
