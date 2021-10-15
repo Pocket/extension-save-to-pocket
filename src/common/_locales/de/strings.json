@@ -20,6 +20,7 @@
   "context_menu" : {
     "open_list" : "Deine Pocket-Liste öffnen",
     "discover_more" : "Entdecke noch mehr interessante Inhalte auf Pocket",
+    "log_in" : "Einloggen",
     "log_out" : "Ausloggen",
     "save" : "In Pocket speichern"
   },

@@ -20,6 +20,7 @@
   "context_menu" : {
     "open_list" : "Pocket-lijst openen",
     "discover_more" : "Ontdek meer op Pocket",
+    "log_in" : "Inloggen",
     "log_out" : "Uitloggen",
     "save" : "Opslaan naar Pocket"
   },

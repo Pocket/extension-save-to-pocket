@@ -20,6 +20,7 @@
   "context_menu" : {
     "open_list" : "Pocket リストを開く",
     "discover_more" : "Pocket で他のコンテンツを発見",
+    "log_in" : "ログイン",
     "log_out" : "ログアウト",
     "save" : "Pocket に保存"
   },
