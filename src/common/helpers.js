@@ -47,7 +47,7 @@ export function checkDuplicate(list, tagValue) {
 
 export function closeLoginPage() {
   chrome.tabs.query(
-    { url: '*://getpocket.com/extension_login_success' },
+    { url: '*://getpocket.com/extension_login_success*' },
     (tabs) => {
       chrome.tabs.remove(tabs.map((tab) => tab.id))
     },
