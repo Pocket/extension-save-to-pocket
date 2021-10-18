@@ -45,6 +45,7 @@ export default {
     replace({
       preventAssignment: true,
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      'process.env.IS_RELEASE': JSON.stringify(process.env.IS_RELEASE)
     }),
     replace({
       preventAssignment: false,

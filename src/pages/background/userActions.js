@@ -4,6 +4,7 @@ import { isSystemPage, isSystemLink } from 'common/helpers'
 import { getSetting, setSettings } from 'common/interface'
 import { closeLoginPage } from 'common/helpers'
 import { setToolbarIcon } from 'common/interface'
+import { localize } from 'common/_locales/locales'
 
 import { authorize } from 'common/api'
 import { getGuid } from 'common/api'
@@ -53,6 +54,7 @@ export function contextClick(info, tab) {
   if (menuItemId === 'toolbarContextClickHome') return openPocketHome()
   if (menuItemId === 'toolbarContextClickList') return openPocketList()
   if (menuItemId === 'toolbarContextClickLogOut') return logOut()
+  if (menuItemId === 'toolbarContextClickLogIn') return logIn()
 
   // Open list on non-standard pages/links
   if (isSystemLink(linkUrl || pageUrl)) return openPocketHome()
@@ -146,6 +148,8 @@ export async function authCodeRecieved(tab, payload) {
   setSettings({ access_token, premium_status, username })
 
   closeLoginPage()
+  setContextMenus()
+
   if (postAuthSave) save(postAuthSave)
   postAuthSave = null
 }
@@ -156,6 +160,7 @@ export function logOut() {
 
 export function loggedOutOfPocket() {
   chrome.storage.local.clear()
+  setContextMenus()
 }
 
 export function logIn(saveObject) {
@@ -192,4 +197,47 @@ export function tabUpdated(tabId, changeInfo) {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 export async function setColorMode(tab, { theme }) {
   await setSettings({ theme })
+}
+
+/* Context Menus
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+export async function setContextMenus() {
+  chrome.contextMenus.removeAll()
+
+  // Page Context - Right click menu on page
+  chrome.contextMenus.create({
+    title: localize('context_menu', 'save'),
+    id: 'pageContextClick',
+    contexts: ['page', 'frame', 'editable', 'image', 'video', 'audio', 'link', 'selection'], // prettier-ignore
+  })
+
+  // Browser Icon - Right click menu
+  chrome.contextMenus.create({
+    title: localize('context_menu', 'open_list'),
+    id: 'toolbarContextClickList',
+    contexts: ['action'],
+  })
+
+  chrome.contextMenus.create({
+    title: localize('context_menu', 'discover_more'),
+    id: 'toolbarContextClickHome',
+    contexts: ['action'],
+  })
+
+  // Log In or Out menu item depending on existence of access token
+  const access_token = await getSetting('access_token')
+  if (access_token) {
+    chrome.contextMenus.create({
+      title: localize('context_menu', 'log_out'),
+      id: 'toolbarContextClickLogOut',
+      contexts: ['action'],
+    })
+  }
+  else {
+    chrome.contextMenus.create({
+      title: localize('context_menu', 'log_in'),
+      id: 'toolbarContextClickLogIn',
+      contexts: ['action'],
+    })
+  }
 }
