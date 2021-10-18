@@ -8,6 +8,7 @@ import { FooterConnector } from 'connectors/footer/footer'
 import { getSetting } from 'common/interface'
 import { getOSModeClass } from 'common/helpers'
 import { GlobalVariables } from './globalStyles'
+import { getBool } from 'common/utilities'
 
 import { SAVE_TO_POCKET_REQUEST } from 'actions'
 import { SAVE_TO_POCKET_SUCCESS } from 'actions'
@@ -22,6 +23,8 @@ import { TAG_SYNC_SUCCESS } from 'actions'
 import { TAG_SYNC_FAILURE } from 'actions'
 import { UPDATE_TAG_ERROR } from 'actions'
 
+const IS_RELEASE = getBool(process.env.IS_RELEASE)
+
 export const App = () => {
   const appTarget = useRef(null)
   const [saveStatus, setSaveStatus] = useState('saving')
@@ -33,9 +36,11 @@ export const App = () => {
   const handleMessages = (event) => {
     const { payload, action = 'Unknown Action' } = event || {}
 
-    console.groupCollapsed(`RECEIVE: ${action}`)
-    console.log(payload)
-    console.groupEnd(`RECEIVE: ${action}`)
+    if (!IS_RELEASE) {
+      console.groupCollapsed(`RECEIVE: ${action}`)
+      console.log(payload)
+      console.groupEnd(`RECEIVE: ${action}`)
+    }
 
     switch (action) {
       case SAVE_TO_POCKET_REQUEST: {

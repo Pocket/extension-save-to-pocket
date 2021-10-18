@@ -1,6 +1,5 @@
 import * as handle from './userActions'
 import { setDefaultIcon } from 'common/interface'
-import { localize } from 'common/_locales/locales'
 
 import { AUTH_CODE_RECEIVED } from 'actions'
 import { USER_LOG_IN } from 'actions'
@@ -19,30 +18,7 @@ chrome.runtime.onInstalled.addListener(function () {
   // Use SVG icons over the png for more control
   setDefaultIcon()
 
-  chrome.contextMenus.create({
-    title: localize('context_menu', 'open_list'),
-    id: 'toolbarContextClickList',
-    contexts: ['action'],
-  })
-
-  chrome.contextMenus.create({
-    title: localize('context_menu', 'discover_more'),
-    id: 'toolbarContextClickHome',
-    contexts: ['action'],
-  })
-
-  chrome.contextMenus.create({
-    title: localize('context_menu', 'log_out'),
-    id: 'toolbarContextClickLogOut',
-    contexts: ['action'],
-  })
-
-  // Page Context - Right click menu on page
-  chrome.contextMenus.create({
-    title: localize('context_menu', 'save'),
-    id: 'pageContextClick',
-    contexts: ['page', 'frame', 'editable', 'image', 'video', 'audio', 'link', 'selection'], // prettier-ignore
-  })
+  handle.setContextMenus()
 })
 
 /* Browser Action - Toolbar
