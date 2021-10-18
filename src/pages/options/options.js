@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom'
 import React, { useEffect, useState } from 'react'
-import { css, cx } from 'linaria'
+import { css } from 'linaria'
 import { openTabWithUrl } from 'common/interface'
 import { localize } from 'common/_locales/locales'
 import { AUTH_URL, LOGOUT_URL, SET_SHORTCUTS } from 'common/constants'
@@ -18,7 +18,6 @@ import { GlobalVariables, radioStyles } from '../injector/globalStyles'
 const container = css`
   ${GlobalVariables};
   ${radioStyles};
-  background-color: var(--color-canvas);
   color: var(--color-textPrimary);
   font-size: 16px;
   width: 100vw;
@@ -148,7 +147,6 @@ const footerCopyright = css`
 
 const OptionsApp = () => {
   const [storedTheme, setStoredTheme] = useState('light')
-  const [pageTheme, setPageTheme] = useState('light')
   const [accessToken, setAccessToken] = useState()
   const [userName, setUserName] = useState()
 
@@ -166,11 +164,14 @@ const OptionsApp = () => {
     chrome.runtime.sendMessage({ type: COLOR_MODE_CHANGE, payload: { theme: mode } })
     const newTheme = (mode === 'system') ? getOSModeClass() : mode
     setStoredTheme(mode)
-    setPageTheme(newTheme)
+
+    const htmlTag = document && document.documentElement
+    htmlTag?.classList.toggle(`pocket-theme-light`, newTheme === 'light')
+    htmlTag?.classList.toggle(`pocket-theme-dark`, newTheme === 'dark')
   }
 
   return (
-    <div className={cx(container, `pocket-theme-${pageTheme}`)}>
+    <div className={container}>
       <section className={wrapper}>
         <header className={header}>
           <Logo />
