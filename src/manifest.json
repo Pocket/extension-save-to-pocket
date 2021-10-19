@@ -31,7 +31,7 @@
     },
     {
       "matches": [
-        "*://getpocket.com/extension_login_success"
+        "*://getpocket.com/extension_login_success*"
       ],
       "js": [
         "pages/login.js"
