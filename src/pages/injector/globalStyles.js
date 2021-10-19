@@ -14,6 +14,10 @@ export const globalReset = css`
       vertical-align: baseline;
     }
 
+    // additional class here for when we need more
+    // specificity to override page styles, but also
+    // so we don't have to duplicate overrides to both 
+    // light & dark theme classes
     .pocket-extension {
       *:after,
       *:before {
