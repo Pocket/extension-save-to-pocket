@@ -7,7 +7,7 @@ import { TaggingConnector } from 'connectors/tagging/tagging'
 import { FooterConnector } from 'connectors/footer/footer'
 import { getSetting } from 'common/interface'
 import { getOSModeClass } from 'common/helpers'
-import { GlobalVariables } from './globalStyles'
+import { globalVariables, globalReset } from './globalStyles'
 import { getBool } from 'common/utilities'
 
 import { SAVE_TO_POCKET_REQUEST } from 'actions'
@@ -119,7 +119,7 @@ export const App = () => {
   const isRemoved = saveStatus === 'removed'
 
   return (
-    <div ref={appTarget} className={cx(GlobalVariables, theme)}>
+    <div ref={appTarget} className={cx(globalReset, globalVariables, theme)}>
       <Doorhanger isOpen={isOpen}>
         <HeadingConnector saveStatus={saveStatus} />
         {!isRemoved ? <ItemPreviewConnector /> : null}

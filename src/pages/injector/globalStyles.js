@@ -1,6 +1,23 @@
  import { css } from 'linaria'
 
- export const GlobalVariables = css`
+ export const globalReset = css`
+   :global() {
+
+    header, footer, section, div, span, aside,
+    h1, h2, h3, h4, h5, h6, p, a,
+    button, form, input, label,
+    img, ul, ol, li {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      font-size: 100%;
+      font: inherit;
+      vertical-align: baseline;
+    }
+  }
+ `
+
+ export const globalVariables = css`
    :global() {
      .pocket-theme-light {
        --color-canvas: #FFFFFF;
