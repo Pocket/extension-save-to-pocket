@@ -34,6 +34,7 @@ const previewWrapper = css`
 
   p {
     margin: 0;
+    padding: 0;
     font-size: 14px;
     font-family: var(--fontSansSerif);
     color: var(--color-textPrimary);

@@ -119,7 +119,7 @@ export const App = () => {
   const isRemoved = saveStatus === 'removed'
 
   return (
-    <div ref={appTarget} className={cx(globalReset, globalVariables, theme)}>
+    <div ref={appTarget} className={cx('pocket-extension', globalReset, globalVariables, theme)}>
       <Doorhanger isOpen={isOpen}>
         <HeadingConnector saveStatus={saveStatus} />
         {!isRemoved ? <ItemPreviewConnector /> : null}
