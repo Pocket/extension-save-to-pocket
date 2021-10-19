@@ -12,6 +12,7 @@ const buttonStyles = css`
   padding: 8px 12px;
   transition: all 0.15s ease-out;
   text-decoration: none;
+  text-transform: none;
   cursor: pointer;
 
   &.disabled {
