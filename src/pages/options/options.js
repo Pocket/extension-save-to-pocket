@@ -47,6 +47,8 @@ const header = css`
 `
 const user = css`
   margin-right: 10px;
+  margin-bottom: 10px;
+  display: inline-block;
 `
 const section = css`
   display: flex;
