@@ -13,10 +13,11 @@ import { FacebookIcon } from 'components/icons/icons'
 import { TwitterIcon } from 'components/icons/icons'
 import { InstagramIcon } from 'components/icons/icons'
 import { PocketLogoIcon } from 'components/icons/icons'
-import { GlobalVariables, radioStyles } from '../injector/globalStyles'
+import { globalVariables, radioStyles, globalReset } from '../injector/globalStyles'
 
 const container = css`
-  ${GlobalVariables};
+  ${globalReset};
+  ${globalVariables};
   ${radioStyles};
   color: var(--color-textPrimary);
   font-size: 16px;
