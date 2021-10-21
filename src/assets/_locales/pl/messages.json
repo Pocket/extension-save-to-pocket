@@ -1,0 +1,122 @@
+{
+  "extension_description": {
+    "message": "Najłatwiejsza i najszybsza metoda zapisywania artykułów, filmów i innych treści."
+  },
+  "heading_idle" : {
+    "message" : ""
+  },
+  "heading_saving" : {
+    "message" : "Zapisywanie..."
+  },
+  "heading_saved" : {
+    "message" : "Zapisano w aplikacji Pocket"
+  },
+  "heading_save_failed" : {
+    "message" : "Wystąpił problem."
+  },
+  "heading_removing" : {
+    "message" : "Usuwanie..."
+  },
+  "heading_removed" : {
+    "message" : "Usunięto"
+  },
+  "heading_remove_failed" : {
+    "message" : "Wystąpił problem."
+  },
+  "heading_tags_saving" : {
+    "message" : "Zapisywanie tagów..."
+  },
+  "heading_tags_saved" : {
+    "message" : "Zapisano tagi"
+  },
+  "heading_tags_failed" : {
+    "message" : "Wystąpił problem."
+  },
+  "heading_tags_error" : {
+    "message" : "Tagi mogą mieć maksymalnie 25 znaków"
+  },
+  "buttons_remove" : {
+    "message" : "Usuń"
+  },
+  "buttons_mylist" : {
+    "message" : "Moja lista"
+  },
+  "buttons_save" : {
+    "message" : "Zapisz"
+  },
+  "context_menu_open_list" : {
+    "message" : "Otwórz swoją listę Pocket"
+  },
+  "context_menu_discover_more" : {
+    "message" : "Odkryj więcej w Pocket"
+  },
+  "context_menu_log_in" : {
+    "message" : "Zaloguj się"
+  },
+  "context_menu_log_out" : {
+    "message" : "Wyloguj się"
+  },
+  "context_menu_save" : {
+    "message" : "Zapisz w aplikacji Pocket"
+  },
+  "tagging_add_tags" : {
+    "message" : "Dodaj tagi"
+  },
+  "options_header" : {
+    "message" : "Rozszerzenie Zapisz do Pocket"
+  },
+  "options_login_title" : {
+    "message" : "Zalogowano jako"
+  },
+  "options_log_out" : {
+    "message" : "Wyloguj się"
+  },
+  "options_log_in" : {
+    "message" : "Zaloguj się"
+  },
+  "options_shortcut_title" : {
+    "message" : "Skrót klawiaturowy"
+  },
+  "options_shortcut_record" : {
+    "message" : "Zarejestruj nowy skrót"
+  },
+  "options_theme_title" : {
+    "message" : "Motyw"
+  },
+  "options_theme_light" : {
+    "message" : "Jasny"
+  },
+  "options_theme_dark" : {
+    "message" : "Ciemny"
+  },
+  "options_theme_system" : {
+    "message" : "Użyj ustawienia systemowego"
+  },
+  "options_app_title" : {
+    "message" : "Aplikacja mobilna Pocket"
+  },
+  "options_app_apple" : {
+    "message" : "Pobierz z serwisu Apple App Store"
+  },
+  "options_app_google" : {
+    "message" : "Pobierz z serwisu Google Play"
+  },
+  "options_need_help" : {
+    "message" : "Potrzebna pomoc?"
+  },
+  "options_email_us" : {
+    "message" : "Napisz do nas wiadomość e-mail"
+  },
+  "options_follow" : {
+    "message" : "Obserwuj Pocket"
+  },
+  "options_family" : {
+    "message" : "Pocket należy do rodziny produktów Mozilla."
+  },
+  "options_privacy" : {
+    "message" : "Zasady ochrony prywatności"
+  },
+  "options_terms" : {
+    "message" : "Warunki użytkowania usługi"
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "extension_description": {
+    "message": "捕获文章、视频等内容的最轻松、快捷方式。"
+  },
+  "heading_idle" : {
+    "message" : ""
+  },
+  "heading_saving" : {
+    "message" : "保存..."
+  },
+  "heading_saved" : {
+    "message" : "已保存到 Pocket"
+  },
+  "heading_save_failed" : {
+    "message" : "出错了！"
+  },
+  "heading_removing" : {
+    "message" : "正在删除..."
+  },
+  "heading_removed" : {
+    "message" : "已删除"
+  },
+  "heading_remove_failed" : {
+    "message" : "出错了！"
+  },
+  "heading_tags_saving" : {
+    "message" : "正在保存标记……"
+  },
+  "heading_tags_saved" : {
+    "message" : "标记已保存"
+  },
+  "heading_tags_failed" : {
+    "message" : "出错了！"
+  },
+  "heading_tags_error" : {
+    "message" : "标记限于 25 个字符"
+  },
+  "buttons_remove" : {
+    "message" : "删除"
+  },
+  "buttons_mylist" : {
+    "message" : "我的列表"
+  },
+  "buttons_save" : {
+    "message" : "保存"
+  },
+  "context_menu_open_list" : {
+    "message" : "打开您的 Pocket 列表"
+  },
+  "context_menu_discover_more" : {
+    "message" : "在 Pocket 发现更多内容"
+  },
+  "context_menu_log_in" : {
+    "message" : "登录"
+  },
+  "context_menu_log_out" : {
+    "message" : "注销"
+  },
+  "context_menu_save" : {
+    "message" : "保存到 Pocket"
+  },
+  "tagging_add_tags" : {
+    "message" : "添加标记"
+  },
+  "options_header" : {
+    "message" : "保存到 Pocket 扩展件"
+  },
+  "options_login_title" : {
+    "message" : "登录为"
+  },
+  "options_log_out" : {
+    "message" : "注销"
+  },
+  "options_log_in" : {
+    "message" : "登录"
+  },
+  "options_shortcut_title" : {
+    "message" : "键盘快捷键"
+  },
+  "options_shortcut_record" : {
+    "message" : "记录新的快捷键"
+  },
+  "options_theme_title" : {
+    "message" : "主题"
+  },
+  "options_theme_light" : {
+    "message" : "浅色"
+  },
+  "options_theme_dark" : {
+    "message" : "深色"
+  },
+  "options_theme_system" : {
+    "message" : "使用系统设置"
+  },
+  "options_app_title" : {
+    "message" : "Pocket 的移动应用"
+  },
+  "options_app_apple" : {
+    "message" : "从 Apple App Store 下载"
+  },
+  "options_app_google" : {
+    "message" : "从 Google Play 获取"
+  },
+  "options_need_help" : {
+    "message" : "需要帮助？"
+  },
+  "options_email_us" : {
+    "message" : "电邮我们"
+  },
+  "options_follow" : {
+    "message" : "关注 Pocket"
+  },
+  "options_family" : {
+    "message" : "Pocket 是 Mozilla 系列产品的一部分。"
+  },
+  "options_privacy" : {
+    "message" : "隐私政策"
+  },
+  "options_terms" : {
+    "message" : "服务条款"
+  }
+}

@@ -1,6 +1,5 @@
 import React from 'react'
 import { css } from 'linaria'
-import { localize } from 'common/_locales/locales'
 import { SettingsIcon } from 'components/icons/icons'
 import { ListViewIcon } from 'components/icons/icons'
 import { Button } from 'components/button/extensions-button'
@@ -22,7 +21,7 @@ const footerWrapper = css`
 
   .buttonLink {
     color: var(--color-textPrimary);
-    
+
     &:hover {
       color: var(--color-actionPrimary);
     }
@@ -34,7 +33,7 @@ export const Footer = ({ myListClick, settingsClick }) => {
     <footer className={footerWrapper}>
       <Button type="inline" className="buttonLink" onClick={myListClick}>
         <ListViewIcon />
-        {localize('buttons', 'mylist')}
+        {chrome.i18n.getMessage('buttons_mylist')}
       </Button>
       <Button type="inline" className="buttonLink" onClick={settingsClick}>
         <SettingsIcon />

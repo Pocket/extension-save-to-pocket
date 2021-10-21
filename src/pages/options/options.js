@@ -2,7 +2,6 @@ import ReactDOM from 'react-dom'
 import React, { useEffect, useState } from 'react'
 import { css } from 'linaria'
 import { openTabWithUrl } from 'common/interface'
-import { localize } from 'common/_locales/locales'
 import { AUTH_URL, LOGOUT_URL, SET_SHORTCUTS } from 'common/constants'
 import { getSetting } from 'common/interface'
 import { COLOR_MODE_CHANGE } from 'actions'
@@ -179,25 +178,25 @@ const OptionsApp = () => {
         <header className={header}>
           <Logo />
           <h1 className={title}>
-            {localize('options', 'header')}
+            {chrome.i18n.getMessage('options_header')}
           </h1>
         </header>
 
         <div className={section}>
           <div className={sectionLabel}>
-            {localize('options', 'login_title')}
+            {chrome.i18n.getMessage('options_login_title')}
           </div>
           <div className={sectionAction}>
             {(accessToken && userName) ? (
               <div>
                 <span className={user}>{userName}</span>
                 <Button type='secondary' onClick={logoutAction}>
-                  {localize('options', 'log_out')}
+                  {chrome.i18n.getMessage('options_log_out')}
                 </Button>
               </div>
             ) : (
               <Button type='secondary' onClick={loginAction}>
-                {localize('options', 'log_in')}
+                {chrome.i18n.getMessage('options_log_in')}
               </Button>
             )}
           </div>
@@ -205,18 +204,18 @@ const OptionsApp = () => {
 
         <div className={section}>
           <div className={sectionLabel}>
-            {localize('options', 'shortcut_title')}
+            {chrome.i18n.getMessage('options_shortcut_title')}
           </div>
           <div className={sectionAction}>
             <Button type='primary' onClick={setShortcuts}>
-              {localize('options', 'shortcut_record')}
+              {chrome.i18n.getMessage('options_shortcut_record')}
             </Button>
           </div>
         </div>
 
         <div className={section}>
           <div className={sectionLabel}>
-            {localize('options', 'app_title')}
+            {chrome.i18n.getMessage('options_app_title')}
           </div>
           <div className={sectionAction}>
             <a
@@ -226,7 +225,7 @@ const OptionsApp = () => {
               <img
                 className={appIcon}
                 src="https://assets.getpocket.com/web-ui/assets/apple-app-store-badge.2928664fe1fc6aca88583a6f606d60ba.svg"
-                alt={localize('options', 'app_apple')}
+                alt={chrome.i18n.getMessage('options_app_apple')}
               />
             </a>
             <a
@@ -237,7 +236,7 @@ const OptionsApp = () => {
               <img
                 className={appIcon}
                 src="https://assets.getpocket.com/web-ui/assets/google-play-badge.db9b21a1c41f3dcd9731e1e7acfdbb57.png"
-                alt={localize('options', 'app_google')}
+                alt={chrome.i18n.getMessage('options_app_google')}
               />
             </a>
           </div>
@@ -245,7 +244,7 @@ const OptionsApp = () => {
 
         <div className={section}>
           <div className={sectionLabel}>
-            {localize('options', 'theme_title')}
+            {chrome.i18n.getMessage('options_theme_title')}
           </div>
           <div className={sectionAction}>
             <div>
@@ -256,7 +255,7 @@ const OptionsApp = () => {
                 onChange={() => updateTheme('light')}
                 checked={storedTheme === 'light'}
               />
-              <label htmlFor="light">{localize('options', 'theme_light')}</label>
+              <label htmlFor="light">{chrome.i18n.getMessage('options_theme_light')}</label>
             </div>
             <div>
               <input
@@ -266,7 +265,7 @@ const OptionsApp = () => {
                 onChange={() => updateTheme('dark')}
                 checked={storedTheme === 'dark'}
               />
-              <label htmlFor="dark">{localize('options', 'theme_dark')}</label>
+              <label htmlFor="dark">{chrome.i18n.getMessage('options_theme_dark')}</label>
             </div>
             <div>
               <input
@@ -276,7 +275,7 @@ const OptionsApp = () => {
                 onChange={() => updateTheme('system')}
                 checked={storedTheme === 'system'}
               />
-              <label htmlFor="system">{localize('options', 'theme_system')}</label>
+              <label htmlFor="system">{chrome.i18n.getMessage('options_theme_system')}</label>
             </div>
           </div>
         </div>
@@ -287,16 +286,16 @@ const OptionsApp = () => {
               href="https://help.getpocket.com/"
               target="_blank"
               rel="noopener noreferrer">
-              {localize('options', 'need_help')}
+              {chrome.i18n.getMessage('options_need_help')}
             </a>
             <a
               href="https://getpocket.com/contact_support?field3=Question%20about%20Pocket%20Extension"
               target="_blank"
               rel="noopener noreferrer">
-              {localize('options', 'email_us')}
+              {chrome.i18n.getMessage('options_email_us')}
             </a>
             <div className={footerFollow}>
-              {localize('options', 'follow')}
+              {chrome.i18n.getMessage('options_follow')}
               <div className={footerFollowIcons}>
                 <a
                   target="_blank"
@@ -323,20 +322,20 @@ const OptionsApp = () => {
           <div className={footerCopyright}>
             <PocketLogoIcon />
             <div>
-              <p dangerouslySetInnerHTML={{ __html: localize('options', 'family').replace('Mozilla', '<a href="https://mozilla.org/about/" rel="noopener noreferrer" target="_blank">Mozilla</a>')}}></p>
+              <p dangerouslySetInnerHTML={{ __html: chrome.i18n.getMessage('options_family').replace('Mozilla', '<a href="https://mozilla.org/about/" rel="noopener noreferrer" target="_blank">Mozilla</a>')}}></p>
               <div>
                 <span>&copy; {new Date().getFullYear()} Read It Later, Inc.</span>
                 <a
                   href='https://getpocket.com/privacy/?src=extension'
                   rel='noopener noreferrer'
                   target='_blank'>
-                  {localize('options', 'privacy')}
+                  {chrome.i18n.getMessage('options_privacy')}
                 </a>
                 <a
                   href='https://getpocket.com/tos/?src=extension'
                   rel='noopener noreferrer'
                   target='_blank'>
-                  {localize('options', 'terms')}
+                  {chrome.i18n.getMessage('options_terms')}
                 </a>
               </div>
             </div>

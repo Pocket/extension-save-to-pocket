@@ -1,0 +1,122 @@
+{
+  "extension_description": {
+    "message": "아티클, 동영상 등을 캡처하는 가장 쉽고 가장 빠른 방법."
+  },
+  "heading_idle" : {
+    "message" : ""
+  },
+  "heading_saving" : {
+    "message" : "저장 중..."
+  },
+  "heading_saved" : {
+    "message" : "Pocket에 저장됨"
+  },
+  "heading_save_failed" : {
+    "message" : "문제가 발생했습니다!"
+  },
+  "heading_removing" : {
+    "message" : "제거 중..."
+  },
+  "heading_removed" : {
+    "message" : "제거됨"
+  },
+  "heading_remove_failed" : {
+    "message" : "문제가 발생했습니다!"
+  },
+  "heading_tags_saving" : {
+    "message" : "태그 저장 중..."
+  },
+  "heading_tags_saved" : {
+    "message" : "태그 저장됨"
+  },
+  "heading_tags_failed" : {
+    "message" : "문제가 발생했습니다!"
+  },
+  "heading_tags_error" : {
+    "message" : "태그는 25자로 제한됩니다."
+  },
+  "buttons_remove" : {
+    "message" : "제거하기"
+  },
+  "buttons_mylist" : {
+    "message" : "내 목록"
+  },
+  "buttons_save" : {
+    "message" : "저장"
+  },
+  "context_menu_open_list" : {
+    "message" : "Pocket 목록 열기"
+  },
+  "context_menu_discover_more" : {
+    "message" : "Pocket에서 더 찾기"
+  },
+  "context_menu_log_in" : {
+    "message" : "로그인"
+  },
+  "context_menu_log_out" : {
+    "message" : "로그아웃"
+  },
+  "context_menu_save" : {
+    "message" : "Pocket에 저장"
+  },
+  "tagging_add_tags" : {
+    "message" : "태그 추가"
+  },
+  "options_header" : {
+    "message" : "Pocket 확장에 저장"
+  },
+  "options_login_title" : {
+    "message" : "다음 이름으로 로그인됨"
+  },
+  "options_log_out" : {
+    "message" : "로그아웃"
+  },
+  "options_log_in" : {
+    "message" : "로그인"
+  },
+  "options_shortcut_title" : {
+    "message" : "키보드 바로 가기"
+  },
+  "options_shortcut_record" : {
+    "message" : "새 바로 가기 기록"
+  },
+  "options_theme_title" : {
+    "message" : "테마"
+  },
+  "options_theme_light" : {
+    "message" : "밝게"
+  },
+  "options_theme_dark" : {
+    "message" : "어둡게"
+  },
+  "options_theme_system" : {
+    "message" : "시스템 설정 사용"
+  },
+  "options_app_title" : {
+    "message" : "Pocket 모바일 앱"
+  },
+  "options_app_apple" : {
+    "message" : "Apple App Store에서 다운로드"
+  },
+  "options_app_google" : {
+    "message" : "Google Play에서 다운로드"
+  },
+  "options_need_help" : {
+    "message" : "도움이 필요하십니까?"
+  },
+  "options_email_us" : {
+    "message" : "이메일 보내기"
+  },
+  "options_follow" : {
+    "message" : "Pocket 팔로우"
+  },
+  "options_family" : {
+    "message" : "Pocket은 Mozilla 제품군의 일부입니다."
+  },
+  "options_privacy" : {
+    "message" : "개인정보 보호정책"
+  },
+  "options_terms" : {
+    "message" : "서비스 약관"
+  }
+}
