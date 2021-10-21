@@ -1,0 +1,122 @@
+{
+  "extension_description": {
+    "message": "De gemakkelijkste en snelste manier om artikelen, video's en meer op te slaan."
+  },
+  "heading_idle" : {
+    "message" : ""
+  },
+  "heading_saving" : {
+    "message" : "Opslaan..."
+  },
+  "heading_saved" : {
+    "message" : "Opgeslagen naar Pocket"
+  },
+  "heading_save_failed" : {
+    "message" : "Er is iets misgegaan!"
+  },
+  "heading_removing" : {
+    "message" : "Verwijderen..."
+  },
+  "heading_removed" : {
+    "message" : "Verwijderd"
+  },
+  "heading_remove_failed" : {
+    "message" : "Er is iets misgegaan!"
+  },
+  "heading_tags_saving" : {
+    "message" : "Tags opslaan..."
+  },
+  "heading_tags_saved" : {
+    "message" : "Tags opgeslagen"
+  },
+  "heading_tags_failed" : {
+    "message" : "Er is iets misgegaan!"
+  },
+  "heading_tags_error" : {
+    "message" : "Tags zijn beperkt tot 25 tekens"
+  },
+  "buttons_remove" : {
+    "message" : "Verwijderen"
+  },
+  "buttons_mylist" : {
+    "message" : "Mijn lijst"
+  },
+  "buttons_save" : {
+    "message" : "Opslaan"
+  },
+  "context_menu_open_list" : {
+    "message" : "Pocket-lijst openen"
+  },
+  "context_menu_discover_more" : {
+    "message" : "Ontdek meer op Pocket"
+  },
+  "context_menu_log_in" : {
+    "message" : "Inloggen"
+  },
+  "context_menu_log_out" : {
+    "message" : "Uitloggen"
+  },
+  "context_menu_save" : {
+    "message" : "Opslaan naar Pocket"
+  },
+  "tagging_add_tags" : {
+    "message" : "Tags toevoegen"
+  },
+  "options_header" : {
+    "message" : "Extensie Naar Pocket opslaan"
+  },
+  "options_login_title" : {
+    "message" : "Ingelogd als"
+  },
+  "options_log_out" : {
+    "message" : "Afmelden"
+  },
+  "options_log_in" : {
+    "message" : "Inloggen"
+  },
+  "options_shortcut_title" : {
+    "message" : "Sneltoets"
+  },
+  "options_shortcut_record" : {
+    "message" : "Een nieuwe snelkoppeling vastleggen"
+  },
+  "options_theme_title" : {
+    "message" : "Thema"
+  },
+  "options_theme_light" : {
+    "message" : "Licht"
+  },
+  "options_theme_dark" : {
+    "message" : "Donker"
+  },
+  "options_theme_system" : {
+    "message" : "Systeeminstelling gebruiken"
+  },
+  "options_app_title" : {
+    "message" : "Mobiele Pocket-app"
+  },
+  "options_app_apple" : {
+    "message" : "Downloaden in de appstore van Apple"
+  },
+  "options_app_google" : {
+    "message" : "Downloaden via Google Play"
+  },
+  "options_need_help" : {
+    "message" : "Hulp nodig?"
+  },
+  "options_email_us" : {
+    "message" : "Mail ons"
+  },
+  "options_follow" : {
+    "message" : "Volg Pocket"
+  },
+  "options_family" : {
+    "message" : "Pocket maakt deel uit van de Mozilla-productfamilie."
+  },
+  "options_privacy" : {
+    "message" : "Privacybeleid"
+  },
+  "options_terms" : {
+    "message" : "Gebruiksvoorwaarden"
+  }
+}

@@ -5,7 +5,6 @@ import { css, cx } from 'linaria'
 import Downshift from 'downshift'
 import { Suggestions } from './suggestions/suggestions'
 import { TagInput } from './taginput/taginput'
-import { localize } from 'common/_locales/locales'
 import { Chips } from 'components/chips/chips'
 
 const taggingWrapper = css`
@@ -182,7 +181,7 @@ export const Tagging = ({
             <div className={taggingWell} onMouseUp={onMouseUp}>
               {placeholder && !hasTags && (
                 <div className={taggingPlaceholder}>
-                  {localize('tagging', 'add_tags')}
+                  {chrome.i18n.getMessage('tagging_add_tags')}
                 </div>
               )}
 

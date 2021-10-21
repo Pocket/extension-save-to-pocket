@@ -1,6 +1,5 @@
 import React from 'react'
 import { css, cx } from 'linaria'
-import { localize } from 'common/_locales/locales'
 import { PocketLogoIcon } from 'components/icons/icons'
 import { Loading } from 'components/loading/loading'
 import { ErrorIcon } from 'components/icons/icons'
@@ -74,13 +73,13 @@ export const Heading = ({ saveStatus, removeAction, saveAction }) => {
           { hasError ? <ErrorIcon /> : null }
           { !isLoading && !hasError ? <PocketLogoIcon /> : null }
         </div>
-        <div className="saveBlock">{localize('heading', saveStatus)}</div>
+        <div className="saveBlock">{chrome.i18n.getMessage(`heading_${saveStatus}`)}</div>
       </div>
       {!hasError && saveStatus !== 'removed' ? (
-        <Button type="inline" onClick={removeAction}>{localize('buttons', 'remove')}</Button>
+        <Button type="inline" onClick={removeAction}>{chrome.i18n.getMessage('buttons_remove')}</Button>
       ) : null}
       {saveStatus === 'removed' ? (
-        <Button type="inline" onClick={saveAction}>{localize('buttons', 'save')}</Button>
+        <Button type="inline" onClick={saveAction}>{chrome.i18n.getMessage('buttons_save')}</Button>
       ) : null}
     </header>
   )

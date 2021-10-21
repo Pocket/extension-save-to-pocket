@@ -1,0 +1,122 @@
+{
+  "extension_description": {
+    "message": "擷取文章、短片等内容的最簡捷方法。"
+  },
+  "heading_idle" : {
+    "message" : ""
+  },
+  "heading_saving" : {
+    "message" : "正在儲存..."
+  },
+  "heading_saved" : {
+    "message" : "已儲存到 Pocket"
+  },
+  "heading_save_failed" : {
+    "message" : "出了點問題！"
+  },
+  "heading_removing" : {
+    "message" : "移除中..."
+  },
+  "heading_removed" : {
+    "message" : "已移除"
+  },
+  "heading_remove_failed" : {
+    "message" : "出了點問題！"
+  },
+  "heading_tags_saving" : {
+    "message" : "正在儲存標籤……"
+  },
+  "heading_tags_saved" : {
+    "message" : "標籤已儲存"
+  },
+  "heading_tags_failed" : {
+    "message" : "出了點問題！"
+  },
+  "heading_tags_error" : {
+    "message" : "標籤長度限於 25 個字元"
+  },
+  "buttons_remove" : {
+    "message" : "移除"
+  },
+  "buttons_mylist" : {
+    "message" : "我的清單"
+  },
+  "buttons_save" : {
+    "message" : "儲存"
+  },
+  "context_menu_open_list" : {
+    "message" : "開啟您的 Pocket 清單"
+  },
+  "context_menu_discover_more" : {
+    "message" : "在 Pocket 上發掘更多內容"
+  },
+  "context_menu_log_in" : {
+    "message" : "登入"
+  },
+  "context_menu_log_out" : {
+    "message" : "登出"
+  },
+  "context_menu_save" : {
+    "message" : "儲存到 Pocket"
+  },
+  "tagging_add_tags" : {
+    "message" : "新增標籤"
+  },
+  "options_header" : {
+    "message" : "儲存到 Pocket 擴充功能"
+  },
+  "options_login_title" : {
+    "message" : "已登入為"
+  },
+  "options_log_out" : {
+    "message" : "登出"
+  },
+  "options_log_in" : {
+    "message" : "登入"
+  },
+  "options_shortcut_title" : {
+    "message" : "鍵盤快速鍵"
+  },
+  "options_shortcut_record" : {
+    "message" : "記錄新捷徑"
+  },
+  "options_theme_title" : {
+    "message" : "主題"
+  },
+  "options_theme_light" : {
+    "message" : "淺色"
+  },
+  "options_theme_dark" : {
+    "message" : "暗色調"
+  },
+  "options_theme_system" : {
+    "message" : "使用系統設定"
+  },
+  "options_app_title" : {
+    "message" : "Pocket 的行動應用程式"
+  },
+  "options_app_apple" : {
+    "message" : "在 Apple App Store 下載"
+  },
+  "options_app_google" : {
+    "message" : "在 Google Play 取得"
+  },
+  "options_need_help" : {
+    "message" : "需要幫助？"
+  },
+  "options_email_us" : {
+    "message" : "電郵我們"
+  },
+  "options_follow" : {
+    "message" : "關注 Pocket"
+  },
+  "options_family" : {
+    "message" : "Pocket 屬於 Mozilla 系列產品之一。"
+  },
+  "options_privacy" : {
+    "message" : "隱私政策"
+  },
+  "options_terms" : {
+    "message" : "服務條款"
+  }
+}

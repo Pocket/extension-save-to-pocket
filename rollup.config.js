@@ -69,6 +69,7 @@ export default {
       targets: [
         { src: 'src/assets/fonts/*', dest: 'build/assets/fonts' },
         { src: 'src/assets/images/*', dest: 'build/assets/images' },
+        { src: 'src/assets/_locales/*', dest: 'build/_locales' },
       ],
       hook: 'writeBundle',
     }),

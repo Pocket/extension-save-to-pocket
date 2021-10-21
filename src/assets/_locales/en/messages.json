@@ -1,0 +1,122 @@
+{
+  "extension_description": {
+    "message": "The easiest, fastest way to capture articles, videos, and more."
+  },
+  "heading_idle": {
+    "message": ""
+  },
+  "heading_saving": {
+    "message": "Saving..."
+  },
+  "heading_saved": {
+    "message": "Saved to Pocket"
+  },
+  "heading_save_failed": {
+    "message": "Something went wrong!"
+  },
+  "heading_removing": {
+    "message": "Removing..."
+  },
+  "heading_removed": {
+    "message": "Removed"
+  },
+  "heading_remove_failed": {
+    "message": "Something went wrong!"
+  },
+  "heading_tags_saving": {
+    "message": "Saving tags..."
+  },
+  "heading_tags_saved": {
+    "message": "Tags saved"
+  },
+  "heading_tags_failed": {
+    "message": "Something went wrong!"
+  },
+  "heading_tags_error": {
+    "message": "Tags are limited to 25 characters"
+  },
+  "buttons_remove": {
+    "message": "Remove"
+  },
+  "buttons_mylist": {
+    "message": "My List"
+  },
+  "buttons_save": {
+    "message": "Save"
+  },
+  "context_menu_open_list": {
+    "message": "Open Your Pocket List"
+  },
+  "context_menu_discover_more": {
+    "message": "Discover more at Pocket"
+  },
+  "context_menu_log_in": {
+    "message": "Log In"
+  },
+  "context_menu_log_out": {
+    "message": "Log Out"
+  },
+  "context_menu_save": {
+    "message": "Save To Pocket"
+  },
+  "tagging_add_tags": {
+    "message": "Add Tags"
+  },
+  "options_header": {
+    "message": "Save to Pocket extension"
+  },
+  "options_login_title": {
+    "message": "Logged in as"
+  },
+  "options_log_out": {
+    "message": "Log out"
+  },
+  "options_log_in": {
+    "message": "Log in"
+  },
+  "options_shortcut_title": {
+    "message": "Keyboard Shortcut"
+  },
+  "options_shortcut_record": {
+    "message": "Record a new shortcut"
+  },
+  "options_theme_title": {
+    "message": "Theme"
+  },
+  "options_theme_light": {
+    "message": "Light"
+  },
+  "options_theme_dark": {
+    "message": "Dark"
+  },
+  "options_theme_system": {
+    "message": "Use System Setting"
+  },
+  "options_app_title": {
+    "message": "Pocket’s Mobile App"
+  },
+  "options_app_apple": {
+    "message": "Download on the Apple App Store"
+  },
+  "options_app_google": {
+    "message": "Get it on Google Play"
+  },
+  "options_need_help": {
+    "message": "Need Help?"
+  },
+  "options_email_us": {
+    "message": "Email Us"
+  },
+  "options_follow": {
+    "message": "Follow Pocket"
+  },
+  "options_family": {
+    "message": "Pocket is part of the Mozilla family of products."
+  },
+  "options_privacy": {
+    "message": "Privacy policy"
+  },
+  "options_terms": {
+    "message": "Terms of service"
+  }
+}

@@ -4,7 +4,7 @@ import { isSystemPage, isSystemLink } from 'common/helpers'
 import { getSetting, setSettings } from 'common/interface'
 import { closeLoginPage } from 'common/helpers'
 import { setToolbarIcon } from 'common/interface'
-import { localize } from 'common/_locales/locales'
+import { localize } from 'assets/_locales/locales'
 
 import { authorize } from 'common/api'
 import { getGuid } from 'common/api'
@@ -206,20 +206,20 @@ export async function setContextMenus() {
 
   // Page Context - Right click menu on page
   chrome.contextMenus.create({
-    title: localize('context_menu', 'save'),
+    title: localize('context_menu_save'),
     id: 'pageContextClick',
     contexts: ['page', 'frame', 'editable', 'image', 'video', 'audio', 'link', 'selection'], // prettier-ignore
   })
 
   // Browser Icon - Right click menu
   chrome.contextMenus.create({
-    title: localize('context_menu', 'open_list'),
+    title: localize('context_menu_open_list'),
     id: 'toolbarContextClickList',
     contexts: ['action'],
   })
 
   chrome.contextMenus.create({
-    title: localize('context_menu', 'discover_more'),
+    title: localize('context_menu_discover_more'),
     id: 'toolbarContextClickHome',
     contexts: ['action'],
   })
@@ -228,14 +228,14 @@ export async function setContextMenus() {
   const access_token = await getSetting('access_token')
   if (access_token) {
     chrome.contextMenus.create({
-      title: localize('context_menu', 'log_out'),
+      title: localize('context_menu_log_out'),
       id: 'toolbarContextClickLogOut',
       contexts: ['action'],
     })
   }
   else {
     chrome.contextMenus.create({
-      title: localize('context_menu', 'log_in'),
+      title: localize('context_menu_log_in'),
       id: 'toolbarContextClickLogIn',
       contexts: ['action'],
     })

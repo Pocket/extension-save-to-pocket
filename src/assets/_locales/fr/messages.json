@@ -1,0 +1,122 @@
+{
+  "extension_description": {
+    "message": "Le moyen le plus facile et le plus rapide de sauvegarder des articles, des vidéos et bien plus encore."
+  },
+  "heading_idle" : {
+    "message" : ""
+  },
+  "heading_saving" : {
+    "message" : "Sauvegarde..."
+  },
+  "heading_saved" : {
+    "message" : "Sauvegardé dans Pocket"
+  },
+  "heading_save_failed" : {
+    "message" : "Un problème est survenu !"
+  },
+  "heading_removing" : {
+    "message" : "Suppression en cours..."
+  },
+  "heading_removed" : {
+    "message" : "Suppression effectuée"
+  },
+  "heading_remove_failed" : {
+    "message" : "Un problème est survenu !"
+  },
+  "heading_tags_saving" : {
+    "message" : "Sauvegarde des labels..."
+  },
+  "heading_tags_saved" : {
+    "message" : "Labels sauvegardés"
+  },
+  "heading_tags_failed" : {
+    "message" : "Un problème est survenu !"
+  },
+  "heading_tags_error" : {
+    "message" : "Les labels sont limités à 25 caractères"
+  },
+  "buttons_remove" : {
+    "message" : "Supprimer"
+  },
+  "buttons_mylist" : {
+    "message" : "Ma liste"
+  },
+  "buttons_save" : {
+    "message" : "Sauvegarder"
+  },
+  "context_menu_open_list" : {
+    "message" : "Ouvrez votre liste Pocket"
+  },
+  "context_menu_discover_more" : {
+    "message" : "Découvrez-en plus sur Pocket"
+  },
+  "context_menu_log_in" : {
+    "message" : "Se connecter"
+  },
+  "context_menu_log_out" : {
+    "message" : "Déconnexion"
+  },
+  "context_menu_save" : {
+    "message" : "Sauvegarder dans Pocket"
+  },
+  "tagging_add_tags" : {
+    "message" : "Ajouter des labels"
+  },
+  "options_header" : {
+    "message" : "Extension Sauvegarder dans Pocket"
+  },
+  "options_login_title" : {
+    "message" : "Connecté(e) en tant que"
+  },
+  "options_log_out" : {
+    "message" : "Déconnexion"
+  },
+  "options_log_in" : {
+    "message" : "Se connecter"
+  },
+  "options_shortcut_title" : {
+    "message" : "Raccourci clavier"
+  },
+  "options_shortcut_record" : {
+    "message" : "Enregistrer un nouveau raccourci"
+  },
+  "options_theme_title" : {
+    "message" : "Thème"
+  },
+  "options_theme_light" : {
+    "message" : "Clair"
+  },
+  "options_theme_dark" : {
+    "message" : "Foncé"
+  },
+  "options_theme_system" : {
+    "message" : "Utiliser le paramètre système"
+  },
+  "options_app_title" : {
+    "message" : "Application mobile de Pocket"
+  },
+  "options_app_apple" : {
+    "message" : "Télécharger sur l'Apple Store"
+  },
+  "options_app_google" : {
+    "message" : "Télécharger sur Google Play"
+  },
+  "options_need_help" : {
+    "message" : "Besoin d'aide ?"
+  },
+  "options_email_us" : {
+    "message" : "Nous écrire"
+  },
+  "options_follow" : {
+    "message" : "Suivez Pocket"
+  },
+  "options_family" : {
+    "message" : "Pocket fait partie de la famille de produits Mozilla."
+  },
+  "options_privacy" : {
+    "message" : "Politique de confidentialité"
+  },
+  "options_terms" : {
+    "message" : "Conditions générales d'utilisation"
+  }
+}
