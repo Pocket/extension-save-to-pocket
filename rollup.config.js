@@ -39,6 +39,7 @@ export default {
         connectors: path.resolve(projectRootDir, 'src/connectors'),
         containers: path.resolve(projectRootDir, 'src/containers'),
         pages: path.resolve(projectRootDir, 'src/pages'),
+        _locales: path.resolve(projectRootDir, 'src/_locales')
       },
     }),
     // Replace environment variables
@@ -69,7 +70,7 @@ export default {
       targets: [
         { src: 'src/assets/fonts/*', dest: 'build/assets/fonts' },
         { src: 'src/assets/images/*', dest: 'build/assets/images' },
-        { src: 'src/assets/_locales/*', dest: 'build/_locales' },
+        { src: 'src/_locales/*', dest: 'build/_locales' },
       ],
       hook: 'writeBundle',
     }),

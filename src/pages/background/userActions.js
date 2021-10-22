@@ -4,7 +4,7 @@ import { isSystemPage, isSystemLink } from 'common/helpers'
 import { getSetting, setSettings } from 'common/interface'
 import { closeLoginPage } from 'common/helpers'
 import { setToolbarIcon } from 'common/interface'
-import { localize } from 'assets/_locales/locales'
+import { localize } from 'common/locales'
 
 import { authorize } from 'common/api'
 import { getGuid } from 'common/api'

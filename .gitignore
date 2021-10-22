@@ -12,6 +12,7 @@ coverage/
 # production
 _build/
 build
+releases
 
 # misc
 .DS_Store
