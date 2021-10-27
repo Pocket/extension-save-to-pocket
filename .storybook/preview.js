@@ -1,5 +1,5 @@
 import React from 'react'
-import { globalVariables } from 'pages/injector/globalStyles'
+import { globalVariables, globalReset } from 'pages/injector/globalStyles'
 import { css, cx } from 'linaria'
 
 const storyWrapperStyles = css`
@@ -37,7 +37,7 @@ export const globalTypes = {
 
 export const decorators = [
   (Story, context) => (
-    <div className={cx(globalVariables, storyWrapperStyles, `pocket-theme-${context.globals.theme}`)}>
+    <div className={cx('pocket-extension', globalReset, globalVariables, storyWrapperStyles, `pocket-theme-${context.globals.theme}`)}>
       <Story />
     </div>
   )

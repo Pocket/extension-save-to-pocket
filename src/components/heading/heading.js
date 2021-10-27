@@ -6,12 +6,14 @@ import { ErrorIcon } from 'components/icons/icons'
 import { Button } from 'components/button/extensions-button'
 
 const headingStyle = css`
-  display: flex;
-  justify-content: space-between;
-  background-color: var(--color-headingBackground);
-  border-radius: 30px;
-  padding: 15px 20px 15px 10px;
-  font-size: 16px;
+  &.header {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--color-headingBackground);
+    border-radius: 30px;
+    padding: 15px 20px 15px 10px;
+    font-size: 16px;
+  }
 
   .status {
     display: flex;
@@ -66,7 +68,7 @@ export const Heading = ({ saveStatus, removeAction, saveAction }) => {
   const hasError = errorStatus.includes(saveStatus)
 
   return (
-    <header className={cx(headingStyle, hasError && 'error')}>
+    <header className={cx('header', headingStyle, hasError && 'error')}>
       <div className="status">
         <div className="icon-wrapper">
           { isLoading ? <Loading /> : null }

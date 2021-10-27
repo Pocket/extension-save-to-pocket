@@ -8,74 +8,78 @@ import { TagInput } from './taginput/taginput'
 import { Chips } from 'components/chips/chips'
 
 const taggingWrapper = css`
-  padding: 10px 0 0;
-  position: relative;
-`
-const taggingPlaceholder = css`
-  color: var(--color-grey45);
-  position: absolute;
-  left: 10px;
-  top: 14px;
-`
-const taggingWell = css`
-  background-color: var(--color-canvas);
-  border: 1px solid var(--color-taggingBorder);
-  border-radius: 4px;
-  box-sizing: border-box;
-  font-size: 16px;
-  font-family: var(--fontSansSerif);
-  line-height: 16px;
-  margin: 0;
-  padding: 4px 5px;
-  position: relative;
-  text-align: left;
-`
+  &.tagging-wrapper {
+    padding: 10px 0 0;
+    position: relative;
+  }
 
-const taggingTypeaheadWrapper = css`
-  position: relative;
-  z-index: 1;
-`
+  .tagging-placeholder {
+    color: var(--color-grey45);
+    position: absolute;
+    left: 10px;
+    top: 14px;
+  }
 
-const taggingTypeaheadList = css`
-  background-color: var(--color-canvas);
-  border: 1px solid var(--color-taggingBorder);
-  border-radius: 0 0 4px 4px;
-  border-top: none;
-  box-shadow: 0px 2px 4px var(--color-taggingShadow);
-  box-sizing: border-box;
-  color: var(--color-textPrimary);
-  display: block;
-  left: 0;
-  list-style-type: none;
-  margin: 0;
-  max-height: 8.8em;
-  overflow-x: hidden;
-  overflow-y: auto;
-  padding: 5px;
-  position: absolute;
-  top: 0;
-  width: 100%;
-`
+  .tagging-well {
+    background-color: var(--color-canvas);
+    border: 1px solid var(--color-taggingBorder);
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: var(--fontSansSerif);
+    line-height: 16px;
+    margin: 0;
+    padding: 4px 5px;
+    position: relative;
+    text-align: left;
+  }
 
-const taggingTypeaheadItem = css`
-  background-color: var(--color-calloutBackgroundPrimary);
-  border: 1px solid var(--color-calloutBackgroundPrimary);
-  border-radius: 50px;
-  color: var(--color-chipsText);
-  cursor: pointer;
-  display: inline-block;
-  font-size: 14px;
-  font-family: var(--fontSansSerif);
-  line-height: 16px;
-  margin-bottom: 4px;
-  margin-right: 4px;
-  padding: 8px;
-  text-align: center;
-  text-transform: lowercase;
-  transform: translateZ(0.1);
+  .typeahead-wrapper {
+    position: relative;
+    z-index: 1;
+  }
 
-  .active &, &:hover {
-    border: 1px solid var(--color-chipsActive);
+  .typeahead-list {
+    background-color: var(--color-canvas);
+    border: 1px solid var(--color-taggingBorder);
+    border-radius: 0 0 4px 4px;
+    border-top: none;
+    box-shadow: 0px 2px 4px var(--color-taggingShadow);
+    box-sizing: border-box;
+    color: var(--color-textPrimary);
+    display: block;
+    left: 0;
+    list-style-type: none;
+    margin: 0;
+    max-height: 8.8em;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 5px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  .typeahead-item {
+    background-color: var(--color-calloutBackgroundPrimary);
+    border: 1px solid var(--color-calloutBackgroundPrimary);
+    border-radius: 50px;
+    color: var(--color-chipsText);
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-family: var(--fontSansSerif);
+    line-height: 16px;
+    margin-bottom: 4px;
+    margin-right: 4px;
+    padding: 8px;
+    text-align: center;
+    text-transform: lowercase;
+    transform: translateZ(0.1);
+
+    .active &, &:hover {
+      border: 1px solid var(--color-chipsActive);
+    }
   }
 `
 
@@ -169,7 +173,7 @@ export const Tagging = ({
   /* Render Component
     –––––––––––––––––––––––––––––––––––––––––––––––––– */
   return (
-    <div className={taggingWrapper}>
+    <div className={cx('tagging-wrapper', taggingWrapper)}>
       <Downshift onSelect={onSelect}>
         {({
           getInputProps,
@@ -178,9 +182,9 @@ export const Tagging = ({
           highlightedIndex
         }) => (
           <div>
-            <div className={taggingWell} onMouseUp={onMouseUp}>
+            <div className="tagging-well" onMouseUp={onMouseUp}>
               {placeholder && !hasTags && (
-                <div className={taggingPlaceholder}>
+                <div className="tagging-placeholder">
                   {chrome.i18n.getMessage('tagging_add_tags')}
                 </div>
               )}
@@ -213,15 +217,15 @@ export const Tagging = ({
             </div>
 
             {!isOpen || !storedTagsList().length ? null : (
-              <div className={taggingTypeaheadWrapper} onClick={onMouseUp}>
-                <div className={taggingTypeaheadList}>
+              <div className="typeahead-wrapper" onClick={onMouseUp}>
+                <div className="typeahead-list">
                   {storedTagsList().map((item, index) => (
                     <div
                       className={cx(highlightedIndex === index && 'active')}
                       key={`item-${index}`}
                       {...getItemProps({ item, index})}
                     >
-                      <div className={taggingTypeaheadItem}>{item}</div>
+                      <div className="typeahead-item">{item}</div>
                     </div>
                   ))}
                 </div>

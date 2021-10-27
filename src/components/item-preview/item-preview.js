@@ -1,12 +1,14 @@
 import React from 'react'
-import { css } from 'linaria'
+import { css, cx } from 'linaria'
 
 const previewWrapper = css`
-  display: flex;
-  background: var(--color-itemPreviewBackground);
-  padding: 10px;
-  border-radius: 4px;
-  margin-top: 10px;
+  &.item-preview {
+    display: flex;
+    background: var(--color-itemPreviewBackground);
+    padding: 10px;
+    border-radius: 4px;
+    margin-top: 10px;
+  }
 
   img {
     width: 40px;
@@ -43,7 +45,7 @@ const previewWrapper = css`
 
 export const ItemPreview = ({ title, thumbnail, publisher }) => {
   return (title && publisher) ? (
-    <div className={previewWrapper}>
+    <div className={cx('item-preview', previewWrapper)}>
       {thumbnail ? <img src={thumbnail} /> : null}
       <div>
         <h3>{title}</h3>
