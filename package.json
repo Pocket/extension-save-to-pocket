@@ -1,200 +1,72 @@
 {
   "name": "save-to-pocket",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "author": "",
-  "license": "MIT",
+  "version": "4.0.0",
   "private": true,
-  "devDependencies": {
-    "@babel/core": "7.6.3",
-    "@storybook/addon-actions": "^5.2.3",
-    "@storybook/addon-links": "^5.2.3",
-    "@storybook/addons": "^5.2.3",
-    "@storybook/react": "^5.2.3",
-    "@svgr/webpack": "4.3.3",
-    "@typescript-eslint/eslint-plugin": "2.3.3",
-    "@typescript-eslint/parser": "2.3.3",
-    "babel-eslint": "10.0.3",
-    "babel-jest": "^24.9.0",
-    "babel-loader": "8.0.6",
-    "babel-plugin-named-asset-import": "^0.3.4",
-    "babel-preset-react-app": "^9.0.2",
-    "camelcase": "^5.3.1",
-    "case-sensitive-paths-webpack-plugin": "2.2.0",
-    "css-loader": "3.2.0",
-    "dotenv": "8.1.0",
-    "dotenv-expand": "5.1.0",
-    "eslint": "^6.5.1",
-    "eslint-config-prettier": "^6.4.0",
-    "eslint-config-react-app": "^5.0.2",
-    "eslint-loader": "3.0.2",
-    "eslint-plugin-flowtype": "4.3.0",
-    "eslint-plugin-import": "2.18.2",
-    "eslint-plugin-jsx-a11y": "6.2.3",
-    "eslint-plugin-react": "7.16.0",
-    "eslint-plugin-react-hooks": "^2.1.2",
-    "file-loader": "4.2.0",
-    "fs-extra": "8.1.0",
-    "html-webpack-plugin": "4.0.0-beta.5",
-    "identity-obj-proxy": "3.0.0",
-    "is-wsl": "^2.1.1",
-    "jest": "24.9.0",
-    "jest-environment-jsdom-fourteen": "0.1.0",
-    "jest-resolve": "24.9.0",
-    "jest-watch-typeahead": "0.4.0",
-    "lodash.samplesize": "^4.2.0",
-    "mini-css-extract-plugin": "0.8.0",
-    "optimize-css-assets-webpack-plugin": "5.0.3",
-    "pnp-webpack-plugin": "1.5.0",
-    "postcss-flexbugs-fixes": "4.1.0",
-    "postcss-loader": "3.0.0",
-    "postcss-normalize": "8.0.1",
-    "postcss-preset-env": "6.7.0",
-    "postcss-safe-parser": "4.0.1",
-    "react-dev-utils": "^9.1.0",
-    "resolve": "1.12.0",
-    "resolve-url-loader": "3.1.0",
-    "sass-loader": "8.0.0",
-    "style-loader": "1.0.0",
-    "terser-webpack-plugin": "2.1.2",
-    "ts-pnp": "1.1.4",
-    "url-loader": "2.2.0",
-    "webpack": "4.41.0",
-    "webpack-dev-server": "^3.11.0",
-    "webpack-manifest-plugin": "2.2.0",
-    "workbox-webpack-plugin": "4.3.1"
+  "description": "The easiest, fastest way to capture articles, videos, and more.",
+  "homepage": "https://github.com/Pocket/extension-save-to-pocket#readme",
+  "bugs": {
+    "url": "https://github.com/Pocket/extension-save-to-pocketissues"
   },
-  "dependencies": {
-    "@emotion/core": "^10.0.21",
-    "@emotion/styled": "^10.0.17",
-    "blueimp-md5": "^2.12.0",
-    "downshift": "^1.30.2",
-    "emotion": "^10.0.17",
-    "js-base64": "^2.5.1",
-    "match-sorter": "^4.0.2",
-    "react": "^16.10.2",
-    "react-app-polyfill": "^1.0.4",
-    "react-dom": "^16.10.2",
-    "react-input-autosize": "^2.2.2",
-    "react-motion": "^0.5.2",
-    "react-pose": "^4.0.9",
-    "react-redux": "^7.1.1",
-    "redux": "^4.0.4",
-    "redux-saga": "^1.1.1",
-    "webext-redux": "^2.1.4",
-    "webpack-extension-reloader": "^1.1.1",
-    "yamljs": "^0.3.0"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pocket/extension-save-to-pocket.git"
   },
-  "prettier": {
-    "bracketSpacing": true,
-    "jsxBracketSameLine": true,
-    "printWidth": 80,
-    "semi": false,
-    "singleQuote": true,
-    "useTabs": false,
-    "tabWidth": 2,
-    "trailingComma": "none"
-  },
+  "license": "MIT",
+  "author": "Pocket",
   "scripts": {
-    "start": "node config/scripts/start.js",
-    "watch": "node config/scripts/watch.js",
-    "build": "node config/scripts/build.js",
-    "compile": "node config/scripts/build.js && osascript -e 'quit app \"Safari\"' && osascript -e 'quit app \"Save To Pocket\"'; xcodebuild -project _safari/Save\\ To\\ Pocket.xcodeproj -target 'Save to Pocket' clean build",
+    "build": "NODE_ENV=production rollup -c",
+    "release": "cross-env NODE_ENV=production IS_RELEASE=true rollup -c",
+    "start": "rollup -c -w",
+    "test": "jest",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "dependencies": {
+    "downshift": "^6.1.7",
+    "js-base64": "^3.7.2",
+    "linaria": "^3.0.0-beta.13",
+    "match-sorter": "^6.3.1",
+    "prop-types": "^15.7.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-input-autosize": "^3.0.0",
+    "webextension-polyfill": "^0.8.0"
   },
-  "jest": {
-    "roots": [
-      "<rootDir>/src"
-    ],
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,ts,tsx}",
-      "!src/**/*.d.ts"
-    ],
-    "setupFiles": [
-      "react-app-polyfill/jsdom"
-    ],
-    "setupFilesAfterEnv": [],
-    "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.{js,jsx,ts,tsx}",
-      "<rootDir>/src/**/*.{spec,test}.{js,jsx,ts,tsx}"
-    ],
-    "testEnvironment": "jest-environment-jsdom-fourteen",
-    "transform": {
-      "^.+\\.(js|jsx|ts|tsx)$": "<rootDir>/node_modules/babel-jest",
-      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
-      "^(?!.*\\.(js|jsx|ts|tsx|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
-    },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|ts|tsx)$",
-      "^.+\\.module\\.(css|sass|scss)$"
-    ],
-    "modulePaths": [],
-    "moduleNameMapper": {
-      "^react-native$": "react-native-web",
-      "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy"
-    },
-    "moduleFileExtensions": [
-      "web.js",
-      "js",
-      "web.ts",
-      "ts",
-      "web.tsx",
-      "tsx",
-      "json",
-      "web.jsx",
-      "jsx",
-      "node"
-    ],
-    "watchPlugins": [
-      "jest-watch-typeahead/filename",
-      "jest-watch-typeahead/testname"
-    ]
-  },
-  "babel": {
-    "presets": [
-      "react-app"
-    ]
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "prettier"
-    ],
-    "rules": {
-      "no-unneeded-ternary": "warn",
-      "linebreak-style": [
-        "error",
-        "unix"
-      ],
-      "quotes": [
-        "error",
-        "single"
-      ],
-      "semi": [
-        "error",
-        "never"
-      ],
-      "no-unused-vars": [
-        "warn",
-        {
-          "vars": "all",
-          "args": "after-used"
-        }
-      ]
-    }
+  "devDependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/core": "^7.15.5",
+    "@babel/preset-env": "^7.15.6",
+    "@babel/preset-react": "^7.14.5",
+    "@rollup/plugin-alias": "^3.1.5",
+    "@rollup/plugin-babel": "^5.3.0",
+    "@rollup/plugin-commonjs": "^20.0.0",
+    "@rollup/plugin-html": "^0.2.3",
+    "@rollup/plugin-json": "^4.1.0",
+    "@rollup/plugin-node-resolve": "^13.0.5",
+    "@rollup/plugin-replace": "^3.0.0",
+    "@storybook/addon-actions": "^6.3.8",
+    "@storybook/addon-essentials": "^6.3.8",
+    "@storybook/addon-links": "^6.3.8",
+    "@storybook/react": "^6.3.8",
+    "@types/chrome": "^0.0.158",
+    "@types/firefox-webext-browser": "^82.0.1",
+    "@types/jest": "^27.0.2",
+    "@types/react": "^17.0.24",
+    "@types/react-dom": "^17.0.9",
+    "babel-loader": "^8.2.2",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "cross-env": "^7.0.3",
+    "eslint": "^7.32.0",
+    "eslint-plugin-react": "^7.26.0",
+    "jest": "^27.2.1",
+    "jest-chrome": "^0.7.2",
+    "prettier": "^2.4.1",
+    "rollup": "^2.57.0",
+    "rollup-plugin-chrome-extension": "^3.6.4",
+    "rollup-plugin-copy": "^3.4.0",
+    "rollup-plugin-css-only": "^3.1.0",
+    "rollup-plugin-empty-dir": "^1.0.5",
+    "rollup-plugin-zip": "^1.0.3",
+    "styled-jsx": "^4.0.1"
   }
 }

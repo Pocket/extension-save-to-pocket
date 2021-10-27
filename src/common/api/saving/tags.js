@@ -2,11 +2,11 @@ import { request } from '../_request/request'
 
 /* API CALLS - Should return promises
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-export function getOnSaveTags(saveObject) {
+export function getOnSaveTags(url) {
   return request({
     path: 'suggested_tags/',
     data: {
-      url: saveObject.url,
+      url,
       version: 2
     }
   }).then(response => response)
@@ -16,7 +16,7 @@ export function syncItemTags(id, tags, actionInfo) {
   return request({
     path: 'send/',
     data: {
-      actions: [{ action: 'tags_add', item_id: id, tags, ...actionInfo }]
+      actions: [{ action: 'tags_replace', item_id: id, tags, ...actionInfo }]
     }
   }).then(response => {
     return response
@@ -31,6 +31,7 @@ export function fetchStoredTags(since) {
     data: {
       tags: 1,
       taglist: 1,
+      forcetaglist: 1,
       account: 1,
       since: since ? since : 0
     }

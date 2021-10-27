@@ -1,0 +1,122 @@
+{
+  "extension_description": {
+    "message": "A forma mais fácil e rápida de capturar artigos, vídeos e muito mais."
+  },
+  "heading_idle" : {
+    "message" : ""
+  },
+  "heading_saving" : {
+    "message" : "A guardar…"
+  },
+  "heading_saved" : {
+    "message" : "Guardado no Pocket"
+  },
+  "heading_save_failed" : {
+    "message" : "Algo correu mal!"
+  },
+  "heading_removing" : {
+    "message" : "A remover..."
+  },
+  "heading_removed" : {
+    "message" : "Removido"
+  },
+  "heading_remove_failed" : {
+    "message" : "Algo correu mal!"
+  },
+  "heading_tags_saving" : {
+    "message" : "A guardar etiquetas..."
+  },
+  "heading_tags_saved" : {
+    "message" : "Etiquetas guardadas"
+  },
+  "heading_tags_failed" : {
+    "message" : "Algo correu mal!"
+  },
+  "heading_tags_error" : {
+    "message" : "As etiquetas têm um limite de 25 caracteres"
+  },
+  "buttons_remove" : {
+    "message" : "Remover"
+  },
+  "buttons_mylist" : {
+    "message" : "A Minha Lista"
+  },
+  "buttons_save" : {
+    "message" : "Guardar"
+  },
+  "context_menu_open_list" : {
+    "message" : "Abrir a sua Lista do Pocket"
+  },
+  "context_menu_discover_more" : {
+    "message" : "Descubra mais no Pocket"
+  },
+  "context_menu_log_in" : {
+    "message" : "Entrar"
+  },
+  "context_menu_log_out" : {
+    "message" : "Sair"
+  },
+  "context_menu_save" : {
+    "message" : "Guardar no Pocket"
+  },
+  "tagging_add_tags" : {
+    "message" : "Adicionar Etiquetas"
+  },
+  "options_header" : {
+    "message" : "Guardar na extensão do Pocket"
+  },
+  "options_login_title" : {
+    "message" : "Sessão iniciada como"
+  },
+  "options_log_out" : {
+    "message" : "Terminar sessão"
+  },
+  "options_log_in" : {
+    "message" : "Iniciar sessão"
+  },
+  "options_shortcut_title" : {
+    "message" : "Atalhos de teclado"
+  },
+  "options_shortcut_record" : {
+    "message" : "Gravar um atalho novo"
+  },
+  "options_theme_title" : {
+    "message" : "Tema"
+  },
+  "options_theme_light" : {
+    "message" : "Claro"
+  },
+  "options_theme_dark" : {
+    "message" : "Escuro"
+  },
+  "options_theme_system" : {
+    "message" : "Usar a definição do sistema"
+  },
+  "options_app_title" : {
+    "message" : "Aplicação móvel do Pocket"
+  },
+  "options_app_apple" : {
+    "message" : "Transferir na Apple App Store"
+  },
+  "options_app_google" : {
+    "message" : "Obtenha a app no Google Play"
+  },
+  "options_need_help" : {
+    "message" : "Precisa de Ajuda?"
+  },
+  "options_email_us" : {
+    "message" : "Envie-nos um e-mail"
+  },
+  "options_follow" : {
+    "message" : "Seguir o Pocket"
+  },
+  "options_family" : {
+    "message" : "O Pocket faz parte da família de produtos Mozilla."
+  },
+  "options_privacy" : {
+    "message" : "Política de privacidade"
+  },
+  "options_terms" : {
+    "message" : "Condições do serviço"
+  }
+}

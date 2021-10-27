@@ -1,23 +1,23 @@
-/* globals CONSUMER_KEY */
+import { CONSUMER_KEY, API_URL } from 'common/constants'
 import { Base64 } from 'js-base64'
 import { getSetting } from '../../interface'
-import { getAccessToken, getAPIUrl } from '../../helpers'
+import { getAccessToken } from '../../helpers'
 
 /* Helper Functions
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-function request(options, skipAuth) {
+async function request(options, skipAuth) {
   if (!CONSUMER_KEY) throw new Error('Invalid Auth Key')
-  if (!skipAuth) options.data.access_token = getAccessToken()
+  if (!skipAuth) options.data.access_token = await getAccessToken()
 
   options.data.consumer_key = CONSUMER_KEY
 
   const headers = new Headers({
     'X-Accept': 'application/json',
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
   })
 
-  const serverAuth = getSetting('base_server_auth')
+  const serverAuth = await getSetting('base_server_auth')
 
   if (serverAuth) {
     headers.append('Authorization', 'Basic ' + Base64.encode(serverAuth))
@@ -26,12 +26,12 @@ function request(options, skipAuth) {
   const fetchSettings = {
     method: 'POST',
     headers: headers,
-    body: JSON.stringify(options.data)
+    body: JSON.stringify(options.data),
   }
 
-  return fetch(getAPIUrl() + options.path, fetchSettings)
+  return fetch(API_URL + options.path, fetchSettings)
     .then(handleErrors)
-    .then(response => response.json())
+    .then((response) => response.json())
 }
 
 function handleErrors(response) {

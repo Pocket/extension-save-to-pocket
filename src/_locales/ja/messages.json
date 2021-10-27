@@ -1,0 +1,122 @@
+{
+  "extension_description": {
+    "message": "記事、ビデオなどをキャプチャする最も速く簡単な方法です。"
+  },
+  "heading_idle" : {
+    "message" : ""
+  },
+  "heading_saving" : {
+    "message" : "保存中..."
+  },
+  "heading_saved" : {
+    "message" : "Pocket に保存済み"
+  },
+  "heading_save_failed" : {
+    "message" : "エラーが発生したようです。"
+  },
+  "heading_removing" : {
+    "message" : "削除しています..."
+  },
+  "heading_removed" : {
+    "message" : "削除されました"
+  },
+  "heading_remove_failed" : {
+    "message" : "エラーが発生したようです。"
+  },
+  "heading_tags_saving" : {
+    "message" : "タグを保存しています..."
+  },
+  "heading_tags_saved" : {
+    "message" : "タグが保存されました"
+  },
+  "heading_tags_failed" : {
+    "message" : "エラーが発生したようです。"
+  },
+  "heading_tags_error" : {
+    "message" : "タグは最大25文字となっています"
+  },
+  "buttons_remove" : {
+    "message" : "削除"
+  },
+  "buttons_mylist" : {
+    "message" : "マイリスト"
+  },
+  "buttons_save" : {
+    "message" : "保存"
+  },
+  "context_menu_open_list" : {
+    "message" : "Pocket リストを開く"
+  },
+  "context_menu_discover_more" : {
+    "message" : "Pocket で他のコンテンツを発見"
+  },
+  "context_menu_log_in" : {
+    "message" : "ログイン"
+  },
+  "context_menu_log_out" : {
+    "message" : "ログアウト"
+  },
+  "context_menu_save" : {
+    "message" : "Pocket に保存"
+  },
+  "tagging_add_tags" : {
+    "message" : "タグを追加"
+  },
+  "options_header" : {
+    "message" : "「Pocket に保存」拡張機能"
+  },
+  "options_login_title" : {
+    "message" : "次のユーザー名でログイン中："
+  },
+  "options_log_out" : {
+    "message" : "ログアウト"
+  },
+  "options_log_in" : {
+    "message" : "ログイン"
+  },
+  "options_shortcut_title" : {
+    "message" : "キーボードショートカット"
+  },
+  "options_shortcut_record" : {
+    "message" : "新しいショートカットを記録"
+  },
+  "options_theme_title" : {
+    "message" : "テーマ"
+  },
+  "options_theme_light" : {
+    "message" : "ライト"
+  },
+  "options_theme_dark" : {
+    "message" : "ダーク"
+  },
+  "options_theme_system" : {
+    "message" : "システム設定を使用する"
+  },
+  "options_app_title" : {
+    "message" : "Pocket モバイルアプリ"
+  },
+  "options_app_apple" : {
+    "message" : "Apple App Store でダウンロード"
+  },
+  "options_app_google" : {
+    "message" : "Google Playからダウンロード"
+  },
+  "options_need_help" : {
+    "message" : "お困りですか？"
+  },
+  "options_email_us" : {
+    "message" : "メールでお問い合わせ"
+  },
+  "options_follow" : {
+    "message" : "Pocket をフォロー"
+  },
+  "options_family" : {
+    "message" : "Pocket は Mozilla 製品ファミリーの一部です。"
+  },
+  "options_privacy" : {
+    "message" : "プライバシーポリシー"
+  },
+  "options_terms" : {
+    "message" : "サービス利用規約"
+  }
+}

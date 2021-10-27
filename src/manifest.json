@@ -1,0 +1,71 @@
+{
+  "manifest_version": 3,
+  "name": "Save to Pocket",
+  "default_locale": "en",
+  "icons": {
+    "16": "assets/images/icon-16.png",
+    "48": "assets/images/icon-48.png",
+    "128": "assets/images/icon-128.png"
+  },
+  "action": {
+    "default_icon": {
+      "38": "assets/images/action-icon.png"
+    },
+    "default_title": "Save to Pocket"
+  },
+  "background": {
+    "service_worker": "pages/background/index.js"
+  },
+  "options_page": "pages/options/options.html",
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*/*"
+      ],
+      "js": [
+        "pages/injector/content.js"
+      ],
+      "css": [
+        "assets/fonts/fonts.css",
+        "assets/pocket-save-extension.css"
+      ]
+    },
+    {
+      "matches": [
+        "*://getpocket.com/extension_login_success*"
+      ],
+      "js": [
+        "pages/login.js"
+      ]
+    },
+    {
+      "matches": [
+        "*://getpocket.com/login?e=4"
+      ],
+      "js": [
+        "pages/logout.js"
+      ]
+    }
+  ],
+  "host_permissions": [
+    "*://getpocket.com/"
+  ],
+  "permissions": [
+    "tabs",
+    "contextMenus",
+    "cookies",
+    "storage"
+  ],
+  "commands": {
+    "save-to-pocket-action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+P",
+        "windows": "Ctrl+Shift+P",
+        "mac": "Command+Shift+P",
+        "chromeos": "Ctrl+Shift+P",
+        "linux": "Ctrl+Shift+P"
+      },
+      "description": "Save page to Pocket"
+    }
+  }
+}
