@@ -2,18 +2,20 @@ import React from 'react'
 import { css, cx } from 'linaria'
 
 const buttonStyles = css`
-  display: inline-block;
-  position: relative;
-  font-family: var(--fontSansSerif);
-  font-size: 16px;
-  line-height: 110%;
-  border: none;
-  border-radius: 0.25rem;
-  padding: 8px 12px;
-  transition: all 0.15s ease-out;
-  text-decoration: none;
-  text-transform: none;
-  cursor: pointer;
+  &.button {
+    display: inline-block;
+    position: relative;
+    font-family: var(--fontSansSerif);
+    font-size: 16px;
+    line-height: 110%;
+    border: none;
+    border-radius: 0.25rem;
+    padding: 8px 12px;
+    transition: all 0.15s ease-out;
+    text-decoration: none;
+    text-transform: none;
+    cursor: pointer;
+  }
 
   &.disabled {
     pointer-events: none;
@@ -105,7 +107,7 @@ const buttonStyles = css`
 
 export const Button = ({children, onClick, type = 'primary', className}) => {
   return (
-    <button className={cx(buttonStyles, type, className)} onClick={onClick}>
+    <button className={cx('button', buttonStyles, type, className)} onClick={onClick}>
       {children}
     </button>
   )

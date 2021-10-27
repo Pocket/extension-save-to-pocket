@@ -3,26 +3,30 @@ import PropTypes from 'prop-types'
 import { css, cx } from 'linaria'
 
 const chipList = css`
-  display: inline;
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+  &.chip-list {
+    display: inline;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
 `
 const chipItem = css`
-  background-color: var(--color-calloutBackgroundPrimary);
-  border: 1px solid var(--color-calloutBackgroundPrimary);
-  border-radius: 50px;
-  color: var(--color-chipsText);
-  cursor: pointer;
-  display: inline-block;
-  font-size: 14px;
-  font-family: var(--fontSansSerif);
-  line-height: 16px;
-  margin-right: 9px;
-  padding: 8px;
-  text-align: center;
-  text-transform: lowercase;
-  transform: translateZ(0.1);
+  &.chip-item {
+    background-color: var(--color-calloutBackgroundPrimary);
+    border: 1px solid var(--color-calloutBackgroundPrimary);
+    border-radius: 50px;
+    color: var(--color-chipsText);
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-family: var(--fontSansSerif);
+    line-height: 16px;
+    margin-right: 9px;
+    padding: 8px;
+    text-align: center;
+    text-transform: lowercase;
+    transform: translateZ(0.1);
+  }
 
   span {
     color: var(--color-chipsText);
@@ -46,7 +50,7 @@ export const Chips = ({ removeTag, tags, marked, toggleActive }) => {
 
       return (
         <li
-          className={cx(chipItem, active && 'active')}
+          className={cx('chip-item', chipItem, active && 'active')}
           active={active}
           key={index}
           onMouseDown={event => event.preventDefault()}
@@ -61,7 +65,7 @@ export const Chips = ({ removeTag, tags, marked, toggleActive }) => {
   }
 
   return (
-    <ul className={chipList}>{listItems()}</ul>
+    <ul className={cx('chip-list', chipList)}>{listItems()}</ul>
   )
 }
 

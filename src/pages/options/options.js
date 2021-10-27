@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom'
 import React, { useEffect, useState } from 'react'
-import { css } from 'linaria'
+import { css, cx } from 'linaria'
 import { openTabWithUrl } from 'common/interface'
 import { AUTH_URL, LOGOUT_URL, SET_SHORTCUTS } from 'common/constants'
 import { getSetting } from 'common/interface'
@@ -173,7 +173,7 @@ const OptionsApp = () => {
   }
 
   return (
-    <div className={container}>
+    <div className={cx('pocket-extension', container)}>
       <section className={wrapper}>
         <header className={header}>
           <Logo />

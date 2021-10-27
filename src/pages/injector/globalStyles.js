@@ -2,23 +2,23 @@ import { css } from 'linaria'
 
 export const globalReset = css`
   :global() {
-    header, footer, section, div, span, aside,
-    h1, h2, h3, h4, h5, h6, p, a,
-    button, form, input, label,
-    img, ul, ol, li {
-      margin: 0;
-      padding: 0;
-      border: 0;
-      font-size: 100%;
-      font: inherit;
-      vertical-align: baseline;
-    }
-
     // additional class here for when we need more
     // specificity to override page styles, but also
-    // so we don't have to duplicate overrides to both 
+    // so we don't have to duplicate overrides to both
     // light & dark theme classes
     .pocket-extension {
+      header, footer, section, div, span, aside,
+      h1, h2, h3, h4, h5, h6, p, a,
+      button, form, input, label,
+      img, ul, ol, li {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        font-family: var(--fontSansSerif);
+      }
+
       *:after,
       *:before {
         all: unset;
@@ -62,7 +62,7 @@ export const globalVariables = css`
       --color-taggingShadow: rgba(0, 0, 0, 0.25);
       --color-itemPreviewBackground: #F2F2F2;
     }
- 
+
     .pocket-theme-dark {
       --color-canvas: #1A1A1A;
       --color-textPrimary: #F2F2F2;
@@ -96,7 +96,7 @@ export const globalVariables = css`
       --color-taggingShadow: rgba(255, 255, 255, 0.25);
       --color-itemPreviewBackground: #404040;
     }
- 
+
     :root {
       --color-white100: #FFFFFF;
       --color-grey10: #1A1A1A;
@@ -118,97 +118,99 @@ export const globalVariables = css`
     }
   }
 `
- 
+
 export const radioStyles = css`
   :global() {
-    input[type='radio'] + label,
-    input[type='checkbox'] + label {
-      display: inline-block;
-      vertical-align: middle;
-      margin: 0 0 0 12px;
-    }
-
-    input[type='radio'] {
-      opacity: 0;
-      margin: 0;
-
-      & + label {
-        margin: 4px 0;
-        display: inline-flex;
-        align-items: center;
-        min-height: 24px;
-        position: relative;
-        padding: 0 24px;
-        cursor: pointer;
-        &:before,
-        &:after {
-          box-sizing: border-box;
-          position: absolute;
-          content: '';
-          border-radius: 50%;
-          transition: all 50ms ease;
-          transition-property: transform, border-color;
-        }
-        // radio button border
-        &:before {
-          left: -12px;
-          top: 0;
-          width: 24px;
-          height: 24px;
-          border: 2px solid var(--color-formFieldBorder);
-        }
-        // selected radio button inner circle
-        &:after {
-          top: 5px;
-          left: -7px;
-          width: 14px;
-          height: 14px;
-          transform: scale(0);
-          background: var(--color-actionPrimary);
-        }
+    .pocket-extension {
+      input[type='radio'] + label,
+      input[type='checkbox'] + label {
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0 0 0 12px;
       }
 
-      &:hover:enabled {
-        & + label:before {
-          border-color: var(--color-actionPrimaryHover);
-        }
-      }
-      &:disabled {
+      input[type='radio'] {
+        opacity: 0;
+        margin: 0;
+
         & + label {
-          opacity: 0.5;
-        }
-        &:hover {
-          & + label:before,
-          & + label {
-            cursor: not-allowed;
+          margin: 4px 0;
+          display: inline-flex;
+          align-items: center;
+          min-height: 24px;
+          position: relative;
+          padding: 0 24px;
+          cursor: pointer;
+          &:before,
+          &:after {
+            box-sizing: border-box;
+            position: absolute;
+            content: '';
+            border-radius: 50%;
+            transition: all 50ms ease;
+            transition-property: transform, border-color;
+          }
+          // radio button border
+          &:before {
+            left: -12px;
+            top: 0;
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--color-formFieldBorder);
+          }
+          // selected radio button inner circle
+          &:after {
+            top: 5px;
+            left: -7px;
+            width: 14px;
+            height: 14px;
+            transform: scale(0);
+            background: var(--color-actionPrimary);
           }
         }
-      }
 
-      &:checked {
-        & + label:before {
-          border-color: var(--color-actionPrimary);
-        }
-
-        & + label:after {
-          transform: scale(1);
-        }
-
-        &:hover:enabled,
-        &:active:enabled {
+        &:hover:enabled {
           & + label:before {
             border-color: var(--color-actionPrimaryHover);
           }
-          & + label:after {
-            background: var(--color-actionPrimaryHover);
+        }
+        &:disabled {
+          & + label {
+            opacity: 0.5;
+          }
+          &:hover {
+            & + label:before,
+            & + label {
+              cursor: not-allowed;
+            }
           }
         }
-      }
-      // same design element regardless of checked or hover
-      &:focus {
-        & + label:before {
-          box-shadow: 0px 0 0 2px var(--color-canvas),
-            0px 0 0 4px var(--color-formFieldFocusLabel);
+
+        &:checked {
+          & + label:before {
+            border-color: var(--color-actionPrimary);
+          }
+
+          & + label:after {
+            transform: scale(1);
+          }
+
+          &:hover:enabled,
+          &:active:enabled {
+            & + label:before {
+              border-color: var(--color-actionPrimaryHover);
+            }
+            & + label:after {
+              background: var(--color-actionPrimaryHover);
+            }
+          }
+        }
+        // same design element regardless of checked or hover
+        &:focus {
+          & + label:before {
+            box-shadow: 0px 0 0 2px var(--color-canvas),
+              0px 0 0 4px var(--color-formFieldFocusLabel);
+          }
         }
       }
     }

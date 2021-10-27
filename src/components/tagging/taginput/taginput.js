@@ -4,9 +4,11 @@ import AutosizeInput from 'react-input-autosize'
 import { css, cx } from 'linaria'
 
 const inputWrapper = css`
-  max-width: 100%;
-  display: inline-block;
-  margin: 4px 0;
+  &.input-wrapper {
+    max-width: 100%;
+    display: inline-block;
+    margin: 4px 0;
+  }
 
   input {
     all: unset;
@@ -115,7 +117,7 @@ export const TagInput = ({
   }
 
   return (
-    <div className={cx(inputWrapper, errorState && 'error')}>
+    <div className={cx('input-wrapper', inputWrapper, errorState && 'error')}>
       <AutosizeInput
         {...getInputProps({
           ref: inputRef,

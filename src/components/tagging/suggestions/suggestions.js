@@ -1,42 +1,46 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { css } from 'linaria'
+import { css, cx } from 'linaria'
 
 const suggestionsWrapper = css`
-  box-sizing: border-box;
-  display: block;
-  font-size: 14px;
-  line-height: 20px;
-  text-align: left;
-  width: 100%;
-`
-const suggestionsList = css`
-  display: flex;
-  flex-wrap: wrap;
-  list-style-type: none;
-  margin: 0;
-  padding: 10px 0 0;
-  text-align: left;
-`
-const suggestionItem = css`
-  background-color: var(--color-calloutBackgroundPrimary);
-  border: 1px solid var(--color-calloutBackgroundPrimary);
-  border-radius: 50px;
-  color: var(--color-chipsText);
-  cursor: pointer;
-  display: inline-block;
-  font-size: 14px;
-  font-family: var(--fontSansSerif);
-  line-height: 16px;
-  margin-bottom: 4px;
-  margin-right: 4px;
-  padding: 8px;
-  text-align: center;
-  text-transform: lowercase;
-  transform: translateZ(0.1);
+  &.suggestions {
+    box-sizing: border-box;
+    display: block;
+    font-size: 14px;
+    line-height: 20px;
+    text-align: left;
+    width: 100%;
+  }
 
-  &:hover {
-    border: 1px solid var(--color-chipsActive);
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    margin: 0;
+    padding: 10px 0 0;
+    text-align: left;
+  }
+
+  li {
+    background-color: var(--color-calloutBackgroundPrimary);
+    border: 1px solid var(--color-calloutBackgroundPrimary);
+    border-radius: 50px;
+    color: var(--color-chipsText);
+    cursor: pointer;
+    display: inline-block;
+    font-size: 14px;
+    font-family: var(--fontSansSerif);
+    line-height: 16px;
+    margin-bottom: 4px;
+    margin-right: 4px;
+    padding: 8px;
+    text-align: center;
+    text-transform: lowercase;
+    transform: translateZ(0.1);
+
+    &:hover {
+      border: 1px solid var(--color-chipsActive);
+    }
   }
 `
 
@@ -50,7 +54,6 @@ const SuggestionItem = ({ suggestion, addTag, used }) => {
 
   return !used.includes(suggestion) ? (
     <li
-      className={suggestionItem}
       onMouseDown={prevent}
       onClick={handleClick}
     >
@@ -61,8 +64,8 @@ const SuggestionItem = ({ suggestion, addTag, used }) => {
 
 export const Suggestions = ({ addTag, suggestions, used }) => {
   return (
-    <div className={suggestionsWrapper}>
-      <ul className={suggestionsList}>
+    <div className={cx('suggestions', suggestionsWrapper)}>
+      <ul>
         {suggestions.map((suggestion, index) => (
           <SuggestionItem
             key={index}
