@@ -12,12 +12,9 @@ import { FacebookIcon } from 'components/icons/icons'
 import { TwitterIcon } from 'components/icons/icons'
 import { InstagramIcon } from 'components/icons/icons'
 import { PocketLogoIcon } from 'components/icons/icons'
-import { globalVariables, radioStyles, globalReset } from '../injector/globalStyles'
+import { radioStyles } from '../injector/globalStyles'
 
 const container = css`
-  ${globalReset};
-  ${globalVariables};
-  ${radioStyles};
   color: var(--color-textPrimary);
   font-size: 16px;
   width: 100vw;
@@ -173,7 +170,7 @@ const OptionsApp = () => {
   }
 
   return (
-    <div className={cx('pocket-extension', container)}>
+    <div className={cx('pocket-extension', radioStyles, container)}>
       <section className={wrapper}>
         <header className={header}>
           <Logo />
