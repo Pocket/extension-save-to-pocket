@@ -5,7 +5,7 @@ const doorhangerStyle = css`
   position: fixed;
   top: 0;
   right: 0;
-  z-index: 9999;
+  z-index: 2147483647; // highest z-index possible
   font-family: var(--fontSansSerif);
 
   .doorHanger {
