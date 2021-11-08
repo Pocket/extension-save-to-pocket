@@ -6,7 +6,7 @@ import { ErrorIcon } from 'components/icons/icons'
 import { Button } from 'components/button/extensions-button'
 
 const headingStyle = css`
-  &.header {
+  .pocket-extension &.header {
     display: flex;
     justify-content: space-between;
     background-color: var(--color-headingBackground);
@@ -15,7 +15,7 @@ const headingStyle = css`
     font-size: 16px;
   }
 
-  .status {
+  .save-status {
     display: flex;
   }
 
@@ -32,6 +32,11 @@ const headingStyle = css`
     height: 25px;
     width: 25px;
     margin-top: 0;
+
+    svg {
+      height: 25px;
+      width: 25px;
+    }
   }
 
   .saveBlock {
@@ -69,7 +74,7 @@ export const Heading = ({ saveStatus, removeAction, saveAction }) => {
 
   return (
     <header className={cx('header', headingStyle, hasError && 'error')}>
-      <div className="status">
+      <div className="save-status">
         <div className="icon-wrapper">
           { isLoading ? <Loading /> : null }
           { hasError ? <ErrorIcon /> : null }

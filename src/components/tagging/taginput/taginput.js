@@ -8,20 +8,20 @@ const inputWrapper = css`
     max-width: 100%;
     display: inline-block;
     margin: 4px 0;
-  }
 
-  input {
-    all: unset;
-    color: var(--color-textPrimary);
-    font-family: var(--fontSansSerif);
-    display: inline-block;
-    line-height: 16px;
-    margin-bottom: 3px;
-    margin-left: 0;
-    margin-right: 3px;
-    margin-top: 3px;
-    min-width: 0.3em;
-    padding: 2px 4px;
+    input {
+      all: unset;
+      color: var(--color-textPrimary);
+      font-family: var(--fontSansSerif);
+      display: inline-block;
+      line-height: 16px;
+      margin-bottom: 3px;
+      margin-left: 0;
+      margin-right: 3px;
+      margin-top: 3px;
+      min-width: 0.3em;
+      padding: 2px 4px;
+    }
   }
 
   &.error input {

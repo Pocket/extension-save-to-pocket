@@ -5,7 +5,7 @@ import { ListViewIcon } from 'components/icons/icons'
 import { Button } from 'components/button/extensions-button'
 
 const footerWrapper = css`
-  &.footer {
+  .pocket-extension &.footer {
     background-color: var(--color-canvas);
     display: flex;
     justify-content: space-between;
@@ -19,6 +19,11 @@ const footerWrapper = css`
     height: 25px;
     width: 25px;
     margin-right: 8px;
+
+    svg {
+      height: 25px;
+      width: 25px;
+    }
   }
 
   .buttonLink {

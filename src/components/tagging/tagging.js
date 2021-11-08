@@ -77,9 +77,13 @@ const taggingWrapper = css`
     text-transform: lowercase;
     transform: translateZ(0.1);
 
-    .active &, &:hover {
+    &:hover {
       border: 1px solid var(--color-chipsActive);
     }
+  }
+
+  .tag-active .typeahead-item {
+    border: 1px solid var(--color-chipsActive);
   }
 `
 
@@ -221,7 +225,7 @@ export const Tagging = ({
                 <div className="typeahead-list">
                   {storedTagsList().map((item, index) => (
                     <div
-                      className={cx(highlightedIndex === index && 'active')}
+                      className={cx(highlightedIndex === index && 'tag-active')}
                       key={`item-${index}`}
                       {...getItemProps({ item, index})}
                     >

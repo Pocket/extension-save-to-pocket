@@ -2,7 +2,8 @@ import React from 'react'
 import { css, cx } from 'linaria'
 
 const buttonStyles = css`
-  &.button {
+  &.pocket-button {
+    height: unset;
     display: inline-block;
     position: relative;
     font-family: var(--fontSansSerif);
@@ -107,7 +108,7 @@ const buttonStyles = css`
 
 export const Button = ({children, onClick, type = 'primary', className}) => {
   return (
-    <button className={cx('button', buttonStyles, type, className)} onClick={onClick}>
+    <button className={cx('pocket-button', buttonStyles, type, className)} onClick={onClick}>
       {children}
     </button>
   )

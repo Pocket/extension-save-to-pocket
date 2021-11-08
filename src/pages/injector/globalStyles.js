@@ -8,7 +8,9 @@ export const globalReset = css`
   &.pocket-extension,
   .pocket-extension {
     *:after,
-    *:before {
+    *:before,
+    header,
+    footer {
       all: unset;
     }
   }
