@@ -1,28 +1,17 @@
 import { css } from 'linaria'
 
 export const globalReset = css`
-  :global() {
-    // additional class here for when we need more
-    // specificity to override page styles, but also
-    // so we don't have to duplicate overrides to both
-    // light & dark theme classes
-    .pocket-extension {
-      header, footer, section, div, span, aside,
-      h1, h2, h3, h4, h5, h6, p, a,
-      button, form, input, label,
-      img, ul, ol, li {
-        margin: 0;
-        padding: 0;
-        border: 0;
-        font-size: 100%;
-        font: inherit;
-        font-family: var(--fontSansSerif);
-      }
-
-      *:after,
-      *:before {
-        all: unset;
-      }
+  // additional class here for when we need more
+  // specificity to override page styles, but also
+  // so we don't have to duplicate overrides to both
+  // light & dark theme classes
+  &.pocket-extension,
+  .pocket-extension {
+    *:after,
+    *:before,
+    header,
+    footer {
+      all: unset;
     }
   }
 `
@@ -97,7 +86,7 @@ export const globalVariables = css`
       --color-itemPreviewBackground: #404040;
     }
 
-    :root {
+    .pocket-extension {
       --color-white100: #FFFFFF;
       --color-grey10: #1A1A1A;
       --color-grey20: #333333;
@@ -120,98 +109,94 @@ export const globalVariables = css`
 `
 
 export const radioStyles = css`
-  :global() {
-    .pocket-extension {
-      input[type='radio'] + label,
-      input[type='checkbox'] + label {
-        display: inline-block;
-        vertical-align: middle;
-        margin: 0 0 0 12px;
+  input[type='radio'] + label,
+  input[type='checkbox'] + label {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 0 0 12px;
+  }
+
+  input[type='radio'] {
+    opacity: 0;
+    margin: 0;
+
+    & + label {
+      margin: 4px 0;
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      position: relative;
+      padding: 0 24px;
+      cursor: pointer;
+      &:before,
+      &:after {
+        box-sizing: border-box;
+        position: absolute;
+        content: '';
+        border-radius: 50%;
+        transition: all 50ms ease;
+        transition-property: transform, border-color;
+      }
+      // radio button border
+      &:before {
+        left: -12px;
+        top: 0;
+        width: 24px;
+        height: 24px;
+        border: 2px solid var(--color-formFieldBorder);
+      }
+      // selected radio button inner circle
+      &:after {
+        top: 5px;
+        left: -7px;
+        width: 14px;
+        height: 14px;
+        transform: scale(0);
+        background: var(--color-actionPrimary);
+      }
+    }
+
+    &:hover:enabled {
+      & + label:before {
+        border-color: var(--color-actionPrimaryHover);
+      }
+    }
+    &:disabled {
+      & + label {
+        opacity: 0.5;
+      }
+      &:hover {
+        & + label:before,
+        & + label {
+          cursor: not-allowed;
+        }
+      }
+    }
+
+    &:checked {
+      & + label:before {
+        border-color: var(--color-actionPrimary);
       }
 
-      input[type='radio'] {
-        opacity: 0;
-        margin: 0;
+      & + label:after {
+        transform: scale(1);
+      }
 
-        & + label {
-          margin: 4px 0;
-          display: inline-flex;
-          align-items: center;
-          min-height: 24px;
-          position: relative;
-          padding: 0 24px;
-          cursor: pointer;
-          &:before,
-          &:after {
-            box-sizing: border-box;
-            position: absolute;
-            content: '';
-            border-radius: 50%;
-            transition: all 50ms ease;
-            transition-property: transform, border-color;
-          }
-          // radio button border
-          &:before {
-            left: -12px;
-            top: 0;
-            width: 24px;
-            height: 24px;
-            border: 2px solid var(--color-formFieldBorder);
-          }
-          // selected radio button inner circle
-          &:after {
-            top: 5px;
-            left: -7px;
-            width: 14px;
-            height: 14px;
-            transform: scale(0);
-            background: var(--color-actionPrimary);
-          }
+      &:hover:enabled,
+      &:active:enabled {
+        & + label:before {
+          border-color: var(--color-actionPrimaryHover);
         }
-
-        &:hover:enabled {
-          & + label:before {
-            border-color: var(--color-actionPrimaryHover);
-          }
+        & + label:after {
+          background: var(--color-actionPrimaryHover);
         }
-        &:disabled {
-          & + label {
-            opacity: 0.5;
-          }
-          &:hover {
-            & + label:before,
-            & + label {
-              cursor: not-allowed;
-            }
-          }
-        }
-
-        &:checked {
-          & + label:before {
-            border-color: var(--color-actionPrimary);
-          }
-
-          & + label:after {
-            transform: scale(1);
-          }
-
-          &:hover:enabled,
-          &:active:enabled {
-            & + label:before {
-              border-color: var(--color-actionPrimaryHover);
-            }
-            & + label:after {
-              background: var(--color-actionPrimaryHover);
-            }
-          }
-        }
-        // same design element regardless of checked or hover
-        &:focus {
-          & + label:before {
-            box-shadow: 0px 0 0 2px var(--color-canvas),
-              0px 0 0 4px var(--color-formFieldFocusLabel);
-          }
-        }
+      }
+    }
+    // same design element regardless of checked or hover
+    &:focus {
+      & + label:before {
+        box-shadow: 0px 0 0 2px var(--color-canvas),
+          0px 0 0 4px var(--color-formFieldFocusLabel);
       }
     }
   }
