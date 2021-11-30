@@ -103,14 +103,22 @@ export const App = () => {
     setIsOpen(false)
   }
 
+  const keyPress = (event) => {
+    // keyCode 27 === ESCAPE
+    if (event.keyCode === 27) setIsOpen(false)
+  }
+
   useEffect(() => {
     setIsOpen(true)
 
     chrome.runtime.onMessage.addListener(handleMessages)
     document.addEventListener('click', handleDocumentClick)
+    document.addEventListener('keyup', keyPress)
+
     return () => {
       chrome.runtime.onMessage.removeListener(handleMessages)
       document.removeEventListener('click', handleDocumentClick)
+      document.addEventListener('keyup', keyPress)
     }
   }, [])
 
