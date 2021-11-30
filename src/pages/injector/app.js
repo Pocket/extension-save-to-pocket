@@ -103,9 +103,9 @@ export const App = () => {
     setIsOpen(false)
   }
 
-  const keyPress = (event) => {
+  const keyPress = (e) => {
     // keyCode 27 === ESCAPE
-    if (event.keyCode === 27) setIsOpen(false)
+    if (e.keyCode === 27) setIsOpen(false)
   }
 
   useEffect(() => {
