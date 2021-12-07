@@ -141,8 +141,15 @@ export async function tagsErrorAction(tab, payload) {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 export async function authCodeRecieved(tab, payload) {
   const guidResponse = await getGuid()
-  const authResponse = await authorize(guidResponse, payload)
 
+  console.groupCollapsed('PROCESSING AUTH')
+  console.log({
+    ...payload,
+    ...guidResponse
+  })
+  console.groupEnd('PROCESSING AUTH')
+
+  const authResponse = await authorize(guidResponse, payload)
   const { access_token, account, username } = authResponse
   const { premium_status } = account
   setSettings({ access_token, premium_status, username })
