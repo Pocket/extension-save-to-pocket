@@ -37,7 +37,9 @@ async function request(options, skipAuth) {
 function handleErrors(response) {
   if (!response.ok) {
     const e = new Error('Request Error')
-    e.name = response.status === 401 ? 'Auth' : 'Generic'
+    e.name = response.status === 401
+      ? `Auth[${response.status}]`
+      : `Generic[${response.status}]`
     throw e
   }
   return response
