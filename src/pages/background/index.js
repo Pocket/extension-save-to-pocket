@@ -43,7 +43,7 @@ chrome.runtime.onMessage.addListener(function (message, sender) {
   const { tab } = sender
 
   console.groupCollapsed(`RECEIVE: ${type}`)
-  console.log(message)
+  console.log(payload)
   console.groupEnd(`RECEIVE: ${type}`)
 
   switch (type) {
