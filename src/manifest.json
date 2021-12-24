@@ -48,7 +48,7 @@
     }
   ],
   "host_permissions": [
-    "*://getpocket.com/"
+    "*://getpocket.com/*"
   ],
   "permissions": [
     "tabs",
