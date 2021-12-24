@@ -22,6 +22,8 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@sentry/react": "^6.16.1",
+    "@sentry/tracing": "^6.16.1",
     "downshift": "^6.1.7",
     "js-base64": "^3.7.2",
     "linaria": "^3.0.0-beta.13",
