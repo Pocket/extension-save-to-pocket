@@ -34,7 +34,7 @@ async function getItemPreview(tabId, payload) {
 
   chrome.tabs.sendMessage(tabId, {
     action: UPDATE_ITEM_PREVIEW,
-    payload: { item }
+    payload: { item },
   })
 }
 
@@ -42,11 +42,11 @@ async function getItemPreview(tabId, payload) {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 async function getStoredTags(tabId) {
   // Check for server tags
-  const fetchedSince = await getSetting('tags_fetched_timestamp') || 0
+  const fetchedSince = (await getSetting('tags_fetched_timestamp')) || 0
   const fetchTags = await fetchStoredTags(fetchedSince)
   const fetchedTags = fetchTags ? fetchTags.tags || [] : []
   const tagsFromSettings = await getSetting('tags_stored')
-  const parsedTags = (tagsFromSettings) ? JSON.parse(tagsFromSettings) : []
+  const parsedTags = tagsFromSettings ? JSON.parse(tagsFromSettings) : []
   const tags_stored = [...new Set([].concat(...parsedTags, ...fetchedTags))]
   const tags = JSON.stringify(tags_stored)
 
@@ -67,13 +67,19 @@ async function getTagSuggestions(url, tabId) {
   const premiumStatus = await getSetting('premium_status')
   if (premiumStatus !== '1') return
 
-  const response = await getOnSaveTags(url)
-  const suggestedTags = response ? response.suggested_tags.map(tag => tag.tag) : []
+  try {
+    const response = await getOnSaveTags(url)
+    const suggestedTags = response
+      ? response.suggested_tags.map((tag) => tag.tag)
+      : []
 
-  if (response) {
-    chrome.tabs.sendMessage(tabId, {
-      action: SUGGESTED_TAGS_SUCCESS,
-      payload: { suggestedTags },
-    })
+    if (response) {
+      chrome.tabs.sendMessage(tabId, {
+        action: SUGGESTED_TAGS_SUCCESS,
+        payload: { suggestedTags },
+      })
+    }
+  } catch (err) {
+    console.info(err?.xError)
   }
 }
