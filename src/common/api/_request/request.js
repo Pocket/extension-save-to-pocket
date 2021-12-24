@@ -17,8 +17,8 @@ async function request(options, skipAuth) {
     'Content-Type': 'application/json',
   })
 
+  //?? Is there any way to access this anymore since we no longer use cookie/local storage
   const serverAuth = await getSetting('base_server_auth')
-
   if (serverAuth) {
     headers.append('Authorization', 'Basic ' + Base64.encode(serverAuth))
   }
@@ -31,18 +31,21 @@ async function request(options, skipAuth) {
 
   return fetch(API_URL + options.path, fetchSettings)
     .then(handleErrors)
-    .then((response) => response.json())
+    .then(handleSuccess)
 }
 
 function handleErrors(response) {
-  if (!response.ok) {
-    const e = new Error('Request Error')
-    e.name = response.status === 401
-      ? `Auth[${response.status}]`
-      : `Generic[${response.status}]`
-    throw e
-  }
+  const xErrorCode = response.headers.get('x-error-code')
+  const xError = response.headers.get('x-error')
+
+  // We can reject with the error code and message for better handling
+  if (!response.ok) return Promise.reject({ xErrorCode, xError })
+
   return response
+}
+
+function handleSuccess(response) {
+  return response ? response.json() : false
 }
 
 export { request }
