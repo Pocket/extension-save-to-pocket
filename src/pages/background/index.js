@@ -1,5 +1,13 @@
 import * as handle from './userActions'
 import { setDefaultIcon } from 'common/interface'
+import * as Sentry from '@sentry/browser'
+import { Integrations } from '@sentry/tracing'
+
+Sentry.init({
+  dsn: 'https://11eed553982148d5b0b0288798aa3d85@o28549.ingest.sentry.io/6120053',
+  tracesSampleRate: 0,
+  sampleRate: 0.5,
+})
 
 import { AUTH_CODE_RECEIVED } from 'actions'
 import { USER_LOG_IN } from 'actions'
