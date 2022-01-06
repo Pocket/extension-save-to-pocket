@@ -47,7 +47,7 @@ export function inactiveIcon() {
   )
 
   context.clearRect(0, 0, 32, 32)
-  context.fillStyle = '#A6A6A6'
+  context.fillStyle = '#EF4056' // Pocket Brand Coral/Red
   context.fill(outer, 'evenodd')
   context.fill(inner, 'evenodd')
   return context.getImageData(0, 0, 32, 32)
