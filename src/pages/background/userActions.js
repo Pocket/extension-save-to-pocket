@@ -1,4 +1,5 @@
 import { saveSuccess } from './postSave'
+import * as Sentry from '@sentry/browser'
 
 import { isSystemPage, isSystemLink } from 'common/helpers'
 import { getSetting, setSettings } from 'common/interface'
@@ -86,7 +87,9 @@ async function save({ linkUrl, pageUrl, title, tabId }) {
     if (payload) saveSuccess(tabId, { ...payload, isLink: Boolean(linkUrl) })
   } catch (error) {
     // If it is an auth error let's redirect the user
-    if (error.name === 'Auth') return logIn({ linkUrl, pageUrl, title, tabId })
+    if (error?.xErrorCode === '107') {
+      return logIn({ linkUrl, pageUrl, title, tabId })
+    }
 
     // Otherwise let's just show the error message
     const errorMessage = { action: SAVE_TO_POCKET_FAILURE }
@@ -140,19 +143,20 @@ export async function tagsErrorAction(tab, payload) {
 /* Authentication user
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 export async function authCodeRecieved(tab, payload) {
-  const guidResponse = await getGuid()
-
-  console.groupCollapsed('PROCESSING AUTH')
-  console.log({
-    ...payload,
-    ...guidResponse
-  })
-  console.groupEnd('PROCESSING AUTH')
-
-  const authResponse = await authorize(guidResponse, payload)
-  const { access_token, account, username } = authResponse
-  const { premium_status } = account
-  setSettings({ access_token, premium_status, username })
+  // Getting a Guid to use in the request
+  // Getting an auth token
+  try {
+    const guidResponse = await getGuid()
+    const authResponse = await authorize(guidResponse, payload)
+    const { access_token, account, username } = authResponse
+    const { premium_status } = account
+    setSettings({ access_token, premium_status, username })
+  } catch (err) {
+    Sentry.withScope((scope) => {
+      scope.setFingerprint('Auth Error')
+      Sentry.captureMessage(err)
+    })
+  }
 
   closeLoginPage()
   setContextMenus()
@@ -239,8 +243,7 @@ export async function setContextMenus() {
       id: 'toolbarContextClickLogOut',
       contexts: ['action'],
     })
-  }
-  else {
+  } else {
     chrome.contextMenus.create({
       title: localize('context_menu_log_in'),
       id: 'toolbarContextClickLogIn',
