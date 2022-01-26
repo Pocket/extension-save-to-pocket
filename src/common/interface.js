@@ -1,3 +1,5 @@
+import * as Sentry from '@sentry/browser'
+
 /* Messaging
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 export function sendMessage(message) {
@@ -57,10 +59,23 @@ export function inactiveIcon() {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 export function getSetting(key) {
   return new Promise((resolve) => {
-    chrome.storage.local.get([key], (result) => resolve(result[key]))
+    chrome.storage.local.get([key], (result) => {
+      handleSettingError('get')
+      resolve(result[key])
+    })
   })
 }
 
 export function setSettings(values) {
-  chrome.storage.local.set(values)
+  chrome.storage.local.set(values, () => handleSettingError('set'))
+}
+
+function handleSettingError(action) {
+  if (chrome.runtime.lastError) {
+    Sentry.withScope((scope) => {
+      scope.setFingerprint('Storage Error')
+      scope.setTag('setting_action', action)
+      Sentry.captureMessage(chrome.runtime.lastError)
+    })
+  }
 }

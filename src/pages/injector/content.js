@@ -11,18 +11,6 @@ const initialize = function () {
     const { action } = request
     if (action === SAVE_TO_POCKET_REQUEST) injectDomElements()
   })
-
-  // Make sure the toolbar icon is in sync with users light/dark preference
-  const mediaQueryList = window.matchMedia('(prefers-color-scheme: dark)')
-  const handleDarkModeChange = (mql) => {
-    const darkMode = mql.matches
-    chrome.runtime.sendMessage({
-      type: COLOR_MODE_CHANGE,
-      payload: { darkMode },
-    })
-  }
-  handleDarkModeChange(mediaQueryList)
-  mediaQueryList.addEventListener('change', handleDarkModeChange)
 }
 
 /* Inject content into the DOM

@@ -1,6 +1,5 @@
 import { request } from '../_request/request'
 import { getSetting } from '../../interface'
-import { arrayHasValues } from '../../utilities'
 
 export function getGuid() {
   return new Promise((resolve, reject) => {
@@ -30,8 +29,14 @@ export function getGuid() {
   })
 }
 
-export function getServerGuid() {
-  return request({ path: 'guid', data: { abt: 1 } })
+export async function getServerGuid() {
+  try {
+    return await request({ path: 'guid', data: { abt: 1 } }).then(
+      (data) => data.guid
+    )
+  } catch (err) {
+    console.info(err)
+  }
 }
 
 export function getExtensionGuid() {
