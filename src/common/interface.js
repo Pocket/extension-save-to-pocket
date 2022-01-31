@@ -62,7 +62,7 @@ export function getSetting(key) {
     chrome.storage.local.get([key], (result) => {
       if (chrome.runtime.lastError) {
         handleSettingError(chrome.runtime.lastError)
-        return reject('Trouble reading local Pocket settings')
+        return reject('Error when retrieving local settings')
       }
       resolve(result[key])
     })
@@ -74,7 +74,7 @@ export function setSettings(values) {
     chrome.storage.local.set(values, () => {
       if (chrome.runtime.lastError) {
         handleSettingError(chrome.runtime.lastError)
-        return reject('Trouble saving local Pocket settings')
+        return reject('Error when storing local settings')
       }
       resolve()
     })
