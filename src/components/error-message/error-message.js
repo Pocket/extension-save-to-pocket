@@ -2,7 +2,7 @@ import React from 'react'
 import { css } from 'linaria'
 
 const errorMessageStyles = css`
-  color: red;
+  color: var(--color-headingIcon);
   font-size: 16px;
   padding: 15px 10px;
 `
