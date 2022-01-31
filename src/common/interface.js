@@ -81,11 +81,11 @@ export function setSettings(values) {
   })
 }
 
-function handleSettingError(message) {
+function handleSettingError(err) {
   Sentry.withScope((scope) => {
     scope.setFingerprint('Storage Error')
-    Sentry.captureMessage(`Storage Error: ${message}`)
+    Sentry.captureMessage(err)
   })
 
-  console.error(message)
+  console.error(err)
 }
