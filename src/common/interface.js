@@ -60,12 +60,11 @@ export function inactiveIcon() {
 export function getSetting(key) {
   return new Promise((resolve, reject) => {
     chrome.storage.local.get([key], (result) => {
-      // if (chrome.runtime.lastError) {
-      // handleSettingError(chrome.runtime.lastError)
-      handleSettingError('setting error')
+      if (chrome.runtime.lastError) {
+        handleSettingError(chrome.runtime.lastError)
         return reject('Trouble reading local Pocket settings')
-      // }
-      // resolve(result[key])
+      }
+      resolve(result[key])
     })
   })
 }
@@ -83,10 +82,10 @@ export function setSettings(values) {
 }
 
 function handleSettingError(message) {
-  // Sentry.withScope((scope) => {
-  //   scope.setFingerprint('Storage Error')
-  //   Sentry.captureMessage(`Storage Error: ${message}`)
-  // })
+  Sentry.withScope((scope) => {
+    scope.setFingerprint('Storage Error')
+    Sentry.captureMessage(`Storage Error: ${message}`)
+  })
 
   console.error(message)
 }

@@ -6,13 +6,16 @@
     "message" : ""
   },
   "heading_error": {
-    "message" : "Ocorreu um erro!"
+    "message" : "Algo correu mal!"
+  },
+  "heading_saving" : {
+    "message" : "A guardar..."
   },
   "heading_saved" : {
     "message" : "Guardado no Pocket"
   },
   "heading_save_failed" : {
-    "message" : "Ocorreu um erro!"
+    "message" : "Algo correu mal!"
   },
   "heading_removing" : {
     "message" : "A remover..."
