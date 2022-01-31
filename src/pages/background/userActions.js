@@ -66,16 +66,16 @@ export function contextClick(info, tab) {
 /* Saving
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 async function save({ linkUrl, pageUrl, title, tabId }) {
-  // Are we authed?
-  const access_token = await getSetting('access_token')
-  if (!access_token) return logIn({ linkUrl, pageUrl, title, tabId })
-
   // send message that we are requesting a save
   chrome.tabs.sendMessage(tabId, { action: SAVE_TO_POCKET_REQUEST })
 
-  const url = linkUrl || pageUrl
-
   try {
+    // Are we authed?
+    const access_token = await getSetting('access_token')
+    if (!access_token) return logIn({ linkUrl, pageUrl, title, tabId })
+
+    const url = linkUrl || pageUrl
+
     const { response: payload } = await saveToPocket({ url, title, tabId })
     // send a message with the response
     const message = payload
@@ -92,7 +92,8 @@ async function save({ linkUrl, pageUrl, title, tabId }) {
     }
 
     // Otherwise let's just show the error message
-    const errorMessage = { action: SAVE_TO_POCKET_FAILURE }
+    const payload = { message: error }
+    const errorMessage = { action: SAVE_TO_POCKET_FAILURE, payload }
     chrome.tabs.sendMessage(tabId, errorMessage)
   }
 }

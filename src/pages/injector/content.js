@@ -2,7 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { App } from './app'
 import { SAVE_TO_POCKET_REQUEST } from 'actions'
-import { COLOR_MODE_CHANGE } from 'actions'
 
 /* Initial Setup
 –––––––––––––––––––––––––––––––––––––––––––––––––– */

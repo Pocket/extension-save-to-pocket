@@ -57,37 +57,35 @@ chrome.runtime.onMessage.addListener(function (message, sender) {
   switch (type) {
     case AUTH_CODE_RECEIVED:
       handle.authCodeRecieved(tab, payload)
-      break
+      return
     case USER_LOG_IN:
       handle.logIn(tab)
-      break
+      return
     case LOGGED_OUT_OF_POCKET:
       handle.loggedOutOfPocket(tab)
-      break
+      return
     case REMOVE_ITEM:
       handle.removeItemAction(tab, payload)
-      break
+      return
     case RESAVE_ITEM:
       handle.browserAction(tab)
-      break
+      return
     case TAGS_SYNC:
       handle.tagsSyncAction(tab, payload)
-      break
+      return
     case SEND_TAG_ERROR:
       handle.tagsErrorAction(tab, payload)
-      break
+      return
     case COLOR_MODE_CHANGE:
       handle.setColorMode(tab, payload)
-      break
+      return
     case OPEN_POCKET:
       handle.openPocket()
-      break
+      return
     case OPEN_OPTIONS:
       handle.openOptionsPage()
-      break
+      return
     default:
-      break
+      return Promise.resolve(`Message received: ${type}`)
   }
-
-  return Promise.resolve(`Message received: ${type}`)
 })

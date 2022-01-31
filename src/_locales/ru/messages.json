@@ -5,6 +5,9 @@
   "heading_idle" : {
     "message" : ""
   },
+  "heading_error": {
+    "message" : "К сожалению, что-то пошло не так!"
+  },
   "heading_saving" : {
     "message" : "Сохранение..."
   },

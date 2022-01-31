@@ -58,24 +58,35 @@ export function inactiveIcon() {
 /* Local Storage
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 export function getSetting(key) {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     chrome.storage.local.get([key], (result) => {
-      handleSettingError('get')
-      resolve(result[key])
+      // if (chrome.runtime.lastError) {
+      // handleSettingError(chrome.runtime.lastError)
+      handleSettingError('setting error')
+        return reject('Trouble reading local Pocket settings')
+      // }
+      // resolve(result[key])
     })
   })
 }
 
 export function setSettings(values) {
-  chrome.storage.local.set(values, () => handleSettingError('set'))
+  return new Promise((resolve, reject) => {
+    chrome.storage.local.set(values, () => {
+      if (chrome.runtime.lastError) {
+        handleSettingError(chrome.runtime.lastError)
+        return reject('Trouble saving local Pocket settings')
+      }
+      resolve()
+    })
+  })
 }
 
-function handleSettingError(action) {
-  if (chrome.runtime.lastError) {
-    Sentry.withScope((scope) => {
-      scope.setFingerprint('Storage Error')
-      scope.setTag('setting_action', action)
-      Sentry.captureMessage(chrome.runtime.lastError)
-    })
-  }
+function handleSettingError(message) {
+  // Sentry.withScope((scope) => {
+  //   scope.setFingerprint('Storage Error')
+  //   Sentry.captureMessage(`Storage Error: ${message}`)
+  // })
+
+  console.error(message)
 }

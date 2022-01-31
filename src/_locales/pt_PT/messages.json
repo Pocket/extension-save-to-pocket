@@ -5,14 +5,14 @@
   "heading_idle" : {
     "message" : ""
   },
-  "heading_saving" : {
-    "message" : "A guardar…"
+  "heading_error": {
+    "message" : "Ocorreu um erro!"
   },
   "heading_saved" : {
     "message" : "Guardado no Pocket"
   },
   "heading_save_failed" : {
-    "message" : "Algo correu mal!"
+    "message" : "Ocorreu um erro!"
   },
   "heading_removing" : {
     "message" : "A remover..."

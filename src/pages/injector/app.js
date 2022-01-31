@@ -5,6 +5,7 @@ import { HeadingConnector } from 'connectors/heading/heading'
 import { ItemPreviewConnector } from 'connectors/item-preview/item-preview'
 import { TaggingConnector } from 'connectors/tagging/tagging'
 import { FooterConnector } from 'connectors/footer/footer'
+import { ErrorMessage } from 'components/error-message/error-message'
 import { getSetting } from 'common/interface'
 import { getOSModeClass } from 'common/helpers'
 import { globalVariables, globalReset } from './globalStyles'
@@ -29,7 +30,8 @@ export const App = () => {
   const appTarget = useRef(null)
   const [saveStatus, setSaveStatus] = useState('saving')
   const [isOpen, setIsOpen] = useState(false)
-  const [theme, setTheme] = useState('pocket-theme-system')
+  const [theme, setTheme] = useState('pocket-theme-light')
+  const [errorMessage, setErrorMessage] = useState('')
 
   /* Handle incoming messages
   –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -53,6 +55,8 @@ export const App = () => {
       }
 
       case SAVE_TO_POCKET_FAILURE: {
+        const { message } = payload
+        setErrorMessage(message)
         return setSaveStatus('save_failed')
       }
 
@@ -125,14 +129,16 @@ export const App = () => {
   const closePanel = () => setIsOpen(false)
 
   const isRemoved = saveStatus === 'removed'
+  const hasError = saveStatus === 'save_failed'
 
   return (
     <div ref={appTarget} className={cx('pocket-extension', globalReset, globalVariables, theme)}>
       <Doorhanger isOpen={isOpen}>
         <HeadingConnector saveStatus={saveStatus} />
-        {!isRemoved ? <ItemPreviewConnector /> : null}
-        {!isRemoved ? <TaggingConnector closePanel={closePanel} /> : null}
-        <FooterConnector />
+        {!isRemoved && !hasError ? <ItemPreviewConnector /> : null}
+        {!isRemoved && !hasError ? <TaggingConnector closePanel={closePanel} /> : null}
+        {hasError ? <ErrorMessage message={errorMessage} /> : null}
+        {!hasError ? <FooterConnector /> : null}
       </Doorhanger>
     </div>
   )

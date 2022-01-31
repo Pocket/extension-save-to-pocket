@@ -5,6 +5,9 @@
   "heading_idle" : {
     "message" : ""
   },
+  "heading_error": {
+    "message" : "出了點問題！"
+  },
   "heading_saving" : {
     "message" : "正在儲存..."
   },

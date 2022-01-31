@@ -5,8 +5,8 @@
   "heading_idle" : {
     "message" : ""
   },
-  "heading_saving" : {
-    "message" : "Salvataggio..."
+  "heading_error": {
+    "message" : "Qualcosa non ha funzionato."
   },
   "heading_saved" : {
     "message" : "Salvato in Pocket"
