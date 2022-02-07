@@ -11,6 +11,7 @@ const buttonStyles = css`
     line-height: 110%;
     border: none;
     border-radius: 0.25rem;
+    margin: 0;
     padding: 8px 12px;
     transition: all 0.15s ease-out;
     text-decoration: none;

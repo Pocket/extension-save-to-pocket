@@ -32,6 +32,9 @@ const headingStyle = css`
     height: 25px;
     width: 25px;
     margin-top: 0;
+    border: none;
+    background-color: transparent;
+    pointer-events: none;
 
     svg {
       height: 25px;
