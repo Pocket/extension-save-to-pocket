@@ -31,12 +31,12 @@ export function injectDomElements() {
   const existingRoot = document.getElementById('pocket-extension-root')
   if (existingRoot) return
 
-  const rootElement = document.createElement('div')
-  rootElement.id = 'pocket-extension-root'
-  document.body.appendChild(rootElement)
+  const root = document.createElement('div')
+  root.id = 'pocket-extension-root'
+  document.body.appendChild(root)
 
   // Render in shadow DOM to prevent webpage styles from leaking in
-  const shadowRoot = rootElement.attachShadow({ mode: 'closed' })
+  const shadowRoot = root.attachShadow({ mode: 'closed' })
   ReactDOM.render(<App />, shadowRoot)
 }
 
