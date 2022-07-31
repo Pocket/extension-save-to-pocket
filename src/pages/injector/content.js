@@ -33,9 +33,11 @@ export function injectDomElements() {
 
   const rootElement = document.createElement('div')
   rootElement.id = 'pocket-extension-root'
-  const root = document.body.appendChild(rootElement)
+  document.body.appendChild(rootElement)
 
-  ReactDOM.render(<App />, root)
+  // Render in shadow DOM to prevent webpage styles from leaking in
+  const shadowRoot = rootElement.attachShadow({ mode: 'closed' })
+  ReactDOM.render(<App />, shadowRoot)
 }
 
 //eslint-disable-next-line
