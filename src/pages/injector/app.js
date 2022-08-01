@@ -157,6 +157,7 @@ export const ShadowApp = ({ host }) => {
           rel="stylesheet"
           href={chrome.runtime.getURL('assets/pocket-save-extension.css')}
         />
+        <style>{`:host { all: initial; }`}</style>
         <App />
       </>,
       root,
