@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import ReactDOM from 'react-dom'
 import { cx } from 'linaria'
 import { Doorhanger } from 'components/doorhanger/doorhanger'
 import { HeadingConnector } from 'connectors/heading/heading'
@@ -25,7 +26,7 @@ import { UPDATE_TAG_ERROR } from 'actions'
 
 const IS_RELEASE = getBool(process.env.IS_RELEASE)
 
-export const App = () => {
+const App = () => {
   const appTarget = useRef(null)
   const [saveStatus, setSaveStatus] = useState('saving')
   const [isOpen, setIsOpen] = useState(false)
@@ -93,14 +94,14 @@ export const App = () => {
   }
 
   useEffect(async () => {
-    let newTheme = await getSetting('theme') || 'system'
+    let newTheme = (await getSetting('theme')) || 'system'
     if (newTheme === 'system') newTheme = getOSModeClass()
     setTheme(`pocket-theme-${newTheme}`)
   }, [])
 
   const handleDocumentClick = (e) => {
-    if (appTarget?.current?.contains(e.target)) return
-    setIsOpen(false)
+    const target = e.composedPath()[0] // We use this instead of `e.target` to get the actual target from inside the shadow tree
+    if (!appTarget?.current?.contains(target)) setIsOpen(false)
   }
 
   const keyPress = (e) => {
@@ -127,7 +128,9 @@ export const App = () => {
   const isRemoved = saveStatus === 'removed'
 
   return (
-    <div ref={appTarget} className={cx('pocket-extension', globalReset, globalVariables, theme)}>
+    <div
+      ref={appTarget}
+      className={cx('pocket-extension', globalReset, globalVariables, theme)}>
       <Doorhanger isOpen={isOpen}>
         <HeadingConnector saveStatus={saveStatus} />
         {!isRemoved ? <ItemPreviewConnector /> : null}
@@ -135,5 +138,28 @@ export const App = () => {
         <FooterConnector />
       </Doorhanger>
     </div>
+  )
+}
+
+// `App` needs to be in a shadow DOM so webpage styles don't leak in
+export const ShadowApp = ({ host }) => {
+  const [root, setRoot] = useState(null)
+  if (!root) {
+    setRoot(host?.attachShadow({ mode: 'open' }))
+  }
+
+  return (
+    root &&
+    ReactDOM.createPortal(
+      <>
+        {/* Link to styles because content scripts run in a different context */}
+        <link
+          rel="stylesheet"
+          href={chrome.runtime.getURL('assets/pocket-save-extension.css')}
+        />
+        <App />
+      </>,
+      root,
+    )
   )
 }

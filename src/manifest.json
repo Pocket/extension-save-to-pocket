@@ -26,8 +26,7 @@
         "pages/injector/content.js"
       ],
       "css": [
-        "assets/fonts/fonts.css",
-        "assets/pocket-save-extension.css"
+        "assets/fonts/fonts.css"
       ]
     },
     {
@@ -44,6 +43,16 @@
       ],
       "js": [
         "pages/logout.js"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "matches": [
+        "*://*/*"
+      ],
+      "resources": [
+        "assets/pocket-save-extension.css"
       ]
     }
   ],

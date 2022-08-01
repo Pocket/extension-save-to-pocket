@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { App } from './app'
+import { ShadowApp } from './app'
 import { SAVE_TO_POCKET_REQUEST } from 'actions'
 import { COLOR_MODE_CHANGE } from 'actions'
 
@@ -35,9 +35,7 @@ export function injectDomElements() {
   root.id = 'pocket-extension-root'
   document.body.appendChild(root)
 
-  // Render in shadow DOM to prevent webpage styles from leaking in
-  const shadowRoot = root.attachShadow({ mode: 'closed' })
-  ReactDOM.render(<App />, shadowRoot)
+  ReactDOM.render(<ShadowApp host={root} />, root)
 }
 
 //eslint-disable-next-line
