@@ -1,6 +1,5 @@
 import { request } from '../_request/request'
 import { getSetting } from '../../interface'
-import { arrayHasValues } from '../../utilities'
 
 export async function getGuid() {
   const extensionGuid = await getExtensionGuid()

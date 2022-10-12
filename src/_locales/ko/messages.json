@@ -5,6 +5,9 @@
   "heading_idle" : {
     "message" : ""
   },
+  "heading_error": {
+    "message" : "문제가 발생했습니다!"
+  },
   "heading_saving" : {
     "message" : "저장 중..."
   },

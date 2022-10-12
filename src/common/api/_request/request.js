@@ -18,6 +18,7 @@ async function request(options, skipAuth) {
   })
 
   //?? Is there any way to access this anymore since we no longer use cookie/local storage
+  //?? We never set this parameter anywhere; propose we delete this block
   const serverAuth = await getSetting('base_server_auth')
   if (serverAuth) {
     headers.append('Authorization', 'Basic ' + Base64.encode(serverAuth))

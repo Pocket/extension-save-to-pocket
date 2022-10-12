@@ -32,6 +32,9 @@ const headingStyle = css`
     height: 25px;
     width: 25px;
     margin-top: 0;
+    border: none;
+    background-color: transparent;
+    pointer-events: none;
 
     svg {
       height: 25px;
@@ -69,7 +72,7 @@ export const Heading = ({ saveStatus, removeAction, saveAction }) => {
   const loadingStatus = ['saving', 'removing', 'tags_saving']
   const isLoading = loadingStatus.includes(saveStatus)
 
-  const errorStatus = ['save_failed', 'remove_failed', 'tags_failed', 'tags_error']
+  const errorStatus = ['save_failed', 'remove_failed', 'tags_failed', 'tags_error', 'error']
   const hasError = errorStatus.includes(saveStatus)
 
   return (

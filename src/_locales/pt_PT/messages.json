@@ -5,8 +5,11 @@
   "heading_idle" : {
     "message" : ""
   },
+  "heading_error": {
+    "message" : "Algo correu mal!"
+  },
   "heading_saving" : {
-    "message" : "A guardar…"
+    "message" : "A guardar..."
   },
   "heading_saved" : {
     "message" : "Guardado no Pocket"

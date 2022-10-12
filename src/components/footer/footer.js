@@ -18,7 +18,11 @@ const footerWrapper = css`
     display: inline-block;
     height: 25px;
     width: 25px;
-    margin-right: 8px;
+    margin: 0 8px 0 0;
+    border: none;
+    background-color: transparent;
+    pointer-events: none;
+    vertical-align: middle;
 
     svg {
       height: 25px;
