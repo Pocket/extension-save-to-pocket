@@ -42,7 +42,7 @@
     "message" : "削除"
   },
   "buttons_mylist" : {
-    "message" : "マイリスト"
+    "message" : "保存アイテム"
   },
   "buttons_save" : {
     "message" : "保存"

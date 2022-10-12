@@ -42,7 +42,7 @@
     "message" : "删除"
   },
   "buttons_mylist" : {
-    "message" : "我的列表"
+    "message" : "保存内容"
   },
   "buttons_save" : {
     "message" : "保存"
