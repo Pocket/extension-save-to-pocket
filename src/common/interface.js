@@ -1,3 +1,5 @@
+import * as Sentry from '@sentry/browser'
+
 /* Messaging
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 export function sendMessage(message) {
@@ -47,7 +49,7 @@ export function inactiveIcon() {
   )
 
   context.clearRect(0, 0, 32, 32)
-  context.fillStyle = '#A6A6A6'
+  context.fillStyle = '#EF4056' // Pocket Brand Coral/Red
   context.fill(outer, 'evenodd')
   context.fill(inner, 'evenodd')
   return context.getImageData(0, 0, 32, 32)
@@ -56,11 +58,34 @@ export function inactiveIcon() {
 /* Local Storage
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 export function getSetting(key) {
-  return new Promise((resolve) => {
-    chrome.storage.local.get([key], (result) => resolve(result[key]))
+  return new Promise((resolve, reject) => {
+    chrome.storage.local.get([key], (result) => {
+      if (chrome.runtime.lastError) {
+        handleSettingError(chrome.runtime.lastError)
+        return reject('Error when retrieving local settings. Please contact Pocket Support')
+      }
+      resolve(result[key])
+    })
   })
 }
 
 export function setSettings(values) {
-  chrome.storage.local.set(values)
+  return new Promise((resolve, reject) => {
+    chrome.storage.local.set(values, () => {
+      if (chrome.runtime.lastError) {
+        handleSettingError(chrome.runtime.lastError)
+        return reject('Error when storing local settings. Please contact Pocket Support')
+      }
+      resolve()
+    })
+  })
+}
+
+function handleSettingError(err) {
+  console.error(err)
+
+  Sentry.withScope((scope) => {
+    scope.setFingerprint('Storage Error')
+    Sentry.captureMessage(err)
+  })
 }

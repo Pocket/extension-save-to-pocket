@@ -5,6 +5,9 @@
   "heading_idle" : {
     "message" : ""
   },
+  "heading_error": {
+    "message" : "エラーが発生したようです。"
+  },
   "heading_saving" : {
     "message" : "保存中..."
   },

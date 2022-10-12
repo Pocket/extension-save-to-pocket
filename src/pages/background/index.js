@@ -69,6 +69,7 @@ chrome.runtime.onMessage.addListener(function (message, sender) {
       return
     case RESAVE_ITEM:
       handle.browserAction(tab)
+      return
     case TAGS_SYNC:
       handle.tagsSyncAction(tab, payload)
       return
@@ -85,6 +86,6 @@ chrome.runtime.onMessage.addListener(function (message, sender) {
       handle.openOptionsPage()
       return
     default:
-      return
+      return Promise.resolve(`Message received: ${type}`)
   }
 })

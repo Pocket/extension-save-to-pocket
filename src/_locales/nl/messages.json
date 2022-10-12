@@ -5,6 +5,9 @@
   "heading_idle" : {
     "message" : ""
   },
+  "heading_error": {
+    "message" : "Er is iets misgegaan!"
+  },
   "heading_saving" : {
     "message" : "Opslaan..."
   },

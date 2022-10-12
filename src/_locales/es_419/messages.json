@@ -5,6 +5,9 @@
   "heading_idle" : {
     "message" : ""
   },
+  "heading_error": {
+    "message" : "¡Se produjo un error!"
+  },
   "heading_saving" : {
     "message" : "Guardando..."
   },
