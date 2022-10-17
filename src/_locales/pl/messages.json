@@ -1,11 +1,11 @@
 {
-  "extension_description": {
-    "message": "Najłatwiejsza i najszybsza metoda zapisywania artykułów, filmów i innych treści."
+  "extension_description" : {
+    "message" : "Najłatwiejsza i najszybsza metoda zapisywania artykułów, filmów i innych treści."
   },
   "heading_idle" : {
     "message" : ""
   },
-  "heading_error": {
+  "heading_error" : {
     "message" : "Wystąpił problem."
   },
   "heading_saving" : {
@@ -48,7 +48,7 @@
     "message" : "Zapisz"
   },
   "context_menu_open_list" : {
-    "message" : "Otwórz swoją listę Pocket"
+    "message" : "Otwórz elementy zapisane w Pocket"
   },
   "context_menu_discover_more" : {
     "message" : "Odkryj więcej w Pocket"

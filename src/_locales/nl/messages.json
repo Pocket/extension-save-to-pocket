@@ -1,11 +1,11 @@
 {
-  "extension_description": {
-    "message": "De gemakkelijkste en snelste manier om artikelen, video's en meer op te slaan."
+  "extension_description" : {
+    "message" : "De gemakkelijkste en snelste manier om artikelen, video's en meer op te slaan."
   },
   "heading_idle" : {
     "message" : ""
   },
-  "heading_error": {
+  "heading_error" : {
     "message" : "Er is iets misgegaan!"
   },
   "heading_saving" : {
@@ -48,7 +48,7 @@
     "message" : "Opslaan"
   },
   "context_menu_open_list" : {
-    "message" : "Pocket-lijst openen"
+    "message" : "Open Opgeslagen in Pocket"
   },
   "context_menu_discover_more" : {
     "message" : "Ontdek meer op Pocket"

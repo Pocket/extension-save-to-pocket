@@ -1,11 +1,11 @@
 {
-  "extension_description": {
-    "message": "아티클, 동영상 등을 캡처하는 가장 쉽고 가장 빠른 방법."
+  "extension_description" : {
+    "message" : "아티클, 동영상 등을 캡처하는 가장 쉽고 빠른 방법."
   },
   "heading_idle" : {
     "message" : ""
   },
-  "heading_error": {
+  "heading_error" : {
     "message" : "문제가 발생했습니다!"
   },
   "heading_saving" : {
@@ -48,7 +48,7 @@
     "message" : "저장"
   },
   "context_menu_open_list" : {
-    "message" : "Pocket 목록 열기"
+    "message" : "Pocket Saves 열기"
   },
   "context_menu_discover_more" : {
     "message" : "Pocket에서 더 찾기"

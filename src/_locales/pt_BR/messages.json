@@ -1,15 +1,15 @@
 {
-  "extension_description": {
-    "message": "A maneira mais fácil e rápida de salvar artigos, vídeos e muito mais."
+  "extension_description" : {
+    "message" : "A maneira mais fácil e rápida de salvar artigos, vídeos e muito mais."
   },
   "heading_idle" : {
     "message" : ""
   },
-  "heading_error": {
+  "heading_error" : {
     "message" : "Ocorreu um erro!"
   },
   "heading_saving" : {
-    "message" : "Salvando..."
+    "message" : "Salvando…"
   },
   "heading_saved" : {
     "message" : "Salvo no Pocket"
@@ -48,7 +48,7 @@
     "message" : "Salvar"
   },
   "context_menu_open_list" : {
-    "message" : "Abra sua lista do Pocket"
+    "message" : "Abra seus Salvos no Pocket"
   },
   "context_menu_discover_more" : {
     "message" : "Descubra mais no Pocket"

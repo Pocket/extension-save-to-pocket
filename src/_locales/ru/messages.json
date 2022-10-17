@@ -1,11 +1,11 @@
 {
-  "extension_description": {
-    "message": "Самый просто способ сохранения статей, видео и других материалов."
+  "extension_description" : {
+    "message" : "Самый простой и быстрый способ записывать статьи, видео и многое другое."
   },
   "heading_idle" : {
     "message" : ""
   },
-  "heading_error": {
+  "heading_error" : {
     "message" : "К сожалению, что-то пошло не так!"
   },
   "heading_saving" : {
@@ -48,7 +48,7 @@
     "message" : "Сохранить"
   },
   "context_menu_open_list" : {
-    "message" : "Откройте свой список Pocket"
+    "message" : "Откройте сохраненные файлы Pocket"
   },
   "context_menu_discover_more" : {
     "message" : "Откройте больше с Pocket"

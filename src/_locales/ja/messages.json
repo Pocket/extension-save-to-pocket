@@ -1,11 +1,11 @@
 {
-  "extension_description": {
-    "message": "記事、ビデオなどをキャプチャする最も速く簡単な方法です。"
+  "extension_description" : {
+    "message" : "記事、ビデオなどを最も簡単かつ迅速に取り込むことができます。"
   },
   "heading_idle" : {
     "message" : ""
   },
-  "heading_error": {
+  "heading_error" : {
     "message" : "エラーが発生したようです。"
   },
   "heading_saving" : {
@@ -48,7 +48,7 @@
     "message" : "保存"
   },
   "context_menu_open_list" : {
-    "message" : "Pocket リストを開く"
+    "message" : "Pocket の保存アイテムを開く"
   },
   "context_menu_discover_more" : {
     "message" : "Pocket で他のコンテンツを発見"
