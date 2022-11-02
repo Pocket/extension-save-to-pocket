@@ -42,13 +42,13 @@
     "message" : "Entfernen"
   },
   "buttons_mylist" : {
-    "message" : "Gespeicherte Inhalte"
+    "message" : "Gespeichert"
   },
   "buttons_save" : {
     "message" : "Speichern"
   },
   "context_menu_open_list" : {
-    "message" : "Öffne deine in Pocket gespeicherten Inhalte"
+    "message" : "Öffne deine in Pocket Gespeichert"
   },
   "context_menu_discover_more" : {
     "message" : "Entdecke noch mehr interessante Inhalte auf Pocket"
