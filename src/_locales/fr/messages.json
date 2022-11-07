@@ -1,11 +1,11 @@
 {
-  "extension_description": {
-    "message": "Le moyen le plus facile et le plus rapide de sauvegarder des articles, des vidéos et bien plus encore."
+  "extension_description" : {
+    "message" : "Le moyen le plus simple et le plus rapide de sauvegarder des articles, des vidéos et plus encore."
   },
   "heading_idle" : {
     "message" : ""
   },
-  "heading_error": {
+  "heading_error" : {
     "message" : "Un problème est survenu !"
   },
   "heading_saving" : {
@@ -42,13 +42,13 @@
     "message" : "Supprimer"
   },
   "buttons_mylist" : {
-    "message" : "Ma liste"
+    "message" : "Sauvegardes"
   },
   "buttons_save" : {
     "message" : "Sauvegarder"
   },
   "context_menu_open_list" : {
-    "message" : "Ouvrez votre liste Pocket"
+    "message" : "Ouvrez vos sauvegardes Pocket"
   },
   "context_menu_discover_more" : {
     "message" : "Découvrez-en plus sur Pocket"

@@ -1,11 +1,11 @@
 {
-  "extension_description": {
-    "message": "La forma más fácil y rápida de capturar artículos, vídeos y mucho más."
+  "extension_description" : {
+    "message" : "La forma más fácil y rápida de capturar artículos, vídeos y mucho más."
   },
   "heading_idle" : {
     "message" : ""
   },
-  "heading_error": {
+  "heading_error" : {
     "message" : "¡Parece que algo ha ido mal!"
   },
   "heading_saving" : {
@@ -42,13 +42,13 @@
     "message" : "Eliminar"
   },
   "buttons_mylist" : {
-    "message" : "Mi lista"
+    "message" : "Guardados"
   },
   "buttons_save" : {
     "message" : "Guardar"
   },
   "context_menu_open_list" : {
-    "message" : "Abre tu lista de Pocket"
+    "message" : "Abrir tus artículos guardados en Pocket"
   },
   "context_menu_discover_more" : {
     "message" : "Descubre más en Pocket"

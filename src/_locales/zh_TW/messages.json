@@ -1,11 +1,11 @@
 {
-  "extension_description": {
-    "message": "擷取文章、短片等内容的最簡捷方法。"
+  "extension_description" : {
+    "message" : "擷取文章、短片等内容的最簡捷方法。"
   },
   "heading_idle" : {
     "message" : ""
   },
-  "heading_error": {
+  "heading_error" : {
     "message" : "出了點問題！"
   },
   "heading_saving" : {
@@ -42,13 +42,13 @@
     "message" : "移除"
   },
   "buttons_mylist" : {
-    "message" : "我的清單"
+    "message" : "儲存項目"
   },
   "buttons_save" : {
     "message" : "儲存"
   },
   "context_menu_open_list" : {
-    "message" : "開啟您的 Pocket 清單"
+    "message" : "開啟您的 Pocket 儲存內容"
   },
   "context_menu_discover_more" : {
     "message" : "在 Pocket 上發掘更多內容"

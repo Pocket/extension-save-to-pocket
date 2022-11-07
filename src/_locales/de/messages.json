@@ -1,11 +1,11 @@
 {
-  "extension_description": {
-    "message" : "Pocket-Erweiterung für Chrome – Die beste Methode zum Speichern von Artikeln, Videos und vielem mehr"
+  "extension_description" : {
+    "message" : "Die einfachste und schnellste Möglichkeit, Artikel, Videos und mehr zu speichern."
   },
   "heading_idle" : {
     "message" : ""
   },
-  "heading_error": {
+  "heading_error" : {
     "message" : "Da ist etwas schiefgegangen."
   },
   "heading_saving" : {
@@ -42,13 +42,13 @@
     "message" : "Entfernen"
   },
   "buttons_mylist" : {
-    "message" : "Meine Liste"
+    "message" : "Gespeichert"
   },
   "buttons_save" : {
     "message" : "Speichern"
   },
   "context_menu_open_list" : {
-    "message" : "Deine Pocket-Liste öffnen"
+    "message" : "Öffne deine in Pocket Gespeichert"
   },
   "context_menu_discover_more" : {
     "message" : "Entdecke noch mehr interessante Inhalte auf Pocket"
