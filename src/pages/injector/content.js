@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { App } from './app'
+import { ShadowApp } from './app'
 import { SAVE_TO_POCKET_REQUEST } from 'actions'
 
 /* Initial Setup
@@ -18,11 +18,11 @@ export function injectDomElements() {
   const existingRoot = document.getElementById('pocket-extension-root')
   if (existingRoot) return
 
-  const rootElement = document.createElement('div')
-  rootElement.id = 'pocket-extension-root'
-  const root = document.body.appendChild(rootElement)
+  const root = document.createElement('div')
+  root.id = 'pocket-extension-root'
+  document.body.appendChild(root)
 
-  ReactDOM.render(<App />, root)
+  ReactDOM.render(<ShadowApp host={root} />, root)
 }
 
 //eslint-disable-next-line
